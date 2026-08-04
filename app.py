@@ -35,7 +35,7 @@ def check_password():
     user_input = st.text_input("Enter Password", type="password")
 
     if st.button("Log In"):
-        if user_input == st.secrets.get["APP_PASSWORD"]:
+        if user_input == st.secrets[APP_PASSWORD]:
             st.session_state["password_correct"] = True
             st.rerun()
         else:
