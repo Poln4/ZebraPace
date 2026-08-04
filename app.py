@@ -10,7 +10,6 @@ st.set_page_config(page_title="ZebraPace Beta", page_icon="🦓", layout="wide")
 # --- 1. SIMPLE PASSWORD GATE ---
 # In a real setup, put this in .streamlit/secrets.toml
 # For this script to run immediately for you, we define a fallback.
-APP_PASSWORD = st.secrets.get(APP_PASSWORD) 
 
 def check_password():
     if st.session_state.get("password_correct", False):
@@ -20,7 +19,7 @@ def check_password():
     user_input = st.text_input("Enter Password", type="password")
     
     if st.button("Log In"):
-        if user_input == st.secrets[APP_PASSWORD]:
+        if user_input == st.secrets["APP_PASSWORD]:
             st.session_state["password_correct"] = True
             st.rerun()
         else:
