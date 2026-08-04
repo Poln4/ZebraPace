@@ -7,9 +7,28 @@ import random
 # --- CONFIGURATION ---
 st.set_page_config(page_title="ZebraPace Beta", page_icon="🦓", layout="wide")
 
+st.markdown("""
+<style>
+    /* Creates a subtle zebra-stripe background behind all headers */
+    h1, h2, h3 {
+        background: repeating-linear-gradient(
+            45deg,
+            rgba(128, 128, 128, 0.1),
+            rgba(128, 128, 128, 0.1) 10px,
+            rgba(128, 128, 128, 0.0) 10px,
+            rgba(128, 128, 128, 0.0) 20px
+        );
+        padding: 10px 15px;
+        border-radius: 8px;
+        border-left: 5px solid #40E0D0; /* Adds a turquoise accent line */
+    }
+</style>
+""", unsafe_allow_html=True)
+
+This will apply a beautiful, subtle diagonal zebra stripe behind your titles that works perfectly in **both** Light and Dark modes without hurting readability!
+
 # --- 1. SIMPLE PASSWORD GATE ---
-# In a real setup, put this in .streamlit/secrets.toml
-# For this script to run immediately for you, we define a fallback.
+APP_PASSWORD = st.secrets.get("APP_PASSWORD", "zebra123") 
 
 def check_password():
     if st.session_state.get("password_correct", False):
@@ -19,7 +38,7 @@ def check_password():
     user_input = st.text_input("Enter Password", type="password")
     
     if st.button("Log In"):
-        if user_input == st.secrets["APP_PASSWORD"]:
+        if user_input == APP_PASSWORD:
             st.session_state["password_correct"] = True
             st.rerun()
         else:
@@ -57,19 +76,25 @@ init_db()
 def get_db_connection():
     return sqlite3.connect(DB_FILE)
 
-def get_weekly_average_steps():
+def get_weekly_average_steps(target_date_str):
+    """Calculates the 7-day average steps prior to the selected date."""
     conn = get_db_connection()
-    seven_days_ago = (datetime.date.today() - datetime.timedelta(days=7)).strftime("%Y-%m-%d")
-    df = pd.read_sql_query(f"SELECT steps FROM daily_logs WHERE date >= '{seven_days_ago}'", conn)
+    target_date_obj = datetime.datetime.strptime(target_date_str, "%Y-%m-%d").date()
+    seven_days_ago = (target_date_obj - datetime.timedelta(days=7)).strftime("%Y-%m-%d")
+    
+    df = pd.read_sql_query(f"SELECT steps FROM daily_logs WHERE date >= '{seven_days_ago}' AND date < '{target_date_str}'", conn)
     conn.close()
+    
     if df.empty or df['steps'].isna().all():
         return 0
     return df['steps'].mean()
 
-def check_calisthenics_comfort(exercise):
+def check_calisthenics_comfort(exercise, target_date_str):
+    """Checks if the last 3 sessions (up to the selected date) were comfortable."""
     conn = get_db_connection()
-    df = pd.read_sql_query(f"SELECT comfortable FROM calisthenics WHERE exercise='{exercise}' ORDER BY date DESC LIMIT 3", conn)
+    df = pd.read_sql_query(f"SELECT comfortable FROM calisthenics WHERE exercise='{exercise}' AND date <= '{target_date_str}' ORDER BY date DESC LIMIT 3", conn)
     conn.close()
+    
     if len(df) == 3 and df['comfortable'].all():
         return True
     return False
@@ -86,7 +111,9 @@ REST_FACTS = [
 st.title("🦓 ZebraPace: The 1% Journey")
 st.markdown("*Doing a little is better than pushing too hard. Rest is a success.*")
 
-today_str = datetime.date.today().strftime("%Y-%m-%d")
+# Date Picker for Backlogging (Replaces "today" logic)
+selected_date = st.date_input("🗓️ Select Date for Entry", datetime.date.today())
+date_str = selected_date.strftime("%Y-%m-%d")
 
 tabs = st.tabs(["💧 Daily Vitals & Nutrition", "🏃‍♀️ Movement & Calisthenics", "📊 Insights & Progress"])
 
@@ -94,17 +121,17 @@ tabs = st.tabs(["💧 Daily Vitals & Nutrition", "🏃‍♀️ Movement & Calis
 # TAB 1: DAILY VITALS & NUTRITION
 # ==========================================
 with tabs[0]:
-    st.header("Daily Check-in")
+    st.header(f"Daily Check-in for {date_str}")
     
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("Body & Mind")
         weight = st.number_input("Weight (kg)", min_value=0.0, value=65.0, step=0.1)
-        mental_state = st.select_slider("Mental State Today", options=["Exhausted/Brain Fog", "Low", "Okay", "Good", "Energized"], value="Okay")
+        mental_state = st.select_slider("Mental State", options=["Exhausted/Brain Fog", "Low", "Okay", "Good", "Energized"], value="Okay")
         body_feeling = st.select_slider("Body/Pain Feeling", options=["Severe Pain/Stiff", "Achy", "Manageable", "Good", "Loose & Stable"], value="Manageable")
         
         st.subheader("Orthopedics")
-        braces = st.multiselect("Braces Used Today", ["None", "Wrist", "Knee", "SI Belt", "Ring Splints", "Ankle", "Neck"])
+        braces = st.multiselect("Braces Used", ["None", "Wrist", "Knee", "SI Belt", "Ring Splints", "Ankle", "Neck"])
         brace_comfort = st.slider("How comfortable/helpful were the braces? (1=Painful, 10=Very Helpful)", 1, 10, 5)
 
     with col2:
@@ -119,10 +146,10 @@ with tabs[0]:
         c.execute('''INSERT OR REPLACE INTO daily_logs 
                      (date, weight, water_ml, protein_g, creatine_g, mental_state, body_feeling, braces_used, brace_comfort) 
                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)''', 
-                  (today_str, weight, water, protein, creatine, mental_state, body_feeling, str(braces), brace_comfort))
+                  (date_str, weight, water, protein, creatine, mental_state, body_feeling, str(braces), brace_comfort))
         conn.commit()
         conn.close()
-        st.success("Vitals saved! Remember: If you need to rest today, that is a valid health choice.")
+        st.success(f"Vitals saved for {date_str}! Remember: If you need to rest today, that is a valid health choice.")
 
 # ==========================================
 # TAB 2: MOVEMENT & CALISTHENICS
@@ -130,16 +157,17 @@ with tabs[0]:
 with tabs[1]:
     # STEPS & THE 1% RULE
     st.header("👣 Steps & The 1% Rule")
-    avg_steps = get_weekly_average_steps()
-    st.info(f"Your 7-day average is **{int(avg_steps)} steps**. Your 1% growth goal today is **{int(avg_steps * 1.01)} steps**.")
+    avg_steps = get_weekly_average_steps(date_str)
+    st.info(f"Your 7-day average leading up to this date is **{int(avg_steps)} steps**. Your 1% growth goal is **{int(avg_steps * 1.01)} steps**.")
     
-    steps = st.number_input("Steps Today", min_value=0, step=100)
+    steps = st.number_input("Steps", min_value=0, step=100)
     
     if st.button("Log Steps"):
-        # Save steps to daily_logs
         conn = get_db_connection()
         c = conn.cursor()
-        c.execute("UPDATE daily_logs SET steps = ? WHERE date = ?", (steps, today_str))
+        # Create a blank row if vitals haven't been saved yet for this date, then update steps
+        c.execute("INSERT OR IGNORE INTO daily_logs (date) VALUES (?)", (date_str,))
+        c.execute("UPDATE daily_logs SET steps = ? WHERE date = ?", (steps, date_str))
         conn.commit()
         conn.close()
         
@@ -170,10 +198,10 @@ with tabs[1]:
         conn = get_db_connection()
         c = conn.cursor()
         c.execute("INSERT INTO activities (date, activity_name, duration_min, extra_weight_kg) VALUES (?, ?, ?, ?)",
-                  (today_str, act_name, act_dur, act_weight))
+                  (date_str, act_name, act_dur, act_weight))
         conn.commit()
         conn.close()
-        st.success(f"Logged {act_name}! Every little bit counts.")
+        st.success(f"Logged {act_name} for {date_str}! Every little bit counts.")
 
     st.divider()
 
@@ -203,16 +231,15 @@ with tabs[1]:
         conn = get_db_connection()
         c = conn.cursor()
         c.execute("INSERT INTO calisthenics (date, exercise, progression, sets, reps, comfortable) VALUES (?, ?, ?, ?, ?, ?)",
-                  (today_str, cal_type, cal_prog, cal_sets, cal_reps, cal_comfort))
+                  (date_str, cal_type, cal_prog, cal_sets, cal_reps, cal_comfort))
         conn.commit()
         conn.close()
         st.success("Logged! Remember, not pushing up to the next tier is celebrated here.")
         
         # Check comfort rule
-        if check_calisthenics_comfort(cal_type):
+        if check_calisthenics_comfort(cal_type, date_str):
             st.balloons()
             st.info(f"🌟 You've comfortably completed {cal_type} 3 times in a row! You are cleared to try the next progression ONLY if you feel up to it.")
-
 
 # ==========================================
 # TAB 3: INSIGHTS & TRENDS
