@@ -10,7 +10,7 @@ st.set_page_config(page_title="ZebraPace Beta", page_icon="🦓", layout="wide")
 # --- 1. SIMPLE PASSWORD GATE ---
 # In a real setup, put this in .streamlit/secrets.toml
 # For this script to run immediately for you, we define a fallback.
-APP_PASSWORD = st.secrets.get("APP_PASSWORD", "zebra123") 
+# APP_PASSWORD = st.secrets.get("APP_PASSWORD", "zebra123") 
 
 def check_password():
     if st.session_state.get("password_correct", False):
