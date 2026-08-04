@@ -6,6 +6,10 @@ Traditional fitness apps rely on linear progression, streaks, and pushing limits
 
 ✨ Core Features & Philosophy
 
+The "Spoon" Battery Graphic: A visual representation of your daily energy capacity (based on "Spoon Theory"). Your daily battery level adjusts based on your morning physical score and sleep quality, providing an immediate, visual reminder to pace yourself on low-energy days.
+
+Sleep & Recovery Tracking: Recognizing that sleep is the primary driver of recovery for dysautonomia and connective tissue repair, the app tracks sleep patterns as a direct input for your daily energy and pacing recommendations.
+
 The 1% Rule & PEM Protection: The app calculates your 7-day rolling average for steps/activity. It sets a gentle 1% growth goal. If you exceed your average by more than 10%, the app triggers a "Dysautonomia/PEM Precaution" alert, reminding you to hydrate, take electrolytes, and plan for a rest day.
 
 The "3 Comfortable Sessions" Rule: Using Hampton's Hybrid Calisthenics methodology, the app tracks exercise comfort rather than just reps. You are only encouraged to move up a progression tier if you have completed the previous tier comfortably for 3 consecutive sessions.
