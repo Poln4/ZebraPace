@@ -317,7 +317,7 @@ with tabs[0]:
             for _, row in liquid_df.iterrows():
                 st.caption(f"• {row['amount_ml']} ml — {row['drink_type']}")
             
-            if st.button("🗑️ Reset Today's Liquids", size="small"):
+            if st.button("🗑️ Reset Today's Liquids"):
                 conn = get_db_connection()
                 conn.execute("DELETE FROM liquid_logs WHERE date=?", (date_str,))
                 conn.execute("UPDATE daily_logs SET water_ml = 0 WHERE date=?", (date_str,))
@@ -339,7 +339,7 @@ with tabs[0]:
             conn = get_db_connection()
             conn.execute("UPDATE daily_logs SET creatine_g = creatine_g + 5 WHERE date = ?", (date_str,))
             conn.commit(); conn.close(); st.rerun()
-        if st.button("Reset Nutrition", size="small"):
+        if st.button("Reset Nutrition"):
             conn = get_db_connection()
             conn.execute("UPDATE daily_logs SET protein_g=0, creatine_g=0 WHERE date = ?", (date_str,))
             conn.commit(); conn.close(); st.rerun()
