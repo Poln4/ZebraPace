@@ -27,20 +27,23 @@ st.markdown("""
 
 # --- 1. SIMPLE PASSWORD GATE ---
 def check_password():
+    """Returns True if the user enters the correct password."""
     if st.session_state.get("password_correct", False):
         return True
-    
+
     st.title("🔒 ZebraPace Login")
     user_input = st.text_input("Enter Password", type="password")
-    
+
     if st.button("Log In"):
         if user_input == st.secrets["APP_PASSWORD"]:
             st.session_state["password_correct"] = True
             st.rerun()
         else:
             st.error("😕 Incorrect password")
+
     return False
 
+# Block execution until logged in
 if not check_password():
     st.stop()
 
