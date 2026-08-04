@@ -3,8 +3,12 @@ import sqlite3
 import pandas as pd
 import datetime
 import random
+import json
+import requests
 import plotly.express as px
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+from fpdf import FPDF
 
 # =========================================================
 # STANDARDIZED SCALES
@@ -161,6 +165,9 @@ DEFAULT_SETTINGS = {
     "comfort_threshold": "3.8",     # avg comfort score to unlock next progression
     "water_goal_ml": "2000",
     "protein_goal_g": "100",
+    "location_name": "",
+    "location_lat": "",
+    "location_lon": "",
 }
 
 def get_db_connection():
@@ -186,6 +193,9 @@ def init_db():
                  (id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, drink_type TEXT, amount_ml INTEGER)''')
     c.execute('''CREATE TABLE IF NOT EXISTS settings
                  (key TEXT PRIMARY KEY, value TEXT)''')
+    c.execute('''CREATE TABLE IF NOT EXISTS weather_cache
+                 (date TEXT, lat REAL, lon REAL, temp_c REAL, humidity_pct REAL, pressure_hpa REAL,
+                  PRIMARY KEY (date, lat, lon))''')
 
     # Safe upgrades for older DBs
     try:
@@ -236,6 +246,9 @@ CAUTION_PCT = float(SETTINGS.get("caution_pct", 1.10))
 COMFORT_THRESHOLD = float(SETTINGS.get("comfort_threshold", 3.8))
 WATER_GOAL = int(float(SETTINGS.get("water_goal_ml", 2000)))
 PROTEIN_GOAL = int(float(SETTINGS.get("protein_goal_g", 100)))
+LOCATION_NAME = SETTINGS.get("location_name", "")
+LOCATION_LAT = SETTINGS.get("location_lat", "")
+LOCATION_LON = SETTINGS.get("location_lon", "")
 
 # =========================================================
 # 4. DATA HELPER FUNCTIONS
@@ -346,6 +359,154 @@ def delete_all_data():
         c.execute(f"DELETE FROM {table}")
     conn.commit()
     conn.close()
+
+# --- Weather (Open-Meteo — no API key, matches the source ZebraUp already uses) ---
+def geocode_location(name):
+    """Returns (display_name, lat, lon) or None if not found."""
+    try:
+        r = requests.get("https://geocoding-api.open-meteo.com/v1/search",
+                          params={"name": name, "count": 1, "language": "en", "format": "json"}, timeout=10)
+        r.raise_for_status()
+        results = r.json().get("results")
+        if not results:
+            return None
+        top = results[0]
+        display = f"{top['name']}, {top.get('admin1', '')} {top.get('country', '')}".strip()
+        return display, top["latitude"], top["longitude"]
+    except Exception:
+        return None
+
+def fetch_weather_range(lat, lon, start_date_str, end_date_str):
+    """Returns a daily-resolution DataFrame [date, temp_c, humidity_pct, pressure_hpa].
+    Cached in weather_cache so repeat visits don't re-hit the API for the same days."""
+    conn = get_db_connection()
+    cached = pd.read_sql_query(
+        "SELECT * FROM weather_cache WHERE lat=? AND lon=? AND date >= ? AND date <= ?",
+        conn, params=(lat, lon, start_date_str, end_date_str))
+    all_dates = pd.date_range(start_date_str, end_date_str, freq="D").strftime("%Y-%m-%d")
+    missing = sorted(set(all_dates) - set(cached['date']))
+
+    if missing:
+        try:
+            r = requests.get(
+                "https://archive-api.open-meteo.com/v1/archive",
+                params={
+                    "latitude": lat, "longitude": lon,
+                    "start_date": min(missing), "end_date": max(missing),
+                    "hourly": "temperature_2m,relative_humidity_2m,surface_pressure",
+                    "timezone": "auto",
+                },
+                timeout=20,
+            )
+            r.raise_for_status()
+            hourly = r.json().get("hourly", {})
+            if hourly:
+                df_h = pd.DataFrame({
+                    "time": pd.to_datetime(hourly["time"]),
+                    "temp_c": hourly["temperature_2m"],
+                    "humidity_pct": hourly["relative_humidity_2m"],
+                    "pressure_hpa": hourly["surface_pressure"],
+                })
+                df_h["date"] = df_h["time"].dt.strftime("%Y-%m-%d")
+                df_daily_weather = df_h.groupby("date").mean(numeric_only=True).reset_index()
+                c = conn.cursor()
+                for _, row in df_daily_weather.iterrows():
+                    c.execute(
+                        "INSERT OR REPLACE INTO weather_cache (date, lat, lon, temp_c, humidity_pct, pressure_hpa) VALUES (?, ?, ?, ?, ?, ?)",
+                        (row["date"], lat, lon, row["temp_c"], row["humidity_pct"], row["pressure_hpa"]))
+                conn.commit()
+        except Exception as e:
+            st.warning(f"Couldn't reach the weather service right now ({e}). Showing whatever is already cached.")
+
+    result = pd.read_sql_query(
+        "SELECT * FROM weather_cache WHERE lat=? AND lon=? AND date >= ? AND date <= ? ORDER BY date ASC",
+        conn, params=(lat, lon, start_date_str, end_date_str))
+    conn.close()
+    return result
+
+# --- Doctor-visit PDF summary ---
+def generate_doctor_pdf(start_date_str, end_date_str, df_daily, df_act, df_cal, df_ther, pem_note=None, weather_note=None):
+    pdf = FPDF()
+    pdf.set_auto_page_break(auto=True, margin=15)
+    pdf.add_page()
+
+    pdf.set_font("Helvetica", "B", 16)
+    pdf.cell(0, 10, "ZebraPace - Pacing Summary", ln=True)
+    pdf.set_font("Helvetica", "", 10)
+    pdf.cell(0, 6, f"Range: {start_date_str} to {end_date_str}  |  Generated: {datetime.date.today().isoformat()}", ln=True)
+    pdf.set_font("Helvetica", "I", 9)
+    pdf.multi_cell(0, 5, "Patient-reported pacing data (PRO/EMA style). Not a diagnostic tool; intended to support, not replace, clinical judgment.")
+    pdf.ln(3)
+
+    d = df_daily.copy()
+    days_span = max((datetime.datetime.strptime(end_date_str, "%Y-%m-%d") - datetime.datetime.strptime(start_date_str, "%Y-%m-%d")).days + 1, 1)
+    days_logged = len(d)
+    rest_days = int(d['is_rest_day'].sum()) if 'is_rest_day' in d.columns and days_logged else 0
+    flare_days = int(d['is_flare_day'].sum()) if 'is_flare_day' in d.columns and days_logged else 0
+    avg_steps = d.loc[d['steps'] > 0, 'steps'].mean() if days_logged and (d['steps'] > 0).any() else 0
+    avg_water = d['water_ml'].mean() if days_logged else 0
+    avg_protein = d['protein_g'].mean() if days_logged else 0
+    avg_mental = d['mental_state'].map(MENTAL_SCALE).mean() if days_logged else None
+    avg_body = d['body_feeling'].map(BODY_SCALE).mean() if days_logged else None
+
+    pdf.set_font("Helvetica", "B", 12)
+    pdf.cell(0, 8, "Overview", ln=True)
+    pdf.set_font("Helvetica", "", 10)
+    rows = [
+        ("Days in range", f"{days_span}"),
+        ("Days logged", f"{days_logged}"),
+        ("Rest days", f"{rest_days}"),
+        ("Flare / sick days", f"{flare_days}"),
+        ("Average daily steps (active days)", f"{avg_steps:.0f}" if avg_steps else "n/a"),
+        ("Average liquids", f"{avg_water:.0f} ml" if days_logged else "n/a"),
+        ("Average protein", f"{avg_protein:.0f} g" if days_logged else "n/a"),
+        ("Average mental state (1-5)", f"{avg_mental:.1f}" if avg_mental and not pd.isna(avg_mental) else "n/a"),
+        ("Average body/pain feeling (1-5)", f"{avg_body:.1f}" if avg_body and not pd.isna(avg_body) else "n/a"),
+    ]
+    for label, val in rows:
+        pdf.cell(90, 6, label, border=0)
+        pdf.cell(0, 6, val, border=0, ln=True)
+    pdf.ln(2)
+
+    pdf.set_font("Helvetica", "B", 12)
+    pdf.cell(0, 8, "Movement & Recovery", ln=True)
+    pdf.set_font("Helvetica", "", 10)
+    pdf.cell(0, 6, f"Custom activities logged: {len(df_act)}   |   Passive therapy sessions: {len(df_ther)}", ln=True)
+    if not df_cal.empty:
+        pdf.ln(1)
+        pdf.set_font("Helvetica", "B", 10)
+        pdf.cell(0, 6, "Calisthenics - latest status per exercise:", ln=True)
+        pdf.set_font("Helvetica", "", 10)
+        for ex, group in df_cal.sort_values('date').groupby('exercise'):
+            last3 = group.tail(3)
+            avg_comfort = last3['comfort_score'].mean()
+            latest_tier = group.iloc[-1]['progression']
+            pdf.cell(0, 6, f"  - {ex}: current tier '{latest_tier}', last-3-session avg comfort {avg_comfort:.1f}/5", ln=True)
+    pdf.ln(2)
+
+    if pem_note:
+        pdf.set_font("Helvetica", "B", 12)
+        pdf.cell(0, 8, "Delayed Symptom Pattern (patient-observed)", ln=True)
+        pdf.set_font("Helvetica", "", 10)
+        pdf.multi_cell(0, 6, pem_note)
+        pdf.ln(2)
+
+    if weather_note:
+        pdf.set_font("Helvetica", "B", 12)
+        pdf.cell(0, 8, "Weather Context", ln=True)
+        pdf.set_font("Helvetica", "", 10)
+        pdf.multi_cell(0, 6, weather_note)
+        pdf.ln(2)
+
+    if not df_ther.empty:
+        pdf.set_font("Helvetica", "B", 12)
+        pdf.cell(0, 8, "Recent Passive Therapies", ln=True)
+        pdf.set_font("Helvetica", "", 9)
+        for _, row in df_ther.sort_values('date', ascending=False).head(10).iterrows():
+            pdf.cell(0, 5, f"  {row['date']}  -  {row['therapy_name']} ({row['duration_min']} min)  -  body: {row['body_feeling']}", ln=True)
+
+    out = pdf.output()
+    return bytes(out)
 
 REST_FACTS = [
     "Rest days let fibroblasts repair collagen micro-tears. With EDS this takes a little longer — rest is literally when you build strength.",
@@ -808,6 +969,103 @@ with tabs[2]:
 
     st.divider()
 
+    # --- PEM / delayed symptom pattern check ---
+    st.subheader("🔬 Delayed Symptom Patterns (PEM check)")
+    st.caption("Post-exertional malaise often shows up 1-3 days after exertion, not same-day. This compares a day's steps against your body/mental scores that many days later — purely descriptive, not a diagnosis.")
+
+    pem_note = None
+    lag = st.select_slider("Look this many days ahead", options=[1, 2, 3], value=1)
+    df_pem = get_range_daily(days=days_map[range_choice], end_date_str=date_str).copy()
+    if not df_pem.empty:
+        df_pem['date'] = pd.to_datetime(df_pem['date'])
+        df_pem = df_pem.sort_values('date').reset_index(drop=True)
+        df_pem['body_score'] = df_pem['body_feeling'].map(BODY_SCALE)
+        df_pem['mental_score'] = df_pem['mental_state'].map(MENTAL_SCALE)
+        df_pem[f'body_score_+{lag}d'] = df_pem['body_score'].shift(-lag)
+        pem_valid = df_pem.dropna(subset=['steps', f'body_score_+{lag}d'])
+        pem_valid = pem_valid[pem_valid['steps'] > 0]
+
+        if len(pem_valid) >= 4:
+            baseline = pem_valid['steps'].mean()
+            pem_valid = pem_valid.copy()
+            pem_valid['exertion'] = pem_valid['steps'].apply(lambda s: "Higher exertion day" if s > baseline else "Typical/lower day")
+
+            col_p1, col_p2 = st.columns(2)
+            with col_p1:
+                fig_pem = px.scatter(pem_valid, x='steps', y=f'body_score_+{lag}d', color='exertion',
+                                      color_discrete_map={"Higher exertion day": TEAL, "Typical/lower day": PRIMARY},
+                                      title=f"Steps vs. body/pain score {lag} day(s) later")
+                fig_pem.update_layout(height=320, plot_bgcolor="white", paper_bgcolor="white", margin=dict(t=40, b=20))
+                st.plotly_chart(fig_pem, use_container_width=True)
+            with col_p2:
+                bucket_avg = pem_valid.groupby('exertion')[f'body_score_+{lag}d'].mean().reset_index()
+                fig_bucket = px.bar(bucket_avg, x='exertion', y=f'body_score_+{lag}d',
+                                     title=f"Average body/pain score {lag} day(s) after each type of day",
+                                     color='exertion', color_discrete_map={"Higher exertion day": TEAL, "Typical/lower day": PRIMARY})
+                fig_bucket.update_yaxes(range=[0, 5.5])
+                fig_bucket.update_layout(height=320, plot_bgcolor="white", paper_bgcolor="white", margin=dict(t=40, b=20), showlegend=False)
+                st.plotly_chart(fig_bucket, use_container_width=True)
+
+            corr = pem_valid['steps'].corr(pem_valid[f'body_score_+{lag}d'])
+            n = len(pem_valid)
+            st.caption(f"Correlation coefficient: r = {corr:.2f} (n = {n} day-pairs). With this few data points, treat this as a pattern worth watching, not a conclusion — it firms up as you log more days.")
+            pem_note = (f"Comparing daily steps against body/pain score {lag} day(s) later over the last {days_map[range_choice]} days "
+                        f"(n={n} pairs): correlation r={corr:.2f}. Higher-exertion days averaged a body/pain score of "
+                        f"{bucket_avg.loc[bucket_avg['exertion']=='Higher exertion day', f'body_score_+{lag}d'].mean():.1f}/5 "
+                        f"vs {bucket_avg.loc[bucket_avg['exertion']=='Typical/lower day', f'body_score_+{lag}d'].mean():.1f}/5 for typical/lower days, "
+                        f"{lag} day(s) later. Patient-observed pattern, not a clinical finding.")
+        else:
+            st.info("Not enough overlapping data yet for this window (need at least 4 days with both steps and a body-feeling entry a few days later). Keep logging — this fills in over time.")
+    else:
+        st.info("No data yet in this range for the PEM check.")
+
+    st.divider()
+
+    # --- Weather overlay ---
+    st.subheader("🌦️ Weather Context")
+    weather_note = None
+    if not LOCATION_LAT or not LOCATION_LON:
+        st.info("Add a location in ⚙️ Settings to see atmospheric pressure, temperature, and humidity plotted against your trends — useful for spotting weather-linked flares, especially with dysautonomia.")
+    else:
+        w_start = df_range['date'].min() if not df_range.empty else date_str
+        w_end = df_range['date'].max() if not df_range.empty else date_str
+        w_start_str = w_start.strftime("%Y-%m-%d") if hasattr(w_start, "strftime") else str(w_start)[:10]
+        w_end_str = w_end.strftime("%Y-%m-%d") if hasattr(w_end, "strftime") else str(w_end)[:10]
+        df_weather = fetch_weather_range(float(LOCATION_LAT), float(LOCATION_LON), w_start_str, w_end_str)
+
+        if df_weather.empty:
+            st.info("No weather data cached yet for this range — it fetches automatically once you have logged days in this window.")
+        else:
+            df_w = df_weather.copy()
+            df_w['date'] = pd.to_datetime(df_w['date'])
+            df_body = get_range_daily(days=days_map[range_choice], end_date_str=date_str).copy()
+            if not df_body.empty:
+                df_body['date'] = pd.to_datetime(df_body['date'])
+                df_body['body_score'] = df_body['body_feeling'].map(BODY_SCALE)
+                merged = pd.merge(df_w, df_body[['date', 'body_score']], on='date', how='inner')
+            else:
+                merged = pd.DataFrame()
+
+            fig_w = make_subplots(specs=[[{"secondary_y": True}]])
+            fig_w.add_trace(go.Scatter(x=df_w['date'], y=df_w['pressure_hpa'], name="Pressure (hPa)", line=dict(color=TEAL)), secondary_y=False)
+            if not merged.empty:
+                fig_w.add_trace(go.Scatter(x=merged['date'], y=merged['body_score'], name="Body/pain score", line=dict(color=PRIMARY, dash='dot')), secondary_y=True)
+            fig_w.update_layout(title=f"Pressure vs. body/pain score — {LOCATION_NAME or 'your location'}", height=340,
+                                 plot_bgcolor="white", paper_bgcolor="white", margin=dict(t=40, b=20))
+            fig_w.update_yaxes(title_text="Pressure (hPa)", secondary_y=False)
+            fig_w.update_yaxes(title_text="Body/pain score (1-5)", range=[0, 5.5], secondary_y=True)
+            st.plotly_chart(fig_w, use_container_width=True)
+
+            if not merged.empty and len(merged) >= 4:
+                corr_w = merged['pressure_hpa'].corr(merged['body_score'])
+                st.caption(f"Correlation between pressure and same-day body/pain score: r = {corr_w:.2f} (n = {len(merged)}). Exploratory only.")
+                weather_note = (f"Average atmospheric pressure over the period: {df_w['pressure_hpa'].mean():.1f} hPa. "
+                                 f"Correlation with same-day body/pain score: r={corr_w:.2f} (n={len(merged)}). Exploratory, patient-observed.")
+            else:
+                st.caption("Not enough overlapping days yet to compute a correlation.")
+
+    st.divider()
+
     # --- Encouraging summary stats (framed around effort, not just output) ---
     st.subheader("🏅 Things worth celebrating")
     total_checkins = len(df_daily[(df_daily['water_ml'] > 0) | (df_daily['steps'] > 0) | (df_daily['is_rest_day'] == 1) | (df_daily.get('is_flare_day', 0) == 1)])
@@ -828,9 +1086,27 @@ with tabs[2]:
 
     # --- EXPORT ---
     st.subheader("📥 Export")
-    if not df_daily.empty:
-        csv = df_daily.to_csv(index=False).encode('utf-8')
-        st.download_button(label="Download Vitals CSV (for your care team)", data=csv, file_name='zebrapace_vitals.csv', mime='text/csv')
+    exp_col1, exp_col2 = st.columns(2)
+    with exp_col1:
+        if not df_daily.empty:
+            csv = df_daily.to_csv(index=False).encode('utf-8')
+            st.download_button(label="Download Vitals CSV (raw)", data=csv, file_name='zebrapace_vitals.csv', mime='text/csv', use_container_width=True)
+    with exp_col2:
+        pdf_start = df_range['date'].min() if not df_range.empty else date_str
+        pdf_end = df_range['date'].max() if not df_range.empty else date_str
+        pdf_start_str = pdf_start.strftime("%Y-%m-%d") if hasattr(pdf_start, "strftime") else str(pdf_start)[:10]
+        pdf_end_str = pdf_end.strftime("%Y-%m-%d") if hasattr(pdf_end, "strftime") else str(pdf_end)[:10]
+        df_act_range = df_act[(df_act['date'] >= pdf_start_str) & (df_act['date'] <= pdf_end_str)] if not df_act.empty else df_act
+        df_cal_range = df_cal[(df_cal['date'] >= pdf_start_str) & (df_cal['date'] <= pdf_end_str)] if not df_cal.empty else df_cal
+        df_ther_range = df_ther[(df_ther['date'] >= pdf_start_str) & (df_ther['date'] <= pdf_end_str)] if not df_ther.empty else df_ther
+        df_daily_range = get_range_daily(days=days_map[range_choice], end_date_str=date_str)
+
+        pdf_bytes = generate_doctor_pdf(pdf_start_str, pdf_end_str, df_daily_range, df_act_range, df_cal_range, df_ther_range,
+                                         pem_note=pem_note, weather_note=weather_note)
+        st.download_button(label="🩺 Doctor Visit Report (PDF)", data=pdf_bytes,
+                            file_name=f"zebrapace_report_{pdf_start_str}_to_{pdf_end_str}.pdf",
+                            mime="application/pdf", use_container_width=True)
+    st.caption(f"The PDF summarizes the same {range_choice} window shown above, including the PEM and weather notes if enough data was available.")
 
     st.subheader("Daily Vitals History")
     if not df_daily.empty:
@@ -887,14 +1163,33 @@ with tabs[3]:
             st.rerun()
 
     st.divider()
-    st.subheader("About the password gate")
-    st.caption("The app password is set via `st.secrets['APP_PASSWORD']` in your Streamlit deployment settings, not stored in the database.")
+    st.subheader("📍 Location (for weather correlation)")
+    if LOCATION_NAME:
+        st.caption(f"Currently set to: **{LOCATION_NAME}** ({float(LOCATION_LAT):.2f}, {float(LOCATION_LON):.2f})")
+    else:
+        st.caption("Not set yet — the Insights tab's weather overlay needs this to fetch pressure/temperature/humidity data.")
+    loc_col1, loc_col2 = st.columns([3, 1])
+    with loc_col1:
+        loc_query = st.text_input("City or place name", placeholder="e.g. Santiago, Chile", label_visibility="collapsed")
+    with loc_col2:
+        if st.button("Find location", use_container_width=True) and loc_query:
+            found = geocode_location(loc_query)
+            if found:
+                name, lat, lon = found
+                set_setting("location_name", name)
+                set_setting("location_lat", lat)
+                set_setting("location_lon", lon)
+                st.success(f"Location set to {name}")
+                st.rerun()
+            else:
+                st.error("Couldn't find that place — try a nearby larger city.")
+    st.caption("Uses Open-Meteo's free geocoding and archive weather API (no key required, nothing sent beyond the place name and coordinates).")
 
+    st.divider()
+    
     st.divider()
     st.subheader("📦 Your data, your property")
     st.caption("Export, import, and delete are rights here, not premium features — everything lives in your local SQLite file, nothing is sent anywhere by this app.")
-
-    import json as _json
 
     col_exp, col_imp = st.columns(2)
     with col_exp:
@@ -902,7 +1197,7 @@ with tabs[3]:
         export_payload = export_all_data()
         st.download_button(
             "⬇️ Download full data (JSON)",
-            data=_json.dumps(export_payload, indent=2, default=str).encode('utf-8'),
+            data=json.dumps(export_payload, indent=2, default=str).encode('utf-8'),
             file_name=f"zebrapace_export_{datetime.date.today().isoformat()}.json",
             mime="application/json",
             use_container_width=True,
@@ -914,7 +1209,7 @@ with tabs[3]:
         import_mode = st.radio("Import mode", ["Merge (keep existing + add new)", "Replace (wipe then load)"], horizontal=False)
         if uploaded is not None and st.button("Import now", use_container_width=True):
             try:
-                payload = _json.loads(uploaded.read().decode('utf-8'))
+                payload = json.loads(uploaded.read().decode('utf-8'))
                 import_all_data(payload, mode="replace" if "Replace" in import_mode else "merge")
                 st.success("Import complete.")
                 st.rerun()
