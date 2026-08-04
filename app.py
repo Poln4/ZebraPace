@@ -25,8 +25,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-This will apply a beautiful, subtle diagonal zebra stripe behind your titles that works perfectly in **both** Light and Dark modes without hurting readability!
-
 # --- 1. SIMPLE PASSWORD GATE ---
 APP_PASSWORD = st.secrets.get("APP_PASSWORD", "zebra123") 
 
