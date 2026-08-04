@@ -1,0 +1,13 @@
+[theme]
+# Force a dark theme for accessibility
+base="dark"
+
+# Change the default Streamlit red/pink to turquoise
+primaryColor="#40E0D0"
+
+# Set deep black and dark gray backgrounds
+backgroundColor="#121212"
+secondaryBackgroundColor="#1E1E1E"
+
+# Keep text pure white for high contrast
+textColor="#FFFFFF"
