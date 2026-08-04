@@ -1,10 +1,10 @@
-🦓 ZebraPace: The 1% Journey
+# 🦓 ZebraPace: The 1% Journey #
 
 ZebraPace is a compassionate, pacing-focused health and fitness tracker designed specifically for individuals managing Ehlers-Danlos Syndromes (EDS), Post-Exercise Malaise (PEM), Dysautonomia and comorbidities.
 
 Traditional fitness apps rely on linear progression, streaks, and pushing limits—which can actively harm patients with chronic, cyclical conditions. ZebraPace flips the script. It operates on the philosophy of Atomic Habits (the 1% rule) and actively celebrates rest, maintenance, and listening to your body.
 
-✨ Core Features & Philosophy
+## ✨ Core Features & Philosophy ##
 
 The "Spoon" Battery Graphic: A visual representation of your daily energy capacity (based on "Spoon Theory"). Your daily battery level adjusts based on your morning physical score and sleep quality, providing an immediate, visual reminder to pace yourself on low-energy days.
 
@@ -18,11 +18,13 @@ Rest is Success: Resting is framed biologically as the time when fibroblasts rep
 
 Real-World Load Tracking: Allows you to log custom activities with "Added External Weight" (e.g., carrying a heavy bag or a child) to account for the true mechanical load on your joints.
 
-Holistic Daily Check-in: Tracks weight, water intake, protein/creatine, orthopedic brace usage/comfort, and self-reported mental and physical states.
+Open Liquid & Hydration Tracking: Easily track all forms of hydration, including tea, coffee, protein shakes, and electrolytes, independent of your other body metrics.
 
-If you want to give it a try too, below are the indications.
+Isolated Body Metrics: Weight, height, and body fat percentage are tracked in a completely separate, dedicated section to prevent blending physical measurements with mental/pain symptom logging.
 
-🚀 Installation & Setup
+#### If you want to give it a try too, below are the indications. ####
+
+## 🚀 Installation & Setup ##
 
 This is a lightweight Streamlit application that uses a local SQLite database, ensuring the health data remains 100% private.
 
@@ -64,7 +66,7 @@ streamlit run app.py
 
 The app will automatically open in your default web browser at http://localhost:8501.
 
-📂 Project Structure
+## 📂 Project Structure ##
 
 app.py: The main Streamlit application script containing the UI and database logic.
 
