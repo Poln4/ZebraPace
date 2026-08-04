@@ -26,6 +26,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- 1. SIMPLE PASSWORD GATE ---
+APP_PASSWORD = st.secrets.get("APP_PASSWORD", "runrunCarlacorrecorre") 
+
 def check_password():
     """Returns True if the user enters the correct password."""
     if st.session_state.get("password_correct", False):
@@ -35,7 +37,7 @@ def check_password():
     user_input = st.text_input("Enter Password", type="password")
 
     if st.button("Log In"):
-        if user_input == st.secrets["APP_PASSWORD"]:
+        if user_input == APP_PASSWORD:
             st.session_state["password_correct"] = True
             st.rerun()
         else:
