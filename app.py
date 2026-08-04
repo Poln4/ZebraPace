@@ -4,6 +4,10 @@ import pandas as pd
 import datetime
 import random
 
+# --- STANDARDIZED SCALES ---
+MENTAL_OPTIONS = ["Exhausted/Brain Fog", "Low", "Okay", "Good", "Energized"]
+BODY_OPTIONS = ["Severe Pain/Stiff", "Achy", "Manageable", "Good", "Loose & Stable"]
+
 # --- CONFIGURATION ---
 st.set_page_config(page_title="ZebraPace Beta", page_icon="🦓", layout="wide")
 
@@ -74,6 +78,14 @@ def init_db():
         c.execute("ALTER TABLE calisthenics ADD COLUMN comfort_score REAL DEFAULT 0.0")
     except sqlite3.OperationalError:
         pass # Column already exists
+
+    # Safely add the new feeling columns to activities and calisthenics
+    for table in ["activities", "calisthenics"]:
+        for col in ["mental_state", "body_feeling"]:
+            try:
+                c.execute(f"ALTER TABLE {table} ADD COLUMN {col} TEXT")
+            except sqlite3.OperationalError:
+                pass
         
     conn.commit()
     conn.close()
@@ -110,6 +122,15 @@ def get_weekly_average_steps(target_date_str):
     if df.empty or df['steps'].isna().all():
         return 0
     return df['steps'].mean()
+
+def get_weekly_summary_stats(target_date_str):
+    """Fetches basic stats for the past 7 days to provide gentle encouragement."""
+    conn = get_db_connection()
+    target_date_obj = datetime.datetime.strptime(target_date_str, "%Y-%m-%d").date()
+    seven_days_ago = (target_date_obj - datetime.timedelta(days=6)).strftime("%Y-%m-%d")
+    df = pd.read_sql_query(f"SELECT date, water_ml, steps FROM daily_logs WHERE date >= '{seven_days_ago}' AND date <= '{target_date_str}'", conn)
+    conn.close()
+    return df
 
 def check_calisthenics_comfort(exercise, target_date_str):
     """Checks if the last 3 sessions averaged a comfort score of 3.8 or higher."""
@@ -167,6 +188,21 @@ tabs = st.tabs(["💧 Daily Vitals & Fuel", "🏃‍♀️ Movement & Calistheni
 with tabs[0]:
     st.header(f"Daily Logs for {date_str}")
     
+    # --- GENTLE SUMMARY ---
+    df_week = get_weekly_summary_stats(date_str)
+    days_logged = len(df_week)
+    water_today = day_data.get('water_ml', 0) if day_data else 0
+    steps_today = day_data.get('steps', 0) if day_data else 0
+    
+    st.info(f"🌱 **Today's gentle overview:** You've nourished your body with **{water_today} ml** of liquids and taken **{steps_today} steps**. Whatever you did today, it was exactly enough.")
+    
+    if days_logged > 1:
+        st.success(f"💙 **Your week so far:** You've checked in **{days_logged} times** over the last 7 days. Thank you for consistently tuning in to your body's needs. Remember, choosing to rest and protect your joints makes you a hero.")
+    else:
+        st.success("💙 **Your week so far:** This is your first check-in for the week. Welcome! Take everything at your own pace.")
+        
+    st.divider()
+    
     col_fuel, col_body = st.columns(2)
     
     # --- FUEL QUICK ADD SECTION ---
@@ -194,6 +230,16 @@ with tabs[0]:
             conn.execute("UPDATE daily_logs SET water_ml = 0 WHERE date = ?", (date_str,))
             conn.commit(); conn.close(); st.rerun()
             
+        # Custom exact amount input
+        cc1, cc2 = st.columns([2, 1])
+        with cc1:
+            custom_water = st.number_input("Custom ml", min_value=1, value=380, step=1, label_visibility="collapsed")
+        with cc2:
+            if st.button("➕ Add Exact", use_container_width=True):
+                conn = get_db_connection()
+                conn.execute("UPDATE daily_logs SET water_ml = water_ml + ? WHERE date = ?", (custom_water, date_str))
+                conn.commit(); conn.close(); st.rerun()
+                
         st.divider()
         st.metric("Protein", f"{current_protein} g", delta="Creatine: " + str(current_creatine) + " g", delta_color="off")
         
@@ -214,10 +260,10 @@ with tabs[0]:
             weight = st.number_input("Weight (kg)", min_value=0.0, value=float(day_data.get('weight', 65.0) or 65.0), step=0.1)
             
             mental_val = day_data.get('mental_state', "Okay") or "Okay"
-            mental_state = st.select_slider("Mental State", options=["Exhausted/Brain Fog", "Low", "Okay", "Good", "Energized"], value=mental_val)
+            mental_state = st.select_slider("Mental State", options=MENTAL_OPTIONS, value=mental_val)
             
             body_val = day_data.get('body_feeling', "Manageable") or "Manageable"
-            body_feeling = st.select_slider("Body/Pain Feeling", options=["Severe Pain/Stiff", "Achy", "Manageable", "Good", "Loose & Stable"], value=body_val)
+            body_feeling = st.select_slider("Body/Pain Feeling", options=BODY_OPTIONS, value=body_val)
             
             # Simple conversion of string to list for braces
             saved_braces_str = day_data.get('braces_used', "[]") or "[]"
@@ -280,10 +326,17 @@ with tabs[1]:
     with col_c:
         act_weight = st.number_input("Added External Weight (kg)", min_value=0.0, step=0.1)
     
+    st.write("How did you feel doing this?")
+    col_af1, col_af2 = st.columns(2)
+    with col_af1:
+        act_mental = st.select_slider("Mental State", options=MENTAL_OPTIONS, value="Okay", key="act_mental")
+    with col_af2:
+        act_body = st.select_slider("Body/Pain Feeling", options=BODY_OPTIONS, value="Manageable", key="act_body")
+        
     if st.button("Log Activity"):
         conn = get_db_connection()
-        conn.execute("INSERT INTO activities (date, activity_name, duration_min, extra_weight_kg) VALUES (?, ?, ?, ?)",
-                  (date_str, act_name, act_dur, act_weight))
+        conn.execute("INSERT INTO activities (date, activity_name, duration_min, extra_weight_kg, mental_state, body_feeling) VALUES (?, ?, ?, ?, ?, ?)",
+                  (date_str, act_name, act_dur, act_weight, act_mental, act_body))
         conn.commit()
         conn.close()
         st.success(f"Logged {act_name}! Every little bit counts.")
@@ -309,10 +362,17 @@ with tabs[1]:
         comfort_score = st.slider("Comfort Level (1 = Painful, 5 = Stable/Great)", 1.0, 5.0, 3.0, 0.1)
         st.info(f"**Current Status:** {get_comfort_emoji(comfort_score)}")
         
+    st.write("How did you feel doing this?")
+    col_cf1, col_cf2 = st.columns(2)
+    with col_cf1:
+        cal_mental = st.select_slider("Mental State", options=MENTAL_OPTIONS, value="Okay", key="cal_mental")
+    with col_cf2:
+        cal_body = st.select_slider("Body/Pain Feeling", options=BODY_OPTIONS, value="Manageable", key="cal_body")
+
     if st.button("Log Calisthenics"):
         conn = get_db_connection()
-        conn.execute("INSERT INTO calisthenics (date, exercise, progression, sets, reps, comfort_score) VALUES (?, ?, ?, ?, ?, ?)",
-                  (date_str, cal_type, cal_prog, cal_sets, cal_reps, comfort_score))
+        conn.execute("INSERT INTO calisthenics (date, exercise, progression, sets, reps, comfort_score, mental_state, body_feeling) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                  (date_str, cal_type, cal_prog, cal_sets, cal_reps, comfort_score, cal_mental, cal_body))
         conn.commit()
         conn.close()
         st.success("Logged! Remember, staying at your current tier is highly celebrated here.")
@@ -351,8 +411,8 @@ with tabs[2]:
     with col_h1:
         st.subheader("Recent Activities")
         if not df_act.empty:
-            st.dataframe(df_act.sort_values('date', ascending=False)[['date', 'activity_name', 'duration_min']].head(10), use_container_width=True)
+            st.dataframe(df_act.sort_values('date', ascending=False)[['date', 'activity_name', 'duration_min', 'mental_state', 'body_feeling']].head(10), use_container_width=True)
     with col_h2:
         st.subheader("Recent Calisthenics")
         if not df_cal.empty:
-            st.dataframe(df_cal.sort_values('date', ascending=False)[['date', 'exercise', 'progression', 'comfort_score']].head(10), use_container_width=True)
+            st.dataframe(df_cal.sort_values('date', ascending=False)[['date', 'exercise', 'progression', 'comfort_score', 'mental_state', 'body_feeling']].head(10), use_container_width=True)
