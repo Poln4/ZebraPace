@@ -32,6 +32,16 @@ DRINK_HYDRATION_FACTOR = {
 }
 PROTEIN_UNIT_GRAMS = {"g": 1.0, "scoop (~30g)": 30.0, "tbsp (~7g)": 7.0}
 
+# Contraction-mode tags for calisthenics logging (Phase 1 — eccentric-loading awareness).
+# "Eccentric" = the lengthening/lowering phase (e.g. controlled descent from a pushup).
+# Kept simple and descriptive on purpose — this is a training-mode label, not a prescription.
+CONTRACTION_MODES = [
+    "Concentric (lifting/pushing up)",
+    "Eccentric (lowering, controlled)",
+    "Isometric (held position)",
+    "Mixed / not sure",
+]
+
 # =========================================================
 # CONFIGURATION / THEME
 # =========================================================
@@ -224,6 +234,11 @@ def init_db():
         c.execute('''CREATE TABLE IF NOT EXISTS weather_cache
                      (date TEXT, lat REAL, lon REAL, temp_c REAL, humidity_pct REAL, pressure_hpa REAL,
                       PRIMARY KEY (date, lat, lon))''')
+        # Phase 2 — "Soreness or Crash?" quick-check log (see check_soreness_or_crash()).
+        # One row per check (a day can have more than one, e.g. morning and next-day follow-up).
+        c.execute('''CREATE TABLE IF NOT EXISTS soreness_checks
+                     (id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, onset TEXT,
+                      spread TEXT, trend TEXT, verdict TEXT, verdict_label TEXT)''')
 
         # Safe upgrades for older DBs
         try:
@@ -236,6 +251,11 @@ def init_db():
                     c.execute(f"ALTER TABLE {table} ADD COLUMN {col} TEXT")
                 except sqlite3.OperationalError:
                     pass
+        # Phase 1 — contraction-mode tag (concentric/eccentric/isometric/mixed) per calisthenics set.
+        try:
+            c.execute("ALTER TABLE calisthenics ADD COLUMN contraction_mode TEXT")
+        except sqlite3.OperationalError:
+            pass
         for col_def in ["is_rest_day BOOLEAN DEFAULT 0", "fat_percentage REAL DEFAULT 0.0", "is_flare_day BOOLEAN DEFAULT 0"]:
             try:
                 c.execute(f"ALTER TABLE daily_logs ADD COLUMN {col_def}")
@@ -336,6 +356,20 @@ def check_calisthenics_comfort(exercise, target_date_str):
                                 conn, params=(exercise, target_date_str))
     return len(df) == 3 and df['comfort_score'].mean() >= COMFORT_THRESHOLD
 
+def get_recent_eccentric_session(target_date_str, lookback_days=3):
+    """Was any Eccentric-tagged calisthenics set logged in the last `lookback_days`?
+    Used to give the Phase 2 soreness-vs-crash check a relevant default, since ordinary
+    DOMS is specifically tied to unaccustomed eccentric/lengthening loading."""
+    target = datetime.datetime.strptime(target_date_str, "%Y-%m-%d").date()
+    start = (target - datetime.timedelta(days=lookback_days)).strftime("%Y-%m-%d")
+    with get_db() as conn:
+        df = pd.read_sql_query(
+            """SELECT date, exercise FROM calisthenics
+               WHERE date >= ? AND date <= ? AND contraction_mode LIKE 'Eccentric%'
+               ORDER BY date DESC LIMIT 1""",
+            conn, params=(start, target_date_str))
+    return None if df.empty else df.iloc[0].to_dict()
+
 def get_latest_body_metrics(before_date_str):
     """Weight/height/body-fat don't change day to day, so a fresh day shouldn't start blank —
     carry forward the most recent recorded value until the user actually updates it."""
@@ -424,8 +458,54 @@ def feeling_control(label, options, emoji_map, default, key):
                                 format_func=lambda x: f"{emoji_map[x]} {x}", key=key)
     return val if val is not None else default
 
+# --- Phase 2: Soreness-or-Crash quick check ---------------------------------
+# Grounded in two things kept distinct on purpose:
+#  - Ordinary DOMS after eccentric/unaccustomed loading: localized to the muscles worked,
+#    peaks ~24-72h, eases with the "repeated bout effect" (Hody et al. 2019; Nosaka 2026).
+#  - PEM/crash: often more widespread or systemic (fatigue, brain fog, flu-like), can be
+#    disproportionate to the triggering activity, and tends to *not* ease day over day —
+#    this is a different mechanism than local muscle soreness and needs a different response.
+# This is a descriptive heuristic for the person's own reflection, not a diagnostic tool.
+
+def evaluate_soreness_or_crash(onset, spread, trend):
+    """Returns (verdict_key, label, message) from three simple self-report answers."""
+    if spread == "Widespread / systemic" or trend == "Getting worse":
+        return (
+            "possible_crash",
+            "🌩️ More consistent with a crash/PEM pattern",
+            "Widespread or worsening symptoms — rather than easing, localized muscle soreness — line up more with "
+            "post-exertional malaise than ordinary exercise soreness. Consider treating today (and maybe tomorrow) "
+            "as a Rest or Flare Day, and it's worth mentioning this pattern to your care team if it keeps happening."
+        )
+    if spread == "Localized to muscles worked" and trend in ("Easing", "About the same") and onset in ("1 day after", "2-3 days after"):
+        return (
+            "likely_doms",
+            "💪 Sounds like ordinary post-exercise soreness (DOMS)",
+            "Localized soreness that peaks a day or two after effort and then eases is the typical pattern for "
+            "delayed-onset muscle soreness — especially after eccentric (lowering/controlled) work. It's not usually "
+            "a signal to worry, and it tends to lessen further with repeated, gentle exposure (the 'repeated bout effect')."
+        )
+    return (
+        "unclear",
+        "🤔 No clear pattern yet",
+        "Not enough of a clear signal either way from these answers. Worth logging again tomorrow, and mentioning "
+        "to your care team if this keeps recurring or feels different from your usual soreness."
+    )
+
+def save_soreness_check(date_str, onset, spread, trend, verdict_key, verdict_label):
+    with get_db() as conn:
+        conn.execute(
+            "INSERT INTO soreness_checks (date, onset, spread, trend, verdict, verdict_label) VALUES (?, ?, ?, ?, ?, ?)",
+            (date_str, onset, spread, trend, verdict_key, verdict_label))
+        conn.commit()
+
+def get_soreness_checks(date_str):
+    with get_db() as conn:
+        df = pd.read_sql_query("SELECT * FROM soreness_checks WHERE date=? ORDER BY id DESC", conn, params=(date_str,))
+    return df
+
 # --- Data ownership: export / import / delete everything, no lock-in ---
-DATA_TABLES = ["daily_logs", "activities", "calisthenics", "therapies", "liquid_logs", "settings", "weather_cache"]
+DATA_TABLES = ["daily_logs", "activities", "calisthenics", "therapies", "liquid_logs", "settings", "weather_cache", "soreness_checks"]
 
 def export_all_data():
     payload = {"exported_at": datetime.datetime.now().isoformat(), "tables": {}}
@@ -585,7 +665,9 @@ def generate_doctor_pdf(start_date_str, end_date_str, df_daily, df_act, df_cal, 
             last3 = group.tail(3)
             avg_comfort = last3['comfort_score'].mean()
             latest_tier = group.iloc[-1]['progression']
-            pdf.cell(0, 6, f"  - {ex}: current tier '{latest_tier}', last-3-session avg comfort {avg_comfort:.1f}/5", ln=True)
+            latest_mode = group.iloc[-1]['contraction_mode'] if 'contraction_mode' in group.columns else None
+            mode_str = f", last mode: {latest_mode}" if latest_mode else ""
+            pdf.cell(0, 6, f"  - {ex}: current tier '{latest_tier}', last-3-session avg comfort {avg_comfort:.1f}/5{mode_str}", ln=True)
     pdf.ln(2)
 
     if pem_note:
@@ -651,6 +733,24 @@ ADAPTIVE_BODY_PRINCIPLES = [
         "fact": "Fascia can thicken (densify) to compensate for lax joints, creating stiffness despite loose ligaments — aggressive stretching can worsen instability.",
         "inspiration": "Tightness is often your body protecting your joints. Gentle fascial gliding and core stabilization reassure your nervous system more safely than a deep stretch.",
         "citation": "Wang, Stecco, Hakim & Schleip, 2025, Int J Mol Sci",
+    },
+    {
+        "title": "Eccentric Work: More Strength for Fewer Spoons",
+        "fact": "Eccentric (lengthening) contractions generate high force at a lower metabolic and cardiovascular cost than concentric (lifting) contractions of the same intensity — and unaccustomed muscle damage is largely preventable through gradual, low-intensity progression.",
+        "inspiration": "This is why 'Eccentric' work is worth tagging separately here — it's a way to build real strength without spending spoons you don't have, especially useful if dysautonomia limits how much cardiovascular effort you can spare on a given day.",
+        "citation": "Hody et al., 2019, Front Physiol; Nosaka, 2026, J Sport Health Sci",
+    },
+    {
+        "title": "Soreness Fades With Practice — the Repeated Bout Effect",
+        "fact": "After an initial bout of eccentric exercise, the same movement causes markedly less soreness and muscle damage the next time — protection that can last weeks to months.",
+        "inspiration": "If a new eccentric exercise leaves you sore the first couple of times, that's expected and it's not a sign to stop — it typically eases on its own as your muscles adapt, faster than you might expect.",
+        "citation": "Hody et al., 2019, Front Physiol; Nosaka, 2026, J Sport Health Sci",
+    },
+    {
+        "title": "An Important Caveat: Muscle Damage ≠ Joint Safety",
+        "fact": "The eccentric-exercise research above was done in general and older-adult populations, not specifically in hypermobile connective tissue. 'Muscle damage is usually fine' is not the same claim as 'joint and capsule loading is fine' for EDS/HSD bodies.",
+        "inspiration": "Treat muscle soreness and joint/capsule signals as two separate things worth tracking separately — easing muscle soreness is a good sign, but pain, instability, or swelling around a joint is its own signal and deserves its own caution, regardless of what the muscle soreness is doing.",
+        "citation": "App-level synthesis, not from the source studies directly",
     },
 ]
 
@@ -874,6 +974,53 @@ with tabs[0]:
             st.success("Updated successfully!")
             st.rerun()
 
+    # --- Phase 2: Soreness-or-Crash quick check ---
+    # Auto-expanded when today's body feeling looks rough, since that's when the question
+    # actually matters; otherwise available but tucked away so it's not noise on good days.
+    body_feeling_now = day_data.get('body_feeling') or body_feeling
+    looks_rough_today = body_feeling_now in ("Severe Pain/Stiff", "Achy")
+    recent_eccentric = get_recent_eccentric_session(date_str)
+
+    with st.expander("🔍 Soreness or Crash? A quick check", expanded=looks_rough_today):
+        st.caption(
+            "Ordinary muscle soreness (DOMS) after exercise and a PEM/crash aren't the same thing, and they call for "
+            "different responses. This is three quick questions to help tell them apart — a reflection tool, not a diagnosis."
+        )
+        if recent_eccentric:
+            st.caption(f"📎 For context: you logged Eccentric-tagged **{recent_eccentric['exercise']}** on {recent_eccentric['date']}.")
+
+        with st.form("soreness_check_form"):
+            onset = st.radio(
+                "When did this start, relative to any activity?",
+                ["Same day", "1 day after", "2-3 days after", "Not tied to activity / not sure"],
+                horizontal=False,
+            )
+            spread = st.radio(
+                "Is it mostly in the specific muscles you worked, or more all-over / flu-like / foggy?",
+                ["Localized to muscles worked", "Widespread / systemic"],
+                horizontal=False,
+            )
+            trend = st.radio(
+                "Compared to yesterday, is it:",
+                ["Easing", "About the same", "Getting worse"],
+                horizontal=False,
+            )
+            if st.form_submit_button("Check this pattern"):
+                verdict_key, verdict_label, verdict_msg = evaluate_soreness_or_crash(onset, spread, trend)
+                save_soreness_check(date_str, onset, spread, trend, verdict_key, verdict_label)
+                if verdict_key == "possible_crash":
+                    st.warning(f"**{verdict_label}**\n\n{verdict_msg}")
+                elif verdict_key == "likely_doms":
+                    st.success(f"**{verdict_label}**\n\n{verdict_msg}")
+                else:
+                    st.info(f"**{verdict_label}**\n\n{verdict_msg}")
+
+        todays_checks = get_soreness_checks(date_str)
+        if not todays_checks.empty:
+            st.caption("Today's check(s) so far:")
+            for _, row in todays_checks.iterrows():
+                st.caption(f"• {row['verdict_label']} — onset: {row['onset']}, spread: {row['spread']}, trend: {row['trend']}")
+
     st.divider()
 
     with st.expander("☕ Hydration & Liquids", expanded=not is_low_energy_day):
@@ -1068,6 +1215,12 @@ with tabs[1]:
             "Squats": ["Jackknife Squats", "Assisted Squats", "Half Squats", "Full Squats"]
         }
         cal_prog = st.selectbox("Progression Tier", progressions.get(cal_type, ["Tier 1", "Tier 2", "Tier 3"]))
+        cal_mode = st.selectbox(
+            "Contraction Mode", CONTRACTION_MODES,
+            help="Eccentric = the slow/controlled lowering phase. Tagging this lets Insights track your eccentric "
+                 "work separately — it's the mode most linked to the 'more strength for less spoons' effect, and "
+                 "also the one most linked to first-time soreness (see the science note in Insights).",
+        )
 
         col_c1, col_c2 = st.columns([1, 2])
         with col_c1:
@@ -1086,8 +1239,9 @@ with tabs[1]:
 
         if st.button("Log Calisthenics"):
             with get_db() as conn:
-                conn.execute("INSERT INTO calisthenics (date, exercise, progression, sets, reps, comfort_score, mental_state, body_feeling) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                             (date_str, cal_type, cal_prog, cal_sets, cal_reps, comfort_score, cal_mental, cal_body))
+                conn.execute(
+                    "INSERT INTO calisthenics (date, exercise, progression, sets, reps, comfort_score, mental_state, body_feeling, contraction_mode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    (date_str, cal_type, cal_prog, cal_sets, cal_reps, comfort_score, cal_mental, cal_body, cal_mode))
                 conn.commit()
             st.success("Logged! Staying at your current tier is just as celebrated here as moving up.")
 
@@ -1201,10 +1355,20 @@ with tabs[2]:
             st.subheader("🤸 Calisthenics Comfort by Exercise")
             df_cal_plot = df_cal.copy()
             df_cal_plot['date'] = pd.to_datetime(df_cal_plot['date'])
-            fig_cal = px.line(df_cal_plot.sort_values('date'), x='date', y='comfort_score', color='exercise', markers=True)
-            fig_cal.add_hline(y=COMFORT_THRESHOLD, line_dash="dot", line_color=SUCCESS, annotation_text="progression threshold")
-            fig_cal.update_layout(height=320, plot_bgcolor="white", paper_bgcolor="white", margin=dict(t=20, b=20))
-            st.plotly_chart(fig_cal, use_container_width=True)
+            cal_group_choice = st.radio(
+                "Group by:", ["Exercise", "Contraction mode"], horizontal=True, key="cal_group_choice",
+                help="Grouping by contraction mode makes it easy to see whether Eccentric-tagged sets are trending "
+                     "toward comfort as fast as (or faster than) Concentric ones — a rough proxy for the repeated bout effect.",
+            )
+            group_col = 'exercise' if cal_group_choice == "Exercise" else 'contraction_mode'
+            df_cal_grouped = df_cal_plot.dropna(subset=[group_col]) if group_col == 'contraction_mode' else df_cal_plot
+            if df_cal_grouped.empty:
+                st.caption("No contraction-mode-tagged sessions logged yet — tag a set as Eccentric/Concentric/Isometric in Movement & Calisthenics to see this view.")
+            else:
+                fig_cal = px.line(df_cal_grouped.sort_values('date'), x='date', y='comfort_score', color=group_col, markers=True)
+                fig_cal.add_hline(y=COMFORT_THRESHOLD, line_dash="dot", line_color=SUCCESS, annotation_text="progression threshold")
+                fig_cal.update_layout(height=320, plot_bgcolor="white", paper_bgcolor="white", margin=dict(t=20, b=20))
+                st.plotly_chart(fig_cal, use_container_width=True)
 
     st.divider()
 
@@ -1259,6 +1423,21 @@ with tabs[2]:
         st.info("No data yet in this range for the PEM check.")
 
     st.divider()
+
+    # --- Soreness-or-Crash check history ---
+    with get_db() as conn:
+        df_soreness = pd.read_sql_query(
+            "SELECT * FROM soreness_checks WHERE date >= ? AND date <= ? ORDER BY date DESC",
+            conn, params=(df_range['date'].min().strftime("%Y-%m-%d") if not df_range.empty else date_str,
+                          df_range['date'].max().strftime("%Y-%m-%d") if not df_range.empty else date_str))
+    if not df_soreness.empty:
+        st.subheader("🔍 Soreness-or-Crash Check History")
+        st.caption("Every 'Soreness or Crash?' check you've logged in this range, most recent first.")
+        st.dataframe(
+            df_soreness[['date', 'verdict_label', 'onset', 'spread', 'trend']].rename(columns={'verdict_label': 'verdict'}),
+            use_container_width=True,
+        )
+        st.divider()
 
     # --- Weather overlay ---
     st.subheader("🌦️ Weather Context")
@@ -1366,7 +1545,10 @@ with tabs[2]:
     with col_h2:
         st.subheader("Recent Calisthenics")
         if not df_cal.empty:
-            st.dataframe(df_cal.sort_values('date', ascending=False)[['date', 'exercise', 'progression', 'comfort_score', 'mental_state', 'body_feeling']].head(10), use_container_width=True)
+            cols_to_show = ['date', 'exercise', 'progression', 'comfort_score', 'mental_state', 'body_feeling']
+            if 'contraction_mode' in df_cal.columns:
+                cols_to_show.insert(3, 'contraction_mode')
+            st.dataframe(df_cal.sort_values('date', ascending=False)[cols_to_show].head(10), use_container_width=True)
 
 # ==========================================
 # TAB 4: SETTINGS
