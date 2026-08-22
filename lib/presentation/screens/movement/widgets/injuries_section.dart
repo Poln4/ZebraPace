@@ -33,10 +33,13 @@ class _InjuriesSectionState extends ConsumerState<InjuriesSection> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final activeInjuries = ref.watch(activeInjuriesProvider).valueOrNull ?? const [];
+    final isLowEnergyDay = ref.watch(dailyLogProvider).valueOrNull?.isLowEnergyDay ?? false;
 
     return SectionCard(
       title: l10n.injuriesSectionTitle,
       caption: l10n.injuriesSectionCaption,
+      collapsible: true,
+      initiallyExpanded: !isLowEnergyDay,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

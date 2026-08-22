@@ -9,6 +9,7 @@ class DefaultSettings {
   static const comfortThreshold = 3.8; // avg comfort score to unlock next progression
   static const waterGoalMl = 2000;
   static const proteinGoalG = 100;
+  static const sleepGoalHours = 8.0;
 
   /// 'system' follows the OS locale; otherwise an app-supported language code.
   static const languageCode = 'system';
@@ -27,6 +28,7 @@ class SettingsKeys {
   static const comfortThreshold = 'comfort_threshold';
   static const waterGoalMl = 'water_goal_ml';
   static const proteinGoalG = 'protein_goal_g';
+  static const sleepGoalHours = 'sleep_goal_hours';
   static const locationName = 'location_name';
   static const locationLat = 'location_lat';
   static const locationLon = 'location_lon';
@@ -35,6 +37,8 @@ class SettingsKeys {
   static const languageCode = 'language_code';
   static const textScaleFactor = 'text_scale_factor';
   static const welcomeAcknowledged = 'welcome_acknowledged';
+  static const userName = 'user_name';
+  static const inviteCodeVerified = 'invite_code_verified';
 }
 
 class StripeConstants {

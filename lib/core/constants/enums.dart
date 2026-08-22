@@ -59,6 +59,32 @@ enum BodyFeeling {
       value == null ? null : BodyFeeling.values.where((e) => e.name == value).firstOrNull;
 }
 
+enum SleepQuality {
+  poor('😩', 1),
+  restless('😕', 2),
+  okay('😐', 3),
+  good('🙂', 4),
+  restorative('😴', 5);
+
+  const SleepQuality(this.emoji, this.score);
+
+  final String emoji;
+  final int score;
+
+  String get db => name;
+
+  String label(AppLocalizations l10n) => switch (this) {
+        SleepQuality.poor => l10n.sleepQualityPoor,
+        SleepQuality.restless => l10n.sleepQualityRestless,
+        SleepQuality.okay => l10n.sleepQualityOkay,
+        SleepQuality.good => l10n.sleepQualityGood,
+        SleepQuality.restorative => l10n.sleepQualityRestorative,
+      };
+
+  static SleepQuality? fromDb(String? value) =>
+      value == null ? null : SleepQuality.values.where((e) => e.name == value).firstOrNull;
+}
+
 enum ContractionMode {
   concentric,
   eccentric,

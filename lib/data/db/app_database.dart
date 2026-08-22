@@ -32,7 +32,22 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
+
+  @override
+  MigrationStrategy get migration => MigrationStrategy(
+        onUpgrade: (m, from, to) async {
+          // v1 -> v2: sleep tracking columns on DailyLogs. This app's first
+          // real migration — every table before this only ever shipped via
+          // onCreate.
+          if (from < 2) {
+            await m.addColumn(dailyLogs, dailyLogs.sleepHours);
+            await m.addColumn(dailyLogs, dailyLogs.sleepQuality);
+            await m.addColumn(dailyLogs, dailyLogs.sleepHeartRateMin);
+            await m.addColumn(dailyLogs, dailyLogs.sleepHeartRateMax);
+          }
+        },
+      );
 
   static QueryExecutor _openConnection() {
     // Full schema (incl. app2's checkins/injuries) ships in v1 via onCreate —

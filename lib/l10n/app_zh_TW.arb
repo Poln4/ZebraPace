@@ -336,6 +336,12 @@
 
   "kofiSupportButton": "☕ 在 Ko-fi 上支持我",
 
+  "inviteCodeScreenTitle": "本應用程式僅限受邀使用 🦓",
+  "inviteCodeScreenBody": "ZebraPace 目前還在成形中，所以暫時僅限受邀使用。如果你沒有邀請碼，可以到我的網站索取。",
+  "inviteCodeScreenPlaceholder": "邀請碼",
+  "inviteCodeScreenSubmitButton": "解鎖",
+  "inviteCodeScreenError": "這個邀請碼似乎不正確——請再試一次。",
+  "inviteCodeScreenGetCodeButton": "取得邀請碼",
   "welcomeScreenTitle": "歡迎使用 ZebraPace 🦓",
   "welcomeScreenPurposeParagraph": "ZebraPace 是一款溫和、注重節奏的工具，幫助你了解自己的「斑馬身體」——EDS、PEM、自律神經失調，以及伴隨而來的一切——而不會把你的健康變成一場與自己的競賽。",
   "welcomeScreenDisclaimerParagraph": "本應用程式並非醫療器材，不能診斷或治療任何疾病。它無法取代你的醫生、物理治療師、運動治療師或其他照護人員——請繼續與他們一起做決定，而不是取代他們。",
@@ -349,6 +355,7 @@
   "settingsTabComfortThresholdLabel": "徒手訓練舒適度門檻（1-5）",
   "settingsTabWaterGoalLabel": "飲水目標（毫升）",
   "settingsTabProteinGoalLabel": "蛋白質目標（克）",
+  "settingsTabSleepGoalLabel": "睡眠目標（小時）",
   "settingsTabLocationTitle": "位置",
   "settingsTabLocationCaption": "用於天氣相關性分析。",
   "settingsTabLocationSearchPlaceholder": "搜尋城市或鄉鎮",
@@ -371,6 +378,15 @@
   "settingsTabImportFailed": "無法匯入該檔案：{error}",
   "settingsTabDeleteLoggedDataLabel": "刪除所有已記錄的資料（保留你的目標／設定）",
   "settingsTabDeleteAllButton": "刪除我的所有資料",
+  "settingsTabNameTitle": "👋 你的名字",
+  "settingsTabNamePlaceholder": "我們該怎麼稱呼你？",
+  "appShellGreeting": "嗨，{name} 🦓",
+  "@appShellGreeting": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+  "appShellMoreDatesButton": "更多日期",
   "settingsTabHealthKitTitle": "❤️ Apple 健康",
   "settingsTabHealthKitConnectedCaption": "已連接——步數會自動預填，並建議可匯入的運動記錄供你檢視。",
   "settingsTabHealthKitDisconnectedCaption": "尚未連接。在你連接之前，步數與運動建議都需要手動輸入。",
@@ -449,6 +465,36 @@
   "bodyMetricsSectionHeightPlaceholder": "身高（公分）",
   "bodyMetricsSectionBodyFatPlaceholder": "體脂率 %",
   "bodyMetricsSectionSaveButton": "儲存身體數據",
+
+  "sleepQualityPoor": "很差",
+  "sleepQualityRestless": "不安穩",
+  "sleepQualityOkay": "普通",
+  "sleepQualityGood": "良好",
+  "sleepQualityRestorative": "很有恢復力",
+
+  "energyBatteryTitle": "🔋 今日能量",
+  "energyBatteryNoData": "在下方記錄你的睡眠以查看今日能量。",
+  "energyTierFull": "滿格",
+  "energyTierGood": "良好",
+  "energyTierOkay": "普通",
+  "energyTierLow": "偏低",
+  "energyTierEmpty": "空",
+
+  "sleepSectionTitle": "😴 睡眠與恢復",
+  "sleepSectionDurationLabel": "時長",
+  "sleepSectionDurationPlaceholder": "點擊設定",
+  "sleepSectionDurationValue": "{hours}小時{minutes}分",
+  "@sleepSectionDurationValue": {
+    "placeholders": {
+      "hours": {"type": "int"},
+      "minutes": {"type": "int"}
+    }
+  },
+  "sleepSectionQualityLabel": "睡眠品質",
+  "sleepSectionHeartRateLabel": "睡眠期間心率（bpm）",
+  "sleepSectionHeartRateMinPlaceholder": "最低",
+  "sleepSectionHeartRateMaxPlaceholder": "最高",
+  "sleepSectionSaveButton": "儲存睡眠",
   "weatherChartEmptyState": "尚未快取任何天氣資料。",
   "weatherChartPressureLabel": "氣壓（百帕）",
   "weatherChartBodyPainScoreLabel": "身體／疼痛分數",

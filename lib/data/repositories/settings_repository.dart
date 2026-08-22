@@ -58,6 +58,7 @@ class SettingsSnapshot {
     required this.comfortThreshold,
     required this.waterGoalMl,
     required this.proteinGoalG,
+    required this.sleepGoalHours,
     required this.locationName,
     required this.locationLat,
     required this.locationLon,
@@ -73,6 +74,7 @@ class SettingsSnapshot {
       comfortThreshold: d(SettingsKeys.comfortThreshold, DefaultSettings.comfortThreshold),
       waterGoalMl: i(SettingsKeys.waterGoalMl, DefaultSettings.waterGoalMl),
       proteinGoalG: i(SettingsKeys.proteinGoalG, DefaultSettings.proteinGoalG),
+      sleepGoalHours: d(SettingsKeys.sleepGoalHours, DefaultSettings.sleepGoalHours),
       locationName: map[SettingsKeys.locationName] ?? '',
       locationLat: double.tryParse(map[SettingsKeys.locationLat] ?? ''),
       locationLon: double.tryParse(map[SettingsKeys.locationLon] ?? ''),
@@ -84,6 +86,7 @@ class SettingsSnapshot {
   final double comfortThreshold;
   final int waterGoalMl;
   final int proteinGoalG;
+  final double sleepGoalHours;
   final String locationName;
   final double? locationLat;
   final double? locationLon;

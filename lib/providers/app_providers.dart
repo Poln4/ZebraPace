@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../core/constants/defaults.dart';
 import '../core/utils/date_utils.dart';
 import '../data/db/app_database.dart' hide DailyLog;
 import '../data/healthkit/health_kit_service.dart';
@@ -25,6 +26,7 @@ import '../domain/services/mets_summary_service.dart';
 import '../domain/services/month_chapter_service.dart';
 import '../domain/services/pacing_service.dart';
 import '../domain/services/pem_service.dart';
+import '../domain/services/sleep_energy_service.dart';
 import '../domain/services/soreness_check_service.dart';
 import '../domain/services/stripe_service.dart';
 import '../domain/services/weather_service.dart';
@@ -99,6 +101,7 @@ final sorenessCheckServiceProvider = Provider<SorenessCheckService>(
 final pemServiceProvider = Provider<PemService>(
   (ref) => PemService(ref.watch(dailyLogRepositoryProvider)),
 );
+final sleepEnergyServiceProvider = Provider<SleepEnergyService>((ref) => SleepEnergyService());
 final weatherServiceProvider = Provider<WeatherService>(
   (ref) => WeatherService(
     ref.watch(weatherCacheRepositoryProvider),
@@ -161,6 +164,15 @@ final selectedDateProvider = StateProvider<String>((ref) => todayKey());
 
 final settingsSnapshotProvider = StreamProvider<SettingsSnapshot>((ref) {
   return ref.watch(settingsRepositoryProvider).watchAll().map(SettingsSnapshot.fromMap);
+});
+
+/// The personalized greeting name (AppShell header) — empty string when
+/// never set, same watch-the-settings-table pattern as textScaleFactorProvider.
+final userNameProvider = StreamProvider<String>((ref) {
+  return ref
+      .watch(settingsRepositoryProvider)
+      .watchAll()
+      .map((m) => m[SettingsKeys.userName] ?? '');
 });
 
 final dailyLogProvider = StreamProvider.autoDispose<DailyLog>((ref) {

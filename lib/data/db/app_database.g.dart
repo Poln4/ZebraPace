@@ -216,6 +216,50 @@ class $DailyLogsTable extends DailyLogs
     ),
     defaultValue: const Constant(false),
   );
+  static const VerificationMeta _sleepHoursMeta = const VerificationMeta(
+    'sleepHours',
+  );
+  @override
+  late final GeneratedColumn<double> sleepHours = GeneratedColumn<double>(
+    'sleep_hours',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _sleepQualityMeta = const VerificationMeta(
+    'sleepQuality',
+  );
+  @override
+  late final GeneratedColumn<String> sleepQuality = GeneratedColumn<String>(
+    'sleep_quality',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _sleepHeartRateMinMeta = const VerificationMeta(
+    'sleepHeartRateMin',
+  );
+  @override
+  late final GeneratedColumn<int> sleepHeartRateMin = GeneratedColumn<int>(
+    'sleep_heart_rate_min',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _sleepHeartRateMaxMeta = const VerificationMeta(
+    'sleepHeartRateMax',
+  );
+  @override
+  late final GeneratedColumn<int> sleepHeartRateMax = GeneratedColumn<int>(
+    'sleep_heart_rate_max',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     updatedAt,
@@ -236,6 +280,10 @@ class $DailyLogsTable extends DailyLogs
     steps,
     isRestDay,
     isFlareDay,
+    sleepHours,
+    sleepQuality,
+    sleepHeartRateMin,
+    sleepHeartRateMax,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -381,6 +429,39 @@ class $DailyLogsTable extends DailyLogs
         ),
       );
     }
+    if (data.containsKey('sleep_hours')) {
+      context.handle(
+        _sleepHoursMeta,
+        sleepHours.isAcceptableOrUnknown(data['sleep_hours']!, _sleepHoursMeta),
+      );
+    }
+    if (data.containsKey('sleep_quality')) {
+      context.handle(
+        _sleepQualityMeta,
+        sleepQuality.isAcceptableOrUnknown(
+          data['sleep_quality']!,
+          _sleepQualityMeta,
+        ),
+      );
+    }
+    if (data.containsKey('sleep_heart_rate_min')) {
+      context.handle(
+        _sleepHeartRateMinMeta,
+        sleepHeartRateMin.isAcceptableOrUnknown(
+          data['sleep_heart_rate_min']!,
+          _sleepHeartRateMinMeta,
+        ),
+      );
+    }
+    if (data.containsKey('sleep_heart_rate_max')) {
+      context.handle(
+        _sleepHeartRateMaxMeta,
+        sleepHeartRateMax.isAcceptableOrUnknown(
+          data['sleep_heart_rate_max']!,
+          _sleepHeartRateMaxMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -462,6 +543,22 @@ class $DailyLogsTable extends DailyLogs
         DriftSqlType.bool,
         data['${effectivePrefix}is_flare_day'],
       )!,
+      sleepHours: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}sleep_hours'],
+      ),
+      sleepQuality: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}sleep_quality'],
+      ),
+      sleepHeartRateMin: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}sleep_heart_rate_min'],
+      ),
+      sleepHeartRateMax: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}sleep_heart_rate_max'],
+      ),
     );
   }
 
@@ -500,6 +597,14 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
   final int steps;
   final bool isRestDay;
   final bool isFlareDay;
+
+  /// Added in schemaVersion 2 — see AppDatabase's MigrationStrategy.
+  /// Total sleep duration in decimal hours (a "7h 30m" picker input becomes
+  /// 7.5) — no separate minutes column needed.
+  final double? sleepHours;
+  final String? sleepQuality;
+  final int? sleepHeartRateMin;
+  final int? sleepHeartRateMax;
   const DailyLog({
     required this.updatedAt,
     this.deletedAt,
@@ -519,6 +624,10 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
     required this.steps,
     required this.isRestDay,
     required this.isFlareDay,
+    this.sleepHours,
+    this.sleepQuality,
+    this.sleepHeartRateMin,
+    this.sleepHeartRateMax,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -555,6 +664,18 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
     map['steps'] = Variable<int>(steps);
     map['is_rest_day'] = Variable<bool>(isRestDay);
     map['is_flare_day'] = Variable<bool>(isFlareDay);
+    if (!nullToAbsent || sleepHours != null) {
+      map['sleep_hours'] = Variable<double>(sleepHours);
+    }
+    if (!nullToAbsent || sleepQuality != null) {
+      map['sleep_quality'] = Variable<String>(sleepQuality);
+    }
+    if (!nullToAbsent || sleepHeartRateMin != null) {
+      map['sleep_heart_rate_min'] = Variable<int>(sleepHeartRateMin);
+    }
+    if (!nullToAbsent || sleepHeartRateMax != null) {
+      map['sleep_heart_rate_max'] = Variable<int>(sleepHeartRateMax);
+    }
     return map;
   }
 
@@ -592,6 +713,18 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
       steps: Value(steps),
       isRestDay: Value(isRestDay),
       isFlareDay: Value(isFlareDay),
+      sleepHours: sleepHours == null && nullToAbsent
+          ? const Value.absent()
+          : Value(sleepHours),
+      sleepQuality: sleepQuality == null && nullToAbsent
+          ? const Value.absent()
+          : Value(sleepQuality),
+      sleepHeartRateMin: sleepHeartRateMin == null && nullToAbsent
+          ? const Value.absent()
+          : Value(sleepHeartRateMin),
+      sleepHeartRateMax: sleepHeartRateMax == null && nullToAbsent
+          ? const Value.absent()
+          : Value(sleepHeartRateMax),
     );
   }
 
@@ -619,6 +752,10 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
       steps: serializer.fromJson<int>(json['steps']),
       isRestDay: serializer.fromJson<bool>(json['isRestDay']),
       isFlareDay: serializer.fromJson<bool>(json['isFlareDay']),
+      sleepHours: serializer.fromJson<double?>(json['sleepHours']),
+      sleepQuality: serializer.fromJson<String?>(json['sleepQuality']),
+      sleepHeartRateMin: serializer.fromJson<int?>(json['sleepHeartRateMin']),
+      sleepHeartRateMax: serializer.fromJson<int?>(json['sleepHeartRateMax']),
     );
   }
   @override
@@ -643,6 +780,10 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
       'steps': serializer.toJson<int>(steps),
       'isRestDay': serializer.toJson<bool>(isRestDay),
       'isFlareDay': serializer.toJson<bool>(isFlareDay),
+      'sleepHours': serializer.toJson<double?>(sleepHours),
+      'sleepQuality': serializer.toJson<String?>(sleepQuality),
+      'sleepHeartRateMin': serializer.toJson<int?>(sleepHeartRateMin),
+      'sleepHeartRateMax': serializer.toJson<int?>(sleepHeartRateMax),
     };
   }
 
@@ -665,6 +806,10 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
     int? steps,
     bool? isRestDay,
     bool? isFlareDay,
+    Value<double?> sleepHours = const Value.absent(),
+    Value<String?> sleepQuality = const Value.absent(),
+    Value<int?> sleepHeartRateMin = const Value.absent(),
+    Value<int?> sleepHeartRateMax = const Value.absent(),
   }) => DailyLog(
     updatedAt: updatedAt ?? this.updatedAt,
     deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
@@ -686,6 +831,14 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
     steps: steps ?? this.steps,
     isRestDay: isRestDay ?? this.isRestDay,
     isFlareDay: isFlareDay ?? this.isFlareDay,
+    sleepHours: sleepHours.present ? sleepHours.value : this.sleepHours,
+    sleepQuality: sleepQuality.present ? sleepQuality.value : this.sleepQuality,
+    sleepHeartRateMin: sleepHeartRateMin.present
+        ? sleepHeartRateMin.value
+        : this.sleepHeartRateMin,
+    sleepHeartRateMax: sleepHeartRateMax.present
+        ? sleepHeartRateMax.value
+        : this.sleepHeartRateMax,
   );
   DailyLog copyWithCompanion(DailyLogsCompanion data) {
     return DailyLog(
@@ -723,6 +876,18 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
       isFlareDay: data.isFlareDay.present
           ? data.isFlareDay.value
           : this.isFlareDay,
+      sleepHours: data.sleepHours.present
+          ? data.sleepHours.value
+          : this.sleepHours,
+      sleepQuality: data.sleepQuality.present
+          ? data.sleepQuality.value
+          : this.sleepQuality,
+      sleepHeartRateMin: data.sleepHeartRateMin.present
+          ? data.sleepHeartRateMin.value
+          : this.sleepHeartRateMin,
+      sleepHeartRateMax: data.sleepHeartRateMax.present
+          ? data.sleepHeartRateMax.value
+          : this.sleepHeartRateMax,
     );
   }
 
@@ -746,13 +911,17 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
           ..write('braceComfort: $braceComfort, ')
           ..write('steps: $steps, ')
           ..write('isRestDay: $isRestDay, ')
-          ..write('isFlareDay: $isFlareDay')
+          ..write('isFlareDay: $isFlareDay, ')
+          ..write('sleepHours: $sleepHours, ')
+          ..write('sleepQuality: $sleepQuality, ')
+          ..write('sleepHeartRateMin: $sleepHeartRateMin, ')
+          ..write('sleepHeartRateMax: $sleepHeartRateMax')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(
+  int get hashCode => Object.hashAll([
     updatedAt,
     deletedAt,
     id,
@@ -771,7 +940,11 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
     steps,
     isRestDay,
     isFlareDay,
-  );
+    sleepHours,
+    sleepQuality,
+    sleepHeartRateMin,
+    sleepHeartRateMax,
+  ]);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -793,7 +966,11 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
           other.braceComfort == this.braceComfort &&
           other.steps == this.steps &&
           other.isRestDay == this.isRestDay &&
-          other.isFlareDay == this.isFlareDay);
+          other.isFlareDay == this.isFlareDay &&
+          other.sleepHours == this.sleepHours &&
+          other.sleepQuality == this.sleepQuality &&
+          other.sleepHeartRateMin == this.sleepHeartRateMin &&
+          other.sleepHeartRateMax == this.sleepHeartRateMax);
 }
 
 class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
@@ -815,6 +992,10 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
   final Value<int> steps;
   final Value<bool> isRestDay;
   final Value<bool> isFlareDay;
+  final Value<double?> sleepHours;
+  final Value<String?> sleepQuality;
+  final Value<int?> sleepHeartRateMin;
+  final Value<int?> sleepHeartRateMax;
   final Value<int> rowid;
   const DailyLogsCompanion({
     this.updatedAt = const Value.absent(),
@@ -835,6 +1016,10 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
     this.steps = const Value.absent(),
     this.isRestDay = const Value.absent(),
     this.isFlareDay = const Value.absent(),
+    this.sleepHours = const Value.absent(),
+    this.sleepQuality = const Value.absent(),
+    this.sleepHeartRateMin = const Value.absent(),
+    this.sleepHeartRateMax = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   DailyLogsCompanion.insert({
@@ -856,6 +1041,10 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
     this.steps = const Value.absent(),
     this.isRestDay = const Value.absent(),
     this.isFlareDay = const Value.absent(),
+    this.sleepHours = const Value.absent(),
+    this.sleepQuality = const Value.absent(),
+    this.sleepHeartRateMin = const Value.absent(),
+    this.sleepHeartRateMax = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : updatedAt = Value(updatedAt),
        id = Value(id),
@@ -879,6 +1068,10 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
     Expression<int>? steps,
     Expression<bool>? isRestDay,
     Expression<bool>? isFlareDay,
+    Expression<double>? sleepHours,
+    Expression<String>? sleepQuality,
+    Expression<int>? sleepHeartRateMin,
+    Expression<int>? sleepHeartRateMax,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -900,6 +1093,10 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
       if (steps != null) 'steps': steps,
       if (isRestDay != null) 'is_rest_day': isRestDay,
       if (isFlareDay != null) 'is_flare_day': isFlareDay,
+      if (sleepHours != null) 'sleep_hours': sleepHours,
+      if (sleepQuality != null) 'sleep_quality': sleepQuality,
+      if (sleepHeartRateMin != null) 'sleep_heart_rate_min': sleepHeartRateMin,
+      if (sleepHeartRateMax != null) 'sleep_heart_rate_max': sleepHeartRateMax,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -923,6 +1120,10 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
     Value<int>? steps,
     Value<bool>? isRestDay,
     Value<bool>? isFlareDay,
+    Value<double?>? sleepHours,
+    Value<String?>? sleepQuality,
+    Value<int?>? sleepHeartRateMin,
+    Value<int?>? sleepHeartRateMax,
     Value<int>? rowid,
   }) {
     return DailyLogsCompanion(
@@ -944,6 +1145,10 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
       steps: steps ?? this.steps,
       isRestDay: isRestDay ?? this.isRestDay,
       isFlareDay: isFlareDay ?? this.isFlareDay,
+      sleepHours: sleepHours ?? this.sleepHours,
+      sleepQuality: sleepQuality ?? this.sleepQuality,
+      sleepHeartRateMin: sleepHeartRateMin ?? this.sleepHeartRateMin,
+      sleepHeartRateMax: sleepHeartRateMax ?? this.sleepHeartRateMax,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -1005,6 +1210,18 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
     if (isFlareDay.present) {
       map['is_flare_day'] = Variable<bool>(isFlareDay.value);
     }
+    if (sleepHours.present) {
+      map['sleep_hours'] = Variable<double>(sleepHours.value);
+    }
+    if (sleepQuality.present) {
+      map['sleep_quality'] = Variable<String>(sleepQuality.value);
+    }
+    if (sleepHeartRateMin.present) {
+      map['sleep_heart_rate_min'] = Variable<int>(sleepHeartRateMin.value);
+    }
+    if (sleepHeartRateMax.present) {
+      map['sleep_heart_rate_max'] = Variable<int>(sleepHeartRateMax.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -1032,6 +1249,10 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
           ..write('steps: $steps, ')
           ..write('isRestDay: $isRestDay, ')
           ..write('isFlareDay: $isFlareDay, ')
+          ..write('sleepHours: $sleepHours, ')
+          ..write('sleepQuality: $sleepQuality, ')
+          ..write('sleepHeartRateMin: $sleepHeartRateMin, ')
+          ..write('sleepHeartRateMax: $sleepHeartRateMax, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -6107,6 +6328,10 @@ typedef $$DailyLogsTableCreateCompanionBuilder =
       Value<int> steps,
       Value<bool> isRestDay,
       Value<bool> isFlareDay,
+      Value<double?> sleepHours,
+      Value<String?> sleepQuality,
+      Value<int?> sleepHeartRateMin,
+      Value<int?> sleepHeartRateMax,
       Value<int> rowid,
     });
 typedef $$DailyLogsTableUpdateCompanionBuilder =
@@ -6129,6 +6354,10 @@ typedef $$DailyLogsTableUpdateCompanionBuilder =
       Value<int> steps,
       Value<bool> isRestDay,
       Value<bool> isFlareDay,
+      Value<double?> sleepHours,
+      Value<String?> sleepQuality,
+      Value<int?> sleepHeartRateMin,
+      Value<int?> sleepHeartRateMax,
       Value<int> rowid,
     });
 
@@ -6228,6 +6457,26 @@ class $$DailyLogsTableFilterComposer
 
   ColumnFilters<bool> get isFlareDay => $composableBuilder(
     column: $table.isFlareDay,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get sleepHours => $composableBuilder(
+    column: $table.sleepHours,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get sleepQuality => $composableBuilder(
+    column: $table.sleepQuality,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get sleepHeartRateMin => $composableBuilder(
+    column: $table.sleepHeartRateMin,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get sleepHeartRateMax => $composableBuilder(
+    column: $table.sleepHeartRateMax,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -6330,6 +6579,26 @@ class $$DailyLogsTableOrderingComposer
     column: $table.isFlareDay,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<double> get sleepHours => $composableBuilder(
+    column: $table.sleepHours,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get sleepQuality => $composableBuilder(
+    column: $table.sleepQuality,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get sleepHeartRateMin => $composableBuilder(
+    column: $table.sleepHeartRateMin,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get sleepHeartRateMax => $composableBuilder(
+    column: $table.sleepHeartRateMax,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$DailyLogsTableAnnotationComposer
@@ -6410,6 +6679,26 @@ class $$DailyLogsTableAnnotationComposer
     column: $table.isFlareDay,
     builder: (column) => column,
   );
+
+  GeneratedColumn<double> get sleepHours => $composableBuilder(
+    column: $table.sleepHours,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get sleepQuality => $composableBuilder(
+    column: $table.sleepQuality,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get sleepHeartRateMin => $composableBuilder(
+    column: $table.sleepHeartRateMin,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get sleepHeartRateMax => $composableBuilder(
+    column: $table.sleepHeartRateMax,
+    builder: (column) => column,
+  );
 }
 
 class $$DailyLogsTableTableManager
@@ -6458,6 +6747,10 @@ class $$DailyLogsTableTableManager
                 Value<int> steps = const Value.absent(),
                 Value<bool> isRestDay = const Value.absent(),
                 Value<bool> isFlareDay = const Value.absent(),
+                Value<double?> sleepHours = const Value.absent(),
+                Value<String?> sleepQuality = const Value.absent(),
+                Value<int?> sleepHeartRateMin = const Value.absent(),
+                Value<int?> sleepHeartRateMax = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => DailyLogsCompanion(
                 updatedAt: updatedAt,
@@ -6478,6 +6771,10 @@ class $$DailyLogsTableTableManager
                 steps: steps,
                 isRestDay: isRestDay,
                 isFlareDay: isFlareDay,
+                sleepHours: sleepHours,
+                sleepQuality: sleepQuality,
+                sleepHeartRateMin: sleepHeartRateMin,
+                sleepHeartRateMax: sleepHeartRateMax,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -6500,6 +6797,10 @@ class $$DailyLogsTableTableManager
                 Value<int> steps = const Value.absent(),
                 Value<bool> isRestDay = const Value.absent(),
                 Value<bool> isFlareDay = const Value.absent(),
+                Value<double?> sleepHours = const Value.absent(),
+                Value<String?> sleepQuality = const Value.absent(),
+                Value<int?> sleepHeartRateMin = const Value.absent(),
+                Value<int?> sleepHeartRateMax = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => DailyLogsCompanion.insert(
                 updatedAt: updatedAt,
@@ -6520,6 +6821,10 @@ class $$DailyLogsTableTableManager
                 steps: steps,
                 isRestDay: isRestDay,
                 isFlareDay: isFlareDay,
+                sleepHours: sleepHours,
+                sleepQuality: sleepQuality,
+                sleepHeartRateMin: sleepHeartRateMin,
+                sleepHeartRateMax: sleepHeartRateMax,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0

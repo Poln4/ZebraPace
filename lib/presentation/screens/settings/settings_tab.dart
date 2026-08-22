@@ -1,11 +1,9 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -34,6 +32,7 @@ class _SettingsTabState extends ConsumerState<SettingsTab> {
   final _comfortController = TextEditingController();
   final _waterGoalController = TextEditingController();
   final _proteinGoalController = TextEditingController();
+  final _sleepGoalController = TextEditingController();
   final _locationSearchController = TextEditingController();
   final _locationNameController = TextEditingController();
   final _latController = TextEditingController();
@@ -51,6 +50,7 @@ class _SettingsTabState extends ConsumerState<SettingsTab> {
     _comfortController.dispose();
     _waterGoalController.dispose();
     _proteinGoalController.dispose();
+    _sleepGoalController.dispose();
     _locationSearchController.dispose();
     _locationNameController.dispose();
     _latController.dispose();
@@ -81,6 +81,7 @@ class _SettingsTabState extends ConsumerState<SettingsTab> {
               _comfortController.text = settings.comfortThreshold.toString();
               _waterGoalController.text = settings.waterGoalMl.toString();
               _proteinGoalController.text = settings.proteinGoalG.toString();
+              _sleepGoalController.text = settings.sleepGoalHours.toString();
               _locationNameController.text = settings.locationName;
               _latController.text = settings.locationLat?.toString() ?? '';
               _lonController.text = settings.locationLon?.toString() ?? '';
@@ -88,6 +89,7 @@ class _SettingsTabState extends ConsumerState<SettingsTab> {
             return ListView(
               padding: const EdgeInsets.all(16),
               children: [
+                const _NameSection(),
                 const _LanguageSection(),
                 const _TextSizeSection(),
                 SectionCard(
@@ -100,6 +102,7 @@ class _SettingsTabState extends ConsumerState<SettingsTab> {
                       _LabeledField(l10n.settingsTabComfortThresholdLabel, _comfortController),
                       _LabeledField(l10n.settingsTabWaterGoalLabel, _waterGoalController),
                       _LabeledField(l10n.settingsTabProteinGoalLabel, _proteinGoalController),
+                      _LabeledField(l10n.settingsTabSleepGoalLabel, _sleepGoalController),
                       const SizedBox(height: 8),
                       SizedBox(
                         width: double.infinity,
@@ -266,6 +269,7 @@ class _SettingsTabState extends ConsumerState<SettingsTab> {
     await repo.set(SettingsKeys.comfortThreshold, _comfortController.text);
     await repo.set(SettingsKeys.waterGoalMl, _waterGoalController.text);
     await repo.set(SettingsKeys.proteinGoalG, _proteinGoalController.text);
+    await repo.set(SettingsKeys.sleepGoalHours, _sleepGoalController.text);
   }
 
   Future<void> _saveLocation() async {
@@ -295,23 +299,31 @@ class _SettingsTabState extends ConsumerState<SettingsTab> {
 
   Future<void> _exportJson() async {
     final json = await ref.read(exportImportServiceProvider).exportAllDataJson();
-    final dir = await getTemporaryDirectory();
-    final file = File('${dir.path}/zebrapace_export.json');
-    await file.writeAsString(json);
-    await Share.shareXFiles([XFile(file.path)]);
+    // Share from in-memory bytes rather than a written temp file — dart:io's
+    // File and path_provider's temp directory don't exist on web, and
+    // XFile.fromData works identically on every platform share_plus supports.
+    final file = XFile.fromData(
+      utf8.encode(json),
+      name: 'zebrapace_export.json',
+      mimeType: 'application/json',
+    );
+    await Share.shareXFiles([file]);
   }
 
   Future<void> _importJson() async {
     final l10n = AppLocalizations.of(context);
+    // withData is required on web — file_picker never exposes a real
+    // filesystem `path` there, only in-memory bytes.
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['json'],
+      withData: true,
     );
-    final path = result?.files.single.path;
-    if (path == null) return;
+    final bytes = result?.files.single.bytes;
+    if (bytes == null) return;
 
     try {
-      final content = await File(path).readAsString();
+      final content = utf8.decode(bytes);
       // Validate it's parseable JSON before handing it to the import service.
       jsonDecode(content);
       await ref
@@ -489,6 +501,62 @@ class _AboutSection extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+/// Feeds AppShell's personalized greeting ("Hi, {name} 🦓") — see
+/// userNameProvider in app_providers.dart.
+class _NameSection extends ConsumerStatefulWidget {
+  const _NameSection();
+
+  @override
+  ConsumerState<_NameSection> createState() => _NameSectionState();
+}
+
+class _NameSectionState extends ConsumerState<_NameSection> {
+  final _controller = TextEditingController();
+  bool _loaded = false;
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final nameAsync = ref.watch(userNameProvider);
+    if (!_loaded && nameAsync.hasValue) {
+      _loaded = true;
+      _controller.text = nameAsync.value!;
+    }
+
+    return SectionCard(
+      title: l10n.settingsTabNameTitle,
+      child: Row(
+        children: [
+          Expanded(
+            child: CupertinoTextField(
+              controller: _controller,
+              placeholder: l10n.settingsTabNamePlaceholder,
+              onSubmitted: (_) => _save(),
+            ),
+          ),
+          const SizedBox(width: 8),
+          CupertinoButton(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            color: ZebraColors.brandTeal,
+            onPressed: _save,
+            child: Text(l10n.commonSaveButton, style: const TextStyle(color: ZebraColors.onColor)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _save() {
+    ref.read(settingsRepositoryProvider).set(SettingsKeys.userName, _controller.text.trim());
   }
 }
 

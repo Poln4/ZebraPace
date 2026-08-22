@@ -45,6 +45,8 @@ class _BodyMetricsSectionState extends ConsumerState<BodyMetricsSection> {
 
     return SectionCard(
       title: l10n.bodyMetricsSectionTitle,
+      collapsible: true,
+      initiallyExpanded: !(log?.isLowEnergyDay ?? false),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

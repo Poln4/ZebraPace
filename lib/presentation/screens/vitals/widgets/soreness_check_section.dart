@@ -26,10 +26,13 @@ class _SorenessCheckSectionState extends ConsumerState<SorenessCheckSection> {
     final l10n = AppLocalizations.of(context);
     final date = ref.watch(selectedDateProvider);
     final checksAsync = ref.watch(_sorenessForDateProvider(date));
+    final isLowEnergyDay = ref.watch(dailyLogProvider).valueOrNull?.isLowEnergyDay ?? false;
 
     return SectionCard(
       title: l10n.sorenessCheckSectionTitle,
       caption: l10n.sorenessCheckSectionCaption,
+      collapsible: true,
+      initiallyExpanded: !isLowEnergyDay,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

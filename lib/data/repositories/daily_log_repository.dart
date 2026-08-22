@@ -35,6 +35,10 @@ class DailyLogRepository {
       steps: row.steps,
       isRestDay: row.isRestDay,
       isFlareDay: row.isFlareDay,
+      sleepHours: row.sleepHours,
+      sleepQuality: SleepQuality.fromDb(row.sleepQuality),
+      sleepHeartRateMin: row.sleepHeartRateMin,
+      sleepHeartRateMax: row.sleepHeartRateMax,
     );
   }
 
@@ -81,6 +85,10 @@ class DailyLogRepository {
             steps: Value(log.steps),
             isRestDay: Value(log.isRestDay),
             isFlareDay: Value(log.isFlareDay),
+            sleepHours: Value(log.sleepHours),
+            sleepQuality: Value(log.sleepQuality?.db),
+            sleepHeartRateMin: Value(log.sleepHeartRateMin),
+            sleepHeartRateMax: Value(log.sleepHeartRateMax),
             updatedAt: Value(nowIso()),
           ),
         );

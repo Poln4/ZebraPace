@@ -16,3 +16,17 @@ final textScaleFactorProvider = StreamProvider<double>((ref) {
     return double.tryParse(raw ?? '') ?? DefaultSettings.textScaleFactor;
   });
 });
+
+/// Cycles to the next text-scale step, wrapping around — the accessibility
+/// icon in AppShell's header is a one-tap shortcut for this; the full
+/// segmented control in Settings (_TextSizeSection) still allows picking
+/// any step directly.
+Future<void> cycleTextScale(WidgetRef ref) async {
+  final current = await ref.read(settingsRepositoryProvider).getDouble(
+        SettingsKeys.textScaleFactor,
+        DefaultSettings.textScaleFactor,
+      );
+  final index = textScaleSteps.indexOf(current);
+  final next = textScaleSteps[(index < 0 ? 0 : index + 1) % textScaleSteps.length];
+  await ref.read(settingsRepositoryProvider).set(SettingsKeys.textScaleFactor, next.toString());
+}

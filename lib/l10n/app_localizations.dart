@@ -1832,6 +1832,42 @@ abstract class AppLocalizations {
   /// **'☕ Support on Ko-fi'**
   String get kofiSupportButton;
 
+  /// No description provided for @inviteCodeScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This app is invite-only 🦓'**
+  String get inviteCodeScreenTitle;
+
+  /// No description provided for @inviteCodeScreenBody.
+  ///
+  /// In en, this message translates to:
+  /// **'ZebraPace is still finding its feet, so it\'s invite-only for now. If you don\'t have a code, you can ask for one on my website.'**
+  String get inviteCodeScreenBody;
+
+  /// No description provided for @inviteCodeScreenPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite code'**
+  String get inviteCodeScreenPlaceholder;
+
+  /// No description provided for @inviteCodeScreenSubmitButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock'**
+  String get inviteCodeScreenSubmitButton;
+
+  /// No description provided for @inviteCodeScreenError.
+  ///
+  /// In en, this message translates to:
+  /// **'That code doesn\'t look right — try again.'**
+  String get inviteCodeScreenError;
+
+  /// No description provided for @inviteCodeScreenGetCodeButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Get a code'**
+  String get inviteCodeScreenGetCodeButton;
+
   /// No description provided for @welcomeScreenTitle.
   ///
   /// In en, this message translates to:
@@ -1903,6 +1939,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Protein goal (g)'**
   String get settingsTabProteinGoalLabel;
+
+  /// No description provided for @settingsTabSleepGoalLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep goal (hours)'**
+  String get settingsTabSleepGoalLabel;
 
   /// No description provided for @settingsTabLocationTitle.
   ///
@@ -2035,6 +2077,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Delete all my data'**
   String get settingsTabDeleteAllButton;
+
+  /// No description provided for @settingsTabNameTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'👋 Your name'**
+  String get settingsTabNameTitle;
+
+  /// No description provided for @settingsTabNamePlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'What should we call you?'**
+  String get settingsTabNamePlaceholder;
+
+  /// No description provided for @appShellGreeting.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi, {name} 🦓'**
+  String appShellGreeting(String name);
+
+  /// No description provided for @appShellMoreDatesButton.
+  ///
+  /// In en, this message translates to:
+  /// **'More dates'**
+  String get appShellMoreDatesButton;
 
   /// No description provided for @settingsTabHealthKitTitle.
   ///
@@ -2431,6 +2497,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save Body Metrics'**
   String get bodyMetricsSectionSaveButton;
+
+  /// No description provided for @sleepQualityPoor.
+  ///
+  /// In en, this message translates to:
+  /// **'Poor'**
+  String get sleepQualityPoor;
+
+  /// No description provided for @sleepQualityRestless.
+  ///
+  /// In en, this message translates to:
+  /// **'Restless'**
+  String get sleepQualityRestless;
+
+  /// No description provided for @sleepQualityOkay.
+  ///
+  /// In en, this message translates to:
+  /// **'Okay'**
+  String get sleepQualityOkay;
+
+  /// No description provided for @sleepQualityGood.
+  ///
+  /// In en, this message translates to:
+  /// **'Good'**
+  String get sleepQualityGood;
+
+  /// No description provided for @sleepQualityRestorative.
+  ///
+  /// In en, this message translates to:
+  /// **'Restorative'**
+  String get sleepQualityRestorative;
+
+  /// No description provided for @energyBatteryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'🔋 Today\'s Energy'**
+  String get energyBatteryTitle;
+
+  /// No description provided for @energyBatteryNoData.
+  ///
+  /// In en, this message translates to:
+  /// **'Log your sleep below to see today\'s energy.'**
+  String get energyBatteryNoData;
+
+  /// No description provided for @energyTierFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Full'**
+  String get energyTierFull;
+
+  /// No description provided for @energyTierGood.
+  ///
+  /// In en, this message translates to:
+  /// **'Good'**
+  String get energyTierGood;
+
+  /// No description provided for @energyTierOkay.
+  ///
+  /// In en, this message translates to:
+  /// **'Okay'**
+  String get energyTierOkay;
+
+  /// No description provided for @energyTierLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Low'**
+  String get energyTierLow;
+
+  /// No description provided for @energyTierEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Empty'**
+  String get energyTierEmpty;
+
+  /// No description provided for @sleepSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'😴 Sleep & Recovery'**
+  String get sleepSectionTitle;
+
+  /// No description provided for @sleepSectionDurationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration'**
+  String get sleepSectionDurationLabel;
+
+  /// No description provided for @sleepSectionDurationPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to set'**
+  String get sleepSectionDurationPlaceholder;
+
+  /// No description provided for @sleepSectionDurationValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{hours}h {minutes}m'**
+  String sleepSectionDurationValue(int hours, int minutes);
+
+  /// No description provided for @sleepSectionQualityLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep quality'**
+  String get sleepSectionQualityLabel;
+
+  /// No description provided for @sleepSectionHeartRateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Heart rate while sleeping (bpm)'**
+  String get sleepSectionHeartRateLabel;
+
+  /// No description provided for @sleepSectionHeartRateMinPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Lowest'**
+  String get sleepSectionHeartRateMinPlaceholder;
+
+  /// No description provided for @sleepSectionHeartRateMaxPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Highest'**
+  String get sleepSectionHeartRateMaxPlaceholder;
+
+  /// No description provided for @sleepSectionSaveButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Sleep'**
+  String get sleepSectionSaveButton;
 
   /// No description provided for @weatherChartEmptyState.
   ///

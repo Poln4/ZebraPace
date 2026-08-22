@@ -4,11 +4,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/constants/defaults.dart';
 import 'core/theme/zebra_theme.dart';
 import 'l10n/app_localizations.dart';
+import 'presentation/screens/invite/invite_code_screen.dart';
 import 'presentation/screens/lock/lock_screen.dart';
 import 'presentation/screens/shell/app_shell.dart';
 import 'presentation/screens/welcome/welcome_screen.dart';
 import 'providers/app_providers.dart';
 import 'providers/auth_providers.dart';
+import 'providers/invite_code_providers.dart';
 import 'providers/locale_providers.dart';
 import 'providers/text_scale_providers.dart';
 import 'providers/welcome_providers.dart';
@@ -46,30 +48,39 @@ class ZebraPaceApp extends ConsumerWidget {
   }
 }
 
-/// Re-lock policy: lock on every cold start (plan §7's recommended default
-/// for a health-data app) — AuthNotifier never persists an "unlocked" state,
-/// so this always starts behind the lock screen. Ahead of that, the
-/// welcome/disclaimer screen gates everything else until acknowledged once
-/// — see welcome_providers.dart.
+/// Gate order: invite code (invite_code_providers.dart) first — whether the
+/// app is usable at all — then the welcome/disclaimer screen (once ever),
+/// then the re-lock-on-every-cold-start Face ID/password gate. AuthNotifier
+/// never persists an "unlocked" state, so that last step always starts
+/// behind the lock screen.
 class _AuthGate extends ConsumerWidget {
   const _AuthGate();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final welcomeSeen = ref.watch(welcomeAcknowledgedProvider);
-    return welcomeSeen.when(
+    final inviteVerified = ref.watch(inviteCodeVerifiedProvider);
+    return inviteVerified.when(
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
-      data: (seen) {
-        if (!seen) {
-          return WelcomeScreen(
-            onContinue: () => ref
-                .read(settingsRepositoryProvider)
-                .set(SettingsKeys.welcomeAcknowledged, 'true'),
-          );
-        }
-        final status = ref.watch(authProvider.select((s) => s.status));
-        return status == AuthStatus.unlocked ? const AppShell() : const LockScreen();
+      data: (verified) {
+        if (!verified) return const InviteCodeScreen();
+
+        final welcomeSeen = ref.watch(welcomeAcknowledgedProvider);
+        return welcomeSeen.when(
+          loading: () => const SizedBox.shrink(),
+          error: (_, _) => const SizedBox.shrink(),
+          data: (seen) {
+            if (!seen) {
+              return WelcomeScreen(
+                onContinue: () => ref
+                    .read(settingsRepositoryProvider)
+                    .set(SettingsKeys.welcomeAcknowledged, 'true'),
+              );
+            }
+            final status = ref.watch(authProvider.select((s) => s.status));
+            return status == AuthStatus.unlocked ? const AppShell() : const LockScreen();
+          },
+        );
       },
     );
   }

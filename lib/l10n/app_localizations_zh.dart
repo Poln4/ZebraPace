@@ -984,6 +984,25 @@ class AppLocalizationsZh extends AppLocalizations {
   String get kofiSupportButton => '☕ 在 Ko-fi 上支持我';
 
   @override
+  String get inviteCodeScreenTitle => '本應用程式僅限受邀使用 🦓';
+
+  @override
+  String get inviteCodeScreenBody =>
+      'ZebraPace 目前還在成形中，所以暫時僅限受邀使用。如果你沒有邀請碼，可以到我的網站索取。';
+
+  @override
+  String get inviteCodeScreenPlaceholder => '邀請碼';
+
+  @override
+  String get inviteCodeScreenSubmitButton => '解鎖';
+
+  @override
+  String get inviteCodeScreenError => '這個邀請碼似乎不正確——請再試一次。';
+
+  @override
+  String get inviteCodeScreenGetCodeButton => '取得邀請碼';
+
+  @override
   String get welcomeScreenTitle => '歡迎使用 ZebraPace 🦓';
 
   @override
@@ -1021,6 +1040,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settingsTabProteinGoalLabel => '蛋白質目標（克）';
+
+  @override
+  String get settingsTabSleepGoalLabel => '睡眠目標（小時）';
 
   @override
   String get settingsTabLocationTitle => '位置';
@@ -1089,6 +1111,20 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settingsTabDeleteAllButton => '刪除我的所有資料';
+
+  @override
+  String get settingsTabNameTitle => '👋 你的名字';
+
+  @override
+  String get settingsTabNamePlaceholder => '我們該怎麼稱呼你？';
+
+  @override
+  String appShellGreeting(String name) {
+    return '嗨，$name 🦓';
+  }
+
+  @override
+  String get appShellMoreDatesButton => '更多日期';
 
   @override
   String get settingsTabHealthKitTitle => '❤️ Apple 健康';
@@ -1302,6 +1338,71 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get bodyMetricsSectionSaveButton => '儲存身體數據';
+
+  @override
+  String get sleepQualityPoor => '很差';
+
+  @override
+  String get sleepQualityRestless => '不安穩';
+
+  @override
+  String get sleepQualityOkay => '普通';
+
+  @override
+  String get sleepQualityGood => '良好';
+
+  @override
+  String get sleepQualityRestorative => '很有恢復力';
+
+  @override
+  String get energyBatteryTitle => '🔋 今日能量';
+
+  @override
+  String get energyBatteryNoData => '在下方記錄你的睡眠以查看今日能量。';
+
+  @override
+  String get energyTierFull => '滿格';
+
+  @override
+  String get energyTierGood => '良好';
+
+  @override
+  String get energyTierOkay => '普通';
+
+  @override
+  String get energyTierLow => '偏低';
+
+  @override
+  String get energyTierEmpty => '空';
+
+  @override
+  String get sleepSectionTitle => '😴 睡眠與恢復';
+
+  @override
+  String get sleepSectionDurationLabel => '時長';
+
+  @override
+  String get sleepSectionDurationPlaceholder => '點擊設定';
+
+  @override
+  String sleepSectionDurationValue(int hours, int minutes) {
+    return '$hours小時$minutes分';
+  }
+
+  @override
+  String get sleepSectionQualityLabel => '睡眠品質';
+
+  @override
+  String get sleepSectionHeartRateLabel => '睡眠期間心率（bpm）';
+
+  @override
+  String get sleepSectionHeartRateMinPlaceholder => '最低';
+
+  @override
+  String get sleepSectionHeartRateMaxPlaceholder => '最高';
+
+  @override
+  String get sleepSectionSaveButton => '儲存睡眠';
 
   @override
   String get weatherChartEmptyState => '尚未快取任何天氣資料。';
@@ -2494,6 +2595,25 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get kofiSupportButton => '☕ 在 Ko-fi 上支持我';
 
   @override
+  String get inviteCodeScreenTitle => '本應用程式僅限受邀使用 🦓';
+
+  @override
+  String get inviteCodeScreenBody =>
+      'ZebraPace 目前還在成形中，所以暫時僅限受邀使用。如果你沒有邀請碼，可以到我的網站索取。';
+
+  @override
+  String get inviteCodeScreenPlaceholder => '邀請碼';
+
+  @override
+  String get inviteCodeScreenSubmitButton => '解鎖';
+
+  @override
+  String get inviteCodeScreenError => '這個邀請碼似乎不正確——請再試一次。';
+
+  @override
+  String get inviteCodeScreenGetCodeButton => '取得邀請碼';
+
+  @override
   String get welcomeScreenTitle => '歡迎使用 ZebraPace 🦓';
 
   @override
@@ -2531,6 +2651,9 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get settingsTabProteinGoalLabel => '蛋白質目標（克）';
+
+  @override
+  String get settingsTabSleepGoalLabel => '睡眠目標（小時）';
 
   @override
   String get settingsTabLocationTitle => '位置';
@@ -2599,6 +2722,20 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get settingsTabDeleteAllButton => '刪除我的所有資料';
+
+  @override
+  String get settingsTabNameTitle => '👋 你的名字';
+
+  @override
+  String get settingsTabNamePlaceholder => '我們該怎麼稱呼你？';
+
+  @override
+  String appShellGreeting(String name) {
+    return '嗨，$name 🦓';
+  }
+
+  @override
+  String get appShellMoreDatesButton => '更多日期';
 
   @override
   String get settingsTabHealthKitTitle => '❤️ Apple 健康';
@@ -2812,6 +2949,71 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get bodyMetricsSectionSaveButton => '儲存身體數據';
+
+  @override
+  String get sleepQualityPoor => '很差';
+
+  @override
+  String get sleepQualityRestless => '不安穩';
+
+  @override
+  String get sleepQualityOkay => '普通';
+
+  @override
+  String get sleepQualityGood => '良好';
+
+  @override
+  String get sleepQualityRestorative => '很有恢復力';
+
+  @override
+  String get energyBatteryTitle => '🔋 今日能量';
+
+  @override
+  String get energyBatteryNoData => '在下方記錄你的睡眠以查看今日能量。';
+
+  @override
+  String get energyTierFull => '滿格';
+
+  @override
+  String get energyTierGood => '良好';
+
+  @override
+  String get energyTierOkay => '普通';
+
+  @override
+  String get energyTierLow => '偏低';
+
+  @override
+  String get energyTierEmpty => '空';
+
+  @override
+  String get sleepSectionTitle => '😴 睡眠與恢復';
+
+  @override
+  String get sleepSectionDurationLabel => '時長';
+
+  @override
+  String get sleepSectionDurationPlaceholder => '點擊設定';
+
+  @override
+  String sleepSectionDurationValue(int hours, int minutes) {
+    return '$hours小時$minutes分';
+  }
+
+  @override
+  String get sleepSectionQualityLabel => '睡眠品質';
+
+  @override
+  String get sleepSectionHeartRateLabel => '睡眠期間心率（bpm）';
+
+  @override
+  String get sleepSectionHeartRateMinPlaceholder => '最低';
+
+  @override
+  String get sleepSectionHeartRateMaxPlaceholder => '最高';
+
+  @override
+  String get sleepSectionSaveButton => '儲存睡眠';
 
   @override
   String get weatherChartEmptyState => '尚未快取任何天氣資料。';

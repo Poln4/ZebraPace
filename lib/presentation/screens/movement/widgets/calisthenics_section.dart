@@ -38,8 +38,11 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     _progression ??= _exercise.progressions(l10n).first;
+    final isLowEnergyDay = ref.watch(dailyLogProvider).valueOrNull?.isLowEnergyDay ?? false;
     return SectionCard(
       title: l10n.calisthenicsSectionTitle,
+      collapsible: true,
+      initiallyExpanded: !isLowEnergyDay,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

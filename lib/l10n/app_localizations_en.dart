@@ -1052,6 +1052,26 @@ class AppLocalizationsEn extends AppLocalizations {
   String get kofiSupportButton => '☕ Support on Ko-fi';
 
   @override
+  String get inviteCodeScreenTitle => 'This app is invite-only 🦓';
+
+  @override
+  String get inviteCodeScreenBody =>
+      'ZebraPace is still finding its feet, so it\'s invite-only for now. If you don\'t have a code, you can ask for one on my website.';
+
+  @override
+  String get inviteCodeScreenPlaceholder => 'Invite code';
+
+  @override
+  String get inviteCodeScreenSubmitButton => 'Unlock';
+
+  @override
+  String get inviteCodeScreenError =>
+      'That code doesn\'t look right — try again.';
+
+  @override
+  String get inviteCodeScreenGetCodeButton => 'Get a code';
+
+  @override
   String get welcomeScreenTitle => 'Welcome to ZebraPace 🦓';
 
   @override
@@ -1091,6 +1111,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsTabProteinGoalLabel => 'Protein goal (g)';
+
+  @override
+  String get settingsTabSleepGoalLabel => 'Sleep goal (hours)';
 
   @override
   String get settingsTabLocationTitle => 'Location';
@@ -1165,6 +1188,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsTabDeleteAllButton => 'Delete all my data';
+
+  @override
+  String get settingsTabNameTitle => '👋 Your name';
+
+  @override
+  String get settingsTabNamePlaceholder => 'What should we call you?';
+
+  @override
+  String appShellGreeting(String name) {
+    return 'Hi, $name 🦓';
+  }
+
+  @override
+  String get appShellMoreDatesButton => 'More dates';
 
   @override
   String get settingsTabHealthKitTitle => '❤️ Apple Health';
@@ -1386,6 +1423,72 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get bodyMetricsSectionSaveButton => 'Save Body Metrics';
+
+  @override
+  String get sleepQualityPoor => 'Poor';
+
+  @override
+  String get sleepQualityRestless => 'Restless';
+
+  @override
+  String get sleepQualityOkay => 'Okay';
+
+  @override
+  String get sleepQualityGood => 'Good';
+
+  @override
+  String get sleepQualityRestorative => 'Restorative';
+
+  @override
+  String get energyBatteryTitle => '🔋 Today\'s Energy';
+
+  @override
+  String get energyBatteryNoData =>
+      'Log your sleep below to see today\'s energy.';
+
+  @override
+  String get energyTierFull => 'Full';
+
+  @override
+  String get energyTierGood => 'Good';
+
+  @override
+  String get energyTierOkay => 'Okay';
+
+  @override
+  String get energyTierLow => 'Low';
+
+  @override
+  String get energyTierEmpty => 'Empty';
+
+  @override
+  String get sleepSectionTitle => '😴 Sleep & Recovery';
+
+  @override
+  String get sleepSectionDurationLabel => 'Duration';
+
+  @override
+  String get sleepSectionDurationPlaceholder => 'Tap to set';
+
+  @override
+  String sleepSectionDurationValue(int hours, int minutes) {
+    return '${hours}h ${minutes}m';
+  }
+
+  @override
+  String get sleepSectionQualityLabel => 'Sleep quality';
+
+  @override
+  String get sleepSectionHeartRateLabel => 'Heart rate while sleeping (bpm)';
+
+  @override
+  String get sleepSectionHeartRateMinPlaceholder => 'Lowest';
+
+  @override
+  String get sleepSectionHeartRateMaxPlaceholder => 'Highest';
+
+  @override
+  String get sleepSectionSaveButton => 'Save Sleep';
 
   @override
   String get weatherChartEmptyState => 'No weather data cached yet.';

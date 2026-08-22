@@ -18,6 +18,10 @@ class DailyLog {
     this.steps = 0,
     this.isRestDay = false,
     this.isFlareDay = false,
+    this.sleepHours,
+    this.sleepQuality,
+    this.sleepHeartRateMin,
+    this.sleepHeartRateMax,
   });
 
   final String id;
@@ -36,6 +40,10 @@ class DailyLog {
   final int steps;
   final bool isRestDay;
   final bool isFlareDay;
+  final double? sleepHours;
+  final SleepQuality? sleepQuality;
+  final int? sleepHeartRateMin;
+  final int? sleepHeartRateMax;
 
   /// Either flag collapses "optional" sections app-wide (matches app.py's
   /// is_low_energy_day) — flare takes UI precedence when both are set.
@@ -56,6 +64,10 @@ class DailyLog {
     int? steps,
     bool? isRestDay,
     bool? isFlareDay,
+    double? sleepHours,
+    SleepQuality? sleepQuality,
+    int? sleepHeartRateMin,
+    int? sleepHeartRateMax,
   }) {
     return DailyLog(
       id: id,
@@ -74,6 +86,10 @@ class DailyLog {
       steps: steps ?? this.steps,
       isRestDay: isRestDay ?? this.isRestDay,
       isFlareDay: isFlareDay ?? this.isFlareDay,
+      sleepHours: sleepHours ?? this.sleepHours,
+      sleepQuality: sleepQuality ?? this.sleepQuality,
+      sleepHeartRateMin: sleepHeartRateMin ?? this.sleepHeartRateMin,
+      sleepHeartRateMax: sleepHeartRateMax ?? this.sleepHeartRateMax,
     );
   }
 }

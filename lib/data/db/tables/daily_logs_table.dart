@@ -38,6 +38,14 @@ class DailyLogs extends Table with SyncColumns {
   BoolColumn get isRestDay => boolean().withDefault(const Constant(false))();
   BoolColumn get isFlareDay => boolean().withDefault(const Constant(false))();
 
+  /// Added in schemaVersion 2 — see AppDatabase's MigrationStrategy.
+  /// Total sleep duration in decimal hours (a "7h 30m" picker input becomes
+  /// 7.5) — no separate minutes column needed.
+  RealColumn get sleepHours => real().nullable()();
+  TextColumn get sleepQuality => text().nullable()();
+  IntColumn get sleepHeartRateMin => integer().nullable()();
+  IntColumn get sleepHeartRateMax => integer().nullable()();
+
   @override
   Set<Column> get primaryKey => {id};
 }

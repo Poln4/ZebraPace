@@ -33,9 +33,12 @@ class _TherapiesSectionState extends ConsumerState<TherapiesSection> {
     final l10n = AppLocalizations.of(context);
     final date = ref.watch(selectedDateProvider);
     final therapiesAsync = ref.watch(_therapiesForDateProvider(date));
+    final isLowEnergyDay = ref.watch(dailyLogProvider).valueOrNull?.isLowEnergyDay ?? false;
 
     return SectionCard(
       title: l10n.therapiesSectionTitle,
+      collapsible: true,
+      initiallyExpanded: !isLowEnergyDay,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

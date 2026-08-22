@@ -1,5 +1,5 @@
 import 'package:drift/native.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:zebrapace_app/app.dart';
@@ -54,9 +54,19 @@ Future<void> _settleAndTearDown(WidgetTester tester) async {
   await tester.pump(Duration.zero);
 }
 
-/// The welcome/disclaimer screen gates everything else on a fresh install
-/// (see app.dart's _AuthGate) — tests that care about what's behind it
-/// tap through the one-time "Continue" button first.
+/// The invite code screen gates everything else on a fresh install, ahead
+/// of even the welcome/disclaimer screen (see app.dart's _AuthGate) — tests
+/// that care about what's behind it enter the code first.
+Future<void> _enterInviteCode(WidgetTester tester) async {
+  expect(find.text('This app is invite-only 🦓'), findsOneWidget);
+  await tester.enterText(find.byType(CupertinoTextField).first, 'BienBien');
+  await tester.tap(find.text('Unlock'));
+  await tester.pumpAndSettle();
+}
+
+/// The welcome/disclaimer screen gates everything else after that, once
+/// ever — tests that care about what's behind it tap through the one-time
+/// "Continue" button.
 Future<void> _acknowledgeWelcome(WidgetTester tester) async {
   expect(find.text('Welcome to ZebraPace 🦓'), findsOneWidget);
   final continueButton = find.text('I understand — Continue');
@@ -67,9 +77,18 @@ Future<void> _acknowledgeWelcome(WidgetTester tester) async {
 }
 
 void main() {
-  testWidgets('a fresh install shows the welcome/disclaimer screen first', (tester) async {
+  testWidgets('a fresh install shows the invite code screen first', (tester) async {
     await tester.pumpWidget(ProviderScope(overrides: _testOverrides(), child: const ZebraPaceApp()));
     await tester.pumpAndSettle();
+
+    expect(find.text('This app is invite-only 🦓'), findsOneWidget);
+    await _settleAndTearDown(tester);
+  });
+
+  testWidgets('entering the invite code lands on the welcome/disclaimer screen', (tester) async {
+    await tester.pumpWidget(ProviderScope(overrides: _testOverrides(), child: const ZebraPaceApp()));
+    await tester.pumpAndSettle();
+    await _enterInviteCode(tester);
 
     expect(find.text('Welcome to ZebraPace 🦓'), findsOneWidget);
     await _settleAndTearDown(tester);
@@ -79,6 +98,7 @@ void main() {
       (tester) async {
     await tester.pumpWidget(ProviderScope(overrides: _testOverrides(), child: const ZebraPaceApp()));
     await tester.pumpAndSettle();
+    await _enterInviteCode(tester);
     await _acknowledgeWelcome(tester);
 
     expect(find.text('Set up a password'), findsOneWidget);
@@ -88,6 +108,7 @@ void main() {
   testWidgets('setting up a password unlocks straight into the Daily Vitals tab', (tester) async {
     await tester.pumpWidget(ProviderScope(overrides: _testOverrides(), child: const ZebraPaceApp()));
     await tester.pumpAndSettle();
+    await _enterInviteCode(tester);
     await _acknowledgeWelcome(tester);
 
     await tester.enterText(find.byKey(const ValueKey('setup_password')), 'test1234');

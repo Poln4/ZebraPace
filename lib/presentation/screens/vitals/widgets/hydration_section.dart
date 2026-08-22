@@ -40,6 +40,8 @@ class _HydrationSectionState extends ConsumerState<HydrationSection> {
 
     return SectionCard(
       title: l10n.hydrationSectionTitle,
+      collapsible: true,
+      initiallyExpanded: !(log?.isLowEnergyDay ?? false),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

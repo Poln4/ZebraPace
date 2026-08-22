@@ -36,6 +36,8 @@ class _NutritionSectionState extends ConsumerState<NutritionSection> {
 
     return SectionCard(
       title: l10n.nutritionSectionTitle,
+      collapsible: true,
+      initiallyExpanded: !(log?.isLowEnergyDay ?? false),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

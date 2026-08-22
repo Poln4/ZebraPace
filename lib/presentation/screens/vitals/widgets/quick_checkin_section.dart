@@ -34,10 +34,13 @@ class _QuickCheckinSectionState extends ConsumerState<QuickCheckinSection> {
     final l10n = AppLocalizations.of(context);
     final date = ref.watch(selectedDateProvider);
     final checkinsAsync = ref.watch(_checkinsForDateProvider(date));
+    final isLowEnergyDay = ref.watch(dailyLogProvider).valueOrNull?.isLowEnergyDay ?? false;
 
     return SectionCard(
       title: l10n.quickCheckinSectionTitle,
       caption: l10n.quickCheckinSectionCaption,
+      collapsible: true,
+      initiallyExpanded: !isLowEnergyDay,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

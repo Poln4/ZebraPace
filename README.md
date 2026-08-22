@@ -10,9 +10,9 @@ ZebraPace is **not a medical device** and does not diagnose or treat anything. I
 
 ## ✨ Core Features & Philosophy ##
 
-The "Spoon" Battery Graphic: A visual representation of your daily energy capacity (based on "Spoon Theory"). Your daily battery level adjusts based on your morning physical score and sleep quality, providing an immediate, visual reminder to pace yourself on low-energy days.
+The "Spoon" Battery Graphic: A visual representation of your daily energy capacity (based on "Spoon Theory"), derived from last night's sleep duration and quality — an immediate, visual reminder to pace yourself on low-energy days. It's informational only: it never changes your step goal or caution line, which stay deliberately steady regardless of any single day's signal.
 
-Sleep & Recovery Tracking: Recognizing that sleep is the primary driver of recovery for dysautonomia and connective tissue repair, the app tracks sleep patterns as a direct input for your daily energy and pacing recommendations.
+Sleep & Recovery Tracking: Recognizing that sleep is the primary driver of recovery for dysautonomia and connective tissue repair, the app tracks sleep duration, quality, and heart rate range as their own dedicated log, separate from — but visible alongside — your daily pacing.
 
 The 1% Rule & PEM Protection: The app calculates your 7-day rolling average for steps/activity. It sets a gentle 1% growth goal. If you exceed your average by more than 10%, the app triggers a "Dysautonomia/PEM Precaution" alert, reminding you to hydrate, take electrolytes, and plan for a rest day.
 

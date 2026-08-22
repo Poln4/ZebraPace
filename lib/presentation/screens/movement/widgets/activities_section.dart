@@ -35,9 +35,12 @@ class _ActivitiesSectionState extends ConsumerState<ActivitiesSection> {
     final l10n = AppLocalizations.of(context);
     final date = ref.watch(selectedDateProvider);
     final activitiesAsync = ref.watch(_activitiesForDateProvider(date));
+    final isLowEnergyDay = ref.watch(dailyLogProvider).valueOrNull?.isLowEnergyDay ?? false;
 
     return SectionCard(
       title: l10n.activitiesSectionTitle,
+      collapsible: true,
+      initiallyExpanded: !isLowEnergyDay,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

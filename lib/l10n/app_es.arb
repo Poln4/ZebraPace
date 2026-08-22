@@ -336,6 +336,12 @@
 
   "kofiSupportButton": "☕ Apoyar en Ko-fi",
 
+  "inviteCodeScreenTitle": "Esta app es solo por invitación 🦓",
+  "inviteCodeScreenBody": "ZebraPace todavía está tomando forma, así que por ahora es solo por invitación. Si no tienes un código, puedes pedir uno en mi sitio web.",
+  "inviteCodeScreenPlaceholder": "Código de invitación",
+  "inviteCodeScreenSubmitButton": "Desbloquear",
+  "inviteCodeScreenError": "Ese código no parece correcto — inténtalo de nuevo.",
+  "inviteCodeScreenGetCodeButton": "Conseguir un código",
   "welcomeScreenTitle": "Bienvenido/a a ZebraPace 🦓",
   "welcomeScreenPurposeParagraph": "ZebraPace es una herramienta suave, centrada en el ritmo propio, para ayudarte a mantenerte informado/a sobre tu propio \"cuerpo cebra\" — EDS, PEM, Disautonomía y todo lo que las acompaña — sin convertir tu salud en una competencia contigo mismo/a.",
   "welcomeScreenDisclaimerParagraph": "Esta app no es un dispositivo médico y no diagnostica ni trata nada. No sustituye a tu médico/a, fisioterapeuta, kinesiólogo/a u otros profesionales de la salud — sigue tomando esas decisiones junto a ellos, no en su lugar.",
@@ -349,6 +355,7 @@
   "settingsTabComfortThresholdLabel": "Umbral de comodidad en calistenia (1-5)",
   "settingsTabWaterGoalLabel": "Meta de agua (ml)",
   "settingsTabProteinGoalLabel": "Meta de proteína (g)",
+  "settingsTabSleepGoalLabel": "Meta de sueño (horas)",
   "settingsTabLocationTitle": "Ubicación",
   "settingsTabLocationCaption": "Usada para las estadísticas de correlación con el clima.",
   "settingsTabLocationSearchPlaceholder": "Busca una ciudad o pueblo",
@@ -371,6 +378,15 @@
   "settingsTabImportFailed": "No se pudo importar ese archivo: {error}",
   "settingsTabDeleteLoggedDataLabel": "Eliminar todos los datos registrados (conserva tus metas/ajustes)",
   "settingsTabDeleteAllButton": "Eliminar todos mis datos",
+  "settingsTabNameTitle": "👋 Tu nombre",
+  "settingsTabNamePlaceholder": "¿Cómo te llamamos?",
+  "appShellGreeting": "Hola, {name} 🦓",
+  "@appShellGreeting": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+  "appShellMoreDatesButton": "Más fechas",
   "settingsTabHealthKitTitle": "❤️ Apple Salud",
   "settingsTabHealthKitConnectedCaption": "Conectado — los pasos se prellenan y los entrenamientos se sugieren para revisión.",
   "settingsTabHealthKitDisconnectedCaption": "No conectado. Los pasos y las sugerencias de entrenamiento permanecen totalmente manuales hasta que te conectes.",
@@ -449,6 +465,36 @@
   "bodyMetricsSectionHeightPlaceholder": "Altura (cm)",
   "bodyMetricsSectionBodyFatPlaceholder": "% de grasa corporal",
   "bodyMetricsSectionSaveButton": "Guardar métricas corporales",
+
+  "sleepQualityPoor": "Mala",
+  "sleepQualityRestless": "Intranquila",
+  "sleepQualityOkay": "Normal",
+  "sleepQualityGood": "Buena",
+  "sleepQualityRestorative": "Reparadora",
+
+  "energyBatteryTitle": "🔋 Energía de hoy",
+  "energyBatteryNoData": "Registra tu sueño abajo para ver tu energía de hoy.",
+  "energyTierFull": "Llena",
+  "energyTierGood": "Buena",
+  "energyTierOkay": "Normal",
+  "energyTierLow": "Baja",
+  "energyTierEmpty": "Vacía",
+
+  "sleepSectionTitle": "😴 Sueño y Recuperación",
+  "sleepSectionDurationLabel": "Duración",
+  "sleepSectionDurationPlaceholder": "Toca para establecer",
+  "sleepSectionDurationValue": "{hours}h {minutes}m",
+  "@sleepSectionDurationValue": {
+    "placeholders": {
+      "hours": {"type": "int"},
+      "minutes": {"type": "int"}
+    }
+  },
+  "sleepSectionQualityLabel": "Calidad del sueño",
+  "sleepSectionHeartRateLabel": "Frecuencia cardíaca durante el sueño (lpm)",
+  "sleepSectionHeartRateMinPlaceholder": "Mínima",
+  "sleepSectionHeartRateMaxPlaceholder": "Máxima",
+  "sleepSectionSaveButton": "Guardar Sueño",
   "weatherChartEmptyState": "Aún no hay datos de clima almacenados.",
   "weatherChartPressureLabel": "Presión (hPa)",
   "weatherChartBodyPainScoreLabel": "Puntuación de cuerpo/dolor",
