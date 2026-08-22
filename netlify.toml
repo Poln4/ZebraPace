@@ -1,0 +1,11 @@
+[build]
+  # Netlify's build image has no Flutter SDK by default — install it fresh
+  # each build (shallow clone, stable channel) rather than assuming one is
+  # present, then build the actual web app.
+  command = "git clone https://github.com/flutter/flutter.git --depth 1 -b stable _flutter && _flutter/bin/flutter config --enable-web && _flutter/bin/flutter pub get && _flutter/bin/flutter build web --release"
+  publish = "build/web"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
