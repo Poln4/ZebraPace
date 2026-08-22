@@ -54,10 +54,32 @@ Future<void> _settleAndTearDown(WidgetTester tester) async {
   await tester.pump(Duration.zero);
 }
 
+/// The welcome/disclaimer screen gates everything else on a fresh install
+/// (see app.dart's _AuthGate) — tests that care about what's behind it
+/// tap through the one-time "Continue" button first.
+Future<void> _acknowledgeWelcome(WidgetTester tester) async {
+  expect(find.text('Welcome to ZebraPace 🦓'), findsOneWidget);
+  final continueButton = find.text('I understand — Continue');
+  await tester.ensureVisible(continueButton);
+  await tester.pumpAndSettle();
+  await tester.tap(continueButton);
+  await tester.pumpAndSettle();
+}
+
 void main() {
-  testWidgets('a fresh install lands on the password setup screen', (tester) async {
+  testWidgets('a fresh install shows the welcome/disclaimer screen first', (tester) async {
     await tester.pumpWidget(ProviderScope(overrides: _testOverrides(), child: const ZebraPaceApp()));
     await tester.pumpAndSettle();
+
+    expect(find.text('Welcome to ZebraPace 🦓'), findsOneWidget);
+    await _settleAndTearDown(tester);
+  });
+
+  testWidgets('acknowledging the welcome screen lands on the password setup screen',
+      (tester) async {
+    await tester.pumpWidget(ProviderScope(overrides: _testOverrides(), child: const ZebraPaceApp()));
+    await tester.pumpAndSettle();
+    await _acknowledgeWelcome(tester);
 
     expect(find.text('Set up a password'), findsOneWidget);
     await _settleAndTearDown(tester);
@@ -66,6 +88,7 @@ void main() {
   testWidgets('setting up a password unlocks straight into the Daily Vitals tab', (tester) async {
     await tester.pumpWidget(ProviderScope(overrides: _testOverrides(), child: const ZebraPaceApp()));
     await tester.pumpAndSettle();
+    await _acknowledgeWelcome(tester);
 
     await tester.enterText(find.byKey(const ValueKey('setup_password')), 'test1234');
     await tester.enterText(find.byKey(const ValueKey('setup_confirm')), 'test1234');

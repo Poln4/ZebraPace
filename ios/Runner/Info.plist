@@ -30,6 +30,17 @@
 	<string>ZebraPace reads your steps, workouts, and active energy from Health so it can pre-fill your daily step count and suggest workouts to log — nothing is shared anywhere else.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>ZebraPace does not write any data to Health. This permission is requested by the underlying Health package but is unused.</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.zebrapace.auth</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>zebrapace</string>
+			</array>
+		</dict>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

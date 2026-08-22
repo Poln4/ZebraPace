@@ -282,6 +282,15 @@
   "monthChapterMovementSummary": "本月的活動與恢復：{bits}。",
   "monthChapterScoreRange": "你的心理狀態在 **{minMental}** 到 **{maxMental}** 之間波動，身體／疼痛狀態則在 **{minBody}** 到 **{maxBody}** 之間。",
   "commonCancelButton": "取消",
+  "commonCloseButton": "關閉",
+
+  "kofiSupportButton": "☕ 在 Ko-fi 上支持我",
+
+  "welcomeScreenTitle": "歡迎使用 ZebraPace 🦓",
+  "welcomeScreenPurposeParagraph": "ZebraPace 是一款溫和、注重節奏的工具，幫助你了解自己的「斑馬身體」——EDS、PEM、自律神經失調，以及伴隨而來的一切——而不會把你的健康變成一場與自己的競賽。",
+  "welcomeScreenDisclaimerParagraph": "本應用程式並非醫療器材，不能診斷或治療任何疾病。它無法取代你的醫生、物理治療師、運動治療師或其他照護人員——請繼續與他們一起做決定，而不是取代他們。",
+  "welcomeScreenPersonalParagraph": "ZebraPace 是一個個人專案，由一隻斑馬為其他斑馬打造，並免費提供使用。如果它對你有幫助，而你想協助它持續下去，可以在 Ko-fi 上支持——完全自願，沒有壓力。",
+  "welcomeScreenContinueButton": "我了解了 — 繼續",
   "settingsTabTitle": "設定",
   "settingsTabGoalsTitle": "配速目標與門檻",
   "settingsTabGrowthGoalLabel": "成長目標（例如 1.01 = 1%）",
@@ -316,6 +325,20 @@
   "settingsTabHealthKitDisconnectedCaption": "尚未連接。在你連接之前，步數與運動建議都需要手動輸入。",
   "settingsTabHealthKitOpenSettingsButton": "開啟 iOS 設定以變更存取權限",
   "settingsTabHealthKitConnectButton": "連接 Apple 健康",
+  "settingsTabCloudSyncTitle": "☁️ 雲端同步",
+  "settingsTabCloudSyncCaption": "登入以在裝置間同步你的資料。目前尚未同步任何內容——這只是連接你的帳戶。",
+  "settingsTabCloudSyncEmailPlaceholder": "電子郵件地址",
+  "settingsTabCloudSyncSendLinkButton": "傳送登入連結",
+  "settingsTabCloudSyncLinkSent": "請查看你的電子郵件以取得登入連結。",
+  "settingsTabCloudSyncSignedInAs": "已登入：{email}",
+  "@settingsTabCloudSyncSignedInAs": {
+    "placeholders": {
+      "email": {"type": "String"}
+    }
+  },
+  "settingsTabCloudSyncSignOutButton": "登出",
+  "settingsTabAboutTitle": "ℹ️ 關於 ZebraPace",
+  "settingsTabAboutViewWelcomeButton": "查看歡迎與免責聲明",
   "settingsTabLanguageTitle": "語言",
   "settingsTabLanguageSystem": "系統預設",
   "settingsTabLanguageEnglish": "English",

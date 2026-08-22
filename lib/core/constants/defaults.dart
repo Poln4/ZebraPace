@@ -34,6 +34,7 @@ class SettingsKeys {
   static const healthKitAuthStatus = 'healthkit_auth_status';
   static const languageCode = 'language_code';
   static const textScaleFactor = 'text_scale_factor';
+  static const welcomeAcknowledged = 'welcome_acknowledged';
 }
 
 class StripeConstants {

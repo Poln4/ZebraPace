@@ -1820,6 +1820,48 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get commonCancelButton;
 
+  /// No description provided for @commonCloseButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get commonCloseButton;
+
+  /// No description provided for @kofiSupportButton.
+  ///
+  /// In en, this message translates to:
+  /// **'☕ Support on Ko-fi'**
+  String get kofiSupportButton;
+
+  /// No description provided for @welcomeScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to ZebraPace 🦓'**
+  String get welcomeScreenTitle;
+
+  /// No description provided for @welcomeScreenPurposeParagraph.
+  ///
+  /// In en, this message translates to:
+  /// **'ZebraPace is a gentle, pacing-focused tool to help you stay informed about your own \"zebra body\" — EDS, PEM, Dysautonomia, and everything that rides along with them — without turning your health into a competition against yourself.'**
+  String get welcomeScreenPurposeParagraph;
+
+  /// No description provided for @welcomeScreenDisclaimerParagraph.
+  ///
+  /// In en, this message translates to:
+  /// **'This app is not a medical device and does not diagnose or treat anything. It is not a substitute for your doctor, physical therapist, kinesiologist, or other care providers — please keep making those decisions with them, not instead of them.'**
+  String get welcomeScreenDisclaimerParagraph;
+
+  /// No description provided for @welcomeScreenPersonalParagraph.
+  ///
+  /// In en, this message translates to:
+  /// **'ZebraPace is a personal project, built by one zebra for other zebras, and offered freely. If it\'s useful to you and you\'d like to help keep it going, you can support it on Ko-fi — completely optional, no pressure.'**
+  String get welcomeScreenPersonalParagraph;
+
+  /// No description provided for @welcomeScreenContinueButton.
+  ///
+  /// In en, this message translates to:
+  /// **'I understand — Continue'**
+  String get welcomeScreenContinueButton;
+
   /// No description provided for @settingsTabTitle.
   ///
   /// In en, this message translates to:
@@ -2023,6 +2065,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Connect Apple Health'**
   String get settingsTabHealthKitConnectButton;
+
+  /// No description provided for @settingsTabCloudSyncTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'☁️ Cloud Sync'**
+  String get settingsTabCloudSyncTitle;
+
+  /// No description provided for @settingsTabCloudSyncCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to sync your data across devices. Nothing is synced yet — this connects your account.'**
+  String get settingsTabCloudSyncCaption;
+
+  /// No description provided for @settingsTabCloudSyncEmailPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Email address'**
+  String get settingsTabCloudSyncEmailPlaceholder;
+
+  /// No description provided for @settingsTabCloudSyncSendLinkButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Send magic link'**
+  String get settingsTabCloudSyncSendLinkButton;
+
+  /// No description provided for @settingsTabCloudSyncLinkSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your email for a sign-in link.'**
+  String get settingsTabCloudSyncLinkSent;
+
+  /// No description provided for @settingsTabCloudSyncSignedInAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in as {email}'**
+  String settingsTabCloudSyncSignedInAs(String email);
+
+  /// No description provided for @settingsTabCloudSyncSignOutButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get settingsTabCloudSyncSignOutButton;
+
+  /// No description provided for @settingsTabAboutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'ℹ️ About ZebraPace'**
+  String get settingsTabAboutTitle;
+
+  /// No description provided for @settingsTabAboutViewWelcomeButton.
+  ///
+  /// In en, this message translates to:
+  /// **'View welcome & disclaimer'**
+  String get settingsTabAboutViewWelcomeButton;
 
   /// No description provided for @settingsTabLanguageTitle.
   ///

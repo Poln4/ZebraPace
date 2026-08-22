@@ -14,9 +14,12 @@ import '../../../core/theme/zebra_theme.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/app_providers.dart';
 import '../../../providers/auth_providers.dart';
+import '../../../providers/cloud_sync_providers.dart';
 import '../../../providers/locale_providers.dart';
 import '../../../providers/text_scale_providers.dart';
+import '../../widgets/kofi_support_button.dart';
 import '../../widgets/section_card.dart';
+import '../welcome/welcome_screen.dart';
 
 class SettingsTab extends ConsumerStatefulWidget {
   const SettingsTab({super.key});
@@ -158,6 +161,8 @@ class _SettingsTabState extends ConsumerState<SettingsTab> {
                   ),
                 ),
                 const _HealthKitSection(),
+                const _CloudSyncSection(),
+                const _AboutSection(),
                 SectionCard(
                   title: l10n.settingsTabAppLockTitle,
                   child: SizedBox(
@@ -363,6 +368,125 @@ class _HealthKitSection extends ConsumerWidget {
             style: const TextStyle(color: ZebraColors.onColor),
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// Cloud account identity only (Supabase email/magic-link sign-in) — not
+/// the local device lock (see `_HealthKitSection`'s sibling `authProvider`
+/// usage elsewhere in this file for that). Signing in here doesn't move any
+/// data yet; it just connects the account sync will eventually use.
+class _CloudSyncSection extends ConsumerStatefulWidget {
+  const _CloudSyncSection();
+
+  @override
+  ConsumerState<_CloudSyncSection> createState() => _CloudSyncSectionState();
+}
+
+class _CloudSyncSectionState extends ConsumerState<_CloudSyncSection> {
+  final _emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final user = ref.watch(cloudUserProvider);
+    final authState = ref.watch(cloudAuthControllerProvider);
+
+    if (user != null) {
+      return SectionCard(
+        title: l10n.settingsTabCloudSyncTitle,
+        caption: l10n.settingsTabCloudSyncSignedInAs(user.email ?? ''),
+        child: SizedBox(
+          width: double.infinity,
+          child: CupertinoButton(
+            color: ZebraColors.cardBorder,
+            onPressed: () => ref.read(cloudAuthControllerProvider.notifier).signOut(),
+            child: Text(l10n.settingsTabCloudSyncSignOutButton,
+                style: const TextStyle(color: ZebraColors.black)),
+          ),
+        ),
+      );
+    }
+
+    final sending = authState.action == CloudAuthAction.sending;
+    return SectionCard(
+      title: l10n.settingsTabCloudSyncTitle,
+      caption: l10n.settingsTabCloudSyncCaption,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CupertinoTextField(
+            controller: _emailController,
+            placeholder: l10n.settingsTabCloudSyncEmailPlaceholder,
+            keyboardType: TextInputType.emailAddress,
+          ),
+          const SizedBox(height: 8),
+          SizedBox(
+            width: double.infinity,
+            child: CupertinoButton(
+              color: ZebraColors.brandTeal,
+              onPressed: sending
+                  ? null
+                  : () => ref
+                      .read(cloudAuthControllerProvider.notifier)
+                      .sendMagicLink(_emailController.text.trim()),
+              child: sending
+                  ? const CupertinoActivityIndicator()
+                  : Text(l10n.settingsTabCloudSyncSendLinkButton,
+                      style: const TextStyle(color: ZebraColors.onColor)),
+            ),
+          ),
+          if (authState.action == CloudAuthAction.linkSent) ...[
+            const SizedBox(height: 8),
+            Text(l10n.settingsTabCloudSyncLinkSent,
+                style: const TextStyle(fontSize: 12, color: CupertinoColors.systemGrey)),
+          ],
+          if (authState.action == CloudAuthAction.error) ...[
+            const SizedBox(height: 8),
+            Text(authState.error ?? '',
+                style: const TextStyle(fontSize: 12, color: CupertinoColors.destructiveRed)),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+/// Revisits the welcome/disclaimer screen (welcome_screen.dart) that
+/// otherwise only shows once, on first launch, plus the same optional
+/// Ko-fi support link.
+class _AboutSection extends StatelessWidget {
+  const _AboutSection();
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return SectionCard(
+      title: l10n.settingsTabAboutTitle,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: double.infinity,
+            child: CupertinoButton(
+              color: ZebraColors.cardBorder,
+              onPressed: () => Navigator.of(context).push(
+                CupertinoPageRoute(builder: (_) => const WelcomeScreen()),
+              ),
+              child: Text(l10n.settingsTabAboutViewWelcomeButton,
+                  style: const TextStyle(color: ZebraColors.black)),
+            ),
+          ),
+          const SizedBox(height: 10),
+          const KofiSupportButton(),
+        ],
       ),
     );
   }

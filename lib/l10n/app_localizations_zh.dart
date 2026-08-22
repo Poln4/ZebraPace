@@ -978,6 +978,30 @@ class AppLocalizationsZh extends AppLocalizations {
   String get commonCancelButton => '取消';
 
   @override
+  String get commonCloseButton => '關閉';
+
+  @override
+  String get kofiSupportButton => '☕ 在 Ko-fi 上支持我';
+
+  @override
+  String get welcomeScreenTitle => '歡迎使用 ZebraPace 🦓';
+
+  @override
+  String get welcomeScreenPurposeParagraph =>
+      'ZebraPace 是一款溫和、注重節奏的工具，幫助你了解自己的「斑馬身體」——EDS、PEM、自律神經失調，以及伴隨而來的一切——而不會把你的健康變成一場與自己的競賽。';
+
+  @override
+  String get welcomeScreenDisclaimerParagraph =>
+      '本應用程式並非醫療器材，不能診斷或治療任何疾病。它無法取代你的醫生、物理治療師、運動治療師或其他照護人員——請繼續與他們一起做決定，而不是取代他們。';
+
+  @override
+  String get welcomeScreenPersonalParagraph =>
+      'ZebraPace 是一個個人專案，由一隻斑馬為其他斑馬打造，並免費提供使用。如果它對你有幫助，而你想協助它持續下去，可以在 Ko-fi 上支持——完全自願，沒有壓力。';
+
+  @override
+  String get welcomeScreenContinueButton => '我了解了 — 繼續';
+
+  @override
   String get settingsTabTitle => '設定';
 
   @override
@@ -1082,6 +1106,36 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settingsTabHealthKitConnectButton => '連接 Apple 健康';
+
+  @override
+  String get settingsTabCloudSyncTitle => '☁️ 雲端同步';
+
+  @override
+  String get settingsTabCloudSyncCaption =>
+      '登入以在裝置間同步你的資料。目前尚未同步任何內容——這只是連接你的帳戶。';
+
+  @override
+  String get settingsTabCloudSyncEmailPlaceholder => '電子郵件地址';
+
+  @override
+  String get settingsTabCloudSyncSendLinkButton => '傳送登入連結';
+
+  @override
+  String get settingsTabCloudSyncLinkSent => '請查看你的電子郵件以取得登入連結。';
+
+  @override
+  String settingsTabCloudSyncSignedInAs(String email) {
+    return '已登入：$email';
+  }
+
+  @override
+  String get settingsTabCloudSyncSignOutButton => '登出';
+
+  @override
+  String get settingsTabAboutTitle => 'ℹ️ 關於 ZebraPace';
+
+  @override
+  String get settingsTabAboutViewWelcomeButton => '查看歡迎與免責聲明';
 
   @override
   String get settingsTabLanguageTitle => '語言';
@@ -2434,6 +2488,30 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get commonCancelButton => '取消';
 
   @override
+  String get commonCloseButton => '關閉';
+
+  @override
+  String get kofiSupportButton => '☕ 在 Ko-fi 上支持我';
+
+  @override
+  String get welcomeScreenTitle => '歡迎使用 ZebraPace 🦓';
+
+  @override
+  String get welcomeScreenPurposeParagraph =>
+      'ZebraPace 是一款溫和、注重節奏的工具，幫助你了解自己的「斑馬身體」——EDS、PEM、自律神經失調，以及伴隨而來的一切——而不會把你的健康變成一場與自己的競賽。';
+
+  @override
+  String get welcomeScreenDisclaimerParagraph =>
+      '本應用程式並非醫療器材，不能診斷或治療任何疾病。它無法取代你的醫生、物理治療師、運動治療師或其他照護人員——請繼續與他們一起做決定，而不是取代他們。';
+
+  @override
+  String get welcomeScreenPersonalParagraph =>
+      'ZebraPace 是一個個人專案，由一隻斑馬為其他斑馬打造，並免費提供使用。如果它對你有幫助，而你想協助它持續下去，可以在 Ko-fi 上支持——完全自願，沒有壓力。';
+
+  @override
+  String get welcomeScreenContinueButton => '我了解了 — 繼續';
+
+  @override
   String get settingsTabTitle => '設定';
 
   @override
@@ -2538,6 +2616,36 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get settingsTabHealthKitConnectButton => '連接 Apple 健康';
+
+  @override
+  String get settingsTabCloudSyncTitle => '☁️ 雲端同步';
+
+  @override
+  String get settingsTabCloudSyncCaption =>
+      '登入以在裝置間同步你的資料。目前尚未同步任何內容——這只是連接你的帳戶。';
+
+  @override
+  String get settingsTabCloudSyncEmailPlaceholder => '電子郵件地址';
+
+  @override
+  String get settingsTabCloudSyncSendLinkButton => '傳送登入連結';
+
+  @override
+  String get settingsTabCloudSyncLinkSent => '請查看你的電子郵件以取得登入連結。';
+
+  @override
+  String settingsTabCloudSyncSignedInAs(String email) {
+    return '已登入：$email';
+  }
+
+  @override
+  String get settingsTabCloudSyncSignOutButton => '登出';
+
+  @override
+  String get settingsTabAboutTitle => 'ℹ️ 關於 ZebraPace';
+
+  @override
+  String get settingsTabAboutViewWelcomeButton => '查看歡迎與免責聲明';
 
   @override
   String get settingsTabLanguageTitle => '語言';

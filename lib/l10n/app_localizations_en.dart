@@ -1046,6 +1046,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonCancelButton => 'Cancel';
 
   @override
+  String get commonCloseButton => 'Close';
+
+  @override
+  String get kofiSupportButton => '☕ Support on Ko-fi';
+
+  @override
+  String get welcomeScreenTitle => 'Welcome to ZebraPace 🦓';
+
+  @override
+  String get welcomeScreenPurposeParagraph =>
+      'ZebraPace is a gentle, pacing-focused tool to help you stay informed about your own \"zebra body\" — EDS, PEM, Dysautonomia, and everything that rides along with them — without turning your health into a competition against yourself.';
+
+  @override
+  String get welcomeScreenDisclaimerParagraph =>
+      'This app is not a medical device and does not diagnose or treat anything. It is not a substitute for your doctor, physical therapist, kinesiologist, or other care providers — please keep making those decisions with them, not instead of them.';
+
+  @override
+  String get welcomeScreenPersonalParagraph =>
+      'ZebraPace is a personal project, built by one zebra for other zebras, and offered freely. If it\'s useful to you and you\'d like to help keep it going, you can support it on Ko-fi — completely optional, no pressure.';
+
+  @override
+  String get welcomeScreenContinueButton => 'I understand — Continue';
+
+  @override
   String get settingsTabTitle => 'Settings';
 
   @override
@@ -1159,6 +1183,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsTabHealthKitConnectButton => 'Connect Apple Health';
+
+  @override
+  String get settingsTabCloudSyncTitle => '☁️ Cloud Sync';
+
+  @override
+  String get settingsTabCloudSyncCaption =>
+      'Sign in to sync your data across devices. Nothing is synced yet — this connects your account.';
+
+  @override
+  String get settingsTabCloudSyncEmailPlaceholder => 'Email address';
+
+  @override
+  String get settingsTabCloudSyncSendLinkButton => 'Send magic link';
+
+  @override
+  String get settingsTabCloudSyncLinkSent =>
+      'Check your email for a sign-in link.';
+
+  @override
+  String settingsTabCloudSyncSignedInAs(String email) {
+    return 'Signed in as $email';
+  }
+
+  @override
+  String get settingsTabCloudSyncSignOutButton => 'Sign out';
+
+  @override
+  String get settingsTabAboutTitle => 'ℹ️ About ZebraPace';
+
+  @override
+  String get settingsTabAboutViewWelcomeButton => 'View welcome & disclaimer';
 
   @override
   String get settingsTabLanguageTitle => 'Language';

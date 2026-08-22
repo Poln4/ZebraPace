@@ -1,27 +1,12 @@
-<<<<<<< HEAD
-# zebrapace_app
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-=======
 # 🦓 ZebraPace: The 1% Journey #
 
 ZebraPace is a compassionate, pacing-focused health and fitness tracker designed specifically for individuals managing Ehlers-Danlos Syndromes (EDS), Post-Exercise Malaise (PEM), Dysautonomia and comorbidities.
 
 Traditional fitness apps rely on linear progression, streaks, and pushing limits—which can actively harm patients with chronic, cyclical conditions. ZebraPace flips the script. It operates on the philosophy of Atomic Habits (the 1% rule) and actively celebrates rest, maintenance, and listening to your body.
+
+## ⚕️ Before anything else ##
+
+ZebraPace is **not a medical device** and does not diagnose or treat anything. It is **not a substitute** for your doctor, physical therapist, kinesiologist, or other care providers — please keep making those decisions with them, not instead of them. The app shows this same disclaimer on first launch, and it's always reachable again from Settings → About.
 
 ## ✨ Core Features & Philosophy ##
 
@@ -41,62 +26,34 @@ Open Liquid & Hydration Tracking: Easily track all forms of hydration, including
 
 Isolated Body Metrics: Weight, height, and body fat percentage are tracked in a completely separate, dedicated section to prevent blending physical measurements with mental/pain symptom logging.
 
-#### If you want to give it a try too, below are the indications. ####
+Injuries & structural events, intraday check-ins, Apple Health-sourced METs, a doctor-visit PDF report, and Face ID/Touch ID app lock round out the current feature set.
 
-## 🚀 Installation & Setup ##
+## 🚀 Running the app ##
 
-This is a lightweight Streamlit application that uses a local SQLite database, ensuring the health data remains 100% private.
+ZebraPace is now a native **Flutter** app, targeting iOS and web, backed by a local **drift/SQLite** database — your health data stays on your device by default. (An optional, opt-in Supabase-based cloud sync for multi-device use is in progress; nothing is sent off-device unless you explicitly sign in to it under Settings → Cloud Sync.)
 
-Prerequisites
+Prerequisites: Flutter SDK (see `pubspec.yaml` for the pinned Dart SDK constraint). For iOS you'll also need Xcode and CocoaPods; the web build has no extra native requirements.
 
-Python 3.8 or higher installed on your machine.
+```bash
+flutter pub get
+flutter run              # pick a connected device/simulator, or:
+flutter run -d chrome    # run in the browser
+```
 
-1. Clone the Repository
-
-git clone [https://github.com/yourusername/zebrapace.git](https://github.com/yourusername/zebrapace.git)
-cd zebrapace
-
-
-2. Install Dependencies
-
-pip install -r requirements.txt
-
-
-3. Set Up the Password Gate (Secrets)
-
-To keep your dashboard private, the app requires a password.
-
-Create a folder named .streamlit in the root directory.
-
-Inside that folder, create a file named secrets.toml.
-
-Add your secure password to the file:
-
-# .streamlit/secrets.toml
-APP_PASSWORD = "your-secure-password"
-
-
-(Note: .streamlit/secrets.toml should be added to your .gitignore file so it is never uploaded to GitHub).
-
-4. Run the Application
-
-streamlit run app.py
-
-
-The app will automatically open in your default web browser at http://localhost:8501.
+`app.py` is the original Streamlit/Python prototype this was rewritten from, kept for history but no longer maintained.
 
 ## 📂 Project Structure ##
 
-app.py: The main Streamlit application script containing the UI and database logic.
+`lib/` — the Flutter app: `data/` for the drift schema and repositories, `domain/` for the pure business-logic services, `presentation/` for screens and widgets, `providers/` for Riverpod state.
 
-requirements.txt: The Python dependencies needed to run the app (streamlit, pandas).
+`app.py` — the retired Streamlit prototype this was rewritten from.
 
-.streamlit/config.toml: Contains the custom dark-mode and turquoise accent color configuration for accessibility.
+## ☕ Support ##
 
-zebra_data.db: The local SQLite database generated automatically on your first run (Keep this in .gitignore).
+ZebraPace is a personal project, built by one zebra for other zebras, and offered freely. If it's useful to you and you'd like to help keep it going, you can support it on [Ko-fi](https://ko-fi.com/paulinavl) — completely optional, no pressure.
 
+---
 
-Built For Zebras from a cebra. 
+Built For Zebras from a cebra.
 
 This app is a personal case study and companion tool. It was built from the dual perspective of a patient and a developer, acknowledging that for chronic illness, doing a little is always better than pushing too hard.
->>>>>>> ad992c1992fa846ac9ffabe684c4a0fbde81c4eb

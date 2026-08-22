@@ -332,6 +332,15 @@
   "monthChapterScoreRange": "Tu estado mental varió entre **{minMental}** y **{maxMental}**, y tu cuerpo/dolor entre **{minBody}** y **{maxBody}**.",
 
   "commonCancelButton": "Cancelar",
+  "commonCloseButton": "Cerrar",
+
+  "kofiSupportButton": "☕ Apoyar en Ko-fi",
+
+  "welcomeScreenTitle": "Bienvenido/a a ZebraPace 🦓",
+  "welcomeScreenPurposeParagraph": "ZebraPace es una herramienta suave, centrada en el ritmo propio, para ayudarte a mantenerte informado/a sobre tu propio \"cuerpo cebra\" — EDS, PEM, Disautonomía y todo lo que las acompaña — sin convertir tu salud en una competencia contigo mismo/a.",
+  "welcomeScreenDisclaimerParagraph": "Esta app no es un dispositivo médico y no diagnostica ni trata nada. No sustituye a tu médico/a, fisioterapeuta, kinesiólogo/a u otros profesionales de la salud — sigue tomando esas decisiones junto a ellos, no en su lugar.",
+  "welcomeScreenPersonalParagraph": "ZebraPace es un proyecto personal, creado por una cebra para otras cebras, y se ofrece de forma gratuita. Si te resulta útil y quieres ayudar a mantenerlo, puedes apoyarlo en Ko-fi — totalmente opcional, sin presión.",
+  "welcomeScreenContinueButton": "Entiendo — Continuar",
 
   "settingsTabTitle": "Ajustes",
   "settingsTabGoalsTitle": "Metas y umbrales de ritmo",
@@ -367,6 +376,20 @@
   "settingsTabHealthKitDisconnectedCaption": "No conectado. Los pasos y las sugerencias de entrenamiento permanecen totalmente manuales hasta que te conectes.",
   "settingsTabHealthKitOpenSettingsButton": "Abrir Ajustes de iOS para cambiar el acceso",
   "settingsTabHealthKitConnectButton": "Conectar Apple Salud",
+  "settingsTabCloudSyncTitle": "☁️ Sincronización en la nube",
+  "settingsTabCloudSyncCaption": "Inicia sesión para sincronizar tus datos entre dispositivos. Todavía no se sincroniza nada — esto solo conecta tu cuenta.",
+  "settingsTabCloudSyncEmailPlaceholder": "Correo electrónico",
+  "settingsTabCloudSyncSendLinkButton": "Enviar enlace mágico",
+  "settingsTabCloudSyncLinkSent": "Revisa tu correo para el enlace de inicio de sesión.",
+  "settingsTabCloudSyncSignedInAs": "Sesión iniciada como {email}",
+  "@settingsTabCloudSyncSignedInAs": {
+    "placeholders": {
+      "email": {"type": "String"}
+    }
+  },
+  "settingsTabCloudSyncSignOutButton": "Cerrar sesión",
+  "settingsTabAboutTitle": "ℹ️ Acerca de ZebraPace",
+  "settingsTabAboutViewWelcomeButton": "Ver bienvenida y aviso",
   "settingsTabLanguageTitle": "Idioma",
   "settingsTabLanguageSystem": "Predeterminado del sistema",
   "settingsTabLanguageEnglish": "English",

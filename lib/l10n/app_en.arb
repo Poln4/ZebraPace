@@ -540,6 +540,15 @@
   },
 
   "commonCancelButton": "Cancel",
+  "commonCloseButton": "Close",
+
+  "kofiSupportButton": "☕ Support on Ko-fi",
+
+  "welcomeScreenTitle": "Welcome to ZebraPace 🦓",
+  "welcomeScreenPurposeParagraph": "ZebraPace is a gentle, pacing-focused tool to help you stay informed about your own \"zebra body\" — EDS, PEM, Dysautonomia, and everything that rides along with them — without turning your health into a competition against yourself.",
+  "welcomeScreenDisclaimerParagraph": "This app is not a medical device and does not diagnose or treat anything. It is not a substitute for your doctor, physical therapist, kinesiologist, or other care providers — please keep making those decisions with them, not instead of them.",
+  "welcomeScreenPersonalParagraph": "ZebraPace is a personal project, built by one zebra for other zebras, and offered freely. If it's useful to you and you'd like to help keep it going, you can support it on Ko-fi — completely optional, no pressure.",
+  "welcomeScreenContinueButton": "I understand — Continue",
 
   "settingsTabTitle": "Settings",
   "settingsTabGoalsTitle": "Pacing goals & thresholds",
@@ -580,6 +589,20 @@
   "settingsTabHealthKitDisconnectedCaption": "Not connected. Steps and workout suggestions stay fully manual until you connect.",
   "settingsTabHealthKitOpenSettingsButton": "Open iOS Settings to change access",
   "settingsTabHealthKitConnectButton": "Connect Apple Health",
+  "settingsTabCloudSyncTitle": "☁️ Cloud Sync",
+  "settingsTabCloudSyncCaption": "Sign in to sync your data across devices. Nothing is synced yet — this connects your account.",
+  "settingsTabCloudSyncEmailPlaceholder": "Email address",
+  "settingsTabCloudSyncSendLinkButton": "Send magic link",
+  "settingsTabCloudSyncLinkSent": "Check your email for a sign-in link.",
+  "settingsTabCloudSyncSignedInAs": "Signed in as {email}",
+  "@settingsTabCloudSyncSignedInAs": {
+    "placeholders": {
+      "email": {"type": "String"}
+    }
+  },
+  "settingsTabCloudSyncSignOutButton": "Sign out",
+  "settingsTabAboutTitle": "ℹ️ About ZebraPace",
+  "settingsTabAboutViewWelcomeButton": "View welcome & disclaimer",
   "settingsTabLanguageTitle": "Language",
   "settingsTabLanguageSystem": "System default",
   "settingsTabLanguageEnglish": "English",
