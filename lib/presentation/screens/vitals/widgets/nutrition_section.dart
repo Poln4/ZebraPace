@@ -1,0 +1,130 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../../core/constants/enums.dart';
+import '../../../../core/theme/zebra_theme.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../../../../providers/app_providers.dart';
+import '../../../widgets/progress_bar.dart';
+import '../../../widgets/section_card.dart';
+
+class NutritionSection extends ConsumerStatefulWidget {
+  const NutritionSection({super.key});
+
+  @override
+  ConsumerState<NutritionSection> createState() => _NutritionSectionState();
+}
+
+class _NutritionSectionState extends ConsumerState<NutritionSection> {
+  ProteinUnit _unit = ProteinUnit.grams;
+  final _amountController = TextEditingController(text: '20');
+
+  @override
+  void dispose() {
+    _amountController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final log = ref.watch(dailyLogProvider).valueOrNull;
+    final settings = ref.watch(settingsSnapshotProvider).valueOrNull;
+    final goal = settings?.proteinGoalG ?? 100;
+    final protein = log?.proteinG ?? 0;
+    final progress = goal == 0 ? 0.0 : (protein / goal).clamp(0.0, 1.0);
+
+    return SectionCard(
+      title: l10n.nutritionSectionTitle,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ProgressBar(progress: progress),
+          const SizedBox(height: 4),
+          Text(l10n.nutritionSectionProteinProgress(protein, goal),
+              style: const TextStyle(fontSize: 12)),
+          const SizedBox(height: 4),
+          Text(l10n.nutritionSectionCreatineToday((log?.creatineG ?? 0).toStringAsFixed(1)),
+              style: const TextStyle(fontSize: 12, color: CupertinoColors.systemGrey)),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              Expanded(
+                child: CupertinoTextField(
+                  controller: _amountController,
+                  keyboardType: TextInputType.number,
+                  placeholder: l10n.nutritionSectionAmountPlaceholder,
+                ),
+              ),
+              const SizedBox(width: 8),
+              CupertinoSlidingSegmentedControl<ProteinUnit>(
+                groupValue: _unit,
+                children: {
+                  for (final u in ProteinUnit.values)
+                    u: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6),
+                      child: Text(u.label(l10n), style: const TextStyle(fontSize: 11)),
+                    ),
+                },
+                onValueChanged: (v) {
+                  if (v != null) setState(() => _unit = v);
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              Expanded(
+                child: CupertinoButton(
+                  color: ZebraColors.brandTeal,
+                  onPressed: _addProtein,
+                  child: Text(l10n.nutritionSectionAddProteinButton,
+                      style: const TextStyle(color: ZebraColors.onColor)),
+                ),
+              ),
+              const SizedBox(width: 8),
+              CupertinoButton(
+                color: ZebraColors.sand,
+                onPressed: _addCreatine,
+                child: Text(l10n.nutritionSectionAddCreatineButton,
+                    style: const TextStyle(color: ZebraColors.onColor)),
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          CupertinoButton(
+            padding: EdgeInsets.zero,
+            onPressed: _reset,
+            child: Text(l10n.nutritionSectionResetButton,
+                style: const TextStyle(fontSize: 12, color: CupertinoColors.destructiveRed)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _addProtein() async {
+    final amount = double.tryParse(_amountController.text) ?? 0;
+    if (amount <= 0) return;
+    final grams = (amount * _unit.gramsPerUnit).round();
+    final date = ref.read(selectedDateProvider);
+    final repo = ref.read(dailyLogRepositoryProvider);
+    final log = await repo.getOrCreateDailyLog(date);
+    await repo.upsertDailyLog(log.copyWith(proteinG: log.proteinG + grams));
+  }
+
+  Future<void> _addCreatine() async {
+    final date = ref.read(selectedDateProvider);
+    final repo = ref.read(dailyLogRepositoryProvider);
+    final log = await repo.getOrCreateDailyLog(date);
+    await repo.upsertDailyLog(log.copyWith(creatineG: log.creatineG + 5));
+  }
+
+  Future<void> _reset() async {
+    final date = ref.read(selectedDateProvider);
+    final repo = ref.read(dailyLogRepositoryProvider);
+    final log = await repo.getOrCreateDailyLog(date);
+    await repo.upsertDailyLog(log.copyWith(proteinG: 0, creatineG: 0));
+  }
+}

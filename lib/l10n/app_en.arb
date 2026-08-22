@@ -1,0 +1,780 @@
+{
+  "@@locale": "en",
+  "appTitle": "ZebraPace",
+  "@appTitle": {
+    "description": "App name, shown in the OS task switcher / window title."
+  },
+
+  "mentalStateExhausted": "Exhausted/Brain Fog",
+  "mentalStateLow": "Low",
+  "mentalStateOkay": "Okay",
+  "mentalStateGood": "Good",
+  "mentalStateEnergized": "Energized",
+
+  "bodyFeelingSevere": "Severe Pain/Stiff",
+  "bodyFeelingAchy": "Achy",
+  "bodyFeelingManageable": "Manageable",
+  "bodyFeelingGood": "Good",
+  "bodyFeelingLooseStable": "Loose & Stable",
+
+  "contractionModeConcentric": "Concentric (lifting/pushing up)",
+  "contractionModeEccentric": "Eccentric (lowering, controlled)",
+  "contractionModeIsometric": "Isometric (held position)",
+  "contractionModeMixed": "Mixed / not sure",
+
+  "braceTypeWrist": "Wrist",
+  "braceTypeKnee": "Knee",
+  "braceTypeSiBelt": "SI Belt",
+  "braceTypeRingSplints": "Ring Splints",
+  "braceTypeAnkle": "Ankle",
+  "braceTypeNeck": "Neck",
+
+  "drinkTypeWater": "Water",
+  "drinkTypeTea": "Tea",
+  "drinkTypeCoffee": "Coffee",
+  "drinkTypeJuice": "Juice",
+  "drinkTypeMilk": "Milk",
+  "drinkTypeSportsDrink": "Sports Drink",
+  "drinkTypeEnergyDrink": "Energy Drink",
+  "drinkTypeSoda": "Soda",
+  "drinkTypeElectrolytes": "Electrolytes",
+  "drinkTypeProteinShake": "Protein Shake",
+  "drinkTypeBrothSoup": "Broth/Soup",
+  "drinkTypeBeer": "Beer",
+  "drinkTypeWine": "Wine",
+  "drinkTypeLiquor": "Liquor",
+  "drinkTypeOther": "Other (Type below)",
+
+  "proteinUnitGrams": "g",
+  "proteinUnitScoop": "scoop (~30g)",
+  "proteinUnitTbsp": "tbsp (~7g)",
+
+  "calisthenicsExercisePushups": "Pushups",
+  "calisthenicsExerciseSquats": "Squats",
+  "calisthenicsExercisePullups": "Pullups",
+  "calisthenicsExerciseLegRaises": "Leg Raises",
+  "calisthenicsExerciseBridges": "Bridges",
+  "calisthenicsExerciseTwists": "Twists",
+
+  "calisthenicsPushupsWall": "Wall Pushups (~35% BW)",
+  "calisthenicsPushupsIncline": "Incline Pushups (~50% BW)",
+  "calisthenicsPushupsKnee": "Knee Pushups (~60% BW)",
+  "calisthenicsPushupsFull": "Full Pushups (~70% BW)",
+  "calisthenicsSquatsJackknife": "Jackknife Squats",
+  "calisthenicsSquatsAssisted": "Assisted Squats",
+  "calisthenicsSquatsHalf": "Half Squats",
+  "calisthenicsSquatsFull": "Full Squats",
+  "calisthenicsTier1": "Tier 1",
+  "calisthenicsTier2": "Tier 2",
+  "calisthenicsTier3": "Tier 3",
+
+  "sorenessOnsetSameDay": "Same day",
+  "sorenessOnsetOneDayAfter": "1 day after",
+  "sorenessOnsetTwoToThreeDaysAfter": "2-3 days after",
+  "sorenessOnsetNotTiedOrUnsure": "Not tied to activity / not sure",
+
+  "sorenessSpreadLocalized": "Localized to muscles worked",
+  "sorenessSpreadWidespread": "Widespread / systemic",
+
+  "sorenessTrendEasing": "Easing",
+  "sorenessTrendSame": "About the same",
+  "sorenessTrendWorse": "Getting worse",
+
+  "injuryZoneAnkles": "Ankles",
+  "injuryZoneKnees": "Knees",
+  "injuryZoneCalf": "Calf",
+  "injuryZoneFrontThigh": "Front Thigh",
+  "injuryZoneBackThigh": "Back Thigh",
+  "injuryZoneSide": "Side",
+  "injuryZoneUpperBack": "Upper Back",
+  "injuryZoneLowerBack": "Lower Back",
+  "injuryZoneShoulder": "Shoulder",
+  "injuryZoneWrist": "Wrist",
+  "injuryZoneHand": "Hand",
+  "injuryZoneElbow": "Elbow",
+  "injuryZoneHip": "Hip",
+  "injuryZoneNeck": "Neck",
+  "injuryZoneFoot": "Foot",
+  "injuryZoneOther": "Other",
+
+  "injuryKindJoint": "Joint",
+  "injuryKindLigament": "Ligament",
+  "injuryKindMuscle": "Muscle",
+  "injuryKindPainWithoutClearCause": "Pain Without Clear Structural Cause",
+
+  "injuryTypeSubluxation": "Subluxation",
+  "injuryTypeJointInstability": "Joint Instability",
+  "injuryTypeJointPain": "Joint Pain",
+  "injuryTypeMuscleStrain": "Muscle Strain",
+  "injuryTypeMusclePainGeneral": "General Muscle Pain",
+  "injuryTypeContracture": "Contracture",
+  "injuryTypeKnownConditionFlare": "Known Condition Flare-Up",
+  "injuryTypeUnclearStructuralCause": "Unclear Structural Cause",
+
+  "comparedToUsualWorse": "Worse",
+  "comparedToUsualAboutTheSame": "About the same",
+  "comparedToUsualBetter": "Better",
+
+  "comfortLabelBrilliant": "🤩 Brilliant/Stable",
+  "comfortLabelComfortable": "🙂 Comfortable/Good",
+  "comfortLabelOkay": "😐 Okay/Stiff",
+  "comfortLabelAchy": "🙁 Achy/Struggled",
+  "comfortLabelPainful": "😣 Painful/Unstable",
+
+  "calisthenicsSectionTitle": "🤸 Hybrid Calisthenics",
+  "calisthenicsSectionExerciseLabel": "Exercise",
+  "calisthenicsSectionProgressionTierLabel": "Progression tier",
+  "calisthenicsSectionSetsPlaceholder": "Sets",
+  "calisthenicsSectionRepsPlaceholder": "Reps",
+  "calisthenicsSectionContractionModeLabel": "Contraction mode",
+  "calisthenicsSectionComfortLabel": "Comfort: {value} — {label}",
+  "@calisthenicsSectionComfortLabel": {
+    "placeholders": {
+      "value": {"type": "String"},
+      "label": {"type": "String"}
+    }
+  },
+  "calisthenicsSectionMentalStateLabel": "Mental State",
+  "calisthenicsSectionBodyFeelingLabel": "Body Feeling",
+  "calisthenicsSectionLogButton": "Log Calisthenics",
+  "calisthenicsSectionMilestoneCelebration": "🎈 3 comfortable sessions in a row for {exercise} — you could try the next tier when you're ready.",
+  "@calisthenicsSectionMilestoneCelebration": {
+    "placeholders": {
+      "exercise": {"type": "String"}
+    }
+  },
+
+  "commonMentalStateLabel": "Mental State",
+  "commonBodyFeelingLabel": "Body Feeling",
+  "commonDurationMinPlaceholder": "Duration (min)",
+
+  "activitiesSectionTitle": "🚴‍♀️ Custom Activities",
+  "activitiesSectionNamePlaceholder": "Activity name",
+  "activitiesSectionWeightPlaceholder": "Extra weight (kg)",
+  "activitiesSectionLogButton": "Log Activity",
+  "activitiesSectionListItem": "{name} — {duration} min",
+  "@activitiesSectionListItem": {
+    "placeholders": {
+      "name": {"type": "String"},
+      "duration": {"type": "int"}
+    }
+  },
+
+  "injuriesSectionTitle": "🩹 Injuries & Structural Events",
+  "injuriesSectionCaption": "For discrete, dateable injuries — separate from Flare Days, which are systemic.",
+  "injuriesSectionZoneLabel": "Zone",
+  "injuriesSectionKindLabel": "Kind",
+  "injuriesSectionTypeLabel": "Type",
+  "injuriesSectionNotePlaceholder": "What happened, how it's limiting you",
+  "injuriesSectionLogButton": "➕ Log this injury",
+  "injuriesSectionActiveLabel": "Active",
+  "injuriesSectionActiveTitle": "{zone} — {kind} / {type}",
+  "@injuriesSectionActiveTitle": {
+    "placeholders": {
+      "zone": {"type": "String"},
+      "kind": {"type": "String"},
+      "type": {"type": "String"}
+    }
+  },
+  "injuriesSectionStarted": "Started {date}",
+  "@injuriesSectionStarted": {
+    "placeholders": {
+      "date": {"type": "String"}
+    }
+  },
+  "injuriesSectionStillPainful": "Still painful",
+  "injuriesSectionMarkResolved": "✅ Mark resolved",
+  "injuriesSectionUpdate": "💾 Update",
+
+  "therapiesSectionTitle": "💆‍♀️ Recovery & Passive Therapies",
+  "therapiesSectionNamePlaceholder": "Therapy name",
+  "therapiesSectionLogButton": "Log Therapy",
+  "therapiesSectionListItem": "{name} — {duration} min",
+  "@therapiesSectionListItem": {
+    "placeholders": {
+      "name": {"type": "String"},
+      "duration": {"type": "int"}
+    }
+  },
+
+  "commonSaveButton": "Save",
+
+  "hydrationSectionTitle": "☕ Hydration & Liquids",
+  "hydrationSectionProgress": "{credit} / {goal} ml",
+  "@hydrationSectionProgress": {
+    "placeholders": {
+      "credit": {"type": "int"},
+      "goal": {"type": "int"}
+    }
+  },
+  "hydrationSectionCustomLabelPlaceholder": "What is it?",
+  "hydrationSectionAmountPlaceholder": "Amount (ml)",
+  "hydrationSectionAddDrinkButton": "➕ Add drink",
+  "hydrationSectionLogItem": "{name}: {amount} ml",
+  "@hydrationSectionLogItem": {
+    "placeholders": {
+      "name": {"type": "String"},
+      "amount": {"type": "int"}
+    }
+  },
+  "hydrationSectionResetButton": "Reset Today's Liquids",
+
+  "nutritionSectionTitle": "🥩 Nutrition & Supplements",
+  "nutritionSectionProteinProgress": "{protein}g / {goal}g protein",
+  "@nutritionSectionProteinProgress": {
+    "placeholders": {
+      "protein": {"type": "int"},
+      "goal": {"type": "int"}
+    }
+  },
+  "nutritionSectionCreatineToday": "Creatine today: {amount}g",
+  "@nutritionSectionCreatineToday": {
+    "placeholders": {
+      "amount": {"type": "String"}
+    }
+  },
+  "nutritionSectionAmountPlaceholder": "Amount",
+  "nutritionSectionAddProteinButton": "Add protein",
+  "nutritionSectionAddCreatineButton": "+5g Creatine",
+  "nutritionSectionResetButton": "Reset Nutrition",
+
+  "mindBodyFormTitle": "🧠 Mind & Body",
+  "mindBodyFormCaption": "This is today's one official summary — it's what your baselines, trends, and PEM check are built on.",
+  "mindBodyFormBodyPainFeelingLabel": "Body / Pain Feeling",
+  "mindBodyFormBracesUsedLabel": "Braces used today",
+  "mindBodyFormBraceComfort": "Brace comfort: {value}/10",
+  "@mindBodyFormBraceComfort": {
+    "placeholders": {
+      "value": {"type": "int"}
+    }
+  },
+
+  "quickCheckinSectionTitle": "📈 How are you feeling right now?",
+  "quickCheckinSectionCaption": "Log as many as you want through the day — they don't replace the summary above.",
+  "quickCheckinSectionMentalStateLabel": "Mental State right now",
+  "quickCheckinSectionBodyPainLabel": "Body/Pain right now",
+  "quickCheckinSectionNotePlaceholder": "Optional note — e.g. after lunch, mid-errand",
+  "quickCheckinSectionLogButton": "➕ Log this moment",
+  "quickCheckinSectionEmpty": "No check-ins logged yet today.",
+
+  "sorenessCheckSectionTitle": "🔍 Soreness or Crash? A quick check",
+  "sorenessCheckSectionCaption": "Three quick questions to tell ordinary post-exercise soreness apart from a PEM pattern.",
+  "sorenessCheckSectionOnsetLabel": "When did it start?",
+  "sorenessCheckSectionSpreadLabel": "Where do you feel it?",
+  "sorenessCheckSectionTrendLabel": "How is it trending?",
+  "sorenessCheckSectionCheckButton": "Check",
+
+  "sorenessVerdictCrashLabel": "🌩️ More consistent with a crash/PEM pattern",
+  "sorenessVerdictCrashMessage": "Widespread or worsening symptoms — rather than easing, localized muscle soreness — line up more with post-exertional malaise than ordinary exercise soreness. Consider treating today (and maybe tomorrow) as a Rest or Flare Day, and it's worth mentioning this pattern to your care team if it keeps happening.",
+  "sorenessVerdictDomsLabel": "💪 Sounds like ordinary post-exercise soreness (DOMS)",
+  "sorenessVerdictDomsMessage": "Localized soreness that peaks a day or two after effort and then eases is the typical pattern for delayed-onset muscle soreness — especially after eccentric (lowering/controlled) work. It's not usually a signal to worry, and it tends to lessen further with repeated, gentle exposure (the 'repeated bout effect').",
+  "sorenessVerdictUnclearLabel": "🤔 No clear pattern yet",
+  "sorenessVerdictUnclearMessage": "Not enough of a clear signal either way from these answers. Worth logging again tomorrow, and mentioning to your care team if this keeps recurring or feels different from your usual soreness.",
+
+  "calisthenicsComfortChartEmpty": "No calisthenics logged in range.",
+  "calisthenicsComfortChartUnspecified": "Unspecified",
+
+  "exportSectionTitle": "📤 Export",
+  "exportSectionPdfButton": "🩺 Doctor Visit Report (PDF)",
+  "exportSectionCsvButton": "Download Vitals CSV (full history)",
+
+  "doctorReportNotAvailable": "n/a",
+  "doctorReportHeading": "ZebraPace - Pacing Summary",
+  "doctorReportRangeLine": "Range: {start} to {end}  |  Generated: {generated}",
+  "@doctorReportRangeLine": {
+    "placeholders": {
+      "start": {"type": "String"},
+      "end": {"type": "String"},
+      "generated": {"type": "String"}
+    }
+  },
+  "doctorReportDisclaimer": "Patient-reported pacing data (PRO/EMA style). Not a diagnostic tool; intended to support, not replace, clinical judgment.",
+  "doctorReportOverviewHeading": "Overview",
+  "doctorReportMovementHeading": "Movement & Recovery",
+  "doctorReportMovementSummary": "Custom activities logged: {activityCount}   |   Passive therapy sessions: {therapyCount}",
+  "@doctorReportMovementSummary": {
+    "placeholders": {
+      "activityCount": {"type": "int"},
+      "therapyCount": {"type": "int"}
+    }
+  },
+  "doctorReportCalisthenicsHeading": "Calisthenics - latest status per exercise:",
+  "doctorReportCalisthenicsLine": "  - {exercise}: current tier '{tier}', last-3-session avg comfort {comfort}/5",
+  "@doctorReportCalisthenicsLine": {
+    "placeholders": {
+      "exercise": {"type": "String"},
+      "tier": {"type": "String"},
+      "comfort": {"type": "String"}
+    }
+  },
+  "doctorReportCalisthenicsLineMode": ", last mode: {mode}",
+  "@doctorReportCalisthenicsLineMode": {
+    "placeholders": {
+      "mode": {"type": "String"}
+    }
+  },
+  "doctorReportPemHeading": "Delayed Symptom Pattern (patient-observed)",
+  "doctorReportWeatherHeading": "Weather Context",
+  "doctorReportTherapiesHeading": "Recent Passive Therapies",
+  "doctorReportTherapyLine": "  {date}  -  {name} ({duration} min)  -  body: {body}",
+  "@doctorReportTherapyLine": {
+    "placeholders": {
+      "date": {"type": "String"},
+      "name": {"type": "String"},
+      "duration": {"type": "int"},
+      "body": {"type": "String"}
+    }
+  },
+  "doctorReportInjuriesHeading": "Injuries / Structural Events",
+  "doctorReportInjuryLine": "  - {zone} ({kind}/{type}), started {date} - {status}",
+  "@doctorReportInjuryLine": {
+    "placeholders": {
+      "zone": {"type": "String"},
+      "kind": {"type": "String"},
+      "type": {"type": "String"},
+      "date": {"type": "String"},
+      "status": {"type": "String"}
+    }
+  },
+  "doctorReportNoteSuffix": ". {note}",
+  "@doctorReportNoteSuffix": {
+    "placeholders": {
+      "note": {"type": "String"}
+    }
+  },
+  "doctorReportMetsHeading": "Energy & METs (from confirmed Apple Health workout imports)",
+  "doctorReportMetsLine": "MET-minutes: {metMinutes}   |   Active energy: {kcal} kcal",
+  "@doctorReportMetsLine": {
+    "placeholders": {
+      "metMinutes": {"type": "String"},
+      "kcal": {"type": "String"}
+    }
+  },
+
+  "doctorReportDaysInRange": "Days in range",
+  "doctorReportDaysLogged": "Days logged",
+  "doctorReportRestDays": "Rest days",
+  "doctorReportFlareDays": "Flare / sick days",
+  "doctorReportAvgSteps": "Average daily steps (active days)",
+  "doctorReportAvgLiquids": "Average liquids",
+  "doctorReportAvgProtein": "Average protein",
+  "doctorReportAvgMental": "Average mental state (1-5)",
+  "doctorReportAvgBody": "Average body/pain feeling (1-5)",
+  "doctorReportMlValue": "{value} ml",
+  "@doctorReportMlValue": {
+    "placeholders": {
+      "value": {"type": "String"}
+    }
+  },
+  "doctorReportGramsValue": "{value} g",
+  "@doctorReportGramsValue": {
+    "placeholders": {
+      "value": {"type": "String"}
+    }
+  },
+
+  "doctorReportPemNote": "Comparing daily steps against body/pain score {lagDays} day(s) later over the last {rangeDays} days (n={n} pairs): correlation r={r}. Higher-exertion days averaged a body/pain score of {higher}/5 vs {typical}/5 for typical/lower days, {lagDays} day(s) later. Patient-observed pattern, not a clinical finding.",
+  "@doctorReportPemNote": {
+    "placeholders": {
+      "lagDays": {"type": "int"},
+      "rangeDays": {"type": "int"},
+      "n": {"type": "int"},
+      "r": {"type": "String"},
+      "higher": {"type": "String"},
+      "typical": {"type": "String"}
+    }
+  },
+  "doctorReportWeatherNote": "Average atmospheric pressure over the period: {pressure} hPa. Correlation with same-day body/pain score: r={r}. Exploratory, patient-observed.",
+  "@doctorReportWeatherNote": {
+    "placeholders": {
+      "pressure": {"type": "String"},
+      "r": {"type": "String"}
+    }
+  },
+
+  "principleMovementQualityTitle": "Movement Quality > Movement Quantity",
+  "principleMovementQualityFact": "For EDS/HSD, low-load exercise focused on motor control reduces pain and improves function more reliably than high-volume training.",
+  "principleMovementQualityInspiration": "Your joints don't need endless reps — they need mindful, precise control. Training proprioception is what stabilizes loose joints, not pushing them to their limit.",
+
+  "principleHealingClockTitle": "Respecting the Biological Healing Clock",
+  "principleHealingClockFact": "Tendons, ligaments, and joint capsules have limited blood supply and heal far slower than muscle — EDS extends this further.",
+  "principleHealingClockInspiration": "\"Start low, go slow\" isn't a lack of progress — it's a clinical necessity that lets your nervous system rebuild stabilizing muscle without overstressing fragile ligaments.",
+
+  "principleDelayedSorenessTitle": "Validating Delayed Soreness (DOMS)",
+  "principleDelayedSorenessFact": "Hypermobile individuals experience significantly greater, more intense delayed-onset muscle soreness than non-hypermobile people after eccentric exercise.",
+  "principleDelayedSorenessInspiration": "Soreness days later doesn't mean you're broken — your muscles are working harder to stabilize loose joints. Extra recovery time is biology, not a failure of will.",
+
+  "principleAutoEscalationTitle": "Rejecting the Auto-Escalation Trap",
+  "principleAutoEscalationFact": "Commercial trackers that auto-raise goals after a big day can push chronic pain / dysautonomia patients past what their nervous system needs for recovery.",
+  "principleAutoEscalationInspiration": "Rest isn't a missed day. Your capacity is a range that shifts daily with sleep, hydration, and pain — not an arbitrary target that only ever goes up. This is why this app's baseline excludes rest and flare days instead of averaging them in.",
+
+  "principleCinderellaMusclesTitle": "Rescuing the 'Cinderella Muscles'",
+  "principleCinderellaMusclesFact": "Lax joints force stabilizing muscles into constant low-level contraction (the 'Cinderella hypothesis'), causing metabolic overload and trigger points.",
+  "principleCinderellaMusclesInspiration": "Your stabilizing muscles work a 24-hour shift just to hold you upright. Frequent gentle micro-breaks — twists, isometric holds — restore blood flow and break the pain cycle.",
+
+  "principleStiffnessParadoxTitle": "The Stiffness Paradox",
+  "principleStiffnessParadoxFact": "Fascia can thicken (densify) to compensate for lax joints, creating stiffness despite loose ligaments — aggressive stretching can worsen instability.",
+  "principleStiffnessParadoxInspiration": "Tightness is often your body protecting your joints. Gentle fascial gliding and core stabilization reassure your nervous system more safely than a deep stretch.",
+
+  "principleEccentricWorkTitle": "Eccentric Work: More Strength for Fewer Spoons",
+  "principleEccentricWorkFact": "Eccentric (lengthening) contractions generate high force at a lower metabolic and cardiovascular cost than concentric (lifting) contractions of the same intensity — and unaccustomed muscle damage is largely preventable through gradual, low-intensity progression.",
+  "principleEccentricWorkInspiration": "This is why 'Eccentric' work is worth tagging separately here — it's a way to build real strength without spending spoons you don't have, especially useful if dysautonomia limits how much cardiovascular effort you can spare on a given day.",
+
+  "principleRepeatedBoutEffectTitle": "Soreness Fades With Practice — the Repeated Bout Effect",
+  "principleRepeatedBoutEffectFact": "After an initial bout of eccentric exercise, the same movement causes markedly less soreness and muscle damage the next time — protection that can last weeks to months.",
+  "principleRepeatedBoutEffectInspiration": "If a new eccentric exercise leaves you sore the first couple of times, that's expected and it's not a sign to stop — it typically eases on its own as your muscles adapt, faster than you might expect.",
+
+  "principleMuscleDamageCaveatTitle": "An Important Caveat: Muscle Damage ≠ Joint Safety",
+  "principleMuscleDamageCaveatFact": "\"Muscle damage is usually fine\" research above was done in general and older-adult populations, not specifically in hypermobile connective tissue. That is not the same claim as \"joint and capsule loading is fine\" for EDS/HSD bodies.",
+  "principleMuscleDamageCaveatInspiration": "Treat muscle soreness and joint/capsule signals as two separate things worth tracking separately — easing muscle soreness is a good sign, but pain, instability, or swelling around a joint is its own signal and deserves its own caution, regardless of what the muscle soreness is doing.",
+
+  "restFactNoBehind": "There is no 'behind' in a chronic condition. The only comparison that matters is you-today to you-yesterday, gently.",
+  "restFactEveryEntryCounts": "Every log entry — even 'I rested' or 'I couldn't log anything' — is useful data for you and your care team. It all counts.",
+  "restFactFlareExcluded": "A flare isn't a step backward in your data. Your averages are built to exclude flare days automatically, on purpose.",
+
+  "motivationLowSteps1": "Fewer steps today isn't a setback — bodies with connective tissue differences have real day-to-day variability. This is expected, not a failure.",
+  "motivationLowSteps2": "Some days are recovery days even when you didn't plan them. Your nervous system is doing quiet work you can't see.",
+  "motivationLowSteps3": "The trend over weeks matters far more than any single day. One quieter day doesn't undo your progress.",
+
+  "motivationSteady1": "Showing up consistently, even at a steady pace, is exactly how sustainable progress with EDS/dysautonomia looks.",
+  "motivationSteady2": "Maintaining your baseline is a genuine achievement — it means your pacing strategy is working.",
+
+  "motivationGrowth1": "You gently expanded your capacity today. Small, sustainable growth is the whole strategy — no need to push further.",
+  "motivationGrowth2": "That's real progress. Consider this your cue to rest well tonight so your body can consolidate the gain.",
+
+  "principlesExpanderTitle": "📚 Why this app works this way",
+  "principlesExpanderHideButton": "Hide the research",
+  "principlesExpanderShowButton": "Show the research",
+
+  "stepsSectionTitle": "👣 Steps & The Gentle-Growth Rule",
+  "stepsSectionBaselineLabel": "Baseline",
+  "stepsSectionGrowthGoalLabel": "Growth goal",
+  "stepsSectionCautionLineLabel": "Caution line",
+  "stepsSectionTodayStepsPlaceholder": "Today's steps",
+  "stepsSectionSaveButton": "Save Steps",
+  "stepsSectionMessageFlareNeutral": "Logged. No comparisons today — just resting and recovering matters.",
+  "stepsSectionMessageCaution": "💛 That's higher than your recent baseline. Consider extra rest, hydration and electrolytes.",
+  "stepsSectionMessageGoalCelebration": "🎉 {tip}",
+  "@stepsSectionMessageGoalCelebration": {
+    "placeholders": {
+      "tip": {"type": "String"}
+    }
+  },
+  "stepsSectionMessageGentleLow": "🌤️ {tip}",
+  "@stepsSectionMessageGentleLow": {
+    "placeholders": {
+      "tip": {"type": "String"}
+    }
+  },
+  "stepsSectionMessageSteady": "✅ {tip}",
+  "@stepsSectionMessageSteady": {
+    "placeholders": {
+      "tip": {"type": "String"}
+    }
+  },
+  "stepsSectionMessageNoBaseline": "Logged. Every entry builds your baseline for next time.",
+
+  "monthChapterQuietTitle": "A Quiet Chapter",
+  "monthChapterQuietBody": "No entries logged yet this month — and that's alright. This chapter is still unwritten; pick it up whenever you're ready.",
+  "monthChapterTitleLearningToRest": "Learning to Rest",
+  "monthChapterTitleGentleExploration": "Gentle Exploration",
+  "monthChapterTitleSteadyNoticing": "Steady Noticing",
+  "monthChapterTitleFindingTheRhythm": "Finding the Rhythm",
+  "monthChapterShowedUp": "You showed up **{count}** {count, plural, =1{time} other{times}} this month.",
+  "@monthChapterShowedUp": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "monthChapterRestDays": "{count, plural, =1{{count} Rest Day} other{{count} Rest Days}}",
+  "@monthChapterRestDays": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "monthChapterFlareDays": "{count, plural, =1{{count} Flare Day} other{{count} Flare Days}}",
+  "@monthChapterFlareDays": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "monthChapterAnd": " and ",
+  "monthChapterHonored": "You honored {bits} — protecting your body counts as showing up too.",
+  "@monthChapterHonored": {
+    "placeholders": {
+      "bits": {"type": "String"}
+    }
+  },
+  "monthChapterActivityLogs": "{count, plural, =1{{count} activity log} other{{count} activity logs}}",
+  "@monthChapterActivityLogs": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "monthChapterCalisthenicsSessions": "{count, plural, =1{{count} calisthenics session} other{{count} calisthenics sessions}}",
+  "@monthChapterCalisthenicsSessions": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "monthChapterRecoverySessions": "{count, plural, =1{{count} recovery session} other{{count} recovery sessions}}",
+  "@monthChapterRecoverySessions": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "monthChapterMovementSummary": "Movement and recovery this month: {bits}.",
+  "@monthChapterMovementSummary": {
+    "placeholders": {
+      "bits": {"type": "String"}
+    }
+  },
+  "monthChapterScoreRange": "Your mental state moved between **{minMental}** and **{maxMental}**, and body/pain between **{minBody}** and **{maxBody}**.",
+  "@monthChapterScoreRange": {
+    "placeholders": {
+      "minMental": {"type": "String"},
+      "maxMental": {"type": "String"},
+      "minBody": {"type": "String"},
+      "maxBody": {"type": "String"}
+    }
+  },
+
+  "commonCancelButton": "Cancel",
+
+  "settingsTabTitle": "Settings",
+  "settingsTabGoalsTitle": "Pacing goals & thresholds",
+  "settingsTabGrowthGoalLabel": "Growth goal (e.g. 1.01 = 1%)",
+  "settingsTabCautionMultiplierLabel": "Caution multiplier (e.g. 1.10 = 10%)",
+  "settingsTabComfortThresholdLabel": "Calisthenics comfort threshold (1-5)",
+  "settingsTabWaterGoalLabel": "Water goal (ml)",
+  "settingsTabProteinGoalLabel": "Protein goal (g)",
+  "settingsTabLocationTitle": "Location",
+  "settingsTabLocationCaption": "Used for weather-correlation insights.",
+  "settingsTabLocationSearchPlaceholder": "Search for a city or town",
+  "settingsTabLocationSearchButton": "Search",
+  "settingsTabLocationManualHint": "Or enter latitude/longitude manually below:",
+  "settingsTabLocationNameLabel": "Location name",
+  "settingsTabLatitudeLabel": "Latitude",
+  "settingsTabLongitudeLabel": "Longitude",
+  "settingsTabSaveLocationButton": "Save Location",
+  "settingsTabLocationNotFound": "Couldn't find that location — try a different search term.",
+  "settingsTabAppLockTitle": "🔒 App Lock",
+  "settingsTabLockNowButton": "Lock now",
+  "settingsTabDataOwnershipTitle": "Data ownership",
+  "settingsTabDataOwnershipCaption": "Export, import, or fully delete your data — no lock-in.",
+  "settingsTabExportJsonButton": "Export all data (JSON)",
+  "settingsTabImportModeReplace": "Replace (wipe then load)",
+  "settingsTabImportModeMerge": "Merge (keep existing + add new)",
+  "settingsTabImportJsonButton": "Import data (JSON)",
+  "settingsTabImportComplete": "Import complete.",
+  "settingsTabImportFailed": "Couldn't import that file: {error}",
+  "@settingsTabImportFailed": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "settingsTabDeleteLoggedDataLabel": "Delete all logged data (keeps your goals/settings)",
+  "settingsTabDeleteAllButton": "Delete all my data",
+  "settingsTabHealthKitTitle": "❤️ Apple Health",
+  "settingsTabHealthKitConnectedCaption": "Connected — steps pre-fill and workouts are suggested for review.",
+  "settingsTabHealthKitDisconnectedCaption": "Not connected. Steps and workout suggestions stay fully manual until you connect.",
+  "settingsTabHealthKitOpenSettingsButton": "Open iOS Settings to change access",
+  "settingsTabHealthKitConnectButton": "Connect Apple Health",
+  "settingsTabLanguageTitle": "Language",
+  "settingsTabLanguageSystem": "System default",
+  "settingsTabLanguageEnglish": "English",
+  "settingsTabLanguageSpanish": "Español",
+  "settingsTabLanguageChineseTaiwan": "繁體中文（台灣）",
+  "settingsTabTextSizeTitle": "Text Size",
+  "settingsTabTextSizeCaption": "Adjust how large text appears throughout the app, on top of your device's own text-size setting.",
+  "settingsTabTextSizeSemanticLabel": "Text size {percent}%",
+  "@settingsTabTextSizeSemanticLabel": {
+    "placeholders": {
+      "percent": {"type": "int"}
+    }
+  },
+
+  "lockScreenSetupTitle": "Set up a password",
+  "lockScreenSetupSubtitle": "This protects your health data on this device. You'll also be able to use Face ID/Touch ID once this is set.",
+  "lockScreenPasswordPlaceholder": "Password",
+  "lockScreenConfirmPasswordPlaceholder": "Confirm password",
+  "lockScreenSetPasswordButton": "Set password",
+  "lockScreenPasswordTooShort": "Password must be at least 4 characters.",
+  "lockScreenPasswordsDontMatch": "Passwords don't match.",
+  "lockScreenOk": "OK",
+  "lockScreenLockedTitle": "ZebraPace is locked",
+  "lockScreenBiometricUnlockButton": "Unlock with Face ID / Touch ID",
+  "lockScreenUsePasswordButton": "Use Password Instead",
+  "lockScreenUnlockButton": "Unlock",
+  "authProviderNoPasswordSetUp": "No password set up yet.",
+  "authProviderIncorrectPassword": "Incorrect password.",
+  "appShellTabVitals": "Vitals & Fuel",
+  "appShellTabMovement": "Movement",
+  "appShellTabInsights": "Insights",
+  "appShellTabSettings": "Settings",
+  "appShellTodayButton": "Today",
+  "appShellDoneButton": "Done",
+  "injuryBannerActiveLabel": "Active: {zones} — logged in Movement. Separate from Flare Days.",
+  "@injuryBannerActiveLabel": {
+    "placeholders": {
+      "zones": {"type": "String"}
+    }
+  },
+
+  "movementTabTitle": "Movement & Calisthenics",
+  "healthkitWorkoutSuggestionsConnectTitle": "❤️ Connect Apple Health",
+  "healthkitWorkoutSuggestionsConnectCaption": "Pre-fill today's steps and review detected workouts automatically. You can turn this off any time in Settings.",
+  "healthkitWorkoutSuggestionsConnectButton": "Connect",
+  "healthkitWorkoutSuggestionsDetectedTitle": "Detected: {activityLabel}",
+  "@healthkitWorkoutSuggestionsDetectedTitle": {
+    "placeholders": {
+      "activityLabel": {"type": "String"}
+    }
+  },
+  "healthkitWorkoutSuggestionsAddButton": "Add",
+  "healthkitWorkoutSuggestionsDismissButton": "Dismiss",
+  "vitalsTabTitle": "Daily Vitals & Fuel",
+  "vitalsTabLoadError": "Error loading today: {error}",
+  "@vitalsTabLoadError": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "vitalsTabFlareDayBanner": "Marked as a Flare/Sick Day. Rest and comparisons are paused today.",
+  "vitalsTabRestDayBanner": "Declared as a Rest Day. That counts as showing up.",
+  "vitalsTabRestDayButton": "Declare Rest Day",
+  "vitalsTabRestDayButtonActive": "✓ Rest Day",
+  "vitalsTabFlareDayButton": "Mark Flare/Sick Day",
+  "vitalsTabFlareDayButtonActive": "✓ Flare/Sick Day",
+  "vitalsMetricsRowLiquidsLabel": "Liquids",
+  "vitalsMetricsRowStepsLabel": "Steps",
+  "vitalsMetricsRowProteinLabel": "Protein",
+  "bodyMetricsSectionTitle": "📏 Body Metrics",
+  "bodyMetricsSectionWeightPlaceholder": "Weight (kg)",
+  "bodyMetricsSectionHeightPlaceholder": "Height (cm)",
+  "bodyMetricsSectionBodyFatPlaceholder": "Body fat %",
+  "bodyMetricsSectionSaveButton": "Save Body Metrics",
+
+  "weatherChartEmptyState": "No weather data cached yet.",
+  "weatherChartPressureLabel": "Pressure (hPa)",
+  "weatherChartBodyPainScoreLabel": "Body/Pain score",
+  "stepsChartEmptyState": "No steps logged in range.",
+  "liquidsChartEmptyState": "No liquids logged in range.",
+  "feelingTrendChartEmptyState": "No entries in range.",
+  "pemChartInsufficientData": "Not enough data yet — need at least 4 matched days at this lag.",
+  "pemChartCorrelationCaption": "Pearson r = {correlation} · Higher-exertion avg score: {higherAvg} · Typical/lower avg score: {typicalAvg}",
+  "@pemChartCorrelationCaption": {
+    "placeholders": {
+      "correlation": {"type": "String"},
+      "higherAvg": {"type": "String"},
+      "typicalAvg": {"type": "String"}
+    }
+  },
+
+  "insightsTabTitle": "Insights & Trends",
+  "insightsTabStripesTitle": "🦓 All-time stripes",
+  "insightsTabStripesCaption": "Not a streak — missing days never remove earned stripes.",
+  "insightsTabLoadError": "Error: {error}",
+  "@insightsTabLoadError": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "insightsTabEmptyState": "No entries logged in this range yet.",
+  "insightsTabStepsTitle": "👣 Steps (7-day rolling avg)",
+  "insightsTabLiquidsTitle": "☕ Liquids",
+  "insightsTabMentalStateTitle": "🧠 Mental State trend",
+  "insightsTabBodyPainTitle": "😣 Body/Pain trend",
+  "insightsTabCheckinConsistencyTitle": "📅 Check-in Consistency",
+  "insightsTabCalisthenicsComfortTitle": "🤸 Calisthenics Comfort by Exercise",
+  "insightsTabGroupByExercise": "Exercise",
+  "insightsTabGroupByContractionMode": "Contraction mode",
+  "insightsTabPemTitle": "🔬 Delayed Symptom Patterns (PEM check)",
+  "insightsTabPemCaption": "Steps vs. body score N days later, split by higher vs. typical exertion days.",
+  "insightsTabPemLagLabel": "Lag: ",
+  "insightsTabPemLagDays": "{count, plural, =1{{count} day} other{{count} days}}",
+  "@insightsTabPemLagDays": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "insightsTabWeatherTitle": "🌦️ Weather Context",
+  "insightsTabWeatherNoLocation": "Set a location in Settings to see whether barometric pressure correlates with your body/pain score.",
+  "insightsTabWeatherCorrelation": "Pearson r = {correlation} (pressure vs. same-day body score)",
+  "@insightsTabWeatherCorrelation": {
+    "placeholders": {
+      "correlation": {"type": "String"}
+    }
+  },
+  "insightsTabWeatherInsufficientData": "Not enough overlapping days yet — need at least 4.",
+  "insightsTabCelebrationTitle": "🏅 Things worth celebrating",
+  "insightsTabCheckinsLabel": "Check-ins",
+  "insightsTabRestDaysLabel": "Rest days",
+  "insightsTabFlareDaysLabel": "Flare days",
+  "insightsTabTherapySessionsLabel": "Therapy sessions",
+  "insightsTabMovementLogsLabel": "Movement logs",
+  "historyTablesActivitiesTitle": "🚴‍♀️ Recent Activities",
+  "historyTablesActivityLine": "{date} · {activityName} — {durationMin} min",
+  "@historyTablesActivityLine": {
+    "placeholders": {
+      "date": {"type": "String"},
+      "activityName": {"type": "String"},
+      "durationMin": {"type": "int"}
+    }
+  },
+  "historyTablesTherapiesTitle": "💆‍♀️ Recent Therapies",
+  "historyTablesTherapyLine": "{date} · {therapyName} — {durationMin} min",
+  "@historyTablesTherapyLine": {
+    "placeholders": {
+      "date": {"type": "String"},
+      "therapyName": {"type": "String"},
+      "durationMin": {"type": "int"}
+    }
+  },
+  "historyTablesCalisthenicsTitle": "🤸 Recent Calisthenics",
+  "historyTablesCalisthenicsLine": "{date} · {exercise} ({progression}) — comfort {comfort}",
+  "@historyTablesCalisthenicsLine": {
+    "placeholders": {
+      "date": {"type": "String"},
+      "exercise": {"type": "String"},
+      "progression": {"type": "String"},
+      "comfort": {"type": "String"}
+    }
+  },
+  "historyTablesSorenessTitle": "🔍 Soreness Check History",
+  "historyTablesSorenessLine": "{date} · {verdict}",
+  "@historyTablesSorenessLine": {
+    "placeholders": {
+      "date": {"type": "String"},
+      "verdict": {"type": "String"}
+    }
+  },
+  "historyTablesVitalsTitle": "📋 Daily Vitals History",
+  "historyTablesVitalsCaption": "Full history, newest first.",
+  "historyTablesVitalsLine": "{date} · {steps} steps · {water}ml · {mentalEmoji} {bodyEmoji}",
+  "@historyTablesVitalsLine": {
+    "placeholders": {
+      "date": {"type": "String"},
+      "steps": {"type": "int"},
+      "water": {"type": "int"},
+      "mentalEmoji": {"type": "String"},
+      "bodyEmoji": {"type": "String"}
+    }
+  },
+  "historyTablesVitalsRestSuffix": " · Rest",
+  "historyTablesVitalsFlareSuffix": " · Flare",
+  "metsSummaryWidgetTitle": "❤️‍🔥 Energy & METs",
+  "metsSummaryWidgetCaption": "From confirmed Apple Health workout imports in this range.",
+  "metsSummaryWidgetMetMinutesLabel": "MET-minutes",
+  "metsSummaryWidgetActiveEnergyLabel": "Active energy",
+  "metsSummaryWidgetActiveEnergyValue": "{value} kcal",
+  "@metsSummaryWidgetActiveEnergyValue": {
+    "placeholders": {
+      "value": {"type": "String"}
+    }
+  },
+
+  "insightsRangeFourteenDays": "14 days",
+  "insightsRangeThirtyDays": "30 days",
+  "insightsRangeNinetyDays": "90 days"
+}
