@@ -1,0 +1,4 @@
+[theme]
+# Change the default Streamlit red/pink to turquoise
+primaryColor="#40E0D0"
+
