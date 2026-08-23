@@ -629,6 +629,12 @@ abstract class AppLocalizations {
   /// **'Joint Pain'**
   String get injuryTypeJointPain;
 
+  /// No description provided for @injuryTypeLigamentSprain.
+  ///
+  /// In en, this message translates to:
+  /// **'Ligament Sprain'**
+  String get injuryTypeLigamentSprain;
+
   /// No description provided for @injuryTypeMuscleStrain.
   ///
   /// In en, this message translates to:
@@ -1000,6 +1006,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add protein'**
   String get nutritionSectionAddProteinButton;
+
+  /// No description provided for @nutritionSectionSetTotalButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Set protein total'**
+  String get nutritionSectionSetTotalButton;
+
+  /// No description provided for @nutritionSectionSetTotalDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set today\'s protein total (g)'**
+  String get nutritionSectionSetTotalDialogTitle;
+
+  /// No description provided for @nutritionSectionSetCreatineTotalButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Set creatine total'**
+  String get nutritionSectionSetCreatineTotalButton;
+
+  /// No description provided for @nutritionSectionSetCreatineTotalDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set today\'s creatine total (g)'**
+  String get nutritionSectionSetCreatineTotalDialogTitle;
 
   /// No description provided for @nutritionSectionAddCreatineButton.
   ///

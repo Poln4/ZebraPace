@@ -102,6 +102,7 @@
   "injuryTypeSubluxation": "Subluxación",
   "injuryTypeJointInstability": "Inestabilidad articular",
   "injuryTypeJointPain": "Dolor articular",
+  "injuryTypeLigamentSprain": "Esguince",
   "injuryTypeMuscleStrain": "Distensión muscular",
   "injuryTypeMusclePainGeneral": "Dolor muscular general",
   "injuryTypeContracture": "Contractura",
@@ -174,6 +175,10 @@
   "nutritionSectionCreatineToday": "Creatina hoy: {amount}g",
   "nutritionSectionAmountPlaceholder": "Cantidad",
   "nutritionSectionAddProteinButton": "Agregar proteína",
+  "nutritionSectionSetTotalButton": "Fijar total de proteína",
+  "nutritionSectionSetTotalDialogTitle": "Fijar el total de proteína de hoy (g)",
+  "nutritionSectionSetCreatineTotalButton": "Fijar total de creatina",
+  "nutritionSectionSetCreatineTotalDialogTitle": "Fijar el total de creatina de hoy (g)",
   "nutritionSectionAddCreatineButton": "+5g de creatina",
   "nutritionSectionResetButton": "Reiniciar nutrición",
 

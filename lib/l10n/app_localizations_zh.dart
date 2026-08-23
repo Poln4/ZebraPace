@@ -274,6 +274,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get injuryTypeJointPain => '關節疼痛';
 
   @override
+  String get injuryTypeLigamentSprain => '韌帶扭傷';
+
+  @override
   String get injuryTypeMuscleStrain => '肌肉拉傷';
 
   @override
@@ -478,6 +481,18 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get nutritionSectionAddProteinButton => '新增蛋白質';
+
+  @override
+  String get nutritionSectionSetTotalButton => '設定蛋白質總量';
+
+  @override
+  String get nutritionSectionSetTotalDialogTitle => '設定今日蛋白質總量（克）';
+
+  @override
+  String get nutritionSectionSetCreatineTotalButton => '設定肌酸總量';
+
+  @override
+  String get nutritionSectionSetCreatineTotalDialogTitle => '設定今日肌酸總量（克）';
 
   @override
   String get nutritionSectionAddCreatineButton => '+5克 肌酸';
@@ -1885,6 +1900,9 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get injuryTypeJointPain => '關節疼痛';
 
   @override
+  String get injuryTypeLigamentSprain => '韌帶扭傷';
+
+  @override
   String get injuryTypeMuscleStrain => '肌肉拉傷';
 
   @override
@@ -2089,6 +2107,18 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get nutritionSectionAddProteinButton => '新增蛋白質';
+
+  @override
+  String get nutritionSectionSetTotalButton => '設定蛋白質總量';
+
+  @override
+  String get nutritionSectionSetTotalDialogTitle => '設定今日蛋白質總量（克）';
+
+  @override
+  String get nutritionSectionSetCreatineTotalButton => '設定肌酸總量';
+
+  @override
+  String get nutritionSectionSetCreatineTotalDialogTitle => '設定今日肌酸總量（克）';
 
   @override
   String get nutritionSectionAddCreatineButton => '+5克 肌酸';

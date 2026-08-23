@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/constants/content.dart';
 import '../../../../core/theme/zebra_theme.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../widgets/bold_markdown_text.dart';
 import '../../../widgets/section_card.dart';
 import 'insights_providers.dart';
 
@@ -27,7 +28,7 @@ class MonthChapterCard extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(chapter.body, style: const TextStyle(fontSize: 13, height: 1.4)),
+            BoldMarkdownText(chapter.body, style: const TextStyle(fontSize: 13, height: 1.4, color: ZebraColors.black)),
             const SizedBox(height: 10),
             Container(
               padding: const EdgeInsets.all(10),

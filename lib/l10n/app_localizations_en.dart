@@ -275,6 +275,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get injuryTypeJointPain => 'Joint Pain';
 
   @override
+  String get injuryTypeLigamentSprain => 'Ligament Sprain';
+
+  @override
   String get injuryTypeMuscleStrain => 'Muscle Strain';
 
   @override
@@ -481,6 +484,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get nutritionSectionAddProteinButton => 'Add protein';
+
+  @override
+  String get nutritionSectionSetTotalButton => 'Set protein total';
+
+  @override
+  String get nutritionSectionSetTotalDialogTitle =>
+      'Set today\'s protein total (g)';
+
+  @override
+  String get nutritionSectionSetCreatineTotalButton => 'Set creatine total';
+
+  @override
+  String get nutritionSectionSetCreatineTotalDialogTitle =>
+      'Set today\'s creatine total (g)';
 
   @override
   String get nutritionSectionAddCreatineButton => '+5g Creatine';

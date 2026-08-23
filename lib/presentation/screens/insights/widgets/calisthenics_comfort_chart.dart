@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import '../../../../core/theme/zebra_theme.dart';
 import '../../../../domain/models/calisthenics_set.dart';
 import '../../../../l10n/app_localizations.dart';
+import 'chart_date_axis.dart';
 
 enum ComfortGrouping { exercise, contractionMode }
 
@@ -24,6 +25,7 @@ class CalisthenicsComfortChart extends StatelessWidget {
     ZebraColors.sand,
     ZebraColors.teal,
     ZebraColors.black,
+    ZebraColors.success,
   ];
 
   @override
@@ -47,44 +49,76 @@ class CalisthenicsComfortChart extends StatelessWidget {
 
     final seriesEntries = groups.entries.toList();
 
-    return SizedBox(
-      height: 200,
-      child: LineChart(
-        LineChartData(
-          minY: 0.5,
-          maxY: 5.5,
-          lineBarsData: [
-            for (var i = 0; i < seriesEntries.length; i++)
-              LineChartBarData(
-                spots: seriesEntries[i].value
-                    .map((s) => FlSpot(dateIndex[s.date]!.toDouble(), s.comfortScore))
-                    .toList(),
-                isCurved: false,
-                color: _seriesColors[i % _seriesColors.length],
-                barWidth: 2.5,
-                dotData: const FlDotData(show: true),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 200,
+          child: LineChart(
+            LineChartData(
+              minY: 0.5,
+              maxY: 5.5,
+              lineBarsData: [
+                for (var i = 0; i < seriesEntries.length; i++)
+                  LineChartBarData(
+                    spots: seriesEntries[i].value
+                        .map((s) => FlSpot(dateIndex[s.date]!.toDouble(), s.comfortScore))
+                        .toList(),
+                    isCurved: false,
+                    color: _seriesColors[i % _seriesColors.length],
+                    // Once the palette wraps around, dash the line so a
+                    // repeated color is still visually distinguishable.
+                    dashArray: i >= _seriesColors.length ? [6, 3] : null,
+                    barWidth: 2.5,
+                    dotData: const FlDotData(show: true),
+                  ),
+              ],
+              extraLinesData: ExtraLinesData(horizontalLines: [
+                HorizontalLine(
+                  y: comfortThreshold,
+                  color: CupertinoColors.systemGrey,
+                  strokeWidth: 1.5,
+                  dashArray: [4, 4],
+                ),
+              ]),
+              titlesData: FlTitlesData(
+                topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                bottomTitles: dateBottomTitles(dates),
+                leftTitles: const AxisTitles(
+                  sideTitles: SideTitles(showTitles: true, reservedSize: 24, interval: 1),
+                ),
               ),
-          ],
-          extraLinesData: ExtraLinesData(horizontalLines: [
-            HorizontalLine(
-              y: comfortThreshold,
-              color: CupertinoColors.systemGrey,
-              strokeWidth: 1.5,
-              dashArray: [4, 4],
-            ),
-          ]),
-          titlesData: FlTitlesData(
-            topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            bottomTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            leftTitles: AxisTitles(
-              sideTitles: SideTitles(showTitles: true, reservedSize: 24, interval: 1),
+              gridData: const FlGridData(drawVerticalLine: false),
+              borderData: FlBorderData(show: false),
             ),
           ),
-          gridData: const FlGridData(drawVerticalLine: false),
-          borderData: FlBorderData(show: false),
         ),
-      ),
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 12,
+          runSpacing: 4,
+          children: [
+            for (var i = 0; i < seriesEntries.length; i++)
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 10,
+                    height: 10,
+                    decoration: BoxDecoration(
+                      color: _seriesColors[i % _seriesColors.length],
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  Text(seriesEntries[i].key,
+                      style: const TextStyle(fontSize: 11, color: CupertinoColors.systemGrey)),
+                ],
+              ),
+          ],
+        ),
+      ],
     );
   }
 }

@@ -280,6 +280,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get injuryTypeJointPain => 'Dolor articular';
 
   @override
+  String get injuryTypeLigamentSprain => 'Esguince';
+
+  @override
   String get injuryTypeMuscleStrain => 'Distensión muscular';
 
   @override
@@ -486,6 +489,21 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get nutritionSectionAddProteinButton => 'Agregar proteína';
+
+  @override
+  String get nutritionSectionSetTotalButton => 'Fijar total de proteína';
+
+  @override
+  String get nutritionSectionSetTotalDialogTitle =>
+      'Fijar el total de proteína de hoy (g)';
+
+  @override
+  String get nutritionSectionSetCreatineTotalButton =>
+      'Fijar total de creatina';
+
+  @override
+  String get nutritionSectionSetCreatineTotalDialogTitle =>
+      'Fijar el total de creatina de hoy (g)';
 
   @override
   String get nutritionSectionAddCreatineButton => '+5g de creatina';

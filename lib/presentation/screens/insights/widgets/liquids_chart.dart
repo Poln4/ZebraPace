@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import '../../../../core/theme/zebra_theme.dart';
 import '../../../../domain/models/daily_log.dart';
 import '../../../../l10n/app_localizations.dart';
+import 'chart_date_axis.dart';
 
 class LiquidsChart extends StatelessWidget {
   const LiquidsChart({super.key, required this.logs, required this.goalMl});
@@ -43,11 +44,11 @@ class LiquidsChart extends StatelessWidget {
               dashArray: [6, 4],
             ),
           ]),
-          titlesData: const FlTitlesData(
-            topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 40)),
+          titlesData: FlTitlesData(
+            topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            bottomTitles: dateBottomTitles([for (final l in logs) l.date]),
+            leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 40)),
           ),
           gridData: const FlGridData(drawVerticalLine: false),
           borderData: FlBorderData(show: false),

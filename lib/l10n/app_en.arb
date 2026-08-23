@@ -105,6 +105,7 @@
   "injuryTypeSubluxation": "Subluxation",
   "injuryTypeJointInstability": "Joint Instability",
   "injuryTypeJointPain": "Joint Pain",
+  "injuryTypeLigamentSprain": "Ligament Sprain",
   "injuryTypeMuscleStrain": "Muscle Strain",
   "injuryTypeMusclePainGeneral": "General Muscle Pain",
   "injuryTypeContracture": "Contracture",
@@ -235,6 +236,10 @@
   },
   "nutritionSectionAmountPlaceholder": "Amount",
   "nutritionSectionAddProteinButton": "Add protein",
+  "nutritionSectionSetTotalButton": "Set protein total",
+  "nutritionSectionSetTotalDialogTitle": "Set today's protein total (g)",
+  "nutritionSectionSetCreatineTotalButton": "Set creatine total",
+  "nutritionSectionSetCreatineTotalDialogTitle": "Set today's creatine total (g)",
   "nutritionSectionAddCreatineButton": "+5g Creatine",
   "nutritionSectionResetButton": "Reset Nutrition",
 

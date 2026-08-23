@@ -5,6 +5,7 @@ import '../../../../core/theme/zebra_theme.dart';
 import '../../../../data/repositories/weather_cache_repository.dart';
 import '../../../../domain/models/daily_log.dart';
 import '../../../../l10n/app_localizations.dart';
+import 'chart_date_axis.dart';
 
 /// fl_chart has no native dual Y-axis (unlike Plotly's secondary_y) — this
 /// stacks two line charts sharing an x-axis instead of forcing one rescaled
@@ -25,6 +26,7 @@ class WeatherChart extends StatelessWidget {
       for (final l in logs)
         if (l.bodyFeeling != null) l.date: l.bodyFeeling!.score,
     };
+    final dates = [for (final d in weatherDays) d.date];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,11 +49,11 @@ class WeatherChart extends StatelessWidget {
                   dotData: const FlDotData(show: false),
                 ),
               ],
-              titlesData: const FlTitlesData(
-                bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 40)),
+              titlesData: FlTitlesData(
+                bottomTitles: dateBottomTitles(dates),
+                rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 40)),
               ),
               gridData: const FlGridData(drawVerticalLine: false),
               borderData: FlBorderData(show: false),
@@ -80,11 +82,11 @@ class WeatherChart extends StatelessWidget {
                   dotData: const FlDotData(show: true),
                 ),
               ],
-              titlesData: const FlTitlesData(
-                bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 24, interval: 1)),
+              titlesData: FlTitlesData(
+                bottomTitles: dateBottomTitles(dates),
+                rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 24, interval: 1)),
               ),
               gridData: const FlGridData(drawVerticalLine: false),
               borderData: FlBorderData(show: false),

@@ -94,7 +94,25 @@ class _NutritionSectionState extends ConsumerState<NutritionSection> {
               ),
             ],
           ),
-          const SizedBox(height: 6),
+          const SizedBox(height: 4),
+          Wrap(
+            spacing: 14,
+            runSpacing: 2,
+            children: [
+              CupertinoButton(
+                padding: EdgeInsets.zero,
+                onPressed: () => _setExactProteinTotal(context, l10n),
+                child: Text(l10n.nutritionSectionSetTotalButton,
+                    style: const TextStyle(fontSize: 12, color: ZebraColors.brandTeal)),
+              ),
+              CupertinoButton(
+                padding: EdgeInsets.zero,
+                onPressed: () => _setExactCreatineTotal(context, l10n),
+                child: Text(l10n.nutritionSectionSetCreatineTotalButton,
+                    style: const TextStyle(fontSize: 12, color: ZebraColors.brandTeal)),
+              ),
+            ],
+          ),
           CupertinoButton(
             padding: EdgeInsets.zero,
             onPressed: _reset,
@@ -114,6 +132,71 @@ class _NutritionSectionState extends ConsumerState<NutritionSection> {
     final repo = ref.read(dailyLogRepositoryProvider);
     final log = await repo.getOrCreateDailyLog(date);
     await repo.upsertDailyLog(log.copyWith(proteinG: log.proteinG + grams));
+  }
+
+  Future<void> _setExactProteinTotal(BuildContext context, AppLocalizations l10n) async {
+    final current = ref.read(dailyLogProvider).valueOrNull?.proteinG ?? 0;
+    final result = await _promptForAmount(
+      context,
+      title: l10n.nutritionSectionSetTotalDialogTitle,
+      l10n: l10n,
+      initial: current.toString(),
+    );
+    final grams = int.tryParse(result ?? '');
+    if (grams == null || grams < 0) return;
+    final date = ref.read(selectedDateProvider);
+    final repo = ref.read(dailyLogRepositoryProvider);
+    final log = await repo.getOrCreateDailyLog(date);
+    await repo.upsertDailyLog(log.copyWith(proteinG: grams));
+  }
+
+  Future<void> _setExactCreatineTotal(BuildContext context, AppLocalizations l10n) async {
+    final current = ref.read(dailyLogProvider).valueOrNull?.creatineG ?? 0;
+    final result = await _promptForAmount(
+      context,
+      title: l10n.nutritionSectionSetCreatineTotalDialogTitle,
+      l10n: l10n,
+      initial: current.toString(),
+    );
+    final grams = double.tryParse(result ?? '');
+    if (grams == null || grams < 0) return;
+    final date = ref.read(selectedDateProvider);
+    final repo = ref.read(dailyLogRepositoryProvider);
+    final log = await repo.getOrCreateDailyLog(date);
+    await repo.upsertDailyLog(log.copyWith(creatineG: grams));
+  }
+
+  Future<String?> _promptForAmount(
+    BuildContext context, {
+    required String title,
+    required AppLocalizations l10n,
+    required String initial,
+  }) {
+    final controller = TextEditingController(text: initial);
+    return showCupertinoDialog<String>(
+      context: context,
+      builder: (dialogContext) => CupertinoAlertDialog(
+        title: Text(title),
+        content: Padding(
+          padding: const EdgeInsets.only(top: 12),
+          child: CupertinoTextField(
+            controller: controller,
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+            autofocus: true,
+          ),
+        ),
+        actions: [
+          CupertinoDialogAction(
+            onPressed: () => Navigator.of(dialogContext).pop(),
+            child: Text(l10n.commonCancelButton),
+          ),
+          CupertinoDialogAction(
+            onPressed: () => Navigator.of(dialogContext).pop(controller.text),
+            child: Text(l10n.commonSaveButton),
+          ),
+        ],
+      ),
+    );
   }
 
   Future<void> _addCreatine() async {

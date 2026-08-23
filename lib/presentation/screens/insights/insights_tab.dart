@@ -95,6 +95,7 @@ class InsightsTab extends ConsumerWidget {
                       title: l10n.insightsTabMentalStateTitle,
                       child: FeelingTrendChart(
                         scores: logs.map((l) => l.mentalState?.score).toList(),
+                        dates: logs.map((l) => l.date).toList(),
                         color: ZebraColors.brandTeal,
                       ),
                     ),
@@ -102,6 +103,7 @@ class InsightsTab extends ConsumerWidget {
                       title: l10n.insightsTabBodyPainTitle,
                       child: FeelingTrendChart(
                         scores: logs.map((l) => l.bodyFeeling?.score).toList(),
+                        dates: logs.map((l) => l.date).toList(),
                         color: ZebraColors.sand,
                       ),
                     ),
@@ -243,6 +245,7 @@ class _WeatherSection extends ConsumerWidget {
     }
 
     final correlationAsync = ref.watch(weatherCorrelationProvider);
+    final logs = ref.watch(dailyLogsInRangeProvider).valueOrNull ?? const [];
     return SectionCard(
       title: l10n.insightsTabWeatherTitle,
       child: correlationAsync.when(
@@ -253,7 +256,7 @@ class _WeatherSection extends ConsumerWidget {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              WeatherChart(weatherDays: correlation.days, logs: const []),
+              WeatherChart(weatherDays: correlation.days, logs: logs),
               const SizedBox(height: 8),
               Text(
                 correlation.hasEnoughData

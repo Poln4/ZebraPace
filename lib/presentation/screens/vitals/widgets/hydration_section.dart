@@ -50,18 +50,25 @@ class _HydrationSectionState extends ConsumerState<HydrationSection> {
           Text(l10n.hydrationSectionProgress(credit.round(), goal),
               style: const TextStyle(fontSize: 12)),
           const SizedBox(height: 12),
-          CupertinoSlidingSegmentedControl<DrinkType>(
-            groupValue: _drinkType,
-            children: {
-              for (final t in DrinkType.values)
-                t: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 6),
-                  child: Text(t.label(l10n), style: const TextStyle(fontSize: 11)),
+          Wrap(
+            spacing: 6,
+            runSpacing: 6,
+            children: DrinkType.values.map((t) {
+              final selected = t == _drinkType;
+              return GestureDetector(
+                onTap: () => setState(() => _drinkType = t),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+                  decoration: BoxDecoration(
+                    color: selected ? ZebraColors.brandTeal : ZebraColors.bg,
+                    border: Border.all(color: ZebraColors.cardBorder),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Text(t.label(l10n),
+                      style: const TextStyle(fontSize: 11.5, color: ZebraColors.onColor)),
                 ),
-            },
-            onValueChanged: (v) {
-              if (v != null) setState(() => _drinkType = v);
-            },
+              );
+            }).toList(),
           ),
           if (_drinkType == DrinkType.other) ...[
             const SizedBox(height: 8),
