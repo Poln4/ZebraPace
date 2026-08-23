@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../core/constants/defaults.dart';
 import '../data/auth/biometric_service.dart';
 import '../data/auth/secure_auth_storage.dart';
 import '../domain/services/password_service.dart';
@@ -29,10 +30,16 @@ final secureAuthStorageProvider = Provider<SecureAuthStorage>((ref) => SecureAut
 final biometricServiceProvider = Provider<BiometricService>((ref) => BiometricService());
 final passwordServiceProvider = Provider<PasswordService>((ref) => PasswordService());
 
-/// Gates app.dart's root widget — re-lock policy is "lock on every cold
-/// start" (the plan's recommended default for a health-data app), so this
-/// notifier always starts at `locked`/`needsSetup`, never persisting an
-/// "unlocked" state across app launches.
+/// Gates app.dart's root widget. Re-lock policy: a fresh start within
+/// AuthConstants.reLockGraceMinutes of the last time the app was seen
+/// unlocked skips the lock screen — see SecureAuthStorage.setLastUnlockedAt
+/// and app.dart's lifecycle observer, which stamps that timestamp whenever
+/// the app backgrounds while unlocked. This was previously "lock on every
+/// cold start" with no grace window at all, which turned out to actively
+/// break the Supabase magic-link sign-in flow on mobile: tapping the
+/// emailed link opens a fresh browser instance (or the mobile browser
+/// reloads a backgrounded tab from memory pressure), both of which count as
+/// a "cold start" even though the user only stepped away for a few seconds.
 class AuthNotifier extends StateNotifier<AuthState> {
   AuthNotifier(this._storage, this._biometrics, this._passwords)
       : super(const AuthState(status: AuthStatus.loading)) {
@@ -50,6 +57,14 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
       if (!hasPassword) {
         state = AuthState(status: AuthStatus.needsSetup, biometricsAvailable: biometricsAvailable);
+        return;
+      }
+
+      final lastUnlockedAt = await _storage.getLastUnlockedAt();
+      if (lastUnlockedAt != null &&
+          DateTime.now().difference(lastUnlockedAt) <
+              const Duration(minutes: AuthConstants.reLockGraceMinutes)) {
+        state = AuthState(status: AuthStatus.unlocked, biometricsAvailable: biometricsAvailable);
         return;
       }
 
@@ -72,12 +87,14 @@ class AuthNotifier extends StateNotifier<AuthState> {
     final salt = _passwords.generateSalt();
     final hash = _passwords.hash(password, salt);
     await _storage.setPassword(salt, hash);
+    await _storage.setLastUnlockedAt(DateTime.now());
     state = state.copyWith(status: AuthStatus.unlocked, error: null);
   }
 
   Future<bool> tryBiometricUnlock() async {
     final success = await _biometrics.authenticate();
     if (success) {
+      await _storage.setLastUnlockedAt(DateTime.now());
       state = state.copyWith(status: AuthStatus.unlocked, error: null);
     }
     return success;
@@ -91,6 +108,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
     final ok = _passwords.verify(password, stored.salt, stored.hash);
     if (ok) {
+      await _storage.setLastUnlockedAt(DateTime.now());
       state = state.copyWith(status: AuthStatus.unlocked, error: null);
     } else {
       state = state.copyWith(error: l10n.authProviderIncorrectPassword);
@@ -98,10 +116,19 @@ class AuthNotifier extends StateNotifier<AuthState> {
     return ok;
   }
 
-  /// Manual re-lock (e.g. a "Lock now" action in Settings) — cold-start
-  /// re-lock happens automatically since state is never persisted, but a
-  /// manual trigger is a cheap, useful addition.
-  void lock() {
+  /// Called from app.dart's lifecycle observer whenever the app backgrounds
+  /// while unlocked — refreshes the grace-window clock so a session that's
+  /// been actively open for a while doesn't count as stale the moment it's
+  /// backgrounded (only the time actually spent away counts).
+  Future<void> recordBackgrounding() async {
+    if (state.status == AuthStatus.unlocked) {
+      await _storage.setLastUnlockedAt(DateTime.now());
+    }
+  }
+
+  /// Manual re-lock (e.g. a "Lock now" action in Settings).
+  Future<void> lock() async {
+    await _storage.setLastUnlockedAt(DateTime.fromMillisecondsSinceEpoch(0));
     state = state.copyWith(status: AuthStatus.locked, error: null);
   }
 }

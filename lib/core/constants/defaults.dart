@@ -55,3 +55,15 @@ class PacingConstants {
   static const sampleSize = 7;
   static const lowStepsRatio = 0.85; // >15% below baseline triggers the gentle-low message
 }
+
+class AuthConstants {
+  AuthConstants._();
+
+  /// A fresh app start within this many minutes of the last time the app
+  /// was seen unlocked skips the lock screen entirely — see
+  /// AuthNotifier/SecureAuthStorage.setLastUnlockedAt. Long enough to
+  /// survive a quick trip to Mail for a Supabase magic link or a mobile
+  /// browser reloading a backgrounded tab; short enough that a phone left
+  /// untouched for a while still re-locks.
+  static const reLockGraceMinutes = 5;
+}

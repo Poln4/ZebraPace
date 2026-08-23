@@ -32,6 +32,17 @@ class _FakeSecureAuthStorage extends SecureAuthStorage {
 
   @override
   Future<void> clear() async => _data.clear();
+
+  @override
+  Future<void> setLastUnlockedAt(DateTime time) async {
+    _data['lastUnlockedAt'] = time.toIso8601String();
+  }
+
+  @override
+  Future<DateTime?> getLastUnlockedAt() async {
+    final raw = _data['lastUnlockedAt'];
+    return raw == null ? null : DateTime.tryParse(raw);
+  }
 }
 
 class _FakeBiometricService extends BiometricService {

@@ -50,14 +50,40 @@ class ZebraPaceApp extends ConsumerWidget {
 
 /// Gate order: invite code (invite_code_providers.dart) first — whether the
 /// app is usable at all — then the welcome/disclaimer screen (once ever),
-/// then the re-lock-on-every-cold-start Face ID/password gate. AuthNotifier
-/// never persists an "unlocked" state, so that last step always starts
-/// behind the lock screen.
-class _AuthGate extends ConsumerWidget {
+/// then the Face ID/password gate. That last one re-locks after being
+/// backgrounded for AuthConstants.reLockGraceMinutes — see
+/// AuthNotifier/SecureAuthStorage. This widget is the WidgetsBindingObserver
+/// that stamps "last seen unlocked" whenever the app actually backgrounds
+/// (not just on cold start), so the grace window measures real time away.
+class _AuthGate extends ConsumerStatefulWidget {
   const _AuthGate();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_AuthGate> createState() => _AuthGateState();
+}
+
+class _AuthGateState extends ConsumerState<_AuthGate> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused || state == AppLifecycleState.hidden) {
+      ref.read(authProvider.notifier).recordBackgrounding();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final inviteVerified = ref.watch(inviteCodeVerifiedProvider);
     return inviteVerified.when(
       loading: () => const SizedBox.shrink(),
