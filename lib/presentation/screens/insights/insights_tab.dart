@@ -3,12 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/zebra_theme.dart';
 import '../../../core/utils/date_utils.dart';
+import '../../../core/utils/stats.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/app_providers.dart';
 import '../../widgets/section_card.dart';
 import '../../widgets/stripe_track.dart';
 import 'widgets/calisthenics_comfort_chart.dart';
 import 'widgets/checkin_consistency_strip.dart';
+import 'widgets/chart_day_markers.dart';
 import 'widgets/export_section.dart';
 import 'widgets/feeling_trend_chart.dart';
 import 'widgets/history_tables.dart';
@@ -85,6 +87,14 @@ class InsightsTab extends ConsumerWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    if (anyDayMarked(logs))
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: Text(
+                          l10n.insightsTabDayMarkerLegend,
+                          style: const TextStyle(fontSize: 11.5, color: CupertinoColors.systemGrey),
+                        ),
+                      ),
                     SectionCard(title: l10n.insightsTabStepsTitle, child: StepsChart(logs: logs)),
                     const MetsSummaryWidget(),
                     SectionCard(
@@ -94,16 +104,16 @@ class InsightsTab extends ConsumerWidget {
                     SectionCard(
                       title: l10n.insightsTabMentalStateTitle,
                       child: FeelingTrendChart(
-                        scores: logs.map((l) => l.mentalState?.score).toList(),
-                        dates: logs.map((l) => l.date).toList(),
+                        logs: logs,
+                        scoreOf: (l) => l.mentalState?.score,
                         color: ZebraColors.brandTeal,
                       ),
                     ),
                     SectionCard(
                       title: l10n.insightsTabBodyPainTitle,
                       child: FeelingTrendChart(
-                        scores: logs.map((l) => l.bodyFeeling?.score).toList(),
-                        dates: logs.map((l) => l.date).toList(),
+                        logs: logs,
+                        scoreOf: (l) => l.bodyFeeling?.score,
                         color: ZebraColors.sand,
                       ),
                     ),
@@ -260,7 +270,10 @@ class _WeatherSection extends ConsumerWidget {
               const SizedBox(height: 8),
               Text(
                 correlation.hasEnoughData
-                    ? l10n.insightsTabWeatherCorrelation(correlation.correlation!.toStringAsFixed(2))
+                    ? l10n.insightsTabWeatherCorrelation(
+                        correlation.correlation!.toStringAsFixed(2),
+                        classifyCorrelationStrength(correlation.correlation!).label(l10n),
+                      )
                     : l10n.insightsTabWeatherInsufficientData,
                 style: const TextStyle(fontSize: 11.5, color: CupertinoColors.systemGrey),
               ),

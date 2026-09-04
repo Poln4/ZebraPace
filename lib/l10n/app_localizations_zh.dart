@@ -1443,11 +1443,21 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String pemChartCorrelationCaption(
     String correlation,
+    String strength,
     String higherAvg,
     String typicalAvg,
   ) {
-    return '皮爾森相關係數 r = $correlation．高強度日平均分數：$higherAvg．一般／低強度日平均分數：$typicalAvg';
+    return '皮爾森相關係數 r = $correlation（$strength）．高強度日平均分數：$higherAvg．一般／低強度日平均分數：$typicalAvg';
   }
+
+  @override
+  String get correlationStrengthWeak => '弱';
+
+  @override
+  String get correlationStrengthModerate => '中等';
+
+  @override
+  String get correlationStrengthStrong => '強';
 
   @override
   String get insightsTabTitle => '洞察與趨勢';
@@ -1511,12 +1521,20 @@ class AppLocalizationsZh extends AppLocalizations {
   String get insightsTabWeatherNoLocation => '在設定中設定位置，即可查看氣壓是否與你的身體／疼痛分數相關。';
 
   @override
-  String insightsTabWeatherCorrelation(String correlation) {
-    return '皮爾森相關係數 r = $correlation（氣壓與當日身體分數）';
+  String insightsTabWeatherCorrelation(String correlation, String strength) {
+    return '皮爾森相關係數 r = $correlation（$strength）——氣壓與當日身體分數';
   }
 
   @override
   String get insightsTabWeatherInsufficientData => '目前重疊的天數還不夠——至少需要 4 天。';
+
+  @override
+  String insightsTabWeatherPressureRange(String min, String max) {
+    return '這段期間氣壓介於 $min–$max 百帕（上圖已標準化以對齊 1–5 分的量表）。';
+  }
+
+  @override
+  String get insightsTabDayMarkerLegend => '陰影區塊標示 🔴 發作日與 🟢 休息日';
 
   @override
   String get insightsTabCelebrationTitle => '🏅 值得慶祝的事';
@@ -3069,11 +3087,21 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   @override
   String pemChartCorrelationCaption(
     String correlation,
+    String strength,
     String higherAvg,
     String typicalAvg,
   ) {
-    return '皮爾森相關係數 r = $correlation．高強度日平均分數：$higherAvg．一般／低強度日平均分數：$typicalAvg';
+    return '皮爾森相關係數 r = $correlation（$strength）．高強度日平均分數：$higherAvg．一般／低強度日平均分數：$typicalAvg';
   }
+
+  @override
+  String get correlationStrengthWeak => '弱';
+
+  @override
+  String get correlationStrengthModerate => '中等';
+
+  @override
+  String get correlationStrengthStrong => '強';
 
   @override
   String get insightsTabTitle => '洞察與趨勢';
@@ -3137,12 +3165,20 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get insightsTabWeatherNoLocation => '在設定中設定位置，即可查看氣壓是否與你的身體／疼痛分數相關。';
 
   @override
-  String insightsTabWeatherCorrelation(String correlation) {
-    return '皮爾森相關係數 r = $correlation（氣壓與當日身體分數）';
+  String insightsTabWeatherCorrelation(String correlation, String strength) {
+    return '皮爾森相關係數 r = $correlation（$strength）——氣壓與當日身體分數';
   }
 
   @override
   String get insightsTabWeatherInsufficientData => '目前重疊的天數還不夠——至少需要 4 天。';
+
+  @override
+  String insightsTabWeatherPressureRange(String min, String max) {
+    return '這段期間氣壓介於 $min–$max 百帕（上圖已標準化以對齊 1–5 分的量表）。';
+  }
+
+  @override
+  String get insightsTabDayMarkerLegend => '陰影區塊標示 🔴 發作日與 🟢 休息日';
 
   @override
   String get insightsTabCelebrationTitle => '🏅 值得慶祝的事';

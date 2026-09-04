@@ -2699,12 +2699,31 @@ abstract class AppLocalizations {
   /// No description provided for @pemChartCorrelationCaption.
   ///
   /// In en, this message translates to:
-  /// **'Pearson r = {correlation} · Higher-exertion avg score: {higherAvg} · Typical/lower avg score: {typicalAvg}'**
+  /// **'Pearson r = {correlation} ({strength}) · Higher-exertion avg score: {higherAvg} · Typical/lower avg score: {typicalAvg}'**
   String pemChartCorrelationCaption(
     String correlation,
+    String strength,
     String higherAvg,
     String typicalAvg,
   );
+
+  /// No description provided for @correlationStrengthWeak.
+  ///
+  /// In en, this message translates to:
+  /// **'weak'**
+  String get correlationStrengthWeak;
+
+  /// No description provided for @correlationStrengthModerate.
+  ///
+  /// In en, this message translates to:
+  /// **'moderate'**
+  String get correlationStrengthModerate;
+
+  /// No description provided for @correlationStrengthStrong.
+  ///
+  /// In en, this message translates to:
+  /// **'strong'**
+  String get correlationStrengthStrong;
 
   /// No description provided for @insightsTabTitle.
   ///
@@ -2823,14 +2842,26 @@ abstract class AppLocalizations {
   /// No description provided for @insightsTabWeatherCorrelation.
   ///
   /// In en, this message translates to:
-  /// **'Pearson r = {correlation} (pressure vs. same-day body score)'**
-  String insightsTabWeatherCorrelation(String correlation);
+  /// **'Pearson r = {correlation} ({strength}) — pressure vs. same-day body score'**
+  String insightsTabWeatherCorrelation(String correlation, String strength);
 
   /// No description provided for @insightsTabWeatherInsufficientData.
   ///
   /// In en, this message translates to:
   /// **'Not enough overlapping days yet — need at least 4.'**
   String get insightsTabWeatherInsufficientData;
+
+  /// No description provided for @insightsTabWeatherPressureRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Pressure ranged {min}–{max} hPa over this period (normalized above to line up with the 1–5 score scale).'**
+  String insightsTabWeatherPressureRange(String min, String max);
+
+  /// No description provided for @insightsTabDayMarkerLegend.
+  ///
+  /// In en, this message translates to:
+  /// **'Shaded bands mark 🔴 flare days and 🟢 rest days'**
+  String get insightsTabDayMarkerLegend;
 
   /// No description provided for @insightsTabCelebrationTitle.
   ///

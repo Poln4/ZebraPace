@@ -1532,11 +1532,21 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String pemChartCorrelationCaption(
     String correlation,
+    String strength,
     String higherAvg,
     String typicalAvg,
   ) {
-    return 'Pearson r = $correlation · Higher-exertion avg score: $higherAvg · Typical/lower avg score: $typicalAvg';
+    return 'Pearson r = $correlation ($strength) · Higher-exertion avg score: $higherAvg · Typical/lower avg score: $typicalAvg';
   }
+
+  @override
+  String get correlationStrengthWeak => 'weak';
+
+  @override
+  String get correlationStrengthModerate => 'moderate';
+
+  @override
+  String get correlationStrengthStrong => 'strong';
 
   @override
   String get insightsTabTitle => 'Insights & Trends';
@@ -1610,13 +1620,22 @@ class AppLocalizationsEn extends AppLocalizations {
       'Set a location in Settings to see whether barometric pressure correlates with your body/pain score.';
 
   @override
-  String insightsTabWeatherCorrelation(String correlation) {
-    return 'Pearson r = $correlation (pressure vs. same-day body score)';
+  String insightsTabWeatherCorrelation(String correlation, String strength) {
+    return 'Pearson r = $correlation ($strength) — pressure vs. same-day body score';
   }
 
   @override
   String get insightsTabWeatherInsufficientData =>
       'Not enough overlapping days yet — need at least 4.';
+
+  @override
+  String insightsTabWeatherPressureRange(String min, String max) {
+    return 'Pressure ranged $min–$max hPa over this period (normalized above to line up with the 1–5 score scale).';
+  }
+
+  @override
+  String get insightsTabDayMarkerLegend =>
+      'Shaded bands mark 🔴 flare days and 🟢 rest days';
 
   @override
   String get insightsTabCelebrationTitle => '🏅 Things worth celebrating';

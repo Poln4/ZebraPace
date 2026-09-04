@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../../core/theme/zebra_theme.dart';
+import '../../../../core/utils/stats.dart';
 import '../../../../domain/services/pem_service.dart';
 import '../../../../l10n/app_localizations.dart';
 
@@ -60,6 +61,7 @@ class PemChart extends StatelessWidget {
         Text(
           l10n.pemChartCorrelationCaption(
             result.correlation!.toStringAsFixed(2),
+            classifyCorrelationStrength(result.correlation!).label(l10n),
             result.higherExertionAvgScore?.toStringAsFixed(1) ?? '—',
             result.typicalAvgScore?.toStringAsFixed(1) ?? '—',
           ),

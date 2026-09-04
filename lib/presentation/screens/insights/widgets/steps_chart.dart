@@ -5,6 +5,7 @@ import '../../../../core/theme/zebra_theme.dart';
 import '../../../../domain/models/daily_log.dart';
 import '../../../../l10n/app_localizations.dart';
 import 'chart_date_axis.dart';
+import 'chart_day_markers.dart';
 
 /// Bar (daily steps) + line (7-day rolling average) combo. fl_chart has no
 /// native combo chart type — this composites a LineChart transparently over
@@ -49,6 +50,7 @@ class StepsChart extends StatelessWidget {
                 bottomTitles: dateBottomTitles([for (final l in logs) l.date]),
                 leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 36)),
               ),
+              rangeAnnotations: dayStatusRangeAnnotations(logs),
               gridData: const FlGridData(drawVerticalLine: false),
               borderData: FlBorderData(show: false),
             ),

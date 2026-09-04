@@ -736,14 +736,18 @@
   "liquidsChartEmptyState": "No liquids logged in range.",
   "feelingTrendChartEmptyState": "No entries in range.",
   "pemChartInsufficientData": "Not enough data yet — need at least 4 matched days at this lag.",
-  "pemChartCorrelationCaption": "Pearson r = {correlation} · Higher-exertion avg score: {higherAvg} · Typical/lower avg score: {typicalAvg}",
+  "pemChartCorrelationCaption": "Pearson r = {correlation} ({strength}) · Higher-exertion avg score: {higherAvg} · Typical/lower avg score: {typicalAvg}",
   "@pemChartCorrelationCaption": {
     "placeholders": {
       "correlation": {"type": "String"},
+      "strength": {"type": "String"},
       "higherAvg": {"type": "String"},
       "typicalAvg": {"type": "String"}
     }
   },
+  "correlationStrengthWeak": "weak",
+  "correlationStrengthModerate": "moderate",
+  "correlationStrengthStrong": "strong",
 
   "insightsTabTitle": "Insights & Trends",
   "insightsTabStripesTitle": "🦓 All-time stripes",
@@ -774,13 +778,22 @@
   },
   "insightsTabWeatherTitle": "🌦️ Weather Context",
   "insightsTabWeatherNoLocation": "Set a location in Settings to see whether barometric pressure correlates with your body/pain score.",
-  "insightsTabWeatherCorrelation": "Pearson r = {correlation} (pressure vs. same-day body score)",
+  "insightsTabWeatherCorrelation": "Pearson r = {correlation} ({strength}) — pressure vs. same-day body score",
   "@insightsTabWeatherCorrelation": {
     "placeholders": {
-      "correlation": {"type": "String"}
+      "correlation": {"type": "String"},
+      "strength": {"type": "String"}
     }
   },
   "insightsTabWeatherInsufficientData": "Not enough overlapping days yet — need at least 4.",
+  "insightsTabWeatherPressureRange": "Pressure ranged {min}–{max} hPa over this period (normalized above to line up with the 1–5 score scale).",
+  "@insightsTabWeatherPressureRange": {
+    "placeholders": {
+      "min": {"type": "String"},
+      "max": {"type": "String"}
+    }
+  },
+  "insightsTabDayMarkerLegend": "Shaded bands mark 🔴 flare days and 🟢 rest days",
   "insightsTabCelebrationTitle": "🏅 Things worth celebrating",
   "insightsTabCheckinsLabel": "Check-ins",
   "insightsTabRestDaysLabel": "Rest days",

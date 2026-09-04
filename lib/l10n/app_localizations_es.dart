@@ -1547,11 +1547,21 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String pemChartCorrelationCaption(
     String correlation,
+    String strength,
     String higherAvg,
     String typicalAvg,
   ) {
-    return 'Pearson r = $correlation · Puntuación promedio en días de mayor esfuerzo: $higherAvg · Puntuación promedio en días típicos/menores: $typicalAvg';
+    return 'Pearson r = $correlation ($strength) · Puntuación promedio en días de mayor esfuerzo: $higherAvg · Puntuación promedio en días típicos/menores: $typicalAvg';
   }
+
+  @override
+  String get correlationStrengthWeak => 'débil';
+
+  @override
+  String get correlationStrengthModerate => 'moderada';
+
+  @override
+  String get correlationStrengthStrong => 'fuerte';
 
   @override
   String get insightsTabTitle => 'Estadísticas y tendencias';
@@ -1627,13 +1637,22 @@ class AppLocalizationsEs extends AppLocalizations {
       'Configura una ubicación en Ajustes para ver si la presión barométrica se correlaciona con tu puntuación de cuerpo/dolor.';
 
   @override
-  String insightsTabWeatherCorrelation(String correlation) {
-    return 'Pearson r = $correlation (presión frente a puntuación corporal del mismo día)';
+  String insightsTabWeatherCorrelation(String correlation, String strength) {
+    return 'Pearson r = $correlation ($strength) — presión frente a puntuación corporal del mismo día';
   }
 
   @override
   String get insightsTabWeatherInsufficientData =>
       'Aún no hay suficientes días superpuestos — se necesitan al menos 4.';
+
+  @override
+  String insightsTabWeatherPressureRange(String min, String max) {
+    return 'La presión osciló entre $min–$max hPa en este período (normalizada arriba para encajar en la escala de 1 a 5).';
+  }
+
+  @override
+  String get insightsTabDayMarkerLegend =>
+      'Las franjas sombreadas marcan 🔴 días de brote y 🟢 días de descanso';
 
   @override
   String get insightsTabCelebrationTitle =>
