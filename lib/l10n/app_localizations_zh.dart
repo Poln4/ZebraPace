@@ -1243,6 +1243,11 @@ class AppLocalizationsZh extends AppLocalizations {
   String get lockScreenLockedTitle => 'ZebraPace 已鎖定';
 
   @override
+  String lockScreenCloudSyncSignedIn(String email) {
+    return '☁️ 已使用 $email 登入雲端同步';
+  }
+
+  @override
   String get lockScreenBiometricUnlockButton => '使用 Face ID／Touch ID 解鎖';
 
   @override
@@ -2885,6 +2890,11 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get lockScreenLockedTitle => 'ZebraPace 已鎖定';
+
+  @override
+  String lockScreenCloudSyncSignedIn(String email) {
+    return '☁️ 已使用 $email 登入雲端同步';
+  }
 
   @override
   String get lockScreenBiometricUnlockButton => '使用 Face ID／Touch ID 解鎖';

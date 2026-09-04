@@ -6,6 +6,7 @@ import '../../../core/theme/zebra_theme.dart';
 import '../../../core/utils/date_utils.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/app_providers.dart';
+import '../../../providers/cloud_sync_providers.dart';
 import '../../../providers/text_scale_providers.dart';
 import '../insights/insights_tab.dart';
 import '../movement/movement_tab.dart';
@@ -13,11 +14,42 @@ import '../settings/settings_tab.dart';
 import '../vitals/vitals_tab.dart';
 import 'injury_banner.dart';
 
-class AppShell extends ConsumerWidget {
+class AppShell extends ConsumerStatefulWidget {
   const AppShell({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<AppShell> createState() => _AppShellState();
+}
+
+class _AppShellState extends ConsumerState<AppShell> {
+  @override
+  void initState() {
+    super.initState();
+    // Covers the case where a Cloud Sync sign-in completed while the invite
+    // code, welcome, or lock screen was still showing — the flag was
+    // already true before AppShell ever built, so a build-time ref.listen
+    // alone wouldn't retroactively catch it.
+    WidgetsBinding.instance.addPostFrameCallback((_) => _maybeGoToCloudSync());
+  }
+
+  void _maybeGoToCloudSync() {
+    if (!mounted) return;
+    if (ref.read(pendingCloudSyncNavigationProvider)) {
+      ref.read(pendingCloudSyncNavigationProvider.notifier).state = false;
+      Navigator.of(context).push(CupertinoPageRoute(builder: (_) => const SettingsTab()));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Covers the case where sign-in completes while AppShell is already
+    // mounted (e.g. the redirect lands in the same already-open tab).
+    ref.listen(pendingCloudSyncNavigationProvider, (previous, next) {
+      if (next) {
+        ref.read(pendingCloudSyncNavigationProvider.notifier).state = false;
+        Navigator.of(context).push(CupertinoPageRoute(builder: (_) => const SettingsTab()));
+      }
+    });
     final l10n = AppLocalizations.of(context);
     return CupertinoPageScaffold(
       backgroundColor: ZebraColors.bg,

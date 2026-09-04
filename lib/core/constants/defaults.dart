@@ -66,4 +66,10 @@ class AuthConstants {
   /// browser reloading a backgrounded tab; short enough that a phone left
   /// untouched for a while still re-locks.
   static const reLockGraceMinutes = 5;
+
+  /// One-shot extended grace window for a deliberate external round trip
+  /// (currently: the Cloud Sync magic-link email) — longer than the normal
+  /// grace window since finding and tapping an email takes more than a
+  /// few seconds, but still bounded, not indefinite.
+  static const externalFlowGraceMinutes = 20;
 }

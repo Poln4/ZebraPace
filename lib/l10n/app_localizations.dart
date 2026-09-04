@@ -2318,6 +2318,12 @@ abstract class AppLocalizations {
   /// **'ZebraPace is locked'**
   String get lockScreenLockedTitle;
 
+  /// No description provided for @lockScreenCloudSyncSignedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'☁️ Signed in to Cloud Sync as {email}'**
+  String lockScreenCloudSyncSignedIn(String email);
+
   /// No description provided for @lockScreenBiometricUnlockButton.
   ///
   /// In en, this message translates to:

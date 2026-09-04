@@ -61,9 +61,15 @@ class AuthNotifier extends StateNotifier<AuthState> {
       }
 
       final lastUnlockedAt = await _storage.getLastUnlockedAt();
-      if (lastUnlockedAt != null &&
+      final withinNormalGrace = lastUnlockedAt != null &&
           DateTime.now().difference(lastUnlockedAt) <
-              const Duration(minutes: AuthConstants.reLockGraceMinutes)) {
+              const Duration(minutes: AuthConstants.reLockGraceMinutes);
+
+      final graceOverrideUntil = await _storage.getGraceOverrideUntil();
+      final withinExtendedGrace =
+          graceOverrideUntil != null && DateTime.now().isBefore(graceOverrideUntil);
+
+      if (withinNormalGrace || withinExtendedGrace) {
         state = AuthState(status: AuthStatus.unlocked, biometricsAvailable: biometricsAvailable);
         return;
       }
@@ -126,10 +132,22 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
-  /// Manual re-lock (e.g. a "Lock now" action in Settings).
+  /// Manual re-lock (e.g. a "Lock now" action in Settings) — also clears
+  /// any pending extended-grace override, since a deliberate lock should
+  /// actually lock.
   Future<void> lock() async {
     await _storage.setLastUnlockedAt(DateTime.fromMillisecondsSinceEpoch(0));
+    await _storage.setGraceOverrideUntil(DateTime.fromMillisecondsSinceEpoch(0));
     state = state.copyWith(status: AuthStatus.locked, error: null);
+  }
+
+  /// Called right before deliberately sending the user to an external flow
+  /// (currently: CloudAuthController.sendMagicLink) — see
+  /// SecureAuthStorage.setGraceOverrideUntil.
+  Future<void> extendGraceWindow() async {
+    await _storage.setGraceOverrideUntil(
+      DateTime.now().add(const Duration(minutes: AuthConstants.externalFlowGraceMinutes)),
+    );
   }
 }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' show AuthChangeEvent;
 
 import 'core/constants/defaults.dart';
 import 'core/theme/zebra_theme.dart';
@@ -10,6 +11,7 @@ import 'presentation/screens/shell/app_shell.dart';
 import 'presentation/screens/welcome/welcome_screen.dart';
 import 'providers/app_providers.dart';
 import 'providers/auth_providers.dart';
+import 'providers/cloud_sync_providers.dart';
 import 'providers/invite_code_providers.dart';
 import 'providers/locale_providers.dart';
 import 'providers/text_scale_providers.dart';
@@ -84,6 +86,16 @@ class _AuthGateState extends ConsumerState<_AuthGate> with WidgetsBindingObserve
 
   @override
   Widget build(BuildContext context) {
+    // Watched from the very root, ahead of every gate below, so a magic
+    // link completing sign-in is caught regardless of which screen is
+    // currently showing (invite/welcome/lock/app) — AppShell consumes this
+    // once to auto-navigate to Settings' Cloud Sync section.
+    ref.listen(cloudAuthStateChangeProvider, (previous, next) {
+      if (next.valueOrNull?.event == AuthChangeEvent.signedIn) {
+        ref.read(pendingCloudSyncNavigationProvider.notifier).state = true;
+      }
+    });
+
     final inviteVerified = ref.watch(inviteCodeVerifiedProvider);
     return inviteVerified.when(
       loading: () => const SizedBox.shrink(),

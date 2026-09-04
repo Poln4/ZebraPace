@@ -434,6 +434,12 @@
   "lockScreenPasswordsDontMatch": "Las contraseñas no coinciden.",
   "lockScreenOk": "Aceptar",
   "lockScreenLockedTitle": "ZebraPace está bloqueada",
+  "lockScreenCloudSyncSignedIn": "☁️ Sesión iniciada en Cloud Sync como {email}",
+  "@lockScreenCloudSyncSignedIn": {
+    "placeholders": {
+      "email": {"type": "String"}
+    }
+  },
   "lockScreenBiometricUnlockButton": "Desbloquear con Face ID / Touch ID",
   "lockScreenUsePasswordButton": "Usar contraseña en su lugar",
   "lockScreenUnlockButton": "Desbloquear",

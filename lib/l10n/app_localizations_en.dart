@@ -1326,6 +1326,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get lockScreenLockedTitle => 'ZebraPace is locked';
 
   @override
+  String lockScreenCloudSyncSignedIn(String email) {
+    return '☁️ Signed in to Cloud Sync as $email';
+  }
+
+  @override
   String get lockScreenBiometricUnlockButton =>
       'Unlock with Face ID / Touch ID';
 

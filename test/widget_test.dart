@@ -4,46 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:zebrapace_app/app.dart';
 import 'package:zebrapace_app/data/auth/biometric_service.dart';
-import 'package:zebrapace_app/data/auth/secure_auth_storage.dart';
 import 'package:zebrapace_app/data/db/app_database.dart';
 import 'package:zebrapace_app/providers/app_providers.dart';
 import 'package:zebrapace_app/providers/auth_providers.dart';
 
-/// In-memory stand-in so the widget test never touches the real Keychain
-/// (flutter_secure_storage) or biometric (local_auth) platform channels,
-/// which have no implementation registered in a plain `flutter test` run.
-class _FakeSecureAuthStorage extends SecureAuthStorage {
-  final _data = <String, String>{};
-
-  @override
-  Future<bool> hasPassword() async => _data.containsKey('salt');
-
-  @override
-  Future<void> setPassword(String salt, String hash) async {
-    _data['salt'] = salt;
-    _data['hash'] = hash;
-  }
-
-  @override
-  Future<({String salt, String hash})?> getPassword() async {
-    if (!_data.containsKey('salt')) return null;
-    return (salt: _data['salt']!, hash: _data['hash']!);
-  }
-
-  @override
-  Future<void> clear() async => _data.clear();
-
-  @override
-  Future<void> setLastUnlockedAt(DateTime time) async {
-    _data['lastUnlockedAt'] = time.toIso8601String();
-  }
-
-  @override
-  Future<DateTime?> getLastUnlockedAt() async {
-    final raw = _data['lastUnlockedAt'];
-    return raw == null ? null : DateTime.tryParse(raw);
-  }
-}
+import 'helpers/fake_secure_auth_storage.dart';
 
 class _FakeBiometricService extends BiometricService {
   @override
@@ -52,7 +17,7 @@ class _FakeBiometricService extends BiometricService {
 
 List<Override> _testOverrides() => [
       appDatabaseProvider.overrideWithValue(AppDatabase(NativeDatabase.memory())),
-      secureAuthStorageProvider.overrideWithValue(_FakeSecureAuthStorage()),
+      secureAuthStorageProvider.overrideWithValue(FakeSecureAuthStorage()),
       biometricServiceProvider.overrideWithValue(_FakeBiometricService()),
     ];
 

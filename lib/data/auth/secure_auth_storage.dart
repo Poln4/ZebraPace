@@ -11,6 +11,7 @@ class SecureAuthStorage {
   static const _saltKey = 'zebrapace_password_salt';
   static const _hashKey = 'zebrapace_password_hash';
   static const _lastUnlockedAtKey = 'zebrapace_last_unlocked_at';
+  static const _graceOverrideUntilKey = 'zebrapace_grace_override_until';
 
   Future<bool> hasPassword() async {
     final salt = await _storage.read(key: _saltKey);
@@ -33,6 +34,7 @@ class SecureAuthStorage {
     await _storage.delete(key: _saltKey);
     await _storage.delete(key: _hashKey);
     await _storage.delete(key: _lastUnlockedAtKey);
+    await _storage.delete(key: _graceOverrideUntilKey);
   }
 
   /// Marks "still within the grace window" — see AuthNotifier's re-lock
@@ -46,6 +48,19 @@ class SecureAuthStorage {
 
   Future<DateTime?> getLastUnlockedAt() async {
     final raw = await _storage.read(key: _lastUnlockedAtKey);
+    return raw == null ? null : DateTime.tryParse(raw);
+  }
+
+  /// A longer, one-shot grace window on top of the normal one — set right
+  /// before deliberately sending the user to an external flow (the Cloud
+  /// Sync magic-link email), so that round trip doesn't force a re-lock
+  /// even if it takes longer than the standard grace window.
+  Future<void> setGraceOverrideUntil(DateTime time) async {
+    await _storage.write(key: _graceOverrideUntilKey, value: time.toIso8601String());
+  }
+
+  Future<DateTime?> getGraceOverrideUntil() async {
+    final raw = await _storage.read(key: _graceOverrideUntilKey);
     return raw == null ? null : DateTime.tryParse(raw);
   }
 }

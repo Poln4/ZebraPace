@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/zebra_theme.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/auth_providers.dart';
+import '../../../providers/cloud_sync_providers.dart';
 
 /// Gates app.dart's root widget — not a normal route the user could
 /// back-navigate past. Handles both first-run password setup and every
@@ -168,6 +169,12 @@ class _UnlockView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
+    // Supabase's session is independent of this local lock — it's already
+    // established by the time this screen can even show (Supabase.initialize
+    // runs in main(), before the widget tree builds), so someone returning
+    // from the Cloud Sync magic-link email sees confirmation here instead of
+    // a generic lock screen that looks like nothing happened.
+    final cloudUser = ref.watch(cloudUserProvider);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -175,6 +182,14 @@ class _UnlockView extends ConsumerWidget {
         const SizedBox(height: 12),
         Text(l10n.lockScreenLockedTitle,
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: ZebraColors.black)),
+        if (cloudUser != null) ...[
+          const SizedBox(height: 6),
+          Text(
+            l10n.lockScreenCloudSyncSignedIn(cloudUser.email ?? ''),
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 13, color: ZebraColors.brandTeal),
+          ),
+        ],
         const SizedBox(height: 20),
         if (biometricsAvailable)
           SizedBox(
