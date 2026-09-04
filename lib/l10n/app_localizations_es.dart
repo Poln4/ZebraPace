@@ -153,12 +153,37 @@ class AppLocalizationsEs extends AppLocalizations {
       'Flexiones inclinadas (~50% del peso corporal)';
 
   @override
+  String get calisthenicsPushupsAdvancedIncline =>
+      'Flexiones inclinadas avanzadas';
+
+  @override
   String get calisthenicsPushupsKnee =>
       'Flexiones de rodillas (~60% del peso corporal)';
 
   @override
   String get calisthenicsPushupsFull =>
       'Flexiones completas (~70% del peso corporal)';
+
+  @override
+  String get calisthenicsPushupsNarrow => 'Flexiones estrechas';
+
+  @override
+  String get calisthenicsPushupsSideStaggered =>
+      'Flexiones escalonadas laterales';
+
+  @override
+  String get calisthenicsPushupsArcher => 'Flexiones de arquero';
+
+  @override
+  String get calisthenicsPushupsSlidingOneArm =>
+      'Flexiones a un brazo deslizante';
+
+  @override
+  String get calisthenicsPushupsOneArm => 'Flexiones a un brazo';
+
+  @override
+  String get calisthenicsPushupsAdvancedOneArm =>
+      'Flexiones a un brazo avanzadas';
 
   @override
   String get calisthenicsSquatsJackknife => 'Sentadillas navaja';
@@ -173,13 +198,132 @@ class AppLocalizationsEs extends AppLocalizations {
   String get calisthenicsSquatsFull => 'Sentadillas completas';
 
   @override
-  String get calisthenicsTier1 => 'Nivel 1';
+  String get calisthenicsSquatsNarrow => 'Sentadillas estrechas';
 
   @override
-  String get calisthenicsTier2 => 'Nivel 2';
+  String get calisthenicsSquatsSideStaggered =>
+      'Sentadillas escalonadas laterales';
 
   @override
-  String get calisthenicsTier3 => 'Nivel 3';
+  String get calisthenicsSquatsFrontStaggered =>
+      'Sentadillas escalonadas frontales';
+
+  @override
+  String get calisthenicsSquatsAssistedOneLeg =>
+      'Sentadillas a una pierna asistidas';
+
+  @override
+  String get calisthenicsSquatsOneLegChair =>
+      'Sentadillas a una pierna en silla';
+
+  @override
+  String get calisthenicsSquatsOneLeg => 'Sentadillas a una pierna';
+
+  @override
+  String get calisthenicsPullupsWall => 'Dominadas en pared';
+
+  @override
+  String get calisthenicsPullupsHorizontal => 'Dominadas horizontales';
+
+  @override
+  String get calisthenicsPullupsAdvancedHorizontal =>
+      'Dominadas horizontales avanzadas';
+
+  @override
+  String get calisthenicsPullupsJackknife => 'Dominadas navaja';
+
+  @override
+  String get calisthenicsPullupsFull => 'Dominadas completas';
+
+  @override
+  String get calisthenicsPullupsNarrow => 'Dominadas estrechas';
+
+  @override
+  String get calisthenicsPullupsOneHand => 'Dominadas a una mano';
+
+  @override
+  String get calisthenicsPullupsAdvancedOneHand =>
+      'Dominadas a una mano avanzadas';
+
+  @override
+  String get calisthenicsPullupsArcher => 'Dominadas de arquero';
+
+  @override
+  String get calisthenicsPullupsOneArm => 'Dominadas a un brazo';
+
+  @override
+  String get calisthenicsLegRaisesKnee => 'Elevaciones de rodilla';
+
+  @override
+  String get calisthenicsLegRaisesAdvancedKnee =>
+      'Elevaciones de rodilla avanzadas';
+
+  @override
+  String get calisthenicsLegRaisesAlternating =>
+      'Elevaciones de pierna alternadas';
+
+  @override
+  String get calisthenicsLegRaisesFull => 'Elevaciones de pierna completas';
+
+  @override
+  String get calisthenicsLegRaisesTuckPlow =>
+      'Elevaciones intermedias (tuck-plow)';
+
+  @override
+  String get calisthenicsLegRaisesPlow => 'Elevaciones tipo arado';
+
+  @override
+  String get calisthenicsLegRaisesHangingKnee =>
+      'Elevaciones de rodilla colgado';
+
+  @override
+  String get calisthenicsLegRaisesAdvancedHangingKnee =>
+      'Elevaciones de rodilla colgado avanzadas';
+
+  @override
+  String get calisthenicsLegRaisesHanging => 'Elevaciones de pierna colgado';
+
+  @override
+  String get calisthenicsLegRaisesToeToBar => 'Toe to bar';
+
+  @override
+  String get calisthenicsBridgesGlute => 'Puente de glúteos';
+
+  @override
+  String get calisthenicsBridgesStraight => 'Puente recto';
+
+  @override
+  String get calisthenicsBridgesWall => 'Puente en pared';
+
+  @override
+  String get calisthenicsBridgesIncline => 'Puente inclinado';
+
+  @override
+  String get calisthenicsBridgesHead => 'Puente de cabeza';
+
+  @override
+  String get calisthenicsBridgesFull => 'Puente completo';
+
+  @override
+  String get calisthenicsBridgesWheel => 'Puente rueda';
+
+  @override
+  String get calisthenicsBridgesTap => 'Puente con toques';
+
+  @override
+  String get calisthenicsBridgesWallWalking => 'Puente caminando en pared';
+
+  @override
+  String get calisthenicsBridgesStandToStand => 'Puente de pie a pie';
+
+  @override
+  String get calisthenicsTwistsStraightLeg => 'Giros con pierna recta';
+
+  @override
+  String get calisthenicsTwistsBentLeg => 'Giros con pierna doblada';
+
+  @override
+  String get calisthenicsTwistsFull => 'Giros completos';
 
   @override
   String get sorenessOnsetSameDay => 'El mismo día';
@@ -349,6 +493,42 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get calisthenicsSectionBodyFeelingLabel => 'Sensación corporal';
+
+  @override
+  String get calisthenicsSectionLogIssueToggle =>
+      '⚠️ Registrar un problema con esta serie';
+
+  @override
+  String get calisthenicsSectionIssueLoggedConfirmation =>
+      '🩹 Problema registrado — puedes verlo en Lesiones y eventos estructurales.';
+
+  @override
+  String calisthenicsSectionGoalReps(int sets, int reps) {
+    return 'Meta: $sets series × $reps repeticiones';
+  }
+
+  @override
+  String calisthenicsSectionGoalRepsBothSides(int sets, int reps) {
+    return 'Meta: $sets series × $reps repeticiones (cada lado)';
+  }
+
+  @override
+  String calisthenicsSectionGoalHold(int sets, int seconds) {
+    return 'Meta: $sets sostenes × ${seconds}s';
+  }
+
+  @override
+  String calisthenicsSectionGoalHoldBothSides(int sets, int seconds) {
+    return 'Meta: $sets sostenes × ${seconds}s (cada lado)';
+  }
+
+  @override
+  String get calisthenicsSectionGoalMetBadge => '🎯 ¡Meta alcanzada!';
+
+  @override
+  String calisthenicsSectionGoalMilestoneCelebration(String exercise) {
+    return '🌟 3 sesiones seguidas alcanzando la meta de $exercise — puedes intentar el siguiente nivel cuando quieras.';
+  }
 
   @override
   String get calisthenicsSectionLogButton => 'Registrar calistenia';

@@ -151,10 +151,31 @@ class AppLocalizationsZh extends AppLocalizations {
   String get calisthenicsPushupsIncline => '斜面伏地挺身 (~體重50%)';
 
   @override
+  String get calisthenicsPushupsAdvancedIncline => '進階斜面伏地挺身';
+
+  @override
   String get calisthenicsPushupsKnee => '跪姿伏地挺身 (~體重60%)';
 
   @override
   String get calisthenicsPushupsFull => '標準伏地挺身 (~體重70%)';
+
+  @override
+  String get calisthenicsPushupsNarrow => '窄距伏地挺身';
+
+  @override
+  String get calisthenicsPushupsSideStaggered => '側交錯伏地挺身';
+
+  @override
+  String get calisthenicsPushupsArcher => '射箭式伏地挺身';
+
+  @override
+  String get calisthenicsPushupsSlidingOneArm => '滑行單臂伏地挺身';
+
+  @override
+  String get calisthenicsPushupsOneArm => '單臂伏地挺身';
+
+  @override
+  String get calisthenicsPushupsAdvancedOneArm => '進階單臂伏地挺身';
 
   @override
   String get calisthenicsSquatsJackknife => '折刀式深蹲';
@@ -169,13 +190,121 @@ class AppLocalizationsZh extends AppLocalizations {
   String get calisthenicsSquatsFull => '全深蹲';
 
   @override
-  String get calisthenicsTier1 => '第 1 級';
+  String get calisthenicsSquatsNarrow => '窄距深蹲';
 
   @override
-  String get calisthenicsTier2 => '第 2 級';
+  String get calisthenicsSquatsSideStaggered => '側交錯深蹲';
 
   @override
-  String get calisthenicsTier3 => '第 3 級';
+  String get calisthenicsSquatsFrontStaggered => '前交錯深蹲';
+
+  @override
+  String get calisthenicsSquatsAssistedOneLeg => '輔助單腿深蹲';
+
+  @override
+  String get calisthenicsSquatsOneLegChair => '單腿椅式深蹲';
+
+  @override
+  String get calisthenicsSquatsOneLeg => '單腿深蹲';
+
+  @override
+  String get calisthenicsPullupsWall => '牆壁引體向上';
+
+  @override
+  String get calisthenicsPullupsHorizontal => '水平引體向上';
+
+  @override
+  String get calisthenicsPullupsAdvancedHorizontal => '進階水平引體向上';
+
+  @override
+  String get calisthenicsPullupsJackknife => '折刀式引體向上';
+
+  @override
+  String get calisthenicsPullupsFull => '標準引體向上';
+
+  @override
+  String get calisthenicsPullupsNarrow => '窄距引體向上';
+
+  @override
+  String get calisthenicsPullupsOneHand => '單手引體向上';
+
+  @override
+  String get calisthenicsPullupsAdvancedOneHand => '進階單手引體向上';
+
+  @override
+  String get calisthenicsPullupsArcher => '射箭式引體向上';
+
+  @override
+  String get calisthenicsPullupsOneArm => '單臂引體向上';
+
+  @override
+  String get calisthenicsLegRaisesKnee => '屈膝抬腿';
+
+  @override
+  String get calisthenicsLegRaisesAdvancedKnee => '進階屈膝抬腿';
+
+  @override
+  String get calisthenicsLegRaisesAlternating => '交替抬腿';
+
+  @override
+  String get calisthenicsLegRaisesFull => '直腿抬腿';
+
+  @override
+  String get calisthenicsLegRaisesTuckPlow => '半屈直腿抬腿';
+
+  @override
+  String get calisthenicsLegRaisesPlow => '犁式抬腿';
+
+  @override
+  String get calisthenicsLegRaisesHangingKnee => '懸吊屈膝抬腿';
+
+  @override
+  String get calisthenicsLegRaisesAdvancedHangingKnee => '進階懸吊屈膝抬腿';
+
+  @override
+  String get calisthenicsLegRaisesHanging => '懸吊直腿抬腿';
+
+  @override
+  String get calisthenicsLegRaisesToeToBar => '腳觸槓';
+
+  @override
+  String get calisthenicsBridgesGlute => '臀橋';
+
+  @override
+  String get calisthenicsBridgesStraight => '直體橋';
+
+  @override
+  String get calisthenicsBridgesWall => '牆壁橋';
+
+  @override
+  String get calisthenicsBridgesIncline => '斜面橋';
+
+  @override
+  String get calisthenicsBridgesHead => '頭橋';
+
+  @override
+  String get calisthenicsBridgesFull => '全橋';
+
+  @override
+  String get calisthenicsBridgesWheel => '輪式橋';
+
+  @override
+  String get calisthenicsBridgesTap => '點地橋';
+
+  @override
+  String get calisthenicsBridgesWallWalking => '牆壁行走橋';
+
+  @override
+  String get calisthenicsBridgesStandToStand => '站立到站立橋';
+
+  @override
+  String get calisthenicsTwistsStraightLeg => '直腿扭轉';
+
+  @override
+  String get calisthenicsTwistsBentLeg => '屈腿扭轉';
+
+  @override
+  String get calisthenicsTwistsFull => '完整扭轉';
 
   @override
   String get sorenessOnsetSameDay => '當天';
@@ -343,6 +472,41 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get calisthenicsSectionBodyFeelingLabel => '身體感受';
+
+  @override
+  String get calisthenicsSectionLogIssueToggle => '⚠️ 記錄這組動作的問題';
+
+  @override
+  String get calisthenicsSectionIssueLoggedConfirmation =>
+      '🩹 問題已記錄——可在「傷害與結構性事件」中查看。';
+
+  @override
+  String calisthenicsSectionGoalReps(int sets, int reps) {
+    return '目標：$sets 組 × $reps 次';
+  }
+
+  @override
+  String calisthenicsSectionGoalRepsBothSides(int sets, int reps) {
+    return '目標：$sets 組 × $reps 次（每側）';
+  }
+
+  @override
+  String calisthenicsSectionGoalHold(int sets, int seconds) {
+    return '目標：$sets 次 × $seconds 秒';
+  }
+
+  @override
+  String calisthenicsSectionGoalHoldBothSides(int sets, int seconds) {
+    return '目標：$sets 次 × $seconds 秒（每側）';
+  }
+
+  @override
+  String get calisthenicsSectionGoalMetBadge => '🎯 已達成目標！';
+
+  @override
+  String calisthenicsSectionGoalMilestoneCelebration(String exercise) {
+    return '🌟 $exercise 已連續 3 次達成目標——準備好時可以嘗試下一個等級。';
+  }
 
   @override
   String get calisthenicsSectionLogButton => '記錄徒手訓練';
@@ -1800,10 +1964,31 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get calisthenicsPushupsIncline => '斜面伏地挺身 (~體重50%)';
 
   @override
+  String get calisthenicsPushupsAdvancedIncline => '進階斜面伏地挺身';
+
+  @override
   String get calisthenicsPushupsKnee => '跪姿伏地挺身 (~體重60%)';
 
   @override
   String get calisthenicsPushupsFull => '標準伏地挺身 (~體重70%)';
+
+  @override
+  String get calisthenicsPushupsNarrow => '窄距伏地挺身';
+
+  @override
+  String get calisthenicsPushupsSideStaggered => '側交錯伏地挺身';
+
+  @override
+  String get calisthenicsPushupsArcher => '射箭式伏地挺身';
+
+  @override
+  String get calisthenicsPushupsSlidingOneArm => '滑行單臂伏地挺身';
+
+  @override
+  String get calisthenicsPushupsOneArm => '單臂伏地挺身';
+
+  @override
+  String get calisthenicsPushupsAdvancedOneArm => '進階單臂伏地挺身';
 
   @override
   String get calisthenicsSquatsJackknife => '折刀式深蹲';
@@ -1818,13 +2003,121 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get calisthenicsSquatsFull => '全深蹲';
 
   @override
-  String get calisthenicsTier1 => '第 1 級';
+  String get calisthenicsSquatsNarrow => '窄距深蹲';
 
   @override
-  String get calisthenicsTier2 => '第 2 級';
+  String get calisthenicsSquatsSideStaggered => '側交錯深蹲';
 
   @override
-  String get calisthenicsTier3 => '第 3 級';
+  String get calisthenicsSquatsFrontStaggered => '前交錯深蹲';
+
+  @override
+  String get calisthenicsSquatsAssistedOneLeg => '輔助單腿深蹲';
+
+  @override
+  String get calisthenicsSquatsOneLegChair => '單腿椅式深蹲';
+
+  @override
+  String get calisthenicsSquatsOneLeg => '單腿深蹲';
+
+  @override
+  String get calisthenicsPullupsWall => '牆壁引體向上';
+
+  @override
+  String get calisthenicsPullupsHorizontal => '水平引體向上';
+
+  @override
+  String get calisthenicsPullupsAdvancedHorizontal => '進階水平引體向上';
+
+  @override
+  String get calisthenicsPullupsJackknife => '折刀式引體向上';
+
+  @override
+  String get calisthenicsPullupsFull => '標準引體向上';
+
+  @override
+  String get calisthenicsPullupsNarrow => '窄距引體向上';
+
+  @override
+  String get calisthenicsPullupsOneHand => '單手引體向上';
+
+  @override
+  String get calisthenicsPullupsAdvancedOneHand => '進階單手引體向上';
+
+  @override
+  String get calisthenicsPullupsArcher => '射箭式引體向上';
+
+  @override
+  String get calisthenicsPullupsOneArm => '單臂引體向上';
+
+  @override
+  String get calisthenicsLegRaisesKnee => '屈膝抬腿';
+
+  @override
+  String get calisthenicsLegRaisesAdvancedKnee => '進階屈膝抬腿';
+
+  @override
+  String get calisthenicsLegRaisesAlternating => '交替抬腿';
+
+  @override
+  String get calisthenicsLegRaisesFull => '直腿抬腿';
+
+  @override
+  String get calisthenicsLegRaisesTuckPlow => '半屈直腿抬腿';
+
+  @override
+  String get calisthenicsLegRaisesPlow => '犁式抬腿';
+
+  @override
+  String get calisthenicsLegRaisesHangingKnee => '懸吊屈膝抬腿';
+
+  @override
+  String get calisthenicsLegRaisesAdvancedHangingKnee => '進階懸吊屈膝抬腿';
+
+  @override
+  String get calisthenicsLegRaisesHanging => '懸吊直腿抬腿';
+
+  @override
+  String get calisthenicsLegRaisesToeToBar => '腳觸槓';
+
+  @override
+  String get calisthenicsBridgesGlute => '臀橋';
+
+  @override
+  String get calisthenicsBridgesStraight => '直體橋';
+
+  @override
+  String get calisthenicsBridgesWall => '牆壁橋';
+
+  @override
+  String get calisthenicsBridgesIncline => '斜面橋';
+
+  @override
+  String get calisthenicsBridgesHead => '頭橋';
+
+  @override
+  String get calisthenicsBridgesFull => '全橋';
+
+  @override
+  String get calisthenicsBridgesWheel => '輪式橋';
+
+  @override
+  String get calisthenicsBridgesTap => '點地橋';
+
+  @override
+  String get calisthenicsBridgesWallWalking => '牆壁行走橋';
+
+  @override
+  String get calisthenicsBridgesStandToStand => '站立到站立橋';
+
+  @override
+  String get calisthenicsTwistsStraightLeg => '直腿扭轉';
+
+  @override
+  String get calisthenicsTwistsBentLeg => '屈腿扭轉';
+
+  @override
+  String get calisthenicsTwistsFull => '完整扭轉';
 
   @override
   String get sorenessOnsetSameDay => '當天';
@@ -1992,6 +2285,41 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get calisthenicsSectionBodyFeelingLabel => '身體感受';
+
+  @override
+  String get calisthenicsSectionLogIssueToggle => '⚠️ 記錄這組動作的問題';
+
+  @override
+  String get calisthenicsSectionIssueLoggedConfirmation =>
+      '🩹 問題已記錄——可在「傷害與結構性事件」中查看。';
+
+  @override
+  String calisthenicsSectionGoalReps(int sets, int reps) {
+    return '目標：$sets 組 × $reps 次';
+  }
+
+  @override
+  String calisthenicsSectionGoalRepsBothSides(int sets, int reps) {
+    return '目標：$sets 組 × $reps 次（每側）';
+  }
+
+  @override
+  String calisthenicsSectionGoalHold(int sets, int seconds) {
+    return '目標：$sets 次 × $seconds 秒';
+  }
+
+  @override
+  String calisthenicsSectionGoalHoldBothSides(int sets, int seconds) {
+    return '目標：$sets 次 × $seconds 秒（每側）';
+  }
+
+  @override
+  String get calisthenicsSectionGoalMetBadge => '🎯 已達成目標！';
+
+  @override
+  String calisthenicsSectionGoalMilestoneCelebration(String exercise) {
+    return '🌟 $exercise 已連續 3 次達成目標——準備好時可以嘗試下一個等級。';
+  }
 
   @override
   String get calisthenicsSectionLogButton => '記錄徒手訓練';

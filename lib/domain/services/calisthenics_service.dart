@@ -21,4 +21,18 @@ class CalisthenicsService {
     final mean = scores.reduce((a, b) => a + b) / scores.length;
     return mean >= comfortThreshold;
   }
+
+  /// True iff exactly the 3 most-recent sessions for this exercise (on/before
+  /// targetDate) each met or exceeded the given level's goal. Advisory only,
+  /// same spirit as [checkComfortMilestone] — never auto-advances the tier.
+  Future<bool> checkGoalMilestone(
+    String exerciseDb,
+    String targetDate, {
+    required int targetSets,
+    required int targetValue,
+  }) async {
+    final sessions = await _repository.getLastThreeSetsAndReps(exerciseDb, targetDate);
+    if (sessions.length != 3) return false;
+    return sessions.every((s) => s.$1 >= targetSets && s.$2 >= targetValue);
+  }
 }

@@ -210,26 +210,6 @@ enum CalisthenicsExercise {
         CalisthenicsExercise.twists => l10n.calisthenicsExerciseTwists,
       };
 
-  List<String> progressions(AppLocalizations l10n) => switch (this) {
-        CalisthenicsExercise.pushups => [
-            l10n.calisthenicsPushupsWall,
-            l10n.calisthenicsPushupsIncline,
-            l10n.calisthenicsPushupsKnee,
-            l10n.calisthenicsPushupsFull,
-          ],
-        CalisthenicsExercise.squats => [
-            l10n.calisthenicsSquatsJackknife,
-            l10n.calisthenicsSquatsAssisted,
-            l10n.calisthenicsSquatsHalf,
-            l10n.calisthenicsSquatsFull,
-          ],
-        CalisthenicsExercise.pullups ||
-        CalisthenicsExercise.legRaises ||
-        CalisthenicsExercise.bridges ||
-        CalisthenicsExercise.twists =>
-          [l10n.calisthenicsTier1, l10n.calisthenicsTier2, l10n.calisthenicsTier3],
-      };
-
   static CalisthenicsExercise? fromDb(String? value) =>
       value == null ? null : CalisthenicsExercise.values.where((e) => e.name == value).firstOrNull;
 }

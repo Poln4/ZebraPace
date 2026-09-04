@@ -57,6 +57,19 @@ class CalisthenicsRepository {
     return rows.map((r) => r.comfortScore).toList();
   }
 
+  /// Same scoping as [getLastThreeComfortScores] (by exercise only, not
+  /// progression tier — the stored `progression` is localized display text,
+  /// not a stable key) — used by CalisthenicsService.checkGoalMilestone.
+  Future<List<(int sets, int reps)>> getLastThreeSetsAndReps(
+      String exercise, String targetDate) async {
+    final query = _db.select(_db.calisthenics)
+      ..where((t) => t.exercise.equals(exercise) & t.date.isSmallerOrEqualValue(targetDate))
+      ..orderBy([(t) => OrderingTerm.desc(t.date)])
+      ..limit(3);
+    final rows = await query.get();
+    return rows.map((r) => (r.sets, r.reps)).toList();
+  }
+
   Future<void> insert({
     required String date,
     required CalisthenicsExercise exercise,

@@ -383,6 +383,12 @@ abstract class AppLocalizations {
   /// **'Incline Pushups (~50% BW)'**
   String get calisthenicsPushupsIncline;
 
+  /// No description provided for @calisthenicsPushupsAdvancedIncline.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced Incline Pushups'**
+  String get calisthenicsPushupsAdvancedIncline;
+
   /// No description provided for @calisthenicsPushupsKnee.
   ///
   /// In en, this message translates to:
@@ -394,6 +400,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Full Pushups (~70% BW)'**
   String get calisthenicsPushupsFull;
+
+  /// No description provided for @calisthenicsPushupsNarrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Narrow Pushups'**
+  String get calisthenicsPushupsNarrow;
+
+  /// No description provided for @calisthenicsPushupsSideStaggered.
+  ///
+  /// In en, this message translates to:
+  /// **'Side-Staggered Pushups'**
+  String get calisthenicsPushupsSideStaggered;
+
+  /// No description provided for @calisthenicsPushupsArcher.
+  ///
+  /// In en, this message translates to:
+  /// **'Archer Pushups'**
+  String get calisthenicsPushupsArcher;
+
+  /// No description provided for @calisthenicsPushupsSlidingOneArm.
+  ///
+  /// In en, this message translates to:
+  /// **'Sliding One-Arm Pushups'**
+  String get calisthenicsPushupsSlidingOneArm;
+
+  /// No description provided for @calisthenicsPushupsOneArm.
+  ///
+  /// In en, this message translates to:
+  /// **'One-Arm Pushups'**
+  String get calisthenicsPushupsOneArm;
+
+  /// No description provided for @calisthenicsPushupsAdvancedOneArm.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced One-Arm Pushups'**
+  String get calisthenicsPushupsAdvancedOneArm;
 
   /// No description provided for @calisthenicsSquatsJackknife.
   ///
@@ -419,23 +461,239 @@ abstract class AppLocalizations {
   /// **'Full Squats'**
   String get calisthenicsSquatsFull;
 
-  /// No description provided for @calisthenicsTier1.
+  /// No description provided for @calisthenicsSquatsNarrow.
   ///
   /// In en, this message translates to:
-  /// **'Tier 1'**
-  String get calisthenicsTier1;
+  /// **'Narrow Squats'**
+  String get calisthenicsSquatsNarrow;
 
-  /// No description provided for @calisthenicsTier2.
+  /// No description provided for @calisthenicsSquatsSideStaggered.
   ///
   /// In en, this message translates to:
-  /// **'Tier 2'**
-  String get calisthenicsTier2;
+  /// **'Side Staggered Squats'**
+  String get calisthenicsSquatsSideStaggered;
 
-  /// No description provided for @calisthenicsTier3.
+  /// No description provided for @calisthenicsSquatsFrontStaggered.
   ///
   /// In en, this message translates to:
-  /// **'Tier 3'**
-  String get calisthenicsTier3;
+  /// **'Front Staggered Squats'**
+  String get calisthenicsSquatsFrontStaggered;
+
+  /// No description provided for @calisthenicsSquatsAssistedOneLeg.
+  ///
+  /// In en, this message translates to:
+  /// **'Assisted One Leg Squats'**
+  String get calisthenicsSquatsAssistedOneLeg;
+
+  /// No description provided for @calisthenicsSquatsOneLegChair.
+  ///
+  /// In en, this message translates to:
+  /// **'One Leg Chair Squats'**
+  String get calisthenicsSquatsOneLegChair;
+
+  /// No description provided for @calisthenicsSquatsOneLeg.
+  ///
+  /// In en, this message translates to:
+  /// **'One Leg Squats'**
+  String get calisthenicsSquatsOneLeg;
+
+  /// No description provided for @calisthenicsPullupsWall.
+  ///
+  /// In en, this message translates to:
+  /// **'Wall Pullups'**
+  String get calisthenicsPullupsWall;
+
+  /// No description provided for @calisthenicsPullupsHorizontal.
+  ///
+  /// In en, this message translates to:
+  /// **'Horizontal Pullups'**
+  String get calisthenicsPullupsHorizontal;
+
+  /// No description provided for @calisthenicsPullupsAdvancedHorizontal.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced Horizontal Pullups'**
+  String get calisthenicsPullupsAdvancedHorizontal;
+
+  /// No description provided for @calisthenicsPullupsJackknife.
+  ///
+  /// In en, this message translates to:
+  /// **'Jackknife Pullups'**
+  String get calisthenicsPullupsJackknife;
+
+  /// No description provided for @calisthenicsPullupsFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Pullups'**
+  String get calisthenicsPullupsFull;
+
+  /// No description provided for @calisthenicsPullupsNarrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Narrow Pullups'**
+  String get calisthenicsPullupsNarrow;
+
+  /// No description provided for @calisthenicsPullupsOneHand.
+  ///
+  /// In en, this message translates to:
+  /// **'One Hand Pullups'**
+  String get calisthenicsPullupsOneHand;
+
+  /// No description provided for @calisthenicsPullupsAdvancedOneHand.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced One Hand Pullups'**
+  String get calisthenicsPullupsAdvancedOneHand;
+
+  /// No description provided for @calisthenicsPullupsArcher.
+  ///
+  /// In en, this message translates to:
+  /// **'Archer Pullups'**
+  String get calisthenicsPullupsArcher;
+
+  /// No description provided for @calisthenicsPullupsOneArm.
+  ///
+  /// In en, this message translates to:
+  /// **'One Arm Pullups'**
+  String get calisthenicsPullupsOneArm;
+
+  /// No description provided for @calisthenicsLegRaisesKnee.
+  ///
+  /// In en, this message translates to:
+  /// **'Knee Raises'**
+  String get calisthenicsLegRaisesKnee;
+
+  /// No description provided for @calisthenicsLegRaisesAdvancedKnee.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced Knee Raises'**
+  String get calisthenicsLegRaisesAdvancedKnee;
+
+  /// No description provided for @calisthenicsLegRaisesAlternating.
+  ///
+  /// In en, this message translates to:
+  /// **'Alternating Leg Raises'**
+  String get calisthenicsLegRaisesAlternating;
+
+  /// No description provided for @calisthenicsLegRaisesFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Leg Raises'**
+  String get calisthenicsLegRaisesFull;
+
+  /// No description provided for @calisthenicsLegRaisesTuckPlow.
+  ///
+  /// In en, this message translates to:
+  /// **'Tuck Plow Raises'**
+  String get calisthenicsLegRaisesTuckPlow;
+
+  /// No description provided for @calisthenicsLegRaisesPlow.
+  ///
+  /// In en, this message translates to:
+  /// **'Plow Raises'**
+  String get calisthenicsLegRaisesPlow;
+
+  /// No description provided for @calisthenicsLegRaisesHangingKnee.
+  ///
+  /// In en, this message translates to:
+  /// **'Hanging Knee Raises'**
+  String get calisthenicsLegRaisesHangingKnee;
+
+  /// No description provided for @calisthenicsLegRaisesAdvancedHangingKnee.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced Hanging Knee Raises'**
+  String get calisthenicsLegRaisesAdvancedHangingKnee;
+
+  /// No description provided for @calisthenicsLegRaisesHanging.
+  ///
+  /// In en, this message translates to:
+  /// **'Hanging Leg Raises'**
+  String get calisthenicsLegRaisesHanging;
+
+  /// No description provided for @calisthenicsLegRaisesToeToBar.
+  ///
+  /// In en, this message translates to:
+  /// **'Toe to Bars'**
+  String get calisthenicsLegRaisesToeToBar;
+
+  /// No description provided for @calisthenicsBridgesGlute.
+  ///
+  /// In en, this message translates to:
+  /// **'Glute Bridges'**
+  String get calisthenicsBridgesGlute;
+
+  /// No description provided for @calisthenicsBridgesStraight.
+  ///
+  /// In en, this message translates to:
+  /// **'Straight Bridges'**
+  String get calisthenicsBridgesStraight;
+
+  /// No description provided for @calisthenicsBridgesWall.
+  ///
+  /// In en, this message translates to:
+  /// **'Wall Bridges'**
+  String get calisthenicsBridgesWall;
+
+  /// No description provided for @calisthenicsBridgesIncline.
+  ///
+  /// In en, this message translates to:
+  /// **'Incline Bridges'**
+  String get calisthenicsBridgesIncline;
+
+  /// No description provided for @calisthenicsBridgesHead.
+  ///
+  /// In en, this message translates to:
+  /// **'Head Bridges'**
+  String get calisthenicsBridgesHead;
+
+  /// No description provided for @calisthenicsBridgesFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Bridges'**
+  String get calisthenicsBridgesFull;
+
+  /// No description provided for @calisthenicsBridgesWheel.
+  ///
+  /// In en, this message translates to:
+  /// **'Wheel Bridges'**
+  String get calisthenicsBridgesWheel;
+
+  /// No description provided for @calisthenicsBridgesTap.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap Bridges'**
+  String get calisthenicsBridgesTap;
+
+  /// No description provided for @calisthenicsBridgesWallWalking.
+  ///
+  /// In en, this message translates to:
+  /// **'Wall Walking Bridges'**
+  String get calisthenicsBridgesWallWalking;
+
+  /// No description provided for @calisthenicsBridgesStandToStand.
+  ///
+  /// In en, this message translates to:
+  /// **'Stand to Stand Bridges'**
+  String get calisthenicsBridgesStandToStand;
+
+  /// No description provided for @calisthenicsTwistsStraightLeg.
+  ///
+  /// In en, this message translates to:
+  /// **'Straight Leg Twists'**
+  String get calisthenicsTwistsStraightLeg;
+
+  /// No description provided for @calisthenicsTwistsBentLeg.
+  ///
+  /// In en, this message translates to:
+  /// **'Bent Leg Twists'**
+  String get calisthenicsTwistsBentLeg;
+
+  /// No description provided for @calisthenicsTwistsFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Twists'**
+  String get calisthenicsTwistsFull;
 
   /// No description provided for @sorenessOnsetSameDay.
   ///
@@ -766,6 +1024,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Body Feeling'**
   String get calisthenicsSectionBodyFeelingLabel;
+
+  /// No description provided for @calisthenicsSectionLogIssueToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'⚠️ Log an issue with this set'**
+  String get calisthenicsSectionLogIssueToggle;
+
+  /// No description provided for @calisthenicsSectionIssueLoggedConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'🩹 Issue logged — see it under Injuries & Structural Events.'**
+  String get calisthenicsSectionIssueLoggedConfirmation;
+
+  /// No description provided for @calisthenicsSectionGoalReps.
+  ///
+  /// In en, this message translates to:
+  /// **'Goal: {sets} sets × {reps} reps'**
+  String calisthenicsSectionGoalReps(int sets, int reps);
+
+  /// No description provided for @calisthenicsSectionGoalRepsBothSides.
+  ///
+  /// In en, this message translates to:
+  /// **'Goal: {sets} sets × {reps} reps (each side)'**
+  String calisthenicsSectionGoalRepsBothSides(int sets, int reps);
+
+  /// No description provided for @calisthenicsSectionGoalHold.
+  ///
+  /// In en, this message translates to:
+  /// **'Goal: {sets} holds × {seconds}s'**
+  String calisthenicsSectionGoalHold(int sets, int seconds);
+
+  /// No description provided for @calisthenicsSectionGoalHoldBothSides.
+  ///
+  /// In en, this message translates to:
+  /// **'Goal: {sets} holds × {seconds}s (each side)'**
+  String calisthenicsSectionGoalHoldBothSides(int sets, int seconds);
+
+  /// No description provided for @calisthenicsSectionGoalMetBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'🎯 Goal met!'**
+  String get calisthenicsSectionGoalMetBadge;
+
+  /// No description provided for @calisthenicsSectionGoalMilestoneCelebration.
+  ///
+  /// In en, this message translates to:
+  /// **'🌟 3 sessions in a row hitting the goal for {exercise} — ready to try the next level whenever you are.'**
+  String calisthenicsSectionGoalMilestoneCelebration(String exercise);
 
   /// No description provided for @calisthenicsSectionLogButton.
   ///

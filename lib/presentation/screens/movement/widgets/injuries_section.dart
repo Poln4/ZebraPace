@@ -6,6 +6,7 @@ import '../../../../core/theme/zebra_theme.dart';
 import '../../../../domain/models/injury.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/app_providers.dart';
+import '../../../widgets/enum_wrap.dart';
 import '../../../widgets/section_card.dart';
 
 /// Injuries / structural events (app2.py) — discrete, dateable, localized,
@@ -45,7 +46,7 @@ class _InjuriesSectionState extends ConsumerState<InjuriesSection> {
         children: [
           Text(l10n.injuriesSectionZoneLabel, style: const TextStyle(fontWeight: FontWeight.w700)),
           const SizedBox(height: 6),
-          _EnumWrap<InjuryZone>(
+          EnumWrap<InjuryZone>(
             options: InjuryZone.values,
             labelOf: (z) => z.label(l10n),
             value: _zone,
@@ -54,7 +55,7 @@ class _InjuriesSectionState extends ConsumerState<InjuriesSection> {
           const SizedBox(height: 10),
           Text(l10n.injuriesSectionKindLabel, style: const TextStyle(fontWeight: FontWeight.w700)),
           const SizedBox(height: 6),
-          _EnumWrap<InjuryKind>(
+          EnumWrap<InjuryKind>(
             options: InjuryKind.values,
             labelOf: (k) => k.label(l10n),
             value: _kind,
@@ -63,7 +64,7 @@ class _InjuriesSectionState extends ConsumerState<InjuriesSection> {
           const SizedBox(height: 10),
           Text(l10n.injuriesSectionTypeLabel, style: const TextStyle(fontWeight: FontWeight.w700)),
           const SizedBox(height: 6),
-          _EnumWrap<InjuryType>(
+          EnumWrap<InjuryType>(
             options: InjuryType.values,
             labelOf: (t) => t.label(l10n),
             value: _type,
@@ -105,44 +106,6 @@ class _InjuriesSectionState extends ConsumerState<InjuriesSection> {
           note: _noteController.text,
         );
     _noteController.clear();
-  }
-}
-
-class _EnumWrap<T> extends StatelessWidget {
-  const _EnumWrap({
-    required this.options,
-    required this.labelOf,
-    required this.value,
-    required this.onChanged,
-  });
-
-  final List<T> options;
-  final String Function(T) labelOf;
-  final T value;
-  final ValueChanged<T> onChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 6,
-      runSpacing: 6,
-      children: options.map((o) {
-        final selected = o == value;
-        return GestureDetector(
-          onTap: () => onChanged(o),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-            decoration: BoxDecoration(
-              color: selected ? ZebraColors.teal : ZebraColors.bg,
-              border: Border.all(color: ZebraColors.cardBorder),
-              borderRadius: BorderRadius.circular(14),
-            ),
-            child: Text(labelOf(o),
-                style: const TextStyle(fontSize: 11.5, color: ZebraColors.onColor)),
-          ),
-        );
-      }).toList(),
-    );
   }
 }
 
@@ -199,7 +162,7 @@ class _ActiveInjuryCardState extends ConsumerState<_ActiveInjuryCard> {
               ),
             ],
           ),
-          _EnumWrap<ComparedToUsual>(
+          EnumWrap<ComparedToUsual>(
             options: ComparedToUsual.values,
             labelOf: (c) => c.label(l10n),
             value: _compared ?? ComparedToUsual.aboutTheSame,

@@ -151,10 +151,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get calisthenicsPushupsIncline => 'Incline Pushups (~50% BW)';
 
   @override
+  String get calisthenicsPushupsAdvancedIncline => 'Advanced Incline Pushups';
+
+  @override
   String get calisthenicsPushupsKnee => 'Knee Pushups (~60% BW)';
 
   @override
   String get calisthenicsPushupsFull => 'Full Pushups (~70% BW)';
+
+  @override
+  String get calisthenicsPushupsNarrow => 'Narrow Pushups';
+
+  @override
+  String get calisthenicsPushupsSideStaggered => 'Side-Staggered Pushups';
+
+  @override
+  String get calisthenicsPushupsArcher => 'Archer Pushups';
+
+  @override
+  String get calisthenicsPushupsSlidingOneArm => 'Sliding One-Arm Pushups';
+
+  @override
+  String get calisthenicsPushupsOneArm => 'One-Arm Pushups';
+
+  @override
+  String get calisthenicsPushupsAdvancedOneArm => 'Advanced One-Arm Pushups';
 
   @override
   String get calisthenicsSquatsJackknife => 'Jackknife Squats';
@@ -169,13 +190,123 @@ class AppLocalizationsEn extends AppLocalizations {
   String get calisthenicsSquatsFull => 'Full Squats';
 
   @override
-  String get calisthenicsTier1 => 'Tier 1';
+  String get calisthenicsSquatsNarrow => 'Narrow Squats';
 
   @override
-  String get calisthenicsTier2 => 'Tier 2';
+  String get calisthenicsSquatsSideStaggered => 'Side Staggered Squats';
 
   @override
-  String get calisthenicsTier3 => 'Tier 3';
+  String get calisthenicsSquatsFrontStaggered => 'Front Staggered Squats';
+
+  @override
+  String get calisthenicsSquatsAssistedOneLeg => 'Assisted One Leg Squats';
+
+  @override
+  String get calisthenicsSquatsOneLegChair => 'One Leg Chair Squats';
+
+  @override
+  String get calisthenicsSquatsOneLeg => 'One Leg Squats';
+
+  @override
+  String get calisthenicsPullupsWall => 'Wall Pullups';
+
+  @override
+  String get calisthenicsPullupsHorizontal => 'Horizontal Pullups';
+
+  @override
+  String get calisthenicsPullupsAdvancedHorizontal =>
+      'Advanced Horizontal Pullups';
+
+  @override
+  String get calisthenicsPullupsJackknife => 'Jackknife Pullups';
+
+  @override
+  String get calisthenicsPullupsFull => 'Full Pullups';
+
+  @override
+  String get calisthenicsPullupsNarrow => 'Narrow Pullups';
+
+  @override
+  String get calisthenicsPullupsOneHand => 'One Hand Pullups';
+
+  @override
+  String get calisthenicsPullupsAdvancedOneHand => 'Advanced One Hand Pullups';
+
+  @override
+  String get calisthenicsPullupsArcher => 'Archer Pullups';
+
+  @override
+  String get calisthenicsPullupsOneArm => 'One Arm Pullups';
+
+  @override
+  String get calisthenicsLegRaisesKnee => 'Knee Raises';
+
+  @override
+  String get calisthenicsLegRaisesAdvancedKnee => 'Advanced Knee Raises';
+
+  @override
+  String get calisthenicsLegRaisesAlternating => 'Alternating Leg Raises';
+
+  @override
+  String get calisthenicsLegRaisesFull => 'Full Leg Raises';
+
+  @override
+  String get calisthenicsLegRaisesTuckPlow => 'Tuck Plow Raises';
+
+  @override
+  String get calisthenicsLegRaisesPlow => 'Plow Raises';
+
+  @override
+  String get calisthenicsLegRaisesHangingKnee => 'Hanging Knee Raises';
+
+  @override
+  String get calisthenicsLegRaisesAdvancedHangingKnee =>
+      'Advanced Hanging Knee Raises';
+
+  @override
+  String get calisthenicsLegRaisesHanging => 'Hanging Leg Raises';
+
+  @override
+  String get calisthenicsLegRaisesToeToBar => 'Toe to Bars';
+
+  @override
+  String get calisthenicsBridgesGlute => 'Glute Bridges';
+
+  @override
+  String get calisthenicsBridgesStraight => 'Straight Bridges';
+
+  @override
+  String get calisthenicsBridgesWall => 'Wall Bridges';
+
+  @override
+  String get calisthenicsBridgesIncline => 'Incline Bridges';
+
+  @override
+  String get calisthenicsBridgesHead => 'Head Bridges';
+
+  @override
+  String get calisthenicsBridgesFull => 'Full Bridges';
+
+  @override
+  String get calisthenicsBridgesWheel => 'Wheel Bridges';
+
+  @override
+  String get calisthenicsBridgesTap => 'Tap Bridges';
+
+  @override
+  String get calisthenicsBridgesWallWalking => 'Wall Walking Bridges';
+
+  @override
+  String get calisthenicsBridgesStandToStand => 'Stand to Stand Bridges';
+
+  @override
+  String get calisthenicsTwistsStraightLeg => 'Straight Leg Twists';
+
+  @override
+  String get calisthenicsTwistsBentLeg => 'Bent Leg Twists';
+
+  @override
+  String get calisthenicsTwistsFull => 'Full Twists';
 
   @override
   String get sorenessOnsetSameDay => 'Same day';
@@ -344,6 +475,42 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get calisthenicsSectionBodyFeelingLabel => 'Body Feeling';
+
+  @override
+  String get calisthenicsSectionLogIssueToggle =>
+      '⚠️ Log an issue with this set';
+
+  @override
+  String get calisthenicsSectionIssueLoggedConfirmation =>
+      '🩹 Issue logged — see it under Injuries & Structural Events.';
+
+  @override
+  String calisthenicsSectionGoalReps(int sets, int reps) {
+    return 'Goal: $sets sets × $reps reps';
+  }
+
+  @override
+  String calisthenicsSectionGoalRepsBothSides(int sets, int reps) {
+    return 'Goal: $sets sets × $reps reps (each side)';
+  }
+
+  @override
+  String calisthenicsSectionGoalHold(int sets, int seconds) {
+    return 'Goal: $sets holds × ${seconds}s';
+  }
+
+  @override
+  String calisthenicsSectionGoalHoldBothSides(int sets, int seconds) {
+    return 'Goal: $sets holds × ${seconds}s (each side)';
+  }
+
+  @override
+  String get calisthenicsSectionGoalMetBadge => '🎯 Goal met!';
+
+  @override
+  String calisthenicsSectionGoalMilestoneCelebration(String exercise) {
+    return '🌟 3 sessions in a row hitting the goal for $exercise — ready to try the next level whenever you are.';
+  }
 
   @override
   String get calisthenicsSectionLogButton => 'Log Calisthenics';

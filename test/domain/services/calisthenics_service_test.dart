@@ -30,6 +30,17 @@ void main() {
     );
   }
 
+  Future<void> logSessionWithVolume(String date, {required int sets, required int reps}) async {
+    await repo.insert(
+      date: date,
+      exercise: CalisthenicsExercise.pushups,
+      progression: 'Wall Pushups (~35% BW)',
+      sets: sets,
+      reps: reps,
+      comfortScore: 3.0,
+    );
+  }
+
   test('fires only with exactly 3 sessions averaging at/above threshold', () async {
     await logSession(dateKey(DateTime(2026, 1, 1)), 4.0);
     await logSession(dateKey(DateTime(2026, 1, 2)), 4.0);
@@ -80,6 +91,40 @@ void main() {
       await service.checkComfortMilestone('pushups', dateKey(DateTime(2026, 1, 3)),
           comfortThreshold: 3.8),
       isFalse,
+    );
+  });
+
+  test('goal milestone fires only with exactly 3 sessions each meeting sets and reps', () async {
+    await logSessionWithVolume(dateKey(DateTime(2026, 1, 1)), sets: 3, reps: 50);
+    await logSessionWithVolume(dateKey(DateTime(2026, 1, 2)), sets: 3, reps: 50);
+
+    expect(
+      await service.checkGoalMilestone('pushups', dateKey(DateTime(2026, 1, 2)),
+          targetSets: 3, targetValue: 50),
+      isFalse,
+      reason: 'only 2 sessions logged so far, must not fire',
+    );
+
+    await logSessionWithVolume(dateKey(DateTime(2026, 1, 3)), sets: 3, reps: 50);
+
+    expect(
+      await service.checkGoalMilestone('pushups', dateKey(DateTime(2026, 1, 3)),
+          targetSets: 3, targetValue: 50),
+      isTrue,
+      reason: 'exactly 3 sessions all meeting the 3x50 goal',
+    );
+  });
+
+  test('goal milestone does not fire when any of the last 3 sessions falls short', () async {
+    await logSessionWithVolume(dateKey(DateTime(2026, 1, 1)), sets: 3, reps: 50);
+    await logSessionWithVolume(dateKey(DateTime(2026, 1, 2)), sets: 3, reps: 40);
+    await logSessionWithVolume(dateKey(DateTime(2026, 1, 3)), sets: 3, reps: 50);
+
+    expect(
+      await service.checkGoalMilestone('pushups', dateKey(DateTime(2026, 1, 3)),
+          targetSets: 3, targetValue: 50),
+      isFalse,
+      reason: 'the middle session only hit 40 reps, short of the 50 goal',
     );
   });
 }

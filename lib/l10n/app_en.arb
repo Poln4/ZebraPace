@@ -58,15 +58,58 @@
 
   "calisthenicsPushupsWall": "Wall Pushups (~35% BW)",
   "calisthenicsPushupsIncline": "Incline Pushups (~50% BW)",
+  "calisthenicsPushupsAdvancedIncline": "Advanced Incline Pushups",
   "calisthenicsPushupsKnee": "Knee Pushups (~60% BW)",
   "calisthenicsPushupsFull": "Full Pushups (~70% BW)",
+  "calisthenicsPushupsNarrow": "Narrow Pushups",
+  "calisthenicsPushupsSideStaggered": "Side-Staggered Pushups",
+  "calisthenicsPushupsArcher": "Archer Pushups",
+  "calisthenicsPushupsSlidingOneArm": "Sliding One-Arm Pushups",
+  "calisthenicsPushupsOneArm": "One-Arm Pushups",
+  "calisthenicsPushupsAdvancedOneArm": "Advanced One-Arm Pushups",
   "calisthenicsSquatsJackknife": "Jackknife Squats",
   "calisthenicsSquatsAssisted": "Assisted Squats",
   "calisthenicsSquatsHalf": "Half Squats",
   "calisthenicsSquatsFull": "Full Squats",
-  "calisthenicsTier1": "Tier 1",
-  "calisthenicsTier2": "Tier 2",
-  "calisthenicsTier3": "Tier 3",
+  "calisthenicsSquatsNarrow": "Narrow Squats",
+  "calisthenicsSquatsSideStaggered": "Side Staggered Squats",
+  "calisthenicsSquatsFrontStaggered": "Front Staggered Squats",
+  "calisthenicsSquatsAssistedOneLeg": "Assisted One Leg Squats",
+  "calisthenicsSquatsOneLegChair": "One Leg Chair Squats",
+  "calisthenicsSquatsOneLeg": "One Leg Squats",
+  "calisthenicsPullupsWall": "Wall Pullups",
+  "calisthenicsPullupsHorizontal": "Horizontal Pullups",
+  "calisthenicsPullupsAdvancedHorizontal": "Advanced Horizontal Pullups",
+  "calisthenicsPullupsJackknife": "Jackknife Pullups",
+  "calisthenicsPullupsFull": "Full Pullups",
+  "calisthenicsPullupsNarrow": "Narrow Pullups",
+  "calisthenicsPullupsOneHand": "One Hand Pullups",
+  "calisthenicsPullupsAdvancedOneHand": "Advanced One Hand Pullups",
+  "calisthenicsPullupsArcher": "Archer Pullups",
+  "calisthenicsPullupsOneArm": "One Arm Pullups",
+  "calisthenicsLegRaisesKnee": "Knee Raises",
+  "calisthenicsLegRaisesAdvancedKnee": "Advanced Knee Raises",
+  "calisthenicsLegRaisesAlternating": "Alternating Leg Raises",
+  "calisthenicsLegRaisesFull": "Full Leg Raises",
+  "calisthenicsLegRaisesTuckPlow": "Tuck Plow Raises",
+  "calisthenicsLegRaisesPlow": "Plow Raises",
+  "calisthenicsLegRaisesHangingKnee": "Hanging Knee Raises",
+  "calisthenicsLegRaisesAdvancedHangingKnee": "Advanced Hanging Knee Raises",
+  "calisthenicsLegRaisesHanging": "Hanging Leg Raises",
+  "calisthenicsLegRaisesToeToBar": "Toe to Bars",
+  "calisthenicsBridgesGlute": "Glute Bridges",
+  "calisthenicsBridgesStraight": "Straight Bridges",
+  "calisthenicsBridgesWall": "Wall Bridges",
+  "calisthenicsBridgesIncline": "Incline Bridges",
+  "calisthenicsBridgesHead": "Head Bridges",
+  "calisthenicsBridgesFull": "Full Bridges",
+  "calisthenicsBridgesWheel": "Wheel Bridges",
+  "calisthenicsBridgesTap": "Tap Bridges",
+  "calisthenicsBridgesWallWalking": "Wall Walking Bridges",
+  "calisthenicsBridgesStandToStand": "Stand to Stand Bridges",
+  "calisthenicsTwistsStraightLeg": "Straight Leg Twists",
+  "calisthenicsTwistsBentLeg": "Bent Leg Twists",
+  "calisthenicsTwistsFull": "Full Twists",
 
   "sorenessOnsetSameDay": "Same day",
   "sorenessOnsetOneDayAfter": "1 day after",
@@ -137,6 +180,43 @@
   },
   "calisthenicsSectionMentalStateLabel": "Mental State",
   "calisthenicsSectionBodyFeelingLabel": "Body Feeling",
+  "calisthenicsSectionLogIssueToggle": "⚠️ Log an issue with this set",
+  "calisthenicsSectionIssueLoggedConfirmation": "🩹 Issue logged — see it under Injuries & Structural Events.",
+  "calisthenicsSectionGoalReps": "Goal: {sets} sets × {reps} reps",
+  "@calisthenicsSectionGoalReps": {
+    "placeholders": {
+      "sets": {"type": "int"},
+      "reps": {"type": "int"}
+    }
+  },
+  "calisthenicsSectionGoalRepsBothSides": "Goal: {sets} sets × {reps} reps (each side)",
+  "@calisthenicsSectionGoalRepsBothSides": {
+    "placeholders": {
+      "sets": {"type": "int"},
+      "reps": {"type": "int"}
+    }
+  },
+  "calisthenicsSectionGoalHold": "Goal: {sets} holds × {seconds}s",
+  "@calisthenicsSectionGoalHold": {
+    "placeholders": {
+      "sets": {"type": "int"},
+      "seconds": {"type": "int"}
+    }
+  },
+  "calisthenicsSectionGoalHoldBothSides": "Goal: {sets} holds × {seconds}s (each side)",
+  "@calisthenicsSectionGoalHoldBothSides": {
+    "placeholders": {
+      "sets": {"type": "int"},
+      "seconds": {"type": "int"}
+    }
+  },
+  "calisthenicsSectionGoalMetBadge": "🎯 Goal met!",
+  "calisthenicsSectionGoalMilestoneCelebration": "🌟 3 sessions in a row hitting the goal for {exercise} — ready to try the next level whenever you are.",
+  "@calisthenicsSectionGoalMilestoneCelebration": {
+    "placeholders": {
+      "exercise": {"type": "String"}
+    }
+  },
   "calisthenicsSectionLogButton": "Log Calisthenics",
   "calisthenicsSectionMilestoneCelebration": "🎈 3 comfortable sessions in a row for {exercise} — you could try the next tier when you're ready.",
   "@calisthenicsSectionMilestoneCelebration": {
