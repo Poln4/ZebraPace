@@ -85,7 +85,7 @@ class _AppShellState extends ConsumerState<AppShell> {
                     BottomNavigationBarItem(
                         icon: const Icon(CupertinoIcons.chart_bar), label: l10n.appShellTabInsights),
                     BottomNavigationBarItem(
-                        icon: const Icon(CupertinoIcons.rosette),
+                        icon: const Icon(CupertinoIcons.person_3_fill),
                         label: l10n.appShellTabChallenge),
                   ],
                 ),

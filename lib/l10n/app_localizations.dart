@@ -2687,7 +2687,7 @@ abstract class AppLocalizations {
   /// No description provided for @appShellTabChallenge.
   ///
   /// In en, this message translates to:
-  /// **'Challenge'**
+  /// **'Together'**
   String get appShellTabChallenge;
 
   /// No description provided for @appShellTodayButton.
@@ -3377,13 +3377,13 @@ abstract class AppLocalizations {
   /// No description provided for @challengeTabTitle.
   ///
   /// In en, this message translates to:
-  /// **'5% Challenge'**
+  /// **'Our 5% Goal'**
   String get challengeTabTitle;
 
   /// No description provided for @challengeTabSignInPrompt.
   ///
   /// In en, this message translates to:
-  /// **'Sign in with Cloud Sync to join the 5% weight-loss challenge with your friends.'**
+  /// **'Sign in with Cloud Sync to work toward your 5% goal together with your friends.'**
   String get challengeTabSignInPrompt;
 
   /// No description provided for @challengeTabSignInButton.
@@ -3395,19 +3395,19 @@ abstract class AppLocalizations {
   /// No description provided for @challengeTabLoadError.
   ///
   /// In en, this message translates to:
-  /// **'Couldn\'t load the challenge. Check your connection and try again.'**
+  /// **'Couldn\'t load your progress. Check your connection and try again.'**
   String get challengeTabLoadError;
 
   /// No description provided for @challengeTabJoinTitle.
   ///
   /// In en, this message translates to:
-  /// **'🏆 Join the Challenge'**
+  /// **'🤝 Join In'**
   String get challengeTabJoinTitle;
 
   /// No description provided for @challengeTabJoinCaption.
   ///
   /// In en, this message translates to:
-  /// **'Set your starting weight — the goal is -{percent}%.'**
+  /// **'Set your starting weight — together we\'re aiming for -{percent}%.'**
   String challengeTabJoinCaption(String percent);
 
   /// No description provided for @challengeTabNamePlaceholder.
@@ -3425,7 +3425,7 @@ abstract class AppLocalizations {
   /// No description provided for @challengeTabJoinButton.
   ///
   /// In en, this message translates to:
-  /// **'Join the challenge'**
+  /// **'Join in'**
   String get challengeTabJoinButton;
 
   /// No description provided for @challengeTabMyProgressTitle.
@@ -3461,7 +3461,7 @@ abstract class AppLocalizations {
   /// No description provided for @challengeTabLeaderboardTitle.
   ///
   /// In en, this message translates to:
-  /// **'Leaderboard'**
+  /// **'Everyone\'s Progress'**
   String get challengeTabLeaderboardTitle;
 
   /// No description provided for @challengeTabYouLabel.

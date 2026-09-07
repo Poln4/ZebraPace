@@ -742,7 +742,7 @@
   "appShellTabMovement": "Movement",
   "appShellTabInsights": "Insights",
   "appShellTabSettings": "Settings",
-  "appShellTabChallenge": "Challenge",
+  "appShellTabChallenge": "Together",
   "appShellTodayButton": "Today",
   "appShellDoneButton": "Done",
   "injuryBannerActiveLabel": "Active: {zones} — logged in Movement. Separate from Flare Days.",
@@ -954,12 +954,12 @@
   "insightsRangeThirtyDays": "30 days",
   "insightsRangeNinetyDays": "90 days",
 
-  "challengeTabTitle": "5% Challenge",
-  "challengeTabSignInPrompt": "Sign in with Cloud Sync to join the 5% weight-loss challenge with your friends.",
+  "challengeTabTitle": "Our 5% Goal",
+  "challengeTabSignInPrompt": "Sign in with Cloud Sync to work toward your 5% goal together with your friends.",
   "challengeTabSignInButton": "Sign in",
-  "challengeTabLoadError": "Couldn't load the challenge. Check your connection and try again.",
-  "challengeTabJoinTitle": "🏆 Join the Challenge",
-  "challengeTabJoinCaption": "Set your starting weight — the goal is -{percent}%.",
+  "challengeTabLoadError": "Couldn't load your progress. Check your connection and try again.",
+  "challengeTabJoinTitle": "🤝 Join In",
+  "challengeTabJoinCaption": "Set your starting weight — together we're aiming for -{percent}%.",
   "@challengeTabJoinCaption": {
     "placeholders": {
       "percent": {"type": "String"}
@@ -967,7 +967,7 @@
   },
   "challengeTabNamePlaceholder": "Your name",
   "challengeTabStartWeightPlaceholder": "Starting weight (kg)",
-  "challengeTabJoinButton": "Join the challenge",
+  "challengeTabJoinButton": "Join in",
   "challengeTabMyProgressTitle": "My Progress",
   "challengeTabMyProgressCaption": "You're at {percent} so far.",
   "@challengeTabMyProgressCaption": {
@@ -978,7 +978,7 @@
   "challengeTabCurrentWeightPlaceholder": "Current weight (kg)",
   "challengeTabCurrentWeightAverageHint": "Calculated from your last 14 days of resting-day weigh-ins, outliers trimmed — you can edit it.",
   "challengeTabUpdateWeightButton": "Update my weight",
-  "challengeTabLeaderboardTitle": "Leaderboard",
+  "challengeTabLeaderboardTitle": "Everyone's Progress",
   "challengeTabYouLabel": "{name} (you)",
   "@challengeTabYouLabel": {
     "placeholders": {

@@ -1526,7 +1526,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appShellTabSettings => 'Settings';
 
   @override
-  String get appShellTabChallenge => 'Challenge';
+  String get appShellTabChallenge => 'Together';
 
   @override
   String get appShellTodayButton => 'Today';
@@ -1933,25 +1933,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get insightsRangeNinetyDays => '90 days';
 
   @override
-  String get challengeTabTitle => '5% Challenge';
+  String get challengeTabTitle => 'Our 5% Goal';
 
   @override
   String get challengeTabSignInPrompt =>
-      'Sign in with Cloud Sync to join the 5% weight-loss challenge with your friends.';
+      'Sign in with Cloud Sync to work toward your 5% goal together with your friends.';
 
   @override
   String get challengeTabSignInButton => 'Sign in';
 
   @override
   String get challengeTabLoadError =>
-      'Couldn\'t load the challenge. Check your connection and try again.';
+      'Couldn\'t load your progress. Check your connection and try again.';
 
   @override
-  String get challengeTabJoinTitle => '🏆 Join the Challenge';
+  String get challengeTabJoinTitle => '🤝 Join In';
 
   @override
   String challengeTabJoinCaption(String percent) {
-    return 'Set your starting weight — the goal is -$percent%.';
+    return 'Set your starting weight — together we\'re aiming for -$percent%.';
   }
 
   @override
@@ -1961,7 +1961,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get challengeTabStartWeightPlaceholder => 'Starting weight (kg)';
 
   @override
-  String get challengeTabJoinButton => 'Join the challenge';
+  String get challengeTabJoinButton => 'Join in';
 
   @override
   String get challengeTabMyProgressTitle => 'My Progress';
@@ -1982,7 +1982,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get challengeTabUpdateWeightButton => 'Update my weight';
 
   @override
-  String get challengeTabLeaderboardTitle => 'Leaderboard';
+  String get challengeTabLeaderboardTitle => 'Everyone\'s Progress';
 
   @override
   String challengeTabYouLabel(String name) {

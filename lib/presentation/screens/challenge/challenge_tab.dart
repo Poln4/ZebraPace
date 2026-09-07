@@ -51,7 +51,7 @@ class _SignInPrompt extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text('🏆', style: TextStyle(fontSize: 40)),
+            const Text('🤝', style: TextStyle(fontSize: 40)),
             const SizedBox(height: 12),
             Text(
               l10n.challengeTabSignInPrompt,

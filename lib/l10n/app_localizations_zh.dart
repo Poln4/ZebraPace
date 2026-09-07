@@ -1439,7 +1439,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get appShellTabSettings => '設定';
 
   @override
-  String get appShellTabChallenge => '挑戰';
+  String get appShellTabChallenge => '一起';
 
   @override
   String get appShellTodayButton => '今天';
@@ -1827,23 +1827,23 @@ class AppLocalizationsZh extends AppLocalizations {
   String get insightsRangeNinetyDays => '90 天';
 
   @override
-  String get challengeTabTitle => '5% 挑戰';
+  String get challengeTabTitle => '我們的 5% 目標';
 
   @override
-  String get challengeTabSignInPrompt => '透過雲端同步登入，與朋友一起加入減重 5% 的挑戰。';
+  String get challengeTabSignInPrompt => '透過雲端同步登入，與朋友一起邁向減重 5% 的目標。';
 
   @override
   String get challengeTabSignInButton => '登入';
 
   @override
-  String get challengeTabLoadError => '無法載入挑戰資料，請檢查網路連線後再試一次。';
+  String get challengeTabLoadError => '無法載入進度資料，請檢查網路連線後再試一次。';
 
   @override
-  String get challengeTabJoinTitle => '🏆 加入挑戰';
+  String get challengeTabJoinTitle => '🤝 加入';
 
   @override
   String challengeTabJoinCaption(String percent) {
-    return '設定你的起始體重 — 目標是減少 $percent%。';
+    return '設定你的起始體重 — 我們一起朝減少 $percent% 努力。';
   }
 
   @override
@@ -1853,7 +1853,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get challengeTabStartWeightPlaceholder => '起始體重（公斤）';
 
   @override
-  String get challengeTabJoinButton => '加入挑戰';
+  String get challengeTabJoinButton => '加入';
 
   @override
   String get challengeTabMyProgressTitle => '我的進度';
@@ -1874,7 +1874,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get challengeTabUpdateWeightButton => '更新我的體重';
 
   @override
-  String get challengeTabLeaderboardTitle => '排行榜';
+  String get challengeTabLeaderboardTitle => '大家的進度';
 
   @override
   String challengeTabYouLabel(String name) {
@@ -3316,7 +3316,7 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get appShellTabSettings => '設定';
 
   @override
-  String get appShellTabChallenge => '挑戰';
+  String get appShellTabChallenge => '一起';
 
   @override
   String get appShellTodayButton => '今天';
@@ -3704,23 +3704,23 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get insightsRangeNinetyDays => '90 天';
 
   @override
-  String get challengeTabTitle => '5% 挑戰';
+  String get challengeTabTitle => '我們的 5% 目標';
 
   @override
-  String get challengeTabSignInPrompt => '透過雲端同步登入，與朋友一起加入減重 5% 的挑戰。';
+  String get challengeTabSignInPrompt => '透過雲端同步登入，與朋友一起邁向減重 5% 的目標。';
 
   @override
   String get challengeTabSignInButton => '登入';
 
   @override
-  String get challengeTabLoadError => '無法載入挑戰資料，請檢查網路連線後再試一次。';
+  String get challengeTabLoadError => '無法載入進度資料，請檢查網路連線後再試一次。';
 
   @override
-  String get challengeTabJoinTitle => '🏆 加入挑戰';
+  String get challengeTabJoinTitle => '🤝 加入';
 
   @override
   String challengeTabJoinCaption(String percent) {
-    return '設定你的起始體重 — 目標是減少 $percent%。';
+    return '設定你的起始體重 — 我們一起朝減少 $percent% 努力。';
   }
 
   @override
@@ -3730,7 +3730,7 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get challengeTabStartWeightPlaceholder => '起始體重（公斤）';
 
   @override
-  String get challengeTabJoinButton => '加入挑戰';
+  String get challengeTabJoinButton => '加入';
 
   @override
   String get challengeTabMyProgressTitle => '我的進度';
@@ -3751,7 +3751,7 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get challengeTabUpdateWeightButton => '更新我的體重';
 
   @override
-  String get challengeTabLeaderboardTitle => '排行榜';
+  String get challengeTabLeaderboardTitle => '大家的進度';
 
   @override
   String challengeTabYouLabel(String name) {
