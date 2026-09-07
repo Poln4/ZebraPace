@@ -1524,6 +1524,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get bodyMetricsSectionSaveButton => '儲存身體數據';
 
   @override
+  String get insightsTabBodyMetricsTitle => '⚖️ 體重與身體組成';
+
+  @override
+  String get bodyMetricsChartEmptyState => '這段期間沒有體重或體脂記錄。';
+
+  @override
   String get sleepQualityPoor => '很差';
 
   @override
@@ -3335,6 +3341,12 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get bodyMetricsSectionSaveButton => '儲存身體數據';
+
+  @override
+  String get insightsTabBodyMetricsTitle => '⚖️ 體重與身體組成';
+
+  @override
+  String get bodyMetricsChartEmptyState => '這段期間沒有體重或體脂記錄。';
 
   @override
   String get sleepQualityPoor => '很差';

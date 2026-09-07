@@ -1640,6 +1640,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get bodyMetricsSectionSaveButton => 'Guardar métricas corporales';
 
   @override
+  String get insightsTabBodyMetricsTitle => '⚖️ Peso y composición corporal';
+
+  @override
+  String get bodyMetricsChartEmptyState =>
+      'No hay registros de peso o grasa corporal en este rango.';
+
+  @override
   String get sleepQualityPoor => 'Mala';
 
   @override

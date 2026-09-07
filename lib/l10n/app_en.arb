@@ -784,6 +784,8 @@
   "bodyMetricsSectionHeightPlaceholder": "Height (cm)",
   "bodyMetricsSectionBodyFatPlaceholder": "Body fat %",
   "bodyMetricsSectionSaveButton": "Save Body Metrics",
+  "insightsTabBodyMetricsTitle": "⚖️ Weight & Body Composition",
+  "bodyMetricsChartEmptyState": "No weight or body-fat entries in range.",
 
   "sleepQualityPoor": "Poor",
   "sleepQualityRestless": "Restless",

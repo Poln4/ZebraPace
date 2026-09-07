@@ -2840,6 +2840,18 @@ abstract class AppLocalizations {
   /// **'Save Body Metrics'**
   String get bodyMetricsSectionSaveButton;
 
+  /// No description provided for @insightsTabBodyMetricsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'⚖️ Weight & Body Composition'**
+  String get insightsTabBodyMetricsTitle;
+
+  /// No description provided for @bodyMetricsChartEmptyState.
+  ///
+  /// In en, this message translates to:
+  /// **'No weight or body-fat entries in range.'**
+  String get bodyMetricsChartEmptyState;
+
   /// No description provided for @sleepQualityPoor.
   ///
   /// In en, this message translates to:

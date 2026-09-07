@@ -527,6 +527,8 @@
   "bodyMetricsSectionHeightPlaceholder": "身高（公分）",
   "bodyMetricsSectionBodyFatPlaceholder": "體脂率 %",
   "bodyMetricsSectionSaveButton": "儲存身體數據",
+  "insightsTabBodyMetricsTitle": "⚖️ 體重與身體組成",
+  "bodyMetricsChartEmptyState": "這段期間沒有體重或體脂記錄。",
 
   "sleepQualityPoor": "很差",
   "sleepQualityRestless": "不安穩",

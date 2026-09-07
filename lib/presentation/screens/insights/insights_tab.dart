@@ -8,6 +8,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../providers/app_providers.dart';
 import '../../widgets/section_card.dart';
 import '../../widgets/stripe_track.dart';
+import 'widgets/body_metrics_chart.dart';
 import 'widgets/calisthenics_comfort_chart.dart';
 import 'widgets/checkin_consistency_strip.dart';
 import 'widgets/chart_day_markers.dart';
@@ -120,6 +121,10 @@ class InsightsTab extends ConsumerWidget {
                     SectionCard(
                       title: l10n.insightsTabCheckinConsistencyTitle,
                       child: CheckinConsistencyStrip(logs: logs, dates: dates),
+                    ),
+                    SectionCard(
+                      title: l10n.insightsTabBodyMetricsTitle,
+                      child: BodyMetricsChart(logs: logs),
                     ),
                     const _CalisthenicsComfortSection(),
                     const _PemSection(),

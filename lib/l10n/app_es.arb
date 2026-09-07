@@ -527,6 +527,8 @@
   "bodyMetricsSectionHeightPlaceholder": "Altura (cm)",
   "bodyMetricsSectionBodyFatPlaceholder": "% de grasa corporal",
   "bodyMetricsSectionSaveButton": "Guardar métricas corporales",
+  "insightsTabBodyMetricsTitle": "⚖️ Peso y composición corporal",
+  "bodyMetricsChartEmptyState": "No hay registros de peso o grasa corporal en este rango.",
 
   "sleepQualityPoor": "Mala",
   "sleepQualityRestless": "Intranquila",

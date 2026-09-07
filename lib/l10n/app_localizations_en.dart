@@ -1614,6 +1614,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bodyMetricsSectionSaveButton => 'Save Body Metrics';
 
   @override
+  String get insightsTabBodyMetricsTitle => '⚖️ Weight & Body Composition';
+
+  @override
+  String get bodyMetricsChartEmptyState =>
+      'No weight or body-fat entries in range.';
+
+  @override
   String get sleepQualityPoor => 'Poor';
 
   @override
