@@ -1,11 +1,14 @@
 [build]
-  # Netlify's build image has no Flutter SDK by default and doesn't persist
-  # one between builds — the previous version of this command assumed a
-  # `flutter/` folder already existed, which only worked as long as
-  # something else (build cache, a plugin) happened to provide one; once
-  # that was gone the build failed outright. Installing fresh each build is
-  # slower but self-contained and doesn't depend on anything outside this repo.
-  command = "git clone https://github.com/flutter/flutter.git --depth 1 -b stable && flutter/bin/flutter config --enable-web && flutter/bin/flutter pub get && flutter/bin/flutter build web --release"
+  # Netlify actually does persist the working directory between builds on
+  # this repo — confirmed by a failed deploy hitting "destination path
+  # 'flutter' already exists" on a fresh `git clone`. That leftover `flutter/`
+  # was a stale checkout from the very first deploy (months old, predating
+  # supabase_flutter and other recent dependency additions), which is the
+  # real reason a plain `flutter build web` started failing to compile: an
+  # SDK too old for what the app now depends on. `rm -rf` first guarantees a
+  # clean, current `stable` checkout every time regardless of what's left
+  # over from a previous build.
+  command = "rm -rf flutter && git clone https://github.com/flutter/flutter.git --depth 1 -b stable && flutter/bin/flutter config --enable-web && flutter/bin/flutter pub get && flutter/bin/flutter build web --release"
   publish = "build/web"
 
 [[redirects]]
