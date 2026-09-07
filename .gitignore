@@ -50,4 +50,4 @@ app.*.map.json
 # Streamlit / Python original app
 .streamlit/secrets.toml
 *.db
-data/
+/data/
