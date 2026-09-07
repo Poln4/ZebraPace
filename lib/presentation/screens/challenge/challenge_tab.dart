@@ -90,7 +90,23 @@ class _ChallengeBody extends ConsumerWidget {
       error: (error, _) => Center(
         child: Padding(
           padding: const EdgeInsets.all(24),
-          child: Text(l10n.challengeTabLoadError, textAlign: TextAlign.center),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(l10n.challengeTabLoadError, textAlign: TextAlign.center),
+              const SizedBox(height: 8),
+              // The generic message above covers every failure mode the
+              // same way (missing table, RLS denial, a real network drop),
+              // which makes them impossible to tell apart from the outside.
+              // Showing the raw error trades a little polish for actually
+              // being debuggable.
+              Text(
+                error.toString(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 11, color: CupertinoColors.systemGrey),
+              ),
+            ],
+          ),
         ),
       ),
       data: (entries) {

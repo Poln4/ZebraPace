@@ -62,41 +62,63 @@ class _AppShellState extends ConsumerState<AppShell> {
             const _RestFlareRow(),
             const InjuryBanner(),
             Expanded(
-              child: CupertinoTabScaffold(
-                // Taller than the ~50px default for a more prominent tap
-                // target/label. The actual home-indicator clearance below it
-                // comes from the outer SafeArea already wrapping this whole
-                // Column — that only has a nonzero bottom inset to apply once
-                // the browser reports one, which needs web/index.html's
-                // viewport-fit=cover (a home-screen PWA has no browser chrome
-                // to provide clearance on its own, so without that meta tag
-                // this bar sits flush against the device's home-indicator
-                // area with zero breathing room).
-                tabBar: CupertinoTabBar(
-                  height: 60,
-                  backgroundColor: ZebraColors.paper,
-                  activeColor: ZebraColors.brandTeal,
-                  inactiveColor: CupertinoColors.systemGrey,
-                  items: [
-                    BottomNavigationBarItem(
-                        icon: const Icon(CupertinoIcons.drop), label: l10n.appShellTabVitals),
-                    BottomNavigationBarItem(
-                        icon: const Icon(CupertinoIcons.flame), label: l10n.appShellTabMovement),
-                    BottomNavigationBarItem(
-                        icon: const Icon(CupertinoIcons.chart_bar), label: l10n.appShellTabInsights),
-                    BottomNavigationBarItem(
-                        icon: const Icon(CupertinoIcons.person_3_fill),
-                        label: l10n.appShellTabChallenge),
-                  ],
-                ),
-                tabBuilder: (context, index) {
-                  final page = switch (index) {
-                    0 => const VitalsTab(),
-                    1 => const MovementTab(),
-                    2 => const InsightsTab(),
-                    _ => const ChallengeTab(),
-                  };
-                  return CupertinoTabView(builder: (context) => page);
+              // CupertinoTabBar reserves its own bottom clearance from
+              // MediaQuery.viewPaddingOf(context).bottom directly — it does
+              // NOT go through the outer SafeArea above (SafeArea only
+              // touches MediaQuery.padding, not viewPadding), so wrapping
+              // this whole screen in SafeArea never affected the tab bar at
+              // all. The real problem: even with web/index.html's
+              // viewport-fit=cover, this browser (an iOS home-screen
+              // standalone PWA) still reports 0 for that inset — a known
+              // rough edge in how Flutter Web surfaces
+              // env(safe-area-inset-bottom) — so the bar had zero clearance
+              // and sat under the home-indicator area. Forcing a floor here
+              // (34, Apple's own standard home-indicator height) guarantees
+              // real clearance regardless of what the browser reports; a
+              // device that *does* report a larger value still wins via the
+              // comparison below.
+              child: Builder(
+                builder: (context) {
+                  final mediaQuery = MediaQuery.of(context);
+                  final floorBottom = mediaQuery.viewPadding.bottom < 34.0
+                      ? 34.0
+                      : mediaQuery.viewPadding.bottom;
+                  return MediaQuery(
+                    data: mediaQuery.copyWith(
+                      viewPadding: mediaQuery.viewPadding.copyWith(bottom: floorBottom),
+                    ),
+                    child: CupertinoTabScaffold(
+                      tabBar: CupertinoTabBar(
+                        height: 60,
+                        backgroundColor: ZebraColors.paper,
+                        activeColor: ZebraColors.brandTeal,
+                        inactiveColor: CupertinoColors.systemGrey,
+                        items: [
+                          BottomNavigationBarItem(
+                              icon: const Icon(CupertinoIcons.drop),
+                              label: l10n.appShellTabVitals),
+                          BottomNavigationBarItem(
+                              icon: const Icon(CupertinoIcons.flame),
+                              label: l10n.appShellTabMovement),
+                          BottomNavigationBarItem(
+                              icon: const Icon(CupertinoIcons.chart_bar),
+                              label: l10n.appShellTabInsights),
+                          BottomNavigationBarItem(
+                              icon: const Icon(CupertinoIcons.person_3_fill),
+                              label: l10n.appShellTabChallenge),
+                        ],
+                      ),
+                      tabBuilder: (context, index) {
+                        final page = switch (index) {
+                          0 => const VitalsTab(),
+                          1 => const MovementTab(),
+                          2 => const InsightsTab(),
+                          _ => const ChallengeTab(),
+                        };
+                        return CupertinoTabView(builder: (context) => page);
+                      },
+                    ),
+                  );
                 },
               ),
             ),
