@@ -8,6 +8,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../providers/app_providers.dart';
 import '../../../providers/cloud_sync_providers.dart';
 import '../../../providers/text_scale_providers.dart';
+import '../challenge/challenge_tab.dart';
 import '../insights/insights_tab.dart';
 import '../movement/movement_tab.dart';
 import '../settings/settings_tab.dart';
@@ -62,7 +63,17 @@ class _AppShellState extends ConsumerState<AppShell> {
             const InjuryBanner(),
             Expanded(
               child: CupertinoTabScaffold(
+                // Taller than the ~50px default for a more prominent tap
+                // target/label. The actual home-indicator clearance below it
+                // comes from the outer SafeArea already wrapping this whole
+                // Column — that only has a nonzero bottom inset to apply once
+                // the browser reports one, which needs web/index.html's
+                // viewport-fit=cover (a home-screen PWA has no browser chrome
+                // to provide clearance on its own, so without that meta tag
+                // this bar sits flush against the device's home-indicator
+                // area with zero breathing room).
                 tabBar: CupertinoTabBar(
+                  height: 60,
                   backgroundColor: ZebraColors.paper,
                   activeColor: ZebraColors.brandTeal,
                   inactiveColor: CupertinoColors.systemGrey,
@@ -73,13 +84,17 @@ class _AppShellState extends ConsumerState<AppShell> {
                         icon: const Icon(CupertinoIcons.flame), label: l10n.appShellTabMovement),
                     BottomNavigationBarItem(
                         icon: const Icon(CupertinoIcons.chart_bar), label: l10n.appShellTabInsights),
+                    BottomNavigationBarItem(
+                        icon: const Icon(CupertinoIcons.rosette),
+                        label: l10n.appShellTabChallenge),
                   ],
                 ),
                 tabBuilder: (context, index) {
                   final page = switch (index) {
                     0 => const VitalsTab(),
                     1 => const MovementTab(),
-                    _ => const InsightsTab(),
+                    2 => const InsightsTab(),
+                    _ => const ChallengeTab(),
                   };
                   return CupertinoTabView(builder: (context) => page);
                 },

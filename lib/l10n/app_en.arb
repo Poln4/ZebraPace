@@ -742,6 +742,7 @@
   "appShellTabMovement": "Movement",
   "appShellTabInsights": "Insights",
   "appShellTabSettings": "Settings",
+  "appShellTabChallenge": "Challenge",
   "appShellTodayButton": "Today",
   "appShellDoneButton": "Done",
   "injuryBannerActiveLabel": "Active: {zones} — logged in Movement. Separate from Flare Days.",
@@ -951,5 +952,37 @@
 
   "insightsRangeFourteenDays": "14 days",
   "insightsRangeThirtyDays": "30 days",
-  "insightsRangeNinetyDays": "90 days"
+  "insightsRangeNinetyDays": "90 days",
+
+  "challengeTabTitle": "5% Challenge",
+  "challengeTabSignInPrompt": "Sign in with Cloud Sync to join the 5% weight-loss challenge with your friends.",
+  "challengeTabSignInButton": "Sign in",
+  "challengeTabLoadError": "Couldn't load the challenge. Check your connection and try again.",
+  "challengeTabJoinTitle": "🏆 Join the Challenge",
+  "challengeTabJoinCaption": "Set your starting weight — the goal is -{percent}%.",
+  "@challengeTabJoinCaption": {
+    "placeholders": {
+      "percent": {"type": "String"}
+    }
+  },
+  "challengeTabNamePlaceholder": "Your name",
+  "challengeTabStartWeightPlaceholder": "Starting weight (kg)",
+  "challengeTabJoinButton": "Join the challenge",
+  "challengeTabMyProgressTitle": "My Progress",
+  "challengeTabMyProgressCaption": "You're at {percent} so far.",
+  "@challengeTabMyProgressCaption": {
+    "placeholders": {
+      "percent": {"type": "String"}
+    }
+  },
+  "challengeTabCurrentWeightPlaceholder": "Current weight (kg)",
+  "challengeTabCurrentWeightAverageHint": "Calculated from your last 14 days of resting-day weigh-ins, outliers trimmed — you can edit it.",
+  "challengeTabUpdateWeightButton": "Update my weight",
+  "challengeTabLeaderboardTitle": "Leaderboard",
+  "challengeTabYouLabel": "{name} (you)",
+  "@challengeTabYouLabel": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  }
 }

@@ -18,11 +18,20 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <!-- viewport-fit=cover is what lets the browser expose
+       env(safe-area-inset-*)/MediaQuery.padding to Flutter at all when
+       installed as a standalone home-screen app (no browser chrome to
+       provide clearance around the notch/home-indicator on its own) —
+       without it the bottom tab bar has no way to know a safe area exists. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="ZebraPace — a gentle, pacing-focused health tracker for EDS, PEM, and Dysautonomia.">
   <meta name="theme-color" content="#F6EFE3">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
+  <!-- Legacy key, but still required by iOS Safari for true standalone
+       (no address bar) launch when added to the home screen. -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="ZebraPace">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">

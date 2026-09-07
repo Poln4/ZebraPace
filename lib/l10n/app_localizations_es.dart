@@ -1552,6 +1552,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get appShellTabSettings => 'Ajustes';
 
   @override
+  String get appShellTabChallenge => 'Reto';
+
+  @override
   String get appShellTodayButton => 'Hoy';
 
   @override
@@ -1960,4 +1963,61 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get insightsRangeNinetyDays => '90 días';
+
+  @override
+  String get challengeTabTitle => 'Reto del 5%';
+
+  @override
+  String get challengeTabSignInPrompt =>
+      'Inicia sesión con Sincronización en la Nube para unirte al reto de perder el 5% de peso con tus amigos.';
+
+  @override
+  String get challengeTabSignInButton => 'Iniciar sesión';
+
+  @override
+  String get challengeTabLoadError =>
+      'No se pudo cargar el reto. Revisa tu conexión e inténtalo de nuevo.';
+
+  @override
+  String get challengeTabJoinTitle => '🏆 Únete al Reto';
+
+  @override
+  String challengeTabJoinCaption(String percent) {
+    return 'Indica tu peso inicial — la meta es -$percent%.';
+  }
+
+  @override
+  String get challengeTabNamePlaceholder => 'Tu nombre';
+
+  @override
+  String get challengeTabStartWeightPlaceholder => 'Peso inicial (kg)';
+
+  @override
+  String get challengeTabJoinButton => 'Unirme al reto';
+
+  @override
+  String get challengeTabMyProgressTitle => 'Mi Progreso';
+
+  @override
+  String challengeTabMyProgressCaption(String percent) {
+    return 'Vas al $percent hasta ahora.';
+  }
+
+  @override
+  String get challengeTabCurrentWeightPlaceholder => 'Peso actual (kg)';
+
+  @override
+  String get challengeTabCurrentWeightAverageHint =>
+      'Calculado con tus últimos 14 días de pesajes en días de descanso, sin los valores extremos — puedes editarlo.';
+
+  @override
+  String get challengeTabUpdateWeightButton => 'Actualizar mi peso';
+
+  @override
+  String get challengeTabLeaderboardTitle => 'Clasificación';
+
+  @override
+  String challengeTabYouLabel(String name) {
+    return '$name (tú)';
+  }
 }

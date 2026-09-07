@@ -500,6 +500,7 @@
   "appShellTabMovement": "活動",
   "appShellTabInsights": "洞察",
   "appShellTabSettings": "設定",
+  "appShellTabChallenge": "挑戰",
   "appShellTodayButton": "今天",
   "appShellDoneButton": "完成",
   "injuryBannerActiveLabel": "進行中：{zones}——已記錄於「活動」。與發作日不同。",
@@ -619,5 +620,22 @@
   "metsSummaryWidgetActiveEnergyValue": "{value} 大卡",
   "insightsRangeFourteenDays": "14 天",
   "insightsRangeThirtyDays": "30 天",
-  "insightsRangeNinetyDays": "90 天"
+  "insightsRangeNinetyDays": "90 天",
+
+  "challengeTabTitle": "5% 挑戰",
+  "challengeTabSignInPrompt": "透過雲端同步登入，與朋友一起加入減重 5% 的挑戰。",
+  "challengeTabSignInButton": "登入",
+  "challengeTabLoadError": "無法載入挑戰資料，請檢查網路連線後再試一次。",
+  "challengeTabJoinTitle": "🏆 加入挑戰",
+  "challengeTabJoinCaption": "設定你的起始體重 — 目標是減少 {percent}%。",
+  "challengeTabNamePlaceholder": "你的名字",
+  "challengeTabStartWeightPlaceholder": "起始體重（公斤）",
+  "challengeTabJoinButton": "加入挑戰",
+  "challengeTabMyProgressTitle": "我的進度",
+  "challengeTabMyProgressCaption": "目前進度：{percent}。",
+  "challengeTabCurrentWeightPlaceholder": "目前體重（公斤）",
+  "challengeTabCurrentWeightAverageHint": "根據你過去 14 天休息日的體重紀錄計算（已排除極端值），你可以自行修改。",
+  "challengeTabUpdateWeightButton": "更新我的體重",
+  "challengeTabLeaderboardTitle": "排行榜",
+  "challengeTabYouLabel": "{name}（你）"
 }

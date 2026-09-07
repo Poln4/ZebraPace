@@ -500,6 +500,7 @@
   "appShellTabMovement": "Movimiento",
   "appShellTabInsights": "Estadísticas",
   "appShellTabSettings": "Ajustes",
+  "appShellTabChallenge": "Reto",
   "appShellTodayButton": "Hoy",
   "appShellDoneButton": "Listo",
   "injuryBannerActiveLabel": "Activas: {zones} — registradas en Movimiento. Distintas de los Días de Brote.",
@@ -619,5 +620,22 @@
   "metsSummaryWidgetActiveEnergyValue": "{value} kcal",
   "insightsRangeFourteenDays": "14 días",
   "insightsRangeThirtyDays": "30 días",
-  "insightsRangeNinetyDays": "90 días"
+  "insightsRangeNinetyDays": "90 días",
+
+  "challengeTabTitle": "Reto del 5%",
+  "challengeTabSignInPrompt": "Inicia sesión con Sincronización en la Nube para unirte al reto de perder el 5% de peso con tus amigos.",
+  "challengeTabSignInButton": "Iniciar sesión",
+  "challengeTabLoadError": "No se pudo cargar el reto. Revisa tu conexión e inténtalo de nuevo.",
+  "challengeTabJoinTitle": "🏆 Únete al Reto",
+  "challengeTabJoinCaption": "Indica tu peso inicial — la meta es -{percent}%.",
+  "challengeTabNamePlaceholder": "Tu nombre",
+  "challengeTabStartWeightPlaceholder": "Peso inicial (kg)",
+  "challengeTabJoinButton": "Unirme al reto",
+  "challengeTabMyProgressTitle": "Mi Progreso",
+  "challengeTabMyProgressCaption": "Vas al {percent} hasta ahora.",
+  "challengeTabCurrentWeightPlaceholder": "Peso actual (kg)",
+  "challengeTabCurrentWeightAverageHint": "Calculado con tus últimos 14 días de pesajes en días de descanso, sin los valores extremos — puedes editarlo.",
+  "challengeTabUpdateWeightButton": "Actualizar mi peso",
+  "challengeTabLeaderboardTitle": "Clasificación",
+  "challengeTabYouLabel": "{name} (tú)"
 }

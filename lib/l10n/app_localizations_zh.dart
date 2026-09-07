@@ -1439,6 +1439,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get appShellTabSettings => '設定';
 
   @override
+  String get appShellTabChallenge => '挑戰';
+
+  @override
   String get appShellTodayButton => '今天';
 
   @override
@@ -1822,6 +1825,61 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get insightsRangeNinetyDays => '90 天';
+
+  @override
+  String get challengeTabTitle => '5% 挑戰';
+
+  @override
+  String get challengeTabSignInPrompt => '透過雲端同步登入，與朋友一起加入減重 5% 的挑戰。';
+
+  @override
+  String get challengeTabSignInButton => '登入';
+
+  @override
+  String get challengeTabLoadError => '無法載入挑戰資料，請檢查網路連線後再試一次。';
+
+  @override
+  String get challengeTabJoinTitle => '🏆 加入挑戰';
+
+  @override
+  String challengeTabJoinCaption(String percent) {
+    return '設定你的起始體重 — 目標是減少 $percent%。';
+  }
+
+  @override
+  String get challengeTabNamePlaceholder => '你的名字';
+
+  @override
+  String get challengeTabStartWeightPlaceholder => '起始體重（公斤）';
+
+  @override
+  String get challengeTabJoinButton => '加入挑戰';
+
+  @override
+  String get challengeTabMyProgressTitle => '我的進度';
+
+  @override
+  String challengeTabMyProgressCaption(String percent) {
+    return '目前進度：$percent。';
+  }
+
+  @override
+  String get challengeTabCurrentWeightPlaceholder => '目前體重（公斤）';
+
+  @override
+  String get challengeTabCurrentWeightAverageHint =>
+      '根據你過去 14 天休息日的體重紀錄計算（已排除極端值），你可以自行修改。';
+
+  @override
+  String get challengeTabUpdateWeightButton => '更新我的體重';
+
+  @override
+  String get challengeTabLeaderboardTitle => '排行榜';
+
+  @override
+  String challengeTabYouLabel(String name) {
+    return '$name（你）';
+  }
 }
 
 /// The translations for Chinese, as used in Taiwan (`zh_TW`).
@@ -3258,6 +3316,9 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get appShellTabSettings => '設定';
 
   @override
+  String get appShellTabChallenge => '挑戰';
+
+  @override
   String get appShellTodayButton => '今天';
 
   @override
@@ -3641,4 +3702,59 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get insightsRangeNinetyDays => '90 天';
+
+  @override
+  String get challengeTabTitle => '5% 挑戰';
+
+  @override
+  String get challengeTabSignInPrompt => '透過雲端同步登入，與朋友一起加入減重 5% 的挑戰。';
+
+  @override
+  String get challengeTabSignInButton => '登入';
+
+  @override
+  String get challengeTabLoadError => '無法載入挑戰資料，請檢查網路連線後再試一次。';
+
+  @override
+  String get challengeTabJoinTitle => '🏆 加入挑戰';
+
+  @override
+  String challengeTabJoinCaption(String percent) {
+    return '設定你的起始體重 — 目標是減少 $percent%。';
+  }
+
+  @override
+  String get challengeTabNamePlaceholder => '你的名字';
+
+  @override
+  String get challengeTabStartWeightPlaceholder => '起始體重（公斤）';
+
+  @override
+  String get challengeTabJoinButton => '加入挑戰';
+
+  @override
+  String get challengeTabMyProgressTitle => '我的進度';
+
+  @override
+  String challengeTabMyProgressCaption(String percent) {
+    return '目前進度：$percent。';
+  }
+
+  @override
+  String get challengeTabCurrentWeightPlaceholder => '目前體重（公斤）';
+
+  @override
+  String get challengeTabCurrentWeightAverageHint =>
+      '根據你過去 14 天休息日的體重紀錄計算（已排除極端值），你可以自行修改。';
+
+  @override
+  String get challengeTabUpdateWeightButton => '更新我的體重';
+
+  @override
+  String get challengeTabLeaderboardTitle => '排行榜';
+
+  @override
+  String challengeTabYouLabel(String name) {
+    return '$name（你）';
+  }
 }

@@ -20,6 +20,13 @@ class DefaultSettings {
   static const textScaleFactor = 1.0;
 }
 
+class WeightChallengeDefaults {
+  WeightChallengeDefaults._();
+
+  /// The shared goal: lose 5% of starting bodyweight.
+  static const targetPercent = 5.0;
+}
+
 class SettingsKeys {
   SettingsKeys._();
 

@@ -30,6 +30,7 @@ import '../domain/services/sleep_energy_service.dart';
 import '../domain/services/soreness_check_service.dart';
 import '../domain/services/stripe_service.dart';
 import '../domain/services/weather_service.dart';
+import '../domain/services/weight_challenge_progress_service.dart';
 
 // --- Database (single instance for the app's lifetime) ---
 
@@ -122,6 +123,9 @@ final metsEstimationServiceProvider = Provider<MetsEstimationService>(
 );
 final metsSummaryServiceProvider = Provider<MetsSummaryService>(
   (ref) => MetsSummaryService(),
+);
+final weightChallengeProgressServiceProvider = Provider<WeightChallengeProgressService>(
+  (ref) => WeightChallengeProgressService(ref.watch(dailyLogRepositoryProvider)),
 );
 
 // --- HealthKit (Phase 3) ---
