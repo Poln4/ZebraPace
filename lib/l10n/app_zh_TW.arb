@@ -452,7 +452,10 @@
   "settingsTabCloudSyncCaption": "登入以在裝置間同步你的資料。目前尚未同步任何內容——這只是連接你的帳戶。",
   "settingsTabCloudSyncEmailPlaceholder": "電子郵件地址",
   "settingsTabCloudSyncSendLinkButton": "傳送登入連結",
-  "settingsTabCloudSyncLinkSent": "請查看你的電子郵件以取得登入連結。",
+  "settingsTabCloudSyncLinkSent": "請查看你的電子郵件 — 點擊連結，或在下方輸入 6 位數驗證碼（如果你是從主畫面開啟這個 App，建議使用驗證碼）。",
+  "settingsTabCloudSyncCodeLabel": "或輸入電子郵件中的驗證碼",
+  "settingsTabCloudSyncCodePlaceholder": "6 位數驗證碼",
+  "settingsTabCloudSyncVerifyCodeButton": "驗證",
   "settingsTabCloudSyncSignedInAs": "已登入：{email}",
   "@settingsTabCloudSyncSignedInAs": {
     "placeholders": {

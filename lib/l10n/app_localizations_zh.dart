@@ -1336,7 +1336,17 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsTabCloudSyncSendLinkButton => '傳送登入連結';
 
   @override
-  String get settingsTabCloudSyncLinkSent => '請查看你的電子郵件以取得登入連結。';
+  String get settingsTabCloudSyncLinkSent =>
+      '請查看你的電子郵件 — 點擊連結，或在下方輸入 6 位數驗證碼（如果你是從主畫面開啟這個 App，建議使用驗證碼）。';
+
+  @override
+  String get settingsTabCloudSyncCodeLabel => '或輸入電子郵件中的驗證碼';
+
+  @override
+  String get settingsTabCloudSyncCodePlaceholder => '6 位數驗證碼';
+
+  @override
+  String get settingsTabCloudSyncVerifyCodeButton => '驗證';
 
   @override
   String settingsTabCloudSyncSignedInAs(String email) {
@@ -3213,7 +3223,17 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get settingsTabCloudSyncSendLinkButton => '傳送登入連結';
 
   @override
-  String get settingsTabCloudSyncLinkSent => '請查看你的電子郵件以取得登入連結。';
+  String get settingsTabCloudSyncLinkSent =>
+      '請查看你的電子郵件 — 點擊連結，或在下方輸入 6 位數驗證碼（如果你是從主畫面開啟這個 App，建議使用驗證碼）。';
+
+  @override
+  String get settingsTabCloudSyncCodeLabel => '或輸入電子郵件中的驗證碼';
+
+  @override
+  String get settingsTabCloudSyncCodePlaceholder => '6 位數驗證碼';
+
+  @override
+  String get settingsTabCloudSyncVerifyCodeButton => '驗證';
 
   @override
   String settingsTabCloudSyncSignedInAs(String email) {

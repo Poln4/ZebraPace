@@ -452,7 +452,10 @@
   "settingsTabCloudSyncCaption": "Inicia sesión para sincronizar tus datos entre dispositivos. Todavía no se sincroniza nada — esto solo conecta tu cuenta.",
   "settingsTabCloudSyncEmailPlaceholder": "Correo electrónico",
   "settingsTabCloudSyncSendLinkButton": "Enviar enlace mágico",
-  "settingsTabCloudSyncLinkSent": "Revisa tu correo para el enlace de inicio de sesión.",
+  "settingsTabCloudSyncLinkSent": "Revisa tu correo — toca el enlace o introduce el código de 6 dígitos abajo (recomendado si usas la app desde la pantalla de inicio).",
+  "settingsTabCloudSyncCodeLabel": "O introduce el código de ese correo",
+  "settingsTabCloudSyncCodePlaceholder": "Código de 6 dígitos",
+  "settingsTabCloudSyncVerifyCodeButton": "Verificar código",
   "settingsTabCloudSyncSignedInAs": "Sesión iniciada como {email}",
   "@settingsTabCloudSyncSignedInAs": {
     "placeholders": {

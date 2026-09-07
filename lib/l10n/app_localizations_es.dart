@@ -1445,7 +1445,17 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsTabCloudSyncLinkSent =>
-      'Revisa tu correo para el enlace de inicio de sesión.';
+      'Revisa tu correo — toca el enlace o introduce el código de 6 dígitos abajo (recomendado si usas la app desde la pantalla de inicio).';
+
+  @override
+  String get settingsTabCloudSyncCodeLabel =>
+      'O introduce el código de ese correo';
+
+  @override
+  String get settingsTabCloudSyncCodePlaceholder => 'Código de 6 dígitos';
+
+  @override
+  String get settingsTabCloudSyncVerifyCodeButton => 'Verificar código';
 
   @override
   String settingsTabCloudSyncSignedInAs(String email) {

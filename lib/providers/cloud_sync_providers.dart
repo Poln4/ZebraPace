@@ -10,16 +10,25 @@ import 'auth_providers.dart' hide AuthState;
 /// which gates the local device lock (Face ID/password). Signing in here
 /// only establishes who owns synced data later; it doesn't touch the lock
 /// screen and doesn't move any health data yet.
-enum CloudAuthAction { idle, sending, linkSent, error }
+enum CloudAuthAction { idle, sending, linkSent, verifying, error }
 
 class CloudAuthState {
-  const CloudAuthState({this.action = CloudAuthAction.idle, this.error});
+  const CloudAuthState({this.action = CloudAuthAction.idle, this.error, this.email});
 
   final CloudAuthAction action;
   final String? error;
 
-  CloudAuthState copyWith({CloudAuthAction? action, String? error}) {
-    return CloudAuthState(action: action ?? this.action, error: error);
+  /// The address the code/link was sent to — kept here (not just in the
+  /// settings screen's own text field) so verifying the code still works
+  /// even if that screen gets rebuilt in between.
+  final String? email;
+
+  CloudAuthState copyWith({CloudAuthAction? action, String? error, String? email}) {
+    return CloudAuthState(
+      action: action ?? this.action,
+      error: error,
+      email: email ?? this.email,
+    );
   }
 }
 
@@ -63,7 +72,28 @@ class CloudAuthController extends StateNotifier<CloudAuthState> {
         email: email,
         emailRedirectTo: kIsWeb ? null : 'zebrapace://login-callback',
       );
-      state = state.copyWith(action: CloudAuthAction.linkSent, error: null);
+      state = state.copyWith(action: CloudAuthAction.linkSent, error: null, email: email);
+    } catch (e) {
+      state = state.copyWith(action: CloudAuthAction.error, error: e.toString());
+    }
+  }
+
+  /// Verifies the 6-digit code from the same email Supabase's magic-link
+  /// template also includes — lets sign-in finish entirely inside this app
+  /// instead of tapping the link, which is what matters on iOS: a link
+  /// opened from Mail always opens Safari, never the home-screen-installed
+  /// copy of this app, and WebKit keeps a standalone home-screen app's
+  /// storage isolated from Safari's even for the same site — so a session
+  /// established via the link in Safari is invisible to the installed app.
+  /// Typing the code in directly sidesteps that entirely.
+  Future<void> verifyCode(String code) async {
+    final email = state.email;
+    if (email == null) return;
+
+    state = state.copyWith(action: CloudAuthAction.verifying, error: null);
+    try {
+      await _client.auth.verifyOTP(email: email, token: code, type: OtpType.email);
+      state = state.copyWith(action: CloudAuthAction.idle, error: null);
     } catch (e) {
       state = state.copyWith(action: CloudAuthAction.error, error: e.toString());
     }

@@ -398,10 +398,12 @@ class _CloudSyncSection extends ConsumerStatefulWidget {
 
 class _CloudSyncSectionState extends ConsumerState<_CloudSyncSection> {
   final _emailController = TextEditingController();
+  final _codeController = TextEditingController();
 
   @override
   void dispose() {
     _emailController.dispose();
+    _codeController.dispose();
     super.dispose();
   }
 
@@ -428,6 +430,9 @@ class _CloudSyncSectionState extends ConsumerState<_CloudSyncSection> {
     }
 
     final sending = authState.action == CloudAuthAction.sending;
+    final verifying = authState.action == CloudAuthAction.verifying;
+    final codeStageReached =
+        authState.action == CloudAuthAction.linkSent || verifying;
     return SectionCard(
       title: l10n.settingsTabCloudSyncTitle,
       caption: l10n.settingsTabCloudSyncCaption,
@@ -455,10 +460,39 @@ class _CloudSyncSectionState extends ConsumerState<_CloudSyncSection> {
                       style: const TextStyle(color: ZebraColors.onColor)),
             ),
           ),
-          if (authState.action == CloudAuthAction.linkSent) ...[
+          if (codeStageReached) ...[
             const SizedBox(height: 8),
             Text(l10n.settingsTabCloudSyncLinkSent,
                 style: const TextStyle(fontSize: 12, color: CupertinoColors.systemGrey)),
+            const SizedBox(height: 10),
+            // Typing the code in finishes sign-in without ever leaving the
+            // app — unlike the link, which always opens in the regular
+            // browser and, on an installed home-screen app, can't hand the
+            // session back to it (see verifyCode's doc comment).
+            Text(l10n.settingsTabCloudSyncCodeLabel,
+                style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13)),
+            const SizedBox(height: 6),
+            CupertinoTextField(
+              controller: _codeController,
+              placeholder: l10n.settingsTabCloudSyncCodePlaceholder,
+              keyboardType: TextInputType.number,
+            ),
+            const SizedBox(height: 8),
+            SizedBox(
+              width: double.infinity,
+              child: CupertinoButton(
+                color: ZebraColors.teal,
+                onPressed: verifying
+                    ? null
+                    : () => ref
+                        .read(cloudAuthControllerProvider.notifier)
+                        .verifyCode(_codeController.text.trim()),
+                child: verifying
+                    ? const CupertinoActivityIndicator()
+                    : Text(l10n.settingsTabCloudSyncVerifyCodeButton,
+                        style: const TextStyle(color: ZebraColors.onColor)),
+              ),
+            ),
           ],
           if (authState.action == CloudAuthAction.error) ...[
             const SizedBox(height: 8),
