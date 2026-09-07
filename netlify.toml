@@ -1,8 +1,11 @@
 [build]
-  # Netlify's build image has no Flutter SDK by default — install it fresh
-  # each build (shallow clone, stable channel) rather than assuming one is
-  # present, then build the actual web app.
-  command = "flutter/bin/flutter build web"
+  # Netlify's build image has no Flutter SDK by default and doesn't persist
+  # one between builds — the previous version of this command assumed a
+  # `flutter/` folder already existed, which only worked as long as
+  # something else (build cache, a plugin) happened to provide one; once
+  # that was gone the build failed outright. Installing fresh each build is
+  # slower but self-contained and doesn't depend on anything outside this repo.
+  command = "git clone https://github.com/flutter/flutter.git --depth 1 -b stable && flutter/bin/flutter config --enable-web && flutter/bin/flutter pub get && flutter/bin/flutter build web --release"
   publish = "build/web"
 
 [[redirects]]
