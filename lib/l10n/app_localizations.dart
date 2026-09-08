@@ -3458,23 +3458,17 @@ abstract class AppLocalizations {
   /// **'You\'re at {percent} so far.'**
   String challengeTabMyProgressCaption(String percent);
 
-  /// No description provided for @challengeTabCurrentWeightPlaceholder.
+  /// No description provided for @challengeTabWeightAutoSyncHint.
   ///
   /// In en, this message translates to:
-  /// **'Current weight (kg)'**
-  String get challengeTabCurrentWeightPlaceholder;
+  /// **'Synced automatically from your resting-day weigh-ins in Vitals (last 7 days, outliers trimmed).'**
+  String get challengeTabWeightAutoSyncHint;
 
-  /// No description provided for @challengeTabCurrentWeightAverageHint.
+  /// No description provided for @challengeTabWeightNoRecentRestDayHint.
   ///
   /// In en, this message translates to:
-  /// **'Calculated from your last 7 days of resting-day weigh-ins, outliers trimmed — you can edit it.'**
-  String get challengeTabCurrentWeightAverageHint;
-
-  /// No description provided for @challengeTabUpdateWeightButton.
-  ///
-  /// In en, this message translates to:
-  /// **'Update my weight'**
-  String get challengeTabUpdateWeightButton;
+  /// **'No resting-day weigh-in in the last 7 days yet — showing your last synced weight.'**
+  String get challengeTabWeightNoRecentRestDayHint;
 
   /// No description provided for @challengeTabLeaderboardTitle.
   ///

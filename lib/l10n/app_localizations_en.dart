@@ -1982,14 +1982,12 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get challengeTabCurrentWeightPlaceholder => 'Current weight (kg)';
+  String get challengeTabWeightAutoSyncHint =>
+      'Synced automatically from your resting-day weigh-ins in Vitals (last 7 days, outliers trimmed).';
 
   @override
-  String get challengeTabCurrentWeightAverageHint =>
-      'Calculated from your last 7 days of resting-day weigh-ins, outliers trimmed — you can edit it.';
-
-  @override
-  String get challengeTabUpdateWeightButton => 'Update my weight';
+  String get challengeTabWeightNoRecentRestDayHint =>
+      'No resting-day weigh-in in the last 7 days yet — showing your last synced weight.';
 
   @override
   String get challengeTabLeaderboardTitle => 'Everyone\'s Progress';

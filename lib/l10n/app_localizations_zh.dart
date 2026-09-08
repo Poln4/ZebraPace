@@ -1874,14 +1874,12 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get challengeTabCurrentWeightPlaceholder => '目前體重（公斤）';
+  String get challengeTabWeightAutoSyncHint =>
+      '自動同步自你在「生理數據」中記錄的休息日體重（過去 7 天，已排除極端值）。';
 
   @override
-  String get challengeTabCurrentWeightAverageHint =>
-      '根據你過去 7 天休息日的體重紀錄計算（已排除極端值），你可以自行修改。';
-
-  @override
-  String get challengeTabUpdateWeightButton => '更新我的體重';
+  String get challengeTabWeightNoRecentRestDayHint =>
+      '過去 7 天內尚無休息日體重紀錄 — 顯示你最後一次同步的體重。';
 
   @override
   String get challengeTabLeaderboardTitle => '大家的進度';
@@ -3774,14 +3772,12 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   }
 
   @override
-  String get challengeTabCurrentWeightPlaceholder => '目前體重（公斤）';
+  String get challengeTabWeightAutoSyncHint =>
+      '自動同步自你在「生理數據」中記錄的休息日體重（過去 7 天，已排除極端值）。';
 
   @override
-  String get challengeTabCurrentWeightAverageHint =>
-      '根據你過去 7 天休息日的體重紀錄計算（已排除極端值），你可以自行修改。';
-
-  @override
-  String get challengeTabUpdateWeightButton => '更新我的體重';
+  String get challengeTabWeightNoRecentRestDayHint =>
+      '過去 7 天內尚無休息日體重紀錄 — 顯示你最後一次同步的體重。';
 
   @override
   String get challengeTabLeaderboardTitle => '大家的進度';
