@@ -25,10 +25,11 @@ void main() {
     );
   }
 
-  test('baseline excludes the target date itself and rest/flare days, takes 7 most recent qualifying rows', () async {
-    // 10 consecutive days of steps ending the day before target; baseline
-    // should only average the most-recent 7 (dates -1..-7), not all 10.
-    for (var i = 10; i >= 1; i--) {
+  test('baseline excludes the target date itself and rest/flare days, takes 14 most recent qualifying rows', () async {
+    // 20 consecutive days of steps ending the day before target; baseline
+    // should only average the most-recent 14 (dates -2..-15, since -1 is
+    // excluded below), not all 20.
+    for (var i = 20; i >= 1; i--) {
       await seedDay(dateKey(DateTime(2026, 1, 20).subtract(Duration(days: i))), 1000 * i);
     }
     // A rest day right before target should be excluded from the average.
@@ -40,12 +41,12 @@ void main() {
       cautionPct: 1.10,
     );
 
-    // Most recent 7 qualifying rows (rest day on the 19th excluded) are
-    // steps for i=2..8 relative to day 20, i.e. 8000,7000,6000,5000,4000,3000,2000
-    // averaged = 5000.
-    expect(evaluation.avgSteps, 5000);
-    expect(evaluation.goalSteps, (5000 * 1.01).floor());
-    expect(evaluation.cautionSteps, (5000 * 1.10).floor());
+    // Most recent 14 qualifying rows (rest day on the 19th excluded) are
+    // steps for i=2..15 relative to day 20, i.e. 2000..15000 in steps of
+    // 1000, averaged = 8500.
+    expect(evaluation.avgSteps, 8500);
+    expect(evaluation.goalSteps, (8500 * 1.01).floor());
+    expect(evaluation.cautionSteps, (8500 * 1.10).floor());
   });
 
   test('no qualifying history yields a zero baseline, not an error', () async {

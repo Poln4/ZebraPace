@@ -51,8 +51,8 @@ void main() {
     expect(result, closeTo((79.0 + 80.0 + 81.0) / 3, 0.001));
   });
 
-  test('only counts readings within the last 14 days', () async {
-    await seedDay(20, 200.0, rest: true); // outside the window, must be ignored
+  test('only counts readings within the last 7 days', () async {
+    await seedDay(10, 200.0, rest: true); // outside the window, must be ignored
     await seedDay(1, 80.0, rest: true);
 
     final result = await service.computeCurrentWeightKg(asOf);

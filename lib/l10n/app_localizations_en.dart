@@ -1759,7 +1759,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get insightsTabEmptyState => 'No entries logged in this range yet.';
 
   @override
-  String get insightsTabStepsTitle => '👣 Steps (7-day rolling avg)';
+  String get insightsTabStepsTitle => '👣 Steps (14-day rolling avg)';
 
   @override
   String get insightsTabLiquidsTitle => '☕ Liquids';
@@ -1986,13 +1986,26 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get challengeTabCurrentWeightAverageHint =>
-      'Calculated from your last 14 days of resting-day weigh-ins, outliers trimmed — you can edit it.';
+      'Calculated from your last 7 days of resting-day weigh-ins, outliers trimmed — you can edit it.';
 
   @override
   String get challengeTabUpdateWeightButton => 'Update my weight';
 
   @override
   String get challengeTabLeaderboardTitle => 'Everyone\'s Progress';
+
+  @override
+  String get challengeTabProgressChartTitle => 'Progress Over Time';
+
+  @override
+  String get challengeTabProgressChartEmptyState =>
+      'Once at least two of you have a couple of weigh-ins logged, your trends will show up here.';
+
+  @override
+  String get challengeTabProgressChartStartLabel => 'Start';
+
+  @override
+  String get challengeTabProgressChartGoalLabel => 'Goal';
 
   @override
   String challengeTabYouLabel(String name) {

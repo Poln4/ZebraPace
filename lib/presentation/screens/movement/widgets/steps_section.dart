@@ -11,7 +11,7 @@ import '../../../../providers/app_providers.dart';
 import '../../../widgets/section_card.dart';
 
 /// Ported from app.py's "Steps & The Gentle-Growth Rule" — the app's central
-/// safety feature: a 7-day baseline, a gentle 1% growth goal, and a >10%
+/// safety feature: a 14-day baseline, a gentle 1% growth goal, and a >10%
 /// caution line (the "PEM precaution" the README describes).
 class StepsSection extends ConsumerStatefulWidget {
   const StepsSection({super.key});

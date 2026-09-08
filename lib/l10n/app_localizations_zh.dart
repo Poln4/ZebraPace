@@ -1665,7 +1665,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get insightsTabEmptyState => '此區間內尚未記錄任何項目。';
 
   @override
-  String get insightsTabStepsTitle => '👣 步數（7 天移動平均）';
+  String get insightsTabStepsTitle => '👣 步數（14 天移動平均）';
 
   @override
   String get insightsTabLiquidsTitle => '☕ 液體攝取';
@@ -1878,13 +1878,26 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get challengeTabCurrentWeightAverageHint =>
-      '根據你過去 14 天休息日的體重紀錄計算（已排除極端值），你可以自行修改。';
+      '根據你過去 7 天休息日的體重紀錄計算（已排除極端值），你可以自行修改。';
 
   @override
   String get challengeTabUpdateWeightButton => '更新我的體重';
 
   @override
   String get challengeTabLeaderboardTitle => '大家的進度';
+
+  @override
+  String get challengeTabProgressChartTitle => '進度趨勢';
+
+  @override
+  String get challengeTabProgressChartEmptyState =>
+      '當你們之中至少兩人記錄了幾次體重後，趨勢圖就會顯示在這裡。';
+
+  @override
+  String get challengeTabProgressChartStartLabel => '起點';
+
+  @override
+  String get challengeTabProgressChartGoalLabel => '目標';
 
   @override
   String challengeTabYouLabel(String name) {
@@ -3552,7 +3565,7 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get insightsTabEmptyState => '此區間內尚未記錄任何項目。';
 
   @override
-  String get insightsTabStepsTitle => '👣 步數（7 天移動平均）';
+  String get insightsTabStepsTitle => '👣 步數（14 天移動平均）';
 
   @override
   String get insightsTabLiquidsTitle => '☕ 液體攝取';
@@ -3765,13 +3778,26 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get challengeTabCurrentWeightAverageHint =>
-      '根據你過去 14 天休息日的體重紀錄計算（已排除極端值），你可以自行修改。';
+      '根據你過去 7 天休息日的體重紀錄計算（已排除極端值），你可以自行修改。';
 
   @override
   String get challengeTabUpdateWeightButton => '更新我的體重';
 
   @override
   String get challengeTabLeaderboardTitle => '大家的進度';
+
+  @override
+  String get challengeTabProgressChartTitle => '進度趨勢';
+
+  @override
+  String get challengeTabProgressChartEmptyState =>
+      '當你們之中至少兩人記錄了幾次體重後，趨勢圖就會顯示在這裡。';
+
+  @override
+  String get challengeTabProgressChartStartLabel => '起點';
+
+  @override
+  String get challengeTabProgressChartGoalLabel => '目標';
 
   @override
   String challengeTabYouLabel(String name) {

@@ -92,7 +92,7 @@ class _MyProgressCardState extends ConsumerState<MyProgressCard> {
       return;
     }
 
-    // No resting-day weigh-ins in the last 14 days yet — fall back to
+    // No resting-day weigh-ins in the last 7 days yet — fall back to
     // whatever's most recently logged so the field isn't just empty.
     final log = await ref.read(bodyMetricsServiceProvider).getCarryForward(todayKey());
     if (!mounted) return;

@@ -6,6 +6,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../providers/cloud_sync_providers.dart';
 import '../../../providers/weight_challenge_providers.dart';
 import '../settings/settings_tab.dart';
+import 'widgets/challenge_progress_chart.dart';
 import 'widgets/join_challenge_card.dart';
 import 'widgets/leaderboard_list.dart';
 import 'widgets/my_progress_card.dart';
@@ -83,6 +84,7 @@ class _ChallengeBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final entriesAsync = ref.watch(weightChallengeEntriesProvider);
+    final historyAsync = ref.watch(weightChallengeHistoryProvider);
     final myEntry = ref.watch(myWeightChallengeEntryProvider);
 
     return entriesAsync.when(
@@ -117,6 +119,8 @@ class _ChallengeBody extends ConsumerWidget {
               const JoinChallengeCard()
             else
               MyProgressCard(entry: myEntry),
+            if (entries.isNotEmpty)
+              ChallengeProgressChart(entries: entries, history: historyAsync.valueOrNull ?? const []),
             if (entries.isNotEmpty) LeaderboardList(entries: entries, myUserId: userId),
           ],
         );

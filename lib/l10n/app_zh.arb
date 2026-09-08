@@ -526,7 +526,7 @@
   "insightsTabStripesCaption": "這不是連續紀錄——缺少的日子不會移除已獲得的條紋。",
   "insightsTabLoadError": "錯誤：{error}",
   "insightsTabEmptyState": "此區間內尚未記錄任何項目。",
-  "insightsTabStepsTitle": "👣 步數（7 天移動平均）",
+  "insightsTabStepsTitle": "👣 步數（14 天移動平均）",
   "insightsTabLiquidsTitle": "☕ 液體攝取",
   "insightsTabMentalStateTitle": "🧠 心理狀態趨勢",
   "insightsTabBodyPainTitle": "😣 身體／疼痛趨勢",
@@ -584,8 +584,12 @@
   "challengeTabMyProgressTitle": "我的進度",
   "challengeTabMyProgressCaption": "目前進度：{percent}。",
   "challengeTabCurrentWeightPlaceholder": "目前體重（公斤）",
-  "challengeTabCurrentWeightAverageHint": "根據你過去 14 天休息日的體重紀錄計算（已排除極端值），你可以自行修改。",
+  "challengeTabCurrentWeightAverageHint": "根據你過去 7 天休息日的體重紀錄計算（已排除極端值），你可以自行修改。",
   "challengeTabUpdateWeightButton": "更新我的體重",
   "challengeTabLeaderboardTitle": "大家的進度",
+  "challengeTabProgressChartTitle": "進度趨勢",
+  "challengeTabProgressChartEmptyState": "當你們之中至少兩人記錄了幾次體重後，趨勢圖就會顯示在這裡。",
+  "challengeTabProgressChartStartLabel": "起點",
+  "challengeTabProgressChartGoalLabel": "目標",
   "challengeTabYouLabel": "{name}（你）"
 }

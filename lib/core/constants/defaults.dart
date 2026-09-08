@@ -4,7 +4,7 @@ library;
 class DefaultSettings {
   DefaultSettings._();
 
-  static const growthGoalPct = 1.01; // 1% growth target over 7-day average
+  static const growthGoalPct = 1.01; // 1% growth target over 14-day average
   static const cautionPct = 1.10; // gentle-caution threshold above average
   static const comfortThreshold = 3.8; // avg comfort score to unlock next progression
   static const waterGoalMl = 2000;
@@ -58,8 +58,14 @@ class StripeConstants {
 class PacingConstants {
   PacingConstants._();
 
-  static const lookbackDays = 14;
-  static const sampleSize = 7;
+  // Widened from the original 7-day/14-day-lookback pairing: a 7-day
+  // average swings noticeably with each new day (one day = ~14% of the
+  // average), making the goal/caution thresholds feel more volatile than
+  // the underlying trend actually is. 14 days smooths that out, at the same
+  // 2x lookback-to-sample ratio so there's still room to skip rest/flare
+  // days without running out of history to average.
+  static const lookbackDays = 28;
+  static const sampleSize = 14;
   static const lowStepsRatio = 0.85; // >15% below baseline triggers the gentle-low message
 }
 

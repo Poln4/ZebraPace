@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/repositories/weight_challenge_repository.dart';
 import '../domain/models/weight_challenge_entry.dart';
+import '../domain/models/weight_challenge_weigh_in.dart';
 import 'cloud_sync_providers.dart';
 
 final weightChallengeRepositoryProvider = Provider<WeightChallengeRepository>(
@@ -10,6 +11,10 @@ final weightChallengeRepositoryProvider = Provider<WeightChallengeRepository>(
 
 final weightChallengeEntriesProvider = StreamProvider.autoDispose<List<WeightChallengeEntry>>(
   (ref) => ref.watch(weightChallengeRepositoryProvider).watchAll(),
+);
+
+final weightChallengeHistoryProvider = StreamProvider.autoDispose<List<WeightChallengeWeighIn>>(
+  (ref) => ref.watch(weightChallengeRepositoryProvider).watchHistory(),
 );
 
 /// The signed-in user's own row, if they've joined — null both while

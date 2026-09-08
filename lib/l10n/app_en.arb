@@ -851,7 +851,7 @@
     }
   },
   "insightsTabEmptyState": "No entries logged in this range yet.",
-  "insightsTabStepsTitle": "👣 Steps (7-day rolling avg)",
+  "insightsTabStepsTitle": "👣 Steps (14-day rolling avg)",
   "insightsTabLiquidsTitle": "☕ Liquids",
   "insightsTabMentalStateTitle": "🧠 Mental State trend",
   "insightsTabBodyPainTitle": "😣 Body/Pain trend",
@@ -979,9 +979,13 @@
     }
   },
   "challengeTabCurrentWeightPlaceholder": "Current weight (kg)",
-  "challengeTabCurrentWeightAverageHint": "Calculated from your last 14 days of resting-day weigh-ins, outliers trimmed — you can edit it.",
+  "challengeTabCurrentWeightAverageHint": "Calculated from your last 7 days of resting-day weigh-ins, outliers trimmed — you can edit it.",
   "challengeTabUpdateWeightButton": "Update my weight",
   "challengeTabLeaderboardTitle": "Everyone's Progress",
+  "challengeTabProgressChartTitle": "Progress Over Time",
+  "challengeTabProgressChartEmptyState": "Once at least two of you have a couple of weigh-ins logged, your trends will show up here.",
+  "challengeTabProgressChartStartLabel": "Start",
+  "challengeTabProgressChartGoalLabel": "Goal",
   "challengeTabYouLabel": "{name} (you)",
   "@challengeTabYouLabel": {
     "placeholders": {

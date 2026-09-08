@@ -1788,7 +1788,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'Aún no hay entradas registradas en este rango.';
 
   @override
-  String get insightsTabStepsTitle => '👣 Pasos (promedio móvil de 7 días)';
+  String get insightsTabStepsTitle => '👣 Pasos (promedio móvil de 14 días)';
 
   @override
   String get insightsTabLiquidsTitle => '☕ Líquidos';
@@ -2018,13 +2018,26 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get challengeTabCurrentWeightAverageHint =>
-      'Calculado con tus últimos 14 días de pesajes en días de descanso, sin los valores extremos — puedes editarlo.';
+      'Calculado con tus últimos 7 días de pesajes en días de descanso, sin los valores extremos — puedes editarlo.';
 
   @override
   String get challengeTabUpdateWeightButton => 'Actualizar mi peso';
 
   @override
   String get challengeTabLeaderboardTitle => 'Progreso de Todos';
+
+  @override
+  String get challengeTabProgressChartTitle => 'Progreso en el Tiempo';
+
+  @override
+  String get challengeTabProgressChartEmptyState =>
+      'Cuando al menos dos de ustedes tengan un par de pesajes registrados, sus tendencias aparecerán aquí.';
+
+  @override
+  String get challengeTabProgressChartStartLabel => 'Inicio';
+
+  @override
+  String get challengeTabProgressChartGoalLabel => 'Meta';
 
   @override
   String challengeTabYouLabel(String name) {

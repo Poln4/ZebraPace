@@ -12,9 +12,9 @@ class WeightChallengeProgressService {
 
   final DailyLogRepository _repository;
 
-  /// Only weigh-ins from the last 14 days count, so standings reflect where
+  /// Only weigh-ins from the last 7 days count, so standings reflect where
   /// someone is now rather than being diluted by readings from weeks ago.
-  static const windowDays = 14;
+  static const windowDays = 7;
 
   /// Below this many readings in the window, trimming a high and low would
   /// leave too little (or nothing) to average — so below the threshold,

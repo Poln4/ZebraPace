@@ -3106,7 +3106,7 @@ abstract class AppLocalizations {
   /// No description provided for @insightsTabStepsTitle.
   ///
   /// In en, this message translates to:
-  /// **'👣 Steps (7-day rolling avg)'**
+  /// **'👣 Steps (14-day rolling avg)'**
   String get insightsTabStepsTitle;
 
   /// No description provided for @insightsTabLiquidsTitle.
@@ -3467,7 +3467,7 @@ abstract class AppLocalizations {
   /// No description provided for @challengeTabCurrentWeightAverageHint.
   ///
   /// In en, this message translates to:
-  /// **'Calculated from your last 14 days of resting-day weigh-ins, outliers trimmed — you can edit it.'**
+  /// **'Calculated from your last 7 days of resting-day weigh-ins, outliers trimmed — you can edit it.'**
   String get challengeTabCurrentWeightAverageHint;
 
   /// No description provided for @challengeTabUpdateWeightButton.
@@ -3481,6 +3481,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Everyone\'s Progress'**
   String get challengeTabLeaderboardTitle;
+
+  /// No description provided for @challengeTabProgressChartTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress Over Time'**
+  String get challengeTabProgressChartTitle;
+
+  /// No description provided for @challengeTabProgressChartEmptyState.
+  ///
+  /// In en, this message translates to:
+  /// **'Once at least two of you have a couple of weigh-ins logged, your trends will show up here.'**
+  String get challengeTabProgressChartEmptyState;
+
+  /// No description provided for @challengeTabProgressChartStartLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get challengeTabProgressChartStartLabel;
+
+  /// No description provided for @challengeTabProgressChartGoalLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Goal'**
+  String get challengeTabProgressChartGoalLabel;
 
   /// No description provided for @challengeTabYouLabel.
   ///

@@ -7,7 +7,7 @@ import '../../../../l10n/app_localizations.dart';
 import 'chart_date_axis.dart';
 import 'chart_day_markers.dart';
 
-/// Bar (daily steps) + line (7-day rolling average) combo. fl_chart has no
+/// Bar (daily steps) + line (14-day rolling average) combo. fl_chart has no
 /// native combo chart type — this composites a LineChart transparently over
 /// a BarChart in a Stack, both driven by the same shared axis domain
 /// (0..logs.length-1 on X, 0..maxY on Y) so the two stay aligned.
@@ -23,7 +23,7 @@ class StepsChart extends StatelessWidget {
       return SizedBox(height: 200, child: Center(child: Text(l10n.stepsChartEmptyState)));
     }
 
-    final rollingAvg = _rollingAverage(logs.map((l) => l.steps.toDouble()).toList(), 7);
+    final rollingAvg = _rollingAverage(logs.map((l) => l.steps.toDouble()).toList(), 14);
     final maxSteps = logs.map((l) => l.steps).fold<int>(0, (a, b) => a > b ? a : b);
     final maxY = (maxSteps * 1.15).clamp(10, double.infinity).toDouble();
 

@@ -579,7 +579,7 @@
   "insightsTabStripesCaption": "No es una racha — los días faltantes nunca eliminan las rayas ya ganadas.",
   "insightsTabLoadError": "Error: {error}",
   "insightsTabEmptyState": "Aún no hay entradas registradas en este rango.",
-  "insightsTabStepsTitle": "👣 Pasos (promedio móvil de 7 días)",
+  "insightsTabStepsTitle": "👣 Pasos (promedio móvil de 14 días)",
   "insightsTabLiquidsTitle": "☕ Líquidos",
   "insightsTabMentalStateTitle": "🧠 Tendencia del estado mental",
   "insightsTabBodyPainTitle": "😣 Tendencia de cuerpo/dolor",
@@ -637,8 +637,12 @@
   "challengeTabMyProgressTitle": "Mi Progreso",
   "challengeTabMyProgressCaption": "Vas al {percent} hasta ahora.",
   "challengeTabCurrentWeightPlaceholder": "Peso actual (kg)",
-  "challengeTabCurrentWeightAverageHint": "Calculado con tus últimos 14 días de pesajes en días de descanso, sin los valores extremos — puedes editarlo.",
+  "challengeTabCurrentWeightAverageHint": "Calculado con tus últimos 7 días de pesajes en días de descanso, sin los valores extremos — puedes editarlo.",
   "challengeTabUpdateWeightButton": "Actualizar mi peso",
   "challengeTabLeaderboardTitle": "Progreso de Todos",
+  "challengeTabProgressChartTitle": "Progreso en el Tiempo",
+  "challengeTabProgressChartEmptyState": "Cuando al menos dos de ustedes tengan un par de pesajes registrados, sus tendencias aparecerán aquí.",
+  "challengeTabProgressChartStartLabel": "Inicio",
+  "challengeTabProgressChartGoalLabel": "Meta",
   "challengeTabYouLabel": "{name} (tú)"
 }
