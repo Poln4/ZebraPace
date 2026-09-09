@@ -10,9 +10,9 @@ import '../../../widgets/section_card.dart';
 /// Shown once the signed-in user has joined. Fully passive on purpose —
 /// having both this and Vitals as separate places to enter the same weight
 /// was confusing, so there's no field or button here anymore. It just
-/// displays the same 7-day trimmed resting-day average Vitals already
-/// produces, and quietly pushes it to the shared table whenever that
-/// average changes — the only "entry point" for weight stays Vitals.
+/// displays the same 7-day trimmed average Vitals already produces, and
+/// quietly pushes it to the shared table whenever that average changes —
+/// the only "entry point" for weight stays Vitals.
 class MyProgressCard extends ConsumerWidget {
   const MyProgressCard({required this.entry, super.key});
 
@@ -52,7 +52,7 @@ class MyProgressCard extends ConsumerWidget {
           const SizedBox(height: 4),
           Text(
             computedAsync.valueOrNull == null
-                ? l10n.challengeTabWeightNoRecentRestDayHint
+                ? l10n.challengeTabWeightNoRecentEntryHint
                 : l10n.challengeTabWeightAutoSyncHint,
             style: const TextStyle(fontSize: 11, color: CupertinoColors.systemGrey),
           ),

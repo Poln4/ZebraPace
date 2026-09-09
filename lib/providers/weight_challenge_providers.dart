@@ -19,11 +19,11 @@ final weightChallengeHistoryProvider = StreamProvider.autoDispose<List<WeightCha
   (ref) => ref.watch(weightChallengeRepositoryProvider).watchHistory(),
 );
 
-/// The trimmed 7-day resting-day average from the user's own local Vitals
-/// history (see WeightChallengeProgressService) — null when there's no
-/// qualifying weigh-in in that window yet. MyProgressCard both displays
-/// this and auto-syncs it to the shared table, so the Together tab never
-/// needs its own separate manual weight entry.
+/// The trimmed 7-day average from the user's own local Vitals history (see
+/// WeightChallengeProgressService) — null when there's no weigh-in in that
+/// window yet. MyProgressCard both displays this and auto-syncs it to the
+/// shared table, so the Together tab never needs its own separate manual
+/// weight entry.
 final computedChallengeWeightProvider = FutureProvider.autoDispose<double?>((ref) {
   return ref.watch(weightChallengeProgressServiceProvider).computeCurrentWeightKg(todayKey());
 });

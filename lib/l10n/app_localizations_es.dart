@@ -2015,11 +2015,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get challengeTabWeightAutoSyncHint =>
-      'Sincronizado automáticamente con tus pesajes en días de descanso en Vitales (últimos 7 días, sin valores extremos).';
+      'Sincronizado automáticamente con tus pesajes en Vitales (últimos 7 días, sin valores extremos).';
 
   @override
-  String get challengeTabWeightNoRecentRestDayHint =>
-      'Aún no hay un pesaje en día de descanso en los últimos 7 días — mostrando tu último peso sincronizado.';
+  String get challengeTabWeightNoRecentEntryHint =>
+      'Aún no hay un pesaje en los últimos 7 días — mostrando tu último peso sincronizado.';
 
   @override
   String get challengeTabLeaderboardTitle => 'Progreso de Todos';

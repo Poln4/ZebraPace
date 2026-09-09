@@ -2,11 +2,9 @@ import '../../core/utils/date_utils.dart';
 import '../../data/repositories/daily_log_repository.dart';
 
 /// Computes the "current weight" a participant would push to the shared
-/// challenge leaderboard: an outlier-trimmed average of resting-day
-/// weigh-ins, rather than a single reading — resting-day weight is far
-/// more stable than an active-day one (hydration/exercise swings), and
-/// trimming the extremes keeps one unusually high or low weigh-in from
-/// swinging the standings.
+/// challenge leaderboard: an outlier-trimmed average of the last week's
+/// weigh-ins, rather than a single reading — trimming the extremes keeps
+/// one unusually high or low day from swinging the standings.
 class WeightChallengeProgressService {
   WeightChallengeProgressService(this._repository);
 
@@ -21,14 +19,14 @@ class WeightChallengeProgressService {
   /// every reading counts instead.
   static const minReadingsToTrim = 5;
 
-  /// Null when there are no resting-day weight logs in the window at all.
+  /// Null when there are no weight logs in the window at all.
   Future<double?> computeCurrentWeightKg(String asOfDate) async {
     final start =
         dateKey(dateFromKey(asOfDate).subtract(const Duration(days: windowDays - 1)));
     final logs = await _repository.getRange(start, asOfDate);
 
     final weights = logs
-        .where((log) => log.isRestDay && log.weightKg != null)
+        .where((log) => log.weightKg != null)
         .map((log) => log.weightKg!)
         .toList()
       ..sort();

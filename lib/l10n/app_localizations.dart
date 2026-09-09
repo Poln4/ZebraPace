@@ -3461,14 +3461,14 @@ abstract class AppLocalizations {
   /// No description provided for @challengeTabWeightAutoSyncHint.
   ///
   /// In en, this message translates to:
-  /// **'Synced automatically from your resting-day weigh-ins in Vitals (last 7 days, outliers trimmed).'**
+  /// **'Synced automatically from your weigh-ins in Vitals (last 7 days, outliers trimmed).'**
   String get challengeTabWeightAutoSyncHint;
 
-  /// No description provided for @challengeTabWeightNoRecentRestDayHint.
+  /// No description provided for @challengeTabWeightNoRecentEntryHint.
   ///
   /// In en, this message translates to:
-  /// **'No resting-day weigh-in in the last 7 days yet — showing your last synced weight.'**
-  String get challengeTabWeightNoRecentRestDayHint;
+  /// **'No weigh-in in the last 7 days yet — showing your last synced weight.'**
+  String get challengeTabWeightNoRecentEntryHint;
 
   /// No description provided for @challengeTabLeaderboardTitle.
   ///

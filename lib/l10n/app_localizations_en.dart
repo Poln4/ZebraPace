@@ -1983,11 +1983,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get challengeTabWeightAutoSyncHint =>
-      'Synced automatically from your resting-day weigh-ins in Vitals (last 7 days, outliers trimmed).';
+      'Synced automatically from your weigh-ins in Vitals (last 7 days, outliers trimmed).';
 
   @override
-  String get challengeTabWeightNoRecentRestDayHint =>
-      'No resting-day weigh-in in the last 7 days yet — showing your last synced weight.';
+  String get challengeTabWeightNoRecentEntryHint =>
+      'No weigh-in in the last 7 days yet — showing your last synced weight.';
 
   @override
   String get challengeTabLeaderboardTitle => 'Everyone\'s Progress';
