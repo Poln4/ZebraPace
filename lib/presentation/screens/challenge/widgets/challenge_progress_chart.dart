@@ -47,6 +47,37 @@ class ChallengeProgressChart extends StatelessWidget {
     double xFor(DateTime date) => date.difference(anchor).inHours / 24.0;
     final maxX = [for (final s in series) for (final p in s.points) xFor(p.date)]
         .reduce((a, b) => a > b ? a : b);
+    // One label per day at most, however few or many days the data spans —
+    // without an explicit interval, fl_chart's own default tick spacing can
+    // place more ticks than there are actual days, so the same date (each
+    // rounded to its nearest day) ends up printed several times in a row.
+    final xInterval = maxX <= 7 ? 1.0 : (maxX / 6).ceilToDouble();
+
+    final goalY = 100 - WeightChallengeDefaults.targetPercent;
+    final allY = [
+      for (final s in series) for (final p in s.points) 100 - p.percentLost,
+      100.0,
+      goalY,
+    ];
+    final rawMinY = allY.reduce((a, b) => a < b ? a : b);
+    final rawMaxY = allY.reduce((a, b) => a > b ? a : b);
+    // A little headroom above/below the data (and the reference lines)
+    // instead of clipping right at the edge values.
+    final ySpan = rawMaxY - rawMinY;
+    final yPadding = ySpan == 0 ? 1.0 : ySpan * 0.2;
+    final minY = rawMinY - yPadding;
+    final maxY = rawMaxY + yPadding;
+    // Same idea as xInterval: pick a step that yields a handful of ticks
+    // rather than however many fl_chart would otherwise fit, and rounded to
+    // a value the 1-decimal label below can actually show distinctly.
+    final ySpanPadded = maxY - minY;
+    final yInterval = ySpanPadded <= 1
+        ? 0.2
+        : ySpanPadded <= 3
+            ? 0.5
+            : ySpanPadded <= 8
+                ? 1.0
+                : (ySpanPadded / 5).ceilToDouble();
 
     return SectionCard(
       title: l10n.challengeTabProgressChartTitle,
@@ -59,6 +90,8 @@ class ChallengeProgressChart extends StatelessWidget {
               LineChartData(
                 minX: 0,
                 maxX: maxX <= 0 ? 1 : maxX,
+                minY: minY,
+                maxY: maxY,
                 lineBarsData: [
                   for (var i = 0; i < series.length; i++)
                     LineChartBarData(
@@ -104,8 +137,9 @@ class ChallengeProgressChart extends StatelessWidget {
                     sideTitles: SideTitles(
                       showTitles: true,
                       reservedSize: 36,
+                      interval: yInterval,
                       getTitlesWidget: (value, meta) => Text(
-                        '${value.toStringAsFixed(0)}%',
+                        '${value.toStringAsFixed(1)}%',
                         style: const TextStyle(fontSize: 9, color: CupertinoColors.systemGrey),
                       ),
                     ),
@@ -114,6 +148,7 @@ class ChallengeProgressChart extends StatelessWidget {
                     sideTitles: SideTitles(
                       showTitles: true,
                       reservedSize: 22,
+                      interval: xInterval,
                       getTitlesWidget: (value, meta) {
                         final date = anchor.add(Duration(hours: (value * 24).round()));
                         return Padding(
