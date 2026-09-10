@@ -9,11 +9,14 @@ import '../../../../domain/services/challenge_progress_series_builder.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../widgets/section_card.dart';
 
-/// Everyone's percent-of-starting-weight-lost over time, on one shared axis
-/// — plotting raw kg wouldn't be comparable across different starting
+/// Everyone's percent-of-starting-weight-remaining over time, on one shared
+/// axis — plotting raw kg wouldn't be comparable across different starting
 /// weights, so every series is normalized against each person's own start
-/// (see ChallengeProgressSeriesBuilder). A dashed line at 0% marks that
-/// starting point for reference, and one at the target % marks the goal.
+/// (see ChallengeProgressSeriesBuilder). Plotted as 100 minus percent lost,
+/// not percent lost directly, so the line trends downward as weight comes
+/// off — matching the number on the scale going down, rather than an
+/// abstract "progress" line trending upward. A dashed line at 100% marks
+/// the starting point, and one at (100 - target%) marks the goal.
 class ChallengeProgressChart extends StatelessWidget {
   const ChallengeProgressChart({required this.entries, required this.history, super.key});
 
@@ -59,7 +62,9 @@ class ChallengeProgressChart extends StatelessWidget {
                 lineBarsData: [
                   for (var i = 0; i < series.length; i++)
                     LineChartBarData(
-                      spots: [for (final p in series[i].points) FlSpot(xFor(p.date), p.percentLost)],
+                      spots: [
+                        for (final p in series[i].points) FlSpot(xFor(p.date), 100 - p.percentLost),
+                      ],
                       isCurved: false,
                       color: _seriesColors[i % _seriesColors.length],
                       barWidth: 2.5,
@@ -68,7 +73,7 @@ class ChallengeProgressChart extends StatelessWidget {
                 ],
                 extraLinesData: ExtraLinesData(horizontalLines: [
                   HorizontalLine(
-                    y: 0,
+                    y: 100,
                     color: CupertinoColors.systemGrey,
                     strokeWidth: 1,
                     dashArray: [4, 4],
@@ -80,7 +85,7 @@ class ChallengeProgressChart extends StatelessWidget {
                     ),
                   ),
                   HorizontalLine(
-                    y: WeightChallengeDefaults.targetPercent,
+                    y: 100 - WeightChallengeDefaults.targetPercent,
                     color: ZebraColors.success,
                     strokeWidth: 1,
                     dashArray: [4, 4],
