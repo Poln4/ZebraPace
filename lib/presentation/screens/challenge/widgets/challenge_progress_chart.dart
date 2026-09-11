@@ -9,14 +9,16 @@ import '../../../../domain/services/challenge_progress_series_builder.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../widgets/section_card.dart';
 
-/// Everyone's percent-of-starting-weight-remaining over time, on one shared
-/// axis — plotting raw kg wouldn't be comparable across different starting
-/// weights, so every series is normalized against each person's own start
-/// (see ChallengeProgressSeriesBuilder). Plotted as 100 minus percent lost,
-/// not percent lost directly, so the line trends downward as weight comes
-/// off — matching the number on the scale going down, rather than an
-/// abstract "progress" line trending upward. A dashed line at 100% marks
-/// the starting point, and one at (100 - target%) marks the goal.
+/// Everyone's remaining distance to the shared 5% goal, over time, on one
+/// shared axis — plotting raw kg wouldn't be comparable across different
+/// starting weights, so every series is normalized against each person's
+/// own start (see ChallengeProgressSeriesBuilder). Plotted as target%
+/// minus percent lost — starting at the target (5, nothing achieved yet)
+/// and draining to 0 as the goal is reached — rather than percent lost
+/// directly (which would climb from 0 up to the target) or a 100-based
+/// scale (which buries the number that actually matters, 5%, at an
+/// arbitrary-looking 95). A dashed line at the target marks the start;
+/// the goal itself is just 0, the bottom of the axis.
 class ChallengeProgressChart extends StatelessWidget {
   const ChallengeProgressChart({required this.entries, required this.history, super.key});
 
@@ -53,10 +55,11 @@ class ChallengeProgressChart extends StatelessWidget {
     // rounded to its nearest day) ends up printed several times in a row.
     final xInterval = maxX <= 7 ? 1.0 : (maxX / 6).ceilToDouble();
 
-    final goalY = 100 - WeightChallengeDefaults.targetPercent;
+    final startY = WeightChallengeDefaults.targetPercent;
+    const goalY = 0.0;
     final allY = [
-      for (final s in series) for (final p in s.points) 100 - p.percentLost,
-      100.0,
+      for (final s in series) for (final p in s.points) startY - p.percentLost,
+      startY,
       goalY,
     ];
     final rawMinY = allY.reduce((a, b) => a < b ? a : b);
@@ -96,7 +99,7 @@ class ChallengeProgressChart extends StatelessWidget {
                   for (var i = 0; i < series.length; i++)
                     LineChartBarData(
                       spots: [
-                        for (final p in series[i].points) FlSpot(xFor(p.date), 100 - p.percentLost),
+                        for (final p in series[i].points) FlSpot(xFor(p.date), startY - p.percentLost),
                       ],
                       isCurved: false,
                       color: _seriesColors[i % _seriesColors.length],
@@ -106,7 +109,7 @@ class ChallengeProgressChart extends StatelessWidget {
                 ],
                 extraLinesData: ExtraLinesData(horizontalLines: [
                   HorizontalLine(
-                    y: 100,
+                    y: startY,
                     color: CupertinoColors.systemGrey,
                     strokeWidth: 1,
                     dashArray: [4, 4],
@@ -118,7 +121,7 @@ class ChallengeProgressChart extends StatelessWidget {
                     ),
                   ),
                   HorizontalLine(
-                    y: 100 - WeightChallengeDefaults.targetPercent,
+                    y: goalY,
                     color: ZebraColors.success,
                     strokeWidth: 1,
                     dashArray: [4, 4],
