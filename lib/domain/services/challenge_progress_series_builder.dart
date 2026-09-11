@@ -39,15 +39,37 @@ class ChallengeProgressSeriesBuilder {
         ChallengeProgressSeries(
           userId: entry.userId,
           displayName: entry.displayName,
-          points: [
-            for (final weighIn in history)
-              if (weighIn.userId == entry.userId)
-                ChallengeProgressPoint(
-                  date: weighIn.loggedAt,
-                  percentLost:
-                      (entry.startWeightKg - weighIn.weightKg) / entry.startWeightKg * 100,
-                ),
-          ]..sort((a, b) => a.date.compareTo(b.date)),
+          points: _dailyPoints(entry, history),
+        ),
+    ];
+  }
+
+  /// One point per calendar day, using that day's *last* weigh-in — the
+  /// chart shouldn't care what time of day a sync happened, and MyProgressCard
+  /// can push more than one update in the same day as its computed average
+  /// shifts, which would otherwise scatter several close-together points
+  /// within a single day instead of showing one clean daily reading.
+  static List<ChallengeProgressPoint> _dailyPoints(
+    WeightChallengeEntry entry,
+    List<WeightChallengeWeighIn> history,
+  ) {
+    final lastOfDay = <DateTime, WeightChallengeWeighIn>{};
+    for (final weighIn in history) {
+      if (weighIn.userId != entry.userId) continue;
+      final day = DateTime(weighIn.loggedAt.year, weighIn.loggedAt.month, weighIn.loggedAt.day);
+      final existing = lastOfDay[day];
+      if (existing == null || weighIn.loggedAt.isAfter(existing.loggedAt)) {
+        lastOfDay[day] = weighIn;
+      }
+    }
+
+    final days = lastOfDay.keys.toList()..sort();
+    return [
+      for (final day in days)
+        ChallengeProgressPoint(
+          date: day,
+          percentLost:
+              (entry.startWeightKg - lastOfDay[day]!.weightKg) / entry.startWeightKg * 100,
         ),
     ];
   }

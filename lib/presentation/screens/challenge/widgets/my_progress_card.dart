@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/constants/defaults.dart';
 import '../../../../core/theme/zebra_theme.dart';
 import '../../../../domain/models/weight_challenge_entry.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -38,6 +39,8 @@ class MyProgressCard extends ConsumerWidget {
     final percent = entry.percentLost;
     final percentLabel = '${percent >= 0 ? '-' : '+'}${percent.abs().toStringAsFixed(1)}%';
     final displayWeight = computedAsync.valueOrNull ?? entry.currentWeightKg;
+    final goalWeightKg =
+        entry.startWeightKg * (1 - WeightChallengeDefaults.targetPercent / 100);
 
     return SectionCard(
       title: l10n.challengeTabMyProgressTitle,
@@ -56,8 +59,49 @@ class MyProgressCard extends ConsumerWidget {
                 : l10n.challengeTabWeightAutoSyncHint,
             style: const TextStyle(fontSize: 11, color: CupertinoColors.systemGrey),
           ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: _GoalStat(
+                  label: l10n.challengeTabStartWeightLabel,
+                  value: entry.startWeightKg,
+                ),
+              ),
+              const Icon(CupertinoIcons.arrow_right, size: 14, color: CupertinoColors.systemGrey),
+              Expanded(
+                child: _GoalStat(
+                  label: l10n.challengeTabGoalWeightLabel,
+                  value: goalWeightKg,
+                  color: ZebraColors.success,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
+    );
+  }
+}
+
+class _GoalStat extends StatelessWidget {
+  const _GoalStat({required this.label, required this.value, this.color = ZebraColors.black});
+
+  final String label;
+  final double value;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: const TextStyle(fontSize: 10, color: CupertinoColors.systemGrey)),
+        Text(
+          '${value.toStringAsFixed(1)} kg',
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: color),
+        ),
+      ],
     );
   }
 }

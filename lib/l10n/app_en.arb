@@ -980,6 +980,8 @@
   },
   "challengeTabWeightAutoSyncHint": "Synced automatically from your weigh-ins in Vitals (last 7 days, outliers trimmed).",
   "challengeTabWeightNoRecentEntryHint": "No weigh-in in the last 7 days yet — showing your last synced weight.",
+  "challengeTabStartWeightLabel": "Start",
+  "challengeTabGoalWeightLabel": "Goal",
   "challengeTabLeaderboardTitle": "Everyone's Progress",
   "challengeTabProgressChartTitle": "Progress Over Time",
   "challengeTabProgressChartEmptyState": "Once at least two of you have a couple of weigh-ins logged, your trends will show up here.",

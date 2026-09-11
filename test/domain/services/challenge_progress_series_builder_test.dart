@@ -55,6 +55,27 @@ void main() {
     expect(series.every((s) => s.points.isEmpty), isTrue);
   });
 
+  test('multiple weigh-ins on the same calendar day collapse to one point, using the last', () {
+    final history = [
+      WeightChallengeWeighIn(
+        userId: 'alice',
+        weightKg: 99.0,
+        loggedAt: DateTime(2026, 1, 5, 8, 0), // morning sync
+      ),
+      WeightChallengeWeighIn(
+        userId: 'alice',
+        weightKg: 98.0,
+        loggedAt: DateTime(2026, 1, 5, 22, 0), // later that same day
+      ),
+    ];
+
+    final series = ChallengeProgressSeriesBuilder.build([alice], history);
+
+    expect(series.single.points, hasLength(1));
+    expect(series.single.points.single.date, DateTime(2026, 1, 5));
+    expect(series.single.points.single.percentLost, closeTo(2.0, 0.001)); // from the 98.0 reading
+  });
+
   test('one participant\'s weigh-ins never leak into another\'s series', () {
     final history = [
       WeightChallengeWeighIn(userId: 'alice', weightKg: 90.0, loggedAt: DateTime(2026, 1, 5)),

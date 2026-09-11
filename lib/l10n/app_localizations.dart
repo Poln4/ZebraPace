@@ -3470,6 +3470,18 @@ abstract class AppLocalizations {
   /// **'No weigh-in in the last 7 days yet — showing your last synced weight.'**
   String get challengeTabWeightNoRecentEntryHint;
 
+  /// No description provided for @challengeTabStartWeightLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get challengeTabStartWeightLabel;
+
+  /// No description provided for @challengeTabGoalWeightLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Goal'**
+  String get challengeTabGoalWeightLabel;
+
   /// No description provided for @challengeTabLeaderboardTitle.
   ///
   /// In en, this message translates to:

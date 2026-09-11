@@ -1882,6 +1882,12 @@ class AppLocalizationsZh extends AppLocalizations {
       '過去 7 天內尚無體重紀錄 — 顯示你最後一次同步的體重。';
 
   @override
+  String get challengeTabStartWeightLabel => '起始';
+
+  @override
+  String get challengeTabGoalWeightLabel => '目標';
+
+  @override
   String get challengeTabLeaderboardTitle => '大家的進度';
 
   @override
@@ -3778,6 +3784,12 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   @override
   String get challengeTabWeightNoRecentEntryHint =>
       '過去 7 天內尚無體重紀錄 — 顯示你最後一次同步的體重。';
+
+  @override
+  String get challengeTabStartWeightLabel => '起始';
+
+  @override
+  String get challengeTabGoalWeightLabel => '目標';
 
   @override
   String get challengeTabLeaderboardTitle => '大家的進度';

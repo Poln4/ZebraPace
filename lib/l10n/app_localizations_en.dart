@@ -1990,6 +1990,12 @@ class AppLocalizationsEn extends AppLocalizations {
       'No weigh-in in the last 7 days yet — showing your last synced weight.';
 
   @override
+  String get challengeTabStartWeightLabel => 'Start';
+
+  @override
+  String get challengeTabGoalWeightLabel => 'Goal';
+
+  @override
   String get challengeTabLeaderboardTitle => 'Everyone\'s Progress';
 
   @override

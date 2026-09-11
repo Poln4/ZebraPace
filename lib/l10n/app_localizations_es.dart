@@ -2022,6 +2022,12 @@ class AppLocalizationsEs extends AppLocalizations {
       'Aún no hay un pesaje en los últimos 7 días — mostrando tu último peso sincronizado.';
 
   @override
+  String get challengeTabStartWeightLabel => 'Inicio';
+
+  @override
+  String get challengeTabGoalWeightLabel => 'Meta';
+
+  @override
   String get challengeTabLeaderboardTitle => 'Progreso de Todos';
 
   @override
