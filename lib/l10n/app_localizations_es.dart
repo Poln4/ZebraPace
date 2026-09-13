@@ -548,6 +548,20 @@ class AppLocalizationsEs extends AppLocalizations {
   String get commonDurationMinPlaceholder => 'Duración (min)';
 
   @override
+  String get commonHeartRateLabel => 'Rango de frecuencia cardíaca (lpm)';
+
+  @override
+  String get commonHeartRateMinPlaceholder => 'Mín. lpm';
+
+  @override
+  String get commonHeartRateMaxPlaceholder => 'Máx. lpm';
+
+  @override
+  String commonHeartRateRangeLabel(int min, int max) {
+    return 'FC $min-$max lpm';
+  }
+
+  @override
   String get activitiesSectionTitle => '🚴‍♀️ Actividades personalizadas';
 
   @override

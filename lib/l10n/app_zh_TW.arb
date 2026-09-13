@@ -185,6 +185,16 @@
   "commonMentalStateLabel": "心理狀態",
   "commonBodyFeelingLabel": "身體感受",
   "commonDurationMinPlaceholder": "時長（分鐘）",
+  "commonHeartRateLabel": "心率範圍（bpm）",
+  "commonHeartRateMinPlaceholder": "最低 bpm",
+  "commonHeartRateMaxPlaceholder": "最高 bpm",
+  "commonHeartRateRangeLabel": "心率 {min}-{max} bpm",
+  "@commonHeartRateRangeLabel": {
+    "placeholders": {
+      "min": {"type": "int"},
+      "max": {"type": "int"}
+    }
+  },
 
   "activitiesSectionTitle": "🚴‍♀️ 自訂活動",
   "activitiesSectionNamePlaceholder": "活動名稱",

@@ -24,6 +24,8 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
   ContractionMode? _contractionMode;
   final _setsController = TextEditingController(text: '3');
   final _repsController = TextEditingController(text: '10');
+  final _hrMinController = TextEditingController();
+  final _hrMaxController = TextEditingController();
   double _comfort = 3.0;
   MentalState? _mental;
   BodyFeeling? _body;
@@ -50,6 +52,8 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
   void dispose() {
     _setsController.dispose();
     _repsController.dispose();
+    _hrMinController.dispose();
+    _hrMaxController.dispose();
     _issueNoteController.dispose();
     super.dispose();
   }
@@ -137,6 +141,28 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
                   controller: _repsController,
                   keyboardType: TextInputType.number,
                   placeholder: l10n.calisthenicsSectionRepsPlaceholder,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Text(l10n.commonHeartRateLabel, style: const TextStyle(fontWeight: FontWeight.w700)),
+          const SizedBox(height: 6),
+          Row(
+            children: [
+              Expanded(
+                child: CupertinoTextField(
+                  controller: _hrMinController,
+                  keyboardType: TextInputType.number,
+                  placeholder: l10n.commonHeartRateMinPlaceholder,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: CupertinoTextField(
+                  controller: _hrMaxController,
+                  keyboardType: TextInputType.number,
+                  placeholder: l10n.commonHeartRateMaxPlaceholder,
                 ),
               ),
             ],
@@ -316,6 +342,8 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
           mentalState: _mental,
           bodyFeeling: _body,
           contractionMode: _contractionMode,
+          heartRateMinBpm: int.tryParse(_hrMinController.text),
+          heartRateMaxBpm: int.tryParse(_hrMaxController.text),
         );
 
     final loggedIssue = _logIssue;
@@ -352,6 +380,8 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
           : null;
       _issueLogged = loggedIssue;
       _logIssue = false;
+      _hrMinController.clear();
+      _hrMaxController.clear();
     });
   }
 }

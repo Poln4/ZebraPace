@@ -1103,6 +1103,30 @@ abstract class AppLocalizations {
   /// **'Duration (min)'**
   String get commonDurationMinPlaceholder;
 
+  /// No description provided for @commonHeartRateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Heart Rate Range (bpm)'**
+  String get commonHeartRateLabel;
+
+  /// No description provided for @commonHeartRateMinPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Min bpm'**
+  String get commonHeartRateMinPlaceholder;
+
+  /// No description provided for @commonHeartRateMaxPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Max bpm'**
+  String get commonHeartRateMaxPlaceholder;
+
+  /// No description provided for @commonHeartRateRangeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'HR {min}-{max} bpm'**
+  String commonHeartRateRangeLabel(int min, int max);
+
   /// No description provided for @activitiesSectionTitle.
   ///
   /// In en, this message translates to:

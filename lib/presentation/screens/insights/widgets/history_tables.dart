@@ -19,7 +19,10 @@ class HistoryTables extends ConsumerWidget {
         _RecentList(
           title: l10n.historyTablesActivitiesTitle,
           provider: activitiesInRangeProvider,
-          lineOf: (a) => l10n.historyTablesActivityLine(a.date, a.activityName, a.durationMin),
+          lineOf: (a) => l10n.historyTablesActivityLine(a.date, a.activityName, a.durationMin) +
+              (a.heartRateMinBpm != null
+                  ? ' · ${l10n.commonHeartRateRangeLabel(a.heartRateMinBpm!, a.heartRateMaxBpm!)}'
+                  : ''),
         ),
         _RecentList(
           title: l10n.historyTablesTherapiesTitle,
@@ -30,7 +33,10 @@ class HistoryTables extends ConsumerWidget {
           title: l10n.historyTablesCalisthenicsTitle,
           provider: calisthenicsInRangeProvider,
           lineOf: (c) => l10n.historyTablesCalisthenicsLine(
-              c.date, c.exercise.label(l10n), c.progression, c.comfortScore.toStringAsFixed(1)),
+                  c.date, c.exercise.label(l10n), c.progression, c.comfortScore.toStringAsFixed(1)) +
+              (c.heartRateMinBpm != null
+                  ? ' · ${l10n.commonHeartRateRangeLabel(c.heartRateMinBpm!, c.heartRateMaxBpm!)}'
+                  : ''),
         ),
         _RecentList(
           title: l10n.historyTablesSorenessTitle,

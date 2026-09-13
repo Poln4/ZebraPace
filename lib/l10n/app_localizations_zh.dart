@@ -526,6 +526,20 @@ class AppLocalizationsZh extends AppLocalizations {
   String get commonDurationMinPlaceholder => '時長（分鐘）';
 
   @override
+  String get commonHeartRateLabel => '心率範圍（bpm）';
+
+  @override
+  String get commonHeartRateMinPlaceholder => '最低 bpm';
+
+  @override
+  String get commonHeartRateMaxPlaceholder => '最高 bpm';
+
+  @override
+  String commonHeartRateRangeLabel(int min, int max) {
+    return '心率 $min-$max bpm';
+  }
+
+  @override
   String get activitiesSectionTitle => '🚴‍♀️ 自訂活動';
 
   @override
@@ -2428,6 +2442,20 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get commonDurationMinPlaceholder => '時長（分鐘）';
+
+  @override
+  String get commonHeartRateLabel => '心率範圍（bpm）';
+
+  @override
+  String get commonHeartRateMinPlaceholder => '最低 bpm';
+
+  @override
+  String get commonHeartRateMaxPlaceholder => '最高 bpm';
+
+  @override
+  String commonHeartRateRangeLabel(int min, int max) {
+    return '心率 $min-$max bpm';
+  }
 
   @override
   String get activitiesSectionTitle => '🚴‍♀️ 自訂活動';

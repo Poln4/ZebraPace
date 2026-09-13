@@ -19,6 +19,8 @@ class _ActivitiesSectionState extends ConsumerState<ActivitiesSection> {
   final _nameController = TextEditingController();
   final _durationController = TextEditingController(text: '20');
   final _weightController = TextEditingController(text: '0');
+  final _hrMinController = TextEditingController();
+  final _hrMaxController = TextEditingController();
   MentalState? _mental;
   BodyFeeling? _body;
 
@@ -27,6 +29,8 @@ class _ActivitiesSectionState extends ConsumerState<ActivitiesSection> {
     _nameController.dispose();
     _durationController.dispose();
     _weightController.dispose();
+    _hrMinController.dispose();
+    _hrMaxController.dispose();
     super.dispose();
   }
 
@@ -62,6 +66,28 @@ class _ActivitiesSectionState extends ConsumerState<ActivitiesSection> {
                   controller: _weightController,
                   keyboardType: const TextInputType.numberWithOptions(decimal: true),
                   placeholder: l10n.activitiesSectionWeightPlaceholder,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Text(l10n.commonHeartRateLabel, style: const TextStyle(fontWeight: FontWeight.w700)),
+          const SizedBox(height: 6),
+          Row(
+            children: [
+              Expanded(
+                child: CupertinoTextField(
+                  controller: _hrMinController,
+                  keyboardType: TextInputType.number,
+                  placeholder: l10n.commonHeartRateMinPlaceholder,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: CupertinoTextField(
+                  controller: _hrMaxController,
+                  keyboardType: TextInputType.number,
+                  placeholder: l10n.commonHeartRateMaxPlaceholder,
                 ),
               ),
             ],
@@ -104,7 +130,10 @@ class _ActivitiesSectionState extends ConsumerState<ActivitiesSection> {
                   .map((a) => Padding(
                         padding: const EdgeInsets.only(bottom: 3),
                         child: Text(
-                            l10n.activitiesSectionListItem(a.activityName, a.durationMin),
+                            l10n.activitiesSectionListItem(a.activityName, a.durationMin) +
+                                (a.heartRateMinBpm != null
+                                    ? ' · ${l10n.commonHeartRateRangeLabel(a.heartRateMinBpm!, a.heartRateMaxBpm!)}'
+                                    : ''),
                             style: const TextStyle(fontSize: 12.5)),
                       ))
                   .toList(),
@@ -126,8 +155,12 @@ class _ActivitiesSectionState extends ConsumerState<ActivitiesSection> {
           extraWeightKg: double.tryParse(_weightController.text) ?? 0,
           mentalState: _mental,
           bodyFeeling: _body,
+          heartRateMinBpm: int.tryParse(_hrMinController.text),
+          heartRateMaxBpm: int.tryParse(_hrMaxController.text),
         );
     _nameController.clear();
+    _hrMinController.clear();
+    _hrMaxController.clear();
   }
 }
 
