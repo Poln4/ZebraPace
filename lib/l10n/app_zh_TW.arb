@@ -181,6 +181,8 @@
   "calisthenicsSectionGoalMilestoneCelebration": "🌟 {exercise} 已連續 3 次達成目標——準備好時可以嘗試下一個等級。",
   "calisthenicsSectionLogButton": "記錄徒手訓練",
   "calisthenicsSectionMilestoneCelebration": "🎈 {exercise} 已連續 3 次感覺舒適——準備好時可以嘗試下一個等級。",
+  "calisthenicsSectionEditTitle": "編輯訓練組",
+  "calisthenicsSectionListItem": "{exercise}（{progression}）— {sets}×{reps}",
 
   "commonMentalStateLabel": "心理狀態",
   "commonBodyFeelingLabel": "身體感受",
@@ -201,6 +203,7 @@
   "activitiesSectionWeightPlaceholder": "額外負重（公斤）",
   "activitiesSectionLogButton": "記錄活動",
   "activitiesSectionListItem": "{name} — {duration} 分鐘",
+  "activitiesSectionEditTitle": "編輯活動",
 
   "injuriesSectionTitle": "🩹 傷害與結構性事件",
   "injuriesSectionCaption": "用於記錄單次、可標明日期的傷害——與全身性的發作日不同。",
@@ -217,13 +220,19 @@
   "injuriesSectionUpdate": "💾 更新",
 
   "therapiesSectionTitle": "💆‍♀️ 恢復與被動療法",
+  "therapiesSectionEditTitle": "編輯療法",
   "therapiesSectionNamePlaceholder": "療法名稱",
   "therapiesSectionLogButton": "記錄療法",
   "therapiesSectionListItem": "{name} — {duration} 分鐘",
 
   "commonSaveButton": "儲存",
+  "commonEditButton": "編輯",
+  "commonDeleteButton": "刪除",
+  "commonDeleteConfirmTitle": "要刪除這筆記錄嗎？",
+  "commonDeleteConfirmMessage": "此操作無法復原。",
 
   "hydrationSectionTitle": "☕ 水分與液體攝取",
+  "hydrationSectionEditTitle": "編輯飲品",
   "hydrationSectionProgress": "{credit} / {goal} 毫升",
   "hydrationSectionCustomLabelPlaceholder": "這是什麼？",
   "hydrationSectionAmountPlaceholder": "數量（毫升）",

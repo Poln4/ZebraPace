@@ -23,7 +23,10 @@ class DailyLogs extends Table with SyncColumns {
   /// here on purpose.
   RealColumn get waterMlCredit => real().withDefault(const Constant(0))();
 
-  IntColumn get proteinG => integer().withDefault(const Constant(0))();
+  /// Was an IntColumn before schemaVersion 4 — widened to allow decimal
+  /// grams (e.g. a half-scoop or a label's "17.5g") instead of rounding
+  /// every entry to a whole gram.
+  RealColumn get proteinG => real().withDefault(const Constant(0))();
   RealColumn get creatineG => real().withDefault(const Constant(0))();
 
   TextColumn get mentalState => text().nullable()();

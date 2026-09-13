@@ -32,6 +32,27 @@ class HydrationService {
     await _recomputeDailyTotals(date);
   }
 
+  Future<void> updateDrink({
+    required String id,
+    required String date,
+    required DrinkType drinkType,
+    required int amountMlRaw,
+    String? customDrinkLabel,
+  }) async {
+    await _liquidLogRepository.updateOne(
+      id: id,
+      drinkType: drinkType,
+      amountMlRaw: amountMlRaw,
+      customDrinkLabel: customDrinkLabel,
+    );
+    await _recomputeDailyTotals(date);
+  }
+
+  Future<void> deleteDrink(String id, String date) async {
+    await _liquidLogRepository.deleteOne(id);
+    await _recomputeDailyTotals(date);
+  }
+
   Future<void> _recomputeDailyTotals(String date) async {
     final sums = await _liquidLogRepository.sumForDate(date);
     final log = await _dailyLogRepository.getOrCreateDailyLog(date);

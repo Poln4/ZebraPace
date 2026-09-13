@@ -1085,6 +1085,23 @@ abstract class AppLocalizations {
   /// **'🎈 3 comfortable sessions in a row for {exercise} — you could try the next tier when you\'re ready.'**
   String calisthenicsSectionMilestoneCelebration(String exercise);
 
+  /// No description provided for @calisthenicsSectionEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Set'**
+  String get calisthenicsSectionEditTitle;
+
+  /// No description provided for @calisthenicsSectionListItem.
+  ///
+  /// In en, this message translates to:
+  /// **'{exercise} ({progression}) — {sets}×{reps}'**
+  String calisthenicsSectionListItem(
+    String exercise,
+    String progression,
+    int sets,
+    int reps,
+  );
+
   /// No description provided for @commonMentalStateLabel.
   ///
   /// In en, this message translates to:
@@ -1156,6 +1173,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{name} — {duration} min'**
   String activitiesSectionListItem(String name, int duration);
+
+  /// No description provided for @activitiesSectionEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Activity'**
+  String get activitiesSectionEditTitle;
 
   /// No description provided for @injuriesSectionTitle.
   ///
@@ -1241,6 +1264,12 @@ abstract class AppLocalizations {
   /// **'💆‍♀️ Recovery & Passive Therapies'**
   String get therapiesSectionTitle;
 
+  /// No description provided for @therapiesSectionEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Therapy'**
+  String get therapiesSectionEditTitle;
+
   /// No description provided for @therapiesSectionNamePlaceholder.
   ///
   /// In en, this message translates to:
@@ -1265,11 +1294,41 @@ abstract class AppLocalizations {
   /// **'Save'**
   String get commonSaveButton;
 
+  /// No description provided for @commonEditButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get commonEditButton;
+
+  /// No description provided for @commonDeleteButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get commonDeleteButton;
+
+  /// No description provided for @commonDeleteConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this entry?'**
+  String get commonDeleteConfirmTitle;
+
+  /// No description provided for @commonDeleteConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This can\'t be undone.'**
+  String get commonDeleteConfirmMessage;
+
   /// No description provided for @hydrationSectionTitle.
   ///
   /// In en, this message translates to:
   /// **'☕ Hydration & Liquids'**
   String get hydrationSectionTitle;
+
+  /// No description provided for @hydrationSectionEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Drink'**
+  String get hydrationSectionEditTitle;
 
   /// No description provided for @hydrationSectionProgress.
   ///
@@ -1317,7 +1376,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'{protein}g / {goal}g protein'**
-  String nutritionSectionProteinProgress(int protein, int goal);
+  String nutritionSectionProteinProgress(String protein, int goal);
 
   /// No description provided for @nutritionSectionCreatineToday.
   ///

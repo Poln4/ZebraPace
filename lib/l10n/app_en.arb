@@ -224,6 +224,16 @@
       "exercise": {"type": "String"}
     }
   },
+  "calisthenicsSectionEditTitle": "Edit Set",
+  "calisthenicsSectionListItem": "{exercise} ({progression}) — {sets}×{reps}",
+  "@calisthenicsSectionListItem": {
+    "placeholders": {
+      "exercise": {"type": "String"},
+      "progression": {"type": "String"},
+      "sets": {"type": "int"},
+      "reps": {"type": "int"}
+    }
+  },
 
   "commonMentalStateLabel": "Mental State",
   "commonBodyFeelingLabel": "Body Feeling",
@@ -250,6 +260,7 @@
       "duration": {"type": "int"}
     }
   },
+  "activitiesSectionEditTitle": "Edit Activity",
 
   "injuriesSectionTitle": "🩹 Injuries & Structural Events",
   "injuriesSectionCaption": "For discrete, dateable injuries — separate from Flare Days, which are systemic.",
@@ -278,6 +289,7 @@
   "injuriesSectionUpdate": "💾 Update",
 
   "therapiesSectionTitle": "💆‍♀️ Recovery & Passive Therapies",
+  "therapiesSectionEditTitle": "Edit Therapy",
   "therapiesSectionNamePlaceholder": "Therapy name",
   "therapiesSectionLogButton": "Log Therapy",
   "therapiesSectionListItem": "{name} — {duration} min",
@@ -289,8 +301,13 @@
   },
 
   "commonSaveButton": "Save",
+  "commonEditButton": "Edit",
+  "commonDeleteButton": "Delete",
+  "commonDeleteConfirmTitle": "Delete this entry?",
+  "commonDeleteConfirmMessage": "This can't be undone.",
 
   "hydrationSectionTitle": "☕ Hydration & Liquids",
+  "hydrationSectionEditTitle": "Edit Drink",
   "hydrationSectionProgress": "{credit} / {goal} ml",
   "@hydrationSectionProgress": {
     "placeholders": {
@@ -314,7 +331,7 @@
   "nutritionSectionProteinProgress": "{protein}g / {goal}g protein",
   "@nutritionSectionProteinProgress": {
     "placeholders": {
-      "protein": {"type": "int"},
+      "protein": {"type": "String"},
       "goal": {"type": "int"}
     }
   },

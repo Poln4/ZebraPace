@@ -3,10 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/constants/enums.dart';
 import '../../../../core/theme/zebra_theme.dart';
+import '../../../../domain/models/therapy.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/app_providers.dart';
+import '../../../widgets/entry_actions.dart';
 import '../../../widgets/feeling_picker.dart';
 import '../../../widgets/section_card.dart';
+import 'edit_therapy_sheet.dart';
 
 class TherapiesSection extends ConsumerStatefulWidget {
   const TherapiesSection({super.key});
@@ -85,10 +88,14 @@ class _TherapiesSectionState extends ConsumerState<TherapiesSection> {
             data: (therapies) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: therapies
-                  .map((t) => Padding(
-                        padding: const EdgeInsets.only(bottom: 3),
-                        child: Text(l10n.therapiesSectionListItem(t.therapyName, t.durationMin),
-                            style: const TextStyle(fontSize: 12.5)),
+                  .map((t) => GestureDetector(
+                        onTap: () => _handleItemTap(t),
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 6),
+                          child: Text(l10n.therapiesSectionListItem(t.therapyName, t.durationMin),
+                              style: const TextStyle(
+                                  fontSize: 12.5, decoration: TextDecoration.underline)),
+                        ),
                       ))
                   .toList(),
             ),
@@ -110,6 +117,20 @@ class _TherapiesSectionState extends ConsumerState<TherapiesSection> {
           bodyFeeling: _body,
         );
     _nameController.clear();
+  }
+
+  Future<void> _handleItemTap(Therapy therapy) async {
+    final l10n = AppLocalizations.of(context);
+    final action = await showEntryActionSheet(context, l10n);
+    if (!mounted) return;
+    if (action == EntryAction.edit) {
+      await showEditTherapySheet(context, therapy);
+    } else if (action == EntryAction.delete) {
+      final confirmed = await confirmDelete(context, l10n);
+      if (confirmed) {
+        await ref.read(therapyRepositoryProvider).delete(therapy.id);
+      }
+    }
   }
 }
 

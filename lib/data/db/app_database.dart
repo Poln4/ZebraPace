@@ -32,7 +32,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 4;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -53,6 +53,14 @@ class AppDatabase extends _$AppDatabase {
             await m.addColumn(activities, activities.heartRateMaxBpm);
             await m.addColumn(calisthenics, calisthenics.heartRateMinBpm);
             await m.addColumn(calisthenics, calisthenics.heartRateMaxBpm);
+          }
+          // v3 -> v4: DailyLogs.proteinG widened from whole grams to decimal
+          // grams (same shape as creatineG already had). SQLite has no
+          // ALTER COLUMN, so this recreates the table against the current
+          // Dart schema and copies existing rows across — alterTable, not
+          // addColumn, since proteinG already exists.
+          if (from < 4) {
+            await m.alterTable(TableMigration(dailyLogs));
           }
         },
       );

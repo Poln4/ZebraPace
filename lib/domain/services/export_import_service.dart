@@ -151,7 +151,7 @@ class ExportImportService {
                   fatPercentage: Value(_toDouble(row['fatPercentage'])),
                   waterMlRaw: Value(_toInt(row['waterMlRaw']) ?? 0),
                   waterMlCredit: Value(_toDouble(row['waterMlCredit']) ?? 0),
-                  proteinG: Value(_toInt(row['proteinG']) ?? 0),
+                  proteinG: Value(_toDouble(row['proteinG']) ?? 0),
                   creatineG: Value(_toDouble(row['creatineG']) ?? 0),
                   mentalState: Value(row['mentalState'] as String?),
                   bodyFeeling: Value(row['bodyFeeling'] as String?),

@@ -7,9 +7,11 @@ import '../../../../core/theme/zebra_theme.dart';
 import '../../../../domain/models/calisthenics_set.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/app_providers.dart';
+import '../../../widgets/entry_actions.dart';
 import '../../../widgets/enum_wrap.dart';
 import '../../../widgets/feeling_picker.dart';
 import '../../../widgets/section_card.dart';
+import 'edit_calisthenics_sheet.dart';
 
 class CalisthenicsSection extends ConsumerStatefulWidget {
   const CalisthenicsSection({super.key});
@@ -81,6 +83,8 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
     _progression ??= levels.first.name;
     final currentLevel = _levelFor(l10n);
     final isLowEnergyDay = ref.watch(dailyLogProvider).valueOrNull?.isLowEnergyDay ?? false;
+    final date = ref.watch(selectedDateProvider);
+    final loggedSetsAsync = ref.watch(_calisthenicsForDateProvider(date));
 
     final enteredSets = int.tryParse(_setsController.text) ?? 0;
     final enteredValue = int.tryParse(_repsController.text) ?? 0;
@@ -322,6 +326,30 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
             Text(l10n.calisthenicsSectionIssueLoggedConfirmation,
                 style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
           ],
+          const SizedBox(height: 10),
+          loggedSetsAsync.when(
+            loading: () => const SizedBox.shrink(),
+            error: (e, st) => Text('$e'),
+            data: (sets) => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: sets
+                  .map((s) => GestureDetector(
+                        onTap: () => _handleItemTap(s),
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 6),
+                          child: Text(
+                              l10n.calisthenicsSectionListItem(
+                                      s.exercise.label(l10n), s.progression, s.sets, s.reps) +
+                                  (s.heartRateMinBpm != null
+                                      ? ' · ${l10n.commonHeartRateRangeLabel(s.heartRateMinBpm!, s.heartRateMaxBpm!)}'
+                                      : ''),
+                              style: const TextStyle(
+                                  fontSize: 12.5, decoration: TextDecoration.underline)),
+                        ),
+                      ))
+                  .toList(),
+            ),
+          ),
         ],
       ),
     );
@@ -384,4 +412,22 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
       _hrMaxController.clear();
     });
   }
+
+  Future<void> _handleItemTap(CalisthenicsSet set) async {
+    final l10n = AppLocalizations.of(context);
+    final action = await showEntryActionSheet(context, l10n);
+    if (!mounted) return;
+    if (action == EntryAction.edit) {
+      await showEditCalisthenicsSheet(context, set);
+    } else if (action == EntryAction.delete) {
+      final confirmed = await confirmDelete(context, l10n);
+      if (confirmed) {
+        await ref.read(calisthenicsRepositoryProvider).delete(set.id);
+      }
+    }
+  }
 }
+
+final _calisthenicsForDateProvider = StreamProvider.family((ref, String date) {
+  return ref.watch(calisthenicsRepositoryProvider).watchForDate(date);
+});

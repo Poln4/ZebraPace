@@ -31,7 +31,7 @@ class DailyLog {
   final double? fatPercentage;
   final int waterMlRaw;
   final double waterMlCredit;
-  final int proteinG;
+  final double proteinG;
   final double creatineG;
   final MentalState? mentalState;
   final BodyFeeling? bodyFeeling;
@@ -55,7 +55,7 @@ class DailyLog {
     double? fatPercentage,
     int? waterMlRaw,
     double? waterMlCredit,
-    int? proteinG,
+    double? proteinG,
     double? creatineG,
     MentalState? mentalState,
     BodyFeeling? bodyFeeling,

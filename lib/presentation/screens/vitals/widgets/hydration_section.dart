@@ -3,8 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/constants/enums.dart';
 import '../../../../core/theme/zebra_theme.dart';
+import '../../../../domain/models/liquid_log.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/app_providers.dart';
+import '../../../widgets/entry_actions.dart';
 import '../../../widgets/progress_bar.dart';
 import '../../../widgets/section_card.dart';
 
@@ -109,11 +111,15 @@ class _HydrationSectionState extends ConsumerState<HydrationSection> {
             data: (logs) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: logs
-                  .map((l) => Padding(
-                        padding: const EdgeInsets.only(bottom: 3),
-                        child: Text(
-                            l10n.hydrationSectionLogItem(l.displayName(l10n), l.amountMlRaw),
-                            style: const TextStyle(fontSize: 12.5)),
+                  .map((l) => GestureDetector(
+                        onTap: () => _handleItemTap(l),
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 6),
+                          child: Text(
+                              l10n.hydrationSectionLogItem(l.displayName(l10n), l.amountMlRaw),
+                              style: const TextStyle(
+                                  fontSize: 12.5, decoration: TextDecoration.underline)),
+                        ),
                       ))
                   .toList(),
             ),
@@ -128,6 +134,58 @@ class _HydrationSectionState extends ConsumerState<HydrationSection> {
         ],
       ),
     );
+  }
+
+  Future<void> _handleItemTap(LiquidLog log) async {
+    final l10n = AppLocalizations.of(context);
+    final action = await showEntryActionSheet(context, l10n);
+    if (!mounted) return;
+    if (action == EntryAction.edit) {
+      await _editAmount(log, l10n);
+    } else if (action == EntryAction.delete) {
+      final confirmed = await confirmDelete(context, l10n);
+      if (confirmed) {
+        await ref.read(hydrationServiceProvider).deleteDrink(log.id, log.date);
+      }
+    }
+  }
+
+  Future<void> _editAmount(LiquidLog log, AppLocalizations l10n) async {
+    final controller = TextEditingController(text: log.amountMlRaw.toString());
+    final result = await showCupertinoDialog<String>(
+      context: context,
+      builder: (dialogContext) => CupertinoAlertDialog(
+        title: Text(l10n.hydrationSectionEditTitle),
+        content: Padding(
+          padding: const EdgeInsets.only(top: 12),
+          child: CupertinoTextField(
+            controller: controller,
+            keyboardType: TextInputType.number,
+            autofocus: true,
+            placeholder: l10n.hydrationSectionAmountPlaceholder,
+          ),
+        ),
+        actions: [
+          CupertinoDialogAction(
+            onPressed: () => Navigator.of(dialogContext).pop(),
+            child: Text(l10n.commonCancelButton),
+          ),
+          CupertinoDialogAction(
+            onPressed: () => Navigator.of(dialogContext).pop(controller.text),
+            child: Text(l10n.commonSaveButton),
+          ),
+        ],
+      ),
+    );
+    final amount = int.tryParse(result ?? '');
+    if (amount == null || amount <= 0) return;
+    await ref.read(hydrationServiceProvider).updateDrink(
+          id: log.id,
+          date: log.date,
+          drinkType: log.drinkType,
+          amountMlRaw: amount,
+          customDrinkLabel: log.customDrinkLabel,
+        );
   }
 }
 

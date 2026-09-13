@@ -3,10 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/constants/enums.dart';
 import '../../../../core/theme/zebra_theme.dart';
+import '../../../../domain/models/activity.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/app_providers.dart';
+import '../../../widgets/entry_actions.dart';
 import '../../../widgets/feeling_picker.dart';
 import '../../../widgets/section_card.dart';
+import 'edit_activity_sheet.dart';
 
 class ActivitiesSection extends ConsumerStatefulWidget {
   const ActivitiesSection({super.key});
@@ -127,14 +130,18 @@ class _ActivitiesSectionState extends ConsumerState<ActivitiesSection> {
             data: (activities) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: activities
-                  .map((a) => Padding(
-                        padding: const EdgeInsets.only(bottom: 3),
-                        child: Text(
-                            l10n.activitiesSectionListItem(a.activityName, a.durationMin) +
-                                (a.heartRateMinBpm != null
-                                    ? ' · ${l10n.commonHeartRateRangeLabel(a.heartRateMinBpm!, a.heartRateMaxBpm!)}'
-                                    : ''),
-                            style: const TextStyle(fontSize: 12.5)),
+                  .map((a) => GestureDetector(
+                        onTap: () => _handleItemTap(a),
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 6),
+                          child: Text(
+                              l10n.activitiesSectionListItem(a.activityName, a.durationMin) +
+                                  (a.heartRateMinBpm != null
+                                      ? ' · ${l10n.commonHeartRateRangeLabel(a.heartRateMinBpm!, a.heartRateMaxBpm!)}'
+                                      : ''),
+                              style: const TextStyle(
+                                  fontSize: 12.5, decoration: TextDecoration.underline)),
+                        ),
                       ))
                   .toList(),
             ),
@@ -161,6 +168,20 @@ class _ActivitiesSectionState extends ConsumerState<ActivitiesSection> {
     _nameController.clear();
     _hrMinController.clear();
     _hrMaxController.clear();
+  }
+
+  Future<void> _handleItemTap(Activity activity) async {
+    final l10n = AppLocalizations.of(context);
+    final action = await showEntryActionSheet(context, l10n);
+    if (!mounted) return;
+    if (action == EntryAction.edit) {
+      await showEditActivitySheet(context, activity);
+    } else if (action == EntryAction.delete) {
+      final confirmed = await confirmDelete(context, l10n);
+      if (confirmed) {
+        await ref.read(activityRepositoryProvider).delete(activity.id);
+      }
+    }
   }
 }
 

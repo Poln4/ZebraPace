@@ -539,6 +539,19 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get calisthenicsSectionEditTitle => 'Editar serie';
+
+  @override
+  String calisthenicsSectionListItem(
+    String exercise,
+    String progression,
+    int sets,
+    int reps,
+  ) {
+    return '$exercise ($progression) — $sets×$reps';
+  }
+
+  @override
   String get commonMentalStateLabel => 'Estado mental';
 
   @override
@@ -577,6 +590,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String activitiesSectionListItem(String name, int duration) {
     return '$name — $duration min';
   }
+
+  @override
+  String get activitiesSectionEditTitle => 'Editar actividad';
 
   @override
   String get injuriesSectionTitle => '🩹 Lesiones y eventos estructurales';
@@ -627,6 +643,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get therapiesSectionTitle => '💆‍♀️ Recuperación y terapias pasivas';
 
   @override
+  String get therapiesSectionEditTitle => 'Editar terapia';
+
+  @override
   String get therapiesSectionNamePlaceholder => 'Nombre de la terapia';
 
   @override
@@ -641,7 +660,22 @@ class AppLocalizationsEs extends AppLocalizations {
   String get commonSaveButton => 'Guardar';
 
   @override
+  String get commonEditButton => 'Editar';
+
+  @override
+  String get commonDeleteButton => 'Eliminar';
+
+  @override
+  String get commonDeleteConfirmTitle => '¿Eliminar este registro?';
+
+  @override
+  String get commonDeleteConfirmMessage => 'Esta acción no se puede deshacer.';
+
+  @override
   String get hydrationSectionTitle => '☕ Hidratación y líquidos';
+
+  @override
+  String get hydrationSectionEditTitle => 'Editar bebida';
 
   @override
   String hydrationSectionProgress(int credit, int goal) {
@@ -669,7 +703,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get nutritionSectionTitle => '🥩 Nutrición y suplementos';
 
   @override
-  String nutritionSectionProteinProgress(int protein, int goal) {
+  String nutritionSectionProteinProgress(String protein, int goal) {
     return '${protein}g / ${goal}g de proteína';
   }
 

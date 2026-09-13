@@ -60,4 +60,26 @@ class TherapyRepository {
           ),
         );
   }
+
+  Future<void> update({
+    required String id,
+    required String therapyName,
+    required int durationMin,
+    MentalState? mentalState,
+    BodyFeeling? bodyFeeling,
+  }) async {
+    await (_db.update(_db.therapies)..where((t) => t.id.equals(id))).write(
+      db.TherapiesCompanion(
+        therapyName: Value(therapyName),
+        durationMin: Value(durationMin),
+        mentalState: Value(mentalState?.db),
+        bodyFeeling: Value(bodyFeeling?.db),
+        updatedAt: Value(nowIso()),
+      ),
+    );
+  }
+
+  Future<void> delete(String id) async {
+    await (_db.delete(_db.therapies)..where((t) => t.id.equals(id))).go();
+  }
 }

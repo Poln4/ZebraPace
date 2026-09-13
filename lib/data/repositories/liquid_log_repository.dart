@@ -51,6 +51,28 @@ class LiquidLogRepository {
     await (_db.delete(_db.liquidLogs)..where((t) => t.date.equals(date))).go();
   }
 
+  Future<void> updateOne({
+    required String id,
+    required DrinkType drinkType,
+    required int amountMlRaw,
+    String? customDrinkLabel,
+  }) async {
+    final credit = LiquidLog.creditFor(drinkType, amountMlRaw);
+    await (_db.update(_db.liquidLogs)..where((t) => t.id.equals(id))).write(
+      db.LiquidLogsCompanion(
+        drinkType: Value(drinkType.db),
+        customDrinkLabel: Value(customDrinkLabel),
+        amountMlRaw: Value(amountMlRaw),
+        hydrationMlCredit: Value(credit),
+        updatedAt: Value(nowIso()),
+      ),
+    );
+  }
+
+  Future<void> deleteOne(String id) async {
+    await (_db.delete(_db.liquidLogs)..where((t) => t.id.equals(id))).go();
+  }
+
   /// Sums today's raw/credit hydration directly from liquid_logs — the
   /// DailyLogs.waterMlRaw/waterMlCredit columns are a derived cache of this,
   /// recomputed on every write rather than incrementally mutated (see

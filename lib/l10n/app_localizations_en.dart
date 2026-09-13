@@ -521,6 +521,19 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get calisthenicsSectionEditTitle => 'Edit Set';
+
+  @override
+  String calisthenicsSectionListItem(
+    String exercise,
+    String progression,
+    int sets,
+    int reps,
+  ) {
+    return '$exercise ($progression) — $sets×$reps';
+  }
+
+  @override
   String get commonMentalStateLabel => 'Mental State';
 
   @override
@@ -559,6 +572,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String activitiesSectionListItem(String name, int duration) {
     return '$name — $duration min';
   }
+
+  @override
+  String get activitiesSectionEditTitle => 'Edit Activity';
 
   @override
   String get injuriesSectionTitle => '🩹 Injuries & Structural Events';
@@ -609,6 +625,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get therapiesSectionTitle => '💆‍♀️ Recovery & Passive Therapies';
 
   @override
+  String get therapiesSectionEditTitle => 'Edit Therapy';
+
+  @override
   String get therapiesSectionNamePlaceholder => 'Therapy name';
 
   @override
@@ -623,7 +642,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonSaveButton => 'Save';
 
   @override
+  String get commonEditButton => 'Edit';
+
+  @override
+  String get commonDeleteButton => 'Delete';
+
+  @override
+  String get commonDeleteConfirmTitle => 'Delete this entry?';
+
+  @override
+  String get commonDeleteConfirmMessage => 'This can\'t be undone.';
+
+  @override
   String get hydrationSectionTitle => '☕ Hydration & Liquids';
+
+  @override
+  String get hydrationSectionEditTitle => 'Edit Drink';
 
   @override
   String hydrationSectionProgress(int credit, int goal) {
@@ -651,7 +685,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nutritionSectionTitle => '🥩 Nutrition & Supplements';
 
   @override
-  String nutritionSectionProteinProgress(int protein, int goal) {
+  String nutritionSectionProteinProgress(String protein, int goal) {
     return '${protein}g / ${goal}g protein';
   }
 

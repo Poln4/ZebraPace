@@ -43,7 +43,7 @@ class _NutritionSectionState extends ConsumerState<NutritionSection> {
         children: [
           ProgressBar(progress: progress),
           const SizedBox(height: 4),
-          Text(l10n.nutritionSectionProteinProgress(protein, goal),
+          Text(l10n.nutritionSectionProteinProgress(protein.toStringAsFixed(1), goal),
               style: const TextStyle(fontSize: 12)),
           const SizedBox(height: 4),
           Text(l10n.nutritionSectionCreatineToday((log?.creatineG ?? 0).toStringAsFixed(1)),
@@ -54,7 +54,7 @@ class _NutritionSectionState extends ConsumerState<NutritionSection> {
               Expanded(
                 child: CupertinoTextField(
                   controller: _amountController,
-                  keyboardType: TextInputType.number,
+                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
                   placeholder: l10n.nutritionSectionAmountPlaceholder,
                 ),
               ),
@@ -127,7 +127,7 @@ class _NutritionSectionState extends ConsumerState<NutritionSection> {
   Future<void> _addProtein() async {
     final amount = double.tryParse(_amountController.text) ?? 0;
     if (amount <= 0) return;
-    final grams = (amount * _unit.gramsPerUnit).round();
+    final grams = amount * _unit.gramsPerUnit;
     final date = ref.read(selectedDateProvider);
     final repo = ref.read(dailyLogRepositoryProvider);
     final log = await repo.getOrCreateDailyLog(date);
@@ -142,7 +142,7 @@ class _NutritionSectionState extends ConsumerState<NutritionSection> {
       l10n: l10n,
       initial: current.toString(),
     );
-    final grams = int.tryParse(result ?? '');
+    final grams = double.tryParse(result ?? '');
     if (grams == null || grams < 0) return;
     final date = ref.read(selectedDateProvider);
     final repo = ref.read(dailyLogRepositoryProvider);

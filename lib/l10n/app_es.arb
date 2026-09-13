@@ -181,6 +181,8 @@
   "calisthenicsSectionGoalMilestoneCelebration": "🌟 3 sesiones seguidas alcanzando la meta de {exercise} — puedes intentar el siguiente nivel cuando quieras.",
   "calisthenicsSectionLogButton": "Registrar calistenia",
   "calisthenicsSectionMilestoneCelebration": "🎈 3 sesiones cómodas seguidas de {exercise} — podrías intentar el siguiente nivel cuando estés lista.",
+  "calisthenicsSectionEditTitle": "Editar serie",
+  "calisthenicsSectionListItem": "{exercise} ({progression}) — {sets}×{reps}",
 
   "commonMentalStateLabel": "Estado mental",
   "commonBodyFeelingLabel": "Sensación corporal",
@@ -201,6 +203,7 @@
   "activitiesSectionWeightPlaceholder": "Peso extra (kg)",
   "activitiesSectionLogButton": "Registrar actividad",
   "activitiesSectionListItem": "{name} — {duration} min",
+  "activitiesSectionEditTitle": "Editar actividad",
 
   "injuriesSectionTitle": "🩹 Lesiones y eventos estructurales",
   "injuriesSectionCaption": "Para lesiones puntuales y fechables — distintas de los Días de Brote, que son sistémicos.",
@@ -217,13 +220,19 @@
   "injuriesSectionUpdate": "💾 Actualizar",
 
   "therapiesSectionTitle": "💆‍♀️ Recuperación y terapias pasivas",
+  "therapiesSectionEditTitle": "Editar terapia",
   "therapiesSectionNamePlaceholder": "Nombre de la terapia",
   "therapiesSectionLogButton": "Registrar terapia",
   "therapiesSectionListItem": "{name} — {duration} min",
 
   "commonSaveButton": "Guardar",
+  "commonEditButton": "Editar",
+  "commonDeleteButton": "Eliminar",
+  "commonDeleteConfirmTitle": "¿Eliminar este registro?",
+  "commonDeleteConfirmMessage": "Esta acción no se puede deshacer.",
 
   "hydrationSectionTitle": "☕ Hidratación y líquidos",
+  "hydrationSectionEditTitle": "Editar bebida",
   "hydrationSectionProgress": "{credit} / {goal} ml",
   "hydrationSectionCustomLabelPlaceholder": "¿Qué es?",
   "hydrationSectionAmountPlaceholder": "Cantidad (ml)",

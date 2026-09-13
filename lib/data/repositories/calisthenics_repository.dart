@@ -103,4 +103,38 @@ class CalisthenicsRepository {
           ),
         );
   }
+
+  /// Editable fields only — exercise/progression stay fixed after creation
+  /// (progression is localized display text tied to the exercise's tier
+  /// list, not a stable key; if the wrong exercise was logged, deleting and
+  /// re-adding is simpler than reworking that binding).
+  Future<void> update({
+    required String id,
+    required int sets,
+    required int reps,
+    required double comfortScore,
+    MentalState? mentalState,
+    BodyFeeling? bodyFeeling,
+    ContractionMode? contractionMode,
+    int? heartRateMinBpm,
+    int? heartRateMaxBpm,
+  }) async {
+    await (_db.update(_db.calisthenics)..where((t) => t.id.equals(id))).write(
+      db.CalisthenicsCompanion(
+        sets: Value(sets),
+        reps: Value(reps),
+        comfortScore: Value(comfortScore),
+        mentalState: Value(mentalState?.db),
+        bodyFeeling: Value(bodyFeeling?.db),
+        contractionMode: Value(contractionMode?.db),
+        heartRateMinBpm: Value(heartRateMinBpm),
+        heartRateMaxBpm: Value(heartRateMaxBpm),
+        updatedAt: Value(nowIso()),
+      ),
+    );
+  }
+
+  Future<void> delete(String id) async {
+    await (_db.delete(_db.calisthenics)..where((t) => t.id.equals(id))).go();
+  }
 }

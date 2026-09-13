@@ -88,4 +88,35 @@ class ActivityRepository {
         .getSingleOrNull();
     return row != null;
   }
+
+  /// Editable fields only — deliberately excludes source/healthkitUuid/
+  /// metsAvg/activeEnergyKcal, which stay whatever they were set to on
+  /// import and aren't user-editable.
+  Future<void> update({
+    required String id,
+    required String activityName,
+    required int durationMin,
+    double extraWeightKg = 0,
+    MentalState? mentalState,
+    BodyFeeling? bodyFeeling,
+    int? heartRateMinBpm,
+    int? heartRateMaxBpm,
+  }) async {
+    await (_db.update(_db.activities)..where((t) => t.id.equals(id))).write(
+      db.ActivitiesCompanion(
+        activityName: Value(activityName),
+        durationMin: Value(durationMin),
+        extraWeightKg: Value(extraWeightKg),
+        mentalState: Value(mentalState?.db),
+        bodyFeeling: Value(bodyFeeling?.db),
+        heartRateMinBpm: Value(heartRateMinBpm),
+        heartRateMaxBpm: Value(heartRateMaxBpm),
+        updatedAt: Value(nowIso()),
+      ),
+    );
+  }
+
+  Future<void> delete(String id) async {
+    await (_db.delete(_db.activities)..where((t) => t.id.equals(id))).go();
+  }
 }

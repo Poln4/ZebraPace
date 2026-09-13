@@ -111,11 +111,11 @@ class $DailyLogsTable extends DailyLogs
     'proteinG',
   );
   @override
-  late final GeneratedColumn<int> proteinG = GeneratedColumn<int>(
+  late final GeneratedColumn<double> proteinG = GeneratedColumn<double>(
     'protein_g',
     aliasedName,
     false,
-    type: DriftSqlType.int,
+    type: DriftSqlType.double,
     requiredDuringInsert: false,
     defaultValue: const Constant(0),
   );
@@ -508,7 +508,7 @@ class $DailyLogsTable extends DailyLogs
         data['${effectivePrefix}water_ml_credit'],
       )!,
       proteinG: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
+        DriftSqlType.double,
         data['${effectivePrefix}protein_g'],
       )!,
       creatineG: attachedDatabase.typeMapping.read(
@@ -585,7 +585,11 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
   /// stored this credit value, not raw ml — split into two explicit columns
   /// here on purpose.
   final double waterMlCredit;
-  final int proteinG;
+
+  /// Was an IntColumn before schemaVersion 4 — widened to allow decimal
+  /// grams (e.g. a half-scoop or a label's "17.5g") instead of rounding
+  /// every entry to a whole gram.
+  final double proteinG;
   final double creatineG;
   final String? mentalState;
   final String? bodyFeeling;
@@ -649,7 +653,7 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
     }
     map['water_ml_raw'] = Variable<int>(waterMlRaw);
     map['water_ml_credit'] = Variable<double>(waterMlCredit);
-    map['protein_g'] = Variable<int>(proteinG);
+    map['protein_g'] = Variable<double>(proteinG);
     map['creatine_g'] = Variable<double>(creatineG);
     if (!nullToAbsent || mentalState != null) {
       map['mental_state'] = Variable<String>(mentalState);
@@ -743,7 +747,7 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
       fatPercentage: serializer.fromJson<double?>(json['fatPercentage']),
       waterMlRaw: serializer.fromJson<int>(json['waterMlRaw']),
       waterMlCredit: serializer.fromJson<double>(json['waterMlCredit']),
-      proteinG: serializer.fromJson<int>(json['proteinG']),
+      proteinG: serializer.fromJson<double>(json['proteinG']),
       creatineG: serializer.fromJson<double>(json['creatineG']),
       mentalState: serializer.fromJson<String?>(json['mentalState']),
       bodyFeeling: serializer.fromJson<String?>(json['bodyFeeling']),
@@ -771,7 +775,7 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
       'fatPercentage': serializer.toJson<double?>(fatPercentage),
       'waterMlRaw': serializer.toJson<int>(waterMlRaw),
       'waterMlCredit': serializer.toJson<double>(waterMlCredit),
-      'proteinG': serializer.toJson<int>(proteinG),
+      'proteinG': serializer.toJson<double>(proteinG),
       'creatineG': serializer.toJson<double>(creatineG),
       'mentalState': serializer.toJson<String?>(mentalState),
       'bodyFeeling': serializer.toJson<String?>(bodyFeeling),
@@ -797,7 +801,7 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
     Value<double?> fatPercentage = const Value.absent(),
     int? waterMlRaw,
     double? waterMlCredit,
-    int? proteinG,
+    double? proteinG,
     double? creatineG,
     Value<String?> mentalState = const Value.absent(),
     Value<String?> bodyFeeling = const Value.absent(),
@@ -983,7 +987,7 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
   final Value<double?> fatPercentage;
   final Value<int> waterMlRaw;
   final Value<double> waterMlCredit;
-  final Value<int> proteinG;
+  final Value<double> proteinG;
   final Value<double> creatineG;
   final Value<String?> mentalState;
   final Value<String?> bodyFeeling;
@@ -1059,7 +1063,7 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
     Expression<double>? fatPercentage,
     Expression<int>? waterMlRaw,
     Expression<double>? waterMlCredit,
-    Expression<int>? proteinG,
+    Expression<double>? proteinG,
     Expression<double>? creatineG,
     Expression<String>? mentalState,
     Expression<String>? bodyFeeling,
@@ -1111,7 +1115,7 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
     Value<double?>? fatPercentage,
     Value<int>? waterMlRaw,
     Value<double>? waterMlCredit,
-    Value<int>? proteinG,
+    Value<double>? proteinG,
     Value<double>? creatineG,
     Value<String?>? mentalState,
     Value<String?>? bodyFeeling,
@@ -1184,7 +1188,7 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
       map['water_ml_credit'] = Variable<double>(waterMlCredit.value);
     }
     if (proteinG.present) {
-      map['protein_g'] = Variable<int>(proteinG.value);
+      map['protein_g'] = Variable<double>(proteinG.value);
     }
     if (creatineG.present) {
       map['creatine_g'] = Variable<double>(creatineG.value);
@@ -6550,7 +6554,7 @@ typedef $$DailyLogsTableCreateCompanionBuilder =
       Value<double?> fatPercentage,
       Value<int> waterMlRaw,
       Value<double> waterMlCredit,
-      Value<int> proteinG,
+      Value<double> proteinG,
       Value<double> creatineG,
       Value<String?> mentalState,
       Value<String?> bodyFeeling,
@@ -6576,7 +6580,7 @@ typedef $$DailyLogsTableUpdateCompanionBuilder =
       Value<double?> fatPercentage,
       Value<int> waterMlRaw,
       Value<double> waterMlCredit,
-      Value<int> proteinG,
+      Value<double> proteinG,
       Value<double> creatineG,
       Value<String?> mentalState,
       Value<String?> bodyFeeling,
@@ -6646,7 +6650,7 @@ class $$DailyLogsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<int> get proteinG => $composableBuilder(
+  ColumnFilters<double> get proteinG => $composableBuilder(
     column: $table.proteinG,
     builder: (column) => ColumnFilters(column),
   );
@@ -6766,7 +6770,7 @@ class $$DailyLogsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<int> get proteinG => $composableBuilder(
+  ColumnOrderings<double> get proteinG => $composableBuilder(
     column: $table.proteinG,
     builder: (column) => ColumnOrderings(column),
   );
@@ -6874,7 +6878,7 @@ class $$DailyLogsTableAnnotationComposer
     builder: (column) => column,
   );
 
-  GeneratedColumn<int> get proteinG =>
+  GeneratedColumn<double> get proteinG =>
       $composableBuilder(column: $table.proteinG, builder: (column) => column);
 
   GeneratedColumn<double> get creatineG =>
@@ -6969,7 +6973,7 @@ class $$DailyLogsTableTableManager
                 Value<double?> fatPercentage = const Value.absent(),
                 Value<int> waterMlRaw = const Value.absent(),
                 Value<double> waterMlCredit = const Value.absent(),
-                Value<int> proteinG = const Value.absent(),
+                Value<double> proteinG = const Value.absent(),
                 Value<double> creatineG = const Value.absent(),
                 Value<String?> mentalState = const Value.absent(),
                 Value<String?> bodyFeeling = const Value.absent(),
@@ -7019,7 +7023,7 @@ class $$DailyLogsTableTableManager
                 Value<double?> fatPercentage = const Value.absent(),
                 Value<int> waterMlRaw = const Value.absent(),
                 Value<double> waterMlCredit = const Value.absent(),
-                Value<int> proteinG = const Value.absent(),
+                Value<double> proteinG = const Value.absent(),
                 Value<double> creatineG = const Value.absent(),
                 Value<String?> mentalState = const Value.absent(),
                 Value<String?> bodyFeeling = const Value.absent(),

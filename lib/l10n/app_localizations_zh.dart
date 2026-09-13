@@ -517,6 +517,19 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String get calisthenicsSectionEditTitle => '編輯訓練組';
+
+  @override
+  String calisthenicsSectionListItem(
+    String exercise,
+    String progression,
+    int sets,
+    int reps,
+  ) {
+    return '$exercise（$progression）— $sets×$reps';
+  }
+
+  @override
   String get commonMentalStateLabel => '心理狀態';
 
   @override
@@ -555,6 +568,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String activitiesSectionListItem(String name, int duration) {
     return '$name — $duration 分鐘';
   }
+
+  @override
+  String get activitiesSectionEditTitle => '編輯活動';
 
   @override
   String get injuriesSectionTitle => '🩹 傷害與結構性事件';
@@ -603,6 +619,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get therapiesSectionTitle => '💆‍♀️ 恢復與被動療法';
 
   @override
+  String get therapiesSectionEditTitle => '編輯療法';
+
+  @override
   String get therapiesSectionNamePlaceholder => '療法名稱';
 
   @override
@@ -617,7 +636,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get commonSaveButton => '儲存';
 
   @override
+  String get commonEditButton => '編輯';
+
+  @override
+  String get commonDeleteButton => '刪除';
+
+  @override
+  String get commonDeleteConfirmTitle => '要刪除這筆記錄嗎？';
+
+  @override
+  String get commonDeleteConfirmMessage => '此操作無法復原。';
+
+  @override
   String get hydrationSectionTitle => '☕ 水分與液體攝取';
+
+  @override
+  String get hydrationSectionEditTitle => '編輯飲品';
 
   @override
   String hydrationSectionProgress(int credit, int goal) {
@@ -645,7 +679,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get nutritionSectionTitle => '🥩 營養與補充品';
 
   @override
-  String nutritionSectionProteinProgress(int protein, int goal) {
+  String nutritionSectionProteinProgress(String protein, int goal) {
     return '$protein克 / $goal克 蛋白質';
   }
 
@@ -2442,6 +2476,19 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   }
 
   @override
+  String get calisthenicsSectionEditTitle => '編輯訓練組';
+
+  @override
+  String calisthenicsSectionListItem(
+    String exercise,
+    String progression,
+    int sets,
+    int reps,
+  ) {
+    return '$exercise（$progression）— $sets×$reps';
+  }
+
+  @override
   String get commonMentalStateLabel => '心理狀態';
 
   @override
@@ -2480,6 +2527,9 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String activitiesSectionListItem(String name, int duration) {
     return '$name — $duration 分鐘';
   }
+
+  @override
+  String get activitiesSectionEditTitle => '編輯活動';
 
   @override
   String get injuriesSectionTitle => '🩹 傷害與結構性事件';
@@ -2528,6 +2578,9 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get therapiesSectionTitle => '💆‍♀️ 恢復與被動療法';
 
   @override
+  String get therapiesSectionEditTitle => '編輯療法';
+
+  @override
   String get therapiesSectionNamePlaceholder => '療法名稱';
 
   @override
@@ -2542,7 +2595,22 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get commonSaveButton => '儲存';
 
   @override
+  String get commonEditButton => '編輯';
+
+  @override
+  String get commonDeleteButton => '刪除';
+
+  @override
+  String get commonDeleteConfirmTitle => '要刪除這筆記錄嗎？';
+
+  @override
+  String get commonDeleteConfirmMessage => '此操作無法復原。';
+
+  @override
   String get hydrationSectionTitle => '☕ 水分與液體攝取';
+
+  @override
+  String get hydrationSectionEditTitle => '編輯飲品';
 
   @override
   String hydrationSectionProgress(int credit, int goal) {
@@ -2570,7 +2638,7 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get nutritionSectionTitle => '🥩 營養與補充品';
 
   @override
-  String nutritionSectionProteinProgress(int protein, int goal) {
+  String nutritionSectionProteinProgress(String protein, int goal) {
     return '$protein克 / $goal克 蛋白質';
   }
 
