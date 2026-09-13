@@ -14,6 +14,14 @@ import '../../../widgets/section_card.dart';
 /// displays the same 7-day trimmed average Vitals already produces, and
 /// quietly pushes it to the shared table whenever that average changes —
 /// the only "entry point" for weight stays Vitals.
+///
+/// Always logs a history point when a computed value is available, even
+/// when it's unchanged from last time — a run of identical days is real
+/// progress-chart information (a plateau), not "nothing to record", and
+/// skipping the log on no-change days was leaving gaps in that chart. Only
+/// the shared snapshot's current_weight_kg/updated_at are skipped when
+/// nothing's actually different, since those don't need to churn for a
+/// value that hasn't moved.
 class MyProgressCard extends ConsumerWidget {
   const MyProgressCard({required this.entry, super.key});
 
@@ -29,11 +37,12 @@ class MyProgressCard extends ConsumerWidget {
     ref.listen(computedChallengeWeightProvider, (previous, next) {
       final computed = next.valueOrNull;
       if (computed == null) return;
-      if ((computed - entry.currentWeightKg).abs() < _syncThresholdKg) return;
-      ref.read(weightChallengeRepositoryProvider).updateCurrentWeight(
-            userId: entry.userId,
-            currentWeightKg: computed,
-          );
+      final repo = ref.read(weightChallengeRepositoryProvider);
+      if ((computed - entry.currentWeightKg).abs() < _syncThresholdKg) {
+        repo.logWeighIn(userId: entry.userId, weightKg: computed);
+      } else {
+        repo.updateCurrentWeight(userId: entry.userId, currentWeightKg: computed);
+      }
     });
 
     final percent = entry.percentLost;

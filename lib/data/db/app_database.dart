@@ -32,7 +32,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -45,6 +45,14 @@ class AppDatabase extends _$AppDatabase {
             await m.addColumn(dailyLogs, dailyLogs.sleepQuality);
             await m.addColumn(dailyLogs, dailyLogs.sleepHeartRateMin);
             await m.addColumn(dailyLogs, dailyLogs.sleepHeartRateMax);
+          }
+          // v2 -> v3: heart rate range on Activities and Calisthenics, for
+          // deeper exertion insights beyond sleeping HR.
+          if (from < 3) {
+            await m.addColumn(activities, activities.heartRateMinBpm);
+            await m.addColumn(activities, activities.heartRateMaxBpm);
+            await m.addColumn(calisthenics, calisthenics.heartRateMinBpm);
+            await m.addColumn(calisthenics, calisthenics.heartRateMaxBpm);
           }
         },
       );

@@ -15,6 +15,8 @@ class Activity {
     this.healthkitUuid,
     this.metsAvg,
     this.activeEnergyKcal,
+    this.heartRateMinBpm,
+    this.heartRateMaxBpm,
   });
 
   final String id;
@@ -28,6 +30,8 @@ class Activity {
   final String? healthkitUuid;
   final double? metsAvg;
   final double? activeEnergyKcal;
+  final int? heartRateMinBpm;
+  final int? heartRateMaxBpm;
 
   double? get metMinutes => metsAvg == null ? null : metsAvg! * durationMin;
 }

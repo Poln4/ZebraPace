@@ -108,7 +108,8 @@ class _WorkoutCard extends ConsumerWidget {
               Text(
                 '${workout.durationMin} min'
                 '${workout.activeEnergyKcal != null ? ' · ${workout.activeEnergyKcal!.round()} kcal' : ''}'
-                '$metsText',
+                '$metsText'
+                '${workout.heartRateMinBpm != null ? ' · HR ${workout.heartRateMinBpm}-${workout.heartRateMaxBpm} bpm' : ''}',
                 style: const TextStyle(fontSize: 13),
               ),
               const SizedBox(height: 8),
@@ -164,6 +165,8 @@ class _WorkoutCard extends ConsumerWidget {
           healthkitUuid: workout.healthkitUuid,
           metsAvg: estimate?.value,
           activeEnergyKcal: workout.activeEnergyKcal,
+          heartRateMinBpm: workout.heartRateMinBpm,
+          heartRateMaxBpm: workout.heartRateMaxBpm,
         );
     ref.invalidate(detectedWorkoutsProvider(date));
   }

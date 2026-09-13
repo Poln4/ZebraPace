@@ -24,6 +24,8 @@ class ActivityRepository {
       healthkitUuid: row.healthkitUuid,
       metsAvg: row.metsAvg,
       activeEnergyKcal: row.activeEnergyKcal,
+      heartRateMinBpm: row.heartRateMinBpm,
+      heartRateMaxBpm: row.heartRateMaxBpm,
     );
   }
 
@@ -57,6 +59,8 @@ class ActivityRepository {
     String? healthkitUuid,
     double? metsAvg,
     double? activeEnergyKcal,
+    int? heartRateMinBpm,
+    int? heartRateMaxBpm,
   }) async {
     await _db.into(_db.activities).insert(
           db.ActivitiesCompanion.insert(
@@ -71,6 +75,8 @@ class ActivityRepository {
             healthkitUuid: Value(healthkitUuid),
             metsAvg: Value(metsAvg),
             activeEnergyKcal: Value(activeEnergyKcal),
+            heartRateMinBpm: Value(heartRateMinBpm),
+            heartRateMaxBpm: Value(heartRateMaxBpm),
             updatedAt: nowIso(),
           ),
         );

@@ -1405,6 +1405,28 @@ class $ActivitiesTable extends Activities
     type: DriftSqlType.double,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _heartRateMinBpmMeta = const VerificationMeta(
+    'heartRateMinBpm',
+  );
+  @override
+  late final GeneratedColumn<int> heartRateMinBpm = GeneratedColumn<int>(
+    'heart_rate_min_bpm',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _heartRateMaxBpmMeta = const VerificationMeta(
+    'heartRateMaxBpm',
+  );
+  @override
+  late final GeneratedColumn<int> heartRateMaxBpm = GeneratedColumn<int>(
+    'heart_rate_max_bpm',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     updatedAt,
@@ -1420,6 +1442,8 @@ class $ActivitiesTable extends Activities
     healthkitUuid,
     metsAvg,
     activeEnergyKcal,
+    heartRateMinBpm,
+    heartRateMaxBpm,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -1539,6 +1563,24 @@ class $ActivitiesTable extends Activities
         ),
       );
     }
+    if (data.containsKey('heart_rate_min_bpm')) {
+      context.handle(
+        _heartRateMinBpmMeta,
+        heartRateMinBpm.isAcceptableOrUnknown(
+          data['heart_rate_min_bpm']!,
+          _heartRateMinBpmMeta,
+        ),
+      );
+    }
+    if (data.containsKey('heart_rate_max_bpm')) {
+      context.handle(
+        _heartRateMaxBpmMeta,
+        heartRateMaxBpm.isAcceptableOrUnknown(
+          data['heart_rate_max_bpm']!,
+          _heartRateMaxBpmMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -1600,6 +1642,14 @@ class $ActivitiesTable extends Activities
         DriftSqlType.double,
         data['${effectivePrefix}active_energy_kcal'],
       ),
+      heartRateMinBpm: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}heart_rate_min_bpm'],
+      ),
+      heartRateMaxBpm: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}heart_rate_max_bpm'],
+      ),
     );
   }
 
@@ -1628,6 +1678,12 @@ class Activity extends DataClass implements Insertable<Activity> {
   final String? healthkitUuid;
   final double? metsAvg;
   final double? activeEnergyKcal;
+
+  /// Heart rate range (bpm) during the activity — manually entered, or
+  /// pulled from HealthKit's HEART_RATE samples within the workout's time
+  /// window when imported. Mirrors DailyLogs' sleepHeartRateMin/Max.
+  final int? heartRateMinBpm;
+  final int? heartRateMaxBpm;
   const Activity({
     required this.updatedAt,
     this.deletedAt,
@@ -1642,6 +1698,8 @@ class Activity extends DataClass implements Insertable<Activity> {
     this.healthkitUuid,
     this.metsAvg,
     this.activeEnergyKcal,
+    this.heartRateMinBpm,
+    this.heartRateMaxBpm,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -1670,6 +1728,12 @@ class Activity extends DataClass implements Insertable<Activity> {
     }
     if (!nullToAbsent || activeEnergyKcal != null) {
       map['active_energy_kcal'] = Variable<double>(activeEnergyKcal);
+    }
+    if (!nullToAbsent || heartRateMinBpm != null) {
+      map['heart_rate_min_bpm'] = Variable<int>(heartRateMinBpm);
+    }
+    if (!nullToAbsent || heartRateMaxBpm != null) {
+      map['heart_rate_max_bpm'] = Variable<int>(heartRateMaxBpm);
     }
     return map;
   }
@@ -1701,6 +1765,12 @@ class Activity extends DataClass implements Insertable<Activity> {
       activeEnergyKcal: activeEnergyKcal == null && nullToAbsent
           ? const Value.absent()
           : Value(activeEnergyKcal),
+      heartRateMinBpm: heartRateMinBpm == null && nullToAbsent
+          ? const Value.absent()
+          : Value(heartRateMinBpm),
+      heartRateMaxBpm: heartRateMaxBpm == null && nullToAbsent
+          ? const Value.absent()
+          : Value(heartRateMaxBpm),
     );
   }
 
@@ -1723,6 +1793,8 @@ class Activity extends DataClass implements Insertable<Activity> {
       healthkitUuid: serializer.fromJson<String?>(json['healthkitUuid']),
       metsAvg: serializer.fromJson<double?>(json['metsAvg']),
       activeEnergyKcal: serializer.fromJson<double?>(json['activeEnergyKcal']),
+      heartRateMinBpm: serializer.fromJson<int?>(json['heartRateMinBpm']),
+      heartRateMaxBpm: serializer.fromJson<int?>(json['heartRateMaxBpm']),
     );
   }
   @override
@@ -1742,6 +1814,8 @@ class Activity extends DataClass implements Insertable<Activity> {
       'healthkitUuid': serializer.toJson<String?>(healthkitUuid),
       'metsAvg': serializer.toJson<double?>(metsAvg),
       'activeEnergyKcal': serializer.toJson<double?>(activeEnergyKcal),
+      'heartRateMinBpm': serializer.toJson<int?>(heartRateMinBpm),
+      'heartRateMaxBpm': serializer.toJson<int?>(heartRateMaxBpm),
     };
   }
 
@@ -1759,6 +1833,8 @@ class Activity extends DataClass implements Insertable<Activity> {
     Value<String?> healthkitUuid = const Value.absent(),
     Value<double?> metsAvg = const Value.absent(),
     Value<double?> activeEnergyKcal = const Value.absent(),
+    Value<int?> heartRateMinBpm = const Value.absent(),
+    Value<int?> heartRateMaxBpm = const Value.absent(),
   }) => Activity(
     updatedAt: updatedAt ?? this.updatedAt,
     deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
@@ -1777,6 +1853,12 @@ class Activity extends DataClass implements Insertable<Activity> {
     activeEnergyKcal: activeEnergyKcal.present
         ? activeEnergyKcal.value
         : this.activeEnergyKcal,
+    heartRateMinBpm: heartRateMinBpm.present
+        ? heartRateMinBpm.value
+        : this.heartRateMinBpm,
+    heartRateMaxBpm: heartRateMaxBpm.present
+        ? heartRateMaxBpm.value
+        : this.heartRateMaxBpm,
   );
   Activity copyWithCompanion(ActivitiesCompanion data) {
     return Activity(
@@ -1807,6 +1889,12 @@ class Activity extends DataClass implements Insertable<Activity> {
       activeEnergyKcal: data.activeEnergyKcal.present
           ? data.activeEnergyKcal.value
           : this.activeEnergyKcal,
+      heartRateMinBpm: data.heartRateMinBpm.present
+          ? data.heartRateMinBpm.value
+          : this.heartRateMinBpm,
+      heartRateMaxBpm: data.heartRateMaxBpm.present
+          ? data.heartRateMaxBpm.value
+          : this.heartRateMaxBpm,
     );
   }
 
@@ -1825,7 +1913,9 @@ class Activity extends DataClass implements Insertable<Activity> {
           ..write('source: $source, ')
           ..write('healthkitUuid: $healthkitUuid, ')
           ..write('metsAvg: $metsAvg, ')
-          ..write('activeEnergyKcal: $activeEnergyKcal')
+          ..write('activeEnergyKcal: $activeEnergyKcal, ')
+          ..write('heartRateMinBpm: $heartRateMinBpm, ')
+          ..write('heartRateMaxBpm: $heartRateMaxBpm')
           ..write(')'))
         .toString();
   }
@@ -1845,6 +1935,8 @@ class Activity extends DataClass implements Insertable<Activity> {
     healthkitUuid,
     metsAvg,
     activeEnergyKcal,
+    heartRateMinBpm,
+    heartRateMaxBpm,
   );
   @override
   bool operator ==(Object other) =>
@@ -1862,7 +1954,9 @@ class Activity extends DataClass implements Insertable<Activity> {
           other.source == this.source &&
           other.healthkitUuid == this.healthkitUuid &&
           other.metsAvg == this.metsAvg &&
-          other.activeEnergyKcal == this.activeEnergyKcal);
+          other.activeEnergyKcal == this.activeEnergyKcal &&
+          other.heartRateMinBpm == this.heartRateMinBpm &&
+          other.heartRateMaxBpm == this.heartRateMaxBpm);
 }
 
 class ActivitiesCompanion extends UpdateCompanion<Activity> {
@@ -1879,6 +1973,8 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
   final Value<String?> healthkitUuid;
   final Value<double?> metsAvg;
   final Value<double?> activeEnergyKcal;
+  final Value<int?> heartRateMinBpm;
+  final Value<int?> heartRateMaxBpm;
   final Value<int> rowid;
   const ActivitiesCompanion({
     this.updatedAt = const Value.absent(),
@@ -1894,6 +1990,8 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
     this.healthkitUuid = const Value.absent(),
     this.metsAvg = const Value.absent(),
     this.activeEnergyKcal = const Value.absent(),
+    this.heartRateMinBpm = const Value.absent(),
+    this.heartRateMaxBpm = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   ActivitiesCompanion.insert({
@@ -1910,6 +2008,8 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
     this.healthkitUuid = const Value.absent(),
     this.metsAvg = const Value.absent(),
     this.activeEnergyKcal = const Value.absent(),
+    this.heartRateMinBpm = const Value.absent(),
+    this.heartRateMaxBpm = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : updatedAt = Value(updatedAt),
        id = Value(id),
@@ -1930,6 +2030,8 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
     Expression<String>? healthkitUuid,
     Expression<double>? metsAvg,
     Expression<double>? activeEnergyKcal,
+    Expression<int>? heartRateMinBpm,
+    Expression<int>? heartRateMaxBpm,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -1946,6 +2048,8 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
       if (healthkitUuid != null) 'healthkit_uuid': healthkitUuid,
       if (metsAvg != null) 'mets_avg': metsAvg,
       if (activeEnergyKcal != null) 'active_energy_kcal': activeEnergyKcal,
+      if (heartRateMinBpm != null) 'heart_rate_min_bpm': heartRateMinBpm,
+      if (heartRateMaxBpm != null) 'heart_rate_max_bpm': heartRateMaxBpm,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -1964,6 +2068,8 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
     Value<String?>? healthkitUuid,
     Value<double?>? metsAvg,
     Value<double?>? activeEnergyKcal,
+    Value<int?>? heartRateMinBpm,
+    Value<int?>? heartRateMaxBpm,
     Value<int>? rowid,
   }) {
     return ActivitiesCompanion(
@@ -1980,6 +2086,8 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
       healthkitUuid: healthkitUuid ?? this.healthkitUuid,
       metsAvg: metsAvg ?? this.metsAvg,
       activeEnergyKcal: activeEnergyKcal ?? this.activeEnergyKcal,
+      heartRateMinBpm: heartRateMinBpm ?? this.heartRateMinBpm,
+      heartRateMaxBpm: heartRateMaxBpm ?? this.heartRateMaxBpm,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -2026,6 +2134,12 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
     if (activeEnergyKcal.present) {
       map['active_energy_kcal'] = Variable<double>(activeEnergyKcal.value);
     }
+    if (heartRateMinBpm.present) {
+      map['heart_rate_min_bpm'] = Variable<int>(heartRateMinBpm.value);
+    }
+    if (heartRateMaxBpm.present) {
+      map['heart_rate_max_bpm'] = Variable<int>(heartRateMaxBpm.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -2048,6 +2162,8 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
           ..write('healthkitUuid: $healthkitUuid, ')
           ..write('metsAvg: $metsAvg, ')
           ..write('activeEnergyKcal: $activeEnergyKcal, ')
+          ..write('heartRateMinBpm: $heartRateMinBpm, ')
+          ..write('heartRateMaxBpm: $heartRateMaxBpm, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -2185,6 +2301,28 @@ class $CalisthenicsTable extends Calisthenics
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _heartRateMinBpmMeta = const VerificationMeta(
+    'heartRateMinBpm',
+  );
+  @override
+  late final GeneratedColumn<int> heartRateMinBpm = GeneratedColumn<int>(
+    'heart_rate_min_bpm',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _heartRateMaxBpmMeta = const VerificationMeta(
+    'heartRateMaxBpm',
+  );
+  @override
+  late final GeneratedColumn<int> heartRateMaxBpm = GeneratedColumn<int>(
+    'heart_rate_max_bpm',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     updatedAt,
@@ -2199,6 +2337,8 @@ class $CalisthenicsTable extends Calisthenics
     mentalState,
     bodyFeeling,
     contractionMode,
+    heartRateMinBpm,
+    heartRateMaxBpm,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -2310,6 +2450,24 @@ class $CalisthenicsTable extends Calisthenics
         ),
       );
     }
+    if (data.containsKey('heart_rate_min_bpm')) {
+      context.handle(
+        _heartRateMinBpmMeta,
+        heartRateMinBpm.isAcceptableOrUnknown(
+          data['heart_rate_min_bpm']!,
+          _heartRateMinBpmMeta,
+        ),
+      );
+    }
+    if (data.containsKey('heart_rate_max_bpm')) {
+      context.handle(
+        _heartRateMaxBpmMeta,
+        heartRateMaxBpm.isAcceptableOrUnknown(
+          data['heart_rate_max_bpm']!,
+          _heartRateMaxBpmMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -2367,6 +2525,14 @@ class $CalisthenicsTable extends Calisthenics
         DriftSqlType.string,
         data['${effectivePrefix}contraction_mode'],
       ),
+      heartRateMinBpm: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}heart_rate_min_bpm'],
+      ),
+      heartRateMaxBpm: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}heart_rate_max_bpm'],
+      ),
     );
   }
 
@@ -2393,6 +2559,11 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
   final String? mentalState;
   final String? bodyFeeling;
   final String? contractionMode;
+
+  /// Heart rate range (bpm) during the set — manually entered. Mirrors
+  /// DailyLogs' sleepHeartRateMin/Max and Activities' heartRateMin/MaxBpm.
+  final int? heartRateMinBpm;
+  final int? heartRateMaxBpm;
   const Calisthenic({
     required this.updatedAt,
     this.deletedAt,
@@ -2406,6 +2577,8 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
     this.mentalState,
     this.bodyFeeling,
     this.contractionMode,
+    this.heartRateMinBpm,
+    this.heartRateMaxBpm,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -2429,6 +2602,12 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
     }
     if (!nullToAbsent || contractionMode != null) {
       map['contraction_mode'] = Variable<String>(contractionMode);
+    }
+    if (!nullToAbsent || heartRateMinBpm != null) {
+      map['heart_rate_min_bpm'] = Variable<int>(heartRateMinBpm);
+    }
+    if (!nullToAbsent || heartRateMaxBpm != null) {
+      map['heart_rate_max_bpm'] = Variable<int>(heartRateMaxBpm);
     }
     return map;
   }
@@ -2455,6 +2634,12 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
       contractionMode: contractionMode == null && nullToAbsent
           ? const Value.absent()
           : Value(contractionMode),
+      heartRateMinBpm: heartRateMinBpm == null && nullToAbsent
+          ? const Value.absent()
+          : Value(heartRateMinBpm),
+      heartRateMaxBpm: heartRateMaxBpm == null && nullToAbsent
+          ? const Value.absent()
+          : Value(heartRateMaxBpm),
     );
   }
 
@@ -2476,6 +2661,8 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
       mentalState: serializer.fromJson<String?>(json['mentalState']),
       bodyFeeling: serializer.fromJson<String?>(json['bodyFeeling']),
       contractionMode: serializer.fromJson<String?>(json['contractionMode']),
+      heartRateMinBpm: serializer.fromJson<int?>(json['heartRateMinBpm']),
+      heartRateMaxBpm: serializer.fromJson<int?>(json['heartRateMaxBpm']),
     );
   }
   @override
@@ -2494,6 +2681,8 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
       'mentalState': serializer.toJson<String?>(mentalState),
       'bodyFeeling': serializer.toJson<String?>(bodyFeeling),
       'contractionMode': serializer.toJson<String?>(contractionMode),
+      'heartRateMinBpm': serializer.toJson<int?>(heartRateMinBpm),
+      'heartRateMaxBpm': serializer.toJson<int?>(heartRateMaxBpm),
     };
   }
 
@@ -2510,6 +2699,8 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
     Value<String?> mentalState = const Value.absent(),
     Value<String?> bodyFeeling = const Value.absent(),
     Value<String?> contractionMode = const Value.absent(),
+    Value<int?> heartRateMinBpm = const Value.absent(),
+    Value<int?> heartRateMaxBpm = const Value.absent(),
   }) => Calisthenic(
     updatedAt: updatedAt ?? this.updatedAt,
     deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
@@ -2525,6 +2716,12 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
     contractionMode: contractionMode.present
         ? contractionMode.value
         : this.contractionMode,
+    heartRateMinBpm: heartRateMinBpm.present
+        ? heartRateMinBpm.value
+        : this.heartRateMinBpm,
+    heartRateMaxBpm: heartRateMaxBpm.present
+        ? heartRateMaxBpm.value
+        : this.heartRateMaxBpm,
   );
   Calisthenic copyWithCompanion(CalisthenicsCompanion data) {
     return Calisthenic(
@@ -2550,6 +2747,12 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
       contractionMode: data.contractionMode.present
           ? data.contractionMode.value
           : this.contractionMode,
+      heartRateMinBpm: data.heartRateMinBpm.present
+          ? data.heartRateMinBpm.value
+          : this.heartRateMinBpm,
+      heartRateMaxBpm: data.heartRateMaxBpm.present
+          ? data.heartRateMaxBpm.value
+          : this.heartRateMaxBpm,
     );
   }
 
@@ -2567,7 +2770,9 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
           ..write('comfortScore: $comfortScore, ')
           ..write('mentalState: $mentalState, ')
           ..write('bodyFeeling: $bodyFeeling, ')
-          ..write('contractionMode: $contractionMode')
+          ..write('contractionMode: $contractionMode, ')
+          ..write('heartRateMinBpm: $heartRateMinBpm, ')
+          ..write('heartRateMaxBpm: $heartRateMaxBpm')
           ..write(')'))
         .toString();
   }
@@ -2586,6 +2791,8 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
     mentalState,
     bodyFeeling,
     contractionMode,
+    heartRateMinBpm,
+    heartRateMaxBpm,
   );
   @override
   bool operator ==(Object other) =>
@@ -2602,7 +2809,9 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
           other.comfortScore == this.comfortScore &&
           other.mentalState == this.mentalState &&
           other.bodyFeeling == this.bodyFeeling &&
-          other.contractionMode == this.contractionMode);
+          other.contractionMode == this.contractionMode &&
+          other.heartRateMinBpm == this.heartRateMinBpm &&
+          other.heartRateMaxBpm == this.heartRateMaxBpm);
 }
 
 class CalisthenicsCompanion extends UpdateCompanion<Calisthenic> {
@@ -2618,6 +2827,8 @@ class CalisthenicsCompanion extends UpdateCompanion<Calisthenic> {
   final Value<String?> mentalState;
   final Value<String?> bodyFeeling;
   final Value<String?> contractionMode;
+  final Value<int?> heartRateMinBpm;
+  final Value<int?> heartRateMaxBpm;
   final Value<int> rowid;
   const CalisthenicsCompanion({
     this.updatedAt = const Value.absent(),
@@ -2632,6 +2843,8 @@ class CalisthenicsCompanion extends UpdateCompanion<Calisthenic> {
     this.mentalState = const Value.absent(),
     this.bodyFeeling = const Value.absent(),
     this.contractionMode = const Value.absent(),
+    this.heartRateMinBpm = const Value.absent(),
+    this.heartRateMaxBpm = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   CalisthenicsCompanion.insert({
@@ -2647,6 +2860,8 @@ class CalisthenicsCompanion extends UpdateCompanion<Calisthenic> {
     this.mentalState = const Value.absent(),
     this.bodyFeeling = const Value.absent(),
     this.contractionMode = const Value.absent(),
+    this.heartRateMinBpm = const Value.absent(),
+    this.heartRateMaxBpm = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : updatedAt = Value(updatedAt),
        id = Value(id),
@@ -2668,6 +2883,8 @@ class CalisthenicsCompanion extends UpdateCompanion<Calisthenic> {
     Expression<String>? mentalState,
     Expression<String>? bodyFeeling,
     Expression<String>? contractionMode,
+    Expression<int>? heartRateMinBpm,
+    Expression<int>? heartRateMaxBpm,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -2683,6 +2900,8 @@ class CalisthenicsCompanion extends UpdateCompanion<Calisthenic> {
       if (mentalState != null) 'mental_state': mentalState,
       if (bodyFeeling != null) 'body_feeling': bodyFeeling,
       if (contractionMode != null) 'contraction_mode': contractionMode,
+      if (heartRateMinBpm != null) 'heart_rate_min_bpm': heartRateMinBpm,
+      if (heartRateMaxBpm != null) 'heart_rate_max_bpm': heartRateMaxBpm,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -2700,6 +2919,8 @@ class CalisthenicsCompanion extends UpdateCompanion<Calisthenic> {
     Value<String?>? mentalState,
     Value<String?>? bodyFeeling,
     Value<String?>? contractionMode,
+    Value<int?>? heartRateMinBpm,
+    Value<int?>? heartRateMaxBpm,
     Value<int>? rowid,
   }) {
     return CalisthenicsCompanion(
@@ -2715,6 +2936,8 @@ class CalisthenicsCompanion extends UpdateCompanion<Calisthenic> {
       mentalState: mentalState ?? this.mentalState,
       bodyFeeling: bodyFeeling ?? this.bodyFeeling,
       contractionMode: contractionMode ?? this.contractionMode,
+      heartRateMinBpm: heartRateMinBpm ?? this.heartRateMinBpm,
+      heartRateMaxBpm: heartRateMaxBpm ?? this.heartRateMaxBpm,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -2758,6 +2981,12 @@ class CalisthenicsCompanion extends UpdateCompanion<Calisthenic> {
     if (contractionMode.present) {
       map['contraction_mode'] = Variable<String>(contractionMode.value);
     }
+    if (heartRateMinBpm.present) {
+      map['heart_rate_min_bpm'] = Variable<int>(heartRateMinBpm.value);
+    }
+    if (heartRateMaxBpm.present) {
+      map['heart_rate_max_bpm'] = Variable<int>(heartRateMaxBpm.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -2779,6 +3008,8 @@ class CalisthenicsCompanion extends UpdateCompanion<Calisthenic> {
           ..write('mentalState: $mentalState, ')
           ..write('bodyFeeling: $bodyFeeling, ')
           ..write('contractionMode: $contractionMode, ')
+          ..write('heartRateMinBpm: $heartRateMinBpm, ')
+          ..write('heartRateMaxBpm: $heartRateMaxBpm, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -6864,6 +7095,8 @@ typedef $$ActivitiesTableCreateCompanionBuilder =
       Value<String?> healthkitUuid,
       Value<double?> metsAvg,
       Value<double?> activeEnergyKcal,
+      Value<int?> heartRateMinBpm,
+      Value<int?> heartRateMaxBpm,
       Value<int> rowid,
     });
 typedef $$ActivitiesTableUpdateCompanionBuilder =
@@ -6881,6 +7114,8 @@ typedef $$ActivitiesTableUpdateCompanionBuilder =
       Value<String?> healthkitUuid,
       Value<double?> metsAvg,
       Value<double?> activeEnergyKcal,
+      Value<int?> heartRateMinBpm,
+      Value<int?> heartRateMaxBpm,
       Value<int> rowid,
     });
 
@@ -6955,6 +7190,16 @@ class $$ActivitiesTableFilterComposer
 
   ColumnFilters<double> get activeEnergyKcal => $composableBuilder(
     column: $table.activeEnergyKcal,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get heartRateMinBpm => $composableBuilder(
+    column: $table.heartRateMinBpm,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get heartRateMaxBpm => $composableBuilder(
+    column: $table.heartRateMaxBpm,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -7032,6 +7277,16 @@ class $$ActivitiesTableOrderingComposer
     column: $table.activeEnergyKcal,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<int> get heartRateMinBpm => $composableBuilder(
+    column: $table.heartRateMinBpm,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get heartRateMaxBpm => $composableBuilder(
+    column: $table.heartRateMaxBpm,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$ActivitiesTableAnnotationComposer
@@ -7095,6 +7350,16 @@ class $$ActivitiesTableAnnotationComposer
     column: $table.activeEnergyKcal,
     builder: (column) => column,
   );
+
+  GeneratedColumn<int> get heartRateMinBpm => $composableBuilder(
+    column: $table.heartRateMinBpm,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get heartRateMaxBpm => $composableBuilder(
+    column: $table.heartRateMaxBpm,
+    builder: (column) => column,
+  );
 }
 
 class $$ActivitiesTableTableManager
@@ -7138,6 +7403,8 @@ class $$ActivitiesTableTableManager
                 Value<String?> healthkitUuid = const Value.absent(),
                 Value<double?> metsAvg = const Value.absent(),
                 Value<double?> activeEnergyKcal = const Value.absent(),
+                Value<int?> heartRateMinBpm = const Value.absent(),
+                Value<int?> heartRateMaxBpm = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => ActivitiesCompanion(
                 updatedAt: updatedAt,
@@ -7153,6 +7420,8 @@ class $$ActivitiesTableTableManager
                 healthkitUuid: healthkitUuid,
                 metsAvg: metsAvg,
                 activeEnergyKcal: activeEnergyKcal,
+                heartRateMinBpm: heartRateMinBpm,
+                heartRateMaxBpm: heartRateMaxBpm,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -7170,6 +7439,8 @@ class $$ActivitiesTableTableManager
                 Value<String?> healthkitUuid = const Value.absent(),
                 Value<double?> metsAvg = const Value.absent(),
                 Value<double?> activeEnergyKcal = const Value.absent(),
+                Value<int?> heartRateMinBpm = const Value.absent(),
+                Value<int?> heartRateMaxBpm = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => ActivitiesCompanion.insert(
                 updatedAt: updatedAt,
@@ -7185,6 +7456,8 @@ class $$ActivitiesTableTableManager
                 healthkitUuid: healthkitUuid,
                 metsAvg: metsAvg,
                 activeEnergyKcal: activeEnergyKcal,
+                heartRateMinBpm: heartRateMinBpm,
+                heartRateMaxBpm: heartRateMaxBpm,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0
@@ -7223,6 +7496,8 @@ typedef $$CalisthenicsTableCreateCompanionBuilder =
       Value<String?> mentalState,
       Value<String?> bodyFeeling,
       Value<String?> contractionMode,
+      Value<int?> heartRateMinBpm,
+      Value<int?> heartRateMaxBpm,
       Value<int> rowid,
     });
 typedef $$CalisthenicsTableUpdateCompanionBuilder =
@@ -7239,6 +7514,8 @@ typedef $$CalisthenicsTableUpdateCompanionBuilder =
       Value<String?> mentalState,
       Value<String?> bodyFeeling,
       Value<String?> contractionMode,
+      Value<int?> heartRateMinBpm,
+      Value<int?> heartRateMaxBpm,
       Value<int> rowid,
     });
 
@@ -7308,6 +7585,16 @@ class $$CalisthenicsTableFilterComposer
 
   ColumnFilters<String> get contractionMode => $composableBuilder(
     column: $table.contractionMode,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get heartRateMinBpm => $composableBuilder(
+    column: $table.heartRateMinBpm,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get heartRateMaxBpm => $composableBuilder(
+    column: $table.heartRateMaxBpm,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -7380,6 +7667,16 @@ class $$CalisthenicsTableOrderingComposer
     column: $table.contractionMode,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<int> get heartRateMinBpm => $composableBuilder(
+    column: $table.heartRateMinBpm,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get heartRateMaxBpm => $composableBuilder(
+    column: $table.heartRateMaxBpm,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$CalisthenicsTableAnnotationComposer
@@ -7436,6 +7733,16 @@ class $$CalisthenicsTableAnnotationComposer
     column: $table.contractionMode,
     builder: (column) => column,
   );
+
+  GeneratedColumn<int> get heartRateMinBpm => $composableBuilder(
+    column: $table.heartRateMinBpm,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get heartRateMaxBpm => $composableBuilder(
+    column: $table.heartRateMaxBpm,
+    builder: (column) => column,
+  );
 }
 
 class $$CalisthenicsTableTableManager
@@ -7481,6 +7788,8 @@ class $$CalisthenicsTableTableManager
                 Value<String?> mentalState = const Value.absent(),
                 Value<String?> bodyFeeling = const Value.absent(),
                 Value<String?> contractionMode = const Value.absent(),
+                Value<int?> heartRateMinBpm = const Value.absent(),
+                Value<int?> heartRateMaxBpm = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => CalisthenicsCompanion(
                 updatedAt: updatedAt,
@@ -7495,6 +7804,8 @@ class $$CalisthenicsTableTableManager
                 mentalState: mentalState,
                 bodyFeeling: bodyFeeling,
                 contractionMode: contractionMode,
+                heartRateMinBpm: heartRateMinBpm,
+                heartRateMaxBpm: heartRateMaxBpm,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -7511,6 +7822,8 @@ class $$CalisthenicsTableTableManager
                 Value<String?> mentalState = const Value.absent(),
                 Value<String?> bodyFeeling = const Value.absent(),
                 Value<String?> contractionMode = const Value.absent(),
+                Value<int?> heartRateMinBpm = const Value.absent(),
+                Value<int?> heartRateMaxBpm = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => CalisthenicsCompanion.insert(
                 updatedAt: updatedAt,
@@ -7525,6 +7838,8 @@ class $$CalisthenicsTableTableManager
                 mentalState: mentalState,
                 bodyFeeling: bodyFeeling,
                 contractionMode: contractionMode,
+                heartRateMinBpm: heartRateMinBpm,
+                heartRateMaxBpm: heartRateMaxBpm,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0

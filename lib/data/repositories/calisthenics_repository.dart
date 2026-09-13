@@ -23,6 +23,8 @@ class CalisthenicsRepository {
       mentalState: MentalState.fromDb(row.mentalState),
       bodyFeeling: BodyFeeling.fromDb(row.bodyFeeling),
       contractionMode: ContractionMode.fromDb(row.contractionMode),
+      heartRateMinBpm: row.heartRateMinBpm,
+      heartRateMaxBpm: row.heartRateMaxBpm,
     );
   }
 
@@ -80,6 +82,8 @@ class CalisthenicsRepository {
     MentalState? mentalState,
     BodyFeeling? bodyFeeling,
     ContractionMode? contractionMode,
+    int? heartRateMinBpm,
+    int? heartRateMaxBpm,
   }) async {
     await _db.into(_db.calisthenics).insert(
           db.CalisthenicsCompanion.insert(
@@ -93,6 +97,8 @@ class CalisthenicsRepository {
             mentalState: Value(mentalState?.db),
             bodyFeeling: Value(bodyFeeling?.db),
             contractionMode: Value(contractionMode?.db),
+            heartRateMinBpm: Value(heartRateMinBpm),
+            heartRateMaxBpm: Value(heartRateMaxBpm),
             updatedAt: nowIso(),
           ),
         );

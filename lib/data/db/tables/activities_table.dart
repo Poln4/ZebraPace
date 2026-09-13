@@ -20,6 +20,12 @@ class Activities extends Table with SyncColumns {
   RealColumn get metsAvg => real().nullable()();
   RealColumn get activeEnergyKcal => real().nullable()();
 
+  /// Heart rate range (bpm) during the activity — manually entered, or
+  /// pulled from HealthKit's HEART_RATE samples within the workout's time
+  /// window when imported. Mirrors DailyLogs' sleepHeartRateMin/Max.
+  IntColumn get heartRateMinBpm => integer().nullable()();
+  IntColumn get heartRateMaxBpm => integer().nullable()();
+
   @override
   Set<Column> get primaryKey => {id};
 }

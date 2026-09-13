@@ -185,6 +185,16 @@
   "commonMentalStateLabel": "Estado mental",
   "commonBodyFeelingLabel": "Sensación corporal",
   "commonDurationMinPlaceholder": "Duración (min)",
+  "commonHeartRateLabel": "Rango de frecuencia cardíaca (lpm)",
+  "commonHeartRateMinPlaceholder": "Mín. lpm",
+  "commonHeartRateMaxPlaceholder": "Máx. lpm",
+  "commonHeartRateRangeLabel": "FC {min}-{max} lpm",
+  "@commonHeartRateRangeLabel": {
+    "placeholders": {
+      "min": {"type": "int"},
+      "max": {"type": "int"}
+    }
+  },
 
   "activitiesSectionTitle": "🚴‍♀️ Actividades personalizadas",
   "activitiesSectionNamePlaceholder": "Nombre de la actividad",

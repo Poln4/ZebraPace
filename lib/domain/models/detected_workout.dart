@@ -12,6 +12,8 @@ class DetectedWorkout {
     required this.end,
     this.activeEnergyKcal,
     this.metsFromMetadata,
+    this.heartRateMinBpm,
+    this.heartRateMaxBpm,
   });
 
   final String healthkitUuid;
@@ -19,6 +21,11 @@ class DetectedWorkout {
   final DateTime start;
   final DateTime end;
   final double? activeEnergyKcal;
+
+  /// Min/max HEART_RATE samples found within [start, end], or null if
+  /// HealthKit has no heart rate data for this workout's window.
+  final int? heartRateMinBpm;
+  final int? heartRateMaxBpm;
 
   /// Reserved for a future native-bridge source of HKMetadataKeyAverageMETs
   /// — always null today, since the `health` package doesn't surface

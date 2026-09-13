@@ -65,6 +65,15 @@ class WeightChallengeRepository {
     await _logWeighIn(userId: userId, weightKg: currentWeightKg);
   }
 
+  /// Logs today's weigh-in to history without touching the snapshot table
+  /// — used when the computed weight hasn't meaningfully changed, so the
+  /// progress chart still gets a point for today (a flat stretch across
+  /// many identical days is real information, not "nothing to record"),
+  /// without bumping weight_challenge_entries.updated_at for no reason.
+  Future<void> logWeighIn({required String userId, required double weightKg}) {
+    return _logWeighIn(userId: userId, weightKg: weightKg);
+  }
+
   Future<void> _logWeighIn({required String userId, required double weightKg}) async {
     await _client.from(_historyTable).insert({
       'user_id': userId,

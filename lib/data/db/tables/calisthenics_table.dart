@@ -19,6 +19,11 @@ class Calisthenics extends Table with SyncColumns {
   TextColumn get bodyFeeling => text().nullable()();
   TextColumn get contractionMode => text().nullable()();
 
+  /// Heart rate range (bpm) during the set — manually entered. Mirrors
+  /// DailyLogs' sleepHeartRateMin/Max and Activities' heartRateMin/MaxBpm.
+  IntColumn get heartRateMinBpm => integer().nullable()();
+  IntColumn get heartRateMaxBpm => integer().nullable()();
+
   @override
   Set<Column> get primaryKey => {id};
 }

@@ -6,6 +6,7 @@ const List<HealthDataType> healthKitDataTypes = [
   HealthDataType.STEPS,
   HealthDataType.WORKOUT,
   HealthDataType.ACTIVE_ENERGY_BURNED,
+  HealthDataType.HEART_RATE,
 ];
 
 /// Thin wrapper over the `health` package. HealthKit is unavailable on the
@@ -78,17 +79,48 @@ class HealthKitService {
       for (final point in points) {
         final value = point.value;
         if (value is! WorkoutHealthValue) continue;
+        final hrRange = await getHeartRateRange(point.dateFrom, point.dateTo);
         workouts.add(DetectedWorkout(
           healthkitUuid: point.uuid,
           activityType: value.workoutActivityType,
           start: point.dateFrom,
           end: point.dateTo,
           activeEnergyKcal: value.totalEnergyBurned?.toDouble(),
+          heartRateMinBpm: hrRange?.$1,
+          heartRateMaxBpm: hrRange?.$2,
         ));
       }
       return workouts;
     } catch (_) {
       return [];
+    }
+  }
+
+  /// Min/max HEART_RATE (bpm) recorded within [start, end], or null when
+  /// there's no heart rate data for that window (no watch worn, permission
+  /// denied, etc — treated as "nothing to pre-fill", same as other methods
+  /// here).
+  Future<(int min, int max)?> getHeartRateRange(DateTime start, DateTime end) async {
+    await _ensureConfigured();
+    try {
+      final points = await _health.getHealthDataFromTypes(
+        types: [HealthDataType.HEART_RATE],
+        startTime: start,
+        endTime: end,
+      );
+      int? min;
+      int? max;
+      for (final point in points) {
+        final value = point.value;
+        if (value is! NumericHealthValue) continue;
+        final bpm = value.numericValue.round();
+        if (min == null || bpm < min) min = bpm;
+        if (max == null || bpm > max) max = bpm;
+      }
+      if (min == null || max == null) return null;
+      return (min, max);
+    } catch (_) {
+      return null;
     }
   }
 }

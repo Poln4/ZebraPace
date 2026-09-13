@@ -13,6 +13,8 @@ class CalisthenicsSet {
     this.mentalState,
     this.bodyFeeling,
     this.contractionMode,
+    this.heartRateMinBpm,
+    this.heartRateMaxBpm,
   });
 
   final String id;
@@ -25,6 +27,8 @@ class CalisthenicsSet {
   final MentalState? mentalState;
   final BodyFeeling? bodyFeeling;
   final ContractionMode? contractionMode;
+  final int? heartRateMinBpm;
+  final int? heartRateMaxBpm;
 }
 
 /// Ported from app.py's get_comfort_emoji.
