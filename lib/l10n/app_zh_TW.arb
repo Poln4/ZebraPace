@@ -599,6 +599,8 @@
   "insightsTabGroupByContractionMode": "收縮方式",
   "insightsTabPemTitle": "🔬 延遲症狀模式（PEM 檢查）",
   "insightsTabPemCaption": "步數與 N 天後的身體分數比較，並依高強度／一般強度日分開呈現。",
+  "insightsTabHrExertionTitle": "❤️ 運動強度與症狀",
+  "insightsTabHrExertionCaption": "活動／自重訓練日的最高心率與 N 天後的身體分數比較——重點是那天有多「激烈」，而不只是量有多少。",
   "insightsTabPemLagLabel": "延遲天數：",
   "insightsTabPemLagDays": "{count} 天",
   "insightsTabWeatherTitle": "🌦️ 天氣相關資訊",

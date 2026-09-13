@@ -871,6 +871,8 @@
   "insightsTabGroupByContractionMode": "Contraction mode",
   "insightsTabPemTitle": "🔬 Delayed Symptom Patterns (PEM check)",
   "insightsTabPemCaption": "Steps vs. body score N days later, split by higher vs. typical exertion days.",
+  "insightsTabHrExertionTitle": "❤️ Exertion Intensity vs. Symptoms",
+  "insightsTabHrExertionCaption": "Peak heart rate on activity/calisthenics days vs. body score N days later — how hard a day ran, not just how much of it.",
   "insightsTabPemLagLabel": "Lag: ",
   "insightsTabPemLagDays": "{count, plural, =1{{count} day} other{{count} days}}",
   "@insightsTabPemLagDays": {

@@ -3187,6 +3187,18 @@ abstract class AppLocalizations {
   /// **'Steps vs. body score N days later, split by higher vs. typical exertion days.'**
   String get insightsTabPemCaption;
 
+  /// No description provided for @insightsTabHrExertionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'❤️ Exertion Intensity vs. Symptoms'**
+  String get insightsTabHrExertionTitle;
+
+  /// No description provided for @insightsTabHrExertionCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Peak heart rate on activity/calisthenics days vs. body score N days later — how hard a day ran, not just how much of it.'**
+  String get insightsTabHrExertionCaption;
+
   /// No description provided for @insightsTabPemLagLabel.
   ///
   /// In en, this message translates to:

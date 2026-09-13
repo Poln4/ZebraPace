@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/utils/date_utils.dart';
+import '../../../../domain/services/hr_exertion_service.dart';
 import '../../../../domain/services/pem_service.dart';
 import '../../../../domain/services/weather_service.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -43,6 +44,14 @@ final pemResultProvider = FutureProvider.autoDispose<PemResult>((ref) {
   final range = ref.watch(insightsDateRangeProvider);
   final lag = ref.watch(pemLagDaysProvider);
   return ref.watch(pemServiceProvider).analyze(range.start, range.end, lagDays: lag);
+});
+
+final hrExertionLagDaysProvider = StateProvider<int>((ref) => 1);
+
+final hrExertionResultProvider = FutureProvider.autoDispose<HrExertionResult>((ref) {
+  final range = ref.watch(insightsDateRangeProvider);
+  final lag = ref.watch(hrExertionLagDaysProvider);
+  return ref.watch(hrExertionServiceProvider).analyze(range.start, range.end, lagDays: lag);
 });
 
 final weatherCorrelationProvider = FutureProvider.autoDispose<WeatherCorrelation?>((ref) async {

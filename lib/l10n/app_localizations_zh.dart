@@ -1709,6 +1709,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get insightsTabPemCaption => '步數與 N 天後的身體分數比較，並依高強度／一般強度日分開呈現。';
 
   @override
+  String get insightsTabHrExertionTitle => '❤️ 運動強度與症狀';
+
+  @override
+  String get insightsTabHrExertionCaption =>
+      '活動／自重訓練日的最高心率與 N 天後的身體分數比較——重點是那天有多「激烈」，而不只是量有多少。';
+
+  @override
   String get insightsTabPemLagLabel => '延遲天數：';
 
   @override
@@ -3625,6 +3632,13 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get insightsTabPemCaption => '步數與 N 天後的身體分數比較，並依高強度／一般強度日分開呈現。';
+
+  @override
+  String get insightsTabHrExertionTitle => '❤️ 運動強度與症狀';
+
+  @override
+  String get insightsTabHrExertionCaption =>
+      '活動／自重訓練日的最高心率與 N 天後的身體分數比較——重點是那天有多「激烈」，而不只是量有多少。';
 
   @override
   String get insightsTabPemLagLabel => '延遲天數：';

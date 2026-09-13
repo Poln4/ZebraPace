@@ -20,6 +20,7 @@ import '../domain/services/body_metrics_service.dart';
 import '../domain/services/calisthenics_service.dart';
 import '../domain/services/doctor_report_service.dart';
 import '../domain/services/export_import_service.dart';
+import '../domain/services/hr_exertion_service.dart';
 import '../domain/services/hydration_service.dart';
 import '../domain/services/mets_estimation_service.dart';
 import '../domain/services/mets_summary_service.dart';
@@ -101,6 +102,13 @@ final sorenessCheckServiceProvider = Provider<SorenessCheckService>(
 );
 final pemServiceProvider = Provider<PemService>(
   (ref) => PemService(ref.watch(dailyLogRepositoryProvider)),
+);
+final hrExertionServiceProvider = Provider<HrExertionService>(
+  (ref) => HrExertionService(
+    ref.watch(activityRepositoryProvider),
+    ref.watch(calisthenicsRepositoryProvider),
+    ref.watch(dailyLogRepositoryProvider),
+  ),
 );
 final sleepEnergyServiceProvider = Provider<SleepEnergyService>((ref) => SleepEnergyService());
 final weatherServiceProvider = Provider<WeatherService>(

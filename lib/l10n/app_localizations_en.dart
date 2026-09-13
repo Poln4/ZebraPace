@@ -1805,6 +1805,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'Steps vs. body score N days later, split by higher vs. typical exertion days.';
 
   @override
+  String get insightsTabHrExertionTitle => '❤️ Exertion Intensity vs. Symptoms';
+
+  @override
+  String get insightsTabHrExertionCaption =>
+      'Peak heart rate on activity/calisthenics days vs. body score N days later — how hard a day ran, not just how much of it.';
+
+  @override
   String get insightsTabPemLagLabel => 'Lag: ';
 
   @override

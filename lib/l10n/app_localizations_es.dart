@@ -1835,6 +1835,14 @@ class AppLocalizationsEs extends AppLocalizations {
       'Pasos frente a la puntuación corporal N días después, dividido entre días de mayor esfuerzo y días típicos.';
 
   @override
+  String get insightsTabHrExertionTitle =>
+      '❤️ Intensidad del esfuerzo vs. síntomas';
+
+  @override
+  String get insightsTabHrExertionCaption =>
+      'Frecuencia cardíaca máxima en días de actividad/calistenia frente a la puntuación corporal N días después — qué tan intenso fue el día, no solo cuánto duró.';
+
+  @override
   String get insightsTabPemLagLabel => 'Desfase: ';
 
   @override

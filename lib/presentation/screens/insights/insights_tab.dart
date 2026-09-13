@@ -15,6 +15,7 @@ import 'widgets/chart_day_markers.dart';
 import 'widgets/export_section.dart';
 import 'widgets/feeling_trend_chart.dart';
 import 'widgets/history_tables.dart';
+import 'widgets/hr_exertion_chart.dart';
 import 'widgets/insights_providers.dart';
 import 'widgets/insights_range.dart';
 import 'widgets/liquids_chart.dart';
@@ -128,6 +129,7 @@ class InsightsTab extends ConsumerWidget {
                     ),
                     const _CalisthenicsComfortSection(),
                     const _PemSection(),
+                    const _HrExertionSection(),
                     const _WeatherSection(),
                     const _CelebrationSection(),
                     const ExportSection(),
@@ -235,6 +237,49 @@ class _PemSection extends ConsumerWidget {
             loading: () => const CupertinoActivityIndicator(),
             error: (e, st) => Text(l10n.insightsTabLoadError(e.toString())),
             data: (result) => PemChart(result: result),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _HrExertionSection extends ConsumerWidget {
+  const _HrExertionSection();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final lag = ref.watch(hrExertionLagDaysProvider);
+    final resultAsync = ref.watch(hrExertionResultProvider);
+
+    return SectionCard(
+      title: l10n.insightsTabHrExertionTitle,
+      caption: l10n.insightsTabHrExertionCaption,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(l10n.insightsTabPemLagLabel, style: const TextStyle(fontWeight: FontWeight.w700)),
+              for (final d in [1, 2, 3])
+                CupertinoButton(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  onPressed: () => ref.read(hrExertionLagDaysProvider.notifier).state = d,
+                  child: Text(
+                    l10n.insightsTabPemLagDays(d),
+                    style: TextStyle(
+                      fontWeight: lag == d ? FontWeight.w700 : FontWeight.w400,
+                      color: lag == d ? ZebraColors.brandTeal : ZebraColors.black,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+          resultAsync.when(
+            loading: () => const CupertinoActivityIndicator(),
+            error: (e, st) => Text(l10n.insightsTabLoadError(e.toString())),
+            data: (result) => HrExertionChart(result: result),
           ),
         ],
       ),

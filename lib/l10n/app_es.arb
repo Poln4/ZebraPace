@@ -599,6 +599,8 @@
   "insightsTabGroupByContractionMode": "Tipo de contracción",
   "insightsTabPemTitle": "🔬 Patrones de síntomas retardados (chequeo de PEM)",
   "insightsTabPemCaption": "Pasos frente a la puntuación corporal N días después, dividido entre días de mayor esfuerzo y días típicos.",
+  "insightsTabHrExertionTitle": "❤️ Intensidad del esfuerzo vs. síntomas",
+  "insightsTabHrExertionCaption": "Frecuencia cardíaca máxima en días de actividad/calistenia frente a la puntuación corporal N días después — qué tan intenso fue el día, no solo cuánto duró.",
   "insightsTabPemLagLabel": "Desfase: ",
   "insightsTabPemLagDays": "{count, plural, =1{{count} día} other{{count} días}}",
   "insightsTabWeatherTitle": "🌦️ Contexto climático",
