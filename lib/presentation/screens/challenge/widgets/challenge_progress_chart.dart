@@ -34,7 +34,11 @@ class ChallengeProgressChart extends StatelessWidget {
         .where((s) => s.points.isNotEmpty)
         .toList();
 
-    if (series.length < 2 || series.every((s) => s.points.length < 2)) {
+    // Needs at least one person with 2+ distinct days logged to draw a
+    // line at all — but doesn't require a *second* person to have caught
+    // up yet. Your own trend alone is still useful; the chart just shows
+    // fewer lines until others have enough history too.
+    if (series.every((s) => s.points.length < 2)) {
       return SectionCard(
         title: l10n.challengeTabProgressChartTitle,
         child: Text(
