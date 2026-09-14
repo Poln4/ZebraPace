@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../../../core/constants/defaults.dart';
 import '../../../../core/theme/zebra_theme.dart';
 import '../../../../domain/models/weight_challenge_entry.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -9,10 +8,16 @@ import '../../../widgets/section_card.dart';
 /// All participants, already sorted by percent lost (descending) by the
 /// repository — this widget just renders that order.
 class LeaderboardList extends StatelessWidget {
-  const LeaderboardList({required this.entries, required this.myUserId, super.key});
+  const LeaderboardList({
+    required this.entries,
+    required this.myUserId,
+    required this.targetPercent,
+    super.key,
+  });
 
   final List<WeightChallengeEntry> entries;
   final String? myUserId;
+  final double targetPercent;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +29,11 @@ class LeaderboardList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           for (final entry in entries) ...[
-            _LeaderboardRow(entry: entry, isMe: entry.userId == myUserId),
+            _LeaderboardRow(
+              entry: entry,
+              isMe: entry.userId == myUserId,
+              targetPercent: targetPercent,
+            ),
             if (entry != entries.last) const SizedBox(height: 12),
           ],
         ],
@@ -34,18 +43,19 @@ class LeaderboardList extends StatelessWidget {
 }
 
 class _LeaderboardRow extends StatelessWidget {
-  const _LeaderboardRow({required this.entry, required this.isMe});
+  const _LeaderboardRow({required this.entry, required this.isMe, required this.targetPercent});
 
   final WeightChallengeEntry entry;
   final bool isMe;
+  final double targetPercent;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final percent = entry.percentLost;
     final percentLabel = '${percent >= 0 ? '-' : '+'}${percent.abs().toStringAsFixed(1)}%';
-    final progress =
-        (percent / WeightChallengeDefaults.targetPercent).clamp(0.0, 1.0).toDouble();
+    final goalReached = entry.goalReached(targetPercent);
+    final progress = (percent / targetPercent).clamp(0.0, 1.0).toDouble();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +69,7 @@ class _LeaderboardRow extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            if (entry.goalReached) ...[
+            if (goalReached) ...[
               const Text('🎉', style: TextStyle(fontSize: 14)),
               const SizedBox(width: 4),
             ],
@@ -83,7 +93,7 @@ class _LeaderboardRow extends StatelessWidget {
             child: FractionallySizedBox(
               widthFactor: progress,
               child: Container(
-                color: entry.goalReached ? ZebraColors.success : ZebraColors.brandTeal,
+                color: goalReached ? ZebraColors.success : ZebraColors.brandTeal,
               ),
             ),
           ),

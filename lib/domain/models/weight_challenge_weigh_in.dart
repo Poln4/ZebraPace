@@ -5,6 +5,7 @@
 /// progress-over-time chart is built from.
 class WeightChallengeWeighIn {
   const WeightChallengeWeighIn({
+    required this.challengeId,
     required this.userId,
     required this.weightKg,
     required this.loggedAt,
@@ -12,12 +13,14 @@ class WeightChallengeWeighIn {
 
   factory WeightChallengeWeighIn.fromMap(Map<String, dynamic> map) {
     return WeightChallengeWeighIn(
+      challengeId: map['challenge_id'] as String,
       userId: map['user_id'] as String,
       weightKg: (map['weight_kg'] as num).toDouble(),
       loggedAt: DateTime.parse(map['logged_at'] as String),
     );
   }
 
+  final String challengeId;
   final String userId;
   final double weightKg;
   final DateTime loggedAt;

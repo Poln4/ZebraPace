@@ -1,7 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../../../core/constants/defaults.dart';
 import '../../../../core/theme/zebra_theme.dart';
 import '../../../../domain/models/weight_challenge_entry.dart';
 import '../../../../domain/models/weight_challenge_weigh_in.dart';
@@ -20,10 +19,16 @@ import '../../../widgets/section_card.dart';
 /// arbitrary-looking 95). A dashed line at the target marks the start;
 /// the goal itself is just 0, the bottom of the axis.
 class ChallengeProgressChart extends StatelessWidget {
-  const ChallengeProgressChart({required this.entries, required this.history, super.key});
+  const ChallengeProgressChart({
+    required this.entries,
+    required this.history,
+    required this.targetPercent,
+    super.key,
+  });
 
   final List<WeightChallengeEntry> entries;
   final List<WeightChallengeWeighIn> history;
+  final double targetPercent;
 
   static const _seriesColors = [ZebraColors.brandTeal, ZebraColors.teal, ZebraColors.sand];
 
@@ -59,7 +64,7 @@ class ChallengeProgressChart extends StatelessWidget {
     // rounded to its nearest day) ends up printed several times in a row.
     final xInterval = maxX <= 7 ? 1.0 : (maxX / 6).ceilToDouble();
 
-    final startY = WeightChallengeDefaults.targetPercent;
+    final startY = targetPercent;
     const goalY = 0.0;
     final allY = [
       for (final s in series) for (final p in s.points) startY - p.percentLost,

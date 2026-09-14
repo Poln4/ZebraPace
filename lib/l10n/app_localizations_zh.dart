@@ -1904,12 +1904,25 @@ class AppLocalizationsZh extends AppLocalizations {
   String get challengeTabLoadError => '無法載入進度資料，請檢查網路連線後再試一次。';
 
   @override
-  String get challengeTabJoinTitle => '🤝 加入';
+  String get challengeTabJoinTitle => '🤝 一起來';
 
   @override
-  String challengeTabJoinCaption(String percent) {
-    return '設定你的起始體重 — 我們一起朝減少 $percent% 努力。';
-  }
+  String get challengeTabJoinCaption => '輸入朋友的邀請碼加入挑戰,或建立你自己的挑戰。';
+
+  @override
+  String get challengeTabModeJoin => '加入';
+
+  @override
+  String get challengeTabModeCreate => '建立';
+
+  @override
+  String get challengeTabChallengeNamePlaceholder => '挑戰名稱';
+
+  @override
+  String get challengeTabCodePlaceholder => '邀請碼';
+
+  @override
+  String get challengeTabNewCodePlaceholder => '設定一個邀請碼';
 
   @override
   String get challengeTabNamePlaceholder => '你的名字';
@@ -1919,6 +1932,23 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get challengeTabJoinButton => '加入';
+
+  @override
+  String get challengeTabCreateButton => '建立';
+
+  @override
+  String get challengeTabActionError => '發生錯誤,請確認邀請碼後再試一次。';
+
+  @override
+  String challengeTabInviteHint(String code) {
+    return '邀請碼 $code,分享給朋友吧';
+  }
+
+  @override
+  String get challengeTabCopyCodeButton => '複製邀請碼';
+
+  @override
+  String get challengeTabCodeCopied => '已複製！';
 
   @override
   String get challengeTabMyProgressTitle => '我的進度';
@@ -3863,12 +3893,25 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get challengeTabLoadError => '無法載入進度資料，請檢查網路連線後再試一次。';
 
   @override
-  String get challengeTabJoinTitle => '🤝 加入';
+  String get challengeTabJoinTitle => '🤝 一起來';
 
   @override
-  String challengeTabJoinCaption(String percent) {
-    return '設定你的起始體重 — 我們一起朝減少 $percent% 努力。';
-  }
+  String get challengeTabJoinCaption => '輸入朋友的邀請碼加入挑戰,或建立你自己的挑戰。';
+
+  @override
+  String get challengeTabModeJoin => '加入';
+
+  @override
+  String get challengeTabModeCreate => '建立';
+
+  @override
+  String get challengeTabChallengeNamePlaceholder => '挑戰名稱';
+
+  @override
+  String get challengeTabCodePlaceholder => '邀請碼';
+
+  @override
+  String get challengeTabNewCodePlaceholder => '設定一個邀請碼';
 
   @override
   String get challengeTabNamePlaceholder => '你的名字';
@@ -3878,6 +3921,23 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get challengeTabJoinButton => '加入';
+
+  @override
+  String get challengeTabCreateButton => '建立';
+
+  @override
+  String get challengeTabActionError => '發生錯誤,請確認邀請碼後再試一次。';
+
+  @override
+  String challengeTabInviteHint(String code) {
+    return '邀請碼 $code,分享給朋友吧';
+  }
+
+  @override
+  String get challengeTabCopyCodeButton => '複製邀請碼';
+
+  @override
+  String get challengeTabCodeCopied => '已複製！';
 
   @override
   String get challengeTabMyProgressTitle => '我的進度';

@@ -2045,12 +2045,26 @@ class AppLocalizationsEs extends AppLocalizations {
       'No se pudo cargar tu progreso. Revisa tu conexión e inténtalo de nuevo.';
 
   @override
-  String get challengeTabJoinTitle => '🤝 Únete';
+  String get challengeTabJoinTitle => '🤝 Juntos';
 
   @override
-  String challengeTabJoinCaption(String percent) {
-    return 'Indica tu peso inicial — juntos vamos por -$percent%.';
-  }
+  String get challengeTabJoinCaption =>
+      'Únete al reto de un amigo con su código, o crea el tuyo.';
+
+  @override
+  String get challengeTabModeJoin => 'Unirme';
+
+  @override
+  String get challengeTabModeCreate => 'Crear';
+
+  @override
+  String get challengeTabChallengeNamePlaceholder => 'Nombre del reto';
+
+  @override
+  String get challengeTabCodePlaceholder => 'Código de invitación';
+
+  @override
+  String get challengeTabNewCodePlaceholder => 'Elige un código';
 
   @override
   String get challengeTabNamePlaceholder => 'Tu nombre';
@@ -2060,6 +2074,24 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get challengeTabJoinButton => 'Unirme';
+
+  @override
+  String get challengeTabCreateButton => 'Crear';
+
+  @override
+  String get challengeTabActionError =>
+      'Algo salió mal. Revisa el código e intenta de nuevo.';
+
+  @override
+  String challengeTabInviteHint(String code) {
+    return 'Invita a tus amigos con el código $code';
+  }
+
+  @override
+  String get challengeTabCopyCodeButton => 'Copiar código';
+
+  @override
+  String get challengeTabCodeCopied => '¡Copiado!';
 
   @override
   String get challengeTabMyProgressTitle => 'Mi Progreso';

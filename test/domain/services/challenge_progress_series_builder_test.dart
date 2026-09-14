@@ -5,6 +5,7 @@ import 'package:zebrapace_app/domain/services/challenge_progress_series_builder.
 
 void main() {
   final alice = WeightChallengeEntry(
+    challengeId: 'c1',
     userId: 'alice',
     displayName: 'Alice',
     startWeightKg: 100.0,
@@ -12,6 +13,7 @@ void main() {
     updatedAt: DateTime(2026, 1, 10),
   );
   final bob = WeightChallengeEntry(
+    challengeId: 'c1',
     userId: 'bob',
     displayName: 'Bob',
     startWeightKg: 80.0,
@@ -21,10 +23,10 @@ void main() {
 
   test('normalizes each person against their own starting weight, not a shared scale', () {
     final history = [
-      WeightChallengeWeighIn(userId: 'alice', weightKg: 100.0, loggedAt: DateTime(2026, 1, 1)),
-      WeightChallengeWeighIn(userId: 'alice', weightKg: 95.0, loggedAt: DateTime(2026, 1, 10)),
-      WeightChallengeWeighIn(userId: 'bob', weightKg: 80.0, loggedAt: DateTime(2026, 1, 1)),
-      WeightChallengeWeighIn(userId: 'bob', weightKg: 82.0, loggedAt: DateTime(2026, 1, 10)),
+      WeightChallengeWeighIn(challengeId: 'c1', userId: 'alice', weightKg: 100.0, loggedAt: DateTime(2026, 1, 1)),
+      WeightChallengeWeighIn(challengeId: 'c1', userId: 'alice', weightKg: 95.0, loggedAt: DateTime(2026, 1, 10)),
+      WeightChallengeWeighIn(challengeId: 'c1', userId: 'bob', weightKg: 80.0, loggedAt: DateTime(2026, 1, 1)),
+      WeightChallengeWeighIn(challengeId: 'c1', userId: 'bob', weightKg: 82.0, loggedAt: DateTime(2026, 1, 10)),
     ];
 
     final series = ChallengeProgressSeriesBuilder.build([alice, bob], history);
@@ -39,8 +41,8 @@ void main() {
 
   test('sorts each series by date even if history arrives out of order', () {
     final history = [
-      WeightChallengeWeighIn(userId: 'alice', weightKg: 95.0, loggedAt: DateTime(2026, 1, 10)),
-      WeightChallengeWeighIn(userId: 'alice', weightKg: 100.0, loggedAt: DateTime(2026, 1, 1)),
+      WeightChallengeWeighIn(challengeId: 'c1', userId: 'alice', weightKg: 95.0, loggedAt: DateTime(2026, 1, 10)),
+      WeightChallengeWeighIn(challengeId: 'c1', userId: 'alice', weightKg: 100.0, loggedAt: DateTime(2026, 1, 1)),
     ];
 
     final series = ChallengeProgressSeriesBuilder.build([alice], history);
@@ -58,11 +60,13 @@ void main() {
   test('multiple weigh-ins on the same calendar day collapse to one point, using the last', () {
     final history = [
       WeightChallengeWeighIn(
+        challengeId: 'c1',
         userId: 'alice',
         weightKg: 99.0,
         loggedAt: DateTime(2026, 1, 5, 8, 0), // morning sync
       ),
       WeightChallengeWeighIn(
+        challengeId: 'c1',
         userId: 'alice',
         weightKg: 98.0,
         loggedAt: DateTime(2026, 1, 5, 22, 0), // later that same day
@@ -78,7 +82,7 @@ void main() {
 
   test('one participant\'s weigh-ins never leak into another\'s series', () {
     final history = [
-      WeightChallengeWeighIn(userId: 'alice', weightKg: 90.0, loggedAt: DateTime(2026, 1, 5)),
+      WeightChallengeWeighIn(challengeId: 'c1', userId: 'alice', weightKg: 90.0, loggedAt: DateTime(2026, 1, 5)),
     ];
 
     final series = ChallengeProgressSeriesBuilder.build([alice, bob], history);

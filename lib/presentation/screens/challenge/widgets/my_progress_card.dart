@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/constants/defaults.dart';
 import '../../../../core/theme/zebra_theme.dart';
 import '../../../../domain/models/weight_challenge_entry.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -23,9 +22,10 @@ import '../../../widgets/section_card.dart';
 /// nothing's actually different, since those don't need to churn for a
 /// value that hasn't moved.
 class MyProgressCard extends ConsumerWidget {
-  const MyProgressCard({required this.entry, super.key});
+  const MyProgressCard({required this.entry, required this.targetPercent, super.key});
 
   final WeightChallengeEntry entry;
+  final double targetPercent;
 
   static const _syncThresholdKg = 0.05;
 
@@ -39,17 +39,20 @@ class MyProgressCard extends ConsumerWidget {
       if (computed == null) return;
       final repo = ref.read(weightChallengeRepositoryProvider);
       if ((computed - entry.currentWeightKg).abs() < _syncThresholdKg) {
-        repo.logWeighIn(userId: entry.userId, weightKg: computed);
+        repo.logWeighIn(challengeId: entry.challengeId, userId: entry.userId, weightKg: computed);
       } else {
-        repo.updateCurrentWeight(userId: entry.userId, currentWeightKg: computed);
+        repo.updateCurrentWeight(
+          challengeId: entry.challengeId,
+          userId: entry.userId,
+          currentWeightKg: computed,
+        );
       }
     });
 
     final percent = entry.percentLost;
     final percentLabel = '${percent >= 0 ? '-' : '+'}${percent.abs().toStringAsFixed(1)}%';
     final displayWeight = computedAsync.valueOrNull ?? entry.currentWeightKg;
-    final goalWeightKg =
-        entry.startWeightKg * (1 - WeightChallengeDefaults.targetPercent / 100);
+    final goalWeightKg = entry.startWeightKg * (1 - targetPercent / 100);
 
     return SectionCard(
       title: l10n.challengeTabMyProgressTitle,

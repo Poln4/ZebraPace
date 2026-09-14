@@ -3514,14 +3514,44 @@ abstract class AppLocalizations {
   /// No description provided for @challengeTabJoinTitle.
   ///
   /// In en, this message translates to:
-  /// **'🤝 Join In'**
+  /// **'🤝 Together'**
   String get challengeTabJoinTitle;
 
   /// No description provided for @challengeTabJoinCaption.
   ///
   /// In en, this message translates to:
-  /// **'Set your starting weight — together we\'re aiming for -{percent}%.'**
-  String challengeTabJoinCaption(String percent);
+  /// **'Join a friend\'s challenge with their code, or start your own.'**
+  String get challengeTabJoinCaption;
+
+  /// No description provided for @challengeTabModeJoin.
+  ///
+  /// In en, this message translates to:
+  /// **'Join'**
+  String get challengeTabModeJoin;
+
+  /// No description provided for @challengeTabModeCreate.
+  ///
+  /// In en, this message translates to:
+  /// **'Create'**
+  String get challengeTabModeCreate;
+
+  /// No description provided for @challengeTabChallengeNamePlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Challenge name'**
+  String get challengeTabChallengeNamePlaceholder;
+
+  /// No description provided for @challengeTabCodePlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite code'**
+  String get challengeTabCodePlaceholder;
+
+  /// No description provided for @challengeTabNewCodePlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a code'**
+  String get challengeTabNewCodePlaceholder;
 
   /// No description provided for @challengeTabNamePlaceholder.
   ///
@@ -3540,6 +3570,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Join in'**
   String get challengeTabJoinButton;
+
+  /// No description provided for @challengeTabCreateButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Create'**
+  String get challengeTabCreateButton;
+
+  /// No description provided for @challengeTabActionError.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Check the code and try again.'**
+  String get challengeTabActionError;
+
+  /// No description provided for @challengeTabInviteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite friends with code {code}'**
+  String challengeTabInviteHint(String code);
+
+  /// No description provided for @challengeTabCopyCodeButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy code'**
+  String get challengeTabCopyCodeButton;
+
+  /// No description provided for @challengeTabCodeCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied!'**
+  String get challengeTabCodeCopied;
 
   /// No description provided for @challengeTabMyProgressTitle.
   ///
