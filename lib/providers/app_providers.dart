@@ -140,12 +140,31 @@ final weightChallengeProgressServiceProvider = Provider<WeightChallengeProgressS
 
 final healthKitServiceProvider = Provider<HealthKitService>((ref) => HealthKitService());
 
-/// Whether HealthKit permissions are currently granted — re-checked
-/// on-demand (not a stream, since the OS gives us no push notification for
-/// permission changes made outside the app).
-final healthKitEnabledProvider = FutureProvider.autoDispose<bool>((ref) {
-  return ref.watch(healthKitServiceProvider).hasPermissions();
+const _healthKitRequested = 'requested';
+
+/// Whether to treat HealthKit as connected — re-checked on-demand (not a
+/// stream, since the OS gives us no push notification for permission
+/// changes made outside the app). iOS answers "unknown" for read access,
+/// so in that case this falls back to whether the user already went
+/// through the permission sheet via [connectHealthKit]. If they denied
+/// some types there, reads for those types simply come back empty.
+final healthKitEnabledProvider = FutureProvider.autoDispose<bool>((ref) async {
+  final granted = await ref.watch(healthKitServiceProvider).hasPermissions();
+  if (granted != null) return granted;
+  final status =
+      await ref.watch(settingsRepositoryProvider).getString(SettingsKeys.healthKitAuthStatus, '');
+  return status == _healthKitRequested;
 });
+
+/// Shows the HealthKit permission sheet and remembers that it was shown,
+/// since iOS won't tell us the answer later (see healthKitEnabledProvider).
+Future<void> connectHealthKit(WidgetRef ref) async {
+  final shown = await ref.read(healthKitServiceProvider).requestAuthorization();
+  if (shown) {
+    await ref.read(settingsRepositoryProvider).set(SettingsKeys.healthKitAuthStatus, _healthKitRequested);
+  }
+  ref.invalidate(healthKitEnabledProvider);
+}
 
 final healthKitStepsProvider = FutureProvider.autoDispose.family<int?, String>((ref, date) async {
   final enabled = await ref.watch(healthKitEnabledProvider.future);

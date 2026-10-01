@@ -369,8 +369,7 @@ class _HealthKitSection extends ConsumerWidget {
             if (enabled) {
               await launchUrl(Uri.parse('app-settings:'));
             } else {
-              await ref.read(healthKitServiceProvider).requestAuthorization();
-              ref.invalidate(healthKitEnabledProvider);
+              await connectHealthKit(ref);
             }
           },
           child: Text(

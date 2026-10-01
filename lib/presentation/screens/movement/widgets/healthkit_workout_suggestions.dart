@@ -73,8 +73,7 @@ class _ConnectAppleHealthCard extends ConsumerWidget {
         child: CupertinoButton(
           color: ZebraColors.brandTeal,
           onPressed: () async {
-            await ref.read(healthKitServiceProvider).requestAuthorization();
-            ref.invalidate(healthKitEnabledProvider);
+            await connectHealthKit(ref);
           },
           child: Text(l10n.healthkitWorkoutSuggestionsConnectButton,
               style: const TextStyle(color: ZebraColors.onColor)),

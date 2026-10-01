@@ -41,10 +41,15 @@ class HealthKitService {
     }
   }
 
-  Future<bool> hasPermissions() async {
+  /// null means "unknown", not "denied": iOS deliberately never reveals
+  /// whether *read* access was granted, so the `health` package answers
+  /// null for read-only types even after the user allowed everything.
+  /// Callers must fall back to their own record of having asked — see
+  /// healthKitEnabledProvider.
+  Future<bool?> hasPermissions() async {
     await _ensureConfigured();
     try {
-      return await _health.hasPermissions(healthKitDataTypes) ?? false;
+      return await _health.hasPermissions(healthKitDataTypes);
     } catch (_) {
       return false;
     }
