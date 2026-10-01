@@ -92,8 +92,30 @@ void main() {
     await tester.tap(find.text('Set password'));
     await tester.pumpAndSettle();
 
-    expect(find.text('ZebraPace'), findsOneWidget);
-    expect(find.text('Daily Vitals & Fuel'), findsWidgets);
+    expect(find.text('🦓 ZebraPace'), findsOneWidget);
+    expect(find.text('Vitals & Fuel'), findsOneWidget); // active tab-bar label
+    expect(find.text('Today'), findsOneWidget); // date button, shown on date-bound tabs
+    await _settleAndTearDown(tester);
+  });
+
+  testWidgets('logging a check-in makes it the day summary', (tester) async {
+    await tester.pumpWidget(ProviderScope(overrides: _testOverrides(), child: const ZebraPaceApp()));
+    await tester.pumpAndSettle();
+    await _enterInviteCode(tester);
+    await _acknowledgeWelcome(tester);
+    await tester.enterText(find.byKey(const ValueKey('setup_password')), 'test1234');
+    await tester.enterText(find.byKey(const ValueKey('setup_confirm')), 'test1234');
+    await tester.tap(find.text('Set password'));
+    await tester.pumpAndSettle();
+
+    expect(find.textContaining('Day summary:'), findsNothing);
+    final logButton = find.text('➕ Log this moment');
+    await tester.ensureVisible(logButton);
+    await tester.pumpAndSettle();
+    await tester.tap(logButton);
+    await tester.pumpAndSettle();
+
+    expect(find.textContaining('Day summary:'), findsOneWidget);
     await _settleAndTearDown(tester);
   });
 }

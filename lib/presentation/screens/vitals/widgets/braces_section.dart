@@ -6,30 +6,29 @@ import '../../../../core/theme/zebra_theme.dart';
 import '../../../../domain/models/daily_log.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/app_providers.dart';
-import '../../../widgets/feeling_picker.dart';
 import '../../../widgets/section_card.dart';
 
-class MindBodyForm extends ConsumerStatefulWidget {
-  const MindBodyForm({super.key, required this.log});
+/// Braces used today + comfort — part of the day's one summary row, split
+/// out of the old Mind & Body form when its mood/body pickers merged into
+/// QuickCheckinSection. Collapsed unless braces are already logged, since
+/// many days won't involve any.
+class BracesSection extends ConsumerStatefulWidget {
+  const BracesSection({super.key, required this.log});
 
   final DailyLog log;
 
   @override
-  ConsumerState<MindBodyForm> createState() => _MindBodyFormState();
+  ConsumerState<BracesSection> createState() => _BracesSectionState();
 }
 
-class _MindBodyFormState extends ConsumerState<MindBodyForm> {
-  late MentalState? _mental = widget.log.mentalState;
-  late BodyFeeling? _body = widget.log.bodyFeeling;
+class _BracesSectionState extends ConsumerState<BracesSection> {
   late Set<BraceType> _braces = widget.log.bracesUsed.toSet();
   late double _braceComfort = (widget.log.braceComfort ?? 5).toDouble();
 
   @override
-  void didUpdateWidget(covariant MindBodyForm oldWidget) {
+  void didUpdateWidget(covariant BracesSection oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.log.id != widget.log.id) {
-      _mental = widget.log.mentalState;
-      _body = widget.log.bodyFeeling;
       _braces = widget.log.bracesUsed.toSet();
       _braceComfort = (widget.log.braceComfort ?? 5).toDouble();
     }
@@ -39,29 +38,12 @@ class _MindBodyFormState extends ConsumerState<MindBodyForm> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return SectionCard(
-      title: l10n.mindBodyFormTitle,
-      caption: l10n.mindBodyFormCaption,
+      title: l10n.bracesSectionTitle,
+      collapsible: true,
+      initiallyExpanded: widget.log.bracesUsed.isNotEmpty,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          FeelingPicker<MentalState>(
-            label: l10n.commonMentalStateLabel,
-            options: MentalState.values,
-            emojiOf: (o) => o.emoji,
-            labelOf: (o) => o.label(l10n),
-            value: _mental,
-            onChanged: (v) => setState(() => _mental = v),
-          ),
-          const SizedBox(height: 12),
-          FeelingPicker<BodyFeeling>(
-            label: l10n.mindBodyFormBodyPainFeelingLabel,
-            options: BodyFeeling.values,
-            emojiOf: (o) => o.emoji,
-            labelOf: (o) => o.label(l10n),
-            value: _body,
-            onChanged: (v) => setState(() => _body = v),
-          ),
-          const SizedBox(height: 12),
           Text(l10n.mindBodyFormBracesUsedLabel,
               style: const TextStyle(fontWeight: FontWeight.w700, color: ZebraColors.black)),
           const SizedBox(height: 6),
@@ -121,8 +103,6 @@ class _MindBodyFormState extends ConsumerState<MindBodyForm> {
     final repo = ref.read(dailyLogRepositoryProvider);
     await repo.upsertDailyLog(
       widget.log.copyWith(
-        mentalState: _mental,
-        bodyFeeling: _body,
         bracesUsed: _braces.toList(),
         braceComfort: _braces.isEmpty ? null : _braceComfort.round(),
       ),

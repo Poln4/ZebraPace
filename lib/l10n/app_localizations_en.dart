@@ -580,6 +580,28 @@ class AppLocalizationsEn extends AppLocalizations {
   String get injuriesSectionTitle => '🩹 Injuries & Structural Events';
 
   @override
+  String sectionCollapsedLoggedCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count logged',
+      one: '1 logged',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String sectionCollapsedActiveCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count active',
+      one: '1 active',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get injuriesSectionCaption =>
       'For discrete, dateable injuries — separate from Flare Days, which are systemic.';
 
@@ -721,13 +743,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nutritionSectionResetButton => 'Reset Nutrition';
 
   @override
-  String get mindBodyFormTitle => '🧠 Mind & Body';
-
-  @override
-  String get mindBodyFormCaption =>
-      'This is today\'s one official summary — it\'s what your baselines, trends, and PEM check are built on.';
-
-  @override
   String get mindBodyFormBodyPainFeelingLabel => 'Body / Pain Feeling';
 
   @override
@@ -743,7 +758,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get quickCheckinSectionCaption =>
-      'Log as many as you want through the day — they don\'t replace the summary above.';
+      'Log as often as you like — your latest check-in is the day\'s summary for trends and the PEM check.';
 
   @override
   String get quickCheckinSectionMentalStateLabel => 'Mental State right now';
@@ -760,6 +775,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get quickCheckinSectionEmpty => 'No check-ins logged yet today.';
+
+  @override
+  String quickCheckinSectionSummary(String mental, String body) {
+    return 'Day summary: $mental · $body';
+  }
+
+  @override
+  String get bracesSectionTitle => '🦾 Braces';
 
   @override
   String get sorenessCheckSectionTitle => '🔍 Soreness or Crash? A quick check';
@@ -1639,6 +1662,16 @@ class AppLocalizationsEn extends AppLocalizations {
       'Declared as a Rest Day. That counts as showing up.';
 
   @override
+  String get vitalsTabLowEnergyNote =>
+      'Low-energy day — just the essentials. The rest can wait.';
+
+  @override
+  String get vitalsTabShowAllButton => 'Show all sections';
+
+  @override
+  String get vitalsTabShowEssentialsButton => 'Show only the essentials';
+
+  @override
   String get vitalsTabRestDayButton => 'Declare Rest Day';
 
   @override
@@ -1649,6 +1682,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get vitalsTabFlareDayButtonActive => '✓ Flare/Sick Day';
+
+  @override
+  String get vitalsMetricsRowCheckinLabel => 'Check-in';
+
+  @override
+  String get vitalsMetricsRowSleepLabel => 'Sleep';
 
   @override
   String get vitalsMetricsRowLiquidsLabel => 'Liquids';
@@ -1846,7 +1885,38 @@ class AppLocalizationsEn extends AppLocalizations {
       'Peak heart rate on activity/calisthenics days vs. body score N days later — how hard a day ran, not just how much of it.';
 
   @override
-  String get insightsTabPemLagLabel => 'Lag: ';
+  String get insightsTabPemLagLabel =>
+      'Compare with how you felt this many days later:';
+
+  @override
+  String get insightsViewOverview => 'Overview';
+
+  @override
+  String get insightsViewTrends => 'Trends';
+
+  @override
+  String get insightsViewPatterns => 'Patterns';
+
+  @override
+  String get insightsViewRecords => 'Records';
+
+  @override
+  String insightsPatternHeadlineLower(
+    String lag,
+    String higherAvg,
+    String typicalAvg,
+  ) {
+    return 'After higher-exertion days, your body score $lag later averaged lower: $higherAvg vs. $typicalAvg.';
+  }
+
+  @override
+  String insightsPatternHeadlineNoDip(
+    String lag,
+    String higherAvg,
+    String typicalAvg,
+  ) {
+    return 'So far, no clear dip in your body score $lag after higher-exertion days: $higherAvg vs. $typicalAvg.';
+  }
 
   @override
   String insightsTabPemLagDays(int count) {

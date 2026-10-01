@@ -598,6 +598,28 @@ class AppLocalizationsEs extends AppLocalizations {
   String get injuriesSectionTitle => '🩹 Lesiones y eventos estructurales';
 
   @override
+  String sectionCollapsedLoggedCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count registrados',
+      one: '1 registrado',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String sectionCollapsedActiveCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count activas',
+      one: '1 activa',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get injuriesSectionCaption =>
       'Para lesiones puntuales y fechables — distintas de los Días de Brote, que son sistémicos.';
 
@@ -740,13 +762,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get nutritionSectionResetButton => 'Reiniciar nutrición';
 
   @override
-  String get mindBodyFormTitle => '🧠 Mente y cuerpo';
-
-  @override
-  String get mindBodyFormCaption =>
-      'Este es el único resumen oficial del día — en él se basan tus líneas base, tendencias y el chequeo de PEM.';
-
-  @override
   String get mindBodyFormBodyPainFeelingLabel =>
       'Sensación corporal / de dolor';
 
@@ -763,7 +778,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get quickCheckinSectionCaption =>
-      'Registra tantos como quieras durante el día — no reemplazan el resumen de arriba.';
+      'Registra cuantas veces quieras — tu último registro es el resumen del día para tendencias y el chequeo de PEM.';
 
   @override
   String get quickCheckinSectionMentalStateLabel => 'Estado mental ahora mismo';
@@ -780,6 +795,14 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get quickCheckinSectionEmpty => 'Aún no has registrado chequeos hoy.';
+
+  @override
+  String quickCheckinSectionSummary(String mental, String body) {
+    return 'Resumen del día: $mental · $body';
+  }
+
+  @override
+  String get bracesSectionTitle => '🦾 Órtesis';
 
   @override
   String get sorenessCheckSectionTitle =>
@@ -1665,6 +1688,16 @@ class AppLocalizationsEs extends AppLocalizations {
       'Declarado como Día de Descanso. Eso también cuenta como presentarte.';
 
   @override
+  String get vitalsTabLowEnergyNote =>
+      'Día de baja energía — solo lo esencial. Lo demás puede esperar.';
+
+  @override
+  String get vitalsTabShowAllButton => 'Mostrar todas las secciones';
+
+  @override
+  String get vitalsTabShowEssentialsButton => 'Mostrar solo lo esencial';
+
+  @override
   String get vitalsTabRestDayButton => 'Declarar Día de Descanso';
 
   @override
@@ -1675,6 +1708,12 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get vitalsTabFlareDayButtonActive => '✓ Día de Brote/Enfermedad';
+
+  @override
+  String get vitalsMetricsRowCheckinLabel => 'Registro';
+
+  @override
+  String get vitalsMetricsRowSleepLabel => 'Sueño';
 
   @override
   String get vitalsMetricsRowLiquidsLabel => 'Líquidos';
@@ -1877,7 +1916,38 @@ class AppLocalizationsEs extends AppLocalizations {
       'Frecuencia cardíaca máxima en días de actividad/calistenia frente a la puntuación corporal N días después — qué tan intenso fue el día, no solo cuánto duró.';
 
   @override
-  String get insightsTabPemLagLabel => 'Desfase: ';
+  String get insightsTabPemLagLabel =>
+      'Comparar con cómo te sentiste estos días después:';
+
+  @override
+  String get insightsViewOverview => 'Resumen';
+
+  @override
+  String get insightsViewTrends => 'Tendencias';
+
+  @override
+  String get insightsViewPatterns => 'Patrones';
+
+  @override
+  String get insightsViewRecords => 'Registros';
+
+  @override
+  String insightsPatternHeadlineLower(
+    String lag,
+    String higherAvg,
+    String typicalAvg,
+  ) {
+    return 'Después de días de mayor esfuerzo, tu puntaje corporal $lag después fue en promedio más bajo: $higherAvg vs. $typicalAvg.';
+  }
+
+  @override
+  String insightsPatternHeadlineNoDip(
+    String lag,
+    String higherAvg,
+    String typicalAvg,
+  ) {
+    return 'Por ahora, no hay una baja clara en tu puntaje corporal $lag después de días de mayor esfuerzo: $higherAvg vs. $typicalAvg.';
+  }
 
   @override
   String insightsTabPemLagDays(int count) {

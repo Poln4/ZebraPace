@@ -1186,6 +1186,18 @@ abstract class AppLocalizations {
   /// **'🩹 Injuries & Structural Events'**
   String get injuriesSectionTitle;
 
+  /// No description provided for @sectionCollapsedLoggedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 logged} other{{count} logged}}'**
+  String sectionCollapsedLoggedCount(int count);
+
+  /// No description provided for @sectionCollapsedActiveCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 active} other{{count} active}}'**
+  String sectionCollapsedActiveCount(int count);
+
   /// No description provided for @injuriesSectionCaption.
   ///
   /// In en, this message translates to:
@@ -1432,18 +1444,6 @@ abstract class AppLocalizations {
   /// **'Reset Nutrition'**
   String get nutritionSectionResetButton;
 
-  /// No description provided for @mindBodyFormTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'🧠 Mind & Body'**
-  String get mindBodyFormTitle;
-
-  /// No description provided for @mindBodyFormCaption.
-  ///
-  /// In en, this message translates to:
-  /// **'This is today\'s one official summary — it\'s what your baselines, trends, and PEM check are built on.'**
-  String get mindBodyFormCaption;
-
   /// No description provided for @mindBodyFormBodyPainFeelingLabel.
   ///
   /// In en, this message translates to:
@@ -1471,7 +1471,7 @@ abstract class AppLocalizations {
   /// No description provided for @quickCheckinSectionCaption.
   ///
   /// In en, this message translates to:
-  /// **'Log as many as you want through the day — they don\'t replace the summary above.'**
+  /// **'Log as often as you like — your latest check-in is the day\'s summary for trends and the PEM check.'**
   String get quickCheckinSectionCaption;
 
   /// No description provided for @quickCheckinSectionMentalStateLabel.
@@ -1503,6 +1503,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No check-ins logged yet today.'**
   String get quickCheckinSectionEmpty;
+
+  /// No description provided for @quickCheckinSectionSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Day summary: {mental} · {body}'**
+  String quickCheckinSectionSummary(String mental, String body);
+
+  /// No description provided for @bracesSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'🦾 Braces'**
+  String get bracesSectionTitle;
 
   /// No description provided for @sorenessCheckSectionTitle.
   ///
@@ -2875,6 +2887,24 @@ abstract class AppLocalizations {
   /// **'Declared as a Rest Day. That counts as showing up.'**
   String get vitalsTabRestDayBanner;
 
+  /// No description provided for @vitalsTabLowEnergyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Low-energy day — just the essentials. The rest can wait.'**
+  String get vitalsTabLowEnergyNote;
+
+  /// No description provided for @vitalsTabShowAllButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Show all sections'**
+  String get vitalsTabShowAllButton;
+
+  /// No description provided for @vitalsTabShowEssentialsButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Show only the essentials'**
+  String get vitalsTabShowEssentialsButton;
+
   /// No description provided for @vitalsTabRestDayButton.
   ///
   /// In en, this message translates to:
@@ -2898,6 +2928,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'✓ Flare/Sick Day'**
   String get vitalsTabFlareDayButtonActive;
+
+  /// No description provided for @vitalsMetricsRowCheckinLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in'**
+  String get vitalsMetricsRowCheckinLabel;
+
+  /// No description provided for @vitalsMetricsRowSleepLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep'**
+  String get vitalsMetricsRowSleepLabel;
 
   /// No description provided for @vitalsMetricsRowLiquidsLabel.
   ///
@@ -3261,8 +3303,52 @@ abstract class AppLocalizations {
   /// No description provided for @insightsTabPemLagLabel.
   ///
   /// In en, this message translates to:
-  /// **'Lag: '**
+  /// **'Compare with how you felt this many days later:'**
   String get insightsTabPemLagLabel;
+
+  /// No description provided for @insightsViewOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get insightsViewOverview;
+
+  /// No description provided for @insightsViewTrends.
+  ///
+  /// In en, this message translates to:
+  /// **'Trends'**
+  String get insightsViewTrends;
+
+  /// No description provided for @insightsViewPatterns.
+  ///
+  /// In en, this message translates to:
+  /// **'Patterns'**
+  String get insightsViewPatterns;
+
+  /// No description provided for @insightsViewRecords.
+  ///
+  /// In en, this message translates to:
+  /// **'Records'**
+  String get insightsViewRecords;
+
+  /// No description provided for @insightsPatternHeadlineLower.
+  ///
+  /// In en, this message translates to:
+  /// **'After higher-exertion days, your body score {lag} later averaged lower: {higherAvg} vs. {typicalAvg}.'**
+  String insightsPatternHeadlineLower(
+    String lag,
+    String higherAvg,
+    String typicalAvg,
+  );
+
+  /// No description provided for @insightsPatternHeadlineNoDip.
+  ///
+  /// In en, this message translates to:
+  /// **'So far, no clear dip in your body score {lag} after higher-exertion days: {higherAvg} vs. {typicalAvg}.'**
+  String insightsPatternHeadlineNoDip(
+    String lag,
+    String higherAvg,
+    String typicalAvg,
+  );
 
   /// No description provided for @insightsTabPemLagDays.
   ///

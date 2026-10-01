@@ -3,25 +3,42 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/constants/enums.dart';
 import '../../../../core/theme/zebra_theme.dart';
+import '../../../../domain/models/daily_log.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/app_providers.dart';
 import '../../../widgets/feeling_picker.dart';
 import '../../../widgets/section_card.dart';
 import 'intraday_fluctuation_chart.dart';
 
-/// Intraday check-ins (app2.py) — purely additive to the one official daily
-/// summary above: as many of these as the user wants per day.
+/// The one place to log how you feel — as many check-ins per day as the
+/// user wants (app2.py's intraday check-ins). Each check-in also becomes the
+/// day's summary mentalState/bodyFeeling on DailyLog (latest wins), which is
+/// what baselines, trends, and the PEM check read. This replaced a separate
+/// "official summary" Mind & Body form that asked the same two questions.
 class QuickCheckinSection extends ConsumerStatefulWidget {
-  const QuickCheckinSection({super.key});
+  const QuickCheckinSection({super.key, required this.log});
+
+  final DailyLog log;
 
   @override
   ConsumerState<QuickCheckinSection> createState() => _QuickCheckinSectionState();
 }
 
 class _QuickCheckinSectionState extends ConsumerState<QuickCheckinSection> {
-  MentalState _mental = MentalState.okay;
-  BodyFeeling _body = BodyFeeling.manageable;
+  // Pickers start at the day's current summary, so re-logging "same as
+  // before" is a single tap.
+  late MentalState _mental = widget.log.mentalState ?? MentalState.okay;
+  late BodyFeeling _body = widget.log.bodyFeeling ?? BodyFeeling.manageable;
   final _noteController = TextEditingController();
+
+  @override
+  void didUpdateWidget(covariant QuickCheckinSection oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.log.id != widget.log.id) {
+      _mental = widget.log.mentalState ?? MentalState.okay;
+      _body = widget.log.bodyFeeling ?? BodyFeeling.manageable;
+    }
+  }
 
   @override
   void dispose() {
@@ -34,16 +51,25 @@ class _QuickCheckinSectionState extends ConsumerState<QuickCheckinSection> {
     final l10n = AppLocalizations.of(context);
     final date = ref.watch(selectedDateProvider);
     final checkinsAsync = ref.watch(_checkinsForDateProvider(date));
-    final isLowEnergyDay = ref.watch(dailyLogProvider).valueOrNull?.isLowEnergyDay ?? false;
+    final summaryMental = widget.log.mentalState;
+    final summaryBody = widget.log.bodyFeeling;
 
     return SectionCard(
       title: l10n.quickCheckinSectionTitle,
       caption: l10n.quickCheckinSectionCaption,
-      collapsible: true,
-      initiallyExpanded: !isLowEnergyDay,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          if (summaryMental != null && summaryBody != null) ...[
+            Text(
+              l10n.quickCheckinSectionSummary(
+                '${summaryMental.emoji} ${summaryMental.label(l10n)}',
+                '${summaryBody.emoji} ${summaryBody.label(l10n)}',
+              ),
+              style: const TextStyle(fontWeight: FontWeight.w600, color: ZebraColors.black),
+            ),
+            const SizedBox(height: 10),
+          ],
           FeelingPicker<MentalState>(
             label: l10n.quickCheckinSectionMentalStateLabel,
             options: MentalState.values,
@@ -71,15 +97,7 @@ class _QuickCheckinSectionState extends ConsumerState<QuickCheckinSection> {
             width: double.infinity,
             child: CupertinoButton(
               color: ZebraColors.teal,
-              onPressed: () async {
-                await ref.read(checkinRepositoryProvider).insert(
-                      date: date,
-                      mentalState: _mental,
-                      bodyFeeling: _body,
-                      note: _noteController.text,
-                    );
-                _noteController.clear();
-              },
+              onPressed: () => _logCheckin(date),
               child: Text(l10n.quickCheckinSectionLogButton,
                   style: const TextStyle(color: ZebraColors.onColor)),
             ),
@@ -115,6 +133,19 @@ class _QuickCheckinSectionState extends ConsumerState<QuickCheckinSection> {
         ],
       ),
     );
+  }
+
+  Future<void> _logCheckin(String date) async {
+    await ref.read(checkinRepositoryProvider).insert(
+          date: date,
+          mentalState: _mental,
+          bodyFeeling: _body,
+          note: _noteController.text,
+        );
+    final repo = ref.read(dailyLogRepositoryProvider);
+    final log = await repo.getOrCreateDailyLog(date);
+    await repo.upsertDailyLog(log.copyWith(mentalState: _mental, bodyFeeling: _body));
+    _noteController.clear();
   }
 }
 

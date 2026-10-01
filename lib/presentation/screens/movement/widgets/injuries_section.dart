@@ -34,13 +34,17 @@ class _InjuriesSectionState extends ConsumerState<InjuriesSection> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final activeInjuries = ref.watch(activeInjuriesProvider).valueOrNull ?? const [];
-    final isLowEnergyDay = ref.watch(dailyLogProvider).valueOrNull?.isLowEnergyDay ?? false;
 
     return SectionCard(
       title: l10n.injuriesSectionTitle,
       caption: l10n.injuriesSectionCaption,
       collapsible: true,
-      initiallyExpanded: !isLowEnergyDay,
+      // Collapsed by default — active injuries already show in the
+      // persistent InjuryBanner; the summary repeats the count here.
+      initiallyExpanded: false,
+      collapsedSummary: activeInjuries.isEmpty
+          ? null
+          : l10n.sectionCollapsedActiveCount(activeInjuries.length),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

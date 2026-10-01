@@ -82,7 +82,6 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
     final levels = _exercise.levels(l10n);
     _progression ??= levels.first.name;
     final currentLevel = _levelFor(l10n);
-    final isLowEnergyDay = ref.watch(dailyLogProvider).valueOrNull?.isLowEnergyDay ?? false;
     final date = ref.watch(selectedDateProvider);
     final loggedSetsAsync = ref.watch(_calisthenicsForDateProvider(date));
 
@@ -95,7 +94,10 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
     return SectionCard(
       title: l10n.calisthenicsSectionTitle,
       collapsible: true,
-      initiallyExpanded: !isLowEnergyDay,
+      // Collapsed by default (Movement leads with Steps + Activities);
+      // the summary says whether anything's inside.
+      initiallyExpanded: false,
+      collapsedSummary: _countSummary(l10n, loggedSetsAsync.valueOrNull?.length),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -431,3 +433,6 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
 final _calisthenicsForDateProvider = StreamProvider.family((ref, String date) {
   return ref.watch(calisthenicsRepositoryProvider).watchForDate(date);
 });
+
+String? _countSummary(AppLocalizations l10n, int? count) =>
+    count == null || count == 0 ? null : l10n.sectionCollapsedLoggedCount(count);

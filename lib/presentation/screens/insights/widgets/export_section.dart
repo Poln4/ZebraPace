@@ -66,7 +66,7 @@ class ExportSection extends ConsumerWidget {
     final injuries =
         await ref.read(injuryRepositoryProvider).getRelevantToRange(range.start, range.end);
 
-    final pemLag = ref.read(pemLagDaysProvider);
+    final pemLag = ref.read(patternLagDaysProvider);
     final pemResult =
         await ref.read(pemServiceProvider).analyze(range.start, range.end, lagDays: pemLag);
     final rangeDays = ref.read(insightsRangeOptionProvider).days;

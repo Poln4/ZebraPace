@@ -31,6 +31,13 @@ class ZebraColors {
   static const onColor = black;
 }
 
+class ZebraLayout {
+  ZebraLayout._();
+
+  /// Widest the app's content column gets on large (desktop web) windows.
+  static const maxContentWidth = 720.0;
+}
+
 class ZebraTheme {
   ZebraTheme._();
 

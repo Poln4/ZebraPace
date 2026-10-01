@@ -576,6 +576,26 @@ class AppLocalizationsZh extends AppLocalizations {
   String get injuriesSectionTitle => '🩹 傷害與結構性事件';
 
   @override
+  String sectionCollapsedLoggedCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已記錄 $count 筆',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String sectionCollapsedActiveCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 項進行中',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get injuriesSectionCaption => '用於記錄單次、可標明日期的傷害——與全身性的發作日不同。';
 
   @override
@@ -713,12 +733,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get nutritionSectionResetButton => '重設營養記錄';
 
   @override
-  String get mindBodyFormTitle => '🧠 身心狀態';
-
-  @override
-  String get mindBodyFormCaption => '這是今天唯一的官方摘要——你的基準線、趨勢和 PEM 檢查都以此為依據。';
-
-  @override
   String get mindBodyFormBodyPainFeelingLabel => '身體／疼痛感受';
 
   @override
@@ -733,7 +747,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get quickCheckinSectionTitle => '📈 你現在感覺如何？';
 
   @override
-  String get quickCheckinSectionCaption => '一天中想記錄幾次都可以——這不會取代上方的每日摘要。';
+  String get quickCheckinSectionCaption =>
+      '一天中想記錄幾次都可以——最新一次記錄就是當天的摘要，用於趨勢和 PEM 檢查。';
 
   @override
   String get quickCheckinSectionMentalStateLabel => '此刻的心理狀態';
@@ -749,6 +764,14 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get quickCheckinSectionEmpty => '今天還沒有任何即時記錄。';
+
+  @override
+  String quickCheckinSectionSummary(String mental, String body) {
+    return '當日摘要：$mental · $body';
+  }
+
+  @override
+  String get bracesSectionTitle => '🦾 護具';
 
   @override
   String get sorenessCheckSectionTitle => '🔍 是痠痛還是崩潰？快速檢查';
@@ -1549,6 +1572,15 @@ class AppLocalizationsZh extends AppLocalizations {
   String get vitalsTabRestDayBanner => '已宣告為休息日。這也算是一種出現。';
 
   @override
+  String get vitalsTabLowEnergyNote => '低能量日——只顯示必要項目。其他的可以等等。';
+
+  @override
+  String get vitalsTabShowAllButton => '顯示所有區塊';
+
+  @override
+  String get vitalsTabShowEssentialsButton => '只顯示必要項目';
+
+  @override
   String get vitalsTabRestDayButton => '宣告休息日';
 
   @override
@@ -1559,6 +1591,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get vitalsTabFlareDayButtonActive => '✓ 發作／不適日';
+
+  @override
+  String get vitalsMetricsRowCheckinLabel => '記錄';
+
+  @override
+  String get vitalsMetricsRowSleepLabel => '睡眠';
 
   @override
   String get vitalsMetricsRowLiquidsLabel => '液體攝取';
@@ -1750,7 +1788,37 @@ class AppLocalizationsZh extends AppLocalizations {
       '活動／自重訓練日的最高心率與 N 天後的身體分數比較——重點是那天有多「激烈」，而不只是量有多少。';
 
   @override
-  String get insightsTabPemLagLabel => '延遲天數：';
+  String get insightsTabPemLagLabel => '與幾天後的感受比較：';
+
+  @override
+  String get insightsViewOverview => '概覽';
+
+  @override
+  String get insightsViewTrends => '趨勢';
+
+  @override
+  String get insightsViewPatterns => '模式';
+
+  @override
+  String get insightsViewRecords => '紀錄';
+
+  @override
+  String insightsPatternHeadlineLower(
+    String lag,
+    String higherAvg,
+    String typicalAvg,
+  ) {
+    return '在較高強度的日子之後，$lag後你的身體分數平均較低：$higherAvg 對 $typicalAvg。';
+  }
+
+  @override
+  String insightsPatternHeadlineNoDip(
+    String lag,
+    String higherAvg,
+    String typicalAvg,
+  ) {
+    return '目前在較高強度的日子之後，$lag後的身體分數沒有明顯下降：$higherAvg 對 $typicalAvg。';
+  }
 
   @override
   String insightsTabPemLagDays(int count) {
@@ -2565,6 +2633,26 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get injuriesSectionTitle => '🩹 傷害與結構性事件';
 
   @override
+  String sectionCollapsedLoggedCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已記錄 $count 筆',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String sectionCollapsedActiveCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 項進行中',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get injuriesSectionCaption => '用於記錄單次、可標明日期的傷害——與全身性的發作日不同。';
 
   @override
@@ -2702,12 +2790,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get nutritionSectionResetButton => '重設營養記錄';
 
   @override
-  String get mindBodyFormTitle => '🧠 身心狀態';
-
-  @override
-  String get mindBodyFormCaption => '這是今天唯一的官方摘要——你的基準線、趨勢和 PEM 檢查都以此為依據。';
-
-  @override
   String get mindBodyFormBodyPainFeelingLabel => '身體／疼痛感受';
 
   @override
@@ -2722,7 +2804,8 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get quickCheckinSectionTitle => '📈 你現在感覺如何？';
 
   @override
-  String get quickCheckinSectionCaption => '一天中想記錄幾次都可以——這不會取代上方的每日摘要。';
+  String get quickCheckinSectionCaption =>
+      '一天中想記錄幾次都可以——最新一次記錄就是當天的摘要，用於趨勢和 PEM 檢查。';
 
   @override
   String get quickCheckinSectionMentalStateLabel => '此刻的心理狀態';
@@ -2738,6 +2821,14 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get quickCheckinSectionEmpty => '今天還沒有任何即時記錄。';
+
+  @override
+  String quickCheckinSectionSummary(String mental, String body) {
+    return '當日摘要：$mental · $body';
+  }
+
+  @override
+  String get bracesSectionTitle => '🦾 護具';
 
   @override
   String get sorenessCheckSectionTitle => '🔍 是痠痛還是崩潰？快速檢查';
@@ -3538,6 +3629,15 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get vitalsTabRestDayBanner => '已宣告為休息日。這也算是一種出現。';
 
   @override
+  String get vitalsTabLowEnergyNote => '低能量日——只顯示必要項目。其他的可以等等。';
+
+  @override
+  String get vitalsTabShowAllButton => '顯示所有區塊';
+
+  @override
+  String get vitalsTabShowEssentialsButton => '只顯示必要項目';
+
+  @override
   String get vitalsTabRestDayButton => '宣告休息日';
 
   @override
@@ -3548,6 +3648,12 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get vitalsTabFlareDayButtonActive => '✓ 發作／不適日';
+
+  @override
+  String get vitalsMetricsRowCheckinLabel => '記錄';
+
+  @override
+  String get vitalsMetricsRowSleepLabel => '睡眠';
 
   @override
   String get vitalsMetricsRowLiquidsLabel => '液體攝取';
@@ -3739,7 +3845,37 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
       '活動／自重訓練日的最高心率與 N 天後的身體分數比較——重點是那天有多「激烈」，而不只是量有多少。';
 
   @override
-  String get insightsTabPemLagLabel => '延遲天數：';
+  String get insightsTabPemLagLabel => '與幾天後的感受比較：';
+
+  @override
+  String get insightsViewOverview => '概覽';
+
+  @override
+  String get insightsViewTrends => '趨勢';
+
+  @override
+  String get insightsViewPatterns => '模式';
+
+  @override
+  String get insightsViewRecords => '紀錄';
+
+  @override
+  String insightsPatternHeadlineLower(
+    String lag,
+    String higherAvg,
+    String typicalAvg,
+  ) {
+    return '在較高強度的日子之後，$lag後你的身體分數平均較低：$higherAvg 對 $typicalAvg。';
+  }
+
+  @override
+  String insightsPatternHeadlineNoDip(
+    String lag,
+    String higherAvg,
+    String typicalAvg,
+  ) {
+    return '目前在較高強度的日子之後，$lag後的身體分數沒有明顯下降：$higherAvg 對 $typicalAvg。';
+  }
 
   @override
   String insightsTabPemLagDays(int count) {

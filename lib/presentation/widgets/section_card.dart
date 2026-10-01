@@ -10,6 +10,7 @@ class SectionCard extends StatefulWidget {
     this.caption,
     this.collapsible = false,
     this.initiallyExpanded = true,
+    this.collapsedSummary,
   });
 
   final String title;
@@ -23,6 +24,10 @@ class SectionCard extends StatefulWidget {
   /// not persisted, since it's a per-view convenience, not data.
   final bool collapsible;
   final bool initiallyExpanded;
+
+  /// Short status shown at the end of the title row while collapsed (e.g.
+  /// "2 logged"), so a closed card still says whether it holds anything.
+  final String? collapsedSummary;
 
   @override
   State<SectionCard> createState() => _SectionCardState();
@@ -60,6 +65,11 @@ class _SectionCardState extends State<SectionCard> {
                     ),
                   ),
                 ),
+                if (!expanded && widget.collapsedSummary != null) ...[
+                  Text(widget.collapsedSummary!,
+                      style: const TextStyle(fontSize: 13, color: CupertinoColors.systemGrey)),
+                  const SizedBox(width: 6),
+                ],
                 if (widget.collapsible)
                   Icon(
                     expanded ? CupertinoIcons.chevron_up : CupertinoIcons.chevron_down,

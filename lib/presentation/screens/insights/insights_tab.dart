@@ -26,121 +26,253 @@ import 'widgets/principles_expander.dart';
 import 'widgets/steps_chart.dart';
 import 'widgets/weather_chart.dart';
 
+/// Split into four sub-views so no single scroll carries every chart:
+/// Overview (stripes, this month's story, totals, principles), Trends (the
+/// day-by-day charts), Patterns (lagged PEM/HR/weather checks behind one
+/// shared "days later" control), and Records (exports + history tables).
+/// The range control applies to all four.
 class InsightsTab extends ConsumerWidget {
   const InsightsTab({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-    final range = ref.watch(insightsDateRangeProvider);
+    final view = ref.watch(insightsViewProvider);
     final rangeOption = ref.watch(insightsRangeOptionProvider);
-    final logsAsync = ref.watch(dailyLogsInRangeProvider);
-    final stripeStatus = ref.watch(stripeStatusProvider).valueOrNull;
 
     return CupertinoPageScaffold(
       backgroundColor: ZebraColors.bg,
-      navigationBar: CupertinoNavigationBar(
-        middle: Text(l10n.insightsTabTitle),
-        backgroundColor: ZebraColors.paper,
-      ),
       child: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            if (stripeStatus != null) ...[
-              SectionCard(
-                title: l10n.insightsTabStripesTitle,
-                caption: l10n.insightsTabStripesCaption,
-                child: StripeTrack(stripesEarned: stripeStatus.stripesEarned),
-              ),
-            ],
-            const MonthChapterCard(),
-            const PrinciplesExpander(),
+            CupertinoSlidingSegmentedControl<InsightsView>(
+              groupValue: view,
+              children: {
+                for (final v in InsightsView.values)
+                  v: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Text(_viewLabel(l10n, v),
+                        style: const TextStyle(fontSize: 13.5, fontWeight: FontWeight.w600)),
+                  ),
+              },
+              onValueChanged: (v) {
+                if (v != null) ref.read(insightsViewProvider.notifier).state = v;
+              },
+            ),
+            const SizedBox(height: 8),
             CupertinoSlidingSegmentedControl<InsightsRangeOption>(
               groupValue: rangeOption,
               children: {
                 for (final o in InsightsRangeOption.values)
                   o: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 6),
-                    child: Text(o.label(l10n)),
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    child: Text(o.label(l10n), style: const TextStyle(fontSize: 12.5)),
                   ),
               },
               onValueChanged: (v) {
                 if (v != null) ref.read(insightsRangeOptionProvider.notifier).state = v;
               },
             ),
-            const SizedBox(height: 12),
-            logsAsync.when(
-              loading: () => const Padding(
-                padding: EdgeInsets.all(32),
-                child: Center(child: CupertinoActivityIndicator()),
-              ),
-              error: (e, st) => Text(l10n.insightsTabLoadError(e.toString())),
-              data: (logs) {
-                if (logs.isEmpty) {
-                  return Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: Text(l10n.insightsTabEmptyState),
-                  );
-                }
-                final settings = ref.watch(settingsSnapshotProvider).valueOrNull;
-                final dates = dateKeysBetween(range.start, range.end);
-
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (anyDayMarked(logs))
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: Text(
-                          l10n.insightsTabDayMarkerLegend,
-                          style: const TextStyle(fontSize: 11.5, color: CupertinoColors.systemGrey),
-                        ),
-                      ),
-                    SectionCard(title: l10n.insightsTabStepsTitle, child: StepsChart(logs: logs)),
-                    const MetsSummaryWidget(),
-                    SectionCard(
-                      title: l10n.insightsTabLiquidsTitle,
-                      child: LiquidsChart(logs: logs, goalMl: settings?.waterGoalMl ?? 2000),
-                    ),
-                    SectionCard(
-                      title: l10n.insightsTabMentalStateTitle,
-                      child: FeelingTrendChart(
-                        logs: logs,
-                        scoreOf: (l) => l.mentalState?.score,
-                        color: ZebraColors.brandTeal,
-                      ),
-                    ),
-                    SectionCard(
-                      title: l10n.insightsTabBodyPainTitle,
-                      child: FeelingTrendChart(
-                        logs: logs,
-                        scoreOf: (l) => l.bodyFeeling?.score,
-                        color: ZebraColors.sand,
-                      ),
-                    ),
-                    SectionCard(
-                      title: l10n.insightsTabCheckinConsistencyTitle,
-                      child: CheckinConsistencyStrip(logs: logs, dates: dates),
-                    ),
-                    SectionCard(
-                      title: l10n.insightsTabBodyMetricsTitle,
-                      child: BodyMetricsChart(logs: logs),
-                    ),
-                    const _CalisthenicsComfortSection(),
-                    const _PemSection(),
-                    const _HrExertionSection(),
-                    const _WeatherSection(),
-                    const _CelebrationSection(),
-                    const ExportSection(),
-                    const HistoryTables(),
-                  ],
-                );
-              },
-            ),
+            const SizedBox(height: 14),
+            switch (view) {
+              InsightsView.overview => const _OverviewView(),
+              InsightsView.trends => const _TrendsView(),
+              InsightsView.patterns => const _PatternsView(),
+              InsightsView.records => const _RecordsView(),
+            },
           ],
         ),
       ),
+    );
+  }
+
+  String _viewLabel(AppLocalizations l10n, InsightsView v) => switch (v) {
+        InsightsView.overview => l10n.insightsViewOverview,
+        InsightsView.trends => l10n.insightsViewTrends,
+        InsightsView.patterns => l10n.insightsViewPatterns,
+        InsightsView.records => l10n.insightsViewRecords,
+      };
+}
+
+class _OverviewView extends ConsumerWidget {
+  const _OverviewView();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final stripeStatus = ref.watch(stripeStatusProvider).valueOrNull;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (stripeStatus != null)
+          SectionCard(
+            title: l10n.insightsTabStripesTitle,
+            caption: l10n.insightsTabStripesCaption,
+            child: StripeTrack(stripesEarned: stripeStatus.stripesEarned),
+          ),
+        const MonthChapterCard(),
+        const _CelebrationSection(),
+        const PrinciplesExpander(),
+      ],
+    );
+  }
+}
+
+class _TrendsView extends ConsumerWidget {
+  const _TrendsView();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final range = ref.watch(insightsDateRangeProvider);
+    final logsAsync = ref.watch(dailyLogsInRangeProvider);
+
+    return logsAsync.when(
+      loading: () => const Padding(
+        padding: EdgeInsets.all(32),
+        child: Center(child: CupertinoActivityIndicator()),
+      ),
+      error: (e, st) => Text(l10n.insightsTabLoadError(e.toString())),
+      data: (logs) {
+        if (logs.isEmpty) {
+          return Padding(
+            padding: const EdgeInsets.all(24),
+            child: Text(l10n.insightsTabEmptyState),
+          );
+        }
+        final settings = ref.watch(settingsSnapshotProvider).valueOrNull;
+        final dates = dateKeysBetween(range.start, range.end);
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (anyDayMarked(logs))
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Text(
+                  l10n.insightsTabDayMarkerLegend,
+                  style: const TextStyle(fontSize: 11.5, color: CupertinoColors.systemGrey),
+                ),
+              ),
+            SectionCard(title: l10n.insightsTabStepsTitle, child: StepsChart(logs: logs)),
+            const MetsSummaryWidget(),
+            SectionCard(
+              title: l10n.insightsTabLiquidsTitle,
+              child: LiquidsChart(logs: logs, goalMl: settings?.waterGoalMl ?? 2000),
+            ),
+            SectionCard(
+              title: l10n.insightsTabMentalStateTitle,
+              child: FeelingTrendChart(
+                logs: logs,
+                scoreOf: (l) => l.mentalState?.score,
+                color: ZebraColors.brandTeal,
+              ),
+            ),
+            SectionCard(
+              title: l10n.insightsTabBodyPainTitle,
+              child: FeelingTrendChart(
+                logs: logs,
+                scoreOf: (l) => l.bodyFeeling?.score,
+                color: ZebraColors.sand,
+              ),
+            ),
+            SectionCard(
+              title: l10n.insightsTabCheckinConsistencyTitle,
+              child: CheckinConsistencyStrip(logs: logs, dates: dates),
+            ),
+            SectionCard(
+              title: l10n.insightsTabBodyMetricsTitle,
+              child: BodyMetricsChart(logs: logs),
+            ),
+            const _CalisthenicsComfortSection(),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _PatternsView extends ConsumerWidget {
+  const _PatternsView();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final lag = ref.watch(patternLagDaysProvider);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(l10n.insightsTabPemLagLabel,
+            style: const TextStyle(fontWeight: FontWeight.w600, color: ZebraColors.black)),
+        const SizedBox(height: 6),
+        CupertinoSlidingSegmentedControl<int>(
+          groupValue: lag,
+          children: {
+            for (final d in [1, 2, 3])
+              d: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: Text(l10n.insightsTabPemLagDays(d), style: const TextStyle(fontSize: 12.5)),
+              ),
+          },
+          onValueChanged: (v) {
+            if (v != null) ref.read(patternLagDaysProvider.notifier).state = v;
+          },
+        ),
+        const SizedBox(height: 14),
+        const _PemSection(),
+        const _HrExertionSection(),
+        const _WeatherSection(),
+      ],
+    );
+  }
+}
+
+class _RecordsView extends StatelessWidget {
+  const _RecordsView();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [ExportSection(), HistoryTables()],
+    );
+  }
+}
+
+/// Plain-language read of a lagged pattern check, shown above its chart so
+/// the takeaway doesn't require reading a scatter plot or a Pearson r.
+/// Body scores run 1 (severe) to 5 (loose & stable), so "lower" is worse; a
+/// gap under [_dipThreshold] points is treated as no clear dip.
+class _PatternHeadline extends StatelessWidget {
+  const _PatternHeadline({
+    required this.higherAvg,
+    required this.typicalAvg,
+    required this.lagDays,
+  });
+
+  static const _dipThreshold = 0.3;
+
+  final double? higherAvg;
+  final double? typicalAvg;
+  final int lagDays;
+
+  @override
+  Widget build(BuildContext context) {
+    final higher = higherAvg;
+    final typical = typicalAvg;
+    if (higher == null || typical == null) return const SizedBox.shrink();
+    final l10n = AppLocalizations.of(context);
+    final lag = l10n.insightsTabPemLagDays(lagDays);
+    final h = higher.toStringAsFixed(1);
+    final t = typical.toStringAsFixed(1);
+    final text = typical - higher >= _dipThreshold
+        ? l10n.insightsPatternHeadlineLower(lag, h, t)
+        : l10n.insightsPatternHeadlineNoDip(lag, h, t);
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Text(text,
+          style: const TextStyle(fontWeight: FontWeight.w600, color: ZebraColors.black)),
     );
   }
 }
@@ -207,7 +339,7 @@ class _PemSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-    final lag = ref.watch(pemLagDaysProvider);
+    final lag = ref.watch(patternLagDaysProvider);
     final resultAsync = ref.watch(pemResultProvider);
 
     return SectionCard(
@@ -216,27 +348,21 @@ class _PemSection extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Text(l10n.insightsTabPemLagLabel, style: const TextStyle(fontWeight: FontWeight.w700)),
-              for (final d in [1, 2, 3])
-                CupertinoButton(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  onPressed: () => ref.read(pemLagDaysProvider.notifier).state = d,
-                  child: Text(
-                    l10n.insightsTabPemLagDays(d),
-                    style: TextStyle(
-                      fontWeight: lag == d ? FontWeight.w700 : FontWeight.w400,
-                      color: lag == d ? ZebraColors.brandTeal : ZebraColors.black,
-                    ),
-                  ),
-                ),
-            ],
-          ),
           resultAsync.when(
             loading: () => const CupertinoActivityIndicator(),
             error: (e, st) => Text(l10n.insightsTabLoadError(e.toString())),
-            data: (result) => PemChart(result: result),
+            data: (result) => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (result.hasEnoughData)
+                  _PatternHeadline(
+                    higherAvg: result.higherExertionAvgScore,
+                    typicalAvg: result.typicalAvgScore,
+                    lagDays: lag,
+                  ),
+                PemChart(result: result),
+              ],
+            ),
           ),
         ],
       ),
@@ -250,7 +376,7 @@ class _HrExertionSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-    final lag = ref.watch(hrExertionLagDaysProvider);
+    final lag = ref.watch(patternLagDaysProvider);
     final resultAsync = ref.watch(hrExertionResultProvider);
 
     return SectionCard(
@@ -259,27 +385,21 @@ class _HrExertionSection extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Text(l10n.insightsTabPemLagLabel, style: const TextStyle(fontWeight: FontWeight.w700)),
-              for (final d in [1, 2, 3])
-                CupertinoButton(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  onPressed: () => ref.read(hrExertionLagDaysProvider.notifier).state = d,
-                  child: Text(
-                    l10n.insightsTabPemLagDays(d),
-                    style: TextStyle(
-                      fontWeight: lag == d ? FontWeight.w700 : FontWeight.w400,
-                      color: lag == d ? ZebraColors.brandTeal : ZebraColors.black,
-                    ),
-                  ),
-                ),
-            ],
-          ),
           resultAsync.when(
             loading: () => const CupertinoActivityIndicator(),
             error: (e, st) => Text(l10n.insightsTabLoadError(e.toString())),
-            data: (result) => HrExertionChart(result: result),
+            data: (result) => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (result.hasEnoughData)
+                  _PatternHeadline(
+                    higherAvg: result.higherExertionAvgScore,
+                    typicalAvg: result.typicalAvgScore,
+                    lagDays: lag,
+                  ),
+                HrExertionChart(result: result),
+              ],
+            ),
           ),
         ],
       ),

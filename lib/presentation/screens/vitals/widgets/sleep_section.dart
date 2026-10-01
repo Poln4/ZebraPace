@@ -11,10 +11,10 @@ import '../../../widgets/section_card.dart';
 
 /// Duration (hours+minutes via a native time picker), quality, and sleeping
 /// heart rate range — the raw inputs EnergyBatteryCard's readout is derived
-/// from. Deliberately not auto-collapsed on Rest/Flare days like the other
-/// Vitals sections (see SectionCard's collapsible support): this is the
-/// input the energy display depends on, so it stays visible alongside
-/// MindBodyForm rather than defaulting closed like the "extra" sections.
+/// from. Deliberately one of the "essentials" VitalsTab still shows on
+/// Rest/Flare days: this is the input the energy display depends on, so it
+/// stays visible alongside QuickCheckinSection rather than being tucked
+/// behind "Show all sections" like the extra sections.
 class SleepSection extends ConsumerStatefulWidget {
   const SleepSection({super.key});
 

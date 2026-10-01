@@ -38,19 +38,26 @@ final sorenessChecksInRangeProvider = FutureProvider.autoDispose((ref) {
   return ref.watch(sorenessCheckRepositoryProvider).getRange(range.start, range.end);
 });
 
-final pemLagDaysProvider = StateProvider<int>((ref) => 1);
+/// Which of Insights' sub-views is showing. In-memory only (survives tab
+/// switches, not restarts) — a view preference, not data.
+enum InsightsView { overview, trends, patterns, records }
+
+final insightsViewProvider = StateProvider<InsightsView>((ref) => InsightsView.overview);
+
+/// One "N days later" setting shared by every lagged pattern check (PEM,
+/// HR exertion) and the PDF report, so the Patterns view has a single
+/// control instead of one per chart.
+final patternLagDaysProvider = StateProvider<int>((ref) => 1);
 
 final pemResultProvider = FutureProvider.autoDispose<PemResult>((ref) {
   final range = ref.watch(insightsDateRangeProvider);
-  final lag = ref.watch(pemLagDaysProvider);
+  final lag = ref.watch(patternLagDaysProvider);
   return ref.watch(pemServiceProvider).analyze(range.start, range.end, lagDays: lag);
 });
 
-final hrExertionLagDaysProvider = StateProvider<int>((ref) => 1);
-
 final hrExertionResultProvider = FutureProvider.autoDispose<HrExertionResult>((ref) {
   final range = ref.watch(insightsDateRangeProvider);
-  final lag = ref.watch(hrExertionLagDaysProvider);
+  final lag = ref.watch(patternLagDaysProvider);
   return ref.watch(hrExertionServiceProvider).analyze(range.start, range.end, lagDays: lag);
 });
 

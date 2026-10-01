@@ -38,11 +38,28 @@ class ZebraPaceApp extends ConsumerWidget {
         // text_scale_providers.dart.
         final mediaQuery = MediaQuery.of(context);
         final baseScale = mediaQuery.textScaler.scale(1.0);
-        return MediaQuery(
-          data: mediaQuery.copyWith(
-            textScaler: TextScaler.linear(baseScale * textScaleFactor),
+        // On wide (desktop web) windows, cap the whole app — every route
+        // and modal, not just AppShell — to a centered phone/tablet-width
+        // column instead of stretching cards and fields edge to edge.
+        // MediaQuery.size is narrowed to match so anything sizing itself
+        // off the screen width sees the column, not the window.
+        final width = mediaQuery.size.width > ZebraLayout.maxContentWidth
+            ? ZebraLayout.maxContentWidth
+            : mediaQuery.size.width;
+        return ColoredBox(
+          color: ZebraColors.bg,
+          child: Center(
+            child: SizedBox(
+              width: width,
+              child: MediaQuery(
+                data: mediaQuery.copyWith(
+                  size: Size(width, mediaQuery.size.height),
+                  textScaler: TextScaler.linear(baseScale * textScaleFactor),
+                ),
+                child: child!,
+              ),
+            ),
           ),
-          child: child!,
         );
       },
       home: const _AuthGate(),

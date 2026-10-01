@@ -36,12 +36,14 @@ class _TherapiesSectionState extends ConsumerState<TherapiesSection> {
     final l10n = AppLocalizations.of(context);
     final date = ref.watch(selectedDateProvider);
     final therapiesAsync = ref.watch(_therapiesForDateProvider(date));
-    final isLowEnergyDay = ref.watch(dailyLogProvider).valueOrNull?.isLowEnergyDay ?? false;
 
     return SectionCard(
       title: l10n.therapiesSectionTitle,
       collapsible: true,
-      initiallyExpanded: !isLowEnergyDay,
+      // Collapsed by default (Movement leads with Steps + Activities);
+      // the summary says whether anything's inside.
+      initiallyExpanded: false,
+      collapsedSummary: _countSummary(l10n, therapiesAsync.valueOrNull?.length),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -137,3 +139,6 @@ class _TherapiesSectionState extends ConsumerState<TherapiesSection> {
 final _therapiesForDateProvider = StreamProvider.family((ref, String date) {
   return ref.watch(therapyRepositoryProvider).watchForDate(date);
 });
+
+String? _countSummary(AppLocalizations l10n, int? count) =>
+    count == null || count == 0 ? null : l10n.sectionCollapsedLoggedCount(count);

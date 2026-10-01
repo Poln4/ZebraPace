@@ -263,6 +263,18 @@
   "activitiesSectionEditTitle": "Edit Activity",
 
   "injuriesSectionTitle": "🩹 Injuries & Structural Events",
+  "sectionCollapsedLoggedCount": "{count, plural, =1{1 logged} other{{count} logged}}",
+  "@sectionCollapsedLoggedCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "sectionCollapsedActiveCount": "{count, plural, =1{1 active} other{{count} active}}",
+  "@sectionCollapsedActiveCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
   "injuriesSectionCaption": "For discrete, dateable injuries — separate from Flare Days, which are systemic.",
   "injuriesSectionZoneLabel": "Zone",
   "injuriesSectionKindLabel": "Kind",
@@ -350,8 +362,6 @@
   "nutritionSectionAddCreatineButton": "+5g Creatine",
   "nutritionSectionResetButton": "Reset Nutrition",
 
-  "mindBodyFormTitle": "🧠 Mind & Body",
-  "mindBodyFormCaption": "This is today's one official summary — it's what your baselines, trends, and PEM check are built on.",
   "mindBodyFormBodyPainFeelingLabel": "Body / Pain Feeling",
   "mindBodyFormBracesUsedLabel": "Braces used today",
   "mindBodyFormBraceComfort": "Brace comfort: {value}/10",
@@ -362,12 +372,20 @@
   },
 
   "quickCheckinSectionTitle": "📈 How are you feeling right now?",
-  "quickCheckinSectionCaption": "Log as many as you want through the day — they don't replace the summary above.",
+  "quickCheckinSectionCaption": "Log as often as you like — your latest check-in is the day's summary for trends and the PEM check.",
   "quickCheckinSectionMentalStateLabel": "Mental State right now",
   "quickCheckinSectionBodyPainLabel": "Body/Pain right now",
   "quickCheckinSectionNotePlaceholder": "Optional note — e.g. after lunch, mid-errand",
   "quickCheckinSectionLogButton": "➕ Log this moment",
   "quickCheckinSectionEmpty": "No check-ins logged yet today.",
+  "quickCheckinSectionSummary": "Day summary: {mental} · {body}",
+  "@quickCheckinSectionSummary": {
+    "placeholders": {
+      "mental": {"type": "String"},
+      "body": {"type": "String"}
+    }
+  },
+  "bracesSectionTitle": "🦾 Braces",
 
   "sorenessCheckSectionTitle": "🔍 Soreness or Crash? A quick check",
   "sorenessCheckSectionCaption": "Three quick questions to tell ordinary post-exercise soreness apart from a PEM pattern.",
@@ -803,10 +821,15 @@
   },
   "vitalsTabFlareDayBanner": "Marked as a Flare/Sick Day. Rest and comparisons are paused today.",
   "vitalsTabRestDayBanner": "Declared as a Rest Day. That counts as showing up.",
+  "vitalsTabLowEnergyNote": "Low-energy day — just the essentials. The rest can wait.",
+  "vitalsTabShowAllButton": "Show all sections",
+  "vitalsTabShowEssentialsButton": "Show only the essentials",
   "vitalsTabRestDayButton": "Declare Rest Day",
   "vitalsTabRestDayButtonActive": "✓ Rest Day",
   "vitalsTabFlareDayButton": "Mark Flare/Sick Day",
   "vitalsTabFlareDayButtonActive": "✓ Flare/Sick Day",
+  "vitalsMetricsRowCheckinLabel": "Check-in",
+  "vitalsMetricsRowSleepLabel": "Sleep",
   "vitalsMetricsRowLiquidsLabel": "Liquids",
   "vitalsMetricsRowStepsLabel": "Steps",
   "vitalsMetricsRowProteinLabel": "Protein",
@@ -890,7 +913,27 @@
   "insightsTabPemCaption": "Steps vs. body score N days later, split by higher vs. typical exertion days.",
   "insightsTabHrExertionTitle": "❤️ Exertion Intensity vs. Symptoms",
   "insightsTabHrExertionCaption": "Peak heart rate on activity/calisthenics days vs. body score N days later — how hard a day ran, not just how much of it.",
-  "insightsTabPemLagLabel": "Lag: ",
+  "insightsTabPemLagLabel": "Compare with how you felt this many days later:",
+  "insightsViewOverview": "Overview",
+  "insightsViewTrends": "Trends",
+  "insightsViewPatterns": "Patterns",
+  "insightsViewRecords": "Records",
+  "insightsPatternHeadlineLower": "After higher-exertion days, your body score {lag} later averaged lower: {higherAvg} vs. {typicalAvg}.",
+  "@insightsPatternHeadlineLower": {
+    "placeholders": {
+      "lag": {"type": "String"},
+      "higherAvg": {"type": "String"},
+      "typicalAvg": {"type": "String"}
+    }
+  },
+  "insightsPatternHeadlineNoDip": "So far, no clear dip in your body score {lag} after higher-exertion days: {higherAvg} vs. {typicalAvg}.",
+  "@insightsPatternHeadlineNoDip": {
+    "placeholders": {
+      "lag": {"type": "String"},
+      "higherAvg": {"type": "String"},
+      "typicalAvg": {"type": "String"}
+    }
+  },
   "insightsTabPemLagDays": "{count, plural, =1{{count} day} other{{count} days}}",
   "@insightsTabPemLagDays": {
     "placeholders": {
