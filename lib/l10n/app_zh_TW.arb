@@ -539,7 +539,7 @@
   "vitalsTabTitle": "每日生理數據與營養",
   "vitalsTabLoadError": "載入今天的資料時發生錯誤：{error}",
   "vitalsTabFlareDayBanner": "已標記為發作／不適日。今天暫停休息與比較的相關功能。",
-  "vitalsTabRestDayBanner": "已宣告為休息日。這也算是一種出現。",
+  "vitalsTabRestDayBanner": "已宣告為休息日。休息，也是一種態度。",
   "vitalsTabLowEnergyNote": "低能量日——只顯示必要項目。其他的可以等等。",
   "vitalsTabShowAllButton": "顯示所有區塊",
   "vitalsTabShowEssentialsButton": "只顯示必要項目",

@@ -1569,7 +1569,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get vitalsTabFlareDayBanner => '已標記為發作／不適日。今天暫停休息與比較的相關功能。';
 
   @override
-  String get vitalsTabRestDayBanner => '已宣告為休息日。這也算是一種出現。';
+  String get vitalsTabRestDayBanner => '已宣告為休息日。休息，也是一種態度。';
 
   @override
   String get vitalsTabLowEnergyNote => '低能量日——只顯示必要項目。其他的可以等等。';
@@ -3626,7 +3626,7 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get vitalsTabFlareDayBanner => '已標記為發作／不適日。今天暫停休息與比較的相關功能。';
 
   @override
-  String get vitalsTabRestDayBanner => '已宣告為休息日。這也算是一種出現。';
+  String get vitalsTabRestDayBanner => '已宣告為休息日。休息，也是一種態度。';
 
   @override
   String get vitalsTabLowEnergyNote => '低能量日——只顯示必要項目。其他的可以等等。';
