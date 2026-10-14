@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/zebra_theme.dart';
+import '../../../../data/healthkit/health_kit_service.dart';
 import '../../../../domain/models/activity.dart';
 import '../../../../domain/models/detected_workout.dart';
 import '../../../../domain/services/mets_estimation_service.dart';
@@ -25,7 +26,7 @@ class _HealthKitWorkoutSuggestionsState extends ConsumerState<HealthKitWorkoutSu
 
   @override
   Widget build(BuildContext context) {
-    // HealthKit only exists on iOS — never show this section on web.
+    // Apple Health / Health Connect don't exist on web.
     if (kIsWeb) return const SizedBox.shrink();
 
     final date = ref.watch(selectedDateProvider);
@@ -66,7 +67,9 @@ class _ConnectAppleHealthCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     return SectionCard(
-      title: l10n.healthkitWorkoutSuggestionsConnectTitle,
+      title: usesHealthConnect
+          ? l10n.healthConnectWorkoutSuggestionsConnectTitle
+          : l10n.healthkitWorkoutSuggestionsConnectTitle,
       caption: l10n.healthkitWorkoutSuggestionsConnectCaption,
       child: SizedBox(
         width: double.infinity,

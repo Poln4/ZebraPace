@@ -1,6 +1,7 @@
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
+import '../../data/healthkit/health_kit_service.dart';
 import '../../domain/services/doctor_report_service.dart';
 import '../../l10n/app_localizations.dart';
 
@@ -91,7 +92,9 @@ class DoctorReportPdf {
           ],
           if (data.metsSummary.hasData) ...[
             pw.SizedBox(height: 8),
-            _sectionHeading(l10n.doctorReportMetsHeading),
+            _sectionHeading(usesHealthConnect
+                ? l10n.doctorReportMetsHeadingHealthConnect
+                : l10n.doctorReportMetsHeading),
             pw.Text(
               l10n.doctorReportMetsLine(
                 data.metsSummary.totalMetMinutes.toStringAsFixed(0),

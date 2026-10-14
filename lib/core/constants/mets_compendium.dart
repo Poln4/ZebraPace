@@ -67,6 +67,20 @@ const Map<HealthWorkoutActivityType, double> metsCompendium = {
   HealthWorkoutActivityType.PLAY: 4.0,
   HealthWorkoutActivityType.COOLDOWN: 2.0,
   HealthWorkoutActivityType.PREPARATION_AND_RECOVERY: 2.0,
+  // Types only Health Connect (Android) reports.
+  HealthWorkoutActivityType.CALISTHENICS: 3.8,
+  HealthWorkoutActivityType.STRENGTH_TRAINING: 3.5,
+  HealthWorkoutActivityType.WEIGHTLIFTING: 3.5,
+  HealthWorkoutActivityType.DANCING: 5.0,
+  HealthWorkoutActivityType.GUIDED_BREATHING: 1.3,
+  HealthWorkoutActivityType.RUNNING_TREADMILL: 9.0,
+  HealthWorkoutActivityType.ROWING_MACHINE: 7.0,
+  HealthWorkoutActivityType.STAIR_CLIMBING_MACHINE: 8.8,
+  HealthWorkoutActivityType.SWIMMING_POOL: 6.0,
+  HealthWorkoutActivityType.SWIMMING_OPEN_WATER: 6.0,
+  HealthWorkoutActivityType.ROCK_CLIMBING: 7.5,
+  HealthWorkoutActivityType.ICE_SKATING: 7.0,
+  HealthWorkoutActivityType.SKIING: 6.0,
 };
 
 double? metsForWorkoutType(HealthWorkoutActivityType type) => metsCompendium[type];

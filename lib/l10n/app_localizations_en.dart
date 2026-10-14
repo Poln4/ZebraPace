@@ -930,6 +930,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'Energy & METs (from confirmed Apple Health workout imports)';
 
   @override
+  String get doctorReportMetsHeadingHealthConnect =>
+      'Energy & METs (from confirmed Health Connect workout imports)';
+
+  @override
   String doctorReportMetsLine(String metMinutes, String kcal) {
     return 'MET-minutes: $metMinutes   |   Active energy: $kcal kcal';
   }
@@ -1462,6 +1466,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsTabHealthKitTitle => '❤️ Apple Health';
 
   @override
+  String get settingsTabHealthConnectTitle => '❤️ Health Connect';
+
+  @override
   String get settingsTabHealthKitConnectedCaption =>
       'Connected — steps pre-fill and workouts are suggested for review.';
 
@@ -1474,7 +1481,14 @@ class AppLocalizationsEn extends AppLocalizations {
       'Open iOS Settings to change access';
 
   @override
+  String get settingsTabHealthConnectOpenSettingsButton =>
+      'Open Health Connect to change access';
+
+  @override
   String get settingsTabHealthKitConnectButton => 'Connect Apple Health';
+
+  @override
+  String get settingsTabHealthConnectConnectButton => 'Connect Health Connect';
 
   @override
   String get settingsTabCloudSyncTitle => '☁️ Cloud Sync';
@@ -1626,6 +1640,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get healthkitWorkoutSuggestionsConnectTitle =>
       '❤️ Connect Apple Health';
+
+  @override
+  String get healthConnectWorkoutSuggestionsConnectTitle =>
+      '❤️ Connect Health Connect';
 
   @override
   String get healthkitWorkoutSuggestionsConnectCaption =>
@@ -2046,6 +2064,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get metsSummaryWidgetCaption =>
       'From confirmed Apple Health workout imports in this range.';
+
+  @override
+  String get metsSummaryWidgetCaptionHealthConnect =>
+      'From confirmed Health Connect workout imports in this range.';
 
   @override
   String get metsSummaryWidgetMetMinutesLabel => 'MET-minutes';

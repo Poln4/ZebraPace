@@ -952,6 +952,10 @@ class AppLocalizationsEs extends AppLocalizations {
       'Energía y METs (de entrenamientos confirmados importados de Apple Health)';
 
   @override
+  String get doctorReportMetsHeadingHealthConnect =>
+      'Energía y METs (de entrenamientos confirmados importados de Health Connect)';
+
+  @override
   String doctorReportMetsLine(String metMinutes, String kcal) {
     return 'MET-minutos: $metMinutes   |   Energía activa: $kcal kcal';
   }
@@ -1487,6 +1491,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settingsTabHealthKitTitle => '❤️ Apple Salud';
 
   @override
+  String get settingsTabHealthConnectTitle => '❤️ Health Connect';
+
+  @override
   String get settingsTabHealthKitConnectedCaption =>
       'Conectado — los pasos se prellenan y los entrenamientos se sugieren para revisión.';
 
@@ -1499,7 +1506,14 @@ class AppLocalizationsEs extends AppLocalizations {
       'Abrir Ajustes de iOS para cambiar el acceso';
 
   @override
+  String get settingsTabHealthConnectOpenSettingsButton =>
+      'Abrir Health Connect para cambiar el acceso';
+
+  @override
   String get settingsTabHealthKitConnectButton => 'Conectar Apple Salud';
+
+  @override
+  String get settingsTabHealthConnectConnectButton => 'Conectar Health Connect';
 
   @override
   String get settingsTabCloudSyncTitle => '☁️ Sincronización en la nube';
@@ -1652,6 +1666,10 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get healthkitWorkoutSuggestionsConnectTitle =>
       '❤️ Conectar Apple Salud';
+
+  @override
+  String get healthConnectWorkoutSuggestionsConnectTitle =>
+      '❤️ Conectar Health Connect';
 
   @override
   String get healthkitWorkoutSuggestionsConnectCaption =>
@@ -2079,6 +2097,10 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get metsSummaryWidgetCaption =>
       'De entrenamientos confirmados importados de Apple Salud en este rango.';
+
+  @override
+  String get metsSummaryWidgetCaptionHealthConnect =>
+      'De entrenamientos confirmados importados de Health Connect en este rango.';
 
   @override
   String get metsSummaryWidgetMetMinutesLabel => 'MET-minutos';

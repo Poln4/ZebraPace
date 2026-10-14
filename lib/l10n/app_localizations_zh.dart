@@ -913,6 +913,10 @@ class AppLocalizationsZh extends AppLocalizations {
       '能量消耗與 METs（來自已確認匯入的 Apple Health 運動記錄）';
 
   @override
+  String get doctorReportMetsHeadingHealthConnect =>
+      '能量消耗與 METs（來自已確認匯入的 Health Connect 運動記錄）';
+
+  @override
   String doctorReportMetsLine(String metMinutes, String kcal) {
     return 'MET－分鐘數：$metMinutes　｜　活動消耗能量：$kcal 大卡';
   }
@@ -1380,6 +1384,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsTabHealthKitTitle => '❤️ Apple 健康';
 
   @override
+  String get settingsTabHealthConnectTitle => '❤️ Health Connect';
+
+  @override
   String get settingsTabHealthKitConnectedCaption =>
       '已連接——步數會自動預填，並建議可匯入的運動記錄供你檢視。';
 
@@ -1391,7 +1398,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsTabHealthKitOpenSettingsButton => '開啟 iOS 設定以變更存取權限';
 
   @override
+  String get settingsTabHealthConnectOpenSettingsButton =>
+      '開啟 Health Connect 以變更存取權限';
+
+  @override
   String get settingsTabHealthKitConnectButton => '連接 Apple 健康';
+
+  @override
+  String get settingsTabHealthConnectConnectButton => '連接 Health Connect';
 
   @override
   String get settingsTabCloudSyncTitle => '☁️ 雲端同步';
@@ -1538,6 +1552,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get healthkitWorkoutSuggestionsConnectTitle => '❤️ 連接 Apple 健康';
+
+  @override
+  String get healthConnectWorkoutSuggestionsConnectTitle =>
+      '❤️ 連接 Health Connect';
 
   @override
   String get healthkitWorkoutSuggestionsConnectCaption =>
@@ -1938,6 +1956,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get metsSummaryWidgetCaption => '來自此區間內已確認匯入的 Apple 健康運動記錄。';
+
+  @override
+  String get metsSummaryWidgetCaptionHealthConnect =>
+      '來自此區間內已確認匯入的 Health Connect 運動記錄。';
 
   @override
   String get metsSummaryWidgetMetMinutesLabel => 'MET－分鐘數';
@@ -2970,6 +2992,10 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
       '能量消耗與 METs（來自已確認匯入的 Apple Health 運動記錄）';
 
   @override
+  String get doctorReportMetsHeadingHealthConnect =>
+      '能量消耗與 METs（來自已確認匯入的 Health Connect 運動記錄）';
+
+  @override
   String doctorReportMetsLine(String metMinutes, String kcal) {
     return 'MET－分鐘數：$metMinutes　｜　活動消耗能量：$kcal 大卡';
   }
@@ -3437,6 +3463,9 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get settingsTabHealthKitTitle => '❤️ Apple 健康';
 
   @override
+  String get settingsTabHealthConnectTitle => '❤️ Health Connect';
+
+  @override
   String get settingsTabHealthKitConnectedCaption =>
       '已連接——步數會自動預填，並建議可匯入的運動記錄供你檢視。';
 
@@ -3448,7 +3477,14 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get settingsTabHealthKitOpenSettingsButton => '開啟 iOS 設定以變更存取權限';
 
   @override
+  String get settingsTabHealthConnectOpenSettingsButton =>
+      '開啟 Health Connect 以變更存取權限';
+
+  @override
   String get settingsTabHealthKitConnectButton => '連接 Apple 健康';
+
+  @override
+  String get settingsTabHealthConnectConnectButton => '連接 Health Connect';
 
   @override
   String get settingsTabCloudSyncTitle => '☁️ 雲端同步';
@@ -3595,6 +3631,10 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get healthkitWorkoutSuggestionsConnectTitle => '❤️ 連接 Apple 健康';
+
+  @override
+  String get healthConnectWorkoutSuggestionsConnectTitle =>
+      '❤️ 連接 Health Connect';
 
   @override
   String get healthkitWorkoutSuggestionsConnectCaption =>
@@ -3995,6 +4035,10 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get metsSummaryWidgetCaption => '來自此區間內已確認匯入的 Apple 健康運動記錄。';
+
+  @override
+  String get metsSummaryWidgetCaptionHealthConnect =>
+      '來自此區間內已確認匯入的 Health Connect 運動記錄。';
 
   @override
   String get metsSummaryWidgetMetMinutesLabel => 'MET－分鐘數';

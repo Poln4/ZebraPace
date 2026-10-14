@@ -158,8 +158,15 @@ final healthKitEnabledProvider = FutureProvider.autoDispose<bool>((ref) async {
 
 /// Shows the HealthKit permission sheet and remembers that it was shown,
 /// since iOS won't tell us the answer later (see healthKitEnabledProvider).
+/// On Android, without Health Connect installed there's no sheet to show,
+/// so this sends the user to the Play Store instead.
 Future<void> connectHealthKit(WidgetRef ref) async {
-  final shown = await ref.read(healthKitServiceProvider).requestAuthorization();
+  final service = ref.read(healthKitServiceProvider);
+  if (!await service.isAvailable()) {
+    await service.installHealthConnect();
+    return;
+  }
+  final shown = await service.requestAuthorization();
   if (shown) {
     await ref.read(settingsRepositoryProvider).set(SettingsKeys.healthKitAuthStatus, _healthKitRequested);
   }

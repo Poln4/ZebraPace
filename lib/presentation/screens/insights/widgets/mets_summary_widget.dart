@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/zebra_theme.dart';
+import '../../../../data/healthkit/health_kit_service.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../widgets/section_card.dart';
 import 'insights_providers.dart';
@@ -20,7 +21,9 @@ class MetsSummaryWidget extends ConsumerWidget {
 
     return SectionCard(
       title: l10n.metsSummaryWidgetTitle,
-      caption: l10n.metsSummaryWidgetCaption,
+      caption: usesHealthConnect
+          ? l10n.metsSummaryWidgetCaptionHealthConnect
+          : l10n.metsSummaryWidgetCaption,
       child: Row(
         children: [
           Expanded(

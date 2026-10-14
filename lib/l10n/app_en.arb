@@ -473,6 +473,7 @@
     }
   },
   "doctorReportMetsHeading": "Energy & METs (from confirmed Apple Health workout imports)",
+  "doctorReportMetsHeadingHealthConnect": "Energy & METs (from confirmed Health Connect workout imports)",
   "doctorReportMetsLine": "MET-minutes: {metMinutes}   |   Active energy: {kcal} kcal",
   "@doctorReportMetsLine": {
     "placeholders": {
@@ -731,10 +732,13 @@
   },
   "appShellMoreDatesButton": "More dates",
   "settingsTabHealthKitTitle": "❤️ Apple Health",
+  "settingsTabHealthConnectTitle": "❤️ Health Connect",
   "settingsTabHealthKitConnectedCaption": "Connected — steps pre-fill and workouts are suggested for review.",
   "settingsTabHealthKitDisconnectedCaption": "Not connected. Steps and workout suggestions stay fully manual until you connect.",
   "settingsTabHealthKitOpenSettingsButton": "Open iOS Settings to change access",
+  "settingsTabHealthConnectOpenSettingsButton": "Open Health Connect to change access",
   "settingsTabHealthKitConnectButton": "Connect Apple Health",
+  "settingsTabHealthConnectConnectButton": "Connect Health Connect",
   "settingsTabCloudSyncTitle": "☁️ Cloud Sync",
   "settingsTabCloudSyncCaption": "Sign in to sync your data across devices. Nothing is synced yet — this connects your account.",
   "settingsTabCloudSyncEmailPlaceholder": "Email address",
@@ -802,6 +806,7 @@
 
   "movementTabTitle": "Movement & Calisthenics",
   "healthkitWorkoutSuggestionsConnectTitle": "❤️ Connect Apple Health",
+  "healthConnectWorkoutSuggestionsConnectTitle": "❤️ Connect Health Connect",
   "healthkitWorkoutSuggestionsConnectCaption": "Pre-fill today's steps and review detected workouts automatically. You can turn this off any time in Settings.",
   "healthkitWorkoutSuggestionsConnectButton": "Connect",
   "healthkitWorkoutSuggestionsDetectedTitle": "Detected: {activityLabel}",
@@ -1016,6 +1021,7 @@
   "historyTablesVitalsFlareSuffix": " · Flare",
   "metsSummaryWidgetTitle": "❤️‍🔥 Energy & METs",
   "metsSummaryWidgetCaption": "From confirmed Apple Health workout imports in this range.",
+  "metsSummaryWidgetCaptionHealthConnect": "From confirmed Health Connect workout imports in this range.",
   "metsSummaryWidgetMetMinutesLabel": "MET-minutes",
   "metsSummaryWidgetActiveEnergyLabel": "Active energy",
   "metsSummaryWidgetActiveEnergyValue": "{value} kcal",

@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:health/health.dart';
 
 import '../../domain/models/detected_workout.dart';
@@ -8,6 +10,22 @@ const List<HealthDataType> healthKitDataTypes = [
   HealthDataType.ACTIVE_ENERGY_BURNED,
   HealthDataType.HEART_RATE,
 ];
+
+/// Health Connect reads a workout's distance and total calories along with
+/// the exercise session itself, and fails the whole read without permission
+/// for them — so Android asks for these two on top of [healthKitDataTypes].
+/// Keep in sync with the READ_* permissions in AndroidManifest.xml.
+List<HealthDataType> healthDataTypes() => [
+      ...healthKitDataTypes,
+      if (usesHealthConnect) ...[
+        HealthDataType.DISTANCE_DELTA,
+        HealthDataType.TOTAL_CALORIES_BURNED,
+      ],
+    ];
+
+/// True on Android, where health data comes from Health Connect instead of
+/// Apple Health.
+bool get usesHealthConnect => !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
 
 /// Thin wrapper over the `health` package. HealthKit is unavailable on the
 /// iOS Simulator and on any platform other than iOS/Android — every method
@@ -21,6 +39,8 @@ class HealthKitService {
   final Health _health;
   bool _configured = false;
 
+  static const _healthSettingsChannel = MethodChannel('zebrapace/health_settings');
+
   Future<void> _ensureConfigured() async {
     if (_configured) return;
     try {
@@ -32,10 +52,41 @@ class HealthKitService {
     }
   }
 
+  /// Always true on iOS. On Android, false until the Health Connect app is
+  /// installed (or updated, on Android 13 and below) — see
+  /// [installHealthConnect].
+  Future<bool> isAvailable() async {
+    if (!usesHealthConnect) return true;
+    await _ensureConfigured();
+    try {
+      return await _health.isHealthConnectAvailable();
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// Sends the user to the Play Store page for Health Connect.
+  Future<void> installHealthConnect() async {
+    await _ensureConfigured();
+    try {
+      await _health.installHealthConnect();
+    } catch (_) {}
+  }
+
+  /// Android only: opens Health Connect's own settings, the only place to
+  /// change access once it's granted. Returns false if it couldn't open.
+  Future<bool> openHealthConnectSettings() async {
+    try {
+      return await _healthSettingsChannel.invokeMethod<bool>('open') ?? false;
+    } catch (_) {
+      return false;
+    }
+  }
+
   Future<bool> requestAuthorization() async {
     await _ensureConfigured();
     try {
-      return await _health.requestAuthorization(healthKitDataTypes);
+      return await _health.requestAuthorization(healthDataTypes());
     } catch (_) {
       return false;
     }
@@ -44,12 +95,13 @@ class HealthKitService {
   /// null means "unknown", not "denied": iOS deliberately never reveals
   /// whether *read* access was granted, so the `health` package answers
   /// null for read-only types even after the user allowed everything.
+  /// Health Connect on Android does answer true/false.
   /// Callers must fall back to their own record of having asked — see
   /// healthKitEnabledProvider.
   Future<bool?> hasPermissions() async {
     await _ensureConfigured();
     try {
-      return await _health.hasPermissions(healthKitDataTypes);
+      return await _health.hasPermissions(healthDataTypes());
     } catch (_) {
       return false;
     }

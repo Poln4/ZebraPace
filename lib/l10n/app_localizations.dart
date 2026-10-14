@@ -1741,6 +1741,12 @@ abstract class AppLocalizations {
   /// **'Energy & METs (from confirmed Apple Health workout imports)'**
   String get doctorReportMetsHeading;
 
+  /// No description provided for @doctorReportMetsHeadingHealthConnect.
+  ///
+  /// In en, this message translates to:
+  /// **'Energy & METs (from confirmed Health Connect workout imports)'**
+  String get doctorReportMetsHeadingHealthConnect;
+
   /// No description provided for @doctorReportMetsLine.
   ///
   /// In en, this message translates to:
@@ -2539,6 +2545,12 @@ abstract class AppLocalizations {
   /// **'❤️ Apple Health'**
   String get settingsTabHealthKitTitle;
 
+  /// No description provided for @settingsTabHealthConnectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'❤️ Health Connect'**
+  String get settingsTabHealthConnectTitle;
+
   /// No description provided for @settingsTabHealthKitConnectedCaption.
   ///
   /// In en, this message translates to:
@@ -2557,11 +2569,23 @@ abstract class AppLocalizations {
   /// **'Open iOS Settings to change access'**
   String get settingsTabHealthKitOpenSettingsButton;
 
+  /// No description provided for @settingsTabHealthConnectOpenSettingsButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Health Connect to change access'**
+  String get settingsTabHealthConnectOpenSettingsButton;
+
   /// No description provided for @settingsTabHealthKitConnectButton.
   ///
   /// In en, this message translates to:
   /// **'Connect Apple Health'**
   String get settingsTabHealthKitConnectButton;
+
+  /// No description provided for @settingsTabHealthConnectConnectButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect Health Connect'**
+  String get settingsTabHealthConnectConnectButton;
 
   /// No description provided for @settingsTabCloudSyncTitle.
   ///
@@ -2832,6 +2856,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'❤️ Connect Apple Health'**
   String get healthkitWorkoutSuggestionsConnectTitle;
+
+  /// No description provided for @healthConnectWorkoutSuggestionsConnectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'❤️ Connect Health Connect'**
+  String get healthConnectWorkoutSuggestionsConnectTitle;
 
   /// No description provided for @healthkitWorkoutSuggestionsConnectCaption.
   ///
@@ -3536,6 +3566,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'From confirmed Apple Health workout imports in this range.'**
   String get metsSummaryWidgetCaption;
+
+  /// No description provided for @metsSummaryWidgetCaptionHealthConnect.
+  ///
+  /// In en, this message translates to:
+  /// **'From confirmed Health Connect workout imports in this range.'**
+  String get metsSummaryWidgetCaptionHealthConnect;
 
   /// No description provided for @metsSummaryWidgetMetMinutesLabel.
   ///

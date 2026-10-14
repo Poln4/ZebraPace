@@ -9,6 +9,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/constants/defaults.dart';
 import '../../../core/theme/zebra_theme.dart';
+import '../../../data/healthkit/health_kit_service.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/app_providers.dart';
 import '../../../providers/auth_providers.dart';
@@ -343,21 +344,23 @@ class _SettingsTabState extends ConsumerState<SettingsTab> {
 
 /// If permission was already hard-denied, iOS won't let requestAuthorization
 /// re-prompt — the only way back in is the Settings app, so this deep-links
-/// there rather than silently doing nothing on a second tap.
+/// there rather than silently doing nothing on a second tap. Android's
+/// equivalent is Health Connect's own settings screen.
 class _HealthKitSection extends ConsumerWidget {
   const _HealthKitSection();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // HealthKit only exists on iOS — never show this section on web.
+    // Apple Health / Health Connect don't exist on web.
     if (kIsWeb) return const SizedBox.shrink();
 
     final l10n = AppLocalizations.of(context);
+    final android = usesHealthConnect;
     final enabledAsync = ref.watch(healthKitEnabledProvider);
     final enabled = enabledAsync.valueOrNull ?? false;
 
     return SectionCard(
-      title: l10n.settingsTabHealthKitTitle,
+      title: android ? l10n.settingsTabHealthConnectTitle : l10n.settingsTabHealthKitTitle,
       caption: enabled
           ? l10n.settingsTabHealthKitConnectedCaption
           : l10n.settingsTabHealthKitDisconnectedCaption,
@@ -366,16 +369,22 @@ class _HealthKitSection extends ConsumerWidget {
         child: CupertinoButton(
           color: enabled ? ZebraColors.cardBorder : ZebraColors.brandTeal,
           onPressed: () async {
-            if (enabled) {
+            if (enabled && android) {
+              await ref.read(healthKitServiceProvider).openHealthConnectSettings();
+              ref.invalidate(healthKitEnabledProvider);
+            } else if (enabled) {
               await launchUrl(Uri.parse('app-settings:'));
             } else {
               await connectHealthKit(ref);
             }
           },
           child: Text(
-            enabled
-                ? l10n.settingsTabHealthKitOpenSettingsButton
-                : l10n.settingsTabHealthKitConnectButton,
+            switch ((enabled, android)) {
+              (true, true) => l10n.settingsTabHealthConnectOpenSettingsButton,
+              (true, false) => l10n.settingsTabHealthKitOpenSettingsButton,
+              (false, true) => l10n.settingsTabHealthConnectConnectButton,
+              (false, false) => l10n.settingsTabHealthKitConnectButton,
+            },
             style: const TextStyle(color: ZebraColors.onColor),
           ),
         ),

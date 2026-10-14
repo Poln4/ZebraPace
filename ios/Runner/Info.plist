@@ -37,6 +37,8 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSFaceIDUsageDescription</key>
+	<string>ZebraPace uses Face ID to unlock the app so your health data stays private.</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>ZebraPace reads your steps, workouts, and active energy from Health so it can pre-fill your daily step count and suggest workouts to log — nothing is shared anywhere else.</string>
 	<key>NSHealthUpdateUsageDescription</key>
