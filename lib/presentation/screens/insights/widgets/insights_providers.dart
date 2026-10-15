@@ -1,12 +1,42 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/utils/date_utils.dart';
 import '../../../../domain/services/hr_exertion_service.dart';
 import '../../../../domain/services/pem_service.dart';
+import '../../../../domain/services/readiness_service.dart';
 import '../../../../domain/services/weather_service.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/app_providers.dart';
 import 'insights_range.dart';
+
+/// One day of the heart trend: resting HR and HRV (logged value first,
+/// then Apple Health / Health Connect) plus the logged lowest sleeping HR.
+typedef HeartTrendDay = ({double? resting, double? sleepingMin, double? hrv});
+
+/// The Insights range's heart trend, keyed by date. Works without a watch:
+/// anything typed into the Sleep section shows up too.
+final heartTrendInRangeProvider =
+    FutureProvider.autoDispose<Map<String, HeartTrendDay>>((ref) async {
+  final range = ref.watch(insightsDateRangeProvider);
+  final logs = await ref.watch(dailyLogsInRangeProvider.future);
+  var health = <String, AutonomicReading>{};
+  if (!kIsWeb && await ref.watch(healthKitEnabledProvider.future)) {
+    health = await ref.watch(healthKitServiceProvider).getAutonomicReadings(
+          dateFromKey(range.start),
+          dateFromKey(range.end).add(const Duration(days: 1)),
+        );
+  }
+  final logged = {for (final l in logs) l.date: l};
+  return {
+    for (final d in {...health.keys, ...logged.keys})
+      d: (
+        resting: logged[d]?.restingHeartRate?.toDouble() ?? health[d]?.restingHeartRate,
+        sleepingMin: logged[d]?.sleepHeartRateMin?.toDouble(),
+        hrv: logged[d]?.hrvMs ?? health[d]?.hrvMs,
+      ),
+  };
+});
 
 final dailyLogsInRangeProvider = FutureProvider.autoDispose((ref) {
   final range = ref.watch(insightsDateRangeProvider);

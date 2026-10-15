@@ -1654,6 +1654,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get bodyMetricsChartEmptyState => '這段期間沒有體重或體脂記錄。';
 
   @override
+  String get insightsTabHeartTitle => '❤️ 靜止心率與心率變異度';
+
+  @override
+  String get heartTrendRestingLabel => '靜止心率（bpm）';
+
+  @override
+  String get heartTrendSleepingLabel => '睡眠最低心率（bpm）';
+
+  @override
+  String get heartTrendHrvLabel => '心率變異度（毫秒）';
+
+  @override
+  String get heartTrendEmptyState =>
+      '這段期間還沒有靜止心率或心率變異度。資料來自手錶或戒指（透過手機的健康 App），或你在睡眠區塊輸入的數值。';
+
+  @override
   String get sleepQualityPoor => '很差';
 
   @override
@@ -1717,6 +1733,15 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get sleepSectionSaveButton => '儲存睡眠';
+
+  @override
+  String get sleepSectionMorningLabel => '靜止心率與心率變異度（選填）';
+
+  @override
+  String get sleepSectionRestingPlaceholder => '靜止心率 bpm';
+
+  @override
+  String get sleepSectionHrvPlaceholder => 'HRV 毫秒';
 
   @override
   String get sleepSectionFromHealth => '已從 Apple 健康填入。確認後點「儲存睡眠」即可保留。';
@@ -2128,6 +2153,36 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get readinessReasonPossibleCrash => '最近一次痠痛檢查看起來可能是崩潰（crash）。';
+
+  @override
+  String readinessRestingLine(int bpm) {
+    return '靜止心率 $bpm bpm';
+  }
+
+  @override
+  String readinessSleepingLine(int bpm) {
+    return '睡眠最低心率 $bpm bpm';
+  }
+
+  @override
+  String readinessHrvLine(int ms) {
+    return 'HRV $ms 毫秒';
+  }
+
+  @override
+  String readinessUsual(int value) {
+    return '你的平常值 $value';
+  }
+
+  @override
+  String readinessUsualPending(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '再 $days 天後會顯示你的平常值',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get stopSignalsTitle => '🛑 何時該停';
@@ -3820,6 +3875,22 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get bodyMetricsChartEmptyState => '這段期間沒有體重或體脂記錄。';
 
   @override
+  String get insightsTabHeartTitle => '❤️ 靜止心率與心率變異度';
+
+  @override
+  String get heartTrendRestingLabel => '靜止心率（bpm）';
+
+  @override
+  String get heartTrendSleepingLabel => '睡眠最低心率（bpm）';
+
+  @override
+  String get heartTrendHrvLabel => '心率變異度（毫秒）';
+
+  @override
+  String get heartTrendEmptyState =>
+      '這段期間還沒有靜止心率或心率變異度。資料來自手錶或戒指（透過手機的健康 App），或你在睡眠區塊輸入的數值。';
+
+  @override
   String get sleepQualityPoor => '很差';
 
   @override
@@ -3883,6 +3954,15 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get sleepSectionSaveButton => '儲存睡眠';
+
+  @override
+  String get sleepSectionMorningLabel => '靜止心率與心率變異度（選填）';
+
+  @override
+  String get sleepSectionRestingPlaceholder => '靜止心率 bpm';
+
+  @override
+  String get sleepSectionHrvPlaceholder => 'HRV 毫秒';
 
   @override
   String get sleepSectionFromHealth => '已從 Apple 健康填入。確認後點「儲存睡眠」即可保留。';
@@ -4294,6 +4374,36 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get readinessReasonPossibleCrash => '最近一次痠痛檢查看起來可能是崩潰（crash）。';
+
+  @override
+  String readinessRestingLine(int bpm) {
+    return '靜止心率 $bpm bpm';
+  }
+
+  @override
+  String readinessSleepingLine(int bpm) {
+    return '睡眠最低心率 $bpm bpm';
+  }
+
+  @override
+  String readinessHrvLine(int ms) {
+    return 'HRV $ms 毫秒';
+  }
+
+  @override
+  String readinessUsual(int value) {
+    return '你的平常值 $value';
+  }
+
+  @override
+  String readinessUsualPending(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '再 $days 天後會顯示你的平常值',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get stopSignalsTitle => '🛑 何時該停';

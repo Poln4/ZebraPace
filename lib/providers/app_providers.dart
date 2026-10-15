@@ -181,6 +181,7 @@ Future<void> connectHealthKit(WidgetRef ref) async {
   ref.invalidate(healthKitEnabledProvider);
   ref.invalidate(readinessProvider);
   ref.invalidate(healthSleepProvider);
+  ref.invalidate(healthAutonomicProvider);
 }
 
 /// False for installs that connected Health before resting HR/HRV were
@@ -204,11 +205,12 @@ final sorenessChecksForDateProvider = StreamProvider.autoDispose.family((ref, St
   return ref.watch(sorenessCheckRepositoryProvider).watchForDate(date);
 });
 
-/// Readiness for [date] from resting HR + HRV (Apple Health / Health
-/// Connect) and recent soreness checks. Without a watch resting HR (web, or
-/// none recorded that day), the logged overnight minimum heart rate stands
-/// in for it, as its own series: the two run at different levels, so
-/// they're never mixed in one baseline.
+/// Readiness for [date] from resting HR + HRV and recent soreness checks.
+/// Each day uses the logged value (typed in, or pre-filled and saved) and
+/// otherwise Apple Health / Health Connect's. Without any resting HR for
+/// [date], the logged overnight minimum heart rate stands in for it, as its
+/// own series: the two run at different levels, so they're never mixed in
+/// one baseline.
 final readinessProvider =
     FutureProvider.autoDispose.family<ReadinessResult, String>((ref, date) async {
   ref.watch(sorenessChecksForDateProvider(date));
@@ -217,14 +219,24 @@ final readinessProvider =
   final day = dateFromKey(date);
   final start = day.subtract(const Duration(days: ReadinessService.baselineDays));
 
-  var readings = <String, AutonomicReading>{};
+  var health = <String, AutonomicReading>{};
   if (!kIsWeb && await ref.watch(healthKitEnabledProvider.future)) {
-    readings = await ref
+    health = await ref
         .watch(healthKitServiceProvider)
         .getAutonomicReadings(start, day.add(const Duration(days: 1)));
   }
-  if (readings[date]?.restingHeartRate == null) {
-    final logs = await ref.watch(dailyLogRepositoryProvider).getRange(dateKey(start), date);
+  final logs = await ref.watch(dailyLogRepositoryProvider).getRange(dateKey(start), date);
+  final logged = {for (final l in logs) l.date: l};
+  var readings = {
+    for (final d in {...health.keys, ...logged.keys})
+      d: AutonomicReading(
+        restingHeartRate:
+            logged[d]?.restingHeartRate?.toDouble() ?? health[d]?.restingHeartRate,
+        hrvMs: logged[d]?.hrvMs ?? health[d]?.hrvMs,
+      ),
+  };
+  final fromSleep = readings[date]?.restingHeartRate == null;
+  if (fromSleep) {
     final overnightMin = {
       for (final l in logs)
         if (l.sleepHeartRateMin case final bpm?) l.date: bpm.toDouble(),
@@ -239,11 +251,14 @@ final readinessProvider =
       .watch(sorenessCheckRepositoryProvider)
       .getRange(dateKey(day.subtract(const Duration(days: 4))), date);
 
-  return ref.watch(readinessServiceProvider).evaluate(
+  final result = ref.watch(readinessServiceProvider).evaluate(
         date: date,
         readings: readings,
         sorenessChecks: sorenessChecks,
       );
+  return fromSleep && result.restingHeartRateToday != null
+      ? result.withRestingHeartRateFromSleep()
+      : result;
 });
 
 /// Last night's sleep from Apple Health / Health Connect for the Sleep
@@ -254,6 +269,20 @@ final healthSleepProvider =
   final enabled = await ref.watch(healthKitEnabledProvider.future);
   if (!enabled) return null;
   return ref.watch(healthKitServiceProvider).getSleepForDate(dateFromKey(date));
+});
+
+/// [date]'s resting HR and HRV from Apple Health / Health Connect, for
+/// pre-filling the Sleep section's morning readings.
+final healthAutonomicProvider =
+    FutureProvider.autoDispose.family<AutonomicReading?, String>((ref, date) async {
+  if (kIsWeb) return null;
+  final enabled = await ref.watch(healthKitEnabledProvider.future);
+  if (!enabled) return null;
+  final day = dateFromKey(date);
+  final readings = await ref
+      .watch(healthKitServiceProvider)
+      .getAutonomicReadings(day, day.add(const Duration(days: 1)));
+  return readings[date];
 });
 
 final healthKitStepsProvider = FutureProvider.autoDispose.family<int?, String>((ref, date) async {

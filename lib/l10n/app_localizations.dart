@@ -3043,6 +3043,36 @@ abstract class AppLocalizations {
   /// **'No weight or body-fat entries in range.'**
   String get bodyMetricsChartEmptyState;
 
+  /// No description provided for @insightsTabHeartTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'❤️ Resting heart rate & HRV'**
+  String get insightsTabHeartTitle;
+
+  /// No description provided for @heartTrendRestingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Resting heart rate (bpm)'**
+  String get heartTrendRestingLabel;
+
+  /// No description provided for @heartTrendSleepingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Lowest sleeping heart rate (bpm)'**
+  String get heartTrendSleepingLabel;
+
+  /// No description provided for @heartTrendHrvLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Heart rate variability (ms)'**
+  String get heartTrendHrvLabel;
+
+  /// No description provided for @heartTrendEmptyState.
+  ///
+  /// In en, this message translates to:
+  /// **'No resting heart rate or HRV in this range yet. They come from a watch or ring through your phone\'s health app, or from what you type into the Sleep section.'**
+  String get heartTrendEmptyState;
+
   /// No description provided for @sleepQualityPoor.
   ///
   /// In en, this message translates to:
@@ -3168,6 +3198,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save Sleep'**
   String get sleepSectionSaveButton;
+
+  /// No description provided for @sleepSectionMorningLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Resting heart rate & HRV (optional)'**
+  String get sleepSectionMorningLabel;
+
+  /// No description provided for @sleepSectionRestingPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Resting bpm'**
+  String get sleepSectionRestingPlaceholder;
+
+  /// No description provided for @sleepSectionHrvPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'HRV ms'**
+  String get sleepSectionHrvPlaceholder;
 
   /// No description provided for @sleepSectionFromHealth.
   ///
@@ -3872,6 +3920,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'A recent soreness check looked like a possible crash.'**
   String get readinessReasonPossibleCrash;
+
+  /// No description provided for @readinessRestingLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Resting heart rate {bpm} bpm'**
+  String readinessRestingLine(int bpm);
+
+  /// No description provided for @readinessSleepingLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Lowest sleeping heart rate {bpm} bpm'**
+  String readinessSleepingLine(int bpm);
+
+  /// No description provided for @readinessHrvLine.
+  ///
+  /// In en, this message translates to:
+  /// **'HRV {ms} ms'**
+  String readinessHrvLine(int ms);
+
+  /// No description provided for @readinessUsual.
+  ///
+  /// In en, this message translates to:
+  /// **'your usual {value}'**
+  String readinessUsual(int value);
+
+  /// No description provided for @readinessUsualPending.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, =1{your usual shows after 1 more day} other{your usual shows after {days} more days}}'**
+  String readinessUsualPending(int days);
 
   /// No description provided for @stopSignalsTitle.
   ///

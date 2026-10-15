@@ -14,6 +14,7 @@ import 'widgets/checkin_consistency_strip.dart';
 import 'widgets/chart_day_markers.dart';
 import 'widgets/export_section.dart';
 import 'widgets/feeling_trend_chart.dart';
+import 'widgets/heart_trend_chart.dart';
 import 'widgets/history_tables.dart';
 import 'widgets/hr_exertion_chart.dart';
 import 'widgets/insights_providers.dart';
@@ -184,6 +185,13 @@ class _TrendsView extends ConsumerWidget {
             SectionCard(
               title: l10n.insightsTabBodyMetricsTitle,
               child: BodyMetricsChart(logs: logs),
+            ),
+            SectionCard(
+              title: l10n.insightsTabHeartTitle,
+              child: HeartTrendChart(
+                dates: dates,
+                days: ref.watch(heartTrendInRangeProvider).valueOrNull ?? const {},
+              ),
             ),
             const _CalisthenicsComfortSection(),
           ],

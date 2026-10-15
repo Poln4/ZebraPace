@@ -1773,6 +1773,23 @@ class AppLocalizationsEs extends AppLocalizations {
       'No hay registros de peso o grasa corporal en este rango.';
 
   @override
+  String get insightsTabHeartTitle => '❤️ Frecuencia cardíaca en reposo y VFC';
+
+  @override
+  String get heartTrendRestingLabel => 'FC en reposo (lpm)';
+
+  @override
+  String get heartTrendSleepingLabel => 'FC más baja durmiendo (lpm)';
+
+  @override
+  String get heartTrendHrvLabel =>
+      'Variabilidad de la frecuencia cardíaca (ms)';
+
+  @override
+  String get heartTrendEmptyState =>
+      'Todavía no hay frecuencia cardíaca en reposo ni VFC en este rango. Vienen de un reloj o anillo a través de la app de salud de tu teléfono, o de lo que escribas en la sección Sueño.';
+
+  @override
   String get sleepQualityPoor => 'Mala';
 
   @override
@@ -1838,6 +1855,16 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get sleepSectionSaveButton => 'Guardar Sueño';
+
+  @override
+  String get sleepSectionMorningLabel =>
+      'Frecuencia cardíaca en reposo y VFC (opcional)';
+
+  @override
+  String get sleepSectionRestingPlaceholder => 'Reposo lpm';
+
+  @override
+  String get sleepSectionHrvPlaceholder => 'VFC ms';
 
   @override
   String get sleepSectionFromHealth =>
@@ -2280,6 +2307,37 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get readinessReasonPossibleCrash =>
       'Una revisión de dolor reciente parecía un posible bajón (crash).';
+
+  @override
+  String readinessRestingLine(int bpm) {
+    return 'FC en reposo $bpm lpm';
+  }
+
+  @override
+  String readinessSleepingLine(int bpm) {
+    return 'FC más baja durmiendo $bpm lpm';
+  }
+
+  @override
+  String readinessHrvLine(int ms) {
+    return 'VFC $ms ms';
+  }
+
+  @override
+  String readinessUsual(int value) {
+    return 'tu habitual $value';
+  }
+
+  @override
+  String readinessUsualPending(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'tu habitual aparece en $days días más',
+      one: 'tu habitual aparece en 1 día más',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get stopSignalsTitle => '🛑 Cuándo parar';

@@ -74,11 +74,14 @@ class _StepsSectionState extends ConsumerState<StepsSection> {
                   _MiniStat(l10n.stepsSectionCautionLineLabel, evaluation.cautionSteps.toString()),
                 ],
               ),
-              if (!(log?.isFlareDay ?? false) &&
-                  evaluation.hasBaseline &&
-                  evaluation.readiness.level != ReadinessLevel.unknown) ...[
+              if (_showVerdict(log?.isFlareDay ?? false, evaluation) ||
+                  evaluation.readiness.restingHeartRateToday != null ||
+                  evaluation.readiness.hrvToday != null) ...[
                 const SizedBox(height: 10),
-                _ReadinessNote(evaluation.readiness),
+                _ReadinessNote(
+                  evaluation.readiness,
+                  showVerdict: _showVerdict(log?.isFlareDay ?? false, evaluation),
+                ),
               ],
               const SizedBox(height: 12),
               CupertinoTextField(
@@ -161,10 +164,16 @@ class _MiniStat extends StatelessWidget {
   }
 }
 
+/// The readiness headline and reasons only apply when they can change the
+/// envelope; today's numbers show whenever there are any.
+bool _showVerdict(bool isFlareDay, PacingEvaluation evaluation) =>
+    !isFlareDay && evaluation.hasBaseline && evaluation.readiness.level != ReadinessLevel.unknown;
+
 class _ReadinessNote extends StatelessWidget {
-  const _ReadinessNote(this.readiness);
+  const _ReadinessNote(this.readiness, {required this.showVerdict});
 
   final ReadinessResult readiness;
+  final bool showVerdict;
 
   @override
   Widget build(BuildContext context) {
@@ -186,6 +195,16 @@ class _ReadinessNote extends StatelessWidget {
             ReadinessReason.possibleCrash => l10n.readinessReasonPossibleCrash,
           },
     ];
+    String usual(double? value, int historyDays) => value != null
+        ? l10n.readinessUsual(value.round())
+        : l10n.readinessUsualPending(ReadinessService.minBaselineReadings - historyDays);
+    final numbers = [
+      if (readiness.restingHeartRateToday case final bpm?)
+        '${readiness.restingHeartRateFromSleep ? l10n.readinessSleepingLine(bpm.round()) : l10n.readinessRestingLine(bpm.round())}'
+            ' · ${usual(readiness.restingHeartRateUsual, readiness.restingHeartRateHistoryDays)}',
+      if (readiness.hrvToday case final ms?)
+        '${l10n.readinessHrvLine(ms.round())} · ${usual(readiness.hrvUsual, readiness.hrvHistoryDays)}',
+    ];
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(10),
@@ -196,11 +215,19 @@ class _ReadinessNote extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(headline, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
-          for (final reason in reasons)
+          if (showVerdict) ...[
+            Text(headline, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
+            for (final reason in reasons)
+              Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: Text('· $reason', style: const TextStyle(fontSize: 12)),
+              ),
+          ],
+          for (final (i, line) in numbers.indexed)
             Padding(
-              padding: const EdgeInsets.only(top: 4),
-              child: Text('· $reason', style: const TextStyle(fontSize: 12)),
+              padding: EdgeInsets.only(top: showVerdict || i > 0 ? 4 : 0),
+              child: Text(line,
+                  style: const TextStyle(fontSize: 12, color: CupertinoColors.systemGrey)),
             ),
         ],
       ),

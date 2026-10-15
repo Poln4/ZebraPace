@@ -32,7 +32,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 4;
+  int get schemaVersion => 5;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -59,8 +59,20 @@ class AppDatabase extends _$AppDatabase {
           // ALTER COLUMN, so this recreates the table against the current
           // Dart schema and copies existing rows across — alterTable, not
           // addColumn, since proteinG already exists.
+          // The rebuild uses the current schema, so columns added after v4
+          // have to be declared as new here or the copy looks for them in
+          // the old table.
           if (from < 4) {
-            await m.alterTable(TableMigration(dailyLogs));
+            await m.alterTable(TableMigration(
+              dailyLogs,
+              newColumns: [dailyLogs.restingHeartRate, dailyLogs.hrvMs],
+            ));
+          }
+          // v4 -> v5: manual/pre-filled resting HR and HRV. A pre-v4 install
+          // already got them from the rebuild above.
+          if (from == 4) {
+            await m.addColumn(dailyLogs, dailyLogs.restingHeartRate);
+            await m.addColumn(dailyLogs, dailyLogs.hrvMs);
           }
         },
       );

@@ -49,6 +49,12 @@ class DailyLogs extends Table with SyncColumns {
   IntColumn get sleepHeartRateMin => integer().nullable()();
   IntColumn get sleepHeartRateMax => integer().nullable()();
 
+  /// Added in schemaVersion 5. Morning resting heart rate (bpm) and HRV
+  /// (ms), pre-filled from Apple Health / Health Connect or typed in by hand
+  /// (e.g. a finger-on-camera reading) for people without a watch.
+  IntColumn get restingHeartRate => integer().nullable()();
+  RealColumn get hrvMs => real().nullable()();
+
   @override
   Set<Column> get primaryKey => {id};
 }

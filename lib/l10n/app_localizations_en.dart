@@ -1747,6 +1747,22 @@ class AppLocalizationsEn extends AppLocalizations {
       'No weight or body-fat entries in range.';
 
   @override
+  String get insightsTabHeartTitle => '❤️ Resting heart rate & HRV';
+
+  @override
+  String get heartTrendRestingLabel => 'Resting heart rate (bpm)';
+
+  @override
+  String get heartTrendSleepingLabel => 'Lowest sleeping heart rate (bpm)';
+
+  @override
+  String get heartTrendHrvLabel => 'Heart rate variability (ms)';
+
+  @override
+  String get heartTrendEmptyState =>
+      'No resting heart rate or HRV in this range yet. They come from a watch or ring through your phone\'s health app, or from what you type into the Sleep section.';
+
+  @override
   String get sleepQualityPoor => 'Poor';
 
   @override
@@ -1811,6 +1827,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sleepSectionSaveButton => 'Save Sleep';
+
+  @override
+  String get sleepSectionMorningLabel => 'Resting heart rate & HRV (optional)';
+
+  @override
+  String get sleepSectionRestingPlaceholder => 'Resting bpm';
+
+  @override
+  String get sleepSectionHrvPlaceholder => 'HRV ms';
 
   @override
   String get sleepSectionFromHealth =>
@@ -2247,6 +2272,37 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get readinessReasonPossibleCrash =>
       'A recent soreness check looked like a possible crash.';
+
+  @override
+  String readinessRestingLine(int bpm) {
+    return 'Resting heart rate $bpm bpm';
+  }
+
+  @override
+  String readinessSleepingLine(int bpm) {
+    return 'Lowest sleeping heart rate $bpm bpm';
+  }
+
+  @override
+  String readinessHrvLine(int ms) {
+    return 'HRV $ms ms';
+  }
+
+  @override
+  String readinessUsual(int value) {
+    return 'your usual $value';
+  }
+
+  @override
+  String readinessUsualPending(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'your usual shows after $days more days',
+      one: 'your usual shows after 1 more day',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get stopSignalsTitle => '🛑 When to stop';

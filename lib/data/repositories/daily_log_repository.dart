@@ -39,6 +39,8 @@ class DailyLogRepository {
       sleepQuality: SleepQuality.fromDb(row.sleepQuality),
       sleepHeartRateMin: row.sleepHeartRateMin,
       sleepHeartRateMax: row.sleepHeartRateMax,
+      restingHeartRate: row.restingHeartRate,
+      hrvMs: row.hrvMs,
     );
   }
 
@@ -89,6 +91,8 @@ class DailyLogRepository {
             sleepQuality: Value(log.sleepQuality?.db),
             sleepHeartRateMin: Value(log.sleepHeartRateMin),
             sleepHeartRateMax: Value(log.sleepHeartRateMax),
+            restingHeartRate: Value(log.restingHeartRate),
+            hrvMs: Value(log.hrvMs),
             updatedAt: Value(nowIso()),
           ),
         );

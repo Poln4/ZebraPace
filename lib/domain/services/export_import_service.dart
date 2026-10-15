@@ -99,6 +99,7 @@ class ExportImportService {
       'protein_g', 'creatine_g', 'mental_state', 'body_feeling', 'braces_used', 'brace_comfort',
       'steps', 'is_rest_day', 'is_flare_day',
       'sleep_hours', 'sleep_quality', 'sleep_heart_rate_min', 'sleep_heart_rate_max',
+      'resting_heart_rate', 'hrv_ms',
     ];
     final data = [
       header,
@@ -108,6 +109,7 @@ class ExportImportService {
           r.proteinG, r.creatineG, r.mentalState, r.bodyFeeling, r.bracesUsed, r.braceComfort,
           r.steps, r.isRestDay, r.isFlareDay,
           r.sleepHours, r.sleepQuality, r.sleepHeartRateMin, r.sleepHeartRateMax,
+          r.restingHeartRate, r.hrvMs,
         ],
     ];
     return const ListToCsvConverter().convert(data);
@@ -164,6 +166,8 @@ class ExportImportService {
                   sleepQuality: Value(row['sleepQuality'] as String?),
                   sleepHeartRateMin: Value(_toInt(row['sleepHeartRateMin'])),
                   sleepHeartRateMax: Value(_toInt(row['sleepHeartRateMax'])),
+                  restingHeartRate: Value(_toInt(row['restingHeartRate'])),
+                  hrvMs: Value(_toDouble(row['hrvMs'])),
                   updatedAt: row['updatedAt'] as String? ?? nowIso(),
                 ),
                 mode: InsertMode.insertOrIgnore,

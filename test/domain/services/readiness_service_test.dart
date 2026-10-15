@@ -51,6 +51,36 @@ void main() {
     expect(result.level, ReadinessLevel.unknown);
   });
 
+  test('reports today and the usual value for display', () {
+    final result = service.evaluate(
+      date: today,
+      readings: readings(todayRhr: 58, todayHrv: 45),
+      sorenessChecks: const [],
+    );
+    expect(result.restingHeartRateToday, 58);
+    expect(result.restingHeartRateUsual, closeTo(60, 0.01));
+    expect(result.restingHeartRateHistoryDays, 14);
+    expect(result.hrvToday, 45);
+    // Geometric mean of 48/52 alternating: just under 50.
+    expect(result.hrvUsual, closeTo(49.96, 0.01));
+  });
+
+  test('no usual yet with too little history, but today still shows', () {
+    final result = service.evaluate(
+      date: today,
+      readings: {
+        daysAgo(1): const AutonomicReading(restingHeartRate: 60),
+        daysAgo(2): const AutonomicReading(restingHeartRate: 61),
+        today: const AutonomicReading(restingHeartRate: 59),
+      },
+      sorenessChecks: const [],
+    );
+    expect(result.restingHeartRateToday, 59);
+    expect(result.restingHeartRateUsual, isNull);
+    expect(result.restingHeartRateHistoryDays, 2);
+    expect(result.hrvToday, isNull);
+  });
+
   test('steady when markers sit in the personal range', () {
     final result = service.evaluate(
       date: today,

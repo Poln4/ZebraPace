@@ -21,6 +21,8 @@ class DailyLog {
     this.sleepHours,
     this.sleepQuality,
     this.sleepHeartRateMin,
+    this.restingHeartRate,
+    this.hrvMs,
     this.sleepHeartRateMax,
   });
 
@@ -43,6 +45,10 @@ class DailyLog {
   final double? sleepHours;
   final SleepQuality? sleepQuality;
   final int? sleepHeartRateMin;
+
+  /// Morning resting heart rate (bpm) and HRV (ms), from Health or typed in.
+  final int? restingHeartRate;
+  final double? hrvMs;
   final int? sleepHeartRateMax;
 
   /// Either flag collapses "optional" sections app-wide (matches app.py's
@@ -67,6 +73,8 @@ class DailyLog {
     double? sleepHours,
     SleepQuality? sleepQuality,
     int? sleepHeartRateMin,
+    int? restingHeartRate,
+    double? hrvMs,
     int? sleepHeartRateMax,
   }) {
     return DailyLog(
@@ -89,6 +97,8 @@ class DailyLog {
       sleepHours: sleepHours ?? this.sleepHours,
       sleepQuality: sleepQuality ?? this.sleepQuality,
       sleepHeartRateMin: sleepHeartRateMin ?? this.sleepHeartRateMin,
+      restingHeartRate: restingHeartRate ?? this.restingHeartRate,
+      hrvMs: hrvMs ?? this.hrvMs,
       sleepHeartRateMax: sleepHeartRateMax ?? this.sleepHeartRateMax,
     );
   }

@@ -6,6 +6,7 @@ import '../../../../core/theme/zebra_theme.dart';
 import '../../../../data/healthkit/health_kit_service.dart';
 import '../../../../domain/models/daily_log.dart';
 import '../../../../domain/models/detected_sleep.dart';
+import '../../../../domain/services/readiness_service.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/app_providers.dart';
 import '../../../widgets/feeling_picker.dart';
@@ -29,6 +30,8 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
   SleepQuality? _quality;
   final _hrMinController = TextEditingController();
   final _hrMaxController = TextEditingController();
+  final _restingController = TextEditingController();
+  final _hrvController = TextEditingController();
   String? _loadedForDate;
   bool _filledFromHealth = false;
 
@@ -36,6 +39,8 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
   void dispose() {
     _hrMinController.dispose();
     _hrMaxController.dispose();
+    _restingController.dispose();
+    _hrvController.dispose();
     super.dispose();
   }
 
@@ -47,10 +52,14 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
     // Like HealthKit steps: wait for the Health lookup before locking in the
     // prefill, so a slow response isn't missed on first build.
     final healthSleepAsync = ref.watch(healthSleepProvider(date));
+    final healthAutonomicAsync = ref.watch(healthAutonomicProvider(date));
 
-    if (log != null && _loadedForDate != date && !healthSleepAsync.isLoading) {
+    if (log != null &&
+        _loadedForDate != date &&
+        !healthSleepAsync.isLoading &&
+        !healthAutonomicAsync.isLoading) {
       _loadedForDate = date;
-      _prefill(log, healthSleepAsync.valueOrNull);
+      _prefill(log, healthSleepAsync.valueOrNull, healthAutonomicAsync.valueOrNull);
     }
 
     return SectionCard(
@@ -107,6 +116,31 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
               ),
             ],
           ),
+          const SizedBox(height: 12),
+          // Typed in by anyone without a watch (e.g. a finger-on-camera
+          // reading); pre-filled from Health otherwise.
+          Text(l10n.sleepSectionMorningLabel,
+              style: const TextStyle(fontWeight: FontWeight.w700, color: ZebraColors.black)),
+          const SizedBox(height: 6),
+          Row(
+            children: [
+              Expanded(
+                child: CupertinoTextField(
+                  controller: _restingController,
+                  keyboardType: TextInputType.number,
+                  placeholder: l10n.sleepSectionRestingPlaceholder,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: CupertinoTextField(
+                  controller: _hrvController,
+                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  placeholder: l10n.sleepSectionHrvPlaceholder,
+                ),
+              ),
+            ],
+          ),
           if (_filledFromHealth) ...[
             const SizedBox(height: 8),
             Text(
@@ -133,14 +167,20 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
 
   /// Saved values always win; Health only fills fields left empty, so a
   /// manual correction is never overwritten.
-  void _prefill(DailyLog log, DetectedSleep? health) {
+  void _prefill(DailyLog log, DetectedSleep? health, AutonomicReading? autonomic) {
     final minutes = log.sleepHours == null ? health?.asleepMinutes : (log.sleepHours! * 60).round();
     final hrMin = log.sleepHeartRateMin ?? health?.heartRateMinBpm;
     final hrMax = log.sleepHeartRateMax ?? health?.heartRateMaxBpm;
-    _filledFromHealth = health != null &&
-        ((log.sleepHours == null && health.asleepMinutes > 0) ||
-            (log.sleepHeartRateMin == null && health.heartRateMinBpm != null) ||
-            (log.sleepHeartRateMax == null && health.heartRateMaxBpm != null));
+    final resting = log.restingHeartRate ?? autonomic?.restingHeartRate?.round();
+    final hrv = log.hrvMs ?? autonomic?.hrvMs;
+    _filledFromHealth = (health != null &&
+            ((log.sleepHours == null && health.asleepMinutes > 0) ||
+                (log.sleepHeartRateMin == null && health.heartRateMinBpm != null) ||
+                (log.sleepHeartRateMax == null && health.heartRateMaxBpm != null))) ||
+        (log.restingHeartRate == null && autonomic?.restingHeartRate != null) ||
+        (log.hrvMs == null && autonomic?.hrvMs != null);
+    _restingController.text = resting?.toString() ?? '';
+    _hrvController.text = hrv == null ? '' : hrv.round().toString();
     _totalMinutes = minutes;
     _quality = log.sleepQuality;
     _hrMinController.text = hrMin?.toString() ?? '';
@@ -187,6 +227,8 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
         sleepQuality: _quality,
         sleepHeartRateMin: int.tryParse(_hrMinController.text),
         sleepHeartRateMax: int.tryParse(_hrMaxController.text),
+        restingHeartRate: int.tryParse(_restingController.text),
+        hrvMs: double.tryParse(_hrvController.text.replaceAll(',', '.')),
       ),
     );
     setState(() => _filledFromHealth = false);

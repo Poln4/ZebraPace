@@ -46,6 +46,13 @@ class ReadinessResult {
     this.reasons = const {},
     this.restingHeartRateDelta,
     this.hrvPercentBelow,
+    this.restingHeartRateToday,
+    this.restingHeartRateUsual,
+    this.restingHeartRateHistoryDays = 0,
+    this.restingHeartRateFromSleep = false,
+    this.hrvToday,
+    this.hrvUsual,
+    this.hrvHistoryDays = 0,
   });
 
   static const unknown = ReadinessResult(level: ReadinessLevel.unknown);
@@ -58,6 +65,35 @@ class ReadinessResult {
 
   /// How far today's HRV sits below the personal baseline, in percent.
   final double? hrvPercentBelow;
+
+  /// Today's readings and the personal "usual" (baseline mean; geometric
+  /// mean for HRV) for display. Usual is null until there are
+  /// [ReadinessService.minBaselineReadings] days of history; the history
+  /// counts say how far along that is.
+  final double? restingHeartRateToday;
+  final double? restingHeartRateUsual;
+  final int restingHeartRateHistoryDays;
+
+  /// True when no resting HR was logged or recorded, so the series is the
+  /// logged lowest sleeping heart rate instead (labelled as such).
+  final bool restingHeartRateFromSleep;
+  final double? hrvToday;
+  final double? hrvUsual;
+  final int hrvHistoryDays;
+
+  ReadinessResult withRestingHeartRateFromSleep() => ReadinessResult(
+        level: level,
+        reasons: reasons,
+        restingHeartRateDelta: restingHeartRateDelta,
+        hrvPercentBelow: hrvPercentBelow,
+        restingHeartRateToday: restingHeartRateToday,
+        restingHeartRateUsual: restingHeartRateUsual,
+        restingHeartRateHistoryDays: restingHeartRateHistoryDays,
+        restingHeartRateFromSleep: true,
+        hrvToday: hrvToday,
+        hrvUsual: hrvUsual,
+        hrvHistoryDays: hrvHistoryDays,
+      );
 }
 
 /// Turns autonomic markers (resting HR, HRV) and recent soreness checks
@@ -96,8 +132,10 @@ class ReadinessService {
     ];
 
     double? rhrDelta;
+    double? rhrUsual;
     final rhrToday = today?.restingHeartRate;
     final rhrHistory = [for (final r in history) ?r.restingHeartRate];
+    if (rhrHistory.length >= minBaselineReadings) rhrUsual = _meanSd(rhrHistory).$1;
     if (rhrToday != null && rhrHistory.length >= minBaselineReadings) {
       final (mean, sd) = _meanSd(rhrHistory);
       rhrDelta = rhrToday - mean;
@@ -115,6 +153,9 @@ class ReadinessService {
       for (final r in history)
         if (r.hrvMs case final v? when v > 0) math.log(v),
     ];
+    final hrvUsual = lnHrvHistory.length >= minBaselineReadings
+        ? math.exp(_meanSd(lnHrvHistory).$1)
+        : null;
     if (hrvToday != null && hrvToday > 0 && lnHrvHistory.length >= minBaselineReadings) {
       final (mean, rawSd) = _meanSd(lnHrvHistory);
       final sd = math.max(rawSd, lnHrvSdFloor);
@@ -135,6 +176,12 @@ class ReadinessService {
       reasons: reasons,
       restingHeartRateDelta: rhrDelta,
       hrvPercentBelow: hrvBelow,
+      restingHeartRateToday: rhrToday,
+      restingHeartRateUsual: rhrUsual,
+      restingHeartRateHistoryDays: rhrHistory.length,
+      hrvToday: hrvToday,
+      hrvUsual: hrvUsual,
+      hrvHistoryDays: lnHrvHistory.length,
     );
   }
 
