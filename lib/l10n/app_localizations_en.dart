@@ -1470,7 +1470,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsTabHealthKitConnectedCaption =>
-      'Connected — steps pre-fill and workouts are suggested for review.';
+      'Connected — steps, sleep and heart readings sync on their own, and workouts are suggested for review.';
 
   @override
   String get settingsTabHealthKitDisconnectedCaption =>
@@ -1829,6 +1829,55 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sleepSectionSaveButton => 'Save Sleep';
 
   @override
+  String get healthSourceAppleHealth => 'From Apple Health';
+
+  @override
+  String get healthSourceHealthConnect => 'From Health Connect';
+
+  @override
+  String get healthSourceManual => 'Edited by you';
+
+  @override
+  String get healthEditButton => 'Edit';
+
+  @override
+  String get healthUseHealthButton => 'Use Health value';
+
+  @override
+  String get healthCancelEditButton => 'Cancel';
+
+  @override
+  String get stepsSectionWaitingForHealth => 'No steps from Health yet today.';
+
+  @override
+  String get sleepSectionWaitingForHealth =>
+      'Nothing from Health for last night yet.';
+
+  @override
+  String stepsSectionStepsValue(int steps) {
+    final intl.NumberFormat stepsNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String stepsString = stepsNumberFormat.format(steps);
+
+    return '$stepsString steps';
+  }
+
+  @override
+  String sleepSectionHeartRateRangeValue(String min, String max) {
+    return 'Heart rate while sleeping $min–$max bpm';
+  }
+
+  @override
+  String sleepSectionRestingValue(int bpm) {
+    return 'Resting $bpm bpm';
+  }
+
+  @override
+  String sleepSectionHrvValue(int ms) {
+    return 'HRV $ms ms';
+  }
+
+  @override
   String get sleepSectionMorningLabel => 'Resting heart rate & HRV (optional)';
 
   @override
@@ -1836,14 +1885,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sleepSectionHrvPlaceholder => 'HRV ms';
-
-  @override
-  String get sleepSectionFromHealth =>
-      'Filled in from Apple Health. Check it and tap Save to keep it.';
-
-  @override
-  String get sleepSectionFromHealthConnect =>
-      'Filled in from Health Connect. Check it and tap Save to keep it.';
 
   @override
   String get weatherChartEmptyState => 'No weather data cached yet.';

@@ -41,6 +41,9 @@ class DailyLogRepository {
       sleepHeartRateMax: row.sleepHeartRateMax,
       restingHeartRate: row.restingHeartRate,
       hrvMs: row.hrvMs,
+      stepsSource: ValueSource.fromDb(row.stepsSource),
+      sleepSource: ValueSource.fromDb(row.sleepSource),
+      heartSource: ValueSource.fromDb(row.heartSource),
     );
   }
 
@@ -93,6 +96,9 @@ class DailyLogRepository {
             sleepHeartRateMax: Value(log.sleepHeartRateMax),
             restingHeartRate: Value(log.restingHeartRate),
             hrvMs: Value(log.hrvMs),
+            stepsSource: Value(log.stepsSource?.name),
+            sleepSource: Value(log.sleepSource?.name),
+            heartSource: Value(log.heartSource?.name),
             updatedAt: Value(nowIso()),
           ),
         );

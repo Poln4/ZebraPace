@@ -55,6 +55,15 @@ class DailyLogs extends Table with SyncColumns {
   IntColumn get restingHeartRate => integer().nullable()();
   RealColumn get hrvMs => real().nullable()();
 
+  /// Added in schemaVersion 6. Where each Health-backed group came from:
+  /// 'health' (synced) or 'manual' (typed, or a synced value edited). Sync
+  /// never overwrites a 'manual' group; null means nothing recorded yet.
+  /// steps; sleep = sleepHours + sleepHeartRateMin/Max; heart =
+  /// restingHeartRate + hrvMs. sleepQuality is always the person's own.
+  TextColumn get stepsSource => text().nullable()();
+  TextColumn get sleepSource => text().nullable()();
+  TextColumn get heartSource => text().nullable()();
+
   @override
   Set<Column> get primaryKey => {id};
 }

@@ -1388,7 +1388,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settingsTabHealthKitConnectedCaption =>
-      '已連接——步數會自動預填，並建議可匯入的運動記錄供你檢視。';
+      '已連接——步數、睡眠與心率數據會自動同步，並建議可匯入的運動記錄供你檢視。';
 
   @override
   String get settingsTabHealthKitDisconnectedCaption =>
@@ -1735,6 +1735,54 @@ class AppLocalizationsZh extends AppLocalizations {
   String get sleepSectionSaveButton => '儲存睡眠';
 
   @override
+  String get healthSourceAppleHealth => '來自 Apple 健康';
+
+  @override
+  String get healthSourceHealthConnect => '來自 Health Connect';
+
+  @override
+  String get healthSourceManual => '由你編輯';
+
+  @override
+  String get healthEditButton => '編輯';
+
+  @override
+  String get healthUseHealthButton => '使用健康資料的數值';
+
+  @override
+  String get healthCancelEditButton => '取消';
+
+  @override
+  String get stepsSectionWaitingForHealth => '今天還沒有來自健康資料的步數。';
+
+  @override
+  String get sleepSectionWaitingForHealth => '還沒有昨晚的健康資料。';
+
+  @override
+  String stepsSectionStepsValue(int steps) {
+    final intl.NumberFormat stepsNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String stepsString = stepsNumberFormat.format(steps);
+
+    return '$stepsString 步';
+  }
+
+  @override
+  String sleepSectionHeartRateRangeValue(String min, String max) {
+    return '睡眠心率 $min–$max bpm';
+  }
+
+  @override
+  String sleepSectionRestingValue(int bpm) {
+    return '靜止心率 $bpm bpm';
+  }
+
+  @override
+  String sleepSectionHrvValue(int ms) {
+    return 'HRV $ms 毫秒';
+  }
+
+  @override
   String get sleepSectionMorningLabel => '靜止心率與心率變異度（選填）';
 
   @override
@@ -1742,13 +1790,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get sleepSectionHrvPlaceholder => 'HRV 毫秒';
-
-  @override
-  String get sleepSectionFromHealth => '已從 Apple 健康填入。確認後點「儲存睡眠」即可保留。';
-
-  @override
-  String get sleepSectionFromHealthConnect =>
-      '已從 Health Connect 填入。確認後點「儲存睡眠」即可保留。';
 
   @override
   String get weatherChartEmptyState => '尚未快取任何天氣資料。';
@@ -3609,7 +3650,7 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get settingsTabHealthKitConnectedCaption =>
-      '已連接——步數會自動預填，並建議可匯入的運動記錄供你檢視。';
+      '已連接——步數、睡眠與心率數據會自動同步，並建議可匯入的運動記錄供你檢視。';
 
   @override
   String get settingsTabHealthKitDisconnectedCaption =>
@@ -3956,6 +3997,54 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get sleepSectionSaveButton => '儲存睡眠';
 
   @override
+  String get healthSourceAppleHealth => '來自 Apple 健康';
+
+  @override
+  String get healthSourceHealthConnect => '來自 Health Connect';
+
+  @override
+  String get healthSourceManual => '由你編輯';
+
+  @override
+  String get healthEditButton => '編輯';
+
+  @override
+  String get healthUseHealthButton => '使用健康資料的數值';
+
+  @override
+  String get healthCancelEditButton => '取消';
+
+  @override
+  String get stepsSectionWaitingForHealth => '今天還沒有來自健康資料的步數。';
+
+  @override
+  String get sleepSectionWaitingForHealth => '還沒有昨晚的健康資料。';
+
+  @override
+  String stepsSectionStepsValue(int steps) {
+    final intl.NumberFormat stepsNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String stepsString = stepsNumberFormat.format(steps);
+
+    return '$stepsString 步';
+  }
+
+  @override
+  String sleepSectionHeartRateRangeValue(String min, String max) {
+    return '睡眠心率 $min–$max bpm';
+  }
+
+  @override
+  String sleepSectionRestingValue(int bpm) {
+    return '靜止心率 $bpm bpm';
+  }
+
+  @override
+  String sleepSectionHrvValue(int ms) {
+    return 'HRV $ms 毫秒';
+  }
+
+  @override
   String get sleepSectionMorningLabel => '靜止心率與心率變異度（選填）';
 
   @override
@@ -3963,13 +4052,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get sleepSectionHrvPlaceholder => 'HRV 毫秒';
-
-  @override
-  String get sleepSectionFromHealth => '已從 Apple 健康填入。確認後點「儲存睡眠」即可保留。';
-
-  @override
-  String get sleepSectionFromHealthConnect =>
-      '已從 Health Connect 填入。確認後點「儲存睡眠」即可保留。';
 
   @override
   String get weatherChartEmptyState => '尚未快取任何天氣資料。';

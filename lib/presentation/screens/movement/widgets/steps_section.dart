@@ -5,10 +5,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/constants/content.dart';
 import '../../../../core/theme/zebra_theme.dart';
+import '../../../../domain/models/daily_log.dart';
 import '../../../../domain/services/pacing_service.dart';
 import '../../../../domain/services/readiness_service.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/app_providers.dart';
+import '../../../widgets/health_source_row.dart';
 import '../../../widgets/section_card.dart';
 
 /// Ported from app.py's "Steps & The Gentle-Growth Rule" — the app's central
@@ -25,6 +27,15 @@ class _StepsSectionState extends ConsumerState<StepsSection> {
   final _controller = TextEditingController();
   String? _lastMessage;
   String? _loadedForDate;
+  int? _shownSteps;
+
+  /// With Health connected the day's steps are shown, not typed; this is
+  /// the secondary "Edit" path.
+  bool _editing = false;
+
+  /// The tip shown with a synced count, kept until the count changes so
+  /// it doesn't reshuffle on every rebuild.
+  (int, String)? _syncedMessage;
 
   @override
   void dispose() {
@@ -38,24 +49,27 @@ class _StepsSectionState extends ConsumerState<StepsSection> {
     final date = ref.watch(selectedDateProvider);
     final log = ref.watch(dailyLogProvider).valueOrNull;
     final evaluationAsync = ref.watch(_pacingEvaluationProvider(date));
-    // HealthKit steps pre-fill the field (still fully editable) only when
-    // nothing has been manually saved for the day yet — see plan §4. Wait
-    // for the HealthKit lookup to finish before locking in the prefill, so
-    // a slow/async HK response isn't silently missed on first build.
-    final healthKitStepsAsync = ref.watch(healthKitStepsProvider(date));
+    // Connected: steps sync into the log on their own (healthSyncProvider)
+    // and typing is optional. Not connected: typing is the way in.
+    final connected = ref.watch(healthKitEnabledProvider).valueOrNull ?? false;
 
-    if (log != null &&
-        _loadedForDate != date &&
-        (log.steps > 0 || !healthKitStepsAsync.isLoading)) {
-      _loadedForDate = date;
-      final prefill = log.steps > 0 ? log.steps : healthKitStepsAsync.valueOrNull ?? 0;
-      _controller.text = prefill > 0 ? prefill.toString() : '';
+    if (_loadedForDate != date) {
+      _editing = false;
       _lastMessage = null;
+      _syncedMessage = null;
+    }
+    if (log != null && (_loadedForDate != date || (!_editing && log.steps != _shownSteps))) {
+      _loadedForDate = date;
+      _shownSteps = log.steps;
+      _controller.text = log.steps > 0 ? log.steps.toString() : '';
     }
 
     return SectionCard(
       title: l10n.stepsSectionTitle,
+      // Keep showing the card while a save or sync re-evaluates it, instead
+      // of flashing a spinner that hides the result.
       child: evaluationAsync.when(
+        skipLoadingOnReload: true,
         loading: () => const CupertinoActivityIndicator(),
         error: (e, st) => Text('$e'),
         data: (evaluation) {
@@ -84,26 +98,61 @@ class _StepsSectionState extends ConsumerState<StepsSection> {
                 ),
               ],
               const SizedBox(height: 12),
-              CupertinoTextField(
-                controller: _controller,
-                keyboardType: TextInputType.number,
-                placeholder: l10n.stepsSectionTodayStepsPlaceholder,
-              ),
-              const SizedBox(height: 8),
-              SizedBox(
-                width: double.infinity,
-                child: CupertinoButton(
-                  color: ZebraColors.brandTeal,
-                  onPressed: log == null
-                      ? null
-                      : () => _save(date, log.isFlareDay, evaluation),
-                  child: Text(l10n.stepsSectionSaveButton,
-                      style: const TextStyle(color: ZebraColors.onColor)),
+              if (connected && !_editing && log != null) ...[
+                Text(
+                  log.steps > 0
+                      ? l10n.stepsSectionStepsValue(log.steps)
+                      : l10n.stepsSectionWaitingForHealth,
+                  style: TextStyle(
+                    fontSize: log.steps > 0 ? 22 : 14,
+                    fontWeight: log.steps > 0 ? FontWeight.w700 : FontWeight.normal,
+                    color: ZebraColors.black,
+                  ),
                 ),
-              ),
-              if (_lastMessage != null) ...[
+                HealthSourceRow(
+                  source: log.stepsSource,
+                  onEdit: () => setState(() {
+                    _editing = true;
+                    _lastMessage = null;
+                    _controller.text = log.steps > 0 ? log.steps.toString() : '';
+                  }),
+                  onUseHealth: () => useHealthValue(ref, date, steps: true),
+                ),
+                if (log.steps > 0) ...[
+                  const SizedBox(height: 4),
+                  Text(_syncedMessageFor(l10n, log, evaluation),
+                      style: const TextStyle(fontSize: 13)),
+                ],
+              ] else ...[
+                CupertinoTextField(
+                  controller: _controller,
+                  keyboardType: TextInputType.number,
+                  placeholder: l10n.stepsSectionTodayStepsPlaceholder,
+                ),
                 const SizedBox(height: 8),
-                Text(_lastMessage!, style: const TextStyle(fontSize: 13)),
+                SizedBox(
+                  width: double.infinity,
+                  child: CupertinoButton(
+                    color: ZebraColors.brandTeal,
+                    onPressed: log == null
+                        ? null
+                        : () => _save(date, log.isFlareDay, evaluation),
+                    child: Text(l10n.stepsSectionSaveButton,
+                        style: const TextStyle(color: ZebraColors.onColor)),
+                  ),
+                ),
+                if (connected && _editing)
+                  Center(
+                    child: CupertinoButton(
+                      onPressed: () => setState(() => _editing = false),
+                      child: Text(l10n.healthCancelEditButton,
+                          style: const TextStyle(fontSize: 13)),
+                    ),
+                  ),
+                if (_lastMessage != null) ...[
+                  const SizedBox(height: 8),
+                  Text(_lastMessage!, style: const TextStyle(fontSize: 13)),
+                ],
               ],
             ],
           );
@@ -117,7 +166,8 @@ class _StepsSectionState extends ConsumerState<StepsSection> {
     final steps = int.tryParse(_controller.text) ?? 0;
     final repo = ref.read(dailyLogRepositoryProvider);
     final log = await repo.getOrCreateDailyLog(date);
-    await repo.upsertDailyLog(log.copyWith(steps: steps));
+    await repo.upsertDailyLog(log.copyWith(steps: steps, stepsSource: ValueSource.manual));
+    _editing = false;
 
     final kind = ref.read(pacingServiceProvider).evaluateStepsMessage(
           steps: steps,
@@ -128,6 +178,19 @@ class _StepsSectionState extends ConsumerState<StepsSection> {
   }
 
   final _random = math.Random();
+
+  String _syncedMessageFor(AppLocalizations l10n, DailyLog log, PacingEvaluation evaluation) {
+    final cached = _syncedMessage;
+    if (cached != null && cached.$1 == log.steps) return cached.$2;
+    final kind = ref.read(pacingServiceProvider).evaluateStepsMessage(
+          steps: log.steps,
+          isFlareDay: log.isFlareDay,
+          evaluation: evaluation,
+        );
+    final message = _messageFor(l10n, kind);
+    _syncedMessage = (log.steps, message);
+    return message;
+  }
 
   String _messageFor(AppLocalizations l10n, PacingMessageKind kind) => switch (kind) {
         PacingMessageKind.flareNeutral => l10n.stepsSectionMessageFlareNeutral,

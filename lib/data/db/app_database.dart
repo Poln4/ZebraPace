@@ -32,7 +32,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 5;
+  int get schemaVersion => 6;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -65,7 +65,13 @@ class AppDatabase extends _$AppDatabase {
           if (from < 4) {
             await m.alterTable(TableMigration(
               dailyLogs,
-              newColumns: [dailyLogs.restingHeartRate, dailyLogs.hrvMs],
+              newColumns: [
+                dailyLogs.restingHeartRate,
+                dailyLogs.hrvMs,
+                dailyLogs.stepsSource,
+                dailyLogs.sleepSource,
+                dailyLogs.heartSource,
+              ],
             ));
           }
           // v4 -> v5: manual/pre-filled resting HR and HRV. A pre-v4 install
@@ -73,6 +79,23 @@ class AppDatabase extends _$AppDatabase {
           if (from == 4) {
             await m.addColumn(dailyLogs, dailyLogs.restingHeartRate);
             await m.addColumn(dailyLogs, dailyLogs.hrvMs);
+          }
+          // v5 -> v6: where Health-backed values came from (auto-sync).
+          // Existing values count as manual so a first sync never replaces
+          // something the person already entered.
+          if (from >= 4 && from < 6) {
+            await m.addColumn(dailyLogs, dailyLogs.stepsSource);
+            await m.addColumn(dailyLogs, dailyLogs.sleepSource);
+            await m.addColumn(dailyLogs, dailyLogs.heartSource);
+          }
+          if (from < 6) {
+            await customStatement(
+                "UPDATE daily_logs SET steps_source = 'manual' WHERE steps > 0");
+            await customStatement("UPDATE daily_logs SET sleep_source = 'manual' "
+                'WHERE sleep_hours IS NOT NULL OR sleep_heart_rate_min IS NOT NULL '
+                'OR sleep_heart_rate_max IS NOT NULL');
+            await customStatement("UPDATE daily_logs SET heart_source = 'manual' "
+                'WHERE resting_heart_rate IS NOT NULL OR hrv_ms IS NOT NULL');
           }
         },
       );

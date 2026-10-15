@@ -99,6 +99,11 @@ class _AuthGateState extends ConsumerState<_AuthGate> with WidgetsBindingObserve
     if (state == AppLifecycleState.paused || state == AppLifecycleState.hidden) {
       ref.read(authProvider.notifier).recordBackgrounding();
     }
+    // Coming back from the Health app (or a night's sleep) should show
+    // what's new there: everything read from Health hangs off this one.
+    if (state == AppLifecycleState.resumed) {
+      ref.invalidate(healthKitEnabledProvider);
+    }
   }
 
   @override

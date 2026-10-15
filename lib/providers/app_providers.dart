@@ -16,7 +16,6 @@ import '../data/repositories/soreness_check_repository.dart';
 import '../data/repositories/therapy_repository.dart';
 import '../data/repositories/weather_cache_repository.dart';
 import '../domain/models/daily_log.dart';
-import '../domain/models/detected_sleep.dart';
 import '../domain/models/detected_workout.dart';
 import '../domain/services/body_metrics_service.dart';
 import '../domain/services/calisthenics_service.dart';
@@ -29,6 +28,7 @@ import '../domain/services/mets_summary_service.dart';
 import '../domain/services/month_chapter_service.dart';
 import '../domain/services/pacing_service.dart';
 import '../domain/services/pem_service.dart';
+import '../domain/services/health_sync_service.dart';
 import '../domain/services/readiness_service.dart';
 import '../domain/services/sleep_energy_service.dart';
 import '../domain/services/soreness_check_service.dart';
@@ -101,6 +101,7 @@ final hydrationServiceProvider = Provider<HydrationService>(
   ),
 );
 final readinessServiceProvider = Provider<ReadinessService>((ref) => ReadinessService());
+final healthSyncServiceProvider = Provider<HealthSyncService>((ref) => HealthSyncService());
 
 final sorenessCheckServiceProvider = Provider<SorenessCheckService>(
   (ref) => SorenessCheckService(),
@@ -180,8 +181,6 @@ Future<void> connectHealthKit(WidgetRef ref) async {
   }
   ref.invalidate(healthKitEnabledProvider);
   ref.invalidate(readinessProvider);
-  ref.invalidate(healthSleepProvider);
-  ref.invalidate(healthAutonomicProvider);
 }
 
 /// False for installs that connected Health before resting HR/HRV were
@@ -261,35 +260,50 @@ final readinessProvider =
       : result;
 });
 
-/// Last night's sleep from Apple Health / Health Connect for the Sleep
-/// section's pre-fill; null when not connected or nothing was recorded.
-final healthSleepProvider =
-    FutureProvider.autoDispose.family<DetectedSleep?, String>((ref, date) async {
-  if (kIsWeb) return null;
-  final enabled = await ref.watch(healthKitEnabledProvider.future);
-  if (!enabled) return null;
-  return ref.watch(healthKitServiceProvider).getSleepForDate(dateFromKey(date));
+/// Writes today's and yesterday's steps, sleep and resting HR/HRV from
+/// Apple Health / Health Connect into the log (yesterday too, since its
+/// steps and the night ending this morning keep arriving after midnight).
+/// Watched by AppShell, so it runs on open; resuming the app and connecting
+/// Health both invalidate healthKitEnabledProvider, which re-runs it.
+/// Groups the person edited are left alone (see HealthSyncService).
+final healthSyncProvider = FutureProvider.autoDispose<void>((ref) async {
+  if (kIsWeb) return;
+  if (!await ref.watch(healthKitEnabledProvider.future)) return;
+  final health = ref.read(healthKitServiceProvider);
+  final repo = ref.read(dailyLogRepositoryProvider);
+  final sync = ref.read(healthSyncServiceProvider);
+  final today = DateTime.now();
+  for (final day in [today, today.subtract(const Duration(days: 1))]) {
+    final date = dateKey(day);
+    final steps = await health.getStepsForDate(day);
+    final sleep = await health.getSleepForDate(day);
+    final start = DateTime(day.year, day.month, day.day);
+    final heart = (await health.getAutonomicReadings(start, start.add(const Duration(days: 1))))[date];
+    if ((steps ?? 0) <= 0 && sleep == null && heart == null) continue;
+    final log = await repo.getOrCreateDailyLog(date);
+    final next = sync.apply(log, steps: steps, sleep: sleep, heart: heart);
+    if (next != null) await repo.upsertDailyLog(next);
+  }
 });
 
-/// [date]'s resting HR and HRV from Apple Health / Health Connect, for
-/// pre-filling the Sleep section's morning readings.
-final healthAutonomicProvider =
-    FutureProvider.autoDispose.family<AutonomicReading?, String>((ref, date) async {
-  if (kIsWeb) return null;
-  final enabled = await ref.watch(healthKitEnabledProvider.future);
-  if (!enabled) return null;
-  final day = dateFromKey(date);
-  final readings = await ref
-      .watch(healthKitServiceProvider)
-      .getAutonomicReadings(day, day.add(const Duration(days: 1)));
-  return readings[date];
-});
-
-final healthKitStepsProvider = FutureProvider.autoDispose.family<int?, String>((ref, date) async {
-  final enabled = await ref.watch(healthKitEnabledProvider.future);
-  if (!enabled) return null;
-  return ref.watch(healthKitServiceProvider).getStepsForDate(dateFromKey(date));
-});
+/// Hands a group back to Health after an edit: clears its "manual" mark
+/// and syncs again.
+Future<void> useHealthValue(
+  WidgetRef ref,
+  String date, {
+  bool steps = false,
+  bool sleep = false,
+  bool heart = false,
+}) async {
+  final repo = ref.read(dailyLogRepositoryProvider);
+  final log = await repo.getOrCreateDailyLog(date);
+  await repo.upsertDailyLog(log.copyWith(
+    stepsSource: steps ? null : log.stepsSource,
+    sleepSource: sleep ? null : log.sleepSource,
+    heartSource: heart ? null : log.heartSource,
+  ));
+  ref.invalidate(healthSyncProvider);
+}
 
 final detectedWorkoutsProvider =
     FutureProvider.autoDispose.family<List<DetectedWorkout>, String>((ref, date) async {

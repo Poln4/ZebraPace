@@ -1495,7 +1495,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsTabHealthKitConnectedCaption =>
-      'Conectado — los pasos se prellenan y los entrenamientos se sugieren para revisión.';
+      'Conectado — los pasos, el sueño y las lecturas cardíacas se sincronizan solos, y los entrenamientos se sugieren para revisión.';
 
   @override
   String get settingsTabHealthKitDisconnectedCaption =>
@@ -1857,6 +1857,56 @@ class AppLocalizationsEs extends AppLocalizations {
   String get sleepSectionSaveButton => 'Guardar Sueño';
 
   @override
+  String get healthSourceAppleHealth => 'Desde Apple Salud';
+
+  @override
+  String get healthSourceHealthConnect => 'Desde Health Connect';
+
+  @override
+  String get healthSourceManual => 'Editado por ti';
+
+  @override
+  String get healthEditButton => 'Editar';
+
+  @override
+  String get healthUseHealthButton => 'Usar el valor de Salud';
+
+  @override
+  String get healthCancelEditButton => 'Cancelar';
+
+  @override
+  String get stepsSectionWaitingForHealth =>
+      'Todavía no hay pasos de Salud hoy.';
+
+  @override
+  String get sleepSectionWaitingForHealth =>
+      'Todavía no hay datos de Salud de anoche.';
+
+  @override
+  String stepsSectionStepsValue(int steps) {
+    final intl.NumberFormat stepsNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String stepsString = stepsNumberFormat.format(steps);
+
+    return '$stepsString pasos';
+  }
+
+  @override
+  String sleepSectionHeartRateRangeValue(String min, String max) {
+    return 'FC durmiendo $min–$max lpm';
+  }
+
+  @override
+  String sleepSectionRestingValue(int bpm) {
+    return 'Reposo $bpm lpm';
+  }
+
+  @override
+  String sleepSectionHrvValue(int ms) {
+    return 'VFC $ms ms';
+  }
+
+  @override
   String get sleepSectionMorningLabel =>
       'Frecuencia cardíaca en reposo y VFC (opcional)';
 
@@ -1865,14 +1915,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get sleepSectionHrvPlaceholder => 'VFC ms';
-
-  @override
-  String get sleepSectionFromHealth =>
-      'Completado desde Apple Salud. Revísalo y toca Guardar para conservarlo.';
-
-  @override
-  String get sleepSectionFromHealthConnect =>
-      'Completado desde Health Connect. Revísalo y toca Guardar para conservarlo.';
 
   @override
   String get weatherChartEmptyState => 'Aún no hay datos de clima almacenados.';

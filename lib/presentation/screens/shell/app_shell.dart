@@ -64,6 +64,8 @@ class _AppShellState extends ConsumerState<AppShell> {
 
   @override
   Widget build(BuildContext context) {
+    // Keeps Health-backed values in the log current (see healthSyncProvider).
+    ref.watch(healthSyncProvider);
     // Covers the case where sign-in completes while AppShell is already
     // mounted (e.g. the redirect lands in the same already-open tab).
     ref.listen(pendingCloudSyncNavigationProvider, (previous, next) {

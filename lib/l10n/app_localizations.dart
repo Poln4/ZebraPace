@@ -2554,7 +2554,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingsTabHealthKitConnectedCaption.
   ///
   /// In en, this message translates to:
-  /// **'Connected — steps pre-fill and workouts are suggested for review.'**
+  /// **'Connected — steps, sleep and heart readings sync on their own, and workouts are suggested for review.'**
   String get settingsTabHealthKitConnectedCaption;
 
   /// No description provided for @settingsTabHealthKitDisconnectedCaption.
@@ -3199,6 +3199,78 @@ abstract class AppLocalizations {
   /// **'Save Sleep'**
   String get sleepSectionSaveButton;
 
+  /// No description provided for @healthSourceAppleHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'From Apple Health'**
+  String get healthSourceAppleHealth;
+
+  /// No description provided for @healthSourceHealthConnect.
+  ///
+  /// In en, this message translates to:
+  /// **'From Health Connect'**
+  String get healthSourceHealthConnect;
+
+  /// No description provided for @healthSourceManual.
+  ///
+  /// In en, this message translates to:
+  /// **'Edited by you'**
+  String get healthSourceManual;
+
+  /// No description provided for @healthEditButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get healthEditButton;
+
+  /// No description provided for @healthUseHealthButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Use Health value'**
+  String get healthUseHealthButton;
+
+  /// No description provided for @healthCancelEditButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get healthCancelEditButton;
+
+  /// No description provided for @stepsSectionWaitingForHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'No steps from Health yet today.'**
+  String get stepsSectionWaitingForHealth;
+
+  /// No description provided for @sleepSectionWaitingForHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing from Health for last night yet.'**
+  String get sleepSectionWaitingForHealth;
+
+  /// No description provided for @stepsSectionStepsValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{steps} steps'**
+  String stepsSectionStepsValue(int steps);
+
+  /// No description provided for @sleepSectionHeartRateRangeValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Heart rate while sleeping {min}–{max} bpm'**
+  String sleepSectionHeartRateRangeValue(String min, String max);
+
+  /// No description provided for @sleepSectionRestingValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Resting {bpm} bpm'**
+  String sleepSectionRestingValue(int bpm);
+
+  /// No description provided for @sleepSectionHrvValue.
+  ///
+  /// In en, this message translates to:
+  /// **'HRV {ms} ms'**
+  String sleepSectionHrvValue(int ms);
+
   /// No description provided for @sleepSectionMorningLabel.
   ///
   /// In en, this message translates to:
@@ -3216,18 +3288,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'HRV ms'**
   String get sleepSectionHrvPlaceholder;
-
-  /// No description provided for @sleepSectionFromHealth.
-  ///
-  /// In en, this message translates to:
-  /// **'Filled in from Apple Health. Check it and tap Save to keep it.'**
-  String get sleepSectionFromHealth;
-
-  /// No description provided for @sleepSectionFromHealthConnect.
-  ///
-  /// In en, this message translates to:
-  /// **'Filled in from Health Connect. Check it and tap Save to keep it.'**
-  String get sleepSectionFromHealthConnect;
 
   /// No description provided for @weatherChartEmptyState.
   ///

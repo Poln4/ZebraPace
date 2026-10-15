@@ -401,7 +401,6 @@ class _HealthKitSection extends ConsumerWidget {
                 onPressed: () async {
                   await connectHealthKit(ref);
                   ref.invalidate(healthSleepRequestedProvider);
-                  ref.invalidate(healthSleepProvider);
                 },
                 child: Text(l10n.settingsTabHealthSleepButton,
                     style: const TextStyle(color: ZebraColors.onColor)),

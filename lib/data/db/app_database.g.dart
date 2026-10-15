@@ -280,6 +280,39 @@ class $DailyLogsTable extends DailyLogs
     type: DriftSqlType.double,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _stepsSourceMeta = const VerificationMeta(
+    'stepsSource',
+  );
+  @override
+  late final GeneratedColumn<String> stepsSource = GeneratedColumn<String>(
+    'steps_source',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _sleepSourceMeta = const VerificationMeta(
+    'sleepSource',
+  );
+  @override
+  late final GeneratedColumn<String> sleepSource = GeneratedColumn<String>(
+    'sleep_source',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _heartSourceMeta = const VerificationMeta(
+    'heartSource',
+  );
+  @override
+  late final GeneratedColumn<String> heartSource = GeneratedColumn<String>(
+    'heart_source',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     updatedAt,
@@ -306,6 +339,9 @@ class $DailyLogsTable extends DailyLogs
     sleepHeartRateMax,
     restingHeartRate,
     hrvMs,
+    stepsSource,
+    sleepSource,
+    heartSource,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -499,6 +535,33 @@ class $DailyLogsTable extends DailyLogs
         hrvMs.isAcceptableOrUnknown(data['hrv_ms']!, _hrvMsMeta),
       );
     }
+    if (data.containsKey('steps_source')) {
+      context.handle(
+        _stepsSourceMeta,
+        stepsSource.isAcceptableOrUnknown(
+          data['steps_source']!,
+          _stepsSourceMeta,
+        ),
+      );
+    }
+    if (data.containsKey('sleep_source')) {
+      context.handle(
+        _sleepSourceMeta,
+        sleepSource.isAcceptableOrUnknown(
+          data['sleep_source']!,
+          _sleepSourceMeta,
+        ),
+      );
+    }
+    if (data.containsKey('heart_source')) {
+      context.handle(
+        _heartSourceMeta,
+        heartSource.isAcceptableOrUnknown(
+          data['heart_source']!,
+          _heartSourceMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -604,6 +667,18 @@ class $DailyLogsTable extends DailyLogs
         DriftSqlType.double,
         data['${effectivePrefix}hrv_ms'],
       ),
+      stepsSource: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}steps_source'],
+      ),
+      sleepSource: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}sleep_source'],
+      ),
+      heartSource: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}heart_source'],
+      ),
     );
   }
 
@@ -660,6 +735,15 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
   /// (e.g. a finger-on-camera reading) for people without a watch.
   final int? restingHeartRate;
   final double? hrvMs;
+
+  /// Added in schemaVersion 6. Where each Health-backed group came from:
+  /// 'health' (synced) or 'manual' (typed, or a synced value edited). Sync
+  /// never overwrites a 'manual' group; null means nothing recorded yet.
+  /// steps; sleep = sleepHours + sleepHeartRateMin/Max; heart =
+  /// restingHeartRate + hrvMs. sleepQuality is always the person's own.
+  final String? stepsSource;
+  final String? sleepSource;
+  final String? heartSource;
   const DailyLog({
     required this.updatedAt,
     this.deletedAt,
@@ -685,6 +769,9 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
     this.sleepHeartRateMax,
     this.restingHeartRate,
     this.hrvMs,
+    this.stepsSource,
+    this.sleepSource,
+    this.heartSource,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -738,6 +825,15 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
     }
     if (!nullToAbsent || hrvMs != null) {
       map['hrv_ms'] = Variable<double>(hrvMs);
+    }
+    if (!nullToAbsent || stepsSource != null) {
+      map['steps_source'] = Variable<String>(stepsSource);
+    }
+    if (!nullToAbsent || sleepSource != null) {
+      map['sleep_source'] = Variable<String>(sleepSource);
+    }
+    if (!nullToAbsent || heartSource != null) {
+      map['heart_source'] = Variable<String>(heartSource);
     }
     return map;
   }
@@ -794,6 +890,15 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
       hrvMs: hrvMs == null && nullToAbsent
           ? const Value.absent()
           : Value(hrvMs),
+      stepsSource: stepsSource == null && nullToAbsent
+          ? const Value.absent()
+          : Value(stepsSource),
+      sleepSource: sleepSource == null && nullToAbsent
+          ? const Value.absent()
+          : Value(sleepSource),
+      heartSource: heartSource == null && nullToAbsent
+          ? const Value.absent()
+          : Value(heartSource),
     );
   }
 
@@ -827,6 +932,9 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
       sleepHeartRateMax: serializer.fromJson<int?>(json['sleepHeartRateMax']),
       restingHeartRate: serializer.fromJson<int?>(json['restingHeartRate']),
       hrvMs: serializer.fromJson<double?>(json['hrvMs']),
+      stepsSource: serializer.fromJson<String?>(json['stepsSource']),
+      sleepSource: serializer.fromJson<String?>(json['sleepSource']),
+      heartSource: serializer.fromJson<String?>(json['heartSource']),
     );
   }
   @override
@@ -857,6 +965,9 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
       'sleepHeartRateMax': serializer.toJson<int?>(sleepHeartRateMax),
       'restingHeartRate': serializer.toJson<int?>(restingHeartRate),
       'hrvMs': serializer.toJson<double?>(hrvMs),
+      'stepsSource': serializer.toJson<String?>(stepsSource),
+      'sleepSource': serializer.toJson<String?>(sleepSource),
+      'heartSource': serializer.toJson<String?>(heartSource),
     };
   }
 
@@ -885,6 +996,9 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
     Value<int?> sleepHeartRateMax = const Value.absent(),
     Value<int?> restingHeartRate = const Value.absent(),
     Value<double?> hrvMs = const Value.absent(),
+    Value<String?> stepsSource = const Value.absent(),
+    Value<String?> sleepSource = const Value.absent(),
+    Value<String?> heartSource = const Value.absent(),
   }) => DailyLog(
     updatedAt: updatedAt ?? this.updatedAt,
     deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
@@ -918,6 +1032,9 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
         ? restingHeartRate.value
         : this.restingHeartRate,
     hrvMs: hrvMs.present ? hrvMs.value : this.hrvMs,
+    stepsSource: stepsSource.present ? stepsSource.value : this.stepsSource,
+    sleepSource: sleepSource.present ? sleepSource.value : this.sleepSource,
+    heartSource: heartSource.present ? heartSource.value : this.heartSource,
   );
   DailyLog copyWithCompanion(DailyLogsCompanion data) {
     return DailyLog(
@@ -971,6 +1088,15 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
           ? data.restingHeartRate.value
           : this.restingHeartRate,
       hrvMs: data.hrvMs.present ? data.hrvMs.value : this.hrvMs,
+      stepsSource: data.stepsSource.present
+          ? data.stepsSource.value
+          : this.stepsSource,
+      sleepSource: data.sleepSource.present
+          ? data.sleepSource.value
+          : this.sleepSource,
+      heartSource: data.heartSource.present
+          ? data.heartSource.value
+          : this.heartSource,
     );
   }
 
@@ -1000,7 +1126,10 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
           ..write('sleepHeartRateMin: $sleepHeartRateMin, ')
           ..write('sleepHeartRateMax: $sleepHeartRateMax, ')
           ..write('restingHeartRate: $restingHeartRate, ')
-          ..write('hrvMs: $hrvMs')
+          ..write('hrvMs: $hrvMs, ')
+          ..write('stepsSource: $stepsSource, ')
+          ..write('sleepSource: $sleepSource, ')
+          ..write('heartSource: $heartSource')
           ..write(')'))
         .toString();
   }
@@ -1031,6 +1160,9 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
     sleepHeartRateMax,
     restingHeartRate,
     hrvMs,
+    stepsSource,
+    sleepSource,
+    heartSource,
   ]);
   @override
   bool operator ==(Object other) =>
@@ -1059,7 +1191,10 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
           other.sleepHeartRateMin == this.sleepHeartRateMin &&
           other.sleepHeartRateMax == this.sleepHeartRateMax &&
           other.restingHeartRate == this.restingHeartRate &&
-          other.hrvMs == this.hrvMs);
+          other.hrvMs == this.hrvMs &&
+          other.stepsSource == this.stepsSource &&
+          other.sleepSource == this.sleepSource &&
+          other.heartSource == this.heartSource);
 }
 
 class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
@@ -1087,6 +1222,9 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
   final Value<int?> sleepHeartRateMax;
   final Value<int?> restingHeartRate;
   final Value<double?> hrvMs;
+  final Value<String?> stepsSource;
+  final Value<String?> sleepSource;
+  final Value<String?> heartSource;
   final Value<int> rowid;
   const DailyLogsCompanion({
     this.updatedAt = const Value.absent(),
@@ -1113,6 +1251,9 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
     this.sleepHeartRateMax = const Value.absent(),
     this.restingHeartRate = const Value.absent(),
     this.hrvMs = const Value.absent(),
+    this.stepsSource = const Value.absent(),
+    this.sleepSource = const Value.absent(),
+    this.heartSource = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   DailyLogsCompanion.insert({
@@ -1140,6 +1281,9 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
     this.sleepHeartRateMax = const Value.absent(),
     this.restingHeartRate = const Value.absent(),
     this.hrvMs = const Value.absent(),
+    this.stepsSource = const Value.absent(),
+    this.sleepSource = const Value.absent(),
+    this.heartSource = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : updatedAt = Value(updatedAt),
        id = Value(id),
@@ -1169,6 +1313,9 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
     Expression<int>? sleepHeartRateMax,
     Expression<int>? restingHeartRate,
     Expression<double>? hrvMs,
+    Expression<String>? stepsSource,
+    Expression<String>? sleepSource,
+    Expression<String>? heartSource,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -1196,6 +1343,9 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
       if (sleepHeartRateMax != null) 'sleep_heart_rate_max': sleepHeartRateMax,
       if (restingHeartRate != null) 'resting_heart_rate': restingHeartRate,
       if (hrvMs != null) 'hrv_ms': hrvMs,
+      if (stepsSource != null) 'steps_source': stepsSource,
+      if (sleepSource != null) 'sleep_source': sleepSource,
+      if (heartSource != null) 'heart_source': heartSource,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -1225,6 +1375,9 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
     Value<int?>? sleepHeartRateMax,
     Value<int?>? restingHeartRate,
     Value<double?>? hrvMs,
+    Value<String?>? stepsSource,
+    Value<String?>? sleepSource,
+    Value<String?>? heartSource,
     Value<int>? rowid,
   }) {
     return DailyLogsCompanion(
@@ -1252,6 +1405,9 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
       sleepHeartRateMax: sleepHeartRateMax ?? this.sleepHeartRateMax,
       restingHeartRate: restingHeartRate ?? this.restingHeartRate,
       hrvMs: hrvMs ?? this.hrvMs,
+      stepsSource: stepsSource ?? this.stepsSource,
+      sleepSource: sleepSource ?? this.sleepSource,
+      heartSource: heartSource ?? this.heartSource,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -1331,6 +1487,15 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
     if (hrvMs.present) {
       map['hrv_ms'] = Variable<double>(hrvMs.value);
     }
+    if (stepsSource.present) {
+      map['steps_source'] = Variable<String>(stepsSource.value);
+    }
+    if (sleepSource.present) {
+      map['sleep_source'] = Variable<String>(sleepSource.value);
+    }
+    if (heartSource.present) {
+      map['heart_source'] = Variable<String>(heartSource.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -1364,6 +1529,9 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
           ..write('sleepHeartRateMax: $sleepHeartRateMax, ')
           ..write('restingHeartRate: $restingHeartRate, ')
           ..write('hrvMs: $hrvMs, ')
+          ..write('stepsSource: $stepsSource, ')
+          ..write('sleepSource: $sleepSource, ')
+          ..write('heartSource: $heartSource, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -6676,6 +6844,9 @@ typedef $$DailyLogsTableCreateCompanionBuilder =
       Value<int?> sleepHeartRateMax,
       Value<int?> restingHeartRate,
       Value<double?> hrvMs,
+      Value<String?> stepsSource,
+      Value<String?> sleepSource,
+      Value<String?> heartSource,
       Value<int> rowid,
     });
 typedef $$DailyLogsTableUpdateCompanionBuilder =
@@ -6704,6 +6875,9 @@ typedef $$DailyLogsTableUpdateCompanionBuilder =
       Value<int?> sleepHeartRateMax,
       Value<int?> restingHeartRate,
       Value<double?> hrvMs,
+      Value<String?> stepsSource,
+      Value<String?> sleepSource,
+      Value<String?> heartSource,
       Value<int> rowid,
     });
 
@@ -6833,6 +7007,21 @@ class $$DailyLogsTableFilterComposer
 
   ColumnFilters<double> get hrvMs => $composableBuilder(
     column: $table.hrvMs,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get stepsSource => $composableBuilder(
+    column: $table.stepsSource,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get sleepSource => $composableBuilder(
+    column: $table.sleepSource,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get heartSource => $composableBuilder(
+    column: $table.heartSource,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -6965,6 +7154,21 @@ class $$DailyLogsTableOrderingComposer
     column: $table.hrvMs,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<String> get stepsSource => $composableBuilder(
+    column: $table.stepsSource,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get sleepSource => $composableBuilder(
+    column: $table.sleepSource,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get heartSource => $composableBuilder(
+    column: $table.heartSource,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$DailyLogsTableAnnotationComposer
@@ -7073,6 +7277,21 @@ class $$DailyLogsTableAnnotationComposer
 
   GeneratedColumn<double> get hrvMs =>
       $composableBuilder(column: $table.hrvMs, builder: (column) => column);
+
+  GeneratedColumn<String> get stepsSource => $composableBuilder(
+    column: $table.stepsSource,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get sleepSource => $composableBuilder(
+    column: $table.sleepSource,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get heartSource => $composableBuilder(
+    column: $table.heartSource,
+    builder: (column) => column,
+  );
 }
 
 class $$DailyLogsTableTableManager
@@ -7127,6 +7346,9 @@ class $$DailyLogsTableTableManager
                 Value<int?> sleepHeartRateMax = const Value.absent(),
                 Value<int?> restingHeartRate = const Value.absent(),
                 Value<double?> hrvMs = const Value.absent(),
+                Value<String?> stepsSource = const Value.absent(),
+                Value<String?> sleepSource = const Value.absent(),
+                Value<String?> heartSource = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => DailyLogsCompanion(
                 updatedAt: updatedAt,
@@ -7153,6 +7375,9 @@ class $$DailyLogsTableTableManager
                 sleepHeartRateMax: sleepHeartRateMax,
                 restingHeartRate: restingHeartRate,
                 hrvMs: hrvMs,
+                stepsSource: stepsSource,
+                sleepSource: sleepSource,
+                heartSource: heartSource,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -7181,6 +7406,9 @@ class $$DailyLogsTableTableManager
                 Value<int?> sleepHeartRateMax = const Value.absent(),
                 Value<int?> restingHeartRate = const Value.absent(),
                 Value<double?> hrvMs = const Value.absent(),
+                Value<String?> stepsSource = const Value.absent(),
+                Value<String?> sleepSource = const Value.absent(),
+                Value<String?> heartSource = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => DailyLogsCompanion.insert(
                 updatedAt: updatedAt,
@@ -7207,6 +7435,9 @@ class $$DailyLogsTableTableManager
                 sleepHeartRateMax: sleepHeartRateMax,
                 restingHeartRate: restingHeartRate,
                 hrvMs: hrvMs,
+                stepsSource: stepsSource,
+                sleepSource: sleepSource,
+                heartSource: heartSource,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0
