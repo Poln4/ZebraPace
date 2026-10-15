@@ -10,9 +10,12 @@ class BiometricService {
 
   Future<bool> isAvailable() async {
     try {
+      // canCheckBiometrics is true whenever the hardware exists, even with
+      // no face/finger enrolled — then the prompt falls straight through to
+      // the device passcode, so only count biometrics that are set up.
       final supported = await _auth.isDeviceSupported();
-      final canCheck = await _auth.canCheckBiometrics;
-      return supported && canCheck;
+      final enrolled = await _auth.getAvailableBiometrics();
+      return supported && enrolled.isNotEmpty;
     } catch (_) {
       return false;
     }
