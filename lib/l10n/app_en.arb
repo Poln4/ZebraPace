@@ -772,6 +772,7 @@
 
   "lockScreenSetupTitle": "Set up a password",
   "lockScreenSetupSubtitle": "This protects your health data on this device. You'll also be able to use Face ID/Touch ID once this is set.",
+  "lockScreenSetupSubtitleAndroid": "This protects your health data on this device. You'll also be able to use your fingerprint or face unlock once this is set.",
   "lockScreenPasswordPlaceholder": "Password",
   "lockScreenConfirmPasswordPlaceholder": "Confirm password",
   "lockScreenSetPasswordButton": "Set password",
@@ -786,6 +787,7 @@
     }
   },
   "lockScreenBiometricUnlockButton": "Unlock with Face ID / Touch ID",
+  "lockScreenBiometricUnlockButtonAndroid": "Unlock with fingerprint or face",
   "lockScreenUsePasswordButton": "Use Password Instead",
   "lockScreenUnlockButton": "Unlock",
   "authProviderNoPasswordSetUp": "No password set up yet.",

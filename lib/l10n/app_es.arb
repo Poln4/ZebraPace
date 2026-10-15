@@ -506,6 +506,7 @@
 
   "lockScreenSetupTitle": "Configura una contraseña",
   "lockScreenSetupSubtitle": "Esto protege tus datos de salud en este dispositivo. También podrás usar Face ID/Touch ID una vez que la configures.",
+  "lockScreenSetupSubtitleAndroid": "Esto protege tus datos de salud en este dispositivo. También podrás usar tu huella o desbloqueo facial una vez que la configures.",
   "lockScreenPasswordPlaceholder": "Contraseña",
   "lockScreenConfirmPasswordPlaceholder": "Confirmar contraseña",
   "lockScreenSetPasswordButton": "Configurar contraseña",
@@ -520,6 +521,7 @@
     }
   },
   "lockScreenBiometricUnlockButton": "Desbloquear con Face ID / Touch ID",
+  "lockScreenBiometricUnlockButtonAndroid": "Desbloquear con huella o rostro",
   "lockScreenUsePasswordButton": "Usar contraseña en su lugar",
   "lockScreenUnlockButton": "Desbloquear",
   "authProviderNoPasswordSetUp": "Aún no has configurado una contraseña.",

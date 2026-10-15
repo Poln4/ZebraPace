@@ -1566,6 +1566,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'This protects your health data on this device. You\'ll also be able to use Face ID/Touch ID once this is set.';
 
   @override
+  String get lockScreenSetupSubtitleAndroid =>
+      'This protects your health data on this device. You\'ll also be able to use your fingerprint or face unlock once this is set.';
+
+  @override
   String get lockScreenPasswordPlaceholder => 'Password';
 
   @override
@@ -1595,6 +1599,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get lockScreenBiometricUnlockButton =>
       'Unlock with Face ID / Touch ID';
+
+  @override
+  String get lockScreenBiometricUnlockButtonAndroid =>
+      'Unlock with fingerprint or face';
 
   @override
   String get lockScreenUsePasswordButton => 'Use Password Instead';

@@ -454,6 +454,7 @@
   },
   "lockScreenSetupTitle": "設定密碼",
   "lockScreenSetupSubtitle": "這能保護此裝置上的健康資料。設定完成後，你也可以使用 Face ID／Touch ID。",
+  "lockScreenSetupSubtitleAndroid": "這能保護此裝置上的健康資料。設定完成後，你也可以使用指紋或臉部解鎖。",
   "lockScreenPasswordPlaceholder": "密碼",
   "lockScreenConfirmPasswordPlaceholder": "確認密碼",
   "lockScreenSetPasswordButton": "設定密碼",
@@ -468,6 +469,7 @@
     }
   },
   "lockScreenBiometricUnlockButton": "使用 Face ID／Touch ID 解鎖",
+  "lockScreenBiometricUnlockButtonAndroid": "使用指紋或臉部解鎖",
   "lockScreenUsePasswordButton": "改用密碼解鎖",
   "lockScreenUnlockButton": "解鎖",
   "authProviderNoPasswordSetUp": "尚未設定密碼。",

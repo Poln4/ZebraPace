@@ -1481,6 +1481,10 @@ class AppLocalizationsZh extends AppLocalizations {
       '這能保護此裝置上的健康資料。設定完成後，你也可以使用 Face ID／Touch ID。';
 
   @override
+  String get lockScreenSetupSubtitleAndroid =>
+      '這能保護此裝置上的健康資料。設定完成後，你也可以使用指紋或臉部解鎖。';
+
+  @override
   String get lockScreenPasswordPlaceholder => '密碼';
 
   @override
@@ -1508,6 +1512,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get lockScreenBiometricUnlockButton => '使用 Face ID／Touch ID 解鎖';
+
+  @override
+  String get lockScreenBiometricUnlockButtonAndroid => '使用指紋或臉部解鎖';
 
   @override
   String get lockScreenUsePasswordButton => '改用密碼解鎖';
@@ -3626,6 +3633,10 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
       '這能保護此裝置上的健康資料。設定完成後，你也可以使用 Face ID／Touch ID。';
 
   @override
+  String get lockScreenSetupSubtitleAndroid =>
+      '這能保護此裝置上的健康資料。設定完成後，你也可以使用指紋或臉部解鎖。';
+
+  @override
   String get lockScreenPasswordPlaceholder => '密碼';
 
   @override
@@ -3653,6 +3664,9 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get lockScreenBiometricUnlockButton => '使用 Face ID／Touch ID 解鎖';
+
+  @override
+  String get lockScreenBiometricUnlockButtonAndroid => '使用指紋或臉部解鎖';
 
   @override
   String get lockScreenUsePasswordButton => '改用密碼解鎖';

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/zebra_theme.dart';
+import '../../../data/healthkit/health_kit_service.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/auth_providers.dart';
 import '../../../providers/cloud_sync_providers.dart';
@@ -86,7 +87,7 @@ class _SetupView extends ConsumerWidget {
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: ZebraColors.black)),
         const SizedBox(height: 6),
         Text(
-          l10n.lockScreenSetupSubtitle,
+          usesHealthConnect ? l10n.lockScreenSetupSubtitleAndroid : l10n.lockScreenSetupSubtitle,
           textAlign: TextAlign.center,
           style: const TextStyle(fontSize: 13, color: CupertinoColors.systemGrey),
         ),
@@ -196,11 +197,15 @@ class _UnlockView extends ConsumerWidget {
             width: double.infinity,
             child: CupertinoButton.filled(
               onPressed: () => ref.read(authProvider.notifier).tryBiometricUnlock(),
-              child: Text(l10n.lockScreenBiometricUnlockButton),
+              child: Text(usesHealthConnect
+                  ? l10n.lockScreenBiometricUnlockButtonAndroid
+                  : l10n.lockScreenBiometricUnlockButton),
             ),
           ),
         const SizedBox(height: 10),
-        if (!showPasswordField)
+        // Without biometrics the password is the only way in, so don't
+        // hide it behind a "use password instead" tap.
+        if (!showPasswordField && biometricsAvailable)
           CupertinoButton(
             onPressed: onShowPasswordField,
             child: Text(l10n.lockScreenUsePasswordButton),

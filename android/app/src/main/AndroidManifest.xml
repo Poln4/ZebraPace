@@ -42,6 +42,10 @@
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
               />
+            <!-- supabase_flutter (via app_links) handles zebrapace:// links.
+                 Left on, Flutter also tries to push the link as a named route
+                 ("/#access_token=...") and throws. -->
+            <meta-data android:name="flutter_deeplinking_enabled" android:value="false"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

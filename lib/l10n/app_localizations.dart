@@ -2719,6 +2719,12 @@ abstract class AppLocalizations {
   /// **'This protects your health data on this device. You\'ll also be able to use Face ID/Touch ID once this is set.'**
   String get lockScreenSetupSubtitle;
 
+  /// No description provided for @lockScreenSetupSubtitleAndroid.
+  ///
+  /// In en, this message translates to:
+  /// **'This protects your health data on this device. You\'ll also be able to use your fingerprint or face unlock once this is set.'**
+  String get lockScreenSetupSubtitleAndroid;
+
   /// No description provided for @lockScreenPasswordPlaceholder.
   ///
   /// In en, this message translates to:
@@ -2772,6 +2778,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unlock with Face ID / Touch ID'**
   String get lockScreenBiometricUnlockButton;
+
+  /// No description provided for @lockScreenBiometricUnlockButtonAndroid.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock with fingerprint or face'**
+  String get lockScreenBiometricUnlockButtonAndroid;
 
   /// No description provided for @lockScreenUsePasswordButton.
   ///

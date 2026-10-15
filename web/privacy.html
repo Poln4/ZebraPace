@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ZebraPace Privacy Policy</title>
+  <meta name="description" content="How ZebraPace handles your data: what stays on your device, what leaves it, and how to delete it.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    :root {
+      --bg: #F6EFE3;
+      --card: #FFFCF6;
+      --border: #E6D9C3;
+      --ink: #2B2420;
+      --muted: #6B5F55;
+      --accent: #2F6F65;
+      --accent-bg: #DCEBE7;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #1C1815;
+        --card: #26211D;
+        --border: #3A322B;
+        --ink: #F2EBE1;
+        --muted: #B5A899;
+        --accent: #7CC4B7;
+        --accent-bg: #23403B;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #1C1815;
+      --card: #26211D;
+      --border: #3A322B;
+      --ink: #F2EBE1;
+      --muted: #B5A899;
+      --accent: #7CC4B7;
+      --accent-bg: #23403B;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", "PingFang TC", sans-serif;
+    }
+    main { max-width: 720px; margin: 0 auto; padding: 24px 16px 64px; }
+    header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+    .brand { font-weight: 700; font-size: 20px; letter-spacing: 0.01em; }
+    nav { display: flex; gap: 6px; }
+    nav a {
+      padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border);
+      color: var(--ink); text-decoration: none; font-size: 15px; background: var(--card);
+    }
+    nav a[aria-current="true"] { background: var(--accent-bg); border-color: var(--accent); font-weight: 600; }
+    h1 { font-size: 30px; line-height: 1.2; margin: 24px 0 4px; }
+    h2 { font-size: 20px; margin: 32px 0 8px; }
+    .meta { color: var(--muted); font-size: 15px; margin: 0 0 16px; }
+    .summary {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 16px 20px; margin: 16px 0 8px;
+    }
+    .summary ul { margin: 8px 0 0; padding-left: 20px; }
+    ul { padding-left: 22px; }
+    li { margin: 4px 0; }
+    a { color: var(--accent); }
+    section[lang] + section[lang] { border-top: 1px solid var(--border); margin-top: 48px; }
+    .js section[lang]:not(.active) { display: none; }
+    .js section[lang] + section[lang] { border-top: 0; margin-top: 0; }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="brand">🦓 ZebraPace</div>
+    <nav aria-label="Language">
+      <a href="#en" data-lang="en">English</a>
+      <a href="#es" data-lang="es">Español</a>
+      <a href="#zh" data-lang="zh">中文</a>
+    </nav>
+  </header>
+
+  <!-- ================= ENGLISH ================= -->
+  <section id="en" lang="en">
+    <h1>Privacy Policy</h1>
+    <p class="meta">Effective October 14, 2026</p>
+
+    <div class="summary">
+      <strong>The short version</strong>
+      <ul>
+        <li>Your health log lives on your device. We don't have a copy.</li>
+        <li>Apple Health and Health Connect data is only read, only used to pre-fill your log, and never leaves your device.</li>
+        <li>An account is optional. If you create one, we store your email, and, if you join a weight challenge, the weight figures you share with that group.</li>
+        <li>No ads, no analytics, no tracking, and we never sell data.</li>
+      </ul>
+    </div>
+
+    <h2>Who we are</h2>
+    <p>ZebraPace is a pacing and symptom tracker for people living with EDS, PEM and dysautonomia. It is developed independently by Paulina Valenzuela Lagos ("we"). Questions about this policy: <a href="mailto:paulina404@gmail.com">paulina404@gmail.com</a>.</p>
+
+    <h2>Data that stays on your device</h2>
+    <p>Everything you log is stored in a database on your phone (or, for the web version, in your browser's storage). This includes sleep, heart rate, water, protein, steps, weight, mood and body check-ins, rest and flare days, symptoms, activities, exercises, therapies, injuries, braces and notes. We have no access to it, and it is not uploaded anywhere.</p>
+    <p>If you set an app password, only a salted hash of it is stored, in your device's secure storage (Keychain on iOS, Keystore on Android). Face ID, Touch ID and fingerprint unlock are handled entirely by your operating system. ZebraPace never receives your biometric data.</p>
+    <p>Device backups are turned off on Android, so your log isn't copied to Google Drive.</p>
+
+    <h2>Apple Health and Health Connect</h2>
+    <p>If you choose to connect them, ZebraPace <strong>reads</strong> steps, workouts, active energy and heart rate. On Android, Health Connect also provides each workout's distance and total calories. We use this data only to:</p>
+    <ul>
+      <li>pre-fill your daily step count,</li>
+      <li>suggest workouts for you to review and add to your log,</li>
+      <li>show heart-rate ranges and energy estimates in your own insights.</li>
+    </ul>
+    <p>ZebraPace never writes to Apple Health or Health Connect. Data read from them stays on your device. It is never sent to our servers or to any third party, and never used for advertising, marketing or data brokering. ZebraPace's use of information received from Health Connect follows the <a href="https://support.google.com/googleplay/android-developer/answer/9888170">Health Connect Permissions policy</a>, including its Limited Use requirements. You can withdraw access at any time in iOS Settings → Health, or in Health Connect on Android.</p>
+
+    <h2>Optional account</h2>
+    <p>You can use ZebraPace without an account. If you sign in, your email address is stored by our backend provider, <a href="https://supabase.com/privacy">Supabase</a>, so we can send you sign-in links. Your health log is <strong>not</strong> uploaded.</p>
+
+    <h2>Weight challenges (optional)</h2>
+    <p>If you create or join a weight challenge, we store the following on Supabase:</p>
+    <ul>
+      <li>the display name you choose,</li>
+      <li>your starting weight,</li>
+      <li>a current-weight figure (an average of your logged rest-day weights),</li>
+      <li>each weight update with its date,</li>
+      <li>the challenge's name and invite code.</li>
+    </ul>
+    <p>Only members of that challenge can see these entries. Other users cannot browse challenges they haven't joined.</p>
+
+    <h2>Weather</h2>
+    <p>To compare symptoms with weather, the place name you type is sent to <a href="https://open-meteo.com/en/terms">Open-Meteo</a> to look up its coordinates. Those coordinates and a date range are then sent to fetch historical weather. No account, name or health data is sent with these requests.</p>
+
+    <h2>Other services</h2>
+    <ul>
+      <li><strong>Fonts:</strong> the app downloads its typefaces from Google Fonts, which receives your IP address the way any website request does.</li>
+      <li><strong>Web hosting:</strong> the web version is served by Netlify, which keeps standard server logs.</li>
+      <li><strong>Links:</strong> the Ko-fi and website buttons open external sites with their own privacy policies.</li>
+    </ul>
+
+    <h2>Exports</h2>
+    <p>PDF reports and CSV/JSON exports are created on your device. They are shared only where you choose to send them, for example to your doctor.</p>
+
+    <h2>What we don't do</h2>
+    <p>No advertising, no analytics or crash-reporting SDKs, no tracking across apps or websites, and no selling or sharing of personal data.</p>
+
+    <h2>Keeping and deleting your data</h2>
+    <ul>
+      <li><strong>On your device:</strong> use Settings → “Delete all my data” (your goals and settings are kept), or uninstall the app to remove everything.</li>
+      <li><strong>Account and challenge data:</strong> email <a href="mailto:paulina404@gmail.com">paulina404@gmail.com</a> from the address you signed in with. We'll delete your account and all your challenge entries within 30 days.</li>
+    </ul>
+    <p>Account and challenge data is kept until you ask us to delete it.</p>
+
+    <h2>Security</h2>
+    <p>Data sent to Supabase and Open-Meteo travels over encrypted connections (HTTPS). Database access rules make sure each user can only change their own entries. No system is perfectly secure, but we keep what we hold to a minimum.</p>
+
+    <h2>Children</h2>
+    <p>ZebraPace is not directed at children under 16, and we do not knowingly collect their data.</p>
+
+    <h2>Not medical advice</h2>
+    <p>ZebraPace is a self-tracking tool, not a medical device. It does not diagnose or treat any condition.</p>
+
+    <h2>Changes</h2>
+    <p>If this policy changes, we'll update this page and the effective date above. For significant changes, we'll also tell you in the app.</p>
+  </section>
+
+  <!-- ================= ESPAÑOL ================= -->
+  <section id="es" lang="es">
+    <h1>Política de privacidad</h1>
+    <p class="meta">Vigente desde el 14 de octubre de 2026</p>
+
+    <div class="summary">
+      <strong>En resumen</strong>
+      <ul>
+        <li>Tu registro de salud vive en tu dispositivo. Nosotros no tenemos una copia.</li>
+        <li>Los datos de Apple Salud y Health Connect solo se leen, solo se usan para prellenar tu registro y nunca salen de tu dispositivo.</li>
+        <li>La cuenta es opcional. Si creas una, guardamos tu email y, si te unes a un reto de peso, las cifras de peso que compartes con ese grupo.</li>
+        <li>Sin anuncios, sin analítica, sin rastreo, y nunca vendemos datos.</li>
+      </ul>
+    </div>
+
+    <h2>Quiénes somos</h2>
+    <p>ZebraPace es una app de dosificación de energía y registro de síntomas para personas que viven con EDS, PEM y disautonomía. La desarrolla de forma independiente Paulina Valenzuela Lagos ("nosotros"). Preguntas sobre esta política: <a href="mailto:paulina404@gmail.com">paulina404@gmail.com</a>.</p>
+
+    <h2>Datos que se quedan en tu dispositivo</h2>
+    <p>Todo lo que registras se guarda en una base de datos en tu teléfono (o, en la versión web, en el almacenamiento de tu navegador). Esto incluye sueño, frecuencia cardíaca, agua, proteína, pasos, peso, check-ins de ánimo y cuerpo, días de descanso y de crisis, síntomas, actividades, ejercicios, terapias, lesiones, ortesis y notas. No tenemos acceso a nada de esto y no se sube a ningún lado.</p>
+    <p>Si configuras una contraseña para la app, solo se guarda un hash con sal en el almacenamiento seguro de tu dispositivo (Llavero en iOS, Keystore en Android). El desbloqueo con Face ID, Touch ID o huella lo maneja por completo tu sistema operativo. ZebraPace nunca recibe tus datos biométricos.</p>
+    <p>En Android, las copias de seguridad del dispositivo están desactivadas, así que tu registro no se copia a Google Drive.</p>
+
+    <h2>Apple Salud y Health Connect</h2>
+    <p>Si decides conectarlos, ZebraPace <strong>lee</strong> pasos, entrenamientos, energía activa y frecuencia cardíaca. En Android, Health Connect también entrega la distancia y las calorías totales de cada entrenamiento. Usamos estos datos solo para:</p>
+    <ul>
+      <li>prellenar tus pasos del día,</li>
+      <li>sugerirte entrenamientos para que los revises y los agregues a tu registro,</li>
+      <li>mostrar rangos de frecuencia cardíaca y estimaciones de energía en tus propios análisis.</li>
+    </ul>
+    <p>ZebraPace nunca escribe en Apple Salud ni en Health Connect. Los datos que lee se quedan en tu dispositivo. Nunca se envían a nuestros servidores ni a terceros, y nunca se usan para publicidad, marketing ni venta de datos. El uso que hace ZebraPace de la información de Health Connect cumple la <a href="https://support.google.com/googleplay/android-developer/answer/9888170">política de permisos de Health Connect</a>, incluidos sus requisitos de uso limitado. Puedes retirar el acceso cuando quieras en Ajustes de iOS → Salud, o en Health Connect en Android.</p>
+
+    <h2>Cuenta opcional</h2>
+    <p>Puedes usar ZebraPace sin cuenta. Si inicias sesión, tu email queda guardado en nuestro proveedor de backend, <a href="https://supabase.com/privacy">Supabase</a>, para poder enviarte enlaces de acceso. Tu registro de salud <strong>no</strong> se sube.</p>
+
+    <h2>Retos de peso (opcional)</h2>
+    <p>Si creas un reto de peso o te unes a uno, guardamos lo siguiente en Supabase:</p>
+    <ul>
+      <li>el nombre visible que elijas,</li>
+      <li>tu peso inicial,</li>
+      <li>una cifra de peso actual (el promedio de los pesos que registras en días de descanso),</li>
+      <li>cada actualización de peso con su fecha,</li>
+      <li>el nombre y el código de invitación del reto.</li>
+    </ul>
+    <p>Solo los miembros de ese reto pueden ver estos datos. Nadie puede explorar retos a los que no se ha unido.</p>
+
+    <h2>Clima</h2>
+    <p>Para comparar tus síntomas con el clima, el nombre del lugar que escribes se envía a <a href="https://open-meteo.com/en/terms">Open-Meteo</a> para obtener sus coordenadas. Luego esas coordenadas y un rango de fechas se envían para obtener el clima histórico. Estas solicitudes no incluyen tu cuenta, tu nombre ni datos de salud.</p>
+
+    <h2>Otros servicios</h2>
+    <ul>
+      <li><strong>Tipografías:</strong> la app descarga sus fuentes desde Google Fonts, que recibe tu dirección IP como en cualquier solicitud web.</li>
+      <li><strong>Hosting web:</strong> la versión web se sirve desde Netlify, que guarda registros estándar del servidor.</li>
+      <li><strong>Enlaces:</strong> los botones de Ko-fi y del sitio web abren páginas externas con sus propias políticas de privacidad.</li>
+    </ul>
+
+    <h2>Exportaciones</h2>
+    <p>Los informes PDF y las exportaciones CSV/JSON se crean en tu dispositivo. Solo se comparten donde tú decidas enviarlos, por ejemplo a tu médico.</p>
+
+    <h2>Lo que no hacemos</h2>
+    <p>No hay publicidad ni SDKs de analítica o de reportes de errores. No te rastreamos en otras apps ni sitios web, y no vendemos ni compartimos datos personales.</p>
+
+    <h2>Conservación y eliminación de datos</h2>
+    <ul>
+      <li><strong>En tu dispositivo:</strong> usa Ajustes → «Eliminar todos mis datos» (se conservan tus metas y ajustes), o desinstala la app para borrarlo todo.</li>
+      <li><strong>Cuenta y datos de retos:</strong> escribe a <a href="mailto:paulina404@gmail.com">paulina404@gmail.com</a> desde el email con que iniciaste sesión. Eliminaremos tu cuenta y todos tus registros de retos en un plazo de 30 días.</li>
+    </ul>
+    <p>Los datos de la cuenta y de los retos se conservan hasta que nos pidas eliminarlos.</p>
+
+    <h2>Seguridad</h2>
+    <p>Los datos enviados a Supabase y a Open-Meteo viajan por conexiones cifradas (HTTPS). Las reglas de acceso de la base de datos garantizan que cada persona solo pueda modificar sus propios registros. Ningún sistema es perfectamente seguro, pero guardamos lo mínimo posible.</p>
+
+    <h2>Menores</h2>
+    <p>ZebraPace no está dirigida a menores de 16 años, y no recopilamos sus datos a sabiendas.</p>
+
+    <h2>No es consejo médico</h2>
+    <p>ZebraPace es una herramienta de autoseguimiento, no un dispositivo médico. No diagnostica ni trata ninguna condición.</p>
+
+    <h2>Cambios</h2>
+    <p>Si esta política cambia, actualizaremos esta página y la fecha de vigencia de arriba. Si el cambio es importante, también te avisaremos en la app.</p>
+  </section>
+
+  <!-- ================= 中文（繁體） ================= -->
+  <section id="zh" lang="zh-Hant">
+    <h1>隱私權政策</h1>
+    <p class="meta">自 2026 年 10 月 14 日起生效</p>
+
+    <div class="summary">
+      <strong>重點摘要</strong>
+      <ul>
+        <li>你的健康紀錄存放在你的裝置上，我們沒有任何副本。</li>
+        <li>來自 Apple 健康與 Health Connect 的資料只會被讀取，只用來預先填入你的紀錄，而且永遠不會離開你的裝置。</li>
+        <li>帳號是選用的。如果你建立帳號，我們會儲存你的電子郵件；如果你加入體重挑戰，也會儲存你與該群組分享的體重數字。</li>
+        <li>沒有廣告、沒有分析工具、沒有追蹤，我們也絕不販售資料。</li>
+      </ul>
+    </div>
+
+    <h2>關於我們</h2>
+    <p>ZebraPace 是一款為 EDS、PEM 與自律神經失調患者設計的體力配速與症狀紀錄 App，由 Paulina Valenzuela Lagos（以下稱「我們」）獨立開發。對本政策有任何問題，請來信：<a href="mailto:paulina404@gmail.com">paulina404@gmail.com</a>。</p>
+
+    <h2>留在你裝置上的資料</h2>
+    <p>你記錄的所有內容都儲存在你手機上的資料庫中（網頁版則儲存在你的瀏覽器中），包括睡眠、心率、飲水、蛋白質、步數、體重、心情與身體狀態、休息日與發作日、症狀、活動、運動、治療、受傷、護具及筆記。我們無法存取這些資料，它們也不會被上傳到任何地方。</p>
+    <p>如果你設定了 App 密碼，只會將加鹽雜湊值儲存在裝置的安全儲存區（iOS 的鑰匙圈、Android 的 Keystore）。Face ID、Touch ID 與指紋解鎖完全由作業系統處理，ZebraPace 永遠不會取得你的生物辨識資料。</p>
+    <p>在 Android 上，裝置備份功能已關閉，你的紀錄不會被複製到 Google 雲端硬碟。</p>
+
+    <h2>Apple 健康與 Health Connect</h2>
+    <p>如果你選擇連接，ZebraPace 會<strong>讀取</strong>步數、體能訓練、活動能量與心率。在 Android 上，Health Connect 也會提供每次訓練的距離與總消耗熱量。我們只將這些資料用於：</p>
+    <ul>
+      <li>預先填入你每天的步數；</li>
+      <li>建議體能訓練，讓你檢視後加入紀錄；</li>
+      <li>在你自己的分析中顯示心率範圍與能量估算。</li>
+    </ul>
+    <p>ZebraPace 從不寫入 Apple 健康或 Health Connect。讀取的資料只留在你的裝置上，絕不傳送到我們的伺服器或任何第三方，也絕不用於廣告、行銷或資料買賣。ZebraPace 對 Health Connect 資料的使用遵守 <a href="https://support.google.com/googleplay/android-developer/answer/9888170">Health Connect 權限政策</a>，包括其有限使用規定。你可以隨時在 iOS「設定」→「健康」或 Android 的 Health Connect 中撤銷存取權。</p>
+
+    <h2>選用帳號</h2>
+    <p>你不需要帳號也能使用 ZebraPace。如果你登入，你的電子郵件會儲存在我們的後端服務供應商 <a href="https://supabase.com/privacy">Supabase</a>，以便寄送登入連結給你。你的健康紀錄<strong>不會</strong>被上傳。</p>
+
+    <h2>體重挑戰（選用）</h2>
+    <p>如果你建立或加入體重挑戰，我們會在 Supabase 儲存以下資料：</p>
+    <ul>
+      <li>你選擇的顯示名稱；</li>
+      <li>你的起始體重；</li>
+      <li>一個目前體重數字（你在休息日記錄的體重平均值）；</li>
+      <li>每次體重更新及其日期；</li>
+      <li>挑戰的名稱與邀請碼。</li>
+    </ul>
+    <p>只有該挑戰的成員能看到這些資料，其他使用者無法瀏覽他們沒有加入的挑戰。</p>
+
+    <h2>天氣</h2>
+    <p>為了比較症狀與天氣，你輸入的地名會傳送給 <a href="https://open-meteo.com/en/terms">Open-Meteo</a> 以查詢座標，接著再傳送座標與日期範圍以取得歷史天氣。這些請求不包含你的帳號、姓名或健康資料。</p>
+
+    <h2>其他服務</h2>
+    <ul>
+      <li><strong>字型：</strong>App 會從 Google Fonts 下載字型，Google 會像處理一般網頁請求一樣收到你的 IP 位址。</li>
+      <li><strong>網站代管：</strong>網頁版由 Netlify 提供，Netlify 會保留標準的伺服器紀錄。</li>
+      <li><strong>連結：</strong>Ko-fi 與網站按鈕會開啟外部網站，這些網站有各自的隱私權政策。</li>
+    </ul>
+
+    <h2>匯出</h2>
+    <p>PDF 報告與 CSV/JSON 匯出檔都在你的裝置上產生，只會分享到你選擇的地方，例如你的醫師。</p>
+
+    <h2>我們不做的事</h2>
+    <p>沒有廣告，沒有分析或當機回報 SDK，不在其他 App 或網站上追蹤你，也不販售或分享個人資料。</p>
+
+    <h2>資料保存與刪除</h2>
+    <ul>
+      <li><strong>裝置上的資料：</strong>使用「設定」→「刪除我的所有資料」（會保留你的目標與設定），或解除安裝 App 以清除全部資料。</li>
+      <li><strong>帳號與挑戰資料：</strong>請用你登入的電子郵件寄信至 <a href="mailto:paulina404@gmail.com">paulina404@gmail.com</a>，我們會在 30 天內刪除你的帳號及所有挑戰紀錄。</li>
+    </ul>
+    <p>帳號與挑戰資料會保存到你要求刪除為止。</p>
+
+    <h2>安全性</h2>
+    <p>傳送到 Supabase 與 Open-Meteo 的資料都透過加密連線（HTTPS）傳輸。資料庫存取規則確保每位使用者只能修改自己的紀錄。沒有任何系統是絕對安全的，但我們只保存最少量的資料。</p>
+
+    <h2>兒童</h2>
+    <p>ZebraPace 並非為 16 歲以下兒童設計，我們不會在知情的情況下蒐集他們的資料。</p>
+
+    <h2>非醫療建議</h2>
+    <p>ZebraPace 是自我追蹤工具，不是醫療器材，不會診斷或治療任何疾病。</p>
+
+    <h2>政策變更</h2>
+    <p>如果本政策有所變更，我們會更新此頁面及上方的生效日期。如有重大變更，也會在 App 中通知你。</p>
+  </section>
+</main>
+<script>
+  (function () {
+    var langs = ['en', 'es', 'zh'];
+    function pick() {
+      var h = location.hash.slice(1);
+      if (langs.indexOf(h) >= 0) return h;
+      var n = (navigator.language || 'en').toLowerCase();
+      if (n.indexOf('es') === 0) return 'es';
+      if (n.indexOf('zh') === 0) return 'zh';
+      return 'en';
+    }
+    function show(lang) {
+      langs.forEach(function (l) {
+        document.getElementById(l).classList.toggle('active', l === lang);
+        document.querySelector('nav a[data-lang="' + l + '"]').setAttribute('aria-current', l === lang ? 'true' : 'false');
+      });
+      document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : lang;
+    }
+    document.documentElement.classList.add('js');
+    show(pick());
+    window.addEventListener('hashchange', function () { show(pick()); window.scrollTo(0, 0); });
+  })();
+</script>
+</body>
+</html>

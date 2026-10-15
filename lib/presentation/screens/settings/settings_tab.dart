@@ -173,7 +173,12 @@ class _SettingsTabState extends ConsumerState<SettingsTab> {
                     width: double.infinity,
                     child: CupertinoButton(
                       color: ZebraColors.cardBorder,
-                      onPressed: () => ref.read(authProvider.notifier).lock(),
+                      // Settings is pushed above the auth gate, so pop back
+                      // to it first or the lock screen stays hidden behind.
+                      onPressed: () {
+                        Navigator.of(context).popUntil((route) => route.isFirst);
+                        ref.read(authProvider.notifier).lock();
+                      },
                       child: Text(l10n.settingsTabLockNowButton,
                           style: const TextStyle(color: ZebraColors.black)),
                     ),
