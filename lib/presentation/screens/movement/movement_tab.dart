@@ -6,6 +6,7 @@ import 'widgets/calisthenics_section.dart';
 import 'widgets/healthkit_workout_suggestions.dart';
 import 'widgets/injuries_section.dart';
 import 'widgets/steps_section.dart';
+import 'widgets/stop_signals_card.dart';
 import 'widgets/therapies_section.dart';
 
 class MovementTab extends StatelessWidget {
@@ -24,6 +25,7 @@ class MovementTab extends StatelessWidget {
             ActivitiesSection(),
             TherapiesSection(),
             CalisthenicsSection(),
+            StopSignalsCard(),
             InjuriesSection(),
           ],
         ),

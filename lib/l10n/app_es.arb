@@ -695,5 +695,26 @@
   "challengeTabProgressChartEmptyState": "Cuando al menos dos de ustedes tengan un par de pesajes registrados, sus tendencias aparecerán aquí.",
   "challengeTabProgressChartStartLabel": "Inicio",
   "challengeTabProgressChartGoalLabel": "Meta",
-  "challengeTabYouLabel": "{name} (tú)"
+  "challengeTabYouLabel": "{name} (tú)",
+
+  "stepsSectionTodayGoalLabel": "Meta de hoy",
+  "stepsSectionMessageReadinessHonored": "🌙 Registrado. Tu cuerpo pidió menos hoy y lo escuchaste. Descansar es parte del plan, no una meta perdida.",
+  "readinessSteadyHeadline": "💚 Las señales de tu cuerpo se ven estables. Rango habitual hoy.",
+  "readinessLowerHeadline": "🌙 Tu cuerpo pide mantenerse estable hoy, así que no hay meta de crecimiento.",
+  "readinessLowHeadline": "🌙 Tu cuerpo pide un día más pequeño, así que el rango de hoy es menor.",
+  "readinessReasonRestingHeartRate": "Tu frecuencia cardíaca en reposo está {bpm} lpm por encima de lo habitual.",
+  "readinessReasonHrv": "Tu variabilidad de la frecuencia cardíaca está {percent}% por debajo de lo habitual.",
+  "readinessReasonRecoveryWindow": "El dolor muscular dura más allá de la ventana de recuperación de 72 horas.",
+  "readinessReasonPossibleCrash": "Una revisión de dolor reciente parecía un posible bajón (crash).",
+  "stopSignalsTitle": "🛑 Cuándo parar",
+  "stopSignalsReserve": "Termina cada serie con 1–2 repeticiones limpias en reserva. Nunca entrenes hasta el fallo.",
+  "stopSignalsTempo": "Muévete lento y con control, para que tus músculos sostengan la articulación en lugar del impulso o tus ligamentos.",
+  "stopSignalsRedFlagsTitle": "Para de inmediato si notas:",
+  "stopSignalsDizziness": "Mareo o sensación de desmayo",
+  "stopSignalsRacingHeart": "Taquicardia repentina, sobre todo al ponerte de pie",
+  "stopSignalsCoordination": "Pérdida de coordinación, o no sentir dónde está una articulación",
+  "stopSignalsJointPain": "Dolor articular agudo",
+  "stopSignalsAfterward": "Si el dolor muscular sigue ahí, o empeora, después de 72 horas, la última sesión fue demasiado. Baja la intensidad la próxima vez.",
+  "settingsTabHealthReadinessCaption": "ZebraPace ahora puede leer la frecuencia cardíaca en reposo y la variabilidad de la frecuencia cardíaca para reducir tu meta de pasos los días en que tu cuerpo necesita más recuperación.",
+  "settingsTabHealthReadinessButton": "Permitir FC en reposo y VFC"
 }

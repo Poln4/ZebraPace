@@ -41,6 +41,7 @@ class SettingsKeys {
   static const locationLon = 'location_lon';
   static const lastCelebratedStripes = 'last_celebrated_stripes';
   static const healthKitAuthStatus = 'healthkit_auth_status';
+  static const healthReadinessRequested = 'health_readiness_requested';
   static const languageCode = 'language_code';
   static const textScaleFactor = 'text_scale_factor';
   static const welcomeAcknowledged = 'welcome_acknowledged';

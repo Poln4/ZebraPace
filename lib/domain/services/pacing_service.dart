@@ -1,11 +1,15 @@
 import '../../core/constants/defaults.dart';
 import '../../data/repositories/daily_log_repository.dart';
+import 'readiness_service.dart';
 
 enum PacingMessageKind {
   flareNeutral,
   caution,
   goalCelebration,
   gentleLow,
+  /// Under a smaller-than-usual goal set by low readiness: listening to the
+  /// body, not falling short.
+  readinessHonored,
   steady,
   noBaseline,
 }
@@ -15,13 +19,19 @@ class PacingEvaluation {
     required this.avgSteps,
     required this.goalSteps,
     required this.cautionSteps,
+    this.readiness = ReadinessResult.unknown,
   });
 
   final double avgSteps;
   final int goalSteps;
   final int cautionSteps;
 
+  /// What shaped today's envelope. When it [ReadinessLevel.reducesEnvelope],
+  /// [goalSteps]/[cautionSteps] are already the reduced values.
+  final ReadinessResult readiness;
+
   bool get hasBaseline => avgSteps > 0;
+  bool get isReduced => readiness.level.reducesEnvelope;
 }
 
 /// Ported from app.py's get_weekly_average_steps + the steps-save message
@@ -59,6 +69,40 @@ class PacingService {
     );
   }
 
+  /// The energy envelope shrinks on days the body's signals say so,
+  /// instead of always asking for growth:
+  /// - lower: hold at baseline (no growth); caution line halfway to usual.
+  /// - low: goal drops to the gentle-low line; caution line at baseline.
+  /// Reaching the top of the envelope is the day's stimulus, not a reason to
+  /// keep going.
+  PacingEvaluation applyReadiness(
+    PacingEvaluation evaluation,
+    ReadinessResult readiness, {
+    required double cautionPct,
+  }) {
+    final avg = evaluation.avgSteps;
+    return switch (readiness.level) {
+      ReadinessLevel.lower => PacingEvaluation(
+          avgSteps: avg,
+          goalSteps: avg.floor(),
+          cautionSteps: (avg * (1 + (cautionPct - 1) / 2)).floor(),
+          readiness: readiness,
+        ),
+      ReadinessLevel.low => PacingEvaluation(
+          avgSteps: avg,
+          goalSteps: (avg * PacingConstants.lowStepsRatio).floor(),
+          cautionSteps: avg.floor(),
+          readiness: readiness,
+        ),
+      _ => PacingEvaluation(
+          avgSteps: avg,
+          goalSteps: evaluation.goalSteps,
+          cautionSteps: evaluation.cautionSteps,
+          readiness: readiness,
+        ),
+    };
+  }
+
   /// Branch order matters and must be preserved exactly (app.py's Save
   /// Steps button handler): flare day takes precedence over any comparison;
   /// otherwise caution > goal > gentle-low > steady, in that order.
@@ -71,6 +115,7 @@ class PacingService {
     if (!evaluation.hasBaseline) return PacingMessageKind.noBaseline;
     if (steps > evaluation.cautionSteps) return PacingMessageKind.caution;
     if (steps >= evaluation.goalSteps) return PacingMessageKind.goalCelebration;
+    if (evaluation.isReduced) return PacingMessageKind.readinessHonored;
     if (steps < evaluation.avgSteps * PacingConstants.lowStepsRatio) {
       return PacingMessageKind.gentleLow;
     }

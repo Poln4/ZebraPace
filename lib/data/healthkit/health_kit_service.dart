@@ -2,7 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:health/health.dart';
 
+import '../../core/utils/date_utils.dart';
 import '../../domain/models/detected_workout.dart';
+import '../../domain/services/readiness_service.dart';
 
 const List<HealthDataType> healthKitDataTypes = [
   HealthDataType.STEPS,
@@ -21,6 +23,19 @@ List<HealthDataType> healthDataTypes() => [
         HealthDataType.DISTANCE_DELTA,
         HealthDataType.TOTAL_CALORIES_BURNED,
       ],
+    ];
+
+/// Autonomic readiness markers. Apple Health records HRV as SDNN, Health
+/// Connect as RMSSD; readiness only compares each against its own history.
+/// Requested alongside [healthDataTypes] but deliberately left out of
+/// [HealthKitService.hasPermissions]: an install that connected before these
+/// existed must not suddenly read as disconnected. Keep the Android ones in
+/// sync with AndroidManifest.xml.
+List<HealthDataType> readinessDataTypes() => [
+      HealthDataType.RESTING_HEART_RATE,
+      usesHealthConnect
+          ? HealthDataType.HEART_RATE_VARIABILITY_RMSSD
+          : HealthDataType.HEART_RATE_VARIABILITY_SDNN,
     ];
 
 /// True on Android, where health data comes from Health Connect instead of
@@ -86,7 +101,7 @@ class HealthKitService {
   Future<bool> requestAuthorization() async {
     await _ensureConfigured();
     try {
-      return await _health.requestAuthorization(healthDataTypes());
+      return await _health.requestAuthorization([...healthDataTypes(), ...readinessDataTypes()]);
     } catch (_) {
       return false;
     }
@@ -179,5 +194,38 @@ class HealthKitService {
     } catch (_) {
       return null;
     }
+  }
+
+  /// Resting HR and HRV per local calendar day between [start] and [end],
+  /// keyed by date. Several samples on one day are averaged. Empty when
+  /// there's no watch data or no permission.
+  Future<Map<String, AutonomicReading>> getAutonomicReadings(DateTime start, DateTime end) async {
+    await _ensureConfigured();
+    final types = readinessDataTypes();
+    final rhr = <String, List<double>>{};
+    final hrv = <String, List<double>>{};
+    for (final type in types) {
+      try {
+        final points = await _health.getHealthDataFromTypes(
+          types: [type],
+          startTime: start,
+          endTime: end,
+        );
+        final bucket = type == HealthDataType.RESTING_HEART_RATE ? rhr : hrv;
+        for (final point in points) {
+          final value = point.value;
+          if (value is! NumericHealthValue) continue;
+          bucket.putIfAbsent(dateKey(point.dateFrom), () => []).add(value.numericValue.toDouble());
+        }
+      } catch (_) {
+        // One type denied shouldn't hide the other.
+      }
+    }
+    double? mean(List<double>? xs) =>
+        xs == null || xs.isEmpty ? null : xs.reduce((a, b) => a + b) / xs.length;
+    return {
+      for (final date in {...rhr.keys, ...hrv.keys})
+        date: AutonomicReading(restingHeartRate: mean(rhr[date]), hrvMs: mean(hrv[date])),
+    };
   }
 }

@@ -364,30 +364,53 @@ class _HealthKitSection extends ConsumerWidget {
       caption: enabled
           ? l10n.settingsTabHealthKitConnectedCaption
           : l10n.settingsTabHealthKitDisconnectedCaption,
-      child: SizedBox(
-        width: double.infinity,
-        child: CupertinoButton(
-          color: enabled ? ZebraColors.cardBorder : ZebraColors.brandTeal,
-          onPressed: () async {
-            if (enabled && android) {
-              await ref.read(healthKitServiceProvider).openHealthConnectSettings();
-              ref.invalidate(healthKitEnabledProvider);
-            } else if (enabled) {
-              await launchUrl(Uri.parse('app-settings:'));
-            } else {
-              await connectHealthKit(ref);
-            }
-          },
-          child: Text(
-            switch ((enabled, android)) {
-              (true, true) => l10n.settingsTabHealthConnectOpenSettingsButton,
-              (true, false) => l10n.settingsTabHealthKitOpenSettingsButton,
-              (false, true) => l10n.settingsTabHealthConnectConnectButton,
-              (false, false) => l10n.settingsTabHealthKitConnectButton,
-            },
-            style: const TextStyle(color: ZebraColors.onColor),
+      child: Column(
+        children: [
+          // Installs that connected before resting HR/HRV were read get a
+          // one-time button that asks for just those.
+          if (enabled && !(ref.watch(healthReadinessRequestedProvider).valueOrNull ?? true)) ...[
+            Text(l10n.settingsTabHealthReadinessCaption, style: const TextStyle(fontSize: 13)),
+            const SizedBox(height: 8),
+            SizedBox(
+              width: double.infinity,
+              child: CupertinoButton(
+                color: ZebraColors.brandTeal,
+                onPressed: () async {
+                  await connectHealthKit(ref);
+                  ref.invalidate(healthReadinessRequestedProvider);
+                },
+                child: Text(l10n.settingsTabHealthReadinessButton,
+                    style: const TextStyle(color: ZebraColors.onColor)),
+              ),
+            ),
+            const SizedBox(height: 8),
+          ],
+          SizedBox(
+            width: double.infinity,
+            child: CupertinoButton(
+              color: enabled ? ZebraColors.cardBorder : ZebraColors.brandTeal,
+              onPressed: () async {
+                if (enabled && android) {
+                  await ref.read(healthKitServiceProvider).openHealthConnectSettings();
+                  ref.invalidate(healthKitEnabledProvider);
+                } else if (enabled) {
+                  await launchUrl(Uri.parse('app-settings:'));
+                } else {
+                  await connectHealthKit(ref);
+                }
+              },
+              child: Text(
+                switch ((enabled, android)) {
+                  (true, true) => l10n.settingsTabHealthConnectOpenSettingsButton,
+                  (true, false) => l10n.settingsTabHealthKitOpenSettingsButton,
+                  (false, true) => l10n.settingsTabHealthConnectConnectButton,
+                  (false, false) => l10n.settingsTabHealthKitConnectButton,
+                },
+                style: const TextStyle(color: ZebraColors.onColor),
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

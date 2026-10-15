@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../core/constants/defaults.dart';
@@ -27,6 +28,7 @@ import '../domain/services/mets_summary_service.dart';
 import '../domain/services/month_chapter_service.dart';
 import '../domain/services/pacing_service.dart';
 import '../domain/services/pem_service.dart';
+import '../domain/services/readiness_service.dart';
 import '../domain/services/sleep_energy_service.dart';
 import '../domain/services/soreness_check_service.dart';
 import '../domain/services/stripe_service.dart';
@@ -97,6 +99,8 @@ final hydrationServiceProvider = Provider<HydrationService>(
     ref.watch(dailyLogRepositoryProvider),
   ),
 );
+final readinessServiceProvider = Provider<ReadinessService>((ref) => ReadinessService());
+
 final sorenessCheckServiceProvider = Provider<SorenessCheckService>(
   (ref) => SorenessCheckService(),
 );
@@ -168,10 +172,68 @@ Future<void> connectHealthKit(WidgetRef ref) async {
   }
   final shown = await service.requestAuthorization();
   if (shown) {
-    await ref.read(settingsRepositoryProvider).set(SettingsKeys.healthKitAuthStatus, _healthKitRequested);
+    final settings = ref.read(settingsRepositoryProvider);
+    await settings.set(SettingsKeys.healthKitAuthStatus, _healthKitRequested);
+    await settings.set(SettingsKeys.healthReadinessRequested, _healthKitRequested);
   }
   ref.invalidate(healthKitEnabledProvider);
+  ref.invalidate(readinessProvider);
 }
+
+/// False for installs that connected Health before resting HR/HRV were
+/// read, so Settings can offer to ask for just those.
+final healthReadinessRequestedProvider = FutureProvider.autoDispose<bool>((ref) async {
+  final status = await ref
+      .watch(settingsRepositoryProvider)
+      .getString(SettingsKeys.healthReadinessRequested, '');
+  return status == _healthKitRequested;
+});
+
+final sorenessChecksForDateProvider = StreamProvider.autoDispose.family((ref, String date) {
+  return ref.watch(sorenessCheckRepositoryProvider).watchForDate(date);
+});
+
+/// Readiness for [date] from resting HR + HRV (Apple Health / Health
+/// Connect) and recent soreness checks. Without a watch resting HR (web, or
+/// none recorded that day), the logged overnight minimum heart rate stands
+/// in for it, as its own series: the two run at different levels, so
+/// they're never mixed in one baseline.
+final readinessProvider =
+    FutureProvider.autoDispose.family<ReadinessResult, String>((ref, date) async {
+  ref.watch(sorenessChecksForDateProvider(date));
+  ref.watch(dailyLogProvider);
+
+  final day = dateFromKey(date);
+  final start = day.subtract(const Duration(days: ReadinessService.baselineDays));
+
+  var readings = <String, AutonomicReading>{};
+  if (!kIsWeb && await ref.watch(healthKitEnabledProvider.future)) {
+    readings = await ref
+        .watch(healthKitServiceProvider)
+        .getAutonomicReadings(start, day.add(const Duration(days: 1)));
+  }
+  if (readings[date]?.restingHeartRate == null) {
+    final logs = await ref.watch(dailyLogRepositoryProvider).getRange(dateKey(start), date);
+    final overnightMin = {
+      for (final l in logs)
+        if (l.sleepHeartRateMin case final bpm?) l.date: bpm.toDouble(),
+    };
+    readings = {
+      for (final d in {...readings.keys, ...overnightMin.keys})
+        d: AutonomicReading(restingHeartRate: overnightMin[d], hrvMs: readings[d]?.hrvMs),
+    };
+  }
+
+  final sorenessChecks = await ref
+      .watch(sorenessCheckRepositoryProvider)
+      .getRange(dateKey(day.subtract(const Duration(days: 4))), date);
+
+  return ref.watch(readinessServiceProvider).evaluate(
+        date: date,
+        readings: readings,
+        sorenessChecks: sorenessChecks,
+      );
+});
 
 final healthKitStepsProvider = FutureProvider.autoDispose.family<int?, String>((ref, date) async {
   final enabled = await ref.watch(healthKitEnabledProvider.future);

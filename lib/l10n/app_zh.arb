@@ -642,5 +642,26 @@
   "challengeTabProgressChartEmptyState": "當你們之中至少兩人記錄了幾次體重後，趨勢圖就會顯示在這裡。",
   "challengeTabProgressChartStartLabel": "起點",
   "challengeTabProgressChartGoalLabel": "目標",
-  "challengeTabYouLabel": "{name}（你）"
+  "challengeTabYouLabel": "{name}（你）",
+
+  "stepsSectionTodayGoalLabel": "今日目標",
+  "stepsSectionMessageReadinessHonored": "🌙 已記錄。今天身體要求少一點，而你聽見了。休息是計劃的一部分，不是沒達標。",
+  "readinessSteadyHeadline": "💚 身體訊號看起來穩定。今天維持平常的範圍。",
+  "readinessLowerHeadline": "🌙 身體今天希望保持穩定，所以沒有成長目標。",
+  "readinessLowHeadline": "🌙 身體今天需要小一點的一天，所以今天的範圍比較小。",
+  "readinessReasonRestingHeartRate": "靜止心率比平常高 {bpm} 次/分。",
+  "readinessReasonHrv": "心率變異度比平常低 {percent}%。",
+  "readinessReasonRecoveryWindow": "肌肉痠痛已超過 72 小時的恢復期。",
+  "readinessReasonPossibleCrash": "最近一次痠痛檢查看起來可能是崩潰（crash）。",
+  "stopSignalsTitle": "🛑 何時該停",
+  "stopSignalsReserve": "每組結束時保留 1–2 下乾淨的動作。永遠不要練到力竭。",
+  "stopSignalsTempo": "動作放慢、保持控制，讓肌肉而不是慣性或韌帶來穩住關節。",
+  "stopSignalsRedFlagsTitle": "出現以下情況請立即停止：",
+  "stopSignalsDizziness": "頭暈或快要昏倒的感覺",
+  "stopSignalsRacingHeart": "心跳突然加快，尤其是站起來時",
+  "stopSignalsCoordination": "失去協調，或感覺不到關節的位置",
+  "stopSignalsJointPain": "關節劇烈疼痛",
+  "stopSignalsAfterward": "如果 72 小時後痠痛還在或更嚴重，代表上次運動量太大。下次請減量。",
+  "settingsTabHealthReadinessCaption": "ZebraPace 現在可以讀取靜止心率和心率變異度，在身體需要更多恢復的日子調低你的步數目標。",
+  "settingsTabHealthReadinessButton": "允許讀取靜止心率與心率變異度"
 }

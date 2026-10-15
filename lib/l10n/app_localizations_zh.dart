@@ -2082,6 +2082,72 @@ class AppLocalizationsZh extends AppLocalizations {
   String challengeTabYouLabel(String name) {
     return '$name（你）';
   }
+
+  @override
+  String get stepsSectionTodayGoalLabel => '今日目標';
+
+  @override
+  String get stepsSectionMessageReadinessHonored =>
+      '🌙 已記錄。今天身體要求少一點，而你聽見了。休息是計劃的一部分，不是沒達標。';
+
+  @override
+  String get readinessSteadyHeadline => '💚 身體訊號看起來穩定。今天維持平常的範圍。';
+
+  @override
+  String get readinessLowerHeadline => '🌙 身體今天希望保持穩定，所以沒有成長目標。';
+
+  @override
+  String get readinessLowHeadline => '🌙 身體今天需要小一點的一天，所以今天的範圍比較小。';
+
+  @override
+  String readinessReasonRestingHeartRate(int bpm) {
+    return '靜止心率比平常高 $bpm 次/分。';
+  }
+
+  @override
+  String readinessReasonHrv(int percent) {
+    return '心率變異度比平常低 $percent%。';
+  }
+
+  @override
+  String get readinessReasonRecoveryWindow => '肌肉痠痛已超過 72 小時的恢復期。';
+
+  @override
+  String get readinessReasonPossibleCrash => '最近一次痠痛檢查看起來可能是崩潰（crash）。';
+
+  @override
+  String get stopSignalsTitle => '🛑 何時該停';
+
+  @override
+  String get stopSignalsReserve => '每組結束時保留 1–2 下乾淨的動作。永遠不要練到力竭。';
+
+  @override
+  String get stopSignalsTempo => '動作放慢、保持控制，讓肌肉而不是慣性或韌帶來穩住關節。';
+
+  @override
+  String get stopSignalsRedFlagsTitle => '出現以下情況請立即停止：';
+
+  @override
+  String get stopSignalsDizziness => '頭暈或快要昏倒的感覺';
+
+  @override
+  String get stopSignalsRacingHeart => '心跳突然加快，尤其是站起來時';
+
+  @override
+  String get stopSignalsCoordination => '失去協調，或感覺不到關節的位置';
+
+  @override
+  String get stopSignalsJointPain => '關節劇烈疼痛';
+
+  @override
+  String get stopSignalsAfterward => '如果 72 小時後痠痛還在或更嚴重，代表上次運動量太大。下次請減量。';
+
+  @override
+  String get settingsTabHealthReadinessCaption =>
+      'ZebraPace 現在可以讀取靜止心率和心率變異度，在身體需要更多恢復的日子調低你的步數目標。';
+
+  @override
+  String get settingsTabHealthReadinessButton => '允許讀取靜止心率與心率變異度';
 }
 
 /// The translations for Chinese, as used in Taiwan (`zh_TW`).
@@ -4161,4 +4227,70 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String challengeTabYouLabel(String name) {
     return '$name（你）';
   }
+
+  @override
+  String get stepsSectionTodayGoalLabel => '今日目標';
+
+  @override
+  String get stepsSectionMessageReadinessHonored =>
+      '🌙 已記錄。今天身體要求少一點，而你聽見了。休息是計劃的一部分，不是沒達標。';
+
+  @override
+  String get readinessSteadyHeadline => '💚 身體訊號看起來穩定。今天維持平常的範圍。';
+
+  @override
+  String get readinessLowerHeadline => '🌙 身體今天希望保持穩定，所以沒有成長目標。';
+
+  @override
+  String get readinessLowHeadline => '🌙 身體今天需要小一點的一天，所以今天的範圍比較小。';
+
+  @override
+  String readinessReasonRestingHeartRate(int bpm) {
+    return '靜止心率比平常高 $bpm 次/分。';
+  }
+
+  @override
+  String readinessReasonHrv(int percent) {
+    return '心率變異度比平常低 $percent%。';
+  }
+
+  @override
+  String get readinessReasonRecoveryWindow => '肌肉痠痛已超過 72 小時的恢復期。';
+
+  @override
+  String get readinessReasonPossibleCrash => '最近一次痠痛檢查看起來可能是崩潰（crash）。';
+
+  @override
+  String get stopSignalsTitle => '🛑 何時該停';
+
+  @override
+  String get stopSignalsReserve => '每組結束時保留 1–2 下乾淨的動作。永遠不要練到力竭。';
+
+  @override
+  String get stopSignalsTempo => '動作放慢、保持控制，讓肌肉而不是慣性或韌帶來穩住關節。';
+
+  @override
+  String get stopSignalsRedFlagsTitle => '出現以下情況請立即停止：';
+
+  @override
+  String get stopSignalsDizziness => '頭暈或快要昏倒的感覺';
+
+  @override
+  String get stopSignalsRacingHeart => '心跳突然加快，尤其是站起來時';
+
+  @override
+  String get stopSignalsCoordination => '失去協調，或感覺不到關節的位置';
+
+  @override
+  String get stopSignalsJointPain => '關節劇烈疼痛';
+
+  @override
+  String get stopSignalsAfterward => '如果 72 小時後痠痛還在或更嚴重，代表上次運動量太大。下次請減量。';
+
+  @override
+  String get settingsTabHealthReadinessCaption =>
+      'ZebraPace 現在可以讀取靜止心率和心率變異度，在身體需要更多恢復的日子調低你的步數目標。';
+
+  @override
+  String get settingsTabHealthReadinessButton => '允許讀取靜止心率與心率變異度';
 }

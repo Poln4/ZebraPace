@@ -3794,6 +3794,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{name} (you)'**
   String challengeTabYouLabel(String name);
+
+  /// No description provided for @stepsSectionTodayGoalLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s goal'**
+  String get stepsSectionTodayGoalLabel;
+
+  /// No description provided for @stepsSectionMessageReadinessHonored.
+  ///
+  /// In en, this message translates to:
+  /// **'🌙 Logged. Your body asked for less today and you listened. Rest is part of the plan, not a missed target.'**
+  String get stepsSectionMessageReadinessHonored;
+
+  /// No description provided for @readinessSteadyHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'💚 Your body\'s signals look steady. Usual envelope today.'**
+  String get readinessSteadyHeadline;
+
+  /// No description provided for @readinessLowerHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'🌙 Your body is asking to hold steady today, so there\'s no growth goal.'**
+  String get readinessLowerHeadline;
+
+  /// No description provided for @readinessLowHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'🌙 Your body is asking for a smaller day, so today\'s envelope is smaller.'**
+  String get readinessLowHeadline;
+
+  /// No description provided for @readinessReasonRestingHeartRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Resting heart rate is {bpm} bpm above your usual.'**
+  String readinessReasonRestingHeartRate(int bpm);
+
+  /// No description provided for @readinessReasonHrv.
+  ///
+  /// In en, this message translates to:
+  /// **'Heart rate variability is {percent}% below your usual.'**
+  String readinessReasonHrv(int percent);
+
+  /// No description provided for @readinessReasonRecoveryWindow.
+  ///
+  /// In en, this message translates to:
+  /// **'Soreness is lasting past the 72-hour recovery window.'**
+  String get readinessReasonRecoveryWindow;
+
+  /// No description provided for @readinessReasonPossibleCrash.
+  ///
+  /// In en, this message translates to:
+  /// **'A recent soreness check looked like a possible crash.'**
+  String get readinessReasonPossibleCrash;
+
+  /// No description provided for @stopSignalsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'🛑 When to stop'**
+  String get stopSignalsTitle;
+
+  /// No description provided for @stopSignalsReserve.
+  ///
+  /// In en, this message translates to:
+  /// **'End each set with 1–2 clean reps still in reserve. Never train to failure.'**
+  String get stopSignalsReserve;
+
+  /// No description provided for @stopSignalsTempo.
+  ///
+  /// In en, this message translates to:
+  /// **'Move slowly and with control, so your muscles hold the joint instead of momentum or your ligaments.'**
+  String get stopSignalsTempo;
+
+  /// No description provided for @stopSignalsRedFlagsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop right away if you notice:'**
+  String get stopSignalsRedFlagsTitle;
+
+  /// No description provided for @stopSignalsDizziness.
+  ///
+  /// In en, this message translates to:
+  /// **'Dizziness or light-headedness'**
+  String get stopSignalsDizziness;
+
+  /// No description provided for @stopSignalsRacingHeart.
+  ///
+  /// In en, this message translates to:
+  /// **'A sudden racing heart, especially when you stand up'**
+  String get stopSignalsRacingHeart;
+
+  /// No description provided for @stopSignalsCoordination.
+  ///
+  /// In en, this message translates to:
+  /// **'Losing coordination, or not sensing where a joint is'**
+  String get stopSignalsCoordination;
+
+  /// No description provided for @stopSignalsJointPain.
+  ///
+  /// In en, this message translates to:
+  /// **'Sharp joint pain'**
+  String get stopSignalsJointPain;
+
+  /// No description provided for @stopSignalsAfterward.
+  ///
+  /// In en, this message translates to:
+  /// **'Soreness that is still there, or getting worse, after 72 hours means the last session was too much. Scale back next time.'**
+  String get stopSignalsAfterward;
+
+  /// No description provided for @settingsTabHealthReadinessCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'ZebraPace can now read resting heart rate and heart rate variability to shrink your step goal on days your body needs more recovery.'**
+  String get settingsTabHealthReadinessCaption;
+
+  /// No description provided for @settingsTabHealthReadinessButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow resting heart rate & HRV'**
+  String get settingsTabHealthReadinessButton;
 }
 
 class _AppLocalizationsDelegate

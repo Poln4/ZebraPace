@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/constants/content.dart';
 import '../../../../core/theme/zebra_theme.dart';
 import '../../../../domain/services/pacing_service.dart';
+import '../../../../domain/services/readiness_service.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/app_providers.dart';
 import '../../../widgets/section_card.dart';
@@ -64,10 +65,21 @@ class _StepsSectionState extends ConsumerState<StepsSection> {
               Row(
                 children: [
                   _MiniStat(l10n.stepsSectionBaselineLabel, evaluation.avgSteps.round().toString()),
-                  _MiniStat(l10n.stepsSectionGrowthGoalLabel, evaluation.goalSteps.toString()),
+                  _MiniStat(
+                    evaluation.isReduced
+                        ? l10n.stepsSectionTodayGoalLabel
+                        : l10n.stepsSectionGrowthGoalLabel,
+                    evaluation.goalSteps.toString(),
+                  ),
                   _MiniStat(l10n.stepsSectionCautionLineLabel, evaluation.cautionSteps.toString()),
                 ],
               ),
+              if (!(log?.isFlareDay ?? false) &&
+                  evaluation.hasBaseline &&
+                  evaluation.readiness.level != ReadinessLevel.unknown) ...[
+                const SizedBox(height: 10),
+                _ReadinessNote(evaluation.readiness),
+              ],
               const SizedBox(height: 12),
               CupertinoTextField(
                 controller: _controller,
@@ -121,6 +133,7 @@ class _StepsSectionState extends ConsumerState<StepsSection> {
           l10n.stepsSectionMessageGoalCelebration(_pick(motivationGrowth(l10n))),
         PacingMessageKind.gentleLow =>
           l10n.stepsSectionMessageGentleLow(_pick(motivationLowSteps(l10n))),
+        PacingMessageKind.readinessHonored => l10n.stepsSectionMessageReadinessHonored,
         PacingMessageKind.steady => l10n.stepsSectionMessageSteady(_pick(motivationSteady(l10n))),
         PacingMessageKind.noBaseline => l10n.stepsSectionMessageNoBaseline,
       };
@@ -148,11 +161,69 @@ class _MiniStat extends StatelessWidget {
   }
 }
 
-final _pacingEvaluationProvider = FutureProvider.family((ref, String date) {
+class _ReadinessNote extends StatelessWidget {
+  const _ReadinessNote(this.readiness);
+
+  final ReadinessResult readiness;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final headline = switch (readiness.level) {
+      ReadinessLevel.low => l10n.readinessLowHeadline,
+      ReadinessLevel.lower => l10n.readinessLowerHeadline,
+      _ => l10n.readinessSteadyHeadline,
+    };
+    final reasons = [
+      for (final reason in ReadinessReason.values)
+        if (readiness.reasons.contains(reason))
+          switch (reason) {
+            ReadinessReason.restingHeartRateUp => l10n.readinessReasonRestingHeartRate(
+                (readiness.restingHeartRateDelta ?? 0).round()),
+            ReadinessReason.hrvDown =>
+              l10n.readinessReasonHrv((readiness.hrvPercentBelow ?? 0).round()),
+            ReadinessReason.recoveryWindowExceeded => l10n.readinessReasonRecoveryWindow,
+            ReadinessReason.possibleCrash => l10n.readinessReasonPossibleCrash,
+          },
+    ];
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: ZebraColors.bg,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(headline, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
+          for (final reason in reasons)
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: Text('· $reason', style: const TextStyle(fontSize: 12)),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+final _pacingEvaluationProvider = FutureProvider.autoDispose.family((ref, String date) async {
   final settings = ref.watch(settingsSnapshotProvider).valueOrNull;
-  return ref.read(pacingServiceProvider).evaluateForDate(
-        date,
-        growthGoalPct: settings?.growthGoalPct ?? 1.01,
-        cautionPct: settings?.cautionPct ?? 1.10,
-      );
+  final cautionPct = settings?.cautionPct ?? 1.10;
+  final pacing = ref.read(pacingServiceProvider);
+  final base = await pacing.evaluateForDate(
+    date,
+    growthGoalPct: settings?.growthGoalPct ?? 1.01,
+    cautionPct: cautionPct,
+  );
+  // Readiness only ever narrows the envelope; if it can't be worked out,
+  // the usual envelope still shows.
+  ReadinessResult readiness;
+  try {
+    readiness = await ref.watch(readinessProvider(date).future);
+  } catch (_) {
+    readiness = ReadinessResult.unknown;
+  }
+  return pacing.applyReadiness(base, readiness, cautionPct: cautionPct);
 });

@@ -2194,4 +2194,81 @@ class AppLocalizationsEn extends AppLocalizations {
   String challengeTabYouLabel(String name) {
     return '$name (you)';
   }
+
+  @override
+  String get stepsSectionTodayGoalLabel => 'Today\'s goal';
+
+  @override
+  String get stepsSectionMessageReadinessHonored =>
+      '🌙 Logged. Your body asked for less today and you listened. Rest is part of the plan, not a missed target.';
+
+  @override
+  String get readinessSteadyHeadline =>
+      '💚 Your body\'s signals look steady. Usual envelope today.';
+
+  @override
+  String get readinessLowerHeadline =>
+      '🌙 Your body is asking to hold steady today, so there\'s no growth goal.';
+
+  @override
+  String get readinessLowHeadline =>
+      '🌙 Your body is asking for a smaller day, so today\'s envelope is smaller.';
+
+  @override
+  String readinessReasonRestingHeartRate(int bpm) {
+    return 'Resting heart rate is $bpm bpm above your usual.';
+  }
+
+  @override
+  String readinessReasonHrv(int percent) {
+    return 'Heart rate variability is $percent% below your usual.';
+  }
+
+  @override
+  String get readinessReasonRecoveryWindow =>
+      'Soreness is lasting past the 72-hour recovery window.';
+
+  @override
+  String get readinessReasonPossibleCrash =>
+      'A recent soreness check looked like a possible crash.';
+
+  @override
+  String get stopSignalsTitle => '🛑 When to stop';
+
+  @override
+  String get stopSignalsReserve =>
+      'End each set with 1–2 clean reps still in reserve. Never train to failure.';
+
+  @override
+  String get stopSignalsTempo =>
+      'Move slowly and with control, so your muscles hold the joint instead of momentum or your ligaments.';
+
+  @override
+  String get stopSignalsRedFlagsTitle => 'Stop right away if you notice:';
+
+  @override
+  String get stopSignalsDizziness => 'Dizziness or light-headedness';
+
+  @override
+  String get stopSignalsRacingHeart =>
+      'A sudden racing heart, especially when you stand up';
+
+  @override
+  String get stopSignalsCoordination =>
+      'Losing coordination, or not sensing where a joint is';
+
+  @override
+  String get stopSignalsJointPain => 'Sharp joint pain';
+
+  @override
+  String get stopSignalsAfterward =>
+      'Soreness that is still there, or getting worse, after 72 hours means the last session was too much. Scale back next time.';
+
+  @override
+  String get settingsTabHealthReadinessCaption =>
+      'ZebraPace can now read resting heart rate and heart rate variability to shrink your step goal on days your body needs more recovery.';
+
+  @override
+  String get settingsTabHealthReadinessButton =>
+      'Allow resting heart rate & HRV';
 }

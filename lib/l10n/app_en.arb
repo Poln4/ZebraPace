@@ -1080,5 +1080,36 @@
     "placeholders": {
       "name": {"type": "String"}
     }
-  }
+  },
+
+  "stepsSectionTodayGoalLabel": "Today's goal",
+  "stepsSectionMessageReadinessHonored": "🌙 Logged. Your body asked for less today and you listened. Rest is part of the plan, not a missed target.",
+  "readinessSteadyHeadline": "💚 Your body's signals look steady. Usual envelope today.",
+  "readinessLowerHeadline": "🌙 Your body is asking to hold steady today, so there's no growth goal.",
+  "readinessLowHeadline": "🌙 Your body is asking for a smaller day, so today's envelope is smaller.",
+  "readinessReasonRestingHeartRate": "Resting heart rate is {bpm} bpm above your usual.",
+  "@readinessReasonRestingHeartRate": {
+    "placeholders": {
+      "bpm": {"type": "int"}
+    }
+  },
+  "readinessReasonHrv": "Heart rate variability is {percent}% below your usual.",
+  "@readinessReasonHrv": {
+    "placeholders": {
+      "percent": {"type": "int"}
+    }
+  },
+  "readinessReasonRecoveryWindow": "Soreness is lasting past the 72-hour recovery window.",
+  "readinessReasonPossibleCrash": "A recent soreness check looked like a possible crash.",
+  "stopSignalsTitle": "🛑 When to stop",
+  "stopSignalsReserve": "End each set with 1–2 clean reps still in reserve. Never train to failure.",
+  "stopSignalsTempo": "Move slowly and with control, so your muscles hold the joint instead of momentum or your ligaments.",
+  "stopSignalsRedFlagsTitle": "Stop right away if you notice:",
+  "stopSignalsDizziness": "Dizziness or light-headedness",
+  "stopSignalsRacingHeart": "A sudden racing heart, especially when you stand up",
+  "stopSignalsCoordination": "Losing coordination, or not sensing where a joint is",
+  "stopSignalsJointPain": "Sharp joint pain",
+  "stopSignalsAfterward": "Soreness that is still there, or getting worse, after 72 hours means the last session was too much. Scale back next time.",
+  "settingsTabHealthReadinessCaption": "ZebraPace can now read resting heart rate and heart rate variability to shrink your step goal on days your body needs more recovery.",
+  "settingsTabHealthReadinessButton": "Allow resting heart rate & HRV"
 }

@@ -2227,4 +2227,80 @@ class AppLocalizationsEs extends AppLocalizations {
   String challengeTabYouLabel(String name) {
     return '$name (tú)';
   }
+
+  @override
+  String get stepsSectionTodayGoalLabel => 'Meta de hoy';
+
+  @override
+  String get stepsSectionMessageReadinessHonored =>
+      '🌙 Registrado. Tu cuerpo pidió menos hoy y lo escuchaste. Descansar es parte del plan, no una meta perdida.';
+
+  @override
+  String get readinessSteadyHeadline =>
+      '💚 Las señales de tu cuerpo se ven estables. Rango habitual hoy.';
+
+  @override
+  String get readinessLowerHeadline =>
+      '🌙 Tu cuerpo pide mantenerse estable hoy, así que no hay meta de crecimiento.';
+
+  @override
+  String get readinessLowHeadline =>
+      '🌙 Tu cuerpo pide un día más pequeño, así que el rango de hoy es menor.';
+
+  @override
+  String readinessReasonRestingHeartRate(int bpm) {
+    return 'Tu frecuencia cardíaca en reposo está $bpm lpm por encima de lo habitual.';
+  }
+
+  @override
+  String readinessReasonHrv(int percent) {
+    return 'Tu variabilidad de la frecuencia cardíaca está $percent% por debajo de lo habitual.';
+  }
+
+  @override
+  String get readinessReasonRecoveryWindow =>
+      'El dolor muscular dura más allá de la ventana de recuperación de 72 horas.';
+
+  @override
+  String get readinessReasonPossibleCrash =>
+      'Una revisión de dolor reciente parecía un posible bajón (crash).';
+
+  @override
+  String get stopSignalsTitle => '🛑 Cuándo parar';
+
+  @override
+  String get stopSignalsReserve =>
+      'Termina cada serie con 1–2 repeticiones limpias en reserva. Nunca entrenes hasta el fallo.';
+
+  @override
+  String get stopSignalsTempo =>
+      'Muévete lento y con control, para que tus músculos sostengan la articulación en lugar del impulso o tus ligamentos.';
+
+  @override
+  String get stopSignalsRedFlagsTitle => 'Para de inmediato si notas:';
+
+  @override
+  String get stopSignalsDizziness => 'Mareo o sensación de desmayo';
+
+  @override
+  String get stopSignalsRacingHeart =>
+      'Taquicardia repentina, sobre todo al ponerte de pie';
+
+  @override
+  String get stopSignalsCoordination =>
+      'Pérdida de coordinación, o no sentir dónde está una articulación';
+
+  @override
+  String get stopSignalsJointPain => 'Dolor articular agudo';
+
+  @override
+  String get stopSignalsAfterward =>
+      'Si el dolor muscular sigue ahí, o empeora, después de 72 horas, la última sesión fue demasiado. Baja la intensidad la próxima vez.';
+
+  @override
+  String get settingsTabHealthReadinessCaption =>
+      'ZebraPace ahora puede leer la frecuencia cardíaca en reposo y la variabilidad de la frecuencia cardíaca para reducir tu meta de pasos los días en que tu cuerpo necesita más recuperación.';
+
+  @override
+  String get settingsTabHealthReadinessButton => 'Permitir FC en reposo y VFC';
 }

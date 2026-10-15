@@ -40,7 +40,7 @@
 	<key>NSFaceIDUsageDescription</key>
 	<string>ZebraPace uses Face ID to unlock the app so your health data stays private.</string>
 	<key>NSHealthShareUsageDescription</key>
-	<string>ZebraPace reads your steps, workouts, and active energy from Health so it can pre-fill your daily step count and suggest workouts to log — nothing is shared anywhere else.</string>
+	<string>ZebraPace reads your steps, workouts, active energy, heart rate, resting heart rate and heart rate variability from Health so it can pre-fill your daily step count, suggest workouts to log, and shrink your step goal on days your body needs more recovery. Nothing is shared anywhere else.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>ZebraPace does not write any data to Health. This permission is requested by the underlying Health package but is unused.</string>
 	<key>UIApplicationSceneManifest</key>
