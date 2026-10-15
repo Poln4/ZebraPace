@@ -16,6 +16,7 @@ import '../data/repositories/soreness_check_repository.dart';
 import '../data/repositories/therapy_repository.dart';
 import '../data/repositories/weather_cache_repository.dart';
 import '../domain/models/daily_log.dart';
+import '../domain/models/detected_sleep.dart';
 import '../domain/models/detected_workout.dart';
 import '../domain/services/body_metrics_service.dart';
 import '../domain/services/calisthenics_service.dart';
@@ -175,9 +176,11 @@ Future<void> connectHealthKit(WidgetRef ref) async {
     final settings = ref.read(settingsRepositoryProvider);
     await settings.set(SettingsKeys.healthKitAuthStatus, _healthKitRequested);
     await settings.set(SettingsKeys.healthReadinessRequested, _healthKitRequested);
+    await settings.set(SettingsKeys.healthSleepRequested, _healthKitRequested);
   }
   ref.invalidate(healthKitEnabledProvider);
   ref.invalidate(readinessProvider);
+  ref.invalidate(healthSleepProvider);
 }
 
 /// False for installs that connected Health before resting HR/HRV were
@@ -186,6 +189,14 @@ final healthReadinessRequestedProvider = FutureProvider.autoDispose<bool>((ref) 
   final status = await ref
       .watch(settingsRepositoryProvider)
       .getString(SettingsKeys.healthReadinessRequested, '');
+  return status == _healthKitRequested;
+});
+
+/// False for installs that connected Health before sleep was read.
+final healthSleepRequestedProvider = FutureProvider.autoDispose<bool>((ref) async {
+  final status = await ref
+      .watch(settingsRepositoryProvider)
+      .getString(SettingsKeys.healthSleepRequested, '');
   return status == _healthKitRequested;
 });
 
@@ -233,6 +244,16 @@ final readinessProvider =
         readings: readings,
         sorenessChecks: sorenessChecks,
       );
+});
+
+/// Last night's sleep from Apple Health / Health Connect for the Sleep
+/// section's pre-fill; null when not connected or nothing was recorded.
+final healthSleepProvider =
+    FutureProvider.autoDispose.family<DetectedSleep?, String>((ref, date) async {
+  if (kIsWeb) return null;
+  final enabled = await ref.watch(healthKitEnabledProvider.future);
+  if (!enabled) return null;
+  return ref.watch(healthKitServiceProvider).getSleepForDate(dateFromKey(date));
 });
 
 final healthKitStepsProvider = FutureProvider.autoDispose.family<int?, String>((ref, date) async {

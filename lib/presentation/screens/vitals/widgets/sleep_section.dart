@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/constants/enums.dart';
 import '../../../../core/theme/zebra_theme.dart';
+import '../../../../data/healthkit/health_kit_service.dart';
 import '../../../../domain/models/daily_log.dart';
+import '../../../../domain/models/detected_sleep.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/app_providers.dart';
 import '../../../widgets/feeling_picker.dart';
@@ -28,6 +30,7 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
   final _hrMinController = TextEditingController();
   final _hrMaxController = TextEditingController();
   String? _loadedForDate;
+  bool _filledFromHealth = false;
 
   @override
   void dispose() {
@@ -41,10 +44,13 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
     final l10n = AppLocalizations.of(context);
     final date = ref.watch(selectedDateProvider);
     final log = ref.watch(dailyLogProvider).valueOrNull;
+    // Like HealthKit steps: wait for the Health lookup before locking in the
+    // prefill, so a slow response isn't missed on first build.
+    final healthSleepAsync = ref.watch(healthSleepProvider(date));
 
-    if (log != null && _loadedForDate != date) {
+    if (log != null && _loadedForDate != date && !healthSleepAsync.isLoading) {
       _loadedForDate = date;
-      _prefill(log);
+      _prefill(log, healthSleepAsync.valueOrNull);
     }
 
     return SectionCard(
@@ -101,6 +107,15 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
               ),
             ],
           ),
+          if (_filledFromHealth) ...[
+            const SizedBox(height: 8),
+            Text(
+              usesHealthConnect
+                  ? l10n.sleepSectionFromHealthConnect
+                  : l10n.sleepSectionFromHealth,
+              style: const TextStyle(fontSize: 12, color: CupertinoColors.systemGrey),
+            ),
+          ],
           const SizedBox(height: 10),
           SizedBox(
             width: double.infinity,
@@ -116,11 +131,20 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
     );
   }
 
-  void _prefill(DailyLog log) {
-    _totalMinutes = log.sleepHours == null ? null : (log.sleepHours! * 60).round();
+  /// Saved values always win; Health only fills fields left empty, so a
+  /// manual correction is never overwritten.
+  void _prefill(DailyLog log, DetectedSleep? health) {
+    final minutes = log.sleepHours == null ? health?.asleepMinutes : (log.sleepHours! * 60).round();
+    final hrMin = log.sleepHeartRateMin ?? health?.heartRateMinBpm;
+    final hrMax = log.sleepHeartRateMax ?? health?.heartRateMaxBpm;
+    _filledFromHealth = health != null &&
+        ((log.sleepHours == null && health.asleepMinutes > 0) ||
+            (log.sleepHeartRateMin == null && health.heartRateMinBpm != null) ||
+            (log.sleepHeartRateMax == null && health.heartRateMaxBpm != null));
+    _totalMinutes = minutes;
     _quality = log.sleepQuality;
-    _hrMinController.text = log.sleepHeartRateMin?.toString() ?? '';
-    _hrMaxController.text = log.sleepHeartRateMax?.toString() ?? '';
+    _hrMinController.text = hrMin?.toString() ?? '';
+    _hrMaxController.text = hrMax?.toString() ?? '';
   }
 
   Future<void> _pickDuration(BuildContext context) async {
@@ -165,5 +189,6 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
         sleepHeartRateMax: int.tryParse(_hrMaxController.text),
       ),
     );
+    setState(() => _filledFromHealth = false);
   }
 }

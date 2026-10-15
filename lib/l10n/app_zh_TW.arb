@@ -596,6 +596,8 @@
   "sleepSectionHeartRateMinPlaceholder": "最低",
   "sleepSectionHeartRateMaxPlaceholder": "最高",
   "sleepSectionSaveButton": "儲存睡眠",
+  "sleepSectionFromHealth": "已從 Apple 健康填入。確認後點「儲存睡眠」即可保留。",
+  "sleepSectionFromHealthConnect": "已從 Health Connect 填入。確認後點「儲存睡眠」即可保留。",
   "weatherChartEmptyState": "尚未快取任何天氣資料。",
   "weatherChartPressureLabel": "氣壓（百帕）",
   "weatherChartBodyPainScoreLabel": "身體／疼痛分數",
@@ -718,5 +720,7 @@
   "stopSignalsJointPain": "關節劇烈疼痛",
   "stopSignalsAfterward": "如果 72 小時後痠痛還在或更嚴重，代表上次運動量太大。下次請減量。",
   "settingsTabHealthReadinessCaption": "ZebraPace 現在可以讀取靜止心率和心率變異度，在身體需要更多恢復的日子調低你的步數目標。",
-  "settingsTabHealthReadinessButton": "允許讀取靜止心率與心率變異度"
+  "settingsTabHealthReadinessButton": "允許讀取靜止心率與心率變異度",
+  "settingsTabHealthSleepCaption": "ZebraPace 現在可以讀取你的睡眠資料，自動填入昨晚的睡眠時間與睡眠心率。",
+  "settingsTabHealthSleepButton": "允許讀取睡眠"
 }

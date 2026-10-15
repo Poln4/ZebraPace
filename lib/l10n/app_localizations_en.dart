@@ -1813,6 +1813,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sleepSectionSaveButton => 'Save Sleep';
 
   @override
+  String get sleepSectionFromHealth =>
+      'Filled in from Apple Health. Check it and tap Save to keep it.';
+
+  @override
+  String get sleepSectionFromHealthConnect =>
+      'Filled in from Health Connect. Check it and tap Save to keep it.';
+
+  @override
   String get weatherChartEmptyState => 'No weather data cached yet.';
 
   @override
@@ -2279,4 +2287,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get settingsTabHealthReadinessButton =>
       'Allow resting heart rate & HRV';
+
+  @override
+  String get settingsTabHealthSleepCaption =>
+      'ZebraPace can now read your sleep to fill in last night\'s duration and sleeping heart rate for you.';
+
+  @override
+  String get settingsTabHealthSleepButton => 'Allow sleep';
 }

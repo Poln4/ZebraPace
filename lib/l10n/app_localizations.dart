@@ -3169,6 +3169,18 @@ abstract class AppLocalizations {
   /// **'Save Sleep'**
   String get sleepSectionSaveButton;
 
+  /// No description provided for @sleepSectionFromHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Filled in from Apple Health. Check it and tap Save to keep it.'**
+  String get sleepSectionFromHealth;
+
+  /// No description provided for @sleepSectionFromHealthConnect.
+  ///
+  /// In en, this message translates to:
+  /// **'Filled in from Health Connect. Check it and tap Save to keep it.'**
+  String get sleepSectionFromHealthConnect;
+
   /// No description provided for @weatherChartEmptyState.
   ///
   /// In en, this message translates to:
@@ -3926,6 +3938,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Allow resting heart rate & HRV'**
   String get settingsTabHealthReadinessButton;
+
+  /// No description provided for @settingsTabHealthSleepCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'ZebraPace can now read your sleep to fill in last night\'s duration and sleeping heart rate for you.'**
+  String get settingsTabHealthSleepCaption;
+
+  /// No description provided for @settingsTabHealthSleepButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow sleep'**
+  String get settingsTabHealthSleepButton;
 }
 
 class _AppLocalizationsDelegate

@@ -389,6 +389,25 @@ class _HealthKitSection extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 8),
+          ] else if (enabled && !(ref.watch(healthSleepRequestedProvider).valueOrNull ?? true)) ...[
+            // Same one-time ask for installs that connected before sleep
+            // was read (shown after the readiness one, never both at once).
+            Text(l10n.settingsTabHealthSleepCaption, style: const TextStyle(fontSize: 13)),
+            const SizedBox(height: 8),
+            SizedBox(
+              width: double.infinity,
+              child: CupertinoButton(
+                color: ZebraColors.brandTeal,
+                onPressed: () async {
+                  await connectHealthKit(ref);
+                  ref.invalidate(healthSleepRequestedProvider);
+                  ref.invalidate(healthSleepProvider);
+                },
+                child: Text(l10n.settingsTabHealthSleepButton,
+                    style: const TextStyle(color: ZebraColors.onColor)),
+              ),
+            ),
+            const SizedBox(height: 8),
           ],
           SizedBox(
             width: double.infinity,

@@ -1719,6 +1719,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get sleepSectionSaveButton => '儲存睡眠';
 
   @override
+  String get sleepSectionFromHealth => '已從 Apple 健康填入。確認後點「儲存睡眠」即可保留。';
+
+  @override
+  String get sleepSectionFromHealthConnect =>
+      '已從 Health Connect 填入。確認後點「儲存睡眠」即可保留。';
+
+  @override
   String get weatherChartEmptyState => '尚未快取任何天氣資料。';
 
   @override
@@ -2155,6 +2162,13 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settingsTabHealthReadinessButton => '允許讀取靜止心率與心率變異度';
+
+  @override
+  String get settingsTabHealthSleepCaption =>
+      'ZebraPace 現在可以讀取你的睡眠資料，自動填入昨晚的睡眠時間與睡眠心率。';
+
+  @override
+  String get settingsTabHealthSleepButton => '允許讀取睡眠';
 }
 
 /// The translations for Chinese, as used in Taiwan (`zh_TW`).
@@ -3871,6 +3885,13 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get sleepSectionSaveButton => '儲存睡眠';
 
   @override
+  String get sleepSectionFromHealth => '已從 Apple 健康填入。確認後點「儲存睡眠」即可保留。';
+
+  @override
+  String get sleepSectionFromHealthConnect =>
+      '已從 Health Connect 填入。確認後點「儲存睡眠」即可保留。';
+
+  @override
   String get weatherChartEmptyState => '尚未快取任何天氣資料。';
 
   @override
@@ -4307,4 +4328,11 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get settingsTabHealthReadinessButton => '允許讀取靜止心率與心率變異度';
+
+  @override
+  String get settingsTabHealthSleepCaption =>
+      'ZebraPace 現在可以讀取你的睡眠資料，自動填入昨晚的睡眠時間與睡眠心率。';
+
+  @override
+  String get settingsTabHealthSleepButton => '允許讀取睡眠';
 }

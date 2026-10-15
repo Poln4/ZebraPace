@@ -1840,6 +1840,14 @@ class AppLocalizationsEs extends AppLocalizations {
   String get sleepSectionSaveButton => 'Guardar Sueño';
 
   @override
+  String get sleepSectionFromHealth =>
+      'Completado desde Apple Salud. Revísalo y toca Guardar para conservarlo.';
+
+  @override
+  String get sleepSectionFromHealthConnect =>
+      'Completado desde Health Connect. Revísalo y toca Guardar para conservarlo.';
+
+  @override
   String get weatherChartEmptyState => 'Aún no hay datos de clima almacenados.';
 
   @override
@@ -2311,4 +2319,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsTabHealthReadinessButton => 'Permitir FC en reposo y VFC';
+
+  @override
+  String get settingsTabHealthSleepCaption =>
+      'ZebraPace ahora puede leer tu sueño para completar la duración y la frecuencia cardíaca de anoche por ti.';
+
+  @override
+  String get settingsTabHealthSleepButton => 'Permitir sueño';
 }

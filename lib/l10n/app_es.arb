@@ -596,6 +596,8 @@
   "sleepSectionHeartRateMinPlaceholder": "Mínima",
   "sleepSectionHeartRateMaxPlaceholder": "Máxima",
   "sleepSectionSaveButton": "Guardar Sueño",
+  "sleepSectionFromHealth": "Completado desde Apple Salud. Revísalo y toca Guardar para conservarlo.",
+  "sleepSectionFromHealthConnect": "Completado desde Health Connect. Revísalo y toca Guardar para conservarlo.",
   "weatherChartEmptyState": "Aún no hay datos de clima almacenados.",
   "weatherChartPressureLabel": "Presión (hPa)",
   "weatherChartBodyPainScoreLabel": "Puntuación de cuerpo/dolor",
@@ -718,5 +720,7 @@
   "stopSignalsJointPain": "Dolor articular agudo",
   "stopSignalsAfterward": "Si el dolor muscular sigue ahí, o empeora, después de 72 horas, la última sesión fue demasiado. Baja la intensidad la próxima vez.",
   "settingsTabHealthReadinessCaption": "ZebraPace ahora puede leer la frecuencia cardíaca en reposo y la variabilidad de la frecuencia cardíaca para reducir tu meta de pasos los días en que tu cuerpo necesita más recuperación.",
-  "settingsTabHealthReadinessButton": "Permitir FC en reposo y VFC"
+  "settingsTabHealthReadinessButton": "Permitir FC en reposo y VFC",
+  "settingsTabHealthSleepCaption": "ZebraPace ahora puede leer tu sueño para completar la duración y la frecuencia cardíaca de anoche por ti.",
+  "settingsTabHealthSleepButton": "Permitir sueño"
 }

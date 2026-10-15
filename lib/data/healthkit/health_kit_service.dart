@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:health/health.dart';
 
 import '../../core/utils/date_utils.dart';
+import '../../domain/models/detected_sleep.dart';
 import '../../domain/models/detected_workout.dart';
 import '../../domain/services/readiness_service.dart';
 
@@ -36,6 +37,20 @@ List<HealthDataType> readinessDataTypes() => [
       usesHealthConnect
           ? HealthDataType.HEART_RATE_VARIABILITY_RMSSD
           : HealthDataType.HEART_RATE_VARIABILITY_SDNN,
+    ];
+
+/// Asleep stages for the Sleep section's pre-fill. Older Apple Watches and
+/// phones record a plain "asleep"; newer ones split it into core (LIGHT),
+/// deep and REM. Health Connect only reports stages when the tracker
+/// recorded them, so Android also reads whole sessions as a fallback.
+/// Like [readinessDataTypes], left out of hasPermissions. Keep the Android
+/// permission (READ_SLEEP) in AndroidManifest.xml.
+List<HealthDataType> sleepDataTypes() => [
+      HealthDataType.SLEEP_ASLEEP,
+      HealthDataType.SLEEP_LIGHT,
+      HealthDataType.SLEEP_DEEP,
+      HealthDataType.SLEEP_REM,
+      if (usesHealthConnect) HealthDataType.SLEEP_SESSION,
     ];
 
 /// True on Android, where health data comes from Health Connect instead of
@@ -101,7 +116,8 @@ class HealthKitService {
   Future<bool> requestAuthorization() async {
     await _ensureConfigured();
     try {
-      return await _health.requestAuthorization([...healthDataTypes(), ...readinessDataTypes()]);
+      return await _health.requestAuthorization(
+          [...healthDataTypes(), ...readinessDataTypes(), ...sleepDataTypes()]);
     } catch (_) {
       return false;
     }
@@ -194,6 +210,60 @@ class HealthKitService {
     } catch (_) {
       return null;
     }
+  }
+
+  /// The night belonging to [date] (see [DetectedSleep.windowFor]), or null
+  /// when nothing asleep was recorded or access wasn't granted.
+  Future<DetectedSleep?> getSleepForDate(DateTime date) async {
+    await _ensureConfigured();
+    final (windowStart, windowEnd) = DetectedSleep.windowFor(date);
+    // Samples are matched by overlap, so start early enough to catch a
+    // stretch that began well before the window but ends inside it.
+    final queryStart = windowStart.subtract(const Duration(hours: 18));
+
+    Future<List<(DateTime, DateTime)>> intervals(List<HealthDataType> types) async {
+      final out = <(DateTime, DateTime)>[];
+      for (final type in types) {
+        try {
+          final points = await _health.getHealthDataFromTypes(
+            types: [type],
+            startTime: queryStart,
+            endTime: windowEnd,
+          );
+          out.addAll([for (final p in points) (p.dateFrom, p.dateTo)]);
+        } catch (_) {
+          // A type the device doesn't record shouldn't hide the others.
+        }
+      }
+      return out;
+    }
+
+    final stages = sleepDataTypes().where((t) => t != HealthDataType.SLEEP_SESSION).toList();
+    var asleep = await intervals(stages);
+    if (asleep.isEmpty && usesHealthConnect) {
+      asleep = await intervals([HealthDataType.SLEEP_SESSION]);
+    }
+    if (asleep.isEmpty) return null;
+
+    final night = DetectedSleep.fromSamples(date: date, asleep: asleep);
+    if (night == null) return null;
+
+    var heartRate = <(DateTime, int)>[];
+    try {
+      final first = asleep.map((i) => i.$1).reduce((a, b) => a.isBefore(b) ? a : b);
+      final points = await _health.getHealthDataFromTypes(
+        types: [HealthDataType.HEART_RATE],
+        startTime: first.isBefore(queryStart) ? queryStart : first,
+        endTime: windowEnd,
+      );
+      heartRate = [
+        for (final p in points)
+          if (p.value case NumericHealthValue(:final numericValue)) (p.dateFrom, numericValue.round()),
+      ];
+    } catch (_) {
+      // No heart rate is fine; the duration still pre-fills.
+    }
+    return DetectedSleep.fromSamples(date: date, asleep: asleep, heartRate: heartRate);
   }
 
   /// Resting HR and HRV per local calendar day between [start] and [end],

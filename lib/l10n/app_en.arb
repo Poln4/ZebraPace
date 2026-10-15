@@ -877,6 +877,8 @@
   "sleepSectionHeartRateMinPlaceholder": "Lowest",
   "sleepSectionHeartRateMaxPlaceholder": "Highest",
   "sleepSectionSaveButton": "Save Sleep",
+  "sleepSectionFromHealth": "Filled in from Apple Health. Check it and tap Save to keep it.",
+  "sleepSectionFromHealthConnect": "Filled in from Health Connect. Check it and tap Save to keep it.",
 
   "weatherChartEmptyState": "No weather data cached yet.",
   "weatherChartPressureLabel": "Pressure (hPa)",
@@ -1113,5 +1115,7 @@
   "stopSignalsJointPain": "Sharp joint pain",
   "stopSignalsAfterward": "Soreness that is still there, or getting worse, after 72 hours means the last session was too much. Scale back next time.",
   "settingsTabHealthReadinessCaption": "ZebraPace can now read resting heart rate and heart rate variability to shrink your step goal on days your body needs more recovery.",
-  "settingsTabHealthReadinessButton": "Allow resting heart rate & HRV"
+  "settingsTabHealthReadinessButton": "Allow resting heart rate & HRV",
+  "settingsTabHealthSleepCaption": "ZebraPace can now read your sleep to fill in last night's duration and sleeping heart rate for you.",
+  "settingsTabHealthSleepButton": "Allow sleep"
 }
