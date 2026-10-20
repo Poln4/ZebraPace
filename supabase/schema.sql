@@ -67,10 +67,14 @@ create table if not exists public.calisthenics (
   progression text not null,
   sets integer not null,
   reps integer not null,
+  set_values integer[],
+  unit text not null default 'reps' check (unit in ('reps', 'seconds')),
   comfort_score double precision not null default 0,
   mental_state text,
   body_feeling text,
   contraction_mode text,
+  heart_rate_min_bpm integer,
+  heart_rate_max_bpm integer,
   updated_at timestamptz not null default now(),
   deleted_at timestamptz
 );

@@ -7,6 +7,7 @@ import '../../../../domain/models/calisthenics_set.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/app_providers.dart';
 import '../../../widgets/feeling_picker.dart';
+import 'set_values_editor.dart';
 
 /// Modal sheet for editing an already-logged calisthenics set — reachable by
 /// tapping a row in CalisthenicsSection's list, then "Edit" on the action
@@ -29,8 +30,8 @@ class _EditCalisthenicsSheet extends ConsumerStatefulWidget {
 }
 
 class _EditCalisthenicsSheetState extends ConsumerState<_EditCalisthenicsSheet> {
-  late final _setsController = TextEditingController(text: widget.set.sets.toString());
-  late final _repsController = TextEditingController(text: widget.set.reps.toString());
+  late List<int> _setValues = widget.set.setValues;
+  late SetUnit _unit = widget.set.unit;
   late final _hrMinController =
       TextEditingController(text: widget.set.heartRateMinBpm?.toString() ?? '');
   late final _hrMaxController =
@@ -42,8 +43,6 @@ class _EditCalisthenicsSheetState extends ConsumerState<_EditCalisthenicsSheet> 
 
   @override
   void dispose() {
-    _setsController.dispose();
-    _repsController.dispose();
     _hrMinController.dispose();
     _hrMaxController.dispose();
     super.dispose();
@@ -71,7 +70,7 @@ class _EditCalisthenicsSheetState extends ConsumerState<_EditCalisthenicsSheet> 
                 Text(l10n.calisthenicsSectionEditTitle,
                     style: const TextStyle(fontWeight: FontWeight.w700)),
                 CupertinoButton(
-                  onPressed: _save,
+                  onPressed: _setValues.isEmpty ? null : _save,
                   child: Text(l10n.commonSaveButton),
                 ),
               ],
@@ -85,24 +84,11 @@ class _EditCalisthenicsSheetState extends ConsumerState<_EditCalisthenicsSheet> 
                     Text('${widget.set.exercise.label(l10n)} — ${widget.set.progression}',
                         style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13)),
                     const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: CupertinoTextField(
-                            controller: _setsController,
-                            keyboardType: TextInputType.number,
-                            placeholder: l10n.calisthenicsSectionSetsPlaceholder,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: CupertinoTextField(
-                            controller: _repsController,
-                            keyboardType: TextInputType.number,
-                            placeholder: l10n.calisthenicsSectionRepsPlaceholder,
-                          ),
-                        ),
-                      ],
+                    SetValuesEditor(
+                      initialValues: widget.set.setValues,
+                      unit: _unit,
+                      onUnitChanged: (u) => setState(() => _unit = u),
+                      onChanged: (values) => setState(() => _setValues = values),
                     ),
                     const SizedBox(height: 10),
                     Text(l10n.commonHeartRateLabel,
@@ -194,8 +180,8 @@ class _EditCalisthenicsSheetState extends ConsumerState<_EditCalisthenicsSheet> 
   Future<void> _save() async {
     await ref.read(calisthenicsRepositoryProvider).update(
           id: widget.set.id,
-          sets: int.tryParse(_setsController.text) ?? widget.set.sets,
-          reps: int.tryParse(_repsController.text) ?? widget.set.reps,
+          setValues: _setValues,
+          unit: _unit,
           comfortScore: _comfort,
           mentalState: _mental,
           bodyFeeling: _body,

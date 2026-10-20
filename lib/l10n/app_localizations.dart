@@ -371,6 +371,12 @@ abstract class AppLocalizations {
   /// **'Twists'**
   String get calisthenicsExerciseTwists;
 
+  /// No description provided for @calisthenicsExerciseHolds.
+  ///
+  /// In en, this message translates to:
+  /// **'Holds'**
+  String get calisthenicsExerciseHolds;
+
   /// No description provided for @calisthenicsPushupsWall.
   ///
   /// In en, this message translates to:
@@ -695,6 +701,42 @@ abstract class AppLocalizations {
   /// **'Full Twists'**
   String get calisthenicsTwistsFull;
 
+  /// No description provided for @calisthenicsHoldsPlank.
+  ///
+  /// In en, this message translates to:
+  /// **'Plank'**
+  String get calisthenicsHoldsPlank;
+
+  /// No description provided for @calisthenicsHoldsSidePlank.
+  ///
+  /// In en, this message translates to:
+  /// **'Side Plank'**
+  String get calisthenicsHoldsSidePlank;
+
+  /// No description provided for @calisthenicsHoldsWallSit.
+  ///
+  /// In en, this message translates to:
+  /// **'Wall Sit'**
+  String get calisthenicsHoldsWallSit;
+
+  /// No description provided for @calisthenicsHoldsGluteBridge.
+  ///
+  /// In en, this message translates to:
+  /// **'Glute Bridge Hold'**
+  String get calisthenicsHoldsGluteBridge;
+
+  /// No description provided for @calisthenicsHoldsHollowBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Hollow Body Hold'**
+  String get calisthenicsHoldsHollowBody;
+
+  /// No description provided for @calisthenicsHoldsDeadHang.
+  ///
+  /// In en, this message translates to:
+  /// **'Dead Hang'**
+  String get calisthenicsHoldsDeadHang;
+
   /// No description provided for @sorenessOnsetSameDay.
   ///
   /// In en, this message translates to:
@@ -1001,6 +1043,48 @@ abstract class AppLocalizations {
   /// **'Reps'**
   String get calisthenicsSectionRepsPlaceholder;
 
+  /// No description provided for @calisthenicsSectionUnitSeconds.
+  ///
+  /// In en, this message translates to:
+  /// **'Seconds'**
+  String get calisthenicsSectionUnitSeconds;
+
+  /// No description provided for @calisthenicsSectionSetFieldPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Set {number}'**
+  String calisthenicsSectionSetFieldPlaceholder(int number);
+
+  /// No description provided for @calisthenicsSectionAddSet.
+  ///
+  /// In en, this message translates to:
+  /// **'+ Set'**
+  String get calisthenicsSectionAddSet;
+
+  /// No description provided for @calisthenicsSectionRemoveSet.
+  ///
+  /// In en, this message translates to:
+  /// **'− Set'**
+  String get calisthenicsSectionRemoveSet;
+
+  /// No description provided for @calisthenicsSetValuesReps.
+  ///
+  /// In en, this message translates to:
+  /// **'{values} reps'**
+  String calisthenicsSetValuesReps(String values);
+
+  /// No description provided for @calisthenicsSetValueSeconds.
+  ///
+  /// In en, this message translates to:
+  /// **'{seconds}s'**
+  String calisthenicsSetValueSeconds(int seconds);
+
+  /// No description provided for @calisthenicsSectionGoalUnitMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Logging in a different unit than this level\'s goal — goal tracking is paused.'**
+  String get calisthenicsSectionGoalUnitMismatch;
+
   /// No description provided for @calisthenicsSectionContractionModeLabel.
   ///
   /// In en, this message translates to:
@@ -1094,12 +1178,11 @@ abstract class AppLocalizations {
   /// No description provided for @calisthenicsSectionListItem.
   ///
   /// In en, this message translates to:
-  /// **'{exercise} ({progression}) — {sets}×{reps}'**
+  /// **'{exercise} ({progression}) — {detail}'**
   String calisthenicsSectionListItem(
     String exercise,
     String progression,
-    int sets,
-    int reps,
+    String detail,
   );
 
   /// No description provided for @commonMentalStateLabel.

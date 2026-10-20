@@ -12,6 +12,7 @@ import '../../../widgets/enum_wrap.dart';
 import '../../../widgets/feeling_picker.dart';
 import '../../../widgets/section_card.dart';
 import 'edit_calisthenics_sheet.dart';
+import 'set_values_editor.dart';
 
 class CalisthenicsSection extends ConsumerStatefulWidget {
   const CalisthenicsSection({super.key});
@@ -24,8 +25,8 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
   CalisthenicsExercise _exercise = CalisthenicsExercise.pushups;
   String? _progression;
   ContractionMode? _contractionMode;
-  final _setsController = TextEditingController(text: '3');
-  final _repsController = TextEditingController(text: '10');
+  SetUnit _unit = SetUnit.reps;
+  List<int> _setValues = const [];
   final _hrMinController = TextEditingController();
   final _hrMaxController = TextEditingController();
   double _comfort = 3.0;
@@ -42,18 +43,7 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
   bool _issueLogged = false;
 
   @override
-  void initState() {
-    super.initState();
-    _setsController.addListener(_onInputChanged);
-    _repsController.addListener(_onInputChanged);
-  }
-
-  void _onInputChanged() => setState(() {});
-
-  @override
   void dispose() {
-    _setsController.dispose();
-    _repsController.dispose();
     _hrMinController.dispose();
     _hrMaxController.dispose();
     _issueNoteController.dispose();
@@ -65,8 +55,15 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
     return levels.firstWhere((lvl) => lvl.name == _progression, orElse: () => levels.first);
   }
 
+  /// Holds default to seconds and, if nothing's picked yet, to the
+  /// isometric contraction mode.
+  void _setUnit(SetUnit unit) {
+    _unit = unit;
+    if (unit == SetUnit.seconds) _contractionMode ??= ContractionMode.isometric;
+  }
+
   String _goalLabel(AppLocalizations l10n, CalisthenicsLevel level) {
-    if (level.unit == GoalUnit.secondsHold) {
+    if (level.unit == SetUnit.seconds) {
       return level.bothSides
           ? l10n.calisthenicsSectionGoalHoldBothSides(level.targetSets, level.targetValue)
           : l10n.calisthenicsSectionGoalHold(level.targetSets, level.targetValue);
@@ -85,11 +82,16 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
     final date = ref.watch(selectedDateProvider);
     final loggedSetsAsync = ref.watch(_calisthenicsForDateProvider(date));
 
-    final enteredSets = int.tryParse(_setsController.text) ?? 0;
-    final enteredValue = int.tryParse(_repsController.text) ?? 0;
-    final metGoal = enteredSets >= currentLevel.targetSets && enteredValue >= currentLevel.targetValue;
-    final valueProgress =
-        currentLevel.targetValue == 0 ? 0.0 : (enteredValue / currentLevel.targetValue).clamp(0.0, 1.0);
+    // A goal in reps says nothing about seconds held (or vice versa), so
+    // goal tracking pauses when the logged unit differs from the level's.
+    final unitMatches = _unit == currentLevel.unit;
+    final metGoal = unitMatches &&
+        meetsGoal(_setValues,
+            targetSets: currentLevel.targetSets, targetValue: currentLevel.targetValue);
+    final valueProgress = unitMatches
+        ? goalProgress(_setValues,
+            targetSets: currentLevel.targetSets, targetValue: currentLevel.targetValue)
+        : 0.0;
 
     return SectionCard(
       title: l10n.calisthenicsSectionTitle,
@@ -104,22 +106,18 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
           Text(l10n.calisthenicsSectionExerciseLabel,
               style: const TextStyle(fontWeight: FontWeight.w700)),
           const SizedBox(height: 6),
-          CupertinoSlidingSegmentedControl<CalisthenicsExercise>(
-            groupValue: _exercise,
-            children: {
-              for (final e in CalisthenicsExercise.values)
-                e: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 6),
-                  child: Text(e.label(l10n), style: const TextStyle(fontSize: 11)),
-                ),
-            },
-            onValueChanged: (v) {
-              if (v == null) return;
-              setState(() {
-                _exercise = v;
-                _progression = v.levels(l10n).first.name;
-              });
-            },
+          // Chips rather than a segmented control — seven exercises don't
+          // fit one row at phone width.
+          EnumWrap<CalisthenicsExercise>(
+            options: CalisthenicsExercise.values,
+            labelOf: (e) => e.label(l10n),
+            value: _exercise,
+            onChanged: (v) => setState(() {
+              _exercise = v;
+              final first = v.levels(l10n).first;
+              _progression = first.name;
+              _setUnit(first.unit);
+            }),
           ),
           const SizedBox(height: 10),
           Text(l10n.calisthenicsSectionProgressionTierLabel,
@@ -129,27 +127,17 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
             options: [for (final lvl in levels) lvl.name],
             labelOf: (name) => name,
             value: _progression!,
-            onChanged: (v) => setState(() => _progression = v),
+            onChanged: (v) => setState(() {
+              _progression = v;
+              _setUnit(levels.firstWhere((lvl) => lvl.name == v).unit);
+            }),
           ),
           const SizedBox(height: 10),
-          Row(
-            children: [
-              Expanded(
-                child: CupertinoTextField(
-                  controller: _setsController,
-                  keyboardType: TextInputType.number,
-                  placeholder: l10n.calisthenicsSectionSetsPlaceholder,
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: CupertinoTextField(
-                  controller: _repsController,
-                  keyboardType: TextInputType.number,
-                  placeholder: l10n.calisthenicsSectionRepsPlaceholder,
-                ),
-              ),
-            ],
+          SetValuesEditor(
+            initialValues: const [null, null, null],
+            unit: _unit,
+            onUnitChanged: (u) => setState(() => _setUnit(u)),
+            onChanged: (values) => setState(() => _setValues = values),
           ),
           const SizedBox(height: 10),
           Text(l10n.commonHeartRateLabel, style: const TextStyle(fontWeight: FontWeight.w700)),
@@ -185,6 +173,11 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
                     style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700)),
             ],
           ),
+          if (!unitMatches) ...[
+            const SizedBox(height: 4),
+            Text(l10n.calisthenicsSectionGoalUnitMismatch,
+                style: const TextStyle(fontSize: 11.5, fontStyle: FontStyle.italic)),
+          ],
           const SizedBox(height: 6),
           ClipRRect(
             borderRadius: BorderRadius.circular(6),
@@ -309,7 +302,7 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
             width: double.infinity,
             child: CupertinoButton(
               color: ZebraColors.brandTeal,
-              onPressed: _save,
+              onPressed: _setValues.isEmpty ? null : _save,
               child: Text(l10n.calisthenicsSectionLogButton,
                   style: const TextStyle(color: ZebraColors.onColor)),
             ),
@@ -340,8 +333,8 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 6),
                           child: Text(
-                              l10n.calisthenicsSectionListItem(
-                                      s.exercise.label(l10n), s.progression, s.sets, s.reps) +
+                              l10n.calisthenicsSectionListItem(s.exercise.label(l10n),
+                                      s.progression, formatSetValues(l10n, s.setValues, s.unit)) +
                                   (s.heartRateMinBpm != null
                                       ? ' · ${l10n.commonHeartRateRangeLabel(s.heartRateMinBpm!, s.heartRateMaxBpm!)}'
                                       : ''),
@@ -366,8 +359,8 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
           date: date,
           exercise: _exercise,
           progression: _progression!,
-          sets: int.tryParse(_setsController.text) ?? 0,
-          reps: int.tryParse(_repsController.text) ?? 0,
+          setValues: _setValues,
+          unit: _unit,
           comfortScore: _comfort,
           mentalState: _mental,
           bodyFeeling: _body,
@@ -400,6 +393,7 @@ class _CalisthenicsSectionState extends ConsumerState<CalisthenicsSection> {
           date,
           targetSets: level.targetSets,
           targetValue: level.targetValue,
+          unit: level.unit,
         );
     setState(() {
       _celebration = comfortMilestone

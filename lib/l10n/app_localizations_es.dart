@@ -145,6 +145,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get calisthenicsExerciseTwists => 'Giros de tronco';
 
   @override
+  String get calisthenicsExerciseHolds => 'Isométricos';
+
+  @override
   String get calisthenicsPushupsWall =>
       'Flexiones en pared (~35% del peso corporal)';
 
@@ -326,6 +329,24 @@ class AppLocalizationsEs extends AppLocalizations {
   String get calisthenicsTwistsFull => 'Giros completos';
 
   @override
+  String get calisthenicsHoldsPlank => 'Plancha';
+
+  @override
+  String get calisthenicsHoldsSidePlank => 'Plancha lateral';
+
+  @override
+  String get calisthenicsHoldsWallSit => 'Sentadilla en pared';
+
+  @override
+  String get calisthenicsHoldsGluteBridge => 'Puente de glúteos sostenido';
+
+  @override
+  String get calisthenicsHoldsHollowBody => 'Hollow hold';
+
+  @override
+  String get calisthenicsHoldsDeadHang => 'Colgarse de la barra';
+
+  @override
   String get sorenessOnsetSameDay => 'El mismo día';
 
   @override
@@ -481,6 +502,34 @@ class AppLocalizationsEs extends AppLocalizations {
   String get calisthenicsSectionRepsPlaceholder => 'Repeticiones';
 
   @override
+  String get calisthenicsSectionUnitSeconds => 'Segundos';
+
+  @override
+  String calisthenicsSectionSetFieldPlaceholder(int number) {
+    return 'Serie $number';
+  }
+
+  @override
+  String get calisthenicsSectionAddSet => '+ Serie';
+
+  @override
+  String get calisthenicsSectionRemoveSet => '− Serie';
+
+  @override
+  String calisthenicsSetValuesReps(String values) {
+    return '$values rep.';
+  }
+
+  @override
+  String calisthenicsSetValueSeconds(int seconds) {
+    return '$seconds s';
+  }
+
+  @override
+  String get calisthenicsSectionGoalUnitMismatch =>
+      'Registras en otra unidad que la meta de este nivel; el seguimiento de la meta está en pausa.';
+
+  @override
   String get calisthenicsSectionContractionModeLabel => 'Tipo de contracción';
 
   @override
@@ -545,10 +594,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String calisthenicsSectionListItem(
     String exercise,
     String progression,
-    int sets,
-    int reps,
+    String detail,
   ) {
-    return '$exercise ($progression) — $sets×$reps';
+    return '$exercise ($progression) — $detail';
   }
 
   @override

@@ -24,8 +24,7 @@ void main() {
       date: date,
       exercise: CalisthenicsExercise.pushups,
       progression: 'Wall Pushups (~35% BW)',
-      sets: 3,
-      reps: 10,
+      setValues: List.filled(3, 10),
       comfortScore: comfort,
     );
   }
@@ -35,8 +34,7 @@ void main() {
       date: date,
       exercise: CalisthenicsExercise.pushups,
       progression: 'Wall Pushups (~35% BW)',
-      sets: sets,
-      reps: reps,
+      setValues: List.filled(sets, reps),
       comfortScore: 3.0,
     );
   }
@@ -79,8 +77,7 @@ void main() {
       date: dateKey(DateTime(2026, 1, 1)),
       exercise: CalisthenicsExercise.squats,
       progression: 'Jackknife Squats',
-      sets: 3,
-      reps: 10,
+      setValues: List.filled(3, 10),
       comfortScore: 5.0,
     );
     await logSession(dateKey(DateTime(2026, 1, 2)), 4.0);
@@ -125,6 +122,51 @@ void main() {
           targetSets: 3, targetValue: 50),
       isFalse,
       reason: 'the middle session only hit 40 reps, short of the 50 goal',
+    );
+  });
+
+  test('goal milestone needs every target set to reach the value, not just the best one', () async {
+    for (final day in [1, 2, 3]) {
+      await repo.insert(
+        date: dateKey(DateTime(2026, 1, day)),
+        exercise: CalisthenicsExercise.pushups,
+        progression: 'Wall Pushups (~35% BW)',
+        setValues: [50, 50, 30],
+        comfortScore: 3.0,
+      );
+    }
+
+    expect(
+      await service.checkGoalMilestone('pushups', dateKey(DateTime(2026, 1, 3)),
+          targetSets: 3, targetValue: 50),
+      isFalse,
+      reason: 'only 2 of 3 sets reached 50 each session',
+    );
+    expect(
+      await service.checkGoalMilestone('pushups', dateKey(DateTime(2026, 1, 3)),
+          targetSets: 2, targetValue: 50),
+      isTrue,
+      reason: 'a 2x50 goal is met by the two 50-rep sets',
+    );
+  });
+
+  test('goal milestone for a hold only counts sessions logged in seconds', () async {
+    for (final day in [1, 2, 3]) {
+      await repo.insert(
+        date: dateKey(DateTime(2026, 1, day)),
+        exercise: CalisthenicsExercise.twists,
+        progression: 'Full Twists',
+        setValues: [60, 60, 60],
+        unit: day == 2 ? SetUnit.reps : SetUnit.seconds,
+        comfortScore: 3.0,
+      );
+    }
+
+    expect(
+      await service.checkGoalMilestone('twists', dateKey(DateTime(2026, 1, 3)),
+          targetSets: 3, targetValue: 60, unit: SetUnit.seconds),
+      isFalse,
+      reason: 'day 2 was logged in reps, which says nothing about a 60s hold',
     );
   });
 }

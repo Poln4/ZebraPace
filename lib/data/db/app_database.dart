@@ -32,7 +32,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 6;
+  int get schemaVersion => 7;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -96,6 +96,13 @@ class AppDatabase extends _$AppDatabase {
                 'OR sleep_heart_rate_max IS NOT NULL');
             await customStatement("UPDATE daily_logs SET heart_source = 'manual' "
                 'WHERE resting_heart_rate IS NOT NULL OR hrv_ms IS NOT NULL');
+          }
+          // v6 -> v7: per-set values (sets can differ) and a reps/seconds
+          // unit for isometric holds. Older rows keep setValues null and
+          // read as sets × reps.
+          if (from < 7) {
+            await m.addColumn(calisthenics, calisthenics.setValues);
+            await m.addColumn(calisthenics, calisthenics.unit);
           }
         },
       );

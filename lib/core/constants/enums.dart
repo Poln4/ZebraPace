@@ -197,7 +197,8 @@ enum CalisthenicsExercise {
   pullups,
   legRaises,
   bridges,
-  twists;
+  twists,
+  holds;
 
   String get db => name;
 
@@ -208,10 +209,27 @@ enum CalisthenicsExercise {
         CalisthenicsExercise.legRaises => l10n.calisthenicsExerciseLegRaises,
         CalisthenicsExercise.bridges => l10n.calisthenicsExerciseBridges,
         CalisthenicsExercise.twists => l10n.calisthenicsExerciseTwists,
+        CalisthenicsExercise.holds => l10n.calisthenicsExerciseHolds,
       };
 
   static CalisthenicsExercise? fromDb(String? value) =>
       value == null ? null : CalisthenicsExercise.values.where((e) => e.name == value).firstOrNull;
+}
+
+/// What a calisthenics set's numbers count: reps, or seconds held.
+enum SetUnit {
+  reps,
+  seconds;
+
+  String get db => name;
+
+  String label(AppLocalizations l10n) => switch (this) {
+        SetUnit.reps => l10n.calisthenicsSectionRepsPlaceholder,
+        SetUnit.seconds => l10n.calisthenicsSectionUnitSeconds,
+      };
+
+  static SetUnit fromDb(String? value) =>
+      SetUnit.values.where((e) => e.name == value).firstOrNull ?? SetUnit.reps;
 }
 
 enum SorenessOnset {

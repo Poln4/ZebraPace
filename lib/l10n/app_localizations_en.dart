@@ -145,6 +145,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get calisthenicsExerciseTwists => 'Twists';
 
   @override
+  String get calisthenicsExerciseHolds => 'Holds';
+
+  @override
   String get calisthenicsPushupsWall => 'Wall Pushups (~35% BW)';
 
   @override
@@ -309,6 +312,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get calisthenicsTwistsFull => 'Full Twists';
 
   @override
+  String get calisthenicsHoldsPlank => 'Plank';
+
+  @override
+  String get calisthenicsHoldsSidePlank => 'Side Plank';
+
+  @override
+  String get calisthenicsHoldsWallSit => 'Wall Sit';
+
+  @override
+  String get calisthenicsHoldsGluteBridge => 'Glute Bridge Hold';
+
+  @override
+  String get calisthenicsHoldsHollowBody => 'Hollow Body Hold';
+
+  @override
+  String get calisthenicsHoldsDeadHang => 'Dead Hang';
+
+  @override
   String get sorenessOnsetSameDay => 'Same day';
 
   @override
@@ -463,6 +484,34 @@ class AppLocalizationsEn extends AppLocalizations {
   String get calisthenicsSectionRepsPlaceholder => 'Reps';
 
   @override
+  String get calisthenicsSectionUnitSeconds => 'Seconds';
+
+  @override
+  String calisthenicsSectionSetFieldPlaceholder(int number) {
+    return 'Set $number';
+  }
+
+  @override
+  String get calisthenicsSectionAddSet => '+ Set';
+
+  @override
+  String get calisthenicsSectionRemoveSet => '− Set';
+
+  @override
+  String calisthenicsSetValuesReps(String values) {
+    return '$values reps';
+  }
+
+  @override
+  String calisthenicsSetValueSeconds(int seconds) {
+    return '${seconds}s';
+  }
+
+  @override
+  String get calisthenicsSectionGoalUnitMismatch =>
+      'Logging in a different unit than this level\'s goal — goal tracking is paused.';
+
+  @override
   String get calisthenicsSectionContractionModeLabel => 'Contraction mode';
 
   @override
@@ -527,10 +576,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String calisthenicsSectionListItem(
     String exercise,
     String progression,
-    int sets,
-    int reps,
+    String detail,
   ) {
-    return '$exercise ($progression) — $sets×$reps';
+    return '$exercise ($progression) — $detail';
   }
 
   @override

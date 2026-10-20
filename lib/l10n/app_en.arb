@@ -55,6 +55,7 @@
   "calisthenicsExerciseLegRaises": "Leg Raises",
   "calisthenicsExerciseBridges": "Bridges",
   "calisthenicsExerciseTwists": "Twists",
+  "calisthenicsExerciseHolds": "Holds",
 
   "calisthenicsPushupsWall": "Wall Pushups (~35% BW)",
   "calisthenicsPushupsIncline": "Incline Pushups (~50% BW)",
@@ -110,6 +111,13 @@
   "calisthenicsTwistsStraightLeg": "Straight Leg Twists",
   "calisthenicsTwistsBentLeg": "Bent Leg Twists",
   "calisthenicsTwistsFull": "Full Twists",
+
+  "calisthenicsHoldsPlank": "Plank",
+  "calisthenicsHoldsSidePlank": "Side Plank",
+  "calisthenicsHoldsWallSit": "Wall Sit",
+  "calisthenicsHoldsGluteBridge": "Glute Bridge Hold",
+  "calisthenicsHoldsHollowBody": "Hollow Body Hold",
+  "calisthenicsHoldsDeadHang": "Dead Hang",
 
   "sorenessOnsetSameDay": "Same day",
   "sorenessOnsetOneDayAfter": "1 day after",
@@ -170,6 +178,28 @@
   "calisthenicsSectionProgressionTierLabel": "Progression tier",
   "calisthenicsSectionSetsPlaceholder": "Sets",
   "calisthenicsSectionRepsPlaceholder": "Reps",
+  "calisthenicsSectionUnitSeconds": "Seconds",
+  "calisthenicsSectionSetFieldPlaceholder": "Set {number}",
+  "@calisthenicsSectionSetFieldPlaceholder": {
+    "placeholders": {
+      "number": {"type": "int"}
+    }
+  },
+  "calisthenicsSectionAddSet": "+ Set",
+  "calisthenicsSectionRemoveSet": "− Set",
+  "calisthenicsSetValuesReps": "{values} reps",
+  "@calisthenicsSetValuesReps": {
+    "placeholders": {
+      "values": {"type": "String"}
+    }
+  },
+  "calisthenicsSetValueSeconds": "{seconds}s",
+  "@calisthenicsSetValueSeconds": {
+    "placeholders": {
+      "seconds": {"type": "int"}
+    }
+  },
+  "calisthenicsSectionGoalUnitMismatch": "Logging in a different unit than this level's goal — goal tracking is paused.",
   "calisthenicsSectionContractionModeLabel": "Contraction mode",
   "calisthenicsSectionComfortLabel": "Comfort: {value} — {label}",
   "@calisthenicsSectionComfortLabel": {
@@ -225,13 +255,12 @@
     }
   },
   "calisthenicsSectionEditTitle": "Edit Set",
-  "calisthenicsSectionListItem": "{exercise} ({progression}) — {sets}×{reps}",
+  "calisthenicsSectionListItem": "{exercise} ({progression}) — {detail}",
   "@calisthenicsSectionListItem": {
     "placeholders": {
       "exercise": {"type": "String"},
       "progression": {"type": "String"},
-      "sets": {"type": "int"},
-      "reps": {"type": "int"}
+      "detail": {"type": "String"}
     }
   },
 

@@ -34,15 +34,15 @@ void main() {
     final sets = [
       const CalisthenicsSet(
         id: '1', date: '2026-01-01', exercise: CalisthenicsExercise.pushups,
-        progression: 'Wall Pushups (~35% BW)', sets: 3, reps: 10, comfortScore: 3.0,
+        progression: 'Wall Pushups (~35% BW)', setValues: [10, 10, 10], comfortScore: 3.0,
       ),
       const CalisthenicsSet(
         id: '2', date: '2026-01-02', exercise: CalisthenicsExercise.pushups,
-        progression: 'Incline Pushups (~50% BW)', sets: 3, reps: 10, comfortScore: 4.0,
+        progression: 'Incline Pushups (~50% BW)', setValues: [10, 10, 10], comfortScore: 4.0,
       ),
       const CalisthenicsSet(
         id: '3', date: '2026-01-03', exercise: CalisthenicsExercise.pushups,
-        progression: 'Incline Pushups (~50% BW)', sets: 3, reps: 10, comfortScore: 5.0,
+        progression: 'Incline Pushups (~50% BW)', setValues: [10, 10, 10], comfortScore: 5.0,
       ),
     ];
     final summaries = service.summarizeCalisthenics(l10n, sets);

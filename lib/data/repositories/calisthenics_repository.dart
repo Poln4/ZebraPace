@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:drift/drift.dart';
 
 import '../../core/constants/enums.dart';
@@ -17,8 +19,8 @@ class CalisthenicsRepository {
       date: row.date,
       exercise: CalisthenicsExercise.fromDb(row.exercise) ?? CalisthenicsExercise.pushups,
       progression: row.progression,
-      sets: row.sets,
-      reps: row.reps,
+      setValues: _setValuesOf(row),
+      unit: SetUnit.fromDb(row.unit),
       comfortScore: row.comfortScore,
       mentalState: MentalState.fromDb(row.mentalState),
       bodyFeeling: BodyFeeling.fromDb(row.bodyFeeling),
@@ -26,6 +28,19 @@ class CalisthenicsRepository {
       heartRateMinBpm: row.heartRateMinBpm,
       heartRateMaxBpm: row.heartRateMaxBpm,
     );
+  }
+
+  /// Pre-v7 rows (and malformed JSON) fall back to `sets` × `reps`.
+  static List<int> _setValuesOf(db.Calisthenic row) {
+    final raw = row.setValues;
+    if (raw != null) {
+      try {
+        return (jsonDecode(raw) as List).map((v) => (v as num).toInt()).toList();
+      } on Object {
+        // fall through to the legacy columns
+      }
+    }
+    return List.filled(row.sets, row.reps);
   }
 
   Stream<List<CalisthenicsSet>> watchForDate(String date) {
@@ -62,22 +77,22 @@ class CalisthenicsRepository {
   /// Same scoping as [getLastThreeComfortScores] (by exercise only, not
   /// progression tier — the stored `progression` is localized display text,
   /// not a stable key) — used by CalisthenicsService.checkGoalMilestone.
-  Future<List<(int sets, int reps)>> getLastThreeSetsAndReps(
+  Future<List<(List<int> setValues, SetUnit unit)>> getLastThreeSetValues(
       String exercise, String targetDate) async {
     final query = _db.select(_db.calisthenics)
       ..where((t) => t.exercise.equals(exercise) & t.date.isSmallerOrEqualValue(targetDate))
       ..orderBy([(t) => OrderingTerm.desc(t.date)])
       ..limit(3);
     final rows = await query.get();
-    return rows.map((r) => (r.sets, r.reps)).toList();
+    return rows.map((r) => (_setValuesOf(r), SetUnit.fromDb(r.unit))).toList();
   }
 
   Future<void> insert({
     required String date,
     required CalisthenicsExercise exercise,
     required String progression,
-    required int sets,
-    required int reps,
+    required List<int> setValues,
+    SetUnit unit = SetUnit.reps,
     required double comfortScore,
     MentalState? mentalState,
     BodyFeeling? bodyFeeling,
@@ -91,8 +106,10 @@ class CalisthenicsRepository {
             date: date,
             exercise: exercise.db,
             progression: progression,
-            sets: sets,
-            reps: reps,
+            sets: setValues.length,
+            reps: _best(setValues),
+            setValues: Value(jsonEncode(setValues)),
+            unit: Value(unit.db),
             comfortScore: Value(comfortScore),
             mentalState: Value(mentalState?.db),
             bodyFeeling: Value(bodyFeeling?.db),
@@ -110,8 +127,8 @@ class CalisthenicsRepository {
   /// re-adding is simpler than reworking that binding).
   Future<void> update({
     required String id,
-    required int sets,
-    required int reps,
+    required List<int> setValues,
+    required SetUnit unit,
     required double comfortScore,
     MentalState? mentalState,
     BodyFeeling? bodyFeeling,
@@ -121,8 +138,10 @@ class CalisthenicsRepository {
   }) async {
     await (_db.update(_db.calisthenics)..where((t) => t.id.equals(id))).write(
       db.CalisthenicsCompanion(
-        sets: Value(sets),
-        reps: Value(reps),
+        sets: Value(setValues.length),
+        reps: Value(_best(setValues)),
+        setValues: Value(jsonEncode(setValues)),
+        unit: Value(unit.db),
         comfortScore: Value(comfortScore),
         mentalState: Value(mentalState?.db),
         bodyFeeling: Value(bodyFeeling?.db),
@@ -133,6 +152,9 @@ class CalisthenicsRepository {
       ),
     );
   }
+
+  static int _best(List<int> values) =>
+      values.isEmpty ? 0 : values.reduce((a, b) => a > b ? a : b);
 
   Future<void> delete(String id) async {
     await (_db.delete(_db.calisthenics)..where((t) => t.id.equals(id))).go();

@@ -204,6 +204,8 @@ class ExportImportService {
                   progression: row['progression'] as String,
                   sets: _toInt(row['sets']) ?? 0,
                   reps: _toInt(row['reps']) ?? 0,
+                  setValues: Value(row['setValues'] as String?),
+                  unit: Value(row['unit'] as String? ?? 'reps'),
                   comfortScore: Value(_toDouble(row['comfortScore']) ?? 0),
                   mentalState: Value(row['mentalState'] as String?),
                   bodyFeeling: Value(row['bodyFeeling'] as String?),

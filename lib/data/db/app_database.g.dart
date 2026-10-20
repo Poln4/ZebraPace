@@ -2535,6 +2535,27 @@ class $CalisthenicsTable extends Calisthenics
     type: DriftSqlType.int,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _setValuesMeta = const VerificationMeta(
+    'setValues',
+  );
+  @override
+  late final GeneratedColumn<String> setValues = GeneratedColumn<String>(
+    'set_values',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _unitMeta = const VerificationMeta('unit');
+  @override
+  late final GeneratedColumn<String> unit = GeneratedColumn<String>(
+    'unit',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('reps'),
+  );
   static const VerificationMeta _comfortScoreMeta = const VerificationMeta(
     'comfortScore',
   );
@@ -2612,6 +2633,8 @@ class $CalisthenicsTable extends Calisthenics
     progression,
     sets,
     reps,
+    setValues,
+    unit,
     comfortScore,
     mentalState,
     bodyFeeling,
@@ -2692,6 +2715,18 @@ class $CalisthenicsTable extends Calisthenics
       );
     } else if (isInserting) {
       context.missing(_repsMeta);
+    }
+    if (data.containsKey('set_values')) {
+      context.handle(
+        _setValuesMeta,
+        setValues.isAcceptableOrUnknown(data['set_values']!, _setValuesMeta),
+      );
+    }
+    if (data.containsKey('unit')) {
+      context.handle(
+        _unitMeta,
+        unit.isAcceptableOrUnknown(data['unit']!, _unitMeta),
+      );
     }
     if (data.containsKey('comfort_score')) {
       context.handle(
@@ -2788,6 +2823,14 @@ class $CalisthenicsTable extends Calisthenics
         DriftSqlType.int,
         data['${effectivePrefix}reps'],
       )!,
+      setValues: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}set_values'],
+      ),
+      unit: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}unit'],
+      )!,
       comfortScore: attachedDatabase.typeMapping.read(
         DriftSqlType.double,
         data['${effectivePrefix}comfort_score'],
@@ -2828,8 +2871,18 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
   final String date;
   final String exercise;
   final String progression;
+
+  /// Set count and best set — kept filled for older readers (exports,
+  /// app.py-era tooling); [setValues] is the source of truth.
   final int sets;
   final int reps;
+
+  /// Each set's reps or seconds, as a JSON int list, e.g. `[30,20,23]`.
+  /// Null on rows logged before v7, which read as `sets` × `reps`.
+  final String? setValues;
+
+  /// `reps` or `seconds` — see SetUnit.
+  final String unit;
 
   /// 1.0-5.0 comfort slider value — the only comfort field that matters.
   /// app.py's original also had a dead/unused legacy `comfortable` boolean
@@ -2852,6 +2905,8 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
     required this.progression,
     required this.sets,
     required this.reps,
+    this.setValues,
+    required this.unit,
     required this.comfortScore,
     this.mentalState,
     this.bodyFeeling,
@@ -2872,6 +2927,10 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
     map['progression'] = Variable<String>(progression);
     map['sets'] = Variable<int>(sets);
     map['reps'] = Variable<int>(reps);
+    if (!nullToAbsent || setValues != null) {
+      map['set_values'] = Variable<String>(setValues);
+    }
+    map['unit'] = Variable<String>(unit);
     map['comfort_score'] = Variable<double>(comfortScore);
     if (!nullToAbsent || mentalState != null) {
       map['mental_state'] = Variable<String>(mentalState);
@@ -2903,6 +2962,10 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
       progression: Value(progression),
       sets: Value(sets),
       reps: Value(reps),
+      setValues: setValues == null && nullToAbsent
+          ? const Value.absent()
+          : Value(setValues),
+      unit: Value(unit),
       comfortScore: Value(comfortScore),
       mentalState: mentalState == null && nullToAbsent
           ? const Value.absent()
@@ -2936,6 +2999,8 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
       progression: serializer.fromJson<String>(json['progression']),
       sets: serializer.fromJson<int>(json['sets']),
       reps: serializer.fromJson<int>(json['reps']),
+      setValues: serializer.fromJson<String?>(json['setValues']),
+      unit: serializer.fromJson<String>(json['unit']),
       comfortScore: serializer.fromJson<double>(json['comfortScore']),
       mentalState: serializer.fromJson<String?>(json['mentalState']),
       bodyFeeling: serializer.fromJson<String?>(json['bodyFeeling']),
@@ -2956,6 +3021,8 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
       'progression': serializer.toJson<String>(progression),
       'sets': serializer.toJson<int>(sets),
       'reps': serializer.toJson<int>(reps),
+      'setValues': serializer.toJson<String?>(setValues),
+      'unit': serializer.toJson<String>(unit),
       'comfortScore': serializer.toJson<double>(comfortScore),
       'mentalState': serializer.toJson<String?>(mentalState),
       'bodyFeeling': serializer.toJson<String?>(bodyFeeling),
@@ -2974,6 +3041,8 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
     String? progression,
     int? sets,
     int? reps,
+    Value<String?> setValues = const Value.absent(),
+    String? unit,
     double? comfortScore,
     Value<String?> mentalState = const Value.absent(),
     Value<String?> bodyFeeling = const Value.absent(),
@@ -2989,6 +3058,8 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
     progression: progression ?? this.progression,
     sets: sets ?? this.sets,
     reps: reps ?? this.reps,
+    setValues: setValues.present ? setValues.value : this.setValues,
+    unit: unit ?? this.unit,
     comfortScore: comfortScore ?? this.comfortScore,
     mentalState: mentalState.present ? mentalState.value : this.mentalState,
     bodyFeeling: bodyFeeling.present ? bodyFeeling.value : this.bodyFeeling,
@@ -3014,6 +3085,8 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
           : this.progression,
       sets: data.sets.present ? data.sets.value : this.sets,
       reps: data.reps.present ? data.reps.value : this.reps,
+      setValues: data.setValues.present ? data.setValues.value : this.setValues,
+      unit: data.unit.present ? data.unit.value : this.unit,
       comfortScore: data.comfortScore.present
           ? data.comfortScore.value
           : this.comfortScore,
@@ -3046,6 +3119,8 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
           ..write('progression: $progression, ')
           ..write('sets: $sets, ')
           ..write('reps: $reps, ')
+          ..write('setValues: $setValues, ')
+          ..write('unit: $unit, ')
           ..write('comfortScore: $comfortScore, ')
           ..write('mentalState: $mentalState, ')
           ..write('bodyFeeling: $bodyFeeling, ')
@@ -3066,6 +3141,8 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
     progression,
     sets,
     reps,
+    setValues,
+    unit,
     comfortScore,
     mentalState,
     bodyFeeling,
@@ -3085,6 +3162,8 @@ class Calisthenic extends DataClass implements Insertable<Calisthenic> {
           other.progression == this.progression &&
           other.sets == this.sets &&
           other.reps == this.reps &&
+          other.setValues == this.setValues &&
+          other.unit == this.unit &&
           other.comfortScore == this.comfortScore &&
           other.mentalState == this.mentalState &&
           other.bodyFeeling == this.bodyFeeling &&
@@ -3102,6 +3181,8 @@ class CalisthenicsCompanion extends UpdateCompanion<Calisthenic> {
   final Value<String> progression;
   final Value<int> sets;
   final Value<int> reps;
+  final Value<String?> setValues;
+  final Value<String> unit;
   final Value<double> comfortScore;
   final Value<String?> mentalState;
   final Value<String?> bodyFeeling;
@@ -3118,6 +3199,8 @@ class CalisthenicsCompanion extends UpdateCompanion<Calisthenic> {
     this.progression = const Value.absent(),
     this.sets = const Value.absent(),
     this.reps = const Value.absent(),
+    this.setValues = const Value.absent(),
+    this.unit = const Value.absent(),
     this.comfortScore = const Value.absent(),
     this.mentalState = const Value.absent(),
     this.bodyFeeling = const Value.absent(),
@@ -3135,6 +3218,8 @@ class CalisthenicsCompanion extends UpdateCompanion<Calisthenic> {
     required String progression,
     required int sets,
     required int reps,
+    this.setValues = const Value.absent(),
+    this.unit = const Value.absent(),
     this.comfortScore = const Value.absent(),
     this.mentalState = const Value.absent(),
     this.bodyFeeling = const Value.absent(),
@@ -3158,6 +3243,8 @@ class CalisthenicsCompanion extends UpdateCompanion<Calisthenic> {
     Expression<String>? progression,
     Expression<int>? sets,
     Expression<int>? reps,
+    Expression<String>? setValues,
+    Expression<String>? unit,
     Expression<double>? comfortScore,
     Expression<String>? mentalState,
     Expression<String>? bodyFeeling,
@@ -3175,6 +3262,8 @@ class CalisthenicsCompanion extends UpdateCompanion<Calisthenic> {
       if (progression != null) 'progression': progression,
       if (sets != null) 'sets': sets,
       if (reps != null) 'reps': reps,
+      if (setValues != null) 'set_values': setValues,
+      if (unit != null) 'unit': unit,
       if (comfortScore != null) 'comfort_score': comfortScore,
       if (mentalState != null) 'mental_state': mentalState,
       if (bodyFeeling != null) 'body_feeling': bodyFeeling,
@@ -3194,6 +3283,8 @@ class CalisthenicsCompanion extends UpdateCompanion<Calisthenic> {
     Value<String>? progression,
     Value<int>? sets,
     Value<int>? reps,
+    Value<String?>? setValues,
+    Value<String>? unit,
     Value<double>? comfortScore,
     Value<String?>? mentalState,
     Value<String?>? bodyFeeling,
@@ -3211,6 +3302,8 @@ class CalisthenicsCompanion extends UpdateCompanion<Calisthenic> {
       progression: progression ?? this.progression,
       sets: sets ?? this.sets,
       reps: reps ?? this.reps,
+      setValues: setValues ?? this.setValues,
+      unit: unit ?? this.unit,
       comfortScore: comfortScore ?? this.comfortScore,
       mentalState: mentalState ?? this.mentalState,
       bodyFeeling: bodyFeeling ?? this.bodyFeeling,
@@ -3248,6 +3341,12 @@ class CalisthenicsCompanion extends UpdateCompanion<Calisthenic> {
     if (reps.present) {
       map['reps'] = Variable<int>(reps.value);
     }
+    if (setValues.present) {
+      map['set_values'] = Variable<String>(setValues.value);
+    }
+    if (unit.present) {
+      map['unit'] = Variable<String>(unit.value);
+    }
     if (comfortScore.present) {
       map['comfort_score'] = Variable<double>(comfortScore.value);
     }
@@ -3283,6 +3382,8 @@ class CalisthenicsCompanion extends UpdateCompanion<Calisthenic> {
           ..write('progression: $progression, ')
           ..write('sets: $sets, ')
           ..write('reps: $reps, ')
+          ..write('setValues: $setValues, ')
+          ..write('unit: $unit, ')
           ..write('comfortScore: $comfortScore, ')
           ..write('mentalState: $mentalState, ')
           ..write('bodyFeeling: $bodyFeeling, ')
@@ -7874,6 +7975,8 @@ typedef $$CalisthenicsTableCreateCompanionBuilder =
       required String progression,
       required int sets,
       required int reps,
+      Value<String?> setValues,
+      Value<String> unit,
       Value<double> comfortScore,
       Value<String?> mentalState,
       Value<String?> bodyFeeling,
@@ -7892,6 +7995,8 @@ typedef $$CalisthenicsTableUpdateCompanionBuilder =
       Value<String> progression,
       Value<int> sets,
       Value<int> reps,
+      Value<String?> setValues,
+      Value<String> unit,
       Value<double> comfortScore,
       Value<String?> mentalState,
       Value<String?> bodyFeeling,
@@ -7947,6 +8052,16 @@ class $$CalisthenicsTableFilterComposer
 
   ColumnFilters<int> get reps => $composableBuilder(
     column: $table.reps,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get setValues => $composableBuilder(
+    column: $table.setValues,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get unit => $composableBuilder(
+    column: $table.unit,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -8030,6 +8145,16 @@ class $$CalisthenicsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get setValues => $composableBuilder(
+    column: $table.setValues,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get unit => $composableBuilder(
+    column: $table.unit,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<double> get comfortScore => $composableBuilder(
     column: $table.comfortScore,
     builder: (column) => ColumnOrderings(column),
@@ -8095,6 +8220,12 @@ class $$CalisthenicsTableAnnotationComposer
 
   GeneratedColumn<int> get reps =>
       $composableBuilder(column: $table.reps, builder: (column) => column);
+
+  GeneratedColumn<String> get setValues =>
+      $composableBuilder(column: $table.setValues, builder: (column) => column);
+
+  GeneratedColumn<String> get unit =>
+      $composableBuilder(column: $table.unit, builder: (column) => column);
 
   GeneratedColumn<double> get comfortScore => $composableBuilder(
     column: $table.comfortScore,
@@ -8166,6 +8297,8 @@ class $$CalisthenicsTableTableManager
                 Value<String> progression = const Value.absent(),
                 Value<int> sets = const Value.absent(),
                 Value<int> reps = const Value.absent(),
+                Value<String?> setValues = const Value.absent(),
+                Value<String> unit = const Value.absent(),
                 Value<double> comfortScore = const Value.absent(),
                 Value<String?> mentalState = const Value.absent(),
                 Value<String?> bodyFeeling = const Value.absent(),
@@ -8182,6 +8315,8 @@ class $$CalisthenicsTableTableManager
                 progression: progression,
                 sets: sets,
                 reps: reps,
+                setValues: setValues,
+                unit: unit,
                 comfortScore: comfortScore,
                 mentalState: mentalState,
                 bodyFeeling: bodyFeeling,
@@ -8200,6 +8335,8 @@ class $$CalisthenicsTableTableManager
                 required String progression,
                 required int sets,
                 required int reps,
+                Value<String?> setValues = const Value.absent(),
+                Value<String> unit = const Value.absent(),
                 Value<double> comfortScore = const Value.absent(),
                 Value<String?> mentalState = const Value.absent(),
                 Value<String?> bodyFeeling = const Value.absent(),
@@ -8216,6 +8353,8 @@ class $$CalisthenicsTableTableManager
                 progression: progression,
                 sets: sets,
                 reps: reps,
+                setValues: setValues,
+                unit: unit,
                 comfortScore: comfortScore,
                 mentalState: mentalState,
                 bodyFeeling: bodyFeeling,

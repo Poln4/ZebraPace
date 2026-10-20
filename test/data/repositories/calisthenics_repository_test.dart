@@ -20,16 +20,15 @@ void main() {
       date: '2026-01-01',
       exercise: CalisthenicsExercise.pushups,
       progression: 'Wall',
-      sets: 3,
-      reps: 10,
+      setValues: List.filled(3, 10),
       comfortScore: 3,
     );
     final before = (await repo.getRange('2026-01-01', '2026-01-01')).single;
 
     await repo.update(
       id: before.id,
-      sets: 4,
-      reps: 12,
+      setValues: List.filled(4, 12),
+      unit: SetUnit.reps,
       comfortScore: 4.5,
       contractionMode: ContractionMode.concentric,
       heartRateMinBpm: 95,
@@ -37,8 +36,7 @@ void main() {
     );
 
     final after = (await repo.getRange('2026-01-01', '2026-01-01')).single;
-    expect(after.sets, 4);
-    expect(after.reps, 12);
+    expect(after.setValues, [12, 12, 12, 12]);
     expect(after.comfortScore, 4.5);
     expect(after.contractionMode, ContractionMode.concentric);
     expect(after.heartRateMinBpm, 95);
@@ -47,21 +45,55 @@ void main() {
     expect(after.progression, 'Wall');
   });
 
+  test('stores sets that differ and a seconds unit, round-tripping exactly', () async {
+    await repo.insert(
+      date: '2026-01-01',
+      exercise: CalisthenicsExercise.holds,
+      progression: 'Plank',
+      setValues: [60, 45, 30],
+      unit: SetUnit.seconds,
+      comfortScore: 3,
+    );
+    final row = (await repo.getRange('2026-01-01', '2026-01-01')).single;
+    expect(row.setValues, [60, 45, 30]);
+    expect(row.sets, 3);
+    expect(row.unit, SetUnit.seconds);
+    expect(row.exercise, CalisthenicsExercise.holds);
+
+    // Legacy columns stay filled for older readers: count + best set.
+    final raw = await db.select(db.calisthenics).getSingle();
+    expect(raw.sets, 3);
+    expect(raw.reps, 60);
+  });
+
+  test('pre-v7 rows without setValues read as sets × reps in reps', () async {
+    await db.into(db.calisthenics).insert(CalisthenicsCompanion.insert(
+          id: 'legacy',
+          date: '2026-01-01',
+          exercise: 'pushups',
+          progression: 'Wall',
+          sets: 3,
+          reps: 10,
+          updatedAt: '2026-01-01T00:00:00Z',
+        ));
+    final row = (await repo.getRange('2026-01-01', '2026-01-01')).single;
+    expect(row.setValues, [10, 10, 10]);
+    expect(row.unit, SetUnit.reps);
+  });
+
   test('delete removes only the targeted row', () async {
     await repo.insert(
       date: '2026-01-01',
       exercise: CalisthenicsExercise.pushups,
       progression: 'Wall',
-      sets: 3,
-      reps: 10,
+      setValues: List.filled(3, 10),
       comfortScore: 3,
     );
     await repo.insert(
       date: '2026-01-01',
       exercise: CalisthenicsExercise.squats,
       progression: 'Bodyweight',
-      sets: 3,
-      reps: 10,
+      setValues: List.filled(3, 10),
       comfortScore: 3,
     );
     final rows = await repo.getRange('2026-01-01', '2026-01-01');

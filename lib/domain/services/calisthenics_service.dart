@@ -1,3 +1,5 @@
+import '../../core/constants/calisthenics_progressions.dart';
+import '../../core/constants/enums.dart';
 import '../../data/repositories/calisthenics_repository.dart';
 
 /// Ported from app.py's check_calisthenics_comfort. Advisory only — never
@@ -23,16 +25,20 @@ class CalisthenicsService {
   }
 
   /// True iff exactly the 3 most-recent sessions for this exercise (on/before
-  /// targetDate) each met or exceeded the given level's goal. Advisory only,
-  /// same spirit as [checkComfortMilestone] — never auto-advances the tier.
+  /// targetDate) each met or exceeded the given level's goal — at least
+  /// [targetSets] sets of [targetValue] or more, logged in the goal's
+  /// [unit]. Advisory only, same spirit as [checkComfortMilestone] — never
+  /// auto-advances the tier.
   Future<bool> checkGoalMilestone(
     String exerciseDb,
     String targetDate, {
     required int targetSets,
     required int targetValue,
+    SetUnit unit = SetUnit.reps,
   }) async {
-    final sessions = await _repository.getLastThreeSetsAndReps(exerciseDb, targetDate);
+    final sessions = await _repository.getLastThreeSetValues(exerciseDb, targetDate);
     if (sessions.length != 3) return false;
-    return sessions.every((s) => s.$1 >= targetSets && s.$2 >= targetValue);
+    return sessions.every((s) =>
+        s.$2 == unit && meetsGoal(s.$1, targetSets: targetSets, targetValue: targetValue));
   }
 }

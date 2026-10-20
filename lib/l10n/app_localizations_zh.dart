@@ -145,6 +145,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get calisthenicsExerciseTwists => '軀幹扭轉';
 
   @override
+  String get calisthenicsExerciseHolds => '靜態支撐';
+
+  @override
   String get calisthenicsPushupsWall => '牆壁伏地挺身 (~體重35%)';
 
   @override
@@ -307,6 +310,24 @@ class AppLocalizationsZh extends AppLocalizations {
   String get calisthenicsTwistsFull => '完整扭轉';
 
   @override
+  String get calisthenicsHoldsPlank => '平板支撐';
+
+  @override
+  String get calisthenicsHoldsSidePlank => '側平板支撐';
+
+  @override
+  String get calisthenicsHoldsWallSit => '靠牆靜蹲';
+
+  @override
+  String get calisthenicsHoldsGluteBridge => '臀橋支撐';
+
+  @override
+  String get calisthenicsHoldsHollowBody => '空心支撐';
+
+  @override
+  String get calisthenicsHoldsDeadHang => '懸吊';
+
+  @override
   String get sorenessOnsetSameDay => '當天';
 
   @override
@@ -460,6 +481,33 @@ class AppLocalizationsZh extends AppLocalizations {
   String get calisthenicsSectionRepsPlaceholder => '次數';
 
   @override
+  String get calisthenicsSectionUnitSeconds => '秒數';
+
+  @override
+  String calisthenicsSectionSetFieldPlaceholder(int number) {
+    return '第 $number 組';
+  }
+
+  @override
+  String get calisthenicsSectionAddSet => '+ 一組';
+
+  @override
+  String get calisthenicsSectionRemoveSet => '− 一組';
+
+  @override
+  String calisthenicsSetValuesReps(String values) {
+    return '$values 次';
+  }
+
+  @override
+  String calisthenicsSetValueSeconds(int seconds) {
+    return '$seconds 秒';
+  }
+
+  @override
+  String get calisthenicsSectionGoalUnitMismatch => '記錄單位與此等級的目標不同 — 目標追蹤暫停。';
+
+  @override
   String get calisthenicsSectionContractionModeLabel => '收縮方式';
 
   @override
@@ -523,10 +571,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String calisthenicsSectionListItem(
     String exercise,
     String progression,
-    int sets,
-    int reps,
+    String detail,
   ) {
-    return '$exercise（$progression）— $sets×$reps';
+    return '$exercise（$progression）— $detail';
   }
 
   @override
@@ -2407,6 +2454,9 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get calisthenicsExerciseTwists => '軀幹扭轉';
 
   @override
+  String get calisthenicsExerciseHolds => '靜態支撐';
+
+  @override
   String get calisthenicsPushupsWall => '牆壁伏地挺身 (~體重35%)';
 
   @override
@@ -2569,6 +2619,24 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get calisthenicsTwistsFull => '完整扭轉';
 
   @override
+  String get calisthenicsHoldsPlank => '平板支撐';
+
+  @override
+  String get calisthenicsHoldsSidePlank => '側平板支撐';
+
+  @override
+  String get calisthenicsHoldsWallSit => '靠牆靜蹲';
+
+  @override
+  String get calisthenicsHoldsGluteBridge => '臀橋支撐';
+
+  @override
+  String get calisthenicsHoldsHollowBody => '空心支撐';
+
+  @override
+  String get calisthenicsHoldsDeadHang => '懸吊';
+
+  @override
   String get sorenessOnsetSameDay => '當天';
 
   @override
@@ -2722,6 +2790,33 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get calisthenicsSectionRepsPlaceholder => '次數';
 
   @override
+  String get calisthenicsSectionUnitSeconds => '秒數';
+
+  @override
+  String calisthenicsSectionSetFieldPlaceholder(int number) {
+    return '第 $number 組';
+  }
+
+  @override
+  String get calisthenicsSectionAddSet => '+ 一組';
+
+  @override
+  String get calisthenicsSectionRemoveSet => '− 一組';
+
+  @override
+  String calisthenicsSetValuesReps(String values) {
+    return '$values 次';
+  }
+
+  @override
+  String calisthenicsSetValueSeconds(int seconds) {
+    return '$seconds 秒';
+  }
+
+  @override
+  String get calisthenicsSectionGoalUnitMismatch => '記錄單位與此等級的目標不同 — 目標追蹤暫停。';
+
+  @override
   String get calisthenicsSectionContractionModeLabel => '收縮方式';
 
   @override
@@ -2785,10 +2880,9 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String calisthenicsSectionListItem(
     String exercise,
     String progression,
-    int sets,
-    int reps,
+    String detail,
   ) {
-    return '$exercise（$progression）— $sets×$reps';
+    return '$exercise（$progression）— $detail';
   }
 
   @override

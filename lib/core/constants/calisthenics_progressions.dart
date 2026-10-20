@@ -7,23 +7,21 @@ library;
 import '../../l10n/app_localizations.dart';
 import 'enums.dart';
 
-enum GoalUnit { reps, secondsHold }
-
 class CalisthenicsLevel {
   const CalisthenicsLevel({
     required this.name,
     required this.targetSets,
     required this.targetValue,
-    this.unit = GoalUnit.reps,
+    this.unit = SetUnit.reps,
     this.bothSides = false,
   });
 
   final String name;
   final int targetSets;
 
-  /// Target reps, or target hold-seconds when [unit] is [GoalUnit.secondsHold].
+  /// Target reps, or target hold-seconds when [unit] is [SetUnit.seconds].
   final int targetValue;
-  final GoalUnit unit;
+  final SetUnit unit;
 
   /// True when the site's goal is per side (e.g. "2 Sets of 12 (Both Sides)")
   /// rather than a combined total.
@@ -178,20 +176,71 @@ extension CalisthenicsExerciseLevels on CalisthenicsExercise {
                 name: l10n.calisthenicsTwistsStraightLeg,
                 targetSets: 3,
                 targetValue: 60,
-                unit: GoalUnit.secondsHold,
+                unit: SetUnit.seconds,
                 bothSides: true),
             CalisthenicsLevel(
                 name: l10n.calisthenicsTwistsBentLeg,
                 targetSets: 3,
                 targetValue: 60,
-                unit: GoalUnit.secondsHold,
+                unit: SetUnit.seconds,
                 bothSides: true),
             CalisthenicsLevel(
                 name: l10n.calisthenicsTwistsFull,
                 targetSets: 3,
                 targetValue: 60,
-                unit: GoalUnit.secondsHold,
+                unit: SetUnit.seconds,
                 bothSides: true),
           ],
+        // Not a Hybrid Calisthenics ladder — common standalone holds so
+        // isometric work outside the six ladders has somewhere to go. Goals
+        // are gentle starting targets, not sourced from the method.
+        CalisthenicsExercise.holds => [
+            CalisthenicsLevel(
+                name: l10n.calisthenicsHoldsPlank,
+                targetSets: 3,
+                targetValue: 60,
+                unit: SetUnit.seconds),
+            CalisthenicsLevel(
+                name: l10n.calisthenicsHoldsSidePlank,
+                targetSets: 3,
+                targetValue: 30,
+                unit: SetUnit.seconds,
+                bothSides: true),
+            CalisthenicsLevel(
+                name: l10n.calisthenicsHoldsWallSit,
+                targetSets: 3,
+                targetValue: 60,
+                unit: SetUnit.seconds),
+            CalisthenicsLevel(
+                name: l10n.calisthenicsHoldsGluteBridge,
+                targetSets: 3,
+                targetValue: 30,
+                unit: SetUnit.seconds),
+            CalisthenicsLevel(
+                name: l10n.calisthenicsHoldsHollowBody,
+                targetSets: 3,
+                targetValue: 30,
+                unit: SetUnit.seconds),
+            CalisthenicsLevel(
+                name: l10n.calisthenicsHoldsDeadHang,
+                targetSets: 3,
+                targetValue: 30,
+                unit: SetUnit.seconds),
+          ],
       };
+}
+
+/// True when at least [targetSets] of the logged sets each reached
+/// [targetValue] — "3 sets of 30" means three sets of 30 or more, not one
+/// big set. Sets beyond the target count don't have to qualify.
+bool meetsGoal(List<int> setValues, {required int targetSets, required int targetValue}) =>
+    setValues.where((v) => v >= targetValue).length >= targetSets;
+
+/// 0.0-1.0 progress toward the goal: the best [targetSets] sets, each
+/// capped at [targetValue], as a share of the full goal.
+double goalProgress(List<int> setValues, {required int targetSets, required int targetValue}) {
+  if (targetSets <= 0 || targetValue <= 0) return 0;
+  final best = ([...setValues]..sort((a, b) => b.compareTo(a))).take(targetSets);
+  final done = best.fold<int>(0, (sum, v) => sum + (v > targetValue ? targetValue : v));
+  return done / (targetSets * targetValue);
 }
