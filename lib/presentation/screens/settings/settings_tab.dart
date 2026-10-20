@@ -468,17 +468,41 @@ class _CloudSyncSectionState extends ConsumerState<_CloudSyncSection> {
     final authState = ref.watch(cloudAuthControllerProvider);
 
     if (user != null) {
+      final deleting = authState.action == CloudAuthAction.deleting;
       return SectionCard(
         title: l10n.settingsTabCloudSyncTitle,
         caption: l10n.settingsTabCloudSyncSignedInAs(user.email ?? ''),
-        child: SizedBox(
-          width: double.infinity,
-          child: CupertinoButton(
-            color: ZebraColors.cardBorder,
-            onPressed: () => ref.read(cloudAuthControllerProvider.notifier).signOut(),
-            child: Text(l10n.settingsTabCloudSyncSignOutButton,
-                style: const TextStyle(color: ZebraColors.black)),
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: double.infinity,
+              child: CupertinoButton(
+                color: ZebraColors.cardBorder,
+                onPressed: deleting
+                    ? null
+                    : () => ref.read(cloudAuthControllerProvider.notifier).signOut(),
+                child: Text(l10n.settingsTabCloudSyncSignOutButton,
+                    style: const TextStyle(color: ZebraColors.black)),
+              ),
+            ),
+            const SizedBox(height: 8),
+            SizedBox(
+              width: double.infinity,
+              child: CupertinoButton(
+                onPressed: deleting ? null : _confirmDeleteAccount,
+                child: deleting
+                    ? const CupertinoActivityIndicator()
+                    : Text(l10n.settingsTabDeleteAccountButton,
+                        style: const TextStyle(color: CupertinoColors.destructiveRed)),
+              ),
+            ),
+            if (authState.action == CloudAuthAction.error) ...[
+              const SizedBox(height: 8),
+              Text(l10n.settingsTabDeleteAccountFailed(authState.error ?? ''),
+                  style: const TextStyle(fontSize: 12, color: CupertinoColors.destructiveRed)),
+            ],
+          ],
         ),
       );
     }
@@ -553,6 +577,43 @@ class _CloudSyncSectionState extends ConsumerState<_CloudSyncSection> {
             Text(authState.error ?? '',
                 style: const TextStyle(fontSize: 12, color: CupertinoColors.destructiveRed)),
           ],
+        ],
+      ),
+    );
+  }
+
+  Future<void> _confirmDeleteAccount() async {
+    final l10n = AppLocalizations.of(context);
+    final confirmed = await showCupertinoDialog<bool>(
+      context: context,
+      builder: (dialogContext) => CupertinoAlertDialog(
+        title: Text(l10n.settingsTabDeleteAccountConfirmTitle),
+        content: Text(l10n.settingsTabDeleteAccountConfirmMessage),
+        actions: [
+          CupertinoDialogAction(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: Text(l10n.commonCancelButton),
+          ),
+          CupertinoDialogAction(
+            isDestructiveAction: true,
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: Text(l10n.settingsTabDeleteAccountConfirmButton),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+    final deleted = await ref.read(cloudAuthControllerProvider.notifier).deleteAccount();
+    if (!deleted || !mounted) return;
+    await showCupertinoDialog<void>(
+      context: context,
+      builder: (dialogContext) => CupertinoAlertDialog(
+        content: Text(l10n.settingsTabDeleteAccountDone),
+        actions: [
+          CupertinoDialogAction(
+            onPressed: () => Navigator.of(dialogContext).pop(),
+            child: Text(l10n.commonOkButton),
+          ),
         ],
       ),
     );

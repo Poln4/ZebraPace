@@ -2340,6 +2340,12 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get commonCancelButton;
 
+  /// No description provided for @commonOkButton.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get commonOkButton;
+
   /// No description provided for @commonCloseButton.
   ///
   /// In en, this message translates to:
@@ -2729,6 +2735,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sign out'**
   String get settingsTabCloudSyncSignOutButton;
+
+  /// No description provided for @settingsTabDeleteAccountButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account'**
+  String get settingsTabDeleteAccountButton;
+
+  /// No description provided for @settingsTabDeleteAccountConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete your account?'**
+  String get settingsTabDeleteAccountConfirmTitle;
+
+  /// No description provided for @settingsTabDeleteAccountConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This permanently deletes your account, your email, and everything you shared in weight challenges. Challenges you started pass to another member.\n\nYour health log stays on this device — use \"Delete all my data\" below to erase it too.'**
+  String get settingsTabDeleteAccountConfirmMessage;
+
+  /// No description provided for @settingsTabDeleteAccountConfirmButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account'**
+  String get settingsTabDeleteAccountConfirmButton;
+
+  /// No description provided for @settingsTabDeleteAccountDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account has been deleted.'**
+  String get settingsTabDeleteAccountDone;
+
+  /// No description provided for @settingsTabDeleteAccountFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t delete your account: {error}'**
+  String settingsTabDeleteAccountFailed(String error);
 
   /// No description provided for @settingsTabAboutTitle.
   ///

@@ -700,6 +700,7 @@
   },
 
   "commonCancelButton": "Cancel",
+  "commonOkButton": "OK",
   "commonCloseButton": "Close",
 
   "kofiSupportButton": "☕ Support on Ko-fi",
@@ -783,6 +784,17 @@
     }
   },
   "settingsTabCloudSyncSignOutButton": "Sign out",
+  "settingsTabDeleteAccountButton": "Delete account",
+  "settingsTabDeleteAccountConfirmTitle": "Delete your account?",
+  "settingsTabDeleteAccountConfirmMessage": "This permanently deletes your account, your email, and everything you shared in weight challenges. Challenges you started pass to another member.\n\nYour health log stays on this device — use \"Delete all my data\" below to erase it too.",
+  "settingsTabDeleteAccountConfirmButton": "Delete account",
+  "settingsTabDeleteAccountDone": "Your account has been deleted.",
+  "settingsTabDeleteAccountFailed": "Couldn't delete your account: {error}",
+  "@settingsTabDeleteAccountFailed": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
   "settingsTabAboutTitle": "ℹ️ About ZebraPace",
   "settingsTabAboutViewWelcomeButton": "View welcome & disclaimer",
   "settingsTabLanguageTitle": "Language",

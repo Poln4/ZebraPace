@@ -1375,6 +1375,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get commonCancelButton => 'Cancelar';
 
   @override
+  String get commonOkButton => 'OK';
+
+  @override
   String get commonCloseButton => 'Cerrar';
 
   @override
@@ -1597,6 +1600,27 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsTabCloudSyncSignOutButton => 'Cerrar sesión';
+
+  @override
+  String get settingsTabDeleteAccountButton => 'Eliminar cuenta';
+
+  @override
+  String get settingsTabDeleteAccountConfirmTitle => '¿Eliminar tu cuenta?';
+
+  @override
+  String get settingsTabDeleteAccountConfirmMessage =>
+      'Esto elimina para siempre tu cuenta, tu email y todo lo que compartiste en los retos de peso. Los retos que creaste pasan a otro miembro.\n\nTu registro de salud se queda en este dispositivo; usa «Eliminar todos mis datos» más abajo para borrarlo también.';
+
+  @override
+  String get settingsTabDeleteAccountConfirmButton => 'Eliminar cuenta';
+
+  @override
+  String get settingsTabDeleteAccountDone => 'Tu cuenta fue eliminada.';
+
+  @override
+  String settingsTabDeleteAccountFailed(String error) {
+    return 'No se pudo eliminar tu cuenta: $error';
+  }
 
   @override
   String get settingsTabAboutTitle => 'ℹ️ Acerca de ZebraPace';

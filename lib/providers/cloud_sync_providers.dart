@@ -10,7 +10,7 @@ import 'auth_providers.dart' hide AuthState;
 /// which gates the local device lock (Face ID/password). Signing in here
 /// only establishes who owns synced data later; it doesn't touch the lock
 /// screen and doesn't move any health data yet.
-enum CloudAuthAction { idle, sending, linkSent, verifying, error }
+enum CloudAuthAction { idle, sending, linkSent, verifying, deleting, error }
 
 class CloudAuthState {
   const CloudAuthState({this.action = CloudAuthAction.idle, this.error, this.email});
@@ -102,6 +102,25 @@ class CloudAuthController extends StateNotifier<CloudAuthState> {
   Future<void> signOut() async {
     await _client.auth.signOut();
     state = const CloudAuthState();
+  }
+
+  /// Deletes the cloud account and its challenge data server-side
+  /// (supabase/migrations/006_delete_my_account.sql), then drops the local
+  /// session. The on-device health log isn't touched — it was never
+  /// uploaded, and Settings' "Delete all data" covers it separately.
+  Future<bool> deleteAccount() async {
+    state = state.copyWith(action: CloudAuthAction.deleting, error: null);
+    try {
+      await _client.rpc<void>('delete_my_account');
+    } catch (e) {
+      state = state.copyWith(action: CloudAuthAction.error, error: e.toString());
+      return false;
+    }
+    // The user no longer exists server-side, so a global sign-out would
+    // fail — only clear this device's session.
+    await _client.auth.signOut(scope: SignOutScope.local);
+    state = const CloudAuthState();
+    return true;
   }
 
   void reset() => state = const CloudAuthState();

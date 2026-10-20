@@ -425,6 +425,7 @@
   "monthChapterScoreRange": "你的心理狀態在 **{minMental}** 到 **{maxMental}** 之間波動，身體／疼痛狀態則在 **{minBody}** 到 **{maxBody}** 之間。",
 
   "commonCancelButton": "取消",
+  "commonOkButton": "好",
   "commonCloseButton": "關閉",
 
   "kofiSupportButton": "☕ 在 Ko-fi 上支持我",
@@ -503,6 +504,12 @@
     }
   },
   "settingsTabCloudSyncSignOutButton": "登出",
+  "settingsTabDeleteAccountButton": "刪除帳號",
+  "settingsTabDeleteAccountConfirmTitle": "要刪除你的帳號嗎？",
+  "settingsTabDeleteAccountConfirmMessage": "這會永久刪除你的帳號、電子郵件，以及你在體重挑戰中分享的所有資料。你建立的挑戰會轉交給其他成員。\n\n你的健康紀錄會留在這台裝置上——如要一併清除，請使用下方的「刪除我的所有資料」。",
+  "settingsTabDeleteAccountConfirmButton": "刪除帳號",
+  "settingsTabDeleteAccountDone": "你的帳號已刪除。",
+  "settingsTabDeleteAccountFailed": "無法刪除你的帳號：{error}",
   "settingsTabAboutTitle": "ℹ️ 關於 ZebraPace",
   "settingsTabAboutViewWelcomeButton": "查看歡迎與免責聲明",
   "settingsTabLanguageTitle": "語言",

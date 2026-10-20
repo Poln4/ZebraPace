@@ -425,6 +425,7 @@
   "monthChapterScoreRange": "Tu estado mental varió entre **{minMental}** y **{maxMental}**, y tu cuerpo/dolor entre **{minBody}** y **{maxBody}**.",
 
   "commonCancelButton": "Cancelar",
+  "commonOkButton": "OK",
   "commonCloseButton": "Cerrar",
 
   "kofiSupportButton": "☕ Apoyar en Ko-fi",
@@ -503,6 +504,12 @@
     }
   },
   "settingsTabCloudSyncSignOutButton": "Cerrar sesión",
+  "settingsTabDeleteAccountButton": "Eliminar cuenta",
+  "settingsTabDeleteAccountConfirmTitle": "¿Eliminar tu cuenta?",
+  "settingsTabDeleteAccountConfirmMessage": "Esto elimina para siempre tu cuenta, tu email y todo lo que compartiste en los retos de peso. Los retos que creaste pasan a otro miembro.\n\nTu registro de salud se queda en este dispositivo; usa «Eliminar todos mis datos» más abajo para borrarlo también.",
+  "settingsTabDeleteAccountConfirmButton": "Eliminar cuenta",
+  "settingsTabDeleteAccountDone": "Tu cuenta fue eliminada.",
+  "settingsTabDeleteAccountFailed": "No se pudo eliminar tu cuenta: {error}",
   "settingsTabAboutTitle": "ℹ️ Acerca de ZebraPace",
   "settingsTabAboutViewWelcomeButton": "Ver bienvenida y aviso",
   "settingsTabLanguageTitle": "Idioma",

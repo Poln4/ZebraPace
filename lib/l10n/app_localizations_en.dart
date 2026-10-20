@@ -1353,6 +1353,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonCancelButton => 'Cancel';
 
   @override
+  String get commonOkButton => 'OK';
+
+  @override
   String get commonCloseButton => 'Close';
 
   @override
@@ -1572,6 +1575,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsTabCloudSyncSignOutButton => 'Sign out';
+
+  @override
+  String get settingsTabDeleteAccountButton => 'Delete account';
+
+  @override
+  String get settingsTabDeleteAccountConfirmTitle => 'Delete your account?';
+
+  @override
+  String get settingsTabDeleteAccountConfirmMessage =>
+      'This permanently deletes your account, your email, and everything you shared in weight challenges. Challenges you started pass to another member.\n\nYour health log stays on this device — use \"Delete all my data\" below to erase it too.';
+
+  @override
+  String get settingsTabDeleteAccountConfirmButton => 'Delete account';
+
+  @override
+  String get settingsTabDeleteAccountDone => 'Your account has been deleted.';
+
+  @override
+  String settingsTabDeleteAccountFailed(String error) {
+    return 'Couldn\'t delete your account: $error';
+  }
 
   @override
   String get settingsTabAboutTitle => 'ℹ️ About ZebraPace';

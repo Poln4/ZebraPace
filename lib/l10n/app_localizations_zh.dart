@@ -1279,6 +1279,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get commonCancelButton => '取消';
 
   @override
+  String get commonOkButton => '好';
+
+  @override
   String get commonCloseButton => '關閉';
 
   @override
@@ -1487,6 +1490,27 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settingsTabCloudSyncSignOutButton => '登出';
+
+  @override
+  String get settingsTabDeleteAccountButton => '刪除帳號';
+
+  @override
+  String get settingsTabDeleteAccountConfirmTitle => '要刪除你的帳號嗎？';
+
+  @override
+  String get settingsTabDeleteAccountConfirmMessage =>
+      '這會永久刪除你的帳號、電子郵件，以及你在體重挑戰中分享的所有資料。你建立的挑戰會轉交給其他成員。\n\n你的健康紀錄會留在這台裝置上——如要一併清除，請使用下方的「刪除我的所有資料」。';
+
+  @override
+  String get settingsTabDeleteAccountConfirmButton => '刪除帳號';
+
+  @override
+  String get settingsTabDeleteAccountDone => '你的帳號已刪除。';
+
+  @override
+  String settingsTabDeleteAccountFailed(String error) {
+    return '無法刪除你的帳號：$error';
+  }
 
   @override
   String get settingsTabAboutTitle => 'ℹ️ 關於 ZebraPace';
@@ -3588,6 +3612,9 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get commonCancelButton => '取消';
 
   @override
+  String get commonOkButton => '好';
+
+  @override
   String get commonCloseButton => '關閉';
 
   @override
@@ -3796,6 +3823,27 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get settingsTabCloudSyncSignOutButton => '登出';
+
+  @override
+  String get settingsTabDeleteAccountButton => '刪除帳號';
+
+  @override
+  String get settingsTabDeleteAccountConfirmTitle => '要刪除你的帳號嗎？';
+
+  @override
+  String get settingsTabDeleteAccountConfirmMessage =>
+      '這會永久刪除你的帳號、電子郵件，以及你在體重挑戰中分享的所有資料。你建立的挑戰會轉交給其他成員。\n\n你的健康紀錄會留在這台裝置上——如要一併清除，請使用下方的「刪除我的所有資料」。';
+
+  @override
+  String get settingsTabDeleteAccountConfirmButton => '刪除帳號';
+
+  @override
+  String get settingsTabDeleteAccountDone => '你的帳號已刪除。';
+
+  @override
+  String settingsTabDeleteAccountFailed(String error) {
+    return '無法刪除你的帳號：$error';
+  }
 
   @override
   String get settingsTabAboutTitle => 'ℹ️ 關於 ZebraPace';
