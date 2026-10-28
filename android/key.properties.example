@@ -1,0 +1,6 @@
+# Copy to key.properties (same folder) and fill in. Never commit the real one.
+# storeFile: an absolute path is simplest (relative ones resolve from android/app/).
+storePassword=
+keyPassword=
+keyAlias=upload
+storeFile=/Users/you/keys/zebrapace-upload.jks
