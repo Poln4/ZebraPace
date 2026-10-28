@@ -3869,13 +3869,13 @@ abstract class AppLocalizations {
   /// No description provided for @challengeTabTitle.
   ///
   /// In en, this message translates to:
-  /// **'Our 5% Goal'**
+  /// **'Together'**
   String get challengeTabTitle;
 
   /// No description provided for @challengeTabSignInPrompt.
   ///
   /// In en, this message translates to:
-  /// **'Sign in with Cloud Sync to work toward your 5% goal together with your friends.'**
+  /// **'Sign in with Cloud Sync to take on challenges together with your friends.'**
   String get challengeTabSignInPrompt;
 
   /// No description provided for @challengeTabSignInButton.
@@ -4213,6 +4213,186 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Allow sleep'**
   String get settingsTabHealthSleepButton;
+
+  /// No description provided for @challengeKindWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight'**
+  String get challengeKindWeight;
+
+  /// No description provided for @challengeKindSteps.
+  ///
+  /// In en, this message translates to:
+  /// **'Steps'**
+  String get challengeKindSteps;
+
+  /// No description provided for @challengeKindLogging.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily logging'**
+  String get challengeKindLogging;
+
+  /// No description provided for @challengeKindSleep.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep'**
+  String get challengeKindSleep;
+
+  /// No description provided for @challengeKindActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity'**
+  String get challengeKindActivity;
+
+  /// No description provided for @challengeTabKindLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'What will you track?'**
+  String get challengeTabKindLabel;
+
+  /// No description provided for @challengeTabDurationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration'**
+  String get challengeTabDurationLabel;
+
+  /// No description provided for @challengeTabWeeksLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{weeks, plural, =1{1 week} other{{weeks} weeks}}'**
+  String challengeTabWeeksLabel(int weeks);
+
+  /// No description provided for @challengeTabWeekProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Week {week} of {total}'**
+  String challengeTabWeekProgress(int week, int total);
+
+  /// No description provided for @challengeTabFinished.
+  ///
+  /// In en, this message translates to:
+  /// **'Challenge finished 🎉'**
+  String get challengeTabFinished;
+
+  /// No description provided for @challengeTabSetupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set your goal'**
+  String get challengeTabSetupTitle;
+
+  /// No description provided for @challengeTabSetupWeightCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Your starting weight — your progress is measured from here.'**
+  String get challengeTabSetupWeightCaption;
+
+  /// No description provided for @challengeTabSetupGoalCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a daily goal that fits your body. Every day you meet it is a point — everyone competes against their own goal, not each other\'s numbers.'**
+  String get challengeTabSetupGoalCaption;
+
+  /// No description provided for @challengeTabSaveButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get challengeTabSaveButton;
+
+  /// No description provided for @challengeGoalStepsPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Steps per day'**
+  String get challengeGoalStepsPlaceholder;
+
+  /// No description provided for @challengeGoalSleepPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Hours of sleep per night'**
+  String get challengeGoalSleepPlaceholder;
+
+  /// No description provided for @challengeGoalActivityPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Active minutes per day'**
+  String get challengeGoalActivityPlaceholder;
+
+  /// No description provided for @challengeGoalSteps.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} steps'**
+  String challengeGoalSteps(String value);
+
+  /// No description provided for @challengeGoalSleep.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} h of sleep'**
+  String challengeGoalSleep(String value);
+
+  /// No description provided for @challengeGoalActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} active min'**
+  String challengeGoalActivity(String value);
+
+  /// No description provided for @challengeGoalLogging.
+  ///
+  /// In en, this message translates to:
+  /// **'Log something every day'**
+  String get challengeGoalLogging;
+
+  /// No description provided for @challengeTabMyGoalLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Your goal: {goal}'**
+  String challengeTabMyGoalLabel(String goal);
+
+  /// No description provided for @challengeTabChangeGoalButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get challengeTabChangeGoalButton;
+
+  /// No description provided for @challengeTabThisWeekLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{met}/7 this week'**
+  String challengeTabThisWeekLabel(int met);
+
+  /// No description provided for @challengeTabTotalDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 day met} other{{count} days met}} in total'**
+  String challengeTabTotalDays(int count);
+
+  /// No description provided for @challengeTabDailySyncHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Updated automatically from what you log in ZebraPace.'**
+  String get challengeTabDailySyncHint;
+
+  /// No description provided for @challengeTabRestDayHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Rest and flare days count as met — resting is part of pacing.'**
+  String get challengeTabRestDayHint;
+
+  /// No description provided for @challengeTabLoggingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'A day counts when you do a check-in, log an activity, mark a rest/flare day, or enter your weight.'**
+  String get challengeTabLoggingHint;
+
+  /// No description provided for @challengeTabNoGoalYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No goal yet'**
+  String get challengeTabNoGoalYet;
+
+  /// No description provided for @challengeTabDayRestLegend.
+  ///
+  /// In en, this message translates to:
+  /// **'rest day'**
+  String get challengeTabDayRestLegend;
 }
 
 class _AppLocalizationsDelegate

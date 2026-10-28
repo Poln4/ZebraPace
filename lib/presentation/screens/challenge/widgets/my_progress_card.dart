@@ -2,12 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/zebra_theme.dart';
-import '../../../../domain/models/weight_challenge_entry.dart';
+import '../../../../domain/models/challenge_entry.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../../../providers/weight_challenge_providers.dart';
+import '../../../../providers/challenge_providers.dart';
 import '../../../widgets/section_card.dart';
 
-/// Shown once the signed-in user has joined. Fully passive on purpose —
+/// Weight challenges only, shown once the signed-in user has joined and
+/// set a starting weight (ChallengeTab shows ChallengeSetupCard before
+/// that, so [entry]'s weight fields are always non-null here). Fully passive on purpose —
 /// having both this and Vitals as separate places to enter the same weight
 /// was confusing, so there's no field or button here anymore. It just
 /// displays the same 7-day trimmed average Vitals already produces, and
@@ -24,7 +26,7 @@ import '../../../widgets/section_card.dart';
 class MyProgressCard extends ConsumerWidget {
   const MyProgressCard({required this.entry, required this.targetPercent, super.key});
 
-  final WeightChallengeEntry entry;
+  final ChallengeEntry entry;
   final double targetPercent;
 
   static const _syncThresholdKg = 0.05;
@@ -37,8 +39,8 @@ class MyProgressCard extends ConsumerWidget {
     ref.listen(computedChallengeWeightProvider, (previous, next) {
       final computed = next.valueOrNull;
       if (computed == null) return;
-      final repo = ref.read(weightChallengeRepositoryProvider);
-      if ((computed - entry.currentWeightKg).abs() < _syncThresholdKg) {
+      final repo = ref.read(challengeRepositoryProvider);
+      if ((computed - entry.currentWeightKg!).abs() < _syncThresholdKg) {
         repo.logWeighIn(challengeId: entry.challengeId, userId: entry.userId, weightKg: computed);
       } else {
         repo.updateCurrentWeight(
@@ -51,8 +53,8 @@ class MyProgressCard extends ConsumerWidget {
 
     final percent = entry.percentLost;
     final percentLabel = '${percent >= 0 ? '-' : '+'}${percent.abs().toStringAsFixed(1)}%';
-    final displayWeight = computedAsync.valueOrNull ?? entry.currentWeightKg;
-    final goalWeightKg = entry.startWeightKg * (1 - targetPercent / 100);
+    final displayWeight = computedAsync.valueOrNull ?? entry.currentWeightKg!;
+    final goalWeightKg = entry.startWeightKg! * (1 - targetPercent / 100);
 
     return SectionCard(
       title: l10n.challengeTabMyProgressTitle,
@@ -77,7 +79,7 @@ class MyProgressCard extends ConsumerWidget {
               Expanded(
                 child: _GoalStat(
                   label: l10n.challengeTabStartWeightLabel,
-                  value: entry.startWeightKg,
+                  value: entry.startWeightKg!,
                 ),
               ),
               const Icon(CupertinoIcons.arrow_right, size: 14, color: CupertinoColors.systemGrey),

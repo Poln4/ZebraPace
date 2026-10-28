@@ -1,4 +1,4 @@
-import '../models/weight_challenge_entry.dart';
+import '../models/challenge_entry.dart';
 import '../models/weight_challenge_weigh_in.dart';
 
 class ChallengeProgressPoint {
@@ -7,7 +7,7 @@ class ChallengeProgressPoint {
   final DateTime date;
 
   /// Positive = weight lost, negative = weight gained — same convention as
-  /// WeightChallengeEntry.percentLost.
+  /// ChallengeEntry.percentLost.
   final double percentLost;
 }
 
@@ -31,11 +31,12 @@ class ChallengeProgressSeriesBuilder {
   ChallengeProgressSeriesBuilder._();
 
   static List<ChallengeProgressSeries> build(
-    List<WeightChallengeEntry> entries,
+    List<ChallengeEntry> entries,
     List<WeightChallengeWeighIn> history,
   ) {
     return [
-      for (final entry in entries)
+      // A member who hasn't set a starting weight yet has nothing to plot.
+      for (final entry in entries.where((e) => e.hasStartWeight))
         ChallengeProgressSeries(
           userId: entry.userId,
           displayName: entry.displayName,
@@ -50,7 +51,7 @@ class ChallengeProgressSeriesBuilder {
   /// shifts, which would otherwise scatter several close-together points
   /// within a single day instead of showing one clean daily reading.
   static List<ChallengeProgressPoint> _dailyPoints(
-    WeightChallengeEntry entry,
+    ChallengeEntry entry,
     List<WeightChallengeWeighIn> history,
   ) {
     final lastOfDay = <DateTime, WeightChallengeWeighIn>{};
@@ -69,7 +70,7 @@ class ChallengeProgressSeriesBuilder {
         ChallengeProgressPoint(
           date: day,
           percentLost:
-              (entry.startWeightKg - lastOfDay[day]!.weightKg) / entry.startWeightKg * 100,
+              (entry.startWeightKg! - lastOfDay[day]!.weightKg) / entry.startWeightKg! * 100,
         ),
     ];
   }

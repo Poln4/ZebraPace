@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../../../core/theme/zebra_theme.dart';
-import '../../../../domain/models/weight_challenge_entry.dart';
+import '../../../../domain/models/challenge_entry.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../widgets/section_card.dart';
 
@@ -15,7 +15,7 @@ class LeaderboardList extends StatelessWidget {
     super.key,
   });
 
-  final List<WeightChallengeEntry> entries;
+  final List<ChallengeEntry> entries;
   final String? myUserId;
   final double targetPercent;
 
@@ -45,7 +45,7 @@ class LeaderboardList extends StatelessWidget {
 class _LeaderboardRow extends StatelessWidget {
   const _LeaderboardRow({required this.entry, required this.isMe, required this.targetPercent});
 
-  final WeightChallengeEntry entry;
+  final ChallengeEntry entry;
   final bool isMe;
   final double targetPercent;
 

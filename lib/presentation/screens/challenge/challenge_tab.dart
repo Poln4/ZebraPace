@@ -3,24 +3,29 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/zebra_theme.dart';
-import '../../../domain/models/weight_challenge.dart';
+import '../../../domain/models/challenge.dart';
+import '../../../domain/models/challenge_entry.dart';
+import '../../../domain/services/challenge_standings_builder.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/cloud_sync_providers.dart';
-import '../../../providers/weight_challenge_providers.dart';
+import '../../../providers/challenge_providers.dart';
 import '../settings/settings_tab.dart';
 import 'widgets/add_challenge_card.dart';
 import 'widgets/challenge_progress_chart.dart';
+import 'widgets/challenge_setup_card.dart';
+import 'widgets/daily_leaderboard_list.dart';
+import 'widgets/daily_progress_card.dart';
 import 'widgets/leaderboard_list.dart';
 import 'widgets/my_progress_card.dart';
 
 /// Every challenge the signed-in user has joined — reads/writes the shared
 /// Supabase tables `weight_challenges`/`weight_challenge_entries` (see
-/// weight_challenge_repository.dart). A challenge is a named, code-gated
+/// challenge_repository.dart). A challenge is a named, code-gated
 /// group: RLS scopes every entry/weigh-in to members of the same
 /// challenge, so joining or creating one never surfaces another group's
 /// data. State branches on whether the user is signed in
 /// (cloud_sync_providers.dart) and, once signed in, on which (if any)
-/// challenges they've joined (myWeightChallengesProvider).
+/// challenges they've joined (myChallengesProvider).
 class ChallengeTab extends ConsumerWidget {
   const ChallengeTab({super.key});
 
@@ -110,7 +115,7 @@ class _ChallengeBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final challengesAsync = ref.watch(myWeightChallengesProvider);
+    final challengesAsync = ref.watch(myChallengesProvider);
 
     return challengesAsync.when(
       loading: () => const Center(child: CupertinoActivityIndicator()),
@@ -127,10 +132,6 @@ class _ChallengeBody extends ConsumerWidget {
         final selected =
             challenges.firstWhere((c) => c.id == currentId, orElse: () => challenges.first);
 
-        final entriesAsync = ref.watch(weightChallengeEntriesProvider(selected.id));
-        final historyAsync = ref.watch(weightChallengeHistoryProvider(selected.id));
-        final myEntry = ref.watch(myWeightChallengeEntryProvider(selected.id));
-
         return ListView(
           padding: const EdgeInsets.all(16),
           children: [
@@ -142,41 +143,166 @@ class _ChallengeBody extends ConsumerWidget {
               ),
               const SizedBox(height: 8),
             ],
+            _ChallengeHeader(challenge: selected),
+            const SizedBox(height: 4),
             _ChallengeCodeRow(challenge: selected),
             const SizedBox(height: 12),
-            entriesAsync.when(
-              loading: () => const Center(child: CupertinoActivityIndicator()),
-              error: (error, _) => _ErrorView(l10n: l10n, error: error),
-              data: (entries) => Column(
-                children: [
-                  // Shouldn't normally happen — myWeightChallengesProvider
-                  // only lists challenges this user has already joined —
-                  // but the one-shot fetch and this realtime stream can
-                  // momentarily disagree right after joining.
-                  if (myEntry == null)
-                    const CupertinoActivityIndicator()
-                  else
-                    MyProgressCard(entry: myEntry, targetPercent: selected.targetPercent),
-                  if (entries.isNotEmpty) ...[
-                    const SizedBox(height: 12),
-                    ChallengeProgressChart(
-                      entries: entries,
-                      history: historyAsync.valueOrNull ?? const [],
-                      targetPercent: selected.targetPercent,
-                    ),
-                    const SizedBox(height: 12),
-                    LeaderboardList(
-                      entries: entries,
-                      myUserId: userId,
-                      targetPercent: selected.targetPercent,
-                    ),
-                  ],
-                ],
-              ),
+            _ChallengeDetails(
+              // Keyed so the "editing goal" state doesn't leak across
+              // challenges when switching with the picker.
+              key: ValueKey(selected.id),
+              l10n: l10n,
+              challenge: selected,
+              userId: userId,
             ),
           ],
         );
       },
+    );
+  }
+}
+
+/// Kind, name and where the challenge stands in time.
+class _ChallengeHeader extends StatelessWidget {
+  const _ChallengeHeader({required this.challenge});
+
+  final Challenge challenge;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final now = DateTime.now();
+    final String? when;
+    if (!challenge.isFixedLength) {
+      when = null;
+    } else if (challenge.isFinished(now)) {
+      when = l10n.challengeTabFinished;
+    } else {
+      when = l10n.challengeTabWeekProgress(challenge.weekIndexFor(now) + 1, challenge.weeks!);
+    }
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
+      children: [
+        Expanded(
+          child: Text(
+            '${challenge.kind.emoji} ${challenge.name}',
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: ZebraColors.black),
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+        if (when != null)
+          Text(when, style: const TextStyle(fontSize: 12, color: CupertinoColors.systemGrey)),
+      ],
+    );
+  }
+}
+
+/// Everything below the header for the selected challenge: setup first if
+/// the member hasn't given a starting weight / daily goal yet, then either
+/// the weight views (MyProgressCard, chart, % leaderboard) or the
+/// daily-goal views (DailyProgressCard, days-met leaderboard).
+class _ChallengeDetails extends ConsumerStatefulWidget {
+  const _ChallengeDetails({
+    required this.l10n,
+    required this.challenge,
+    required this.userId,
+    super.key,
+  });
+
+  final AppLocalizations l10n;
+  final Challenge challenge;
+  final String userId;
+
+  @override
+  ConsumerState<_ChallengeDetails> createState() => _ChallengeDetailsState();
+}
+
+class _ChallengeDetailsState extends ConsumerState<_ChallengeDetails> {
+  bool _editingGoal = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = widget.l10n;
+    final challenge = widget.challenge;
+    final entriesAsync = ref.watch(challengeEntriesProvider(challenge.id));
+    final myEntry = ref.watch(myChallengeEntryProvider(challenge.id));
+
+    return entriesAsync.when(
+      loading: () => const Center(child: CupertinoActivityIndicator()),
+      error: (error, _) => _ErrorView(l10n: l10n, error: error),
+      data: (entries) {
+        // Shouldn't normally happen — myChallengesProvider only lists
+        // challenges this user has already joined — but the one-shot fetch
+        // and this realtime stream can momentarily disagree right after
+        // joining.
+        if (myEntry == null) return const CupertinoActivityIndicator();
+
+        if (_editingGoal || ChallengeSetupCard.isNeeded(challenge, myEntry)) {
+          return ChallengeSetupCard(
+            challenge: challenge,
+            entry: myEntry,
+            onCancel: _editingGoal ? () => setState(() => _editingGoal = false) : null,
+          );
+        }
+
+        return challenge.kind.isDaily
+            ? _dailyViews(challenge, entries)
+            : _weightViews(challenge, entries, myEntry);
+      },
+    );
+  }
+
+  Widget _weightViews(Challenge challenge, List<ChallengeEntry> entries, ChallengeEntry myEntry) {
+    final historyAsync = ref.watch(weightChallengeHistoryProvider(challenge.id));
+    final withWeights = entries.where((e) => e.hasStartWeight).toList();
+    return Column(
+      children: [
+        MyProgressCard(entry: myEntry, targetPercent: challenge.targetPercent),
+        if (withWeights.isNotEmpty) ...[
+          const SizedBox(height: 12),
+          ChallengeProgressChart(
+            entries: withWeights,
+            history: historyAsync.valueOrNull ?? const [],
+            targetPercent: challenge.targetPercent,
+          ),
+          const SizedBox(height: 12),
+          LeaderboardList(
+            entries: withWeights,
+            myUserId: widget.userId,
+            targetPercent: challenge.targetPercent,
+          ),
+        ],
+      ],
+    );
+  }
+
+  Widget _dailyViews(Challenge challenge, List<ChallengeEntry> entries) {
+    final days = ref.watch(challengeDaysProvider(challenge.id)).valueOrNull ?? const [];
+    final weekIndex = challenge.weekIndexFor(DateTime.now());
+    final standings = ChallengeStandingsBuilder.build(
+      challenge: challenge,
+      entries: entries,
+      days: days,
+      weekIndex: weekIndex,
+    );
+    final mine = standings.firstWhere((s) => s.entry.userId == widget.userId);
+    return Column(
+      children: [
+        DailyProgressCard(
+          challenge: challenge,
+          standing: mine,
+          weekIndex: weekIndex,
+          onChangeGoal: () => setState(() => _editingGoal = true),
+        ),
+        const SizedBox(height: 12),
+        DailyLeaderboardList(
+          challenge: challenge,
+          standings: standings,
+          weekIndex: weekIndex,
+          myUserId: widget.userId,
+        ),
+      ],
     );
   }
 }
@@ -224,7 +350,7 @@ class _ChallengePicker extends StatelessWidget {
     required this.onSelected,
   });
 
-  final List<WeightChallenge> challenges;
+  final List<Challenge> challenges;
   final String selectedId;
   final ValueChanged<String> onSelected;
 
@@ -245,7 +371,7 @@ class _ChallengePicker extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
             onPressed: () => onSelected(challenge.id),
             child: Text(
-              challenge.name,
+              '${challenge.kind.emoji} ${challenge.name}',
               style: TextStyle(fontSize: 13, color: selected ? ZebraColors.onColor : ZebraColors.black),
             ),
           );
@@ -260,7 +386,7 @@ class _ChallengePicker extends StatelessWidget {
 class _ChallengeCodeRow extends StatefulWidget {
   const _ChallengeCodeRow({required this.challenge});
 
-  final WeightChallenge challenge;
+  final Challenge challenge;
 
   @override
   State<_ChallengeCodeRow> createState() => _ChallengeCodeRowState();

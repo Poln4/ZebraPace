@@ -2133,10 +2133,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get insightsRangeNinetyDays => '90 天';
 
   @override
-  String get challengeTabTitle => '我們的 5% 目標';
+  String get challengeTabTitle => '一起';
 
   @override
-  String get challengeTabSignInPrompt => '透過雲端同步登入，與朋友一起邁向減重 5% 的目標。';
+  String get challengeTabSignInPrompt => '透過雲端同步登入，和朋友一起挑戰。';
 
   @override
   String get challengeTabSignInButton => '登入';
@@ -2336,6 +2336,123 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settingsTabHealthSleepButton => '允許讀取睡眠';
+
+  @override
+  String get challengeKindWeight => '體重';
+
+  @override
+  String get challengeKindSteps => '步數';
+
+  @override
+  String get challengeKindLogging => '每日記錄';
+
+  @override
+  String get challengeKindSleep => '睡眠';
+
+  @override
+  String get challengeKindActivity => '活動';
+
+  @override
+  String get challengeTabKindLabel => '要追蹤什麼？';
+
+  @override
+  String get challengeTabDurationLabel => '期間';
+
+  @override
+  String challengeTabWeeksLabel(int weeks) {
+    String _temp0 = intl.Intl.pluralLogic(
+      weeks,
+      locale: localeName,
+      other: '$weeks 週',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String challengeTabWeekProgress(int week, int total) {
+    return '第 $week 週，共 $total 週';
+  }
+
+  @override
+  String get challengeTabFinished => '挑戰結束 🎉';
+
+  @override
+  String get challengeTabSetupTitle => '設定你的目標';
+
+  @override
+  String get challengeTabSetupWeightCaption => '你的起始體重 — 進度從這裡開始計算。';
+
+  @override
+  String get challengeTabSetupGoalCaption =>
+      '選一個適合你身體的每日目標。每達成一天就得一分 — 每個人都是和自己的目標比，而不是和別人的數字比。';
+
+  @override
+  String get challengeTabSaveButton => '儲存';
+
+  @override
+  String get challengeGoalStepsPlaceholder => '每日步數';
+
+  @override
+  String get challengeGoalSleepPlaceholder => '每晚睡眠時數';
+
+  @override
+  String get challengeGoalActivityPlaceholder => '每日活動分鐘數';
+
+  @override
+  String challengeGoalSteps(String value) {
+    return '$value 步';
+  }
+
+  @override
+  String challengeGoalSleep(String value) {
+    return '睡眠 $value 小時';
+  }
+
+  @override
+  String challengeGoalActivity(String value) {
+    return '活動 $value 分鐘';
+  }
+
+  @override
+  String get challengeGoalLogging => '每天記錄一些東西';
+
+  @override
+  String challengeTabMyGoalLabel(String goal) {
+    return '你的目標：$goal';
+  }
+
+  @override
+  String get challengeTabChangeGoalButton => '更改';
+
+  @override
+  String challengeTabThisWeekLabel(int met) {
+    return '本週 $met/7';
+  }
+
+  @override
+  String challengeTabTotalDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 天',
+    );
+    return '總共達成 $_temp0';
+  }
+
+  @override
+  String get challengeTabDailySyncHint => '會依你在 ZebraPace 的記錄自動更新。';
+
+  @override
+  String get challengeTabRestDayHint => '休息日和發作日都算達成 — 休息也是節奏調整的一部分。';
+
+  @override
+  String get challengeTabLoggingHint => '當天有簽到、記錄活動、標記休息/發作日或輸入體重，就算一天。';
+
+  @override
+  String get challengeTabNoGoalYet => '尚未設定目標';
+
+  @override
+  String get challengeTabDayRestLegend => '休息';
 }
 
 /// The translations for Chinese, as used in Taiwan (`zh_TW`).
@@ -4466,10 +4583,10 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get insightsRangeNinetyDays => '90 天';
 
   @override
-  String get challengeTabTitle => '我們的 5% 目標';
+  String get challengeTabTitle => '一起';
 
   @override
-  String get challengeTabSignInPrompt => '透過雲端同步登入，與朋友一起邁向減重 5% 的目標。';
+  String get challengeTabSignInPrompt => '透過雲端同步登入，和朋友一起挑戰。';
 
   @override
   String get challengeTabSignInButton => '登入';
@@ -4669,4 +4786,121 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get settingsTabHealthSleepButton => '允許讀取睡眠';
+
+  @override
+  String get challengeKindWeight => '體重';
+
+  @override
+  String get challengeKindSteps => '步數';
+
+  @override
+  String get challengeKindLogging => '每日記錄';
+
+  @override
+  String get challengeKindSleep => '睡眠';
+
+  @override
+  String get challengeKindActivity => '活動';
+
+  @override
+  String get challengeTabKindLabel => '要追蹤什麼？';
+
+  @override
+  String get challengeTabDurationLabel => '期間';
+
+  @override
+  String challengeTabWeeksLabel(int weeks) {
+    String _temp0 = intl.Intl.pluralLogic(
+      weeks,
+      locale: localeName,
+      other: '$weeks 週',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String challengeTabWeekProgress(int week, int total) {
+    return '第 $week 週，共 $total 週';
+  }
+
+  @override
+  String get challengeTabFinished => '挑戰結束 🎉';
+
+  @override
+  String get challengeTabSetupTitle => '設定你的目標';
+
+  @override
+  String get challengeTabSetupWeightCaption => '你的起始體重 — 進度從這裡開始計算。';
+
+  @override
+  String get challengeTabSetupGoalCaption =>
+      '選一個適合你身體的每日目標。每達成一天就得一分 — 每個人都是和自己的目標比，而不是和別人的數字比。';
+
+  @override
+  String get challengeTabSaveButton => '儲存';
+
+  @override
+  String get challengeGoalStepsPlaceholder => '每日步數';
+
+  @override
+  String get challengeGoalSleepPlaceholder => '每晚睡眠時數';
+
+  @override
+  String get challengeGoalActivityPlaceholder => '每日活動分鐘數';
+
+  @override
+  String challengeGoalSteps(String value) {
+    return '$value 步';
+  }
+
+  @override
+  String challengeGoalSleep(String value) {
+    return '睡眠 $value 小時';
+  }
+
+  @override
+  String challengeGoalActivity(String value) {
+    return '活動 $value 分鐘';
+  }
+
+  @override
+  String get challengeGoalLogging => '每天記錄一些東西';
+
+  @override
+  String challengeTabMyGoalLabel(String goal) {
+    return '你的目標：$goal';
+  }
+
+  @override
+  String get challengeTabChangeGoalButton => '更改';
+
+  @override
+  String challengeTabThisWeekLabel(int met) {
+    return '本週 $met/7';
+  }
+
+  @override
+  String challengeTabTotalDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 天',
+    );
+    return '總共達成 $_temp0';
+  }
+
+  @override
+  String get challengeTabDailySyncHint => '會依你在 ZebraPace 的記錄自動更新。';
+
+  @override
+  String get challengeTabRestDayHint => '休息日和發作日都算達成 — 休息也是節奏調整的一部分。';
+
+  @override
+  String get challengeTabLoggingHint => '當天有簽到、記錄活動、標記休息/發作日或輸入體重，就算一天。';
+
+  @override
+  String get challengeTabNoGoalYet => '尚未設定目標';
+
+  @override
+  String get challengeTabDayRestLegend => '休息';
 }

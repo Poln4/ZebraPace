@@ -2,7 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../../core/theme/zebra_theme.dart';
-import '../../../../domain/models/weight_challenge_entry.dart';
+import '../../../../domain/models/challenge_entry.dart';
 import '../../../../domain/models/weight_challenge_weigh_in.dart';
 import '../../../../domain/services/challenge_progress_series_builder.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -26,7 +26,7 @@ class ChallengeProgressChart extends StatelessWidget {
     super.key,
   });
 
-  final List<WeightChallengeEntry> entries;
+  final List<ChallengeEntry> entries;
   final List<WeightChallengeWeighIn> history;
   final double targetPercent;
 

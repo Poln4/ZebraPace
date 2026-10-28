@@ -1,10 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:zebrapace_app/domain/models/weight_challenge_entry.dart';
+import 'package:zebrapace_app/domain/models/challenge_entry.dart';
 import 'package:zebrapace_app/domain/models/weight_challenge_weigh_in.dart';
 import 'package:zebrapace_app/domain/services/challenge_progress_series_builder.dart';
 
 void main() {
-  final alice = WeightChallengeEntry(
+  final alice = ChallengeEntry(
     challengeId: 'c1',
     userId: 'alice',
     displayName: 'Alice',
@@ -12,7 +12,7 @@ void main() {
     currentWeightKg: 95.0,
     updatedAt: DateTime(2026, 1, 10),
   );
-  final bob = WeightChallengeEntry(
+  final bob = ChallengeEntry(
     challengeId: 'c1',
     userId: 'bob',
     displayName: 'Bob',

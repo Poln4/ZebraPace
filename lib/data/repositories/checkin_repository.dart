@@ -29,6 +29,17 @@ class CheckinRepository {
     return query.watch().map((rows) => rows.map(_toDomain).toList());
   }
 
+  /// Dates in [startDate, endDate] with at least one check-in — the only
+  /// thing the daily-logging challenge needs to know about check-ins.
+  Future<Set<String>> getDatesWithCheckins(String startDate, String endDate) async {
+    final query = _db.selectOnly(_db.checkins, distinct: true)
+      ..addColumns([_db.checkins.date])
+      ..where(_db.checkins.date.isBiggerOrEqualValue(startDate) &
+          _db.checkins.date.isSmallerOrEqualValue(endDate));
+    final rows = await query.get();
+    return {for (final row in rows) row.read(_db.checkins.date)!};
+  }
+
   Future<void> insert({
     required String date,
     required MentalState mentalState,

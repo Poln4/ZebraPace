@@ -35,6 +35,7 @@ import '../domain/services/soreness_check_service.dart';
 import '../domain/services/stripe_service.dart';
 import '../domain/services/weather_service.dart';
 import '../domain/services/weight_challenge_progress_service.dart';
+import '../domain/services/challenge_day_service.dart';
 
 // --- Database (single instance for the app's lifetime) ---
 
@@ -137,6 +138,13 @@ final metsEstimationServiceProvider = Provider<MetsEstimationService>(
 );
 final metsSummaryServiceProvider = Provider<MetsSummaryService>(
   (ref) => MetsSummaryService(),
+);
+final challengeDayServiceProvider = Provider<ChallengeDayService>(
+  (ref) => ChallengeDayService(
+    ref.watch(dailyLogRepositoryProvider),
+    ref.watch(activityRepositoryProvider),
+    ref.watch(checkinRepositoryProvider),
+  ),
 );
 final weightChallengeProgressServiceProvider = Provider<WeightChallengeProgressService>(
   (ref) => WeightChallengeProgressService(ref.watch(dailyLogRepositoryProvider)),

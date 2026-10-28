@@ -2280,11 +2280,11 @@ class AppLocalizationsEs extends AppLocalizations {
   String get insightsRangeNinetyDays => '90 días';
 
   @override
-  String get challengeTabTitle => 'Nuestra Meta del 5%';
+  String get challengeTabTitle => 'Juntos';
 
   @override
   String get challengeTabSignInPrompt =>
-      'Inicia sesión con Sincronización en la Nube para avanzar junto a tus amigos hacia vuestra meta del 5%.';
+      'Inicia sesión con Sincronización en la Nube para hacer desafíos junto a tus amigos.';
 
   @override
   String get challengeTabSignInButton => 'Iniciar sesión';
@@ -2498,4 +2498,127 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsTabHealthSleepButton => 'Permitir sueño';
+
+  @override
+  String get challengeKindWeight => 'Peso';
+
+  @override
+  String get challengeKindSteps => 'Pasos';
+
+  @override
+  String get challengeKindLogging => 'Registro diario';
+
+  @override
+  String get challengeKindSleep => 'Sueño';
+
+  @override
+  String get challengeKindActivity => 'Actividad';
+
+  @override
+  String get challengeTabKindLabel => '¿Qué van a medir?';
+
+  @override
+  String get challengeTabDurationLabel => 'Duración';
+
+  @override
+  String challengeTabWeeksLabel(int weeks) {
+    String _temp0 = intl.Intl.pluralLogic(
+      weeks,
+      locale: localeName,
+      other: '$weeks semanas',
+      one: '1 semana',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String challengeTabWeekProgress(int week, int total) {
+    return 'Semana $week de $total';
+  }
+
+  @override
+  String get challengeTabFinished => 'Desafío terminado 🎉';
+
+  @override
+  String get challengeTabSetupTitle => 'Define tu meta';
+
+  @override
+  String get challengeTabSetupWeightCaption =>
+      'Tu peso inicial — tu progreso se mide desde aquí.';
+
+  @override
+  String get challengeTabSetupGoalCaption =>
+      'Elige una meta diaria que se ajuste a tu cuerpo. Cada día que la cumples suma un punto — cada persona compite contra su propia meta, no contra los números de los demás.';
+
+  @override
+  String get challengeTabSaveButton => 'Guardar';
+
+  @override
+  String get challengeGoalStepsPlaceholder => 'Pasos por día';
+
+  @override
+  String get challengeGoalSleepPlaceholder => 'Horas de sueño por noche';
+
+  @override
+  String get challengeGoalActivityPlaceholder => 'Minutos activos por día';
+
+  @override
+  String challengeGoalSteps(String value) {
+    return '$value pasos';
+  }
+
+  @override
+  String challengeGoalSleep(String value) {
+    return '$value h de sueño';
+  }
+
+  @override
+  String challengeGoalActivity(String value) {
+    return '$value min activos';
+  }
+
+  @override
+  String get challengeGoalLogging => 'Registrar algo cada día';
+
+  @override
+  String challengeTabMyGoalLabel(String goal) {
+    return 'Tu meta: $goal';
+  }
+
+  @override
+  String get challengeTabChangeGoalButton => 'Cambiar';
+
+  @override
+  String challengeTabThisWeekLabel(int met) {
+    return '$met/7 esta semana';
+  }
+
+  @override
+  String challengeTabTotalDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count días cumplidos',
+      one: '1 día cumplido',
+    );
+    return '$_temp0 en total';
+  }
+
+  @override
+  String get challengeTabDailySyncHint =>
+      'Se actualiza solo con lo que registras en ZebraPace.';
+
+  @override
+  String get challengeTabRestDayHint =>
+      'Los días de descanso y de crisis cuentan como cumplidos — descansar también es parte del pacing.';
+
+  @override
+  String get challengeTabLoggingHint =>
+      'Un día cuenta si haces un check-in, registras una actividad, marcas descanso/crisis o anotas tu peso.';
+
+  @override
+  String get challengeTabNoGoalYet => 'Sin meta aún';
+
+  @override
+  String get challengeTabDayRestLegend => 'descanso';
 }
