@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/theme/zebra_theme.dart';
+import '../../../../core/utils/intl_locale.dart';
 import '../../../../domain/models/challenge_day.dart';
 
 /// Seven dots for one week of a daily-goal challenge: filled when the goal
@@ -20,7 +21,7 @@ class WeekDots extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final locale = Localizations.localeOf(context).toLanguageTag();
+    final locale = intlLocaleOf(context);
     final letterFormat = DateFormat('EEEEE', locale);
     return Row(
       mainAxisSize: MainAxisSize.min,

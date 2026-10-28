@@ -82,15 +82,15 @@
   <!-- ================= ENGLISH ================= -->
   <section id="en" lang="en">
     <h1>Privacy Policy</h1>
-    <p class="meta">Effective October 14, 2026</p>
+    <p class="meta">Effective October 28, 2026</p>
 
     <div class="summary">
       <strong>The short version</strong>
       <ul>
         <li>Your health log lives on your device. We don't have a copy.</li>
-        <li>Apple Health and Health Connect data is only read, only used to pre-fill your log, and never leaves your device.</li>
-        <li>An account is optional. If you create one, we store your email, and, if you join a weight challenge, the weight figures you share with that group.</li>
-        <li>No ads, no analytics, no tracking, and we never sell data.</li>
+        <li>Apple Health and Health Connect data is only read and used to pre-fill your log. It stays on your device, except a daily total you choose to share when you join a challenge.</li>
+        <li>An account is optional. If you create one, we store your email, and, if you join a challenge, the daily figures you share with that group.</li>
+        <li>No ads, no analytics, no tracking, and we never sell data. Crash reports are anonymous.</li>
       </ul>
     </div>
 
@@ -110,20 +110,20 @@
       <li>show heart-rate ranges and energy estimates in your own insights,</li>
       <li>gauge how recovered you are, so your suggested step range can shrink on low-readiness days.</li>
     </ul>
-    <p>ZebraPace never writes to Apple Health or Health Connect. Data read from them stays on your device. It is never sent to our servers or to any third party, and never used for advertising, marketing or data brokering. ZebraPace's use of information received from Health Connect follows the <a href="https://support.google.com/googleplay/android-developer/answer/9888170">Health Connect Permissions policy</a>, including its Limited Use requirements. You can withdraw access at any time in iOS Settings → Health, or in Health Connect on Android.</p>
+    <p>ZebraPace never writes to Apple Health or Health Connect. Data read from them stays on your device, with one exception you opt into: if you join a steps, sleep or activity challenge, that day's total is shared with the challenge group (see Challenges below). It is never sent to any third party, and never used for advertising, marketing or data brokering. ZebraPace's use of information received from Health Connect follows the <a href="https://support.google.com/googleplay/android-developer/answer/9888170">Health Connect Permissions policy</a>, including its Limited Use requirements. You can withdraw access at any time in iOS Settings → Health, or in Health Connect on Android.</p>
 
     <h2>Optional account</h2>
     <p>You can use ZebraPace without an account. If you sign in, your email address is stored by our backend provider, <a href="https://supabase.com/privacy">Supabase</a>, so we can send you sign-in links. Your health log is <strong>not</strong> uploaded.</p>
 
-    <h2>Weight challenges (optional)</h2>
-    <p>If you create or join a weight challenge, we store the following on Supabase:</p>
+    <h2>Challenges (optional)</h2>
+    <p>If you create or join a challenge, we store the following on Supabase:</p>
     <ul>
-      <li>the display name you choose,</li>
-      <li>your starting weight,</li>
-      <li>a current-weight figure (an average of your logged rest-day weights),</li>
-      <li>each weight update with its date,</li>
-      <li>the challenge's name and invite code.</li>
+      <li>the display name you choose, and your daily goal,</li>
+      <li>the challenge's name, kind, length and invite code,</li>
+      <li>for steps, sleep, activity and logging challenges, one entry per day: that day's value (steps, sleep hours, active minutes, or whether you logged anything), whether you met your goal, and whether it was a rest or flare day,</li>
+      <li>for weight challenges, your starting weight, a current-weight figure (an average of your logged rest-day weights) and each weight update with its date.</li>
     </ul>
+    <p>The app tells you this before you join or create a challenge. Nothing else from your log is uploaded.</p>
     <p>Only members of that challenge can see these entries. Other users cannot browse challenges they haven't joined.</p>
 
     <h2>Weather</h2>
@@ -131,16 +131,18 @@
 
     <h2>Other services</h2>
     <ul>
-      <li><strong>Fonts:</strong> the app downloads its typefaces from Google Fonts, which receives your IP address the way any website request does.</li>
       <li><strong>Web hosting:</strong> the web version is served by Netlify, which keeps standard server logs.</li>
-      <li><strong>Links:</strong> the Ko-fi and website buttons open external sites with their own privacy policies.</li>
+      <li><strong>Links:</strong> the website button opens an external site with its own privacy policy.</li>
     </ul>
+
+    <h2>Crash reports</h2>
+    <p>When the app crashes or something fails unexpectedly (for example, a read from Apple Health), it sends a short report to Supabase: the error message, where in the app's code it happened, your platform (iOS, Android or web) and the app version. Reports are not linked to your account and contain no email, name or log data. They are only used to fix bugs and are deleted after about 90 days.</p>
 
     <h2>Exports</h2>
     <p>PDF reports and CSV/JSON exports are created on your device. They are shared only where you choose to send them, for example to your doctor.</p>
 
     <h2>What we don't do</h2>
-    <p>No advertising, no analytics or crash-reporting SDKs, no tracking across apps or websites, and no selling or sharing of personal data.</p>
+    <p>No advertising, no analytics or third-party crash-reporting SDKs, no tracking across apps or websites, and no selling or sharing of personal data.</p>
 
     <h2>Keeping and deleting your data</h2>
     <ul>
@@ -165,15 +167,15 @@
   <!-- ================= ESPAÑOL ================= -->
   <section id="es" lang="es">
     <h1>Política de privacidad</h1>
-    <p class="meta">Vigente desde el 14 de octubre de 2026</p>
+    <p class="meta">Vigente desde el 28 de octubre de 2026</p>
 
     <div class="summary">
       <strong>En resumen</strong>
       <ul>
         <li>Tu registro de salud vive en tu dispositivo. Nosotros no tenemos una copia.</li>
-        <li>Los datos de Apple Salud y Health Connect solo se leen, solo se usan para prellenar tu registro y nunca salen de tu dispositivo.</li>
-        <li>La cuenta es opcional. Si creas una, guardamos tu email y, si te unes a un reto de peso, las cifras de peso que compartes con ese grupo.</li>
-        <li>Sin anuncios, sin analítica, sin rastreo, y nunca vendemos datos.</li>
+        <li>Los datos de Apple Salud y Health Connect solo se leen y se usan para prellenar tu registro. Se quedan en tu dispositivo, salvo un total diario que eliges compartir al unirte a un reto.</li>
+        <li>La cuenta es opcional. Si creas una, guardamos tu email y, si te unes a un reto, las cifras diarias que compartes con ese grupo.</li>
+        <li>Sin anuncios, sin analítica, sin rastreo, y nunca vendemos datos. Los reportes de errores son anónimos.</li>
       </ul>
     </div>
 
@@ -193,20 +195,20 @@
       <li>mostrar rangos de frecuencia cardíaca y estimaciones de energía en tus propios análisis,</li>
       <li>estimar tu nivel de recuperación, para achicar tu rango de pasos sugerido en días de baja disposición.</li>
     </ul>
-    <p>ZebraPace nunca escribe en Apple Salud ni en Health Connect. Los datos que lee se quedan en tu dispositivo. Nunca se envían a nuestros servidores ni a terceros, y nunca se usan para publicidad, marketing ni venta de datos. El uso que hace ZebraPace de la información de Health Connect cumple la <a href="https://support.google.com/googleplay/android-developer/answer/9888170">política de permisos de Health Connect</a>, incluidos sus requisitos de uso limitado. Puedes retirar el acceso cuando quieras en Ajustes de iOS → Salud, o en Health Connect en Android.</p>
+    <p>ZebraPace nunca escribe en Apple Salud ni en Health Connect. Los datos que lee se quedan en tu dispositivo, con una excepción que tú eliges: si te unes a un reto de pasos, sueño o actividad, el total del día se comparte con el grupo del reto (ver Retos más abajo). Nunca se envían a terceros, y nunca se usan para publicidad, marketing ni venta de datos. El uso que hace ZebraPace de la información de Health Connect cumple la <a href="https://support.google.com/googleplay/android-developer/answer/9888170">política de permisos de Health Connect</a>, incluidos sus requisitos de uso limitado. Puedes retirar el acceso cuando quieras en Ajustes de iOS → Salud, o en Health Connect en Android.</p>
 
     <h2>Cuenta opcional</h2>
     <p>Puedes usar ZebraPace sin cuenta. Si inicias sesión, tu email queda guardado en nuestro proveedor de backend, <a href="https://supabase.com/privacy">Supabase</a>, para poder enviarte enlaces de acceso. Tu registro de salud <strong>no</strong> se sube.</p>
 
-    <h2>Retos de peso (opcional)</h2>
-    <p>Si creas un reto de peso o te unes a uno, guardamos lo siguiente en Supabase:</p>
+    <h2>Retos (opcional)</h2>
+    <p>Si creas un reto o te unes a uno, guardamos lo siguiente en Supabase:</p>
     <ul>
-      <li>el nombre visible que elijas,</li>
-      <li>tu peso inicial,</li>
-      <li>una cifra de peso actual (el promedio de los pesos que registras en días de descanso),</li>
-      <li>cada actualización de peso con su fecha,</li>
-      <li>el nombre y el código de invitación del reto.</li>
+      <li>el nombre visible que elijas y tu meta diaria,</li>
+      <li>el nombre, el tipo, la duración y el código de invitación del reto,</li>
+      <li>en los retos de pasos, sueño, actividad y registro, una entrada por día: el valor de ese día (pasos, horas de sueño, minutos activos o si registraste algo), si cumpliste tu meta y si fue un día de descanso o de brote,</li>
+      <li>en los retos de peso, tu peso inicial, una cifra de peso actual (el promedio de los pesos que registras en días de descanso) y cada actualización de peso con su fecha.</li>
     </ul>
+    <p>La app te lo explica antes de que te unas o crees un reto. Nada más de tu registro se sube.</p>
     <p>Solo los miembros de ese reto pueden ver estos datos. Nadie puede explorar retos a los que no se ha unido.</p>
 
     <h2>Clima</h2>
@@ -214,16 +216,18 @@
 
     <h2>Otros servicios</h2>
     <ul>
-      <li><strong>Tipografías:</strong> la app descarga sus fuentes desde Google Fonts, que recibe tu dirección IP como en cualquier solicitud web.</li>
       <li><strong>Hosting web:</strong> la versión web se sirve desde Netlify, que guarda registros estándar del servidor.</li>
-      <li><strong>Enlaces:</strong> los botones de Ko-fi y del sitio web abren páginas externas con sus propias políticas de privacidad.</li>
+      <li><strong>Enlaces:</strong> el botón del sitio web abre una página externa con su propia política de privacidad.</li>
     </ul>
+
+    <h2>Reportes de errores</h2>
+    <p>Cuando la app se cierra inesperadamente o algo falla (por ejemplo, una lectura de Apple Salud), envía un reporte breve a Supabase: el mensaje de error, en qué parte del código de la app ocurrió, tu plataforma (iOS, Android o web) y la versión de la app. Los reportes no están vinculados a tu cuenta y no incluyen tu email, tu nombre ni datos de tu registro. Solo se usan para corregir errores y se eliminan después de unos 90 días.</p>
 
     <h2>Exportaciones</h2>
     <p>Los informes PDF y las exportaciones CSV/JSON se crean en tu dispositivo. Solo se comparten donde tú decidas enviarlos, por ejemplo a tu médico.</p>
 
     <h2>Lo que no hacemos</h2>
-    <p>No hay publicidad ni SDKs de analítica o de reportes de errores. No te rastreamos en otras apps ni sitios web, y no vendemos ni compartimos datos personales.</p>
+    <p>No hay publicidad ni SDKs de analítica o de reportes de errores de terceros. No te rastreamos en otras apps ni sitios web, y no vendemos ni compartimos datos personales.</p>
 
     <h2>Conservación y eliminación de datos</h2>
     <ul>
@@ -248,15 +252,15 @@
   <!-- ================= 中文（繁體） ================= -->
   <section id="zh" lang="zh-Hant">
     <h1>隱私權政策</h1>
-    <p class="meta">自 2026 年 10 月 14 日起生效</p>
+    <p class="meta">自 2026 年 10 月 28 日起生效</p>
 
     <div class="summary">
       <strong>重點摘要</strong>
       <ul>
         <li>你的健康紀錄存放在你的裝置上，我們沒有任何副本。</li>
-        <li>來自 Apple 健康與 Health Connect 的資料只會被讀取，只用來預先填入你的紀錄，而且永遠不會離開你的裝置。</li>
-        <li>帳號是選用的。如果你建立帳號，我們會儲存你的電子郵件；如果你加入體重挑戰，也會儲存你與該群組分享的體重數字。</li>
-        <li>沒有廣告、沒有分析工具、沒有追蹤，我們也絕不販售資料。</li>
+        <li>來自 Apple 健康與 Health Connect 的資料只會被讀取，用來預先填入你的紀錄。這些資料留在你的裝置上，唯一的例外是你加入挑戰時選擇分享的每日總數。</li>
+        <li>帳號是選用的。如果你建立帳號，我們會儲存你的電子郵件；如果你加入挑戰，也會儲存你與該群組分享的每日數字。</li>
+        <li>沒有廣告、沒有分析工具、沒有追蹤，我們也絕不販售資料。當機回報是匿名的。</li>
       </ul>
     </div>
 
@@ -276,20 +280,20 @@
       <li>在你自己的分析中顯示心率範圍與能量估算；</li>
       <li>評估你的恢復狀況，在準備度較低的日子縮小建議的步數範圍。</li>
     </ul>
-    <p>ZebraPace 從不寫入 Apple 健康或 Health Connect。讀取的資料只留在你的裝置上，絕不傳送到我們的伺服器或任何第三方，也絕不用於廣告、行銷或資料買賣。ZebraPace 對 Health Connect 資料的使用遵守 <a href="https://support.google.com/googleplay/android-developer/answer/9888170">Health Connect 權限政策</a>，包括其有限使用規定。你可以隨時在 iOS「設定」→「健康」或 Android 的 Health Connect 中撤銷存取權。</p>
+    <p>ZebraPace 從不寫入 Apple 健康或 Health Connect。讀取的資料只留在你的裝置上，只有一個由你選擇的例外：如果你加入步數、睡眠或活動挑戰，當天的總數會分享給挑戰群組（見下方「挑戰」）。這些資料絕不傳送給任何第三方，也絕不用於廣告、行銷或資料買賣。ZebraPace 對 Health Connect 資料的使用遵守 <a href="https://support.google.com/googleplay/android-developer/answer/9888170">Health Connect 權限政策</a>，包括其有限使用規定。你可以隨時在 iOS「設定」→「健康」或 Android 的 Health Connect 中撤銷存取權。</p>
 
     <h2>選用帳號</h2>
     <p>你不需要帳號也能使用 ZebraPace。如果你登入，你的電子郵件會儲存在我們的後端服務供應商 <a href="https://supabase.com/privacy">Supabase</a>，以便寄送登入連結給你。你的健康紀錄<strong>不會</strong>被上傳。</p>
 
-    <h2>體重挑戰（選用）</h2>
-    <p>如果你建立或加入體重挑戰，我們會在 Supabase 儲存以下資料：</p>
+    <h2>挑戰（選用）</h2>
+    <p>如果你建立或加入挑戰，我們會在 Supabase 儲存以下資料：</p>
     <ul>
-      <li>你選擇的顯示名稱；</li>
-      <li>你的起始體重；</li>
-      <li>一個目前體重數字（你在休息日記錄的體重平均值）；</li>
-      <li>每次體重更新及其日期；</li>
-      <li>挑戰的名稱與邀請碼。</li>
+      <li>你選擇的顯示名稱與你的每日目標；</li>
+      <li>挑戰的名稱、類型、長度與邀請碼；</li>
+      <li>步數、睡眠、活動與記錄挑戰：每天一筆資料，包括當天的數值（步數、睡眠時數、活動分鐘數或是否有記錄）、是否達成目標，以及是否為休息日或發作日；</li>
+      <li>體重挑戰：你的起始體重、一個目前體重數字（你在休息日記錄的體重平均值），以及每次體重更新及其日期。</li>
     </ul>
+    <p>在你加入或建立挑戰之前，App 會先說明這些內容。你紀錄中的其他資料都不會被上傳。</p>
     <p>只有該挑戰的成員能看到這些資料，其他使用者無法瀏覽他們沒有加入的挑戰。</p>
 
     <h2>天氣</h2>
@@ -297,16 +301,18 @@
 
     <h2>其他服務</h2>
     <ul>
-      <li><strong>字型：</strong>App 會從 Google Fonts 下載字型，Google 會像處理一般網頁請求一樣收到你的 IP 位址。</li>
       <li><strong>網站代管：</strong>網頁版由 Netlify 提供，Netlify 會保留標準的伺服器紀錄。</li>
-      <li><strong>連結：</strong>Ko-fi 與網站按鈕會開啟外部網站，這些網站有各自的隱私權政策。</li>
+      <li><strong>連結：</strong>網站按鈕會開啟外部網站，該網站有自己的隱私權政策。</li>
     </ul>
+
+    <h2>當機回報</h2>
+    <p>當 App 當機或發生非預期的錯誤（例如讀取 Apple 健康資料失敗）時，會傳送一份簡短的回報到 Supabase：錯誤訊息、錯誤發生在 App 程式碼的哪個位置、你的平台（iOS、Android 或網頁）以及 App 版本。回報不會連結到你的帳號，也不包含你的電子郵件、姓名或紀錄資料，只用於修正錯誤，大約 90 天後刪除。</p>
 
     <h2>匯出</h2>
     <p>PDF 報告與 CSV/JSON 匯出檔都在你的裝置上產生，只會分享到你選擇的地方，例如你的醫師。</p>
 
     <h2>我們不做的事</h2>
-    <p>沒有廣告，沒有分析或當機回報 SDK，不在其他 App 或網站上追蹤你，也不販售或分享個人資料。</p>
+    <p>沒有廣告，沒有第三方分析或當機回報 SDK，不在其他 App 或網站上追蹤你，也不販售或分享個人資料。</p>
 
     <h2>資料保存與刪除</h2>
     <ul>

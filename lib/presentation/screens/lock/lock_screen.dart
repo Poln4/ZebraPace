@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/zebra_theme.dart';
 import '../../../data/healthkit/health_kit_service.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../../providers/app_providers.dart';
 import '../../../providers/auth_providers.dart';
 import '../../../providers/cloud_sync_providers.dart';
 
@@ -90,6 +91,12 @@ class _SetupView extends ConsumerWidget {
           usesHealthConnect ? l10n.lockScreenSetupSubtitleAndroid : l10n.lockScreenSetupSubtitle,
           textAlign: TextAlign.center,
           style: const TextStyle(fontSize: 13, color: CupertinoColors.systemGrey),
+        ),
+        const SizedBox(height: 6),
+        Text(
+          l10n.lockScreenSetupForgetWarning,
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 13, color: ZebraColors.black),
         ),
         const SizedBox(height: 20),
         CupertinoTextField(
@@ -229,6 +236,11 @@ class _UnlockView extends ConsumerWidget {
               child: Text(l10n.lockScreenUnlockButton),
             ),
           ),
+          CupertinoButton(
+            onPressed: () => _confirmForgotPassword(context, ref, l10n),
+            child: Text(l10n.lockScreenForgotPasswordButton,
+                style: const TextStyle(fontSize: 13, color: CupertinoColors.systemGrey)),
+          ),
         ],
       ],
     );
@@ -236,5 +248,39 @@ class _UnlockView extends ConsumerWidget {
 
   void _submit(WidgetRef ref, AppLocalizations l10n) {
     ref.read(authProvider.notifier).tryPasswordUnlock(passwordController.text, l10n);
+  }
+
+  /// Erases the log (same as Settings' "Delete all my data") and signs out
+  /// of Supabase, so resetting the password never opens someone else's
+  /// data or their challenge groups — then back to password setup.
+  Future<void> _confirmForgotPassword(
+      BuildContext context, WidgetRef ref, AppLocalizations l10n) async {
+    final confirmed = await showCupertinoDialog<bool>(
+      context: context,
+      builder: (dialogContext) => CupertinoAlertDialog(
+        title: Text(l10n.lockScreenForgotPasswordTitle),
+        content: Text(l10n.lockScreenForgotPasswordMessage),
+        actions: [
+          CupertinoDialogAction(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: Text(l10n.commonCancelButton),
+          ),
+          CupertinoDialogAction(
+            isDestructiveAction: true,
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: Text(l10n.lockScreenForgotPasswordConfirm),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true) return;
+    await ref.read(exportImportServiceProvider).deleteAllDataExceptSettings();
+    try {
+      await ref.read(cloudAuthControllerProvider.notifier).signOut();
+    } catch (_) {
+      // Offline: the local session is what matters, and signOut clears it
+      // before the network call.
+    }
+    await ref.read(authProvider.notifier).resetForgottenPassword();
   }
 }

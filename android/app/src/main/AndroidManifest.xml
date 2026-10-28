@@ -103,7 +103,7 @@
         <intent>
             <action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE"/>
         </intent>
-        <!-- url_launcher: Ko-fi and website links open in the browser. -->
+        <!-- url_launcher: website and privacy policy links open in the browser. -->
         <intent>
             <action android:name="android.intent.action.VIEW"/>
             <data android:scheme="https"/>

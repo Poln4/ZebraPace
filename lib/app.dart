@@ -132,9 +132,17 @@ class _AuthGateState extends ConsumerState<_AuthGate> with WidgetsBindingObserve
           data: (seen) {
             if (!seen) {
               return WelcomeScreen(
-                onContinue: () => ref
-                    .read(settingsRepositoryProvider)
-                    .set(SettingsKeys.welcomeAcknowledged, 'true'),
+                onContinue: () async {
+                  // Welcome only shows on a fresh database, but the iOS
+                  // Keychain survives uninstalling — a reinstall would
+                  // otherwise ask for a forgotten old password guarding
+                  // nothing.
+                  await ref.read(secureAuthStorageProvider).clear();
+                  ref.invalidate(authProvider);
+                  await ref
+                      .read(settingsRepositoryProvider)
+                      .set(SettingsKeys.welcomeAcknowledged, 'true');
+                },
               );
             }
             final status = ref.watch(authProvider.select((s) => s.status));

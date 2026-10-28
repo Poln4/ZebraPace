@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../core/theme/zebra_theme.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../widgets/kofi_support_button.dart';
 
 /// The app's invitation/disclaimer screen — what ZebraPace is for, that
 /// it's not a substitute for medical care, and that it's a personal
@@ -64,8 +63,6 @@ class WelcomeScreen extends StatelessWidget {
               _DisclaimerBox(text: l10n.welcomeScreenDisclaimerParagraph),
               const SizedBox(height: 14),
               _Paragraph(l10n.welcomeScreenPersonalParagraph),
-              const SizedBox(height: 12),
-              const KofiSupportButton(),
               if (!isRevisit) ...[
                 const SizedBox(height: 20),
                 SizedBox(

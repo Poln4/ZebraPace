@@ -109,4 +109,18 @@ void main() {
     final fresh = await _ready(_makeNotifier(storage));
     expect(fresh.status, AuthStatus.locked);
   });
+
+  test('resetForgottenPassword drops the password and asks for a new one', () async {
+    final storage = FakeSecureAuthStorage();
+    await storage.setPassword('salt', 'hash');
+    final notifier = _makeNotifier(storage);
+    expect((await _ready(notifier)).status, AuthStatus.locked);
+
+    await notifier.resetForgottenPassword();
+    expect(notifier.state.status, AuthStatus.needsSetup);
+    expect(await storage.hasPassword(), isFalse);
+
+    final fresh = await _ready(_makeNotifier(storage));
+    expect(fresh.status, AuthStatus.needsSetup);
+  });
 }

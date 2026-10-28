@@ -1381,9 +1381,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get commonCloseButton => 'Cerrar';
 
   @override
-  String get kofiSupportButton => '☕ Apoyar en Ko-fi';
-
-  @override
   String get inviteCodeScreenTitle => 'Esta app es solo por invitación 🦓';
 
   @override
@@ -1416,7 +1413,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get welcomeScreenPersonalParagraph =>
-      'ZebraPace es un proyecto personal, creado por una cebra para otras cebras, y se ofrece de forma gratuita. Si te resulta útil y quieres ayudar a mantenerlo, puedes apoyarlo en Ko-fi — totalmente opcional, sin presión.';
+      'ZebraPace es un proyecto personal, creado por una cebra para otras cebras, y se ofrece de forma gratuita.';
 
   @override
   String get welcomeScreenContinueButton => 'Entiendo — Continuar';
@@ -1641,7 +1638,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settingsTabLanguageSpanish => 'Español';
 
   @override
-  String get settingsTabLanguageChineseTaiwan => '繁體中文（台灣）';
+  String get settingsTabLanguageChineseTraditional => '繁體中文';
 
   @override
   String get settingsTabTextSizeTitle => 'Tamaño de texto';
@@ -1706,6 +1703,23 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get lockScreenUnlockButton => 'Desbloquear';
+
+  @override
+  String get lockScreenSetupForgetWarning =>
+      'Esta contraseña no se puede recuperar. Si la olvidas, la única forma de volver a entrar es borrar los datos de ZebraPace en este teléfono, así que guárdala en un lugar seguro.';
+
+  @override
+  String get lockScreenForgotPasswordButton => '¿Olvidaste tu contraseña?';
+
+  @override
+  String get lockScreenForgotPasswordTitle => '¿Borrar y empezar de nuevo?';
+
+  @override
+  String get lockScreenForgotPasswordMessage =>
+      'La contraseña no se puede recuperar. Para que puedas volver a entrar, ZebraPace borrará todo lo que registraste en este teléfono y cerrará tu sesión de los retos; luego te pedirá una contraseña nueva. Tus metas y ajustes se conservan. Esto no se puede deshacer.';
+
+  @override
+  String get lockScreenForgotPasswordConfirm => 'Borrar mi registro';
 
   @override
   String get authProviderNoPasswordSetUp =>
@@ -2299,6 +2313,10 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get challengeTabJoinCaption =>
       'Únete al reto de un amigo con su código, o crea el tuyo.';
+
+  @override
+  String get challengeTabSharingNotice =>
+      'Se comparte con este grupo: el nombre que elijas y, por cada día del reto, tu valor (pasos, horas de sueño, minutos activos o si registraste algo; tu peso en los retos de peso), si cumpliste tu meta y si fue un día de descanso o de brote. Nada más de tu registro sale de tu teléfono. Al unirte o crear un reto aceptas compartir esto. Si eliminas tu cuenta en Ajustes, se borra todo.';
 
   @override
   String get challengeTabModeJoin => 'Unirme';

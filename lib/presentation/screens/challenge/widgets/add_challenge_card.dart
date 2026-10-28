@@ -153,6 +153,12 @@ class _AddChallengeCardState extends ConsumerState<AddChallengeCard> {
             Text(_error!, style: const TextStyle(fontSize: 12, color: CupertinoColors.destructiveRed)),
           ],
           const SizedBox(height: 10),
+          // Consent for what leaves the device (some of it comes from
+          // Apple Health / Health Connect): shown before every join/create,
+          // and tapping the button below is the agreement.
+          Text(l10n.challengeTabSharingNotice,
+              style: const TextStyle(fontSize: 12, color: CupertinoColors.systemGrey)),
+          const SizedBox(height: 10),
           SizedBox(
             width: double.infinity,
             child: CupertinoButton(

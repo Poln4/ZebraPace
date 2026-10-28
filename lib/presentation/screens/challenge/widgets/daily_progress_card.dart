@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/errors/error_reporter.dart';
 import '../../../../core/theme/zebra_theme.dart';
 import '../../../../domain/models/challenge.dart';
 import '../../../../domain/services/challenge_standings_builder.dart';
@@ -74,9 +75,10 @@ class _DailyProgressCardState extends ConsumerState<DailyProgressCard> {
             );
         await ref.read(challengeRepositoryProvider).upsertDays(days);
       } while (_syncAgain && mounted);
-    } catch (_) {
+    } catch (e, st) {
       // Best effort, like MyProgressCard's weight sync — the next trigger
       // retries the whole range anyway.
+      ErrorReporter.report(e, st, where: 'challenge.syncDays');
     } finally {
       _syncing = false;
     }

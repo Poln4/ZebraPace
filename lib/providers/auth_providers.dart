@@ -141,6 +141,14 @@ class AuthNotifier extends StateNotifier<AuthState> {
     state = state.copyWith(status: AuthStatus.locked, error: null);
   }
 
+  /// "Forgot password?" — the hash can't be reversed, so the only way back
+  /// in is starting over. The caller erases the log first (see
+  /// LockScreen); this drops the password so setup shows again.
+  Future<void> resetForgottenPassword() async {
+    await _storage.clear();
+    state = state.copyWith(status: AuthStatus.needsSetup, error: null);
+  }
+
   /// Called right before deliberately sending the user to an external flow
   /// (currently: CloudAuthController.sendMagicLink) — see
   /// SecureAuthStorage.setGraceOverrideUntil.

@@ -107,6 +107,6 @@ class ExportSection extends ConsumerWidget {
     final dir = await getTemporaryDirectory();
     final file = File('${dir.path}/zebrapace_vitals.csv');
     await file.writeAsString(csv);
-    await Share.shareXFiles([XFile(file.path)]);
+    await SharePlus.instance.share(ShareParams(files: [XFile(file.path)]));
   }
 }

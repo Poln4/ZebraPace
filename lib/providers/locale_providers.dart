@@ -6,11 +6,13 @@ import 'app_providers.dart';
 
 /// Language codes the language picker offers — 'system' follows the OS
 /// locale, falling back to English if the OS locale isn't supported.
-const List<String> supportedAppLanguageCodes = ['system', 'en', 'es', 'zh_TW'];
+/// Chinese is Traditional only (app_zh.arb), for every Chinese-speaking
+/// region.
+const List<String> supportedAppLanguageCodes = ['system', 'en', 'es', 'zh'];
 
 final languageCodeProvider = StreamProvider<String>((ref) {
   return ref.watch(settingsRepositoryProvider).watchAll().map(
-        (m) => m[SettingsKeys.languageCode] ?? DefaultSettings.languageCode,
+        (m) => normalizedLanguageCode(m[SettingsKeys.languageCode] ?? DefaultSettings.languageCode),
       );
 });
 
@@ -21,7 +23,10 @@ final localeProvider = Provider<Locale?>((ref) {
   return switch (code) {
     'en' => const Locale('en'),
     'es' => const Locale('es'),
-    'zh_TW' => const Locale('zh', 'TW'),
+    'zh' => const Locale('zh'),
     _ => null,
   };
 });
+
+/// Older builds stored 'zh_TW' for the same (Traditional) Chinese option.
+String normalizedLanguageCode(String code) => code == 'zh_TW' ? 'zh' : code;

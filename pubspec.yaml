@@ -1,5 +1,5 @@
 name: zebrapace_app
-description: "A new Flutter project."
+description: "Pacing and symptom tracker for people living with EDS, PEM and dysautonomia."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -60,8 +60,8 @@ dependencies:
   pdf: ^3.11.1
   printing: ^5.13.4
   csv: ^6.0.0
-  share_plus: ^10.1.4
-  file_picker: ^8.1.4
+  share_plus: ^13.3.1
+  file_picker: ^13.3.0
   path_provider: ^2.1.5
 
   # HealthKit (Phase 3 — steps pre-fill, workout import, METs)
@@ -69,10 +69,13 @@ dependencies:
   url_launcher: ^6.3.1
 
   # Auth (Phase 4 — Face ID/Touch ID + password fallback)
-  local_auth: ^2.3.0
-  flutter_secure_storage: ^9.2.2
+  local_auth: ^3.0.2
+  flutter_secure_storage: ^11.2.0
   crypto: ^3.0.5
   supabase_flutter: ^2.17.2
+
+  # Crash reports (app version tag) — core/errors/error_reporter.dart
+  package_info_plus: ^10.2.2
 
 dev_dependencies:
   flutter_test:
@@ -115,6 +118,9 @@ flutter:
 
   assets:
     - assets/icon/app_icon.png
+    # Bundled so the app never fetches fonts from Google at runtime (see
+    # main.dart). Only the weights zebra_theme.dart asks for.
+    - assets/google_fonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

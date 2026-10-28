@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:health/health.dart';
 
+import '../../core/errors/error_reporter.dart';
 import '../../core/utils/date_utils.dart';
 import '../../domain/models/detected_sleep.dart';
 import '../../domain/models/detected_workout.dart';
@@ -76,7 +77,8 @@ class HealthKitService {
     try {
       await _health.configure();
       _configured = true;
-    } catch (_) {
+    } catch (e, st) {
+      ErrorReporter.report(e, st, where: 'health.configure');
       // Leave _configured false; every call below will then also fail
       // quietly and callers see "not available" rather than a crash.
     }
@@ -118,7 +120,8 @@ class HealthKitService {
     try {
       return await _health.requestAuthorization(
           [...healthDataTypes(), ...readinessDataTypes(), ...sleepDataTypes()]);
-    } catch (_) {
+    } catch (e, st) {
+      ErrorReporter.report(e, st, where: 'health.authorize');
       return false;
     }
   }
@@ -133,7 +136,8 @@ class HealthKitService {
     await _ensureConfigured();
     try {
       return await _health.hasPermissions(healthDataTypes());
-    } catch (_) {
+    } catch (e, st) {
+      ErrorReporter.report(e, st, where: 'health.permissions');
       return false;
     }
   }
@@ -147,7 +151,8 @@ class HealthKitService {
     final end = start.add(const Duration(days: 1));
     try {
       return await _health.getTotalStepsInInterval(start, end);
-    } catch (_) {
+    } catch (e, st) {
+      ErrorReporter.report(e, st, where: 'health.steps');
       return null;
     }
   }
@@ -179,7 +184,8 @@ class HealthKitService {
         ));
       }
       return workouts;
-    } catch (_) {
+    } catch (e, st) {
+      ErrorReporter.report(e, st, where: 'health.workouts');
       return [];
     }
   }
@@ -207,7 +213,8 @@ class HealthKitService {
       }
       if (min == null || max == null) return null;
       return (min, max);
-    } catch (_) {
+    } catch (e, st) {
+      ErrorReporter.report(e, st, where: 'health.heartRate');
       return null;
     }
   }

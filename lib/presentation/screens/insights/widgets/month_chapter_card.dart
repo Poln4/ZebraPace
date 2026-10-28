@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import '../../../../core/constants/content.dart';
 import '../../../../core/theme/zebra_theme.dart';
 import '../../../../core/utils/date_utils.dart';
+import '../../../../core/utils/intl_locale.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/app_providers.dart';
 import '../../../widgets/bold_markdown_text.dart';
@@ -23,7 +24,7 @@ class MonthChapterCard extends ConsumerWidget {
     final facts = restFacts(l10n);
     final tip = facts[Random().nextInt(facts.length)];
     final selected = ref.watch(selectedDateProvider);
-    final locale = Localizations.localeOf(context).toString();
+    final locale = intlLocaleOf(context);
     // This narrative always summarizes the calendar month containing the
     // selected date — independent of the 14/30/90-day range picker further
     // down the tab, which drives the charts instead. Labeling it avoids the

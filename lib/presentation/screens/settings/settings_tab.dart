@@ -16,7 +16,6 @@ import '../../../providers/auth_providers.dart';
 import '../../../providers/cloud_sync_providers.dart';
 import '../../../providers/locale_providers.dart';
 import '../../../providers/text_scale_providers.dart';
-import '../../widgets/kofi_support_button.dart';
 import '../../widgets/section_card.dart';
 import '../welcome/welcome_screen.dart';
 
@@ -313,20 +312,18 @@ class _SettingsTabState extends ConsumerState<SettingsTab> {
       name: 'zebrapace_export.json',
       mimeType: 'application/json',
     );
-    await Share.shareXFiles([file]);
+    await SharePlus.instance.share(ShareParams(files: [file]));
   }
 
   Future<void> _importJson() async {
     final l10n = AppLocalizations.of(context);
-    // withData is required on web — file_picker never exposes a real
-    // filesystem `path` there, only in-memory bytes.
-    final result = await FilePicker.platform.pickFiles(
+    // readAsBytes, not a filesystem path — web never exposes a real path.
+    final picked = await FilePicker.pickFile(
       type: FileType.custom,
       allowedExtensions: ['json'],
-      withData: true,
     );
-    final bytes = result?.files.single.bytes;
-    if (bytes == null) return;
+    if (picked == null) return;
+    final bytes = await picked.readAsBytes();
 
     try {
       final content = utf8.decode(bytes);
@@ -621,8 +618,7 @@ class _CloudSyncSectionState extends ConsumerState<_CloudSyncSection> {
 }
 
 /// Revisits the welcome/disclaimer screen (welcome_screen.dart) that
-/// otherwise only shows once, on first launch, plus the same optional
-/// Ko-fi support link.
+/// otherwise only shows once, on first launch.
 class _AboutSection extends StatelessWidget {
   const _AboutSection();
 
@@ -645,8 +641,6 @@ class _AboutSection extends StatelessWidget {
                   style: const TextStyle(color: ZebraColors.black)),
             ),
           ),
-          const SizedBox(height: 10),
-          const KofiSupportButton(),
         ],
       ),
     );
@@ -717,7 +711,7 @@ class _LanguageSection extends ConsumerWidget {
   String _labelFor(AppLocalizations l10n, String code) => switch (code) {
         'en' => l10n.settingsTabLanguageEnglish,
         'es' => l10n.settingsTabLanguageSpanish,
-        'zh_TW' => l10n.settingsTabLanguageChineseTaiwan,
+        'zh' => l10n.settingsTabLanguageChineseTraditional,
         _ => l10n.settingsTabLanguageSystem,
       };
 

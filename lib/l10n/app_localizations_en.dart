@@ -1359,9 +1359,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonCloseButton => 'Close';
 
   @override
-  String get kofiSupportButton => '☕ Support on Ko-fi';
-
-  @override
   String get inviteCodeScreenTitle => 'This app is invite-only 🦓';
 
   @override
@@ -1394,7 +1391,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get welcomeScreenPersonalParagraph =>
-      'ZebraPace is a personal project, built by one zebra for other zebras, and offered freely. If it\'s useful to you and you\'d like to help keep it going, you can support it on Ko-fi — completely optional, no pressure.';
+      'ZebraPace is a personal project, built by one zebra for other zebras, and offered freely.';
 
   @override
   String get welcomeScreenContinueButton => 'I understand — Continue';
@@ -1616,7 +1613,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsTabLanguageSpanish => 'Español';
 
   @override
-  String get settingsTabLanguageChineseTaiwan => '繁體中文（台灣）';
+  String get settingsTabLanguageChineseTraditional => '繁體中文';
 
   @override
   String get settingsTabTextSizeTitle => 'Text Size';
@@ -1681,6 +1678,23 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get lockScreenUnlockButton => 'Unlock';
+
+  @override
+  String get lockScreenSetupForgetWarning =>
+      'This password can\'t be recovered. If you forget it, the only way back in is erasing ZebraPace\'s data on this phone, so keep it somewhere safe.';
+
+  @override
+  String get lockScreenForgotPasswordButton => 'Forgot password?';
+
+  @override
+  String get lockScreenForgotPasswordTitle => 'Erase and start over?';
+
+  @override
+  String get lockScreenForgotPasswordMessage =>
+      'The password can\'t be recovered. To let you back in, ZebraPace will erase everything you\'ve logged on this phone and sign you out of challenges, then ask for a new password. Your goals and settings are kept. This can\'t be undone.';
+
+  @override
+  String get lockScreenForgotPasswordConfirm => 'Erase my log';
 
   @override
   String get authProviderNoPasswordSetUp => 'No password set up yet.';
@@ -2263,6 +2277,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get challengeTabJoinCaption =>
       'Join a friend\'s challenge with their code, or start your own.';
+
+  @override
+  String get challengeTabSharingNotice =>
+      'Shared with this group: the name you choose and, for each day of the challenge, your value (steps, sleep hours, active minutes or whether you logged; your weight in weight challenges), whether you met your goal, and whether it was a rest or flare day. Nothing else from your log leaves your phone. By joining or creating a challenge you agree to share this. Deleting your account in Settings removes it all.';
 
   @override
   String get challengeTabModeJoin => 'Join';

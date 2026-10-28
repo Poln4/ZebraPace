@@ -98,7 +98,6 @@ abstract class AppLocalizations {
     Locale('en'),
     Locale('es'),
     Locale('zh'),
-    Locale('zh', 'TW'),
   ];
 
   /// App name, shown in the OS task switcher / window title.
@@ -2352,12 +2351,6 @@ abstract class AppLocalizations {
   /// **'Close'**
   String get commonCloseButton;
 
-  /// No description provided for @kofiSupportButton.
-  ///
-  /// In en, this message translates to:
-  /// **'☕ Support on Ko-fi'**
-  String get kofiSupportButton;
-
   /// No description provided for @inviteCodeScreenTitle.
   ///
   /// In en, this message translates to:
@@ -2415,7 +2408,7 @@ abstract class AppLocalizations {
   /// No description provided for @welcomeScreenPersonalParagraph.
   ///
   /// In en, this message translates to:
-  /// **'ZebraPace is a personal project, built by one zebra for other zebras, and offered freely. If it\'s useful to you and you\'d like to help keep it going, you can support it on Ko-fi — completely optional, no pressure.'**
+  /// **'ZebraPace is a personal project, built by one zebra for other zebras, and offered freely.'**
   String get welcomeScreenPersonalParagraph;
 
   /// No description provided for @welcomeScreenContinueButton.
@@ -2808,11 +2801,11 @@ abstract class AppLocalizations {
   /// **'Español'**
   String get settingsTabLanguageSpanish;
 
-  /// No description provided for @settingsTabLanguageChineseTaiwan.
+  /// No description provided for @settingsTabLanguageChineseTraditional.
   ///
   /// In en, this message translates to:
-  /// **'繁體中文（台灣）'**
-  String get settingsTabLanguageChineseTaiwan;
+  /// **'繁體中文'**
+  String get settingsTabLanguageChineseTraditional;
 
   /// No description provided for @settingsTabTextSizeTitle.
   ///
@@ -2921,6 +2914,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unlock'**
   String get lockScreenUnlockButton;
+
+  /// No description provided for @lockScreenSetupForgetWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'This password can\'t be recovered. If you forget it, the only way back in is erasing ZebraPace\'s data on this phone, so keep it somewhere safe.'**
+  String get lockScreenSetupForgetWarning;
+
+  /// No description provided for @lockScreenForgotPasswordButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password?'**
+  String get lockScreenForgotPasswordButton;
+
+  /// No description provided for @lockScreenForgotPasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Erase and start over?'**
+  String get lockScreenForgotPasswordTitle;
+
+  /// No description provided for @lockScreenForgotPasswordMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'The password can\'t be recovered. To let you back in, ZebraPace will erase everything you\'ve logged on this phone and sign you out of challenges, then ask for a new password. Your goals and settings are kept. This can\'t be undone.'**
+  String get lockScreenForgotPasswordMessage;
+
+  /// No description provided for @lockScreenForgotPasswordConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Erase my log'**
+  String get lockScreenForgotPasswordConfirm;
 
   /// No description provided for @authProviderNoPasswordSetUp.
   ///
@@ -3902,6 +3925,12 @@ abstract class AppLocalizations {
   /// **'Join a friend\'s challenge with their code, or start your own.'**
   String get challengeTabJoinCaption;
 
+  /// No description provided for @challengeTabSharingNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared with this group: the name you choose and, for each day of the challenge, your value (steps, sleep hours, active minutes or whether you logged; your weight in weight challenges), whether you met your goal, and whether it was a rest or flare day. Nothing else from your log leaves your phone. By joining or creating a challenge you agree to share this. Deleting your account in Settings removes it all.'**
+  String get challengeTabSharingNotice;
+
   /// No description provided for @challengeTabModeJoin.
   ///
   /// In en, this message translates to:
@@ -4413,18 +4442,6 @@ class _AppLocalizationsDelegate
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-  // Lookup logic when language+country codes are specified.
-  switch (locale.languageCode) {
-    case 'zh':
-      {
-        switch (locale.countryCode) {
-          case 'TW':
-            return AppLocalizationsZhTw();
-        }
-        break;
-      }
-  }
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'en':

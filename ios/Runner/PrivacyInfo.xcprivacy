@@ -5,7 +5,8 @@
   this one covers what ZebraPace itself sends off the phone, which only
   happens once someone signs in for challenges (Supabase): their email,
   the display name they pick, and the challenge values they share (weight,
-  steps, sleep, active minutes). Keep in step with web/privacy.html and
+  steps, sleep, active minutes). Separately, crash reports go to Supabase
+  without any account link (lib/core/errors/error_reporter.dart). Keep in step with web/privacy.html and
   App Store Connect's privacy answers.
 -->
 <plist version="1.0">
@@ -57,6 +58,18 @@
 			<string>NSPrivacyCollectedDataTypeFitness</string>
 			<key>NSPrivacyCollectedDataTypeLinked</key>
 			<true/>
+			<key>NSPrivacyCollectedDataTypeTracking</key>
+			<false/>
+			<key>NSPrivacyCollectedDataTypePurposes</key>
+			<array>
+				<string>NSPrivacyCollectedDataTypePurposeAppFunctionality</string>
+			</array>
+		</dict>
+		<dict>
+			<key>NSPrivacyCollectedDataType</key>
+			<string>NSPrivacyCollectedDataTypeCrashData</string>
+			<key>NSPrivacyCollectedDataTypeLinked</key>
+			<false/>
 			<key>NSPrivacyCollectedDataTypeTracking</key>
 			<false/>
 			<key>NSPrivacyCollectedDataTypePurposes</key>

@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import '../../../core/platform/standalone_app.dart';
 import '../../../core/theme/zebra_theme.dart';
 import '../../../core/utils/date_utils.dart';
+import '../../../core/utils/intl_locale.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/app_providers.dart';
 import '../../../providers/cloud_sync_providers.dart';
@@ -177,7 +178,7 @@ class _GreetingRow extends ConsumerWidget {
     final name = ref.watch(userNameProvider).valueOrNull ?? '';
     final greeting = name.isEmpty ? l10n.appTitle : l10n.appShellGreeting(name);
     final selectedDate = ref.watch(selectedDateProvider);
-    final locale = Localizations.localeOf(context).toString();
+    final locale = intlLocaleOf(context);
     final dateLabel = selectedDate == todayKey()
         ? l10n.appShellTodayButton
         : DateFormat.MMMEd(locale).format(dateFromKey(selectedDate));
@@ -263,7 +264,7 @@ class _CalendarStrip extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedDate = ref.watch(selectedDateProvider);
-    final locale = Localizations.localeOf(context).toString();
+    final locale = intlLocaleOf(context);
     final today = dateFromKey(todayKey());
     final days = List.generate(5, (i) => today.subtract(Duration(days: 4 - i)));
 

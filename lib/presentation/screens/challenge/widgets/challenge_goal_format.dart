@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/utils/intl_locale.dart';
 import '../../../../domain/models/challenge.dart';
 import '../../../../l10n/app_localizations.dart';
 
@@ -8,7 +9,7 @@ import '../../../../l10n/app_localizations.dart';
 /// (or a day's value) in the unit of the challenge's kind.
 String formatChallengeGoal(BuildContext context, ChallengeKind kind, double value) {
   final l10n = AppLocalizations.of(context);
-  final locale = Localizations.localeOf(context).toLanguageTag();
+  final locale = intlLocaleOf(context);
   final number = kind == ChallengeKind.sleep
       ? NumberFormat('0.#', locale).format(value)
       : NumberFormat.decimalPattern(locale).format(value.round());

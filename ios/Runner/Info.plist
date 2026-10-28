@@ -14,6 +14,12 @@
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>es</string>
+		<string>zh-Hant</string>
+	</array>
 	<key>CFBundleName</key>
 	<string>ZebraPace</string>
 	<key>CFBundlePackageType</key>
@@ -44,7 +50,7 @@
 	<key>NSFaceIDUsageDescription</key>
 	<string>ZebraPace uses Face ID to unlock the app so your health data stays private.</string>
 	<key>NSHealthShareUsageDescription</key>
-	<string>ZebraPace reads your steps, workouts, active energy, heart rate, resting heart rate, heart rate variability and sleep from Health so it can pre-fill your daily step count and last night's sleep, suggest workouts to log, and shrink your step goal on days your body needs more recovery. Nothing is shared anywhere else.</string>
+	<string>ZebraPace reads your steps, workouts, active energy, heart rate, resting heart rate, heart rate variability and sleep from Health so it can pre-fill your daily step count and last night's sleep, suggest workouts to log, and shrink your step goal on days your body needs more recovery. It all stays on your phone, except a daily total you choose to share with a group when you join a challenge.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>ZebraPace does not write any data to Health. This permission is requested by the underlying Health package but is unused.</string>
 	<key>UIApplicationSceneManifest</key>
@@ -74,11 +80,11 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>UIRequiresFullScreen</key>
-	<true/>
 </dict>
 </plist>
