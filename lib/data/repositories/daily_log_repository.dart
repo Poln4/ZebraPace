@@ -5,6 +5,7 @@ import 'package:drift/drift.dart';
 import '../../core/constants/enums.dart';
 import '../../core/utils/date_utils.dart';
 import '../../core/utils/id_gen.dart';
+import '../../domain/models/brace_use.dart';
 import '../../domain/models/daily_log.dart';
 import '../db/app_database.dart' as db;
 
@@ -14,10 +15,8 @@ class DailyLogRepository {
   final db.AppDatabase _db;
 
   DailyLog _toDomain(db.DailyLog row) {
-    final braces = (jsonDecode(row.bracesUsed) as List)
-        .map((e) => BraceType.fromDb(e as String))
-        .whereType<BraceType>()
-        .toList();
+    final braces =
+        (jsonDecode(row.bracesUsed) as List).map(BraceUse.fromJson).whereType<BraceUse>().toList();
     return DailyLog(
       id: row.id,
       date: row.date,
@@ -85,7 +84,7 @@ class DailyLogRepository {
             creatineG: Value(log.creatineG),
             mentalState: Value(log.mentalState?.db),
             bodyFeeling: Value(log.bodyFeeling?.db),
-            bracesUsed: Value(jsonEncode(log.bracesUsed.map((b) => b.db).toList())),
+            bracesUsed: Value(jsonEncode([for (final b in log.bracesUsed) b.toJson()])),
             braceComfort: Value(log.braceComfort),
             steps: Value(log.steps),
             isRestDay: Value(log.isRestDay),

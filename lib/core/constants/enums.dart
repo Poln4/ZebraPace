@@ -104,27 +104,64 @@ enum ContractionMode {
       value == null ? null : ContractionMode.values.where((e) => e.name == value).firstOrNull;
 }
 
+/// How much detail a brace takes when logged: which side for paired body
+/// parts, how many for things worn several at once, or just on/off.
+enum BraceAmount { side, count, single }
+
+/// Declared head to toe — the order the picker shows them in. Stored by
+/// name, so reordering or adding values never changes logged days.
 enum BraceType {
-  wrist,
-  knee,
-  siBelt,
-  ringSplints,
-  ankle,
-  neck;
+  neck(BraceAmount.single),
+  shoulder(BraceAmount.side),
+  elbow(BraceAmount.side),
+  wrist(BraceAmount.side),
+  thumb(BraceAmount.side),
+  ringSplints(BraceAmount.count),
+  back(BraceAmount.single),
+  siBelt(BraceAmount.single),
+  knee(BraceAmount.side),
+  ankle(BraceAmount.side),
+  achilles(BraceAmount.side),
+  compression(BraceAmount.single);
+
+  const BraceType(this.amount);
+
+  final BraceAmount amount;
 
   String get db => name;
 
   String label(AppLocalizations l10n) => switch (this) {
-        BraceType.wrist => l10n.braceTypeWrist,
-        BraceType.knee => l10n.braceTypeKnee,
-        BraceType.siBelt => l10n.braceTypeSiBelt,
-        BraceType.ringSplints => l10n.braceTypeRingSplints,
-        BraceType.ankle => l10n.braceTypeAnkle,
         BraceType.neck => l10n.braceTypeNeck,
+        BraceType.shoulder => l10n.braceTypeShoulder,
+        BraceType.elbow => l10n.braceTypeElbow,
+        BraceType.wrist => l10n.braceTypeWrist,
+        BraceType.thumb => l10n.braceTypeThumb,
+        BraceType.ringSplints => l10n.braceTypeRingSplints,
+        BraceType.back => l10n.braceTypeBack,
+        BraceType.siBelt => l10n.braceTypeSiBelt,
+        BraceType.knee => l10n.braceTypeKnee,
+        BraceType.ankle => l10n.braceTypeAnkle,
+        BraceType.achilles => l10n.braceTypeAchilles,
+        BraceType.compression => l10n.braceTypeCompression,
       };
 
   static BraceType? fromDb(String value) =>
       BraceType.values.where((e) => e.name == value).firstOrNull;
+}
+
+enum BraceSide {
+  left,
+  right,
+  both;
+
+  String label(AppLocalizations l10n) => switch (this) {
+        BraceSide.left => l10n.braceSideLeft,
+        BraceSide.right => l10n.braceSideRight,
+        BraceSide.both => l10n.braceSideBoth,
+      };
+
+  static BraceSide? fromDb(Object? value) =>
+      BraceSide.values.where((e) => e.name == value).firstOrNull;
 }
 
 /// Net hydration credit per ml of each drink, relative to plain water (1.0).

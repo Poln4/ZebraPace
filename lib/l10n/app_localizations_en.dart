@@ -73,6 +73,33 @@ class AppLocalizationsEn extends AppLocalizations {
   String get braceTypeNeck => 'Neck';
 
   @override
+  String get braceTypeShoulder => 'Shoulder';
+
+  @override
+  String get braceTypeElbow => 'Elbow';
+
+  @override
+  String get braceTypeThumb => 'Thumb / finger';
+
+  @override
+  String get braceTypeBack => 'Back / lumbar';
+
+  @override
+  String get braceTypeAchilles => 'Achilles / heel';
+
+  @override
+  String get braceTypeCompression => 'Compression garments';
+
+  @override
+  String get braceSideLeft => 'Left';
+
+  @override
+  String get braceSideRight => 'Right';
+
+  @override
+  String get braceSideBoth => 'Both';
+
+  @override
   String get drinkTypeWater => 'Water';
 
   @override
@@ -831,6 +858,33 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get bracesSectionTitle => '🦾 Braces';
+
+  @override
+  String get bracesSectionAddOwn => '+ Add your own';
+
+  @override
+  String get bracesSectionAddTitle => 'Add a brace';
+
+  @override
+  String get bracesSectionAddPlaceholder => 'Name, e.g. night splint';
+
+  @override
+  String get bracesSectionAddButton => 'Add';
+
+  @override
+  String bracesSectionRemoveTitle(String name) {
+    return 'Remove “$name” from your list?';
+  }
+
+  @override
+  String get bracesSectionRemoveMessage => 'Days you already logged keep it.';
+
+  @override
+  String get bracesSectionRemoveButton => 'Remove';
+
+  @override
+  String get bracesSectionCustomHint =>
+      'Long-press one of your own braces to remove it from the list.';
 
   @override
   String get sorenessCheckSectionTitle => '🔍 Soreness or Crash? A quick check';

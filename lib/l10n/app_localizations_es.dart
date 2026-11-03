@@ -73,6 +73,33 @@ class AppLocalizationsEs extends AppLocalizations {
   String get braceTypeNeck => 'Cuello';
 
   @override
+  String get braceTypeShoulder => 'Hombro';
+
+  @override
+  String get braceTypeElbow => 'Codo';
+
+  @override
+  String get braceTypeThumb => 'Pulgar / dedo';
+
+  @override
+  String get braceTypeBack => 'Espalda / lumbar';
+
+  @override
+  String get braceTypeAchilles => 'Aquiles / talón';
+
+  @override
+  String get braceTypeCompression => 'Prendas de compresión';
+
+  @override
+  String get braceSideLeft => 'Izquierda';
+
+  @override
+  String get braceSideRight => 'Derecha';
+
+  @override
+  String get braceSideBoth => 'Ambos';
+
+  @override
   String get drinkTypeWater => 'Agua';
 
   @override
@@ -851,6 +878,34 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get bracesSectionTitle => '🦾 Órtesis';
+
+  @override
+  String get bracesSectionAddOwn => '+ Agregar otra';
+
+  @override
+  String get bracesSectionAddTitle => 'Agregar una órtesis';
+
+  @override
+  String get bracesSectionAddPlaceholder => 'Nombre, p. ej. férula nocturna';
+
+  @override
+  String get bracesSectionAddButton => 'Agregar';
+
+  @override
+  String bracesSectionRemoveTitle(String name) {
+    return '¿Quitar “$name” de tu lista?';
+  }
+
+  @override
+  String get bracesSectionRemoveMessage =>
+      'Los días que ya registraste la conservan.';
+
+  @override
+  String get bracesSectionRemoveButton => 'Quitar';
+
+  @override
+  String get bracesSectionCustomHint =>
+      'Mantén presionada una de tus órtesis para quitarla de la lista.';
 
   @override
   String get sorenessCheckSectionTitle =>

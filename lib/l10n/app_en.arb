@@ -28,6 +28,15 @@
   "braceTypeRingSplints": "Ring Splints",
   "braceTypeAnkle": "Ankle",
   "braceTypeNeck": "Neck",
+  "braceTypeShoulder": "Shoulder",
+  "braceTypeElbow": "Elbow",
+  "braceTypeThumb": "Thumb / finger",
+  "braceTypeBack": "Back / lumbar",
+  "braceTypeAchilles": "Achilles / heel",
+  "braceTypeCompression": "Compression garments",
+  "braceSideLeft": "Left",
+  "braceSideRight": "Right",
+  "braceSideBoth": "Both",
 
   "drinkTypeWater": "Water",
   "drinkTypeTea": "Tea",
@@ -415,6 +424,19 @@
     }
   },
   "bracesSectionTitle": "🦾 Braces",
+  "bracesSectionAddOwn": "+ Add your own",
+  "bracesSectionAddTitle": "Add a brace",
+  "bracesSectionAddPlaceholder": "Name, e.g. night splint",
+  "bracesSectionAddButton": "Add",
+  "bracesSectionRemoveTitle": "Remove “{name}” from your list?",
+  "@bracesSectionRemoveTitle": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+  "bracesSectionRemoveMessage": "Days you already logged keep it.",
+  "bracesSectionRemoveButton": "Remove",
+  "bracesSectionCustomHint": "Long-press one of your own braces to remove it from the list.",
 
   "sorenessCheckSectionTitle": "🔍 Soreness or Crash? A quick check",
   "sorenessCheckSectionCaption": "Three quick questions to tell ordinary post-exercise soreness apart from a PEM pattern.",

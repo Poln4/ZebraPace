@@ -1,4 +1,5 @@
 import '../../core/constants/enums.dart';
+import 'brace_use.dart';
 
 class DailyLog {
   const DailyLog({
@@ -40,7 +41,7 @@ class DailyLog {
   final double creatineG;
   final MentalState? mentalState;
   final BodyFeeling? bodyFeeling;
-  final List<BraceType> bracesUsed;
+  final List<BraceUse> bracesUsed;
   final int? braceComfort;
   final int steps;
   final bool isRestDay;
@@ -79,7 +80,7 @@ class DailyLog {
     double? creatineG,
     Object? mentalState = _keep,
     Object? bodyFeeling = _keep,
-    List<BraceType>? bracesUsed,
+    List<BraceUse>? bracesUsed,
     Object? braceComfort = _keep,
     int? steps,
     bool? isRestDay,

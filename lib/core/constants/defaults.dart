@@ -48,6 +48,7 @@ class SettingsKeys {
   static const welcomeAcknowledged = 'welcome_acknowledged';
   static const userName = 'user_name';
   static const inviteCodeVerified = 'invite_code_verified';
+  static const customBraces = 'custom_braces';
 }
 
 class StripeConstants {

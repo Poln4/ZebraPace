@@ -226,6 +226,60 @@ abstract class AppLocalizations {
   /// **'Neck'**
   String get braceTypeNeck;
 
+  /// No description provided for @braceTypeShoulder.
+  ///
+  /// In en, this message translates to:
+  /// **'Shoulder'**
+  String get braceTypeShoulder;
+
+  /// No description provided for @braceTypeElbow.
+  ///
+  /// In en, this message translates to:
+  /// **'Elbow'**
+  String get braceTypeElbow;
+
+  /// No description provided for @braceTypeThumb.
+  ///
+  /// In en, this message translates to:
+  /// **'Thumb / finger'**
+  String get braceTypeThumb;
+
+  /// No description provided for @braceTypeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back / lumbar'**
+  String get braceTypeBack;
+
+  /// No description provided for @braceTypeAchilles.
+  ///
+  /// In en, this message translates to:
+  /// **'Achilles / heel'**
+  String get braceTypeAchilles;
+
+  /// No description provided for @braceTypeCompression.
+  ///
+  /// In en, this message translates to:
+  /// **'Compression garments'**
+  String get braceTypeCompression;
+
+  /// No description provided for @braceSideLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Left'**
+  String get braceSideLeft;
+
+  /// No description provided for @braceSideRight.
+  ///
+  /// In en, this message translates to:
+  /// **'Right'**
+  String get braceSideRight;
+
+  /// No description provided for @braceSideBoth.
+  ///
+  /// In en, this message translates to:
+  /// **'Both'**
+  String get braceSideBoth;
+
   /// No description provided for @drinkTypeWater.
   ///
   /// In en, this message translates to:
@@ -1597,6 +1651,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'🦾 Braces'**
   String get bracesSectionTitle;
+
+  /// No description provided for @bracesSectionAddOwn.
+  ///
+  /// In en, this message translates to:
+  /// **'+ Add your own'**
+  String get bracesSectionAddOwn;
+
+  /// No description provided for @bracesSectionAddTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a brace'**
+  String get bracesSectionAddTitle;
+
+  /// No description provided for @bracesSectionAddPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Name, e.g. night splint'**
+  String get bracesSectionAddPlaceholder;
+
+  /// No description provided for @bracesSectionAddButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get bracesSectionAddButton;
+
+  /// No description provided for @bracesSectionRemoveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove “{name}” from your list?'**
+  String bracesSectionRemoveTitle(String name);
+
+  /// No description provided for @bracesSectionRemoveMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Days you already logged keep it.'**
+  String get bracesSectionRemoveMessage;
+
+  /// No description provided for @bracesSectionRemoveButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get bracesSectionRemoveButton;
+
+  /// No description provided for @bracesSectionCustomHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Long-press one of your own braces to remove it from the list.'**
+  String get bracesSectionCustomHint;
 
   /// No description provided for @sorenessCheckSectionTitle.
   ///

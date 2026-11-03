@@ -32,8 +32,10 @@ class DailyLogs extends Table with SyncColumns {
   TextColumn get mentalState => text().nullable()();
   TextColumn get bodyFeeling => text().nullable()();
 
-  /// JSON-encoded list of BraceType.db strings (app.py stored this as a
-  /// Python str(list)/eval() pair — replaced with real JSON here).
+  /// JSON-encoded list of BraceUse.toJson() objects (type plus side or
+  /// count, or a custom brace's id and name). Days logged before that hold
+  /// plain BraceType.db strings, which BraceUse.fromJson still reads.
+  /// (app.py stored this as a Python str(list)/eval() pair.)
   TextColumn get bracesUsed => text().withDefault(const Constant('[]'))();
   IntColumn get braceComfort => integer().nullable()();
 

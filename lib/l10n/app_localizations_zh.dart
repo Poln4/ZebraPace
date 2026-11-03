@@ -73,6 +73,33 @@ class AppLocalizationsZh extends AppLocalizations {
   String get braceTypeNeck => '頸部';
 
   @override
+  String get braceTypeShoulder => '肩膀';
+
+  @override
+  String get braceTypeElbow => '手肘';
+
+  @override
+  String get braceTypeThumb => '拇指／手指';
+
+  @override
+  String get braceTypeBack => '背部／腰部';
+
+  @override
+  String get braceTypeAchilles => '跟腱／腳跟';
+
+  @override
+  String get braceTypeCompression => '壓力衣物';
+
+  @override
+  String get braceSideLeft => '左';
+
+  @override
+  String get braceSideRight => '右';
+
+  @override
+  String get braceSideBoth => '兩側';
+
+  @override
   String get drinkTypeWater => '水';
 
   @override
@@ -819,6 +846,32 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get bracesSectionTitle => '🦾 護具';
+
+  @override
+  String get bracesSectionAddOwn => '＋ 新增自訂護具';
+
+  @override
+  String get bracesSectionAddTitle => '新增護具';
+
+  @override
+  String get bracesSectionAddPlaceholder => '名稱，例如：夜間副木';
+
+  @override
+  String get bracesSectionAddButton => '新增';
+
+  @override
+  String bracesSectionRemoveTitle(String name) {
+    return '要從清單移除「$name」嗎？';
+  }
+
+  @override
+  String get bracesSectionRemoveMessage => '已記錄的日子會保留它。';
+
+  @override
+  String get bracesSectionRemoveButton => '移除';
+
+  @override
+  String get bracesSectionCustomHint => '長按你自訂的護具，即可將它從清單移除。';
 
   @override
   String get sorenessCheckSectionTitle => '🔍 是痠痛還是崩潰？快速檢查';
