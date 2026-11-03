@@ -272,13 +272,16 @@ Data types (all: Collected = yes, Shared = no, processed ephemerally = no):
 |---|---|---|
 | Personal info → Email address | Optional | Account management |
 | Personal info → Name (display name in challenges) | Optional | App functionality |
-| Health and fitness → Health info (weight, in weight challenges) | Optional | App functionality |
+| Health and fitness → Health info (weight in weight challenges; rest/flare days) | Optional | App functionality |
 | Health and fitness → Fitness info (daily challenge values: steps, sleep hours, active minutes) | Optional | App functionality |
-| App info and performance → Crash logs | Required | App functionality, analytics |
+| Location → Approximate location (the place typed for weather, sent to Open-Meteo without account or health data) | Optional | App functionality |
+| App info and performance → Crash logs | Required | Analytics |
 
-Not collected: the health log itself (it stays on the device), location (the place name typed for weather goes to Open-Meteo without any account or health data), Health Connect data other than the challenge totals above.
+Not collected: the health log itself (it stays on the device) and Health Connect data other than the challenge totals above.
 
-"Shared = no": challenge values go to the group only because the user joins it (a user-initiated transfer the user expects), which Play does not count as sharing.
+"Shared = no": Supabase, Resend and Open-Meteo process data on our behalf (service providers), and challenge values go to the group only because the user joins it (a user-initiated transfer the user expects). Play counts neither as sharing.
+
+Deletion: tick both "in-app" and "request via URL".
 
 ---
 
