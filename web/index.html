@@ -18,12 +18,12 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <!-- viewport-fit=cover is what lets the browser expose
-       env(safe-area-inset-*)/MediaQuery.padding to Flutter at all when
-       installed as a standalone home-screen app (no browser chrome to
-       provide clearance around the notch/home-indicator on its own) —
-       without it the bottom tab bar has no way to know a safe area exists. -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- Placeholder only: Flutter's engine removes this tag at startup and
+       inserts its own, which the script at the end of <body> then pins to
+       maximum-scale=1 (see the comment there). Anything added here, e.g.
+       viewport-fit=cover, never reaches the running app — which is why
+       app_shell.dart has to floor the tab bar's bottom inset by hand. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="description" content="ZebraPace — a gentle, pacing-focused health tracker for EDS, PEM, and Dysautonomia.">
   <meta name="theme-color" content="#F6EFE3">
 
@@ -51,6 +51,33 @@
     For more details:
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
+  <!--
+    Flutter Web's engine deletes any <meta name="viewport"> above at startup
+    and inserts its own with maximum-scale=5.0. On iOS Safari that lets the
+    browser auto-zoom whenever a text field (steps, weight, …) gets focus,
+    and since Flutter disables native touch handling (touch-action: none)
+    the user can't pinch back out. Re-pin maximum-scale=1 on whatever
+    viewport tag ends up in <head>: iOS honours it for focus auto-zoom but
+    still ignores it for deliberate pinch-zoom (accessibility), so this
+    doesn't take zoom away from anyone who needs it.
+  -->
+  <script>
+    (function () {
+      var WANT = 'width=device-width, initial-scale=1.0, maximum-scale=1.0';
+      function pin() {
+        var metas = document.head.querySelectorAll('meta[name="viewport"]');
+        for (var i = 0; i < metas.length; i++) {
+          if (metas[i].getAttribute('content') !== WANT) {
+            metas[i].setAttribute('content', WANT);
+          }
+        }
+      }
+      pin();
+      new MutationObserver(pin).observe(document.head, {
+        childList: true, subtree: true, attributes: true, attributeFilter: ['content']
+      });
+    })();
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
