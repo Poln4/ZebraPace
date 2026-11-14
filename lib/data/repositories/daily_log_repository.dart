@@ -150,6 +150,14 @@ class DailyLogRepository {
     return (await query.get()).length;
   }
 
+  /// Existing logs in the range — unlike [watchDailyLog], never creates rows.
+  Stream<List<DailyLog>> watchRange(String startDate, String endDate) {
+    final query = _db.select(_db.dailyLogs)
+      ..where((t) => t.date.isBiggerOrEqualValue(startDate) & t.date.isSmallerOrEqualValue(endDate))
+      ..orderBy([(t) => OrderingTerm.asc(t.date)]);
+    return query.watch().map((rows) => rows.map(_toDomain).toList());
+  }
+
   Future<List<DailyLog>> getRange(String startDate, String endDate) async {
     final query = _db.select(_db.dailyLogs)
       ..where((t) => t.date.isBiggerOrEqualValue(startDate) & t.date.isSmallerOrEqualValue(endDate))

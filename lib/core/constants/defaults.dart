@@ -49,6 +49,9 @@ class SettingsKeys {
   static const userName = 'user_name';
   static const inviteCodeVerified = 'invite_code_verified';
   static const customBraces = 'custom_braces';
+
+  /// The person's own Plan-tab phrases, as a JSON string list.
+  static const planPhrases = 'plan_phrases';
 }
 
 class StripeConstants {

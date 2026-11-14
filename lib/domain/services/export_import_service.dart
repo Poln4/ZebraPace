@@ -28,7 +28,55 @@ class ExportImportService {
     'soreness_checks',
     'checkins',
     'injuries',
+    ..._planTables,
   ];
+
+  /// Plan tables (v8+) round-trip through drift's own toJson/fromJson —
+  /// they have no older export formats to stay tolerant of.
+  static const _planTables = [
+    'training_plans',
+    'plan_phases',
+    'plan_sessions',
+    'plan_exercises',
+    'plan_steps',
+    'plan_session_logs',
+    'plan_set_logs',
+    'plan_checkins',
+    'plan_tests',
+    'plan_test_results',
+    'fear_items',
+    'exposure_logs',
+  ];
+
+  TableInfo<Table, dynamic> _planTable(String name) => switch (name) {
+        'training_plans' => _db.trainingPlans,
+        'plan_phases' => _db.planPhases,
+        'plan_sessions' => _db.planSessions,
+        'plan_exercises' => _db.planExercises,
+        'plan_steps' => _db.planSteps,
+        'plan_session_logs' => _db.planSessionLogs,
+        'plan_checkins' => _db.planCheckins,
+        'plan_tests' => _db.planTests,
+        'plan_test_results' => _db.planTestResults,
+        'fear_items' => _db.fearItems,
+        'exposure_logs' => _db.exposureLogs,
+        _ => _db.planSetLogs,
+      };
+
+  Insertable<dynamic> _planRowFromJson(String name, Map<String, dynamic> row) => switch (name) {
+        'training_plans' => db.TrainingPlan.fromJson(row),
+        'plan_phases' => db.PlanPhase.fromJson(row),
+        'plan_sessions' => db.PlanSession.fromJson(row),
+        'plan_exercises' => db.PlanExercise.fromJson(row),
+        'plan_steps' => db.PlanStep.fromJson(row),
+        'plan_session_logs' => db.PlanSessionLog.fromJson(row),
+        'plan_checkins' => db.PlanCheckin.fromJson(row),
+        'plan_tests' => db.PlanTest.fromJson(row),
+        'plan_test_results' => db.PlanTestResult.fromJson(row),
+        'fear_items' => db.FearItem.fromJson(row),
+        'exposure_logs' => db.ExposureLog.fromJson(row),
+        _ => db.PlanSetLog.fromJson(row),
+      };
 
   Future<String> exportAllDataJson() async {
     final tables = <String, List<Map<String, dynamic>>>{};
@@ -46,6 +94,10 @@ class ExportImportService {
         (await _db.select(_db.sorenessChecks).get()).map((r) => r.toJson()).toList();
     tables['checkins'] = (await _db.select(_db.checkins).get()).map((r) => r.toJson()).toList();
     tables['injuries'] = (await _db.select(_db.injuries).get()).map((r) => r.toJson()).toList();
+    for (final name in _planTables) {
+      final rows = await _db.select(_planTable(name)).get();
+      tables[name] = rows.map((r) => (r as DataClass).toJson()).toList();
+    }
 
     final payload = {'exported_at': nowIso(), 'tables': tables};
     return const JsonEncoder.withIndent('  ').convert(payload);
@@ -84,6 +136,9 @@ class ExportImportService {
       await _db.delete(_db.sorenessChecks).go();
       await _db.delete(_db.checkins).go();
       await _db.delete(_db.injuries).go();
+      for (final name in _planTables) {
+        await _db.delete(_planTable(name)).go();
+      }
     });
   }
 
@@ -137,6 +192,8 @@ class ExportImportService {
         await _db.delete(_db.checkins).go();
       case 'injuries':
         await _db.delete(_db.injuries).go();
+      default:
+        if (_planTables.contains(tableName)) await _db.delete(_planTable(tableName)).go();
     }
   }
 
@@ -306,6 +363,13 @@ class ExportImportService {
                 ),
                 mode: InsertMode.insertOrIgnore,
               );
+        default:
+          if (_planTables.contains(tableName)) {
+            await _db.into(_planTable(tableName)).insert(
+                  _planRowFromJson(tableName, row),
+                  mode: InsertMode.insertOrIgnore,
+                );
+          }
       }
     } catch (_) {
       // Skip rows that don't match the current schema — same tolerance as

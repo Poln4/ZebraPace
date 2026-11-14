@@ -2524,4 +2524,698 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get challengeTabDayRestLegend => '休息';
+
+  @override
+  String get appShellTabPlan => '計畫';
+
+  @override
+  String get planEmptyTitle => '你的訓練計畫';
+
+  @override
+  String get planEmptyBody =>
+      '寫下你與物理治療師或教練討論好的訓練：階段、每週課表、每個動作的進階步驟。然後在這裡一天一天照著做，用今天身體允許的程度。';
+
+  @override
+  String get planCreateTitle => '建立我的計畫';
+
+  @override
+  String get planEditBasicsTitle => '編輯計畫內容';
+
+  @override
+  String get planEditorDisclaimer => '你在這裡寫的計畫是用來遵循醫療專業人員建議的工具，不能取代他們的評估。';
+
+  @override
+  String get planNameLabel => '名稱';
+
+  @override
+  String get planNameHint => '例如：我的 12 週計畫';
+
+  @override
+  String get planStartLabel => '開始日期';
+
+  @override
+  String get planWeeksLabel => '長度（週）';
+
+  @override
+  String get planCeilingLabel => '每週上限（分鐘）';
+
+  @override
+  String get planCeilingHint => '選填。所有記錄的活動都會算進去。';
+
+  @override
+  String get planFloorLabel => '每日底線';
+
+  @override
+  String get planFloorHint => '例如：扶著流理台踮腳 10 下、股四頭肌收縮 10 下';
+
+  @override
+  String get planEditorTitle => '編輯計畫';
+
+  @override
+  String get planEditButton => '編輯計畫';
+
+  @override
+  String planBasicsSummary(int weeks) {
+    return '$weeks 週';
+  }
+
+  @override
+  String planCeilingSummary(int minutes) {
+    return '每週上限 $minutes 分鐘';
+  }
+
+  @override
+  String planFloorSummary(String note) {
+    return '每日底線：$note';
+  }
+
+  @override
+  String get planPhasesTitle => '階段';
+
+  @override
+  String get planPhasesCaption => '每個階段只增加一件事。通過門檻才往下走，而不是看日曆。';
+
+  @override
+  String get planAddPhase => '新增階段';
+
+  @override
+  String get planPhaseNameLabel => '名稱';
+
+  @override
+  String get planPhaseNameHint => '例如：重新建立';
+
+  @override
+  String get planPhaseGoalLabel => '目標';
+
+  @override
+  String get planPhaseEffortLabel => '強度';
+
+  @override
+  String get planPhaseCardioLabel => '有氧';
+
+  @override
+  String get planPhaseGateLabel => '進入下一階段的門檻';
+
+  @override
+  String get planPhaseGateHint => '例如：連續 2 週每週 2–3 次舒服的訓練，隔天早上疼痛會緩和';
+
+  @override
+  String get planSessionsTitle => '每週課表';
+
+  @override
+  String get planSessionsCaption => '點選課表來新增動作。';
+
+  @override
+  String get planAddSession => '新增課表';
+
+  @override
+  String get planSessionNameLabel => '名稱';
+
+  @override
+  String get planSessionNameHint => '例如：A：肌力';
+
+  @override
+  String get planSessionDayLabel => '星期';
+
+  @override
+  String get planAnyDay => '任何一天';
+
+  @override
+  String get planSessionDurationLabel => '分鐘';
+
+  @override
+  String get planSessionLowDayLabel => '狀況差的日子';
+
+  @override
+  String get planSessionLowDayHint => '例如：只做腳踝等長收縮';
+
+  @override
+  String get planSessionCardioLabel => '有氧課表';
+
+  @override
+  String get planSessionCardioCaption => '也會存成「活動」裡的一筆紀錄，讓圖表和挑戰都看得到。';
+
+  @override
+  String get planCardioTag => '有氧';
+
+  @override
+  String planMinutes(int minutes) {
+    return '$minutes 分鐘';
+  }
+
+  @override
+  String get planDeletePlan => '刪除這個計畫';
+
+  @override
+  String get planSessionGone => '這已經被刪除了。';
+
+  @override
+  String get planSessionDetailsTitle => '內容';
+
+  @override
+  String planLowDaySummary(String note) {
+    return '狀況差的日子：$note';
+  }
+
+  @override
+  String get planExercisesTitle => '動作';
+
+  @override
+  String get planExercisesCaption => '一個動作是像「推」或「小腿」這樣的項目，裡面再列出由易到難的步驟。';
+
+  @override
+  String get planAddExercise => '新增動作';
+
+  @override
+  String get planExerciseNameLabel => '名稱';
+
+  @override
+  String get planExerciseNameHint => '例如：推';
+
+  @override
+  String get planExerciseCueLabel => '動作要點';
+
+  @override
+  String get planExerciseCueHint => '例如：手肘不鎖死、肩膀放下';
+
+  @override
+  String get planNoStepsYet => '還沒有步驟';
+
+  @override
+  String get planStepsTitle => '步驟';
+
+  @override
+  String get planStepsCaption => '由易到難排列。實心圓是你目前的步驟，點圓圈可以更改。';
+
+  @override
+  String get planAddStep => '新增步驟';
+
+  @override
+  String get planCurrentStepHint => '連續三次訓練都覺得舒服後，可以在「計畫」頁往上一步。';
+
+  @override
+  String get planStepNameLabel => '名稱';
+
+  @override
+  String get planStepNameHint => '例如：扶牆伏地挺身';
+
+  @override
+  String get planStepDoseLabel => '份量';
+
+  @override
+  String get planStepDoseHint => '例如：1→3 組 × 4–6 下';
+
+  @override
+  String get planStepClearanceLabel => '需要醫療人員同意';
+
+  @override
+  String get planStepClearanceCaption => '標記為已同意前會保持鎖定。';
+
+  @override
+  String get planStepClearedLabel => '已同意';
+
+  @override
+  String get planStartsLater => '即將開始';
+
+  @override
+  String planWeekOf(int week, int total) {
+    return '第 $week 週，共 $total 週';
+  }
+
+  @override
+  String get planNoSessionsTitle => '新增你的課表';
+
+  @override
+  String get planNoSessionsBody => '點「編輯計畫」新增每週課表和動作。';
+
+  @override
+  String get planTodayNoSession => '今天沒有安排課表';
+
+  @override
+  String get planModeFull => '完整';
+
+  @override
+  String get planModeLowDay => '輕量版';
+
+  @override
+  String get planModeFloor => '只做底線';
+
+  @override
+  String get planOtherSession => '做別的課表';
+
+  @override
+  String get planNoDoubleUp => '錯過的課表就跳過，不要補做。';
+
+  @override
+  String get planRestHint => '要休息嗎？點上方的「休息日」，一樣算數。';
+
+  @override
+  String get planRestLogged => '休息日';
+
+  @override
+  String get planFlareLogged => '發作日';
+
+  @override
+  String get planFlareNote => '發作後：大約 3 天只做底線或完全休息，再回到上次舒服的程度。不要從零開始，也不要加量來補。';
+
+  @override
+  String get planMorningTitle => '今天早上感覺如何？';
+
+  @override
+  String planMorningCaption(String session) {
+    return '$session 之後，和你平常的狀態相比。';
+  }
+
+  @override
+  String get planNextMorningSettled => '和平常一樣或更好';
+
+  @override
+  String get planNextMorningHigher => '比平常更痛';
+
+  @override
+  String get planNextMorningPem => 'PEM（運動後不適）';
+
+  @override
+  String get planSessionTempoNote =>
+      '慢慢做：下 2 秒、稍停、上 1–2 秒。在中段範圍，不要鎖死關節。先做坐姿和躺姿，站姿最後。';
+
+  @override
+  String get planLowDayDefault => '輕量版：少幾組、簡單一點，或只做一部分，都算數。';
+
+  @override
+  String get planPainLabel => '過程中最痛的程度（0–10）';
+
+  @override
+  String get planPainSharp => '刺痛、卡住或無力';
+
+  @override
+  String get planPainSafe => '0–2：安全，繼續。';
+
+  @override
+  String get planPainAcceptable => '3–5：可以接受，只要明天早上會緩和。';
+
+  @override
+  String get planPainTooMuch => '太多了：停止這個動作，下次改做簡單一點的步驟。';
+
+  @override
+  String get planSessionWrapUpTitle => '結束';
+
+  @override
+  String get planCardioSavesActivity => '也會存成「活動」裡的一筆紀錄。';
+
+  @override
+  String get planNoteLabel => '備註';
+
+  @override
+  String get planSaveSession => '儲存這次訓練';
+
+  @override
+  String get planWeekTitle => '本週';
+
+  @override
+  String planWeekSessions(int done, int planned) {
+    return '$planned 次課表中做了 $done 次，不帶評價。';
+  }
+
+  @override
+  String planCeilingUsed(int used, int ceiling) {
+    return '本週 $used / $ceiling 分鐘';
+  }
+
+  @override
+  String get planCeilingReached => '本週已到上限。就算今天狀態很好，這週剩下的日子也只做底線或休息。';
+
+  @override
+  String planPhaseCardTitle(String phase) {
+    return '階段：$phase';
+  }
+
+  @override
+  String planGateSummary(String gate) {
+    return '門檻：$gate';
+  }
+
+  @override
+  String get planRepeatIsSuccess => '重複一個階段也是計畫的一部分。在同一級待八週是成功，不是失敗。';
+
+  @override
+  String get planPhaseBack => '回到上一階段';
+
+  @override
+  String planPhaseNext(String phase) {
+    return '進入 $phase';
+  }
+
+  @override
+  String get planPhaseNextConfirm => '你通過這個階段的門檻了嗎？';
+
+  @override
+  String get planNotYet => '還沒';
+
+  @override
+  String get planGatePassed => '有，通過了';
+
+  @override
+  String get planStepUpTitle => '準備好下一步了嗎？';
+
+  @override
+  String get planStepUpCaption => '三次舒服的訓練，加上 72 小時內沒有 PEM 或發作。一週只改一項。';
+
+  @override
+  String get planReadinessNotYet => '繼續做這個步驟。';
+
+  @override
+  String planReadinessReady(String step) {
+    return '隨時可以進到 $step。';
+  }
+
+  @override
+  String get planReadinessWaitWeek => '準備好了，但這週已經改過別的動作。再等幾天。';
+
+  @override
+  String get planReadinessWaitRecovery => '準備好了，但 PEM 或發作後先等 72 小時。';
+
+  @override
+  String planReadinessNeedsClearance(String step) {
+    return '$step 需要等醫療人員同意。';
+  }
+
+  @override
+  String get planReadinessTop => '已經是這個動作的最高步驟，維持就很好。';
+
+  @override
+  String get planMoveUp => '往上一步';
+
+  @override
+  String get planMarkCleared => '標記為已同意';
+
+  @override
+  String get planStepBack => '退一步';
+
+  @override
+  String get planPhrasesTitle => '鼓勵的話';
+
+  @override
+  String get planPhrasesEditHint => '開啟你的鼓勵的話';
+
+  @override
+  String get planPhrasesOwnTitle => '我的話';
+
+  @override
+  String get planPhrasesOwnCaption => '不論今天怎麼樣，都會優先顯示。';
+
+  @override
+  String get planPhrasesAddHint => '未來的自己會對你說的話';
+
+  @override
+  String get planPhrasesAdd => '新增';
+
+  @override
+  String get planPhrasesBuiltInTitle => '內建的話';
+
+  @override
+  String get planPhrase1 => '這是理想中的我做得到的事，而今天我可以做點什麼讓它成真。';
+
+  @override
+  String get planPhrase2 => '未來的我會為我驕傲。';
+
+  @override
+  String get planPhrase3 => '今天的份量就是休息，而休息也是計畫的一部分。';
+
+  @override
+  String get planPhrase4 => '底線也算數。做一點點，也是有出現。';
+
+  @override
+  String get planPhrase5 => '我用今天的身體訓練，也在聆聽它。';
+
+  @override
+  String get planPhrase6 => '重複一週是計畫在運作，不是落後。';
+
+  @override
+  String get planPhrase7 => '慢慢來、穩穩做，我才能一直做下去。';
+
+  @override
+  String get planPhrase8 => '不論今天怎麼樣，我都在和身體建立信任。';
+
+  @override
+  String get planCheckinTitle => '週日回顧';
+
+  @override
+  String get planCheckinCaption => '花五分鐘回顧這週，決定下週的上限。';
+
+  @override
+  String get planCheckinStart => '開始回顧';
+
+  @override
+  String get planCheckinPemYes => '這週有 PEM 或發作。';
+
+  @override
+  String get planCheckinPemNo => '這週沒有 PEM 或發作。';
+
+  @override
+  String get planCheckinPemCauseLabel => '之前發生了什麼？';
+
+  @override
+  String get planCheckinPemCauseHint => '訓練、工作、樓梯、睡眠、偏頭痛……';
+
+  @override
+  String get planCheckinJointsOk => '隔天早上的疼痛維持在平常或更低。';
+
+  @override
+  String get planCheckinJointsHigher => '有幾個早上比平常更痛。';
+
+  @override
+  String get planCheckinJointsUnknown => '這週沒有記錄隔天早上的狀況。';
+
+  @override
+  String planCheckinWeight(String kg) {
+    return '本週體重：$kg 公斤';
+  }
+
+  @override
+  String get planCheckinNoWeight => '這週沒有量體重。';
+
+  @override
+  String planCheckinProtein(int days) {
+    return '有 $days 天達到蛋白質目標。';
+  }
+
+  @override
+  String get planCheckinWinLabel => '一個小小的成就';
+
+  @override
+  String get planCheckinWinHint => '例如：扶著扶手走了樓梯';
+
+  @override
+  String planCheckinWinSummary(String win) {
+    return '成就：$win';
+  }
+
+  @override
+  String get planCheckinFearLabel => '面對恐懼清單的一步';
+
+  @override
+  String get planCheckinFearHint => '如果有記錄嘗試，會自動帶入';
+
+  @override
+  String get planCheckinDecisionLabel => '下週的上限';
+
+  @override
+  String get planCheckinRaise => '增加約 10%';
+
+  @override
+  String get planCheckinKeep => '維持不變';
+
+  @override
+  String get planCheckinStepBack => '退一步';
+
+  @override
+  String planCheckinCeilingTo(int minutes) {
+    return '→ $minutes 分鐘';
+  }
+
+  @override
+  String get planCheckinNoRaiseAfterPem => '有 PEM 的那週不加量。先照顧節奏，再談進步。';
+
+  @override
+  String get planGateFactsTitle => '你的紀錄顯示（最近 14 天）';
+
+  @override
+  String planGateFactsSessions(int earlier, int latest) {
+    return '舒服的訓練：$earlier 次，接著 $latest 次';
+  }
+
+  @override
+  String get planGateFactsNoPem => '沒有 PEM 或發作';
+
+  @override
+  String get planGateFactsPain => '隔天早上疼痛會緩和';
+
+  @override
+  String get planTestWeeksLabel => '在第幾週重測';
+
+  @override
+  String get planTestWeeksHint => '例如：1, 6, 12';
+
+  @override
+  String get planTestsTitle => '基準測試';
+
+  @override
+  String get planTestsCaption => '每週很難感覺到進步，這些測試能看出真正的改變。';
+
+  @override
+  String get planTestsRetestWeek => '這週是重測週。';
+
+  @override
+  String get planTestsEditorCaption => '例如：30 秒坐站次數、扶牆伏地挺身、單腳站秒數。';
+
+  @override
+  String get planTestsAdd => '新增測試';
+
+  @override
+  String get planTestsNameLabel => '測試';
+
+  @override
+  String get planTestsNameHint => '例如：30 秒坐站';
+
+  @override
+  String get planTestsUnitLabel => '單位';
+
+  @override
+  String get planTestsUnitHint => '例如：次、秒、公斤';
+
+  @override
+  String get planTestsAddResult => '新增結果';
+
+  @override
+  String get planTestsValueLabel => '結果';
+
+  @override
+  String get planTestsNoResult => '還沒有結果';
+
+  @override
+  String planTestsFirst(String value, String date) {
+    return '$date：$value';
+  }
+
+  @override
+  String planTestsChange(String first, String latest, String date) {
+    return '$first → $latest（$date）';
+  }
+
+  @override
+  String get planTestsStopIfUnsure => '不確定就停下來。測試不值得換來一次發作。';
+
+  @override
+  String get planTestsTapToDelete => '點選結果可以刪除。';
+
+  @override
+  String get planFearTitle => '恐懼階梯';
+
+  @override
+  String get planFearIntro =>
+      '列出你會避開的動作，用 0–10 評估害怕程度。每週挑一個大約 3–4 分的，用小而安全的方式試試看。先預測，再記下實際發生了什麼。';
+
+  @override
+  String planFearThisWeek(String item) {
+    return '本週試試看：$item';
+  }
+
+  @override
+  String get planFearThisWeekCaption => '小而安全的版本，例如扶著扶手走兩階。';
+
+  @override
+  String get planFearLogTry => '記錄一次嘗試';
+
+  @override
+  String get planFearListTitle => '我的清單';
+
+  @override
+  String get planFearEmpty => '新增 8–10 個你會避開的動作，每個評 0–10 分。';
+
+  @override
+  String get planFearSettledTitle => '現在大約 2 分';
+
+  @override
+  String get planFearAdd => '新增動作';
+
+  @override
+  String planFearItemMeta(int initial, int tries) {
+    return '起始 $initial/10 · 嘗試 $tries 次';
+  }
+
+  @override
+  String get planFearMarkSettled => '大約 2 分了，換下一個';
+
+  @override
+  String get planFearReopen => '放回清單';
+
+  @override
+  String get planFearItemLabel => '動作';
+
+  @override
+  String get planFearItemHint => '例如：跪在軟墊上';
+
+  @override
+  String get planFearRatingLabel => '害怕程度（0–10）';
+
+  @override
+  String get planFearAttemptLabel => '我嘗試了什麼';
+
+  @override
+  String get planFearAttemptHint => '例如：左膝跪在厚墊上 10 秒';
+
+  @override
+  String get planFearPredictionLabel => '我預測會發生什麼';
+
+  @override
+  String get planFearPredictionHint => '嘗試之前';
+
+  @override
+  String get planFearBeforeLabel => '嘗試前的害怕程度（0–10）';
+
+  @override
+  String get planFearOutcomeLabel => '實際發生了什麼';
+
+  @override
+  String get planFearOutcomeHint => '嘗試之後';
+
+  @override
+  String get planFearAfterLabel => '現在的害怕程度（0–10）';
+
+  @override
+  String get planFearNothingBad => '我做到了，而且沒有發生不好的事';
+
+  @override
+  String planFearEvidenceTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '證據（$count）',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planFearEvidenceCaption => '每一次做到了、而且沒有發生不好的事。這會慢慢改變「痛就代表受傷」的想法。';
+
+  @override
+  String planFearEvidenceShort(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 次沒有發生不好的事',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planFearAllSettled => '清單上的都大約 2 分了。準備好再新增。';
+
+  @override
+  String get planFearOpen => '打開恐懼階梯';
+
+  @override
+  String get planFearSpikeNote =>
+      '如果害怕或創傷症狀突然變強，那是一種訊息，不是失敗。退回一階。如果卡住了，熟悉漸進式暴露的心理師可以幫忙。';
 }

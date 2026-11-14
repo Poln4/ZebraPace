@@ -13,6 +13,7 @@ import '../../../providers/text_scale_providers.dart';
 import '../challenge/challenge_tab.dart';
 import '../insights/insights_tab.dart';
 import '../movement/movement_tab.dart';
+import '../plan/plan_tab.dart';
 import '../settings/settings_tab.dart';
 import '../vitals/vitals_tab.dart';
 import 'injury_banner.dart';
@@ -32,11 +33,11 @@ class _AppShellState extends ConsumerState<AppShell> {
   /// default so the header stays one line; local UI state only.
   bool _calendarOpen = false;
 
-  /// Vitals and Movement log against the selected date; Insights and
+  /// Vitals, Movement and Plan log against the selected date; Insights and
   /// Together don't, so the date picker and Rest/Flare toggles (which act
   /// on the selected date) are hidden there rather than silently acting
   /// on a date the user can't see.
-  bool get _isDateTab => _tabController.index <= 1;
+  bool get _isDateTab => _tabController.index <= 2;
 
   @override
   void initState() {
@@ -128,6 +129,9 @@ class _AppShellState extends ConsumerState<AppShell> {
                               icon: const Icon(CupertinoIcons.flame),
                               label: l10n.appShellTabMovement),
                           BottomNavigationBarItem(
+                              icon: const Icon(CupertinoIcons.square_list),
+                              label: l10n.appShellTabPlan),
+                          BottomNavigationBarItem(
                               icon: const Icon(CupertinoIcons.chart_bar),
                               label: l10n.appShellTabInsights),
                           BottomNavigationBarItem(
@@ -139,7 +143,8 @@ class _AppShellState extends ConsumerState<AppShell> {
                         final page = switch (index) {
                           0 => const VitalsTab(),
                           1 => const MovementTab(),
-                          2 => const InsightsTab(),
+                          2 => const PlanTab(),
+                          3 => const InsightsTab(),
                           _ => const ChallengeTab(),
                         };
                         return CupertinoTabView(builder: (context) => page);

@@ -41,6 +41,12 @@ class ActivityRepository {
     return query.watch().map((rows) => rows.map(_toDomain).toList());
   }
 
+  Stream<List<Activity>> watchRange(String startDate, String endDate) {
+    final query = _db.select(_db.activities)
+      ..where((t) => t.date.isBiggerOrEqualValue(startDate) & t.date.isSmallerOrEqualValue(endDate));
+    return query.watch().map((rows) => rows.map(_toDomain).toList());
+  }
+
   Future<List<Activity>> getRange(String startDate, String endDate) async {
     final query = _db.select(_db.activities)
       ..where((t) => t.date.isBiggerOrEqualValue(startDate) & t.date.isSmallerOrEqualValue(endDate));

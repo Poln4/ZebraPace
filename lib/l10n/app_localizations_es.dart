@@ -2694,4 +2694,750 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get challengeTabDayRestLegend => 'descanso';
+
+  @override
+  String get appShellTabPlan => 'Plan';
+
+  @override
+  String get planEmptyTitle => 'Tu plan de entrenamiento';
+
+  @override
+  String get planEmptyBody =>
+      'Anota la rutina que acordaste con tu fisioterapeuta o entrenador: fases, sesiones semanales y los pasos de cada ejercicio. Luego síguela aquí día a día, al nivel que hoy permita.';
+
+  @override
+  String get planCreateTitle => 'Crear mi plan';
+
+  @override
+  String get planEditBasicsTitle => 'Editar detalles del plan';
+
+  @override
+  String get planEditorDisclaimer =>
+      'El plan que escribas aquí es una herramienta para seguir las indicaciones de tu profesional de salud, no un sustituto.';
+
+  @override
+  String get planNameLabel => 'Nombre';
+
+  @override
+  String get planNameHint => 'p. ej. Mi programa de 12 semanas';
+
+  @override
+  String get planStartLabel => 'Empieza el';
+
+  @override
+  String get planWeeksLabel => 'Duración en semanas';
+
+  @override
+  String get planCeilingLabel => 'Techo semanal (minutos)';
+
+  @override
+  String get planCeilingHint =>
+      'Opcional. Todo el movimiento registrado cuenta.';
+
+  @override
+  String get planFloorLabel => 'Mínimo diario';
+
+  @override
+  String get planFloorHint =>
+      'p. ej. 10 elevaciones de talón en la encimera, 10 contracciones de cuádriceps';
+
+  @override
+  String get planEditorTitle => 'Editar plan';
+
+  @override
+  String get planEditButton => 'Editar plan';
+
+  @override
+  String planBasicsSummary(int weeks) {
+    return '$weeks semanas';
+  }
+
+  @override
+  String planCeilingSummary(int minutes) {
+    return 'techo de $minutes min por semana';
+  }
+
+  @override
+  String planFloorSummary(String note) {
+    return 'Mínimo diario: $note';
+  }
+
+  @override
+  String get planPhasesTitle => 'Fases';
+
+  @override
+  String get planPhasesCaption =>
+      'Cada fase sube una sola cosa. Avanzas cuando pasas su condición, no cuando lo diga el calendario.';
+
+  @override
+  String get planAddPhase => 'Añadir fase';
+
+  @override
+  String get planPhaseNameLabel => 'Nombre';
+
+  @override
+  String get planPhaseNameHint => 'p. ej. Restablecer';
+
+  @override
+  String get planPhaseGoalLabel => 'Objetivo';
+
+  @override
+  String get planPhaseEffortLabel => 'Esfuerzo';
+
+  @override
+  String get planPhaseCardioLabel => 'Cardio';
+
+  @override
+  String get planPhaseGateLabel => 'Condición para avanzar';
+
+  @override
+  String get planPhaseGateHint =>
+      'p. ej. 2 semanas con 2–3 sesiones cómodas, dolor que se calma a la mañana siguiente';
+
+  @override
+  String get planSessionsTitle => 'Sesiones semanales';
+
+  @override
+  String get planSessionsCaption =>
+      'Toca una sesión para añadir sus ejercicios.';
+
+  @override
+  String get planAddSession => 'Añadir sesión';
+
+  @override
+  String get planSessionNameLabel => 'Nombre';
+
+  @override
+  String get planSessionNameHint => 'p. ej. A: fuerza';
+
+  @override
+  String get planSessionDayLabel => 'Día';
+
+  @override
+  String get planAnyDay => 'Cualquier día';
+
+  @override
+  String get planSessionDurationLabel => 'Minutos';
+
+  @override
+  String get planSessionLowDayLabel => 'En un día bajo';
+
+  @override
+  String get planSessionLowDayHint => 'p. ej. Solo isométricos de tobillo';
+
+  @override
+  String get planSessionCardioLabel => 'Sesión de cardio';
+
+  @override
+  String get planSessionCardioCaption =>
+      'También se guarda como actividad en Movimiento, para que gráficos y retos la vean.';
+
+  @override
+  String get planCardioTag => 'cardio';
+
+  @override
+  String planMinutes(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String get planDeletePlan => 'Eliminar este plan';
+
+  @override
+  String get planSessionGone => 'Esto se eliminó.';
+
+  @override
+  String get planSessionDetailsTitle => 'Detalles';
+
+  @override
+  String planLowDaySummary(String note) {
+    return 'En un día bajo: $note';
+  }
+
+  @override
+  String get planExercisesTitle => 'Ejercicios';
+
+  @override
+  String get planExercisesCaption =>
+      'Un ejercicio es un espacio como \"Empuje\" o \"Pantorrilla\". Dentro listas sus pasos, del más fácil al más difícil.';
+
+  @override
+  String get planAddExercise => 'Añadir ejercicio';
+
+  @override
+  String get planExerciseNameLabel => 'Nombre';
+
+  @override
+  String get planExerciseNameHint => 'p. ej. Empuje';
+
+  @override
+  String get planExerciseCueLabel => 'Cómo hacerlo';
+
+  @override
+  String get planExerciseCueHint => 'p. ej. Codos suaves, hombros abajo';
+
+  @override
+  String get planNoStepsYet => 'Aún sin pasos';
+
+  @override
+  String get planStepsTitle => 'Pasos';
+
+  @override
+  String get planStepsCaption =>
+      'Del más fácil al más difícil. El círculo lleno es donde estás; toca un círculo para cambiarlo.';
+
+  @override
+  String get planAddStep => 'Añadir paso';
+
+  @override
+  String get planCurrentStepHint =>
+      'Subir de paso se hace en la pestaña Plan cuando tres sesiones se sintieron cómodas.';
+
+  @override
+  String get planStepNameLabel => 'Nombre';
+
+  @override
+  String get planStepNameHint => 'p. ej. Flexión en la pared';
+
+  @override
+  String get planStepDoseLabel => 'Dosis';
+
+  @override
+  String get planStepDoseHint => 'p. ej. 1→3 × 4–6';
+
+  @override
+  String get planStepClearanceLabel => 'Necesita visto bueno profesional';
+
+  @override
+  String get planStepClearanceCaption =>
+      'Queda bloqueado hasta que lo marques como aprobado.';
+
+  @override
+  String get planStepClearedLabel => 'Aprobado';
+
+  @override
+  String get planStartsLater => 'Empieza pronto';
+
+  @override
+  String planWeekOf(int week, int total) {
+    return 'Semana $week de $total';
+  }
+
+  @override
+  String get planNoSessionsTitle => 'Añade tus sesiones';
+
+  @override
+  String get planNoSessionsBody =>
+      'Toca Editar plan para añadir tus sesiones semanales y sus ejercicios.';
+
+  @override
+  String get planTodayNoSession => 'Hoy no hay sesión planeada';
+
+  @override
+  String get planModeFull => 'Completa';
+
+  @override
+  String get planModeLowDay => 'Día bajo';
+
+  @override
+  String get planModeFloor => 'Solo el mínimo';
+
+  @override
+  String get planOtherSession => 'Hacer otra sesión';
+
+  @override
+  String get planNoDoubleUp =>
+      'Las sesiones perdidas se saltan, nunca se acumulan.';
+
+  @override
+  String get planRestHint =>
+      '¿Descansas? Toca Día de descanso arriba: cuenta igual.';
+
+  @override
+  String get planRestLogged => 'Día de descanso';
+
+  @override
+  String get planFlareLogged => 'Día de crisis';
+
+  @override
+  String get planFlareNote =>
+      'Tras una crisis: mínimo o descanso total unos 3 días, luego tu último nivel cómodo. Nunca empieces de cero ni añadas carga para recuperar.';
+
+  @override
+  String get planMorningTitle => '¿Cómo estás esta mañana?';
+
+  @override
+  String planMorningCaption(String session) {
+    return 'Después de $session, comparado con tu nivel habitual.';
+  }
+
+  @override
+  String get planNextMorningSettled => 'Igual o mejor que siempre';
+
+  @override
+  String get planNextMorningHigher => 'Más dolor que lo habitual';
+
+  @override
+  String get planNextMorningPem => 'PEM (malestar post-esfuerzo)';
+
+  @override
+  String get planSessionTempoNote =>
+      'Despacio: 2 segundos al bajar, una pausa corta, 1–2 segundos al subir. Rango medio, sin bloquear articulaciones. Primero sentado y tumbado, de pie al final.';
+
+  @override
+  String get planLowDayDefault =>
+      'Un día bajo: menos series, pasos más fáciles o solo una parte. Cuenta.';
+
+  @override
+  String get planPainLabel => 'Dolor máximo durante el ejercicio (0–10)';
+
+  @override
+  String get planPainSharp => 'Agudo, se traba o cede';
+
+  @override
+  String get planPainSafe => '0–2: seguro. Continúa.';
+
+  @override
+  String get planPainAcceptable =>
+      '3–5: aceptable si se calma para mañana por la mañana.';
+
+  @override
+  String get planPainTooMuch =>
+      'Demasiado: detén este ejercicio. La próxima vez, un paso más fácil.';
+
+  @override
+  String get planSessionWrapUpTitle => 'Cierre';
+
+  @override
+  String get planCardioSavesActivity =>
+      'También se guarda como actividad en Movimiento.';
+
+  @override
+  String get planNoteLabel => 'Nota';
+
+  @override
+  String get planSaveSession => 'Guardar sesión';
+
+  @override
+  String get planWeekTitle => 'Esta semana';
+
+  @override
+  String planWeekSessions(int done, int planned) {
+    return '$done de $planned sesiones, sin juzgar.';
+  }
+
+  @override
+  String planCeilingUsed(int used, int ceiling) {
+    return '$used de $ceiling min esta semana';
+  }
+
+  @override
+  String get planCeilingReached =>
+      'Llegaste al techo de esta semana. Aunque sea un gran día, el resto de la semana es mínimo o descanso.';
+
+  @override
+  String planPhaseCardTitle(String phase) {
+    return 'Fase: $phase';
+  }
+
+  @override
+  String planGateSummary(String gate) {
+    return 'Condición: $gate';
+  }
+
+  @override
+  String get planRepeatIsSuccess =>
+      'Repetir una fase es parte del plan. Ocho semanas en un nivel es un éxito, no un fracaso.';
+
+  @override
+  String get planPhaseBack => 'Volver una fase';
+
+  @override
+  String planPhaseNext(String phase) {
+    return 'Pasar a $phase';
+  }
+
+  @override
+  String get planPhaseNextConfirm => '¿Pasaste la condición de esta fase?';
+
+  @override
+  String get planNotYet => 'Aún no';
+
+  @override
+  String get planGatePassed => 'Sí, la pasé';
+
+  @override
+  String get planStepUpTitle => '¿Listo para el siguiente paso?';
+
+  @override
+  String get planStepUpCaption =>
+      'Tres sesiones cómodas más 72 horas sin PEM ni crisis. Un cambio por semana.';
+
+  @override
+  String get planReadinessNotYet => 'Sigue en este paso.';
+
+  @override
+  String planReadinessReady(String step) {
+    return 'Listo para $step cuando quieras.';
+  }
+
+  @override
+  String get planReadinessWaitWeek =>
+      'Listo, pero otro ejercicio cambió esta semana. Espera unos días.';
+
+  @override
+  String get planReadinessWaitRecovery =>
+      'Listo, pero espera 72 horas después de PEM o una crisis.';
+
+  @override
+  String planReadinessNeedsClearance(String step) {
+    return '$step espera el visto bueno de tu profesional.';
+  }
+
+  @override
+  String get planReadinessTop =>
+      'La cima de esta escalera. Quedarte aquí está genial.';
+
+  @override
+  String get planMoveUp => 'Subir';
+
+  @override
+  String get planMarkCleared => 'Marcar como aprobado';
+
+  @override
+  String get planStepBack => 'Bajar un paso';
+
+  @override
+  String get planPhrasesTitle => 'Frases';
+
+  @override
+  String get planPhrasesEditHint => 'Abre tus frases';
+
+  @override
+  String get planPhrasesOwnTitle => 'Mis frases';
+
+  @override
+  String get planPhrasesOwnCaption =>
+      'Se muestran primero, sea como sea el día.';
+
+  @override
+  String get planPhrasesAddHint => 'Algo que te diría tu yo del futuro';
+
+  @override
+  String get planPhrasesAdd => 'Añadir frase';
+
+  @override
+  String get planPhrasesBuiltInTitle => 'Frases incluidas';
+
+  @override
+  String get planPhrase1 =>
+      'Esto es algo que mi yo ideal puede hacer, y hoy puedo hacer algo para que sea verdad.';
+
+  @override
+  String get planPhrase2 => 'Mi yo del futuro estará orgulloso.';
+
+  @override
+  String get planPhrase3 =>
+      'Hoy la dosis es descansar, y hacerlo es parte del plan.';
+
+  @override
+  String get planPhrase4 =>
+      'El mínimo también cuenta. Aparecer en pequeño sigue siendo aparecer.';
+
+  @override
+  String get planPhrase5 =>
+      'El cuerpo de hoy es con el que entreno, y lo estoy escuchando.';
+
+  @override
+  String get planPhrase6 =>
+      'Repetir una semana es el plan funcionando, no quedarse atrás.';
+
+  @override
+  String get planPhrase7 =>
+      'Lento y constante es como puedo seguir haciéndolo.';
+
+  @override
+  String get planPhrase8 =>
+      'Sea como sea el día de hoy, sigo construyendo confianza con mi cuerpo.';
+
+  @override
+  String get planCheckinTitle => 'Revisión del domingo';
+
+  @override
+  String get planCheckinCaption =>
+      'Cinco minutos para mirar la semana y fijar el techo de la próxima.';
+
+  @override
+  String get planCheckinStart => 'Empezar revisión';
+
+  @override
+  String get planCheckinPemYes => 'Hubo PEM o una crisis esta semana.';
+
+  @override
+  String get planCheckinPemNo => 'Sin PEM ni crisis esta semana.';
+
+  @override
+  String get planCheckinPemCauseLabel => '¿Qué pasó antes?';
+
+  @override
+  String get planCheckinPemCauseHint =>
+      'Entrenamiento, trabajo, escaleras, sueño, migraña…';
+
+  @override
+  String get planCheckinJointsOk =>
+      'El dolor de la mañana siguiente se mantuvo igual o menor que siempre.';
+
+  @override
+  String get planCheckinJointsHigher =>
+      'Algunas mañanas hubo más dolor que lo habitual.';
+
+  @override
+  String get planCheckinJointsUnknown =>
+      'Sin respuestas de la mañana siguiente esta semana.';
+
+  @override
+  String planCheckinWeight(String kg) {
+    return 'Peso esta semana: $kg kg';
+  }
+
+  @override
+  String get planCheckinNoWeight => 'Sin pesaje esta semana.';
+
+  @override
+  String planCheckinProtein(int days) {
+    return '$days días alcanzaste tu meta de proteína.';
+  }
+
+  @override
+  String get planCheckinWinLabel => 'Un logro, por pequeño que sea';
+
+  @override
+  String get planCheckinWinHint =>
+      'p. ej. Subí las escaleras agarrada al pasamanos';
+
+  @override
+  String planCheckinWinSummary(String win) {
+    return 'Logro: $win';
+  }
+
+  @override
+  String get planCheckinFearLabel => 'Paso de la lista de miedos';
+
+  @override
+  String get planCheckinFearHint =>
+      'Se completa desde tu escalera de miedos si registraste un intento';
+
+  @override
+  String get planCheckinDecisionLabel => 'Techo de la próxima semana';
+
+  @override
+  String get planCheckinRaise => 'Subir cerca de 10%';
+
+  @override
+  String get planCheckinKeep => 'Mantener igual';
+
+  @override
+  String get planCheckinStepBack => 'Retroceder';
+
+  @override
+  String planCheckinCeilingTo(int minutes) {
+    return '→ $minutes min';
+  }
+
+  @override
+  String get planCheckinNoRaiseAfterPem =>
+      'Después de PEM, el techo no sube. El ritmo va antes que el progreso.';
+
+  @override
+  String get planGateFactsTitle =>
+      'Lo que dicen tus registros (últimos 14 días)';
+
+  @override
+  String planGateFactsSessions(int earlier, int latest) {
+    return 'Sesiones cómodas: $earlier, luego $latest';
+  }
+
+  @override
+  String get planGateFactsNoPem => 'Sin PEM ni crisis';
+
+  @override
+  String get planGateFactsPain => 'El dolor se calma a la mañana siguiente';
+
+  @override
+  String get planTestWeeksLabel => 'Repetir pruebas en las semanas';
+
+  @override
+  String get planTestWeeksHint => 'p. ej. 1, 6, 12';
+
+  @override
+  String get planTestsTitle => 'Pruebas de referencia';
+
+  @override
+  String get planTestsCaption =>
+      'El progreso cuesta sentirlo semana a semana; esto muestra el cambio real.';
+
+  @override
+  String get planTestsRetestWeek => 'Es semana de repetir pruebas.';
+
+  @override
+  String get planTestsEditorCaption =>
+      'p. ej. repeticiones de sentarse y pararse en 30 s, flexiones en la pared, segundos en un pie.';
+
+  @override
+  String get planTestsAdd => 'Añadir prueba';
+
+  @override
+  String get planTestsNameLabel => 'Prueba';
+
+  @override
+  String get planTestsNameHint => 'p. ej. Sentarse y pararse en 30 s';
+
+  @override
+  String get planTestsUnitLabel => 'Unidad';
+
+  @override
+  String get planTestsUnitHint => 'p. ej. repeticiones, segundos, kg';
+
+  @override
+  String get planTestsAddResult => 'Añadir resultado';
+
+  @override
+  String get planTestsValueLabel => 'Resultado';
+
+  @override
+  String get planTestsNoResult => 'Aún sin resultado';
+
+  @override
+  String planTestsFirst(String value, String date) {
+    return '$value el $date';
+  }
+
+  @override
+  String planTestsChange(String first, String latest, String date) {
+    return '$first → $latest ($date)';
+  }
+
+  @override
+  String get planTestsStopIfUnsure =>
+      'Detente si dudas. Ninguna prueba vale una crisis.';
+
+  @override
+  String get planTestsTapToDelete => 'Toca un resultado para eliminarlo.';
+
+  @override
+  String get planFearTitle => 'Escalera de miedos';
+
+  @override
+  String get planFearIntro =>
+      'Anota los movimientos que evitas y dales una nota de miedo de 0 a 10. Cada semana, prueba uno de alrededor de 3–4/10 en una forma pequeña y segura. Primero predice; después anota lo que pasó de verdad.';
+
+  @override
+  String planFearThisWeek(String item) {
+    return 'Para probar esta semana: $item';
+  }
+
+  @override
+  String get planFearThisWeekCaption =>
+      'Una versión pequeña y segura, p. ej. dos escalones agarrada al pasamanos.';
+
+  @override
+  String get planFearLogTry => 'Registrar un intento';
+
+  @override
+  String get planFearListTitle => 'Mi lista';
+
+  @override
+  String get planFearEmpty =>
+      'Añade 8–10 movimientos que evitas, cada uno con nota de 0 a 10.';
+
+  @override
+  String get planFearSettledTitle => 'Ahora se siente cerca de 2/10';
+
+  @override
+  String get planFearAdd => 'Añadir movimiento';
+
+  @override
+  String planFearItemMeta(int initial, int tries) {
+    return 'empezó en $initial/10 · $tries intentos';
+  }
+
+  @override
+  String get planFearMarkSettled => 'Se siente cerca de 2/10: siguiente';
+
+  @override
+  String get planFearReopen => 'Volver a la lista';
+
+  @override
+  String get planFearItemLabel => 'Movimiento';
+
+  @override
+  String get planFearItemHint => 'p. ej. Arrodillarme sobre un cojín';
+
+  @override
+  String get planFearRatingLabel => 'Miedo (0–10)';
+
+  @override
+  String get planFearAttemptLabel => 'Lo que probé';
+
+  @override
+  String get planFearAttemptHint =>
+      'p. ej. Rodilla izquierda sobre un cojín grueso, 10 segundos';
+
+  @override
+  String get planFearPredictionLabel => 'Lo que predije que pasaría';
+
+  @override
+  String get planFearPredictionHint => 'Antes de intentarlo';
+
+  @override
+  String get planFearBeforeLabel => 'Miedo antes (0–10)';
+
+  @override
+  String get planFearOutcomeLabel => 'Lo que pasó de verdad';
+
+  @override
+  String get planFearOutcomeHint => 'Después de intentarlo';
+
+  @override
+  String get planFearAfterLabel => 'Miedo ahora (0–10)';
+
+  @override
+  String get planFearNothingBad => 'Lo hice y no pasó nada malo';
+
+  @override
+  String planFearEvidenceTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Evidencia ($count)',
+      zero: 'Evidencia',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planFearEvidenceCaption =>
+      'Cada vez que lo hiciste y no pasó nada malo. Esto es lo que cambia la creencia de que dolor significa daño.';
+
+  @override
+  String planFearEvidenceShort(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count veces no pasó nada malo',
+      one: '1 vez no pasó nada malo',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planFearAllSettled =>
+      'Todo en tu lista se siente cerca de 2/10. Añade más cuando quieras.';
+
+  @override
+  String get planFearOpen => 'Abrir escalera de miedos';
+
+  @override
+  String get planFearSpikeNote =>
+      'Si el miedo o los síntomas de trauma suben, es información, no un fracaso. Baja un peldaño. Un psicólogo que conozca la exposición gradual puede ayudar si esto se estanca.';
 }

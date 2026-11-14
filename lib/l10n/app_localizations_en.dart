@@ -2658,4 +2658,742 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get challengeTabDayRestLegend => 'rest day';
+
+  @override
+  String get appShellTabPlan => 'Plan';
+
+  @override
+  String get planEmptyTitle => 'Your training plan';
+
+  @override
+  String get planEmptyBody =>
+      'Write down the routine you and your physio or coach agreed on: phases, weekly sessions, each exercise\'s steps. Then follow it here day by day, at whatever level today allows.';
+
+  @override
+  String get planCreateTitle => 'Create my plan';
+
+  @override
+  String get planEditBasicsTitle => 'Edit plan details';
+
+  @override
+  String get planEditorDisclaimer =>
+      'A plan you write here is a tool to follow your clinician\'s advice, not a replacement for it.';
+
+  @override
+  String get planNameLabel => 'Name';
+
+  @override
+  String get planNameHint => 'e.g. My 12-week program';
+
+  @override
+  String get planStartLabel => 'Starts on';
+
+  @override
+  String get planWeeksLabel => 'Length in weeks';
+
+  @override
+  String get planCeilingLabel => 'Weekly ceiling (minutes)';
+
+  @override
+  String get planCeilingHint =>
+      'Optional. All logged movement counts toward it.';
+
+  @override
+  String get planFloorLabel => 'Daily floor';
+
+  @override
+  String get planFloorHint =>
+      'e.g. 10 calf raises at the counter, 10 quad sets';
+
+  @override
+  String get planEditorTitle => 'Edit plan';
+
+  @override
+  String get planEditButton => 'Edit plan';
+
+  @override
+  String planBasicsSummary(int weeks) {
+    return '$weeks weeks';
+  }
+
+  @override
+  String planCeilingSummary(int minutes) {
+    return 'ceiling $minutes min a week';
+  }
+
+  @override
+  String planFloorSummary(String note) {
+    return 'Daily floor: $note';
+  }
+
+  @override
+  String get planPhasesTitle => 'Phases';
+
+  @override
+  String get planPhasesCaption =>
+      'Each phase raises one thing. You move on when you pass its gate, not when the calendar says so.';
+
+  @override
+  String get planAddPhase => 'Add phase';
+
+  @override
+  String get planPhaseNameLabel => 'Name';
+
+  @override
+  String get planPhaseNameHint => 'e.g. Re-establish';
+
+  @override
+  String get planPhaseGoalLabel => 'Goal';
+
+  @override
+  String get planPhaseEffortLabel => 'Effort';
+
+  @override
+  String get planPhaseCardioLabel => 'Cardio';
+
+  @override
+  String get planPhaseGateLabel => 'Gate to move on';
+
+  @override
+  String get planPhaseGateHint =>
+      'e.g. 2 weeks with 2–3 comfortable sessions, pain settling by next morning';
+
+  @override
+  String get planSessionsTitle => 'Weekly sessions';
+
+  @override
+  String get planSessionsCaption => 'Tap a session to add its exercises.';
+
+  @override
+  String get planAddSession => 'Add session';
+
+  @override
+  String get planSessionNameLabel => 'Name';
+
+  @override
+  String get planSessionNameHint => 'e.g. A: strength';
+
+  @override
+  String get planSessionDayLabel => 'Day';
+
+  @override
+  String get planAnyDay => 'Any day';
+
+  @override
+  String get planSessionDurationLabel => 'Minutes';
+
+  @override
+  String get planSessionLowDayLabel => 'On a low day';
+
+  @override
+  String get planSessionLowDayHint => 'e.g. Ankle isometrics only';
+
+  @override
+  String get planSessionCardioLabel => 'Cardio session';
+
+  @override
+  String get planSessionCardioCaption =>
+      'Also saves it as an activity in Movement, so charts and challenges see it.';
+
+  @override
+  String get planCardioTag => 'cardio';
+
+  @override
+  String planMinutes(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String get planDeletePlan => 'Delete this plan';
+
+  @override
+  String get planSessionGone => 'This was deleted.';
+
+  @override
+  String get planSessionDetailsTitle => 'Details';
+
+  @override
+  String planLowDaySummary(String note) {
+    return 'On a low day: $note';
+  }
+
+  @override
+  String get planExercisesTitle => 'Exercises';
+
+  @override
+  String get planExercisesCaption =>
+      'An exercise is a slot like \"Push\" or \"Calf\". Inside it you list its steps, easiest first.';
+
+  @override
+  String get planAddExercise => 'Add exercise';
+
+  @override
+  String get planExerciseNameLabel => 'Name';
+
+  @override
+  String get planExerciseNameHint => 'e.g. Push';
+
+  @override
+  String get planExerciseCueLabel => 'How to do it';
+
+  @override
+  String get planExerciseCueHint => 'e.g. Elbows soft, shoulders down';
+
+  @override
+  String get planNoStepsYet => 'No steps yet';
+
+  @override
+  String get planStepsTitle => 'Steps';
+
+  @override
+  String get planStepsCaption =>
+      'Easiest first. The filled circle is where you are now; tap a circle to change it.';
+
+  @override
+  String get planAddStep => 'Add step';
+
+  @override
+  String get planCurrentStepHint =>
+      'Moving up happens on the Plan tab once three sessions felt comfortable.';
+
+  @override
+  String get planStepNameLabel => 'Name';
+
+  @override
+  String get planStepNameHint => 'e.g. Wall push-up';
+
+  @override
+  String get planStepDoseLabel => 'Dose';
+
+  @override
+  String get planStepDoseHint => 'e.g. 1→3 × 4–6';
+
+  @override
+  String get planStepClearanceLabel => 'Needs clinician sign-off';
+
+  @override
+  String get planStepClearanceCaption =>
+      'Stays locked until you mark it cleared.';
+
+  @override
+  String get planStepClearedLabel => 'Cleared';
+
+  @override
+  String get planStartsLater => 'Starts soon';
+
+  @override
+  String planWeekOf(int week, int total) {
+    return 'Week $week of $total';
+  }
+
+  @override
+  String get planNoSessionsTitle => 'Add your sessions';
+
+  @override
+  String get planNoSessionsBody =>
+      'Tap Edit plan to add your weekly sessions and their exercises.';
+
+  @override
+  String get planTodayNoSession => 'No session planned today';
+
+  @override
+  String get planModeFull => 'Full';
+
+  @override
+  String get planModeLowDay => 'Low day';
+
+  @override
+  String get planModeFloor => 'Floor only';
+
+  @override
+  String get planOtherSession => 'Do a different session';
+
+  @override
+  String get planNoDoubleUp => 'Missed sessions are skipped, never doubled up.';
+
+  @override
+  String get planRestHint =>
+      'Resting? Tap Rest day at the top — it counts just the same.';
+
+  @override
+  String get planRestLogged => 'Rest day';
+
+  @override
+  String get planFlareLogged => 'Flare day';
+
+  @override
+  String get planFlareNote =>
+      'After a flare: floor or full rest for about 3 days, then your last comfortable level. Never restart from zero, never add load to catch up.';
+
+  @override
+  String get planMorningTitle => 'How is it this morning?';
+
+  @override
+  String planMorningCaption(String session) {
+    return 'After $session, compared with your usual baseline.';
+  }
+
+  @override
+  String get planNextMorningSettled => 'At or below usual';
+
+  @override
+  String get planNextMorningHigher => 'Pain higher than usual';
+
+  @override
+  String get planNextMorningPem => 'PEM';
+
+  @override
+  String get planSessionTempoNote =>
+      'Slowly: 2 seconds down, a short pause, 1–2 seconds up. Mid-range, no locking joints. Seated and lying work first, standing last.';
+
+  @override
+  String get planLowDayDefault =>
+      'A low day: fewer sets, easier steps, or just part of the session. It counts.';
+
+  @override
+  String get planPainLabel => 'Highest pain during it (0–10)';
+
+  @override
+  String get planPainSharp => 'Sharp, catching or giving way';
+
+  @override
+  String get planPainSafe => '0–2: safe. Carry on.';
+
+  @override
+  String get planPainAcceptable =>
+      '3–5: acceptable if it settles by tomorrow morning.';
+
+  @override
+  String get planPainTooMuch =>
+      'Too much: stop this exercise. Next time, an easier step.';
+
+  @override
+  String get planSessionWrapUpTitle => 'Wrap up';
+
+  @override
+  String get planCardioSavesActivity =>
+      'Also saved as an activity in Movement.';
+
+  @override
+  String get planNoteLabel => 'Note';
+
+  @override
+  String get planSaveSession => 'Save session';
+
+  @override
+  String get planWeekTitle => 'This week';
+
+  @override
+  String planWeekSessions(int done, int planned) {
+    return '$done of $planned sessions, no judgment attached.';
+  }
+
+  @override
+  String planCeilingUsed(int used, int ceiling) {
+    return '$used of $ceiling min this week';
+  }
+
+  @override
+  String get planCeilingReached =>
+      'You\'ve reached this week\'s ceiling. Even on a great day, the rest of the week is floor or rest.';
+
+  @override
+  String planPhaseCardTitle(String phase) {
+    return 'Phase: $phase';
+  }
+
+  @override
+  String planGateSummary(String gate) {
+    return 'Gate: $gate';
+  }
+
+  @override
+  String get planRepeatIsSuccess =>
+      'Repeating a phase is part of the plan. Eight weeks at one level is a success, not a failure.';
+
+  @override
+  String get planPhaseBack => 'Back a phase';
+
+  @override
+  String planPhaseNext(String phase) {
+    return 'Move to $phase';
+  }
+
+  @override
+  String get planPhaseNextConfirm => 'Did you pass this phase\'s gate?';
+
+  @override
+  String get planNotYet => 'Not yet';
+
+  @override
+  String get planGatePassed => 'Yes, passed';
+
+  @override
+  String get planStepUpTitle => 'Ready for the next step?';
+
+  @override
+  String get planStepUpCaption =>
+      'Three comfortable sessions plus 72 hours with no PEM or flare. One change a week.';
+
+  @override
+  String get planReadinessNotYet => 'Keep going at this step.';
+
+  @override
+  String planReadinessReady(String step) {
+    return 'Ready for $step whenever you want.';
+  }
+
+  @override
+  String get planReadinessWaitWeek =>
+      'Ready, but something else changed this week. Wait a few days.';
+
+  @override
+  String get planReadinessWaitRecovery =>
+      'Ready, but give it 72 hours after PEM or a flare.';
+
+  @override
+  String planReadinessNeedsClearance(String step) {
+    return '$step waits for your clinician\'s sign-off.';
+  }
+
+  @override
+  String get planReadinessTop => 'Top of this ladder. Staying here is great.';
+
+  @override
+  String get planMoveUp => 'Move up';
+
+  @override
+  String get planMarkCleared => 'Mark as cleared';
+
+  @override
+  String get planStepBack => 'Step back';
+
+  @override
+  String get planPhrasesTitle => 'Phrases';
+
+  @override
+  String get planPhrasesEditHint => 'Opens your phrases';
+
+  @override
+  String get planPhrasesOwnTitle => 'My phrases';
+
+  @override
+  String get planPhrasesOwnCaption =>
+      'Shown first, whatever the day looked like.';
+
+  @override
+  String get planPhrasesAddHint => 'Something your future self would tell you';
+
+  @override
+  String get planPhrasesAdd => 'Add phrase';
+
+  @override
+  String get planPhrasesBuiltInTitle => 'Built-in phrases';
+
+  @override
+  String get planPhrase1 =>
+      'This is something my ideal self can do, and today I can do something to make that true.';
+
+  @override
+  String get planPhrase2 => 'My future me will be proud.';
+
+  @override
+  String get planPhrase3 =>
+      'Rest is the dose today, and taking it is part of the plan.';
+
+  @override
+  String get planPhrase4 =>
+      'The floor still counts. Showing up small is still showing up.';
+
+  @override
+  String get planPhrase5 =>
+      'Today\'s body is the one I train with, and I\'m listening to it.';
+
+  @override
+  String get planPhrase6 =>
+      'Repeating a week is the plan working, not falling behind.';
+
+  @override
+  String get planPhrase7 => 'Slow and steady is how I get to keep doing this.';
+
+  @override
+  String get planPhrase8 =>
+      'Whatever today looked like, I\'m still building trust with my body.';
+
+  @override
+  String get planCheckinTitle => 'Sunday check-in';
+
+  @override
+  String get planCheckinCaption =>
+      'Five minutes to look back at the week and set next week\'s ceiling.';
+
+  @override
+  String get planCheckinStart => 'Start check-in';
+
+  @override
+  String get planCheckinPemYes => 'There was PEM or a flare this week.';
+
+  @override
+  String get planCheckinPemNo => 'No PEM or flare this week.';
+
+  @override
+  String get planCheckinPemCauseLabel => 'What came before it?';
+
+  @override
+  String get planCheckinPemCauseHint =>
+      'Training, work, stairs, sleep, migraine…';
+
+  @override
+  String get planCheckinJointsOk =>
+      'Next-morning pain stayed at or below baseline.';
+
+  @override
+  String get planCheckinJointsHigher =>
+      'Some mornings were higher than baseline.';
+
+  @override
+  String get planCheckinJointsUnknown => 'No next-morning answers this week.';
+
+  @override
+  String planCheckinWeight(String kg) {
+    return 'Weight this week: $kg kg';
+  }
+
+  @override
+  String get planCheckinNoWeight => 'No weigh-in this week.';
+
+  @override
+  String planCheckinProtein(int days) {
+    return '$days days reached your protein goal.';
+  }
+
+  @override
+  String get planCheckinWinLabel => 'One win, however small';
+
+  @override
+  String get planCheckinWinHint => 'e.g. Did the stairs holding the rail';
+
+  @override
+  String planCheckinWinSummary(String win) {
+    return 'Win: $win';
+  }
+
+  @override
+  String get planCheckinFearLabel => 'Fear-list step taken';
+
+  @override
+  String get planCheckinFearHint =>
+      'Filled from your fear ladder when you logged a try';
+
+  @override
+  String get planCheckinDecisionLabel => 'Next week\'s ceiling';
+
+  @override
+  String get planCheckinRaise => 'Raise about 10%';
+
+  @override
+  String get planCheckinKeep => 'Keep the same';
+
+  @override
+  String get planCheckinStepBack => 'Step back';
+
+  @override
+  String planCheckinCeilingTo(int minutes) {
+    return '→ $minutes min';
+  }
+
+  @override
+  String get planCheckinNoRaiseAfterPem =>
+      'After PEM, the ceiling doesn\'t go up. Pacing comes before progression.';
+
+  @override
+  String get planGateFactsTitle => 'What your logs say (last 14 days)';
+
+  @override
+  String planGateFactsSessions(int earlier, int latest) {
+    return 'Comfortable sessions: $earlier, then $latest';
+  }
+
+  @override
+  String get planGateFactsNoPem => 'No PEM or flare';
+
+  @override
+  String get planGateFactsPain => 'Pain settling by next morning';
+
+  @override
+  String get planTestWeeksLabel => 'Retest in weeks';
+
+  @override
+  String get planTestWeeksHint => 'e.g. 1, 6, 12';
+
+  @override
+  String get planTestsTitle => 'Baseline tests';
+
+  @override
+  String get planTestsCaption =>
+      'Progress is hard to feel week to week; these show real change.';
+
+  @override
+  String get planTestsRetestWeek => 'It\'s a retest week.';
+
+  @override
+  String get planTestsEditorCaption =>
+      'e.g. sit-to-stand reps in 30 s, wall push-ups, single-leg stance seconds.';
+
+  @override
+  String get planTestsAdd => 'Add test';
+
+  @override
+  String get planTestsNameLabel => 'Test';
+
+  @override
+  String get planTestsNameHint => 'e.g. Sit-to-stand in 30 s';
+
+  @override
+  String get planTestsUnitLabel => 'Unit';
+
+  @override
+  String get planTestsUnitHint => 'e.g. reps, seconds, kg';
+
+  @override
+  String get planTestsAddResult => 'Add result';
+
+  @override
+  String get planTestsValueLabel => 'Result';
+
+  @override
+  String get planTestsNoResult => 'No result yet';
+
+  @override
+  String planTestsFirst(String value, String date) {
+    return '$value on $date';
+  }
+
+  @override
+  String planTestsChange(String first, String latest, String date) {
+    return '$first → $latest ($date)';
+  }
+
+  @override
+  String get planTestsStopIfUnsure =>
+      'Stop if unsure. A test is never worth a flare.';
+
+  @override
+  String get planTestsTapToDelete => 'Tap a result to delete it.';
+
+  @override
+  String get planFearTitle => 'Fear ladder';
+
+  @override
+  String get planFearIntro =>
+      'List the movements you avoid and rate each 0–10 for fear. Each week, try one at about 3–4/10 in a small, safe form. Predict first, then note what actually happened.';
+
+  @override
+  String planFearThisWeek(String item) {
+    return 'Try this week: $item';
+  }
+
+  @override
+  String get planFearThisWeekCaption =>
+      'A small, safe version, e.g. two steps holding the rail.';
+
+  @override
+  String get planFearLogTry => 'Log a try';
+
+  @override
+  String get planFearListTitle => 'My list';
+
+  @override
+  String get planFearEmpty => 'Add 8–10 movements you avoid, each rated 0–10.';
+
+  @override
+  String get planFearSettledTitle => 'Feels about 2/10 now';
+
+  @override
+  String get planFearAdd => 'Add movement';
+
+  @override
+  String planFearItemMeta(int initial, int tries) {
+    return 'started at $initial/10 · $tries tries';
+  }
+
+  @override
+  String get planFearMarkSettled => 'It feels about 2/10 — move on';
+
+  @override
+  String get planFearReopen => 'Back on the list';
+
+  @override
+  String get planFearItemLabel => 'Movement';
+
+  @override
+  String get planFearItemHint => 'e.g. Kneeling on a cushion';
+
+  @override
+  String get planFearRatingLabel => 'Fear (0–10)';
+
+  @override
+  String get planFearAttemptLabel => 'What I tried';
+
+  @override
+  String get planFearAttemptHint =>
+      'e.g. Left knee on a thick cushion, 10 seconds';
+
+  @override
+  String get planFearPredictionLabel => 'What I predicted would happen';
+
+  @override
+  String get planFearPredictionHint => 'Before you try';
+
+  @override
+  String get planFearBeforeLabel => 'Fear before (0–10)';
+
+  @override
+  String get planFearOutcomeLabel => 'What actually happened';
+
+  @override
+  String get planFearOutcomeHint => 'After you try';
+
+  @override
+  String get planFearAfterLabel => 'Fear now (0–10)';
+
+  @override
+  String get planFearNothingBad => 'I did it and nothing bad happened';
+
+  @override
+  String planFearEvidenceTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Evidence ($count)',
+      zero: 'Evidence',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planFearEvidenceCaption =>
+      'Every time you did it and nothing bad happened. This is what changes the belief that pain means damage.';
+
+  @override
+  String planFearEvidenceShort(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count times nothing bad happened',
+      one: '1 time nothing bad happened',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planFearAllSettled =>
+      'Everything on your list feels about 2/10. Add more when you\'re ready.';
+
+  @override
+  String get planFearOpen => 'Open fear ladder';
+
+  @override
+  String get planFearSpikeNote =>
+      'If fear or trauma symptoms spike, that is information, not failure. Step back one rung. A psychologist who knows graded exposure can help if this stalls.';
 }

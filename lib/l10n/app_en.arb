@@ -1255,5 +1255,350 @@
   "challengeTabRestDayHint": "Rest and flare days count as met — resting is part of pacing.",
   "challengeTabLoggingHint": "A day counts when you do a check-in, log an activity, mark a rest/flare day, or enter your weight.",
   "challengeTabNoGoalYet": "No goal yet",
-  "challengeTabDayRestLegend": "rest day"
+  "challengeTabDayRestLegend": "rest day",
+
+  "appShellTabPlan": "Plan",
+  "planEmptyTitle": "Your training plan",
+  "planEmptyBody": "Write down the routine you and your physio or coach agreed on: phases, weekly sessions, each exercise's steps. Then follow it here day by day, at whatever level today allows.",
+  "planCreateTitle": "Create my plan",
+  "planEditBasicsTitle": "Edit plan details",
+  "planEditorDisclaimer": "A plan you write here is a tool to follow your clinician's advice, not a replacement for it.",
+  "planNameLabel": "Name",
+  "planNameHint": "e.g. My 12-week program",
+  "planStartLabel": "Starts on",
+  "planWeeksLabel": "Length in weeks",
+  "planCeilingLabel": "Weekly ceiling (minutes)",
+  "planCeilingHint": "Optional. All logged movement counts toward it.",
+  "planFloorLabel": "Daily floor",
+  "planFloorHint": "e.g. 10 calf raises at the counter, 10 quad sets",
+  "planEditorTitle": "Edit plan",
+  "planEditButton": "Edit plan",
+  "planBasicsSummary": "{weeks} weeks",
+  "@planBasicsSummary": {
+    "placeholders": {
+      "weeks": {"type": "int"}
+    }
+  },
+  "planCeilingSummary": "ceiling {minutes} min a week",
+  "@planCeilingSummary": {
+    "placeholders": {
+      "minutes": {"type": "int"}
+    }
+  },
+  "planFloorSummary": "Daily floor: {note}",
+  "@planFloorSummary": {
+    "placeholders": {
+      "note": {"type": "String"}
+    }
+  },
+  "planPhasesTitle": "Phases",
+  "planPhasesCaption": "Each phase raises one thing. You move on when you pass its gate, not when the calendar says so.",
+  "planAddPhase": "Add phase",
+  "planPhaseNameLabel": "Name",
+  "planPhaseNameHint": "e.g. Re-establish",
+  "planPhaseGoalLabel": "Goal",
+  "planPhaseEffortLabel": "Effort",
+  "planPhaseCardioLabel": "Cardio",
+  "planPhaseGateLabel": "Gate to move on",
+  "planPhaseGateHint": "e.g. 2 weeks with 2–3 comfortable sessions, pain settling by next morning",
+  "planSessionsTitle": "Weekly sessions",
+  "planSessionsCaption": "Tap a session to add its exercises.",
+  "planAddSession": "Add session",
+  "planSessionNameLabel": "Name",
+  "planSessionNameHint": "e.g. A: strength",
+  "planSessionDayLabel": "Day",
+  "planAnyDay": "Any day",
+  "planSessionDurationLabel": "Minutes",
+  "planSessionLowDayLabel": "On a low day",
+  "planSessionLowDayHint": "e.g. Ankle isometrics only",
+  "planSessionCardioLabel": "Cardio session",
+  "planSessionCardioCaption": "Also saves it as an activity in Movement, so charts and challenges see it.",
+  "planCardioTag": "cardio",
+  "planMinutes": "{minutes} min",
+  "@planMinutes": {
+    "placeholders": {
+      "minutes": {"type": "int"}
+    }
+  },
+  "planDeletePlan": "Delete this plan",
+  "planSessionGone": "This was deleted.",
+  "planSessionDetailsTitle": "Details",
+  "planLowDaySummary": "On a low day: {note}",
+  "@planLowDaySummary": {
+    "placeholders": {
+      "note": {"type": "String"}
+    }
+  },
+  "planExercisesTitle": "Exercises",
+  "planExercisesCaption": "An exercise is a slot like \"Push\" or \"Calf\". Inside it you list its steps, easiest first.",
+  "planAddExercise": "Add exercise",
+  "planExerciseNameLabel": "Name",
+  "planExerciseNameHint": "e.g. Push",
+  "planExerciseCueLabel": "How to do it",
+  "planExerciseCueHint": "e.g. Elbows soft, shoulders down",
+  "planNoStepsYet": "No steps yet",
+  "planStepsTitle": "Steps",
+  "planStepsCaption": "Easiest first. The filled circle is where you are now; tap a circle to change it.",
+  "planAddStep": "Add step",
+  "planCurrentStepHint": "Moving up happens on the Plan tab once three sessions felt comfortable.",
+  "planStepNameLabel": "Name",
+  "planStepNameHint": "e.g. Wall push-up",
+  "planStepDoseLabel": "Dose",
+  "planStepDoseHint": "e.g. 1→3 × 4–6",
+  "planStepClearanceLabel": "Needs clinician sign-off",
+  "planStepClearanceCaption": "Stays locked until you mark it cleared.",
+  "planStepClearedLabel": "Cleared",
+  "planStartsLater": "Starts soon",
+  "planWeekOf": "Week {week} of {total}",
+  "@planWeekOf": {
+    "placeholders": {
+      "week": {"type": "int"},
+      "total": {"type": "int"}
+    }
+  },
+  "planNoSessionsTitle": "Add your sessions",
+  "planNoSessionsBody": "Tap Edit plan to add your weekly sessions and their exercises.",
+  "planTodayNoSession": "No session planned today",
+  "planModeFull": "Full",
+  "planModeLowDay": "Low day",
+  "planModeFloor": "Floor only",
+  "planOtherSession": "Do a different session",
+  "planNoDoubleUp": "Missed sessions are skipped, never doubled up.",
+  "planRestHint": "Resting? Tap Rest day at the top — it counts just the same.",
+  "planRestLogged": "Rest day",
+  "planFlareLogged": "Flare day",
+  "planFlareNote": "After a flare: floor or full rest for about 3 days, then your last comfortable level. Never restart from zero, never add load to catch up.",
+  "planMorningTitle": "How is it this morning?",
+  "planMorningCaption": "After {session}, compared with your usual baseline.",
+  "@planMorningCaption": {
+    "placeholders": {
+      "session": {"type": "String"}
+    }
+  },
+  "planNextMorningSettled": "At or below usual",
+  "planNextMorningHigher": "Pain higher than usual",
+  "planNextMorningPem": "PEM",
+  "planSessionTempoNote": "Slowly: 2 seconds down, a short pause, 1–2 seconds up. Mid-range, no locking joints. Seated and lying work first, standing last.",
+  "planLowDayDefault": "A low day: fewer sets, easier steps, or just part of the session. It counts.",
+  "planPainLabel": "Highest pain during it (0–10)",
+  "planPainSharp": "Sharp, catching or giving way",
+  "planPainSafe": "0–2: safe. Carry on.",
+  "planPainAcceptable": "3–5: acceptable if it settles by tomorrow morning.",
+  "planPainTooMuch": "Too much: stop this exercise. Next time, an easier step.",
+  "planSessionWrapUpTitle": "Wrap up",
+  "planCardioSavesActivity": "Also saved as an activity in Movement.",
+  "planNoteLabel": "Note",
+  "planSaveSession": "Save session",
+  "planWeekTitle": "This week",
+  "planWeekSessions": "{done} of {planned} sessions, no judgment attached.",
+  "@planWeekSessions": {
+    "placeholders": {
+      "done": {"type": "int"},
+      "planned": {"type": "int"}
+    }
+  },
+  "planCeilingUsed": "{used} of {ceiling} min this week",
+  "@planCeilingUsed": {
+    "placeholders": {
+      "used": {"type": "int"},
+      "ceiling": {"type": "int"}
+    }
+  },
+  "planCeilingReached": "You've reached this week's ceiling. Even on a great day, the rest of the week is floor or rest.",
+  "planPhaseCardTitle": "Phase: {phase}",
+  "@planPhaseCardTitle": {
+    "placeholders": {
+      "phase": {"type": "String"}
+    }
+  },
+  "planGateSummary": "Gate: {gate}",
+  "@planGateSummary": {
+    "placeholders": {
+      "gate": {"type": "String"}
+    }
+  },
+  "planRepeatIsSuccess": "Repeating a phase is part of the plan. Eight weeks at one level is a success, not a failure.",
+  "planPhaseBack": "Back a phase",
+  "planPhaseNext": "Move to {phase}",
+  "@planPhaseNext": {
+    "placeholders": {
+      "phase": {"type": "String"}
+    }
+  },
+  "planPhaseNextConfirm": "Did you pass this phase's gate?",
+  "planNotYet": "Not yet",
+  "planGatePassed": "Yes, passed",
+  "planStepUpTitle": "Ready for the next step?",
+  "planStepUpCaption": "Three comfortable sessions plus 72 hours with no PEM or flare. One change a week.",
+  "planReadinessNotYet": "Keep going at this step.",
+  "planReadinessReady": "Ready for {step} whenever you want.",
+  "@planReadinessReady": {
+    "placeholders": {
+      "step": {"type": "String"}
+    }
+  },
+  "planReadinessWaitWeek": "Ready, but something else changed this week. Wait a few days.",
+  "planReadinessWaitRecovery": "Ready, but give it 72 hours after PEM or a flare.",
+  "planReadinessNeedsClearance": "{step} waits for your clinician's sign-off.",
+  "@planReadinessNeedsClearance": {
+    "placeholders": {
+      "step": {"type": "String"}
+    }
+  },
+  "planReadinessTop": "Top of this ladder. Staying here is great.",
+  "planMoveUp": "Move up",
+  "planMarkCleared": "Mark as cleared",
+  "planStepBack": "Step back",
+  "planPhrasesTitle": "Phrases",
+  "planPhrasesEditHint": "Opens your phrases",
+  "planPhrasesOwnTitle": "My phrases",
+  "planPhrasesOwnCaption": "Shown first, whatever the day looked like.",
+  "planPhrasesAddHint": "Something your future self would tell you",
+  "planPhrasesAdd": "Add phrase",
+  "planPhrasesBuiltInTitle": "Built-in phrases",
+  "planPhrase1": "This is something my ideal self can do, and today I can do something to make that true.",
+  "planPhrase2": "My future me will be proud.",
+  "planPhrase3": "Rest is the dose today, and taking it is part of the plan.",
+  "planPhrase4": "The floor still counts. Showing up small is still showing up.",
+  "planPhrase5": "Today's body is the one I train with, and I'm listening to it.",
+  "planPhrase6": "Repeating a week is the plan working, not falling behind.",
+  "planPhrase7": "Slow and steady is how I get to keep doing this.",
+  "planPhrase8": "Whatever today looked like, I'm still building trust with my body.",
+
+  "planCheckinTitle": "Sunday check-in",
+  "planCheckinCaption": "Five minutes to look back at the week and set next week's ceiling.",
+  "planCheckinStart": "Start check-in",
+  "planCheckinPemYes": "There was PEM or a flare this week.",
+  "planCheckinPemNo": "No PEM or flare this week.",
+  "planCheckinPemCauseLabel": "What came before it?",
+  "planCheckinPemCauseHint": "Training, work, stairs, sleep, migraine…",
+  "planCheckinJointsOk": "Next-morning pain stayed at or below baseline.",
+  "planCheckinJointsHigher": "Some mornings were higher than baseline.",
+  "planCheckinJointsUnknown": "No next-morning answers this week.",
+  "planCheckinWeight": "Weight this week: {kg} kg",
+  "@planCheckinWeight": {
+    "placeholders": {
+      "kg": {"type": "String"}
+    }
+  },
+  "planCheckinNoWeight": "No weigh-in this week.",
+  "planCheckinProtein": "{days} days reached your protein goal.",
+  "@planCheckinProtein": {
+    "placeholders": {
+      "days": {"type": "int"}
+    }
+  },
+  "planCheckinWinLabel": "One win, however small",
+  "planCheckinWinHint": "e.g. Did the stairs holding the rail",
+  "planCheckinWinSummary": "Win: {win}",
+  "@planCheckinWinSummary": {
+    "placeholders": {
+      "win": {"type": "String"}
+    }
+  },
+  "planCheckinFearLabel": "Fear-list step taken",
+  "planCheckinFearHint": "Filled from your fear ladder when you logged a try",
+  "planCheckinDecisionLabel": "Next week's ceiling",
+  "planCheckinRaise": "Raise about 10%",
+  "planCheckinKeep": "Keep the same",
+  "planCheckinStepBack": "Step back",
+  "planCheckinCeilingTo": "→ {minutes} min",
+  "@planCheckinCeilingTo": {
+    "placeholders": {
+      "minutes": {"type": "int"}
+    }
+  },
+  "planCheckinNoRaiseAfterPem": "After PEM, the ceiling doesn't go up. Pacing comes before progression.",
+  "planGateFactsTitle": "What your logs say (last 14 days)",
+  "planGateFactsSessions": "Comfortable sessions: {earlier}, then {latest}",
+  "@planGateFactsSessions": {
+    "placeholders": {
+      "earlier": {"type": "int"},
+      "latest": {"type": "int"}
+    }
+  },
+  "planGateFactsNoPem": "No PEM or flare",
+  "planGateFactsPain": "Pain settling by next morning",
+  "planTestWeeksLabel": "Retest in weeks",
+  "planTestWeeksHint": "e.g. 1, 6, 12",
+  "planTestsTitle": "Baseline tests",
+  "planTestsCaption": "Progress is hard to feel week to week; these show real change.",
+  "planTestsRetestWeek": "It's a retest week.",
+  "planTestsEditorCaption": "e.g. sit-to-stand reps in 30 s, wall push-ups, single-leg stance seconds.",
+  "planTestsAdd": "Add test",
+  "planTestsNameLabel": "Test",
+  "planTestsNameHint": "e.g. Sit-to-stand in 30 s",
+  "planTestsUnitLabel": "Unit",
+  "planTestsUnitHint": "e.g. reps, seconds, kg",
+  "planTestsAddResult": "Add result",
+  "planTestsValueLabel": "Result",
+  "planTestsNoResult": "No result yet",
+  "planTestsFirst": "{value} on {date}",
+  "@planTestsFirst": {
+    "placeholders": {
+      "value": {"type": "String"},
+      "date": {"type": "String"}
+    }
+  },
+  "planTestsChange": "{first} → {latest} ({date})",
+  "@planTestsChange": {
+    "placeholders": {
+      "first": {"type": "String"},
+      "latest": {"type": "String"},
+      "date": {"type": "String"}
+    }
+  },
+  "planTestsStopIfUnsure": "Stop if unsure. A test is never worth a flare.",
+  "planTestsTapToDelete": "Tap a result to delete it.",
+  "planFearTitle": "Fear ladder",
+  "planFearIntro": "List the movements you avoid and rate each 0–10 for fear. Each week, try one at about 3–4/10 in a small, safe form. Predict first, then note what actually happened.",
+  "planFearThisWeek": "Try this week: {item}",
+  "@planFearThisWeek": {
+    "placeholders": {
+      "item": {"type": "String"}
+    }
+  },
+  "planFearThisWeekCaption": "A small, safe version, e.g. two steps holding the rail.",
+  "planFearLogTry": "Log a try",
+  "planFearListTitle": "My list",
+  "planFearEmpty": "Add 8–10 movements you avoid, each rated 0–10.",
+  "planFearSettledTitle": "Feels about 2/10 now",
+  "planFearAdd": "Add movement",
+  "planFearItemMeta": "started at {initial}/10 · {tries} tries",
+  "@planFearItemMeta": {
+    "placeholders": {
+      "initial": {"type": "int"},
+      "tries": {"type": "int"}
+    }
+  },
+  "planFearMarkSettled": "It feels about 2/10 — move on",
+  "planFearReopen": "Back on the list",
+  "planFearItemLabel": "Movement",
+  "planFearItemHint": "e.g. Kneeling on a cushion",
+  "planFearRatingLabel": "Fear (0–10)",
+  "planFearAttemptLabel": "What I tried",
+  "planFearAttemptHint": "e.g. Left knee on a thick cushion, 10 seconds",
+  "planFearPredictionLabel": "What I predicted would happen",
+  "planFearPredictionHint": "Before you try",
+  "planFearBeforeLabel": "Fear before (0–10)",
+  "planFearOutcomeLabel": "What actually happened",
+  "planFearOutcomeHint": "After you try",
+  "planFearAfterLabel": "Fear now (0–10)",
+  "planFearNothingBad": "I did it and nothing bad happened",
+  "planFearEvidenceTitle": "{count, plural, =0{Evidence} other{Evidence ({count})}}",
+  "@planFearEvidenceTitle": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "planFearEvidenceCaption": "Every time you did it and nothing bad happened. This is what changes the belief that pain means damage.",
+  "planFearEvidenceShort": "{count, plural, =1{1 time nothing bad happened} other{{count} times nothing bad happened}}",
+  "@planFearEvidenceShort": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "planFearAllSettled": "Everything on your list feels about 2/10. Add more when you're ready.",
+  "planFearOpen": "Open fear ladder",
+  "planFearSpikeNote": "If fear or trauma symptoms spike, that is information, not failure. Step back one rung. A psychologist who knows graded exposure can help if this stalls."
 }

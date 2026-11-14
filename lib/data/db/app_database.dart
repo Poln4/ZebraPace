@@ -7,6 +7,7 @@ import 'tables/checkins_table.dart';
 import 'tables/daily_logs_table.dart';
 import 'tables/injuries_table.dart';
 import 'tables/liquid_logs_table.dart';
+import 'tables/plan_tables.dart';
 import 'tables/settings_table.dart';
 import 'tables/soreness_checks_table.dart';
 import 'tables/therapies_table.dart';
@@ -26,13 +27,25 @@ part 'app_database.g.dart';
     SorenessChecks,
     Checkins,
     Injuries,
+    TrainingPlans,
+    PlanPhases,
+    PlanSessions,
+    PlanExercises,
+    PlanSteps,
+    PlanSessionLogs,
+    PlanSetLogs,
+    PlanCheckins,
+    PlanTests,
+    PlanTestResults,
+    FearItems,
+    ExposureLogs,
   ],
 )
 class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 7;
+  int get schemaVersion => 8;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -103,6 +116,22 @@ class AppDatabase extends _$AppDatabase {
           if (from < 7) {
             await m.addColumn(calisthenics, calisthenics.setValues);
             await m.addColumn(calisthenics, calisthenics.unit);
+          }
+          // v7 -> v8: training plans (the Plan tab), weekly check-ins, baseline
+          // tests and the graded-exposure fear list.
+          if (from < 8) {
+            await m.createTable(trainingPlans);
+            await m.createTable(planPhases);
+            await m.createTable(planSessions);
+            await m.createTable(planExercises);
+            await m.createTable(planSteps);
+            await m.createTable(planSessionLogs);
+            await m.createTable(planSetLogs);
+            await m.createTable(planCheckins);
+            await m.createTable(planTests);
+            await m.createTable(planTestResults);
+            await m.createTable(fearItems);
+            await m.createTable(exposureLogs);
           }
         },
       );

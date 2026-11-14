@@ -4524,6 +4524,1266 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'rest day'**
   String get challengeTabDayRestLegend;
+
+  /// No description provided for @appShellTabPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan'**
+  String get appShellTabPlan;
+
+  /// No description provided for @planEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your training plan'**
+  String get planEmptyTitle;
+
+  /// No description provided for @planEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Write down the routine you and your physio or coach agreed on: phases, weekly sessions, each exercise\'s steps. Then follow it here day by day, at whatever level today allows.'**
+  String get planEmptyBody;
+
+  /// No description provided for @planCreateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create my plan'**
+  String get planCreateTitle;
+
+  /// No description provided for @planEditBasicsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit plan details'**
+  String get planEditBasicsTitle;
+
+  /// No description provided for @planEditorDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'A plan you write here is a tool to follow your clinician\'s advice, not a replacement for it.'**
+  String get planEditorDisclaimer;
+
+  /// No description provided for @planNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get planNameLabel;
+
+  /// No description provided for @planNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. My 12-week program'**
+  String get planNameHint;
+
+  /// No description provided for @planStartLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Starts on'**
+  String get planStartLabel;
+
+  /// No description provided for @planWeeksLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Length in weeks'**
+  String get planWeeksLabel;
+
+  /// No description provided for @planCeilingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly ceiling (minutes)'**
+  String get planCeilingLabel;
+
+  /// No description provided for @planCeilingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional. All logged movement counts toward it.'**
+  String get planCeilingHint;
+
+  /// No description provided for @planFloorLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily floor'**
+  String get planFloorLabel;
+
+  /// No description provided for @planFloorHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. 10 calf raises at the counter, 10 quad sets'**
+  String get planFloorHint;
+
+  /// No description provided for @planEditorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit plan'**
+  String get planEditorTitle;
+
+  /// No description provided for @planEditButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit plan'**
+  String get planEditButton;
+
+  /// No description provided for @planBasicsSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{weeks} weeks'**
+  String planBasicsSummary(int weeks);
+
+  /// No description provided for @planCeilingSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'ceiling {minutes} min a week'**
+  String planCeilingSummary(int minutes);
+
+  /// No description provided for @planFloorSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily floor: {note}'**
+  String planFloorSummary(String note);
+
+  /// No description provided for @planPhasesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Phases'**
+  String get planPhasesTitle;
+
+  /// No description provided for @planPhasesCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Each phase raises one thing. You move on when you pass its gate, not when the calendar says so.'**
+  String get planPhasesCaption;
+
+  /// No description provided for @planAddPhase.
+  ///
+  /// In en, this message translates to:
+  /// **'Add phase'**
+  String get planAddPhase;
+
+  /// No description provided for @planPhaseNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get planPhaseNameLabel;
+
+  /// No description provided for @planPhaseNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Re-establish'**
+  String get planPhaseNameHint;
+
+  /// No description provided for @planPhaseGoalLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Goal'**
+  String get planPhaseGoalLabel;
+
+  /// No description provided for @planPhaseEffortLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Effort'**
+  String get planPhaseEffortLabel;
+
+  /// No description provided for @planPhaseCardioLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cardio'**
+  String get planPhaseCardioLabel;
+
+  /// No description provided for @planPhaseGateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Gate to move on'**
+  String get planPhaseGateLabel;
+
+  /// No description provided for @planPhaseGateHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. 2 weeks with 2–3 comfortable sessions, pain settling by next morning'**
+  String get planPhaseGateHint;
+
+  /// No description provided for @planSessionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly sessions'**
+  String get planSessionsTitle;
+
+  /// No description provided for @planSessionsCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a session to add its exercises.'**
+  String get planSessionsCaption;
+
+  /// No description provided for @planAddSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Add session'**
+  String get planAddSession;
+
+  /// No description provided for @planSessionNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get planSessionNameLabel;
+
+  /// No description provided for @planSessionNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. A: strength'**
+  String get planSessionNameHint;
+
+  /// No description provided for @planSessionDayLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get planSessionDayLabel;
+
+  /// No description provided for @planAnyDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Any day'**
+  String get planAnyDay;
+
+  /// No description provided for @planSessionDurationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Minutes'**
+  String get planSessionDurationLabel;
+
+  /// No description provided for @planSessionLowDayLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'On a low day'**
+  String get planSessionLowDayLabel;
+
+  /// No description provided for @planSessionLowDayHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Ankle isometrics only'**
+  String get planSessionLowDayHint;
+
+  /// No description provided for @planSessionCardioLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cardio session'**
+  String get planSessionCardioLabel;
+
+  /// No description provided for @planSessionCardioCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Also saves it as an activity in Movement, so charts and challenges see it.'**
+  String get planSessionCardioCaption;
+
+  /// No description provided for @planCardioTag.
+  ///
+  /// In en, this message translates to:
+  /// **'cardio'**
+  String get planCardioTag;
+
+  /// No description provided for @planMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min'**
+  String planMinutes(int minutes);
+
+  /// No description provided for @planDeletePlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this plan'**
+  String get planDeletePlan;
+
+  /// No description provided for @planSessionGone.
+  ///
+  /// In en, this message translates to:
+  /// **'This was deleted.'**
+  String get planSessionGone;
+
+  /// No description provided for @planSessionDetailsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get planSessionDetailsTitle;
+
+  /// No description provided for @planLowDaySummary.
+  ///
+  /// In en, this message translates to:
+  /// **'On a low day: {note}'**
+  String planLowDaySummary(String note);
+
+  /// No description provided for @planExercisesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Exercises'**
+  String get planExercisesTitle;
+
+  /// No description provided for @planExercisesCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'An exercise is a slot like \"Push\" or \"Calf\". Inside it you list its steps, easiest first.'**
+  String get planExercisesCaption;
+
+  /// No description provided for @planAddExercise.
+  ///
+  /// In en, this message translates to:
+  /// **'Add exercise'**
+  String get planAddExercise;
+
+  /// No description provided for @planExerciseNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get planExerciseNameLabel;
+
+  /// No description provided for @planExerciseNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Push'**
+  String get planExerciseNameHint;
+
+  /// No description provided for @planExerciseCueLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'How to do it'**
+  String get planExerciseCueLabel;
+
+  /// No description provided for @planExerciseCueHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Elbows soft, shoulders down'**
+  String get planExerciseCueHint;
+
+  /// No description provided for @planNoStepsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No steps yet'**
+  String get planNoStepsYet;
+
+  /// No description provided for @planStepsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Steps'**
+  String get planStepsTitle;
+
+  /// No description provided for @planStepsCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Easiest first. The filled circle is where you are now; tap a circle to change it.'**
+  String get planStepsCaption;
+
+  /// No description provided for @planAddStep.
+  ///
+  /// In en, this message translates to:
+  /// **'Add step'**
+  String get planAddStep;
+
+  /// No description provided for @planCurrentStepHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Moving up happens on the Plan tab once three sessions felt comfortable.'**
+  String get planCurrentStepHint;
+
+  /// No description provided for @planStepNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get planStepNameLabel;
+
+  /// No description provided for @planStepNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Wall push-up'**
+  String get planStepNameHint;
+
+  /// No description provided for @planStepDoseLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Dose'**
+  String get planStepDoseLabel;
+
+  /// No description provided for @planStepDoseHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. 1→3 × 4–6'**
+  String get planStepDoseHint;
+
+  /// No description provided for @planStepClearanceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs clinician sign-off'**
+  String get planStepClearanceLabel;
+
+  /// No description provided for @planStepClearanceCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Stays locked until you mark it cleared.'**
+  String get planStepClearanceCaption;
+
+  /// No description provided for @planStepClearedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cleared'**
+  String get planStepClearedLabel;
+
+  /// No description provided for @planStartsLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Starts soon'**
+  String get planStartsLater;
+
+  /// No description provided for @planWeekOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Week {week} of {total}'**
+  String planWeekOf(int week, int total);
+
+  /// No description provided for @planNoSessionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your sessions'**
+  String get planNoSessionsTitle;
+
+  /// No description provided for @planNoSessionsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap Edit plan to add your weekly sessions and their exercises.'**
+  String get planNoSessionsBody;
+
+  /// No description provided for @planTodayNoSession.
+  ///
+  /// In en, this message translates to:
+  /// **'No session planned today'**
+  String get planTodayNoSession;
+
+  /// No description provided for @planModeFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Full'**
+  String get planModeFull;
+
+  /// No description provided for @planModeLowDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Low day'**
+  String get planModeLowDay;
+
+  /// No description provided for @planModeFloor.
+  ///
+  /// In en, this message translates to:
+  /// **'Floor only'**
+  String get planModeFloor;
+
+  /// No description provided for @planOtherSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Do a different session'**
+  String get planOtherSession;
+
+  /// No description provided for @planNoDoubleUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Missed sessions are skipped, never doubled up.'**
+  String get planNoDoubleUp;
+
+  /// No description provided for @planRestHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Resting? Tap Rest day at the top — it counts just the same.'**
+  String get planRestHint;
+
+  /// No description provided for @planRestLogged.
+  ///
+  /// In en, this message translates to:
+  /// **'Rest day'**
+  String get planRestLogged;
+
+  /// No description provided for @planFlareLogged.
+  ///
+  /// In en, this message translates to:
+  /// **'Flare day'**
+  String get planFlareLogged;
+
+  /// No description provided for @planFlareNote.
+  ///
+  /// In en, this message translates to:
+  /// **'After a flare: floor or full rest for about 3 days, then your last comfortable level. Never restart from zero, never add load to catch up.'**
+  String get planFlareNote;
+
+  /// No description provided for @planMorningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How is it this morning?'**
+  String get planMorningTitle;
+
+  /// No description provided for @planMorningCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'After {session}, compared with your usual baseline.'**
+  String planMorningCaption(String session);
+
+  /// No description provided for @planNextMorningSettled.
+  ///
+  /// In en, this message translates to:
+  /// **'At or below usual'**
+  String get planNextMorningSettled;
+
+  /// No description provided for @planNextMorningHigher.
+  ///
+  /// In en, this message translates to:
+  /// **'Pain higher than usual'**
+  String get planNextMorningHigher;
+
+  /// No description provided for @planNextMorningPem.
+  ///
+  /// In en, this message translates to:
+  /// **'PEM'**
+  String get planNextMorningPem;
+
+  /// No description provided for @planSessionTempoNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Slowly: 2 seconds down, a short pause, 1–2 seconds up. Mid-range, no locking joints. Seated and lying work first, standing last.'**
+  String get planSessionTempoNote;
+
+  /// No description provided for @planLowDayDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'A low day: fewer sets, easier steps, or just part of the session. It counts.'**
+  String get planLowDayDefault;
+
+  /// No description provided for @planPainLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Highest pain during it (0–10)'**
+  String get planPainLabel;
+
+  /// No description provided for @planPainSharp.
+  ///
+  /// In en, this message translates to:
+  /// **'Sharp, catching or giving way'**
+  String get planPainSharp;
+
+  /// No description provided for @planPainSafe.
+  ///
+  /// In en, this message translates to:
+  /// **'0–2: safe. Carry on.'**
+  String get planPainSafe;
+
+  /// No description provided for @planPainAcceptable.
+  ///
+  /// In en, this message translates to:
+  /// **'3–5: acceptable if it settles by tomorrow morning.'**
+  String get planPainAcceptable;
+
+  /// No description provided for @planPainTooMuch.
+  ///
+  /// In en, this message translates to:
+  /// **'Too much: stop this exercise. Next time, an easier step.'**
+  String get planPainTooMuch;
+
+  /// No description provided for @planSessionWrapUpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrap up'**
+  String get planSessionWrapUpTitle;
+
+  /// No description provided for @planCardioSavesActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Also saved as an activity in Movement.'**
+  String get planCardioSavesActivity;
+
+  /// No description provided for @planNoteLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get planNoteLabel;
+
+  /// No description provided for @planSaveSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Save session'**
+  String get planSaveSession;
+
+  /// No description provided for @planWeekTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This week'**
+  String get planWeekTitle;
+
+  /// No description provided for @planWeekSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {planned} sessions, no judgment attached.'**
+  String planWeekSessions(int done, int planned);
+
+  /// No description provided for @planCeilingUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'{used} of {ceiling} min this week'**
+  String planCeilingUsed(int used, int ceiling);
+
+  /// No description provided for @planCeilingReached.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve reached this week\'s ceiling. Even on a great day, the rest of the week is floor or rest.'**
+  String get planCeilingReached;
+
+  /// No description provided for @planPhaseCardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Phase: {phase}'**
+  String planPhaseCardTitle(String phase);
+
+  /// No description provided for @planGateSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Gate: {gate}'**
+  String planGateSummary(String gate);
+
+  /// No description provided for @planRepeatIsSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeating a phase is part of the plan. Eight weeks at one level is a success, not a failure.'**
+  String get planRepeatIsSuccess;
+
+  /// No description provided for @planPhaseBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back a phase'**
+  String get planPhaseBack;
+
+  /// No description provided for @planPhaseNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Move to {phase}'**
+  String planPhaseNext(String phase);
+
+  /// No description provided for @planPhaseNextConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Did you pass this phase\'s gate?'**
+  String get planPhaseNextConfirm;
+
+  /// No description provided for @planNotYet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not yet'**
+  String get planNotYet;
+
+  /// No description provided for @planGatePassed.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, passed'**
+  String get planGatePassed;
+
+  /// No description provided for @planStepUpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready for the next step?'**
+  String get planStepUpTitle;
+
+  /// No description provided for @planStepUpCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Three comfortable sessions plus 72 hours with no PEM or flare. One change a week.'**
+  String get planStepUpCaption;
+
+  /// No description provided for @planReadinessNotYet.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep going at this step.'**
+  String get planReadinessNotYet;
+
+  /// No description provided for @planReadinessReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready for {step} whenever you want.'**
+  String planReadinessReady(String step);
+
+  /// No description provided for @planReadinessWaitWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready, but something else changed this week. Wait a few days.'**
+  String get planReadinessWaitWeek;
+
+  /// No description provided for @planReadinessWaitRecovery.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready, but give it 72 hours after PEM or a flare.'**
+  String get planReadinessWaitRecovery;
+
+  /// No description provided for @planReadinessNeedsClearance.
+  ///
+  /// In en, this message translates to:
+  /// **'{step} waits for your clinician\'s sign-off.'**
+  String planReadinessNeedsClearance(String step);
+
+  /// No description provided for @planReadinessTop.
+  ///
+  /// In en, this message translates to:
+  /// **'Top of this ladder. Staying here is great.'**
+  String get planReadinessTop;
+
+  /// No description provided for @planMoveUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Move up'**
+  String get planMoveUp;
+
+  /// No description provided for @planMarkCleared.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as cleared'**
+  String get planMarkCleared;
+
+  /// No description provided for @planStepBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Step back'**
+  String get planStepBack;
+
+  /// No description provided for @planPhrasesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Phrases'**
+  String get planPhrasesTitle;
+
+  /// No description provided for @planPhrasesEditHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Opens your phrases'**
+  String get planPhrasesEditHint;
+
+  /// No description provided for @planPhrasesOwnTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My phrases'**
+  String get planPhrasesOwnTitle;
+
+  /// No description provided for @planPhrasesOwnCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Shown first, whatever the day looked like.'**
+  String get planPhrasesOwnCaption;
+
+  /// No description provided for @planPhrasesAddHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Something your future self would tell you'**
+  String get planPhrasesAddHint;
+
+  /// No description provided for @planPhrasesAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add phrase'**
+  String get planPhrasesAdd;
+
+  /// No description provided for @planPhrasesBuiltInTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Built-in phrases'**
+  String get planPhrasesBuiltInTitle;
+
+  /// No description provided for @planPhrase1.
+  ///
+  /// In en, this message translates to:
+  /// **'This is something my ideal self can do, and today I can do something to make that true.'**
+  String get planPhrase1;
+
+  /// No description provided for @planPhrase2.
+  ///
+  /// In en, this message translates to:
+  /// **'My future me will be proud.'**
+  String get planPhrase2;
+
+  /// No description provided for @planPhrase3.
+  ///
+  /// In en, this message translates to:
+  /// **'Rest is the dose today, and taking it is part of the plan.'**
+  String get planPhrase3;
+
+  /// No description provided for @planPhrase4.
+  ///
+  /// In en, this message translates to:
+  /// **'The floor still counts. Showing up small is still showing up.'**
+  String get planPhrase4;
+
+  /// No description provided for @planPhrase5.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s body is the one I train with, and I\'m listening to it.'**
+  String get planPhrase5;
+
+  /// No description provided for @planPhrase6.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeating a week is the plan working, not falling behind.'**
+  String get planPhrase6;
+
+  /// No description provided for @planPhrase7.
+  ///
+  /// In en, this message translates to:
+  /// **'Slow and steady is how I get to keep doing this.'**
+  String get planPhrase7;
+
+  /// No description provided for @planPhrase8.
+  ///
+  /// In en, this message translates to:
+  /// **'Whatever today looked like, I\'m still building trust with my body.'**
+  String get planPhrase8;
+
+  /// No description provided for @planCheckinTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunday check-in'**
+  String get planCheckinTitle;
+
+  /// No description provided for @planCheckinCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Five minutes to look back at the week and set next week\'s ceiling.'**
+  String get planCheckinCaption;
+
+  /// No description provided for @planCheckinStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start check-in'**
+  String get planCheckinStart;
+
+  /// No description provided for @planCheckinPemYes.
+  ///
+  /// In en, this message translates to:
+  /// **'There was PEM or a flare this week.'**
+  String get planCheckinPemYes;
+
+  /// No description provided for @planCheckinPemNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No PEM or flare this week.'**
+  String get planCheckinPemNo;
+
+  /// No description provided for @planCheckinPemCauseLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'What came before it?'**
+  String get planCheckinPemCauseLabel;
+
+  /// No description provided for @planCheckinPemCauseHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Training, work, stairs, sleep, migraine…'**
+  String get planCheckinPemCauseHint;
+
+  /// No description provided for @planCheckinJointsOk.
+  ///
+  /// In en, this message translates to:
+  /// **'Next-morning pain stayed at or below baseline.'**
+  String get planCheckinJointsOk;
+
+  /// No description provided for @planCheckinJointsHigher.
+  ///
+  /// In en, this message translates to:
+  /// **'Some mornings were higher than baseline.'**
+  String get planCheckinJointsHigher;
+
+  /// No description provided for @planCheckinJointsUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'No next-morning answers this week.'**
+  String get planCheckinJointsUnknown;
+
+  /// No description provided for @planCheckinWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight this week: {kg} kg'**
+  String planCheckinWeight(String kg);
+
+  /// No description provided for @planCheckinNoWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'No weigh-in this week.'**
+  String get planCheckinNoWeight;
+
+  /// No description provided for @planCheckinProtein.
+  ///
+  /// In en, this message translates to:
+  /// **'{days} days reached your protein goal.'**
+  String planCheckinProtein(int days);
+
+  /// No description provided for @planCheckinWinLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'One win, however small'**
+  String get planCheckinWinLabel;
+
+  /// No description provided for @planCheckinWinHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Did the stairs holding the rail'**
+  String get planCheckinWinHint;
+
+  /// No description provided for @planCheckinWinSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Win: {win}'**
+  String planCheckinWinSummary(String win);
+
+  /// No description provided for @planCheckinFearLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Fear-list step taken'**
+  String get planCheckinFearLabel;
+
+  /// No description provided for @planCheckinFearHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Filled from your fear ladder when you logged a try'**
+  String get planCheckinFearHint;
+
+  /// No description provided for @planCheckinDecisionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Next week\'s ceiling'**
+  String get planCheckinDecisionLabel;
+
+  /// No description provided for @planCheckinRaise.
+  ///
+  /// In en, this message translates to:
+  /// **'Raise about 10%'**
+  String get planCheckinRaise;
+
+  /// No description provided for @planCheckinKeep.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep the same'**
+  String get planCheckinKeep;
+
+  /// No description provided for @planCheckinStepBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Step back'**
+  String get planCheckinStepBack;
+
+  /// No description provided for @planCheckinCeilingTo.
+  ///
+  /// In en, this message translates to:
+  /// **'→ {minutes} min'**
+  String planCheckinCeilingTo(int minutes);
+
+  /// No description provided for @planCheckinNoRaiseAfterPem.
+  ///
+  /// In en, this message translates to:
+  /// **'After PEM, the ceiling doesn\'t go up. Pacing comes before progression.'**
+  String get planCheckinNoRaiseAfterPem;
+
+  /// No description provided for @planGateFactsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What your logs say (last 14 days)'**
+  String get planGateFactsTitle;
+
+  /// No description provided for @planGateFactsSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'Comfortable sessions: {earlier}, then {latest}'**
+  String planGateFactsSessions(int earlier, int latest);
+
+  /// No description provided for @planGateFactsNoPem.
+  ///
+  /// In en, this message translates to:
+  /// **'No PEM or flare'**
+  String get planGateFactsNoPem;
+
+  /// No description provided for @planGateFactsPain.
+  ///
+  /// In en, this message translates to:
+  /// **'Pain settling by next morning'**
+  String get planGateFactsPain;
+
+  /// No description provided for @planTestWeeksLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Retest in weeks'**
+  String get planTestWeeksLabel;
+
+  /// No description provided for @planTestWeeksHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. 1, 6, 12'**
+  String get planTestWeeksHint;
+
+  /// No description provided for @planTestsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Baseline tests'**
+  String get planTestsTitle;
+
+  /// No description provided for @planTestsCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress is hard to feel week to week; these show real change.'**
+  String get planTestsCaption;
+
+  /// No description provided for @planTestsRetestWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s a retest week.'**
+  String get planTestsRetestWeek;
+
+  /// No description provided for @planTestsEditorCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. sit-to-stand reps in 30 s, wall push-ups, single-leg stance seconds.'**
+  String get planTestsEditorCaption;
+
+  /// No description provided for @planTestsAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add test'**
+  String get planTestsAdd;
+
+  /// No description provided for @planTestsNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Test'**
+  String get planTestsNameLabel;
+
+  /// No description provided for @planTestsNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Sit-to-stand in 30 s'**
+  String get planTestsNameHint;
+
+  /// No description provided for @planTestsUnitLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit'**
+  String get planTestsUnitLabel;
+
+  /// No description provided for @planTestsUnitHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. reps, seconds, kg'**
+  String get planTestsUnitHint;
+
+  /// No description provided for @planTestsAddResult.
+  ///
+  /// In en, this message translates to:
+  /// **'Add result'**
+  String get planTestsAddResult;
+
+  /// No description provided for @planTestsValueLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Result'**
+  String get planTestsValueLabel;
+
+  /// No description provided for @planTestsNoResult.
+  ///
+  /// In en, this message translates to:
+  /// **'No result yet'**
+  String get planTestsNoResult;
+
+  /// No description provided for @planTestsFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} on {date}'**
+  String planTestsFirst(String value, String date);
+
+  /// No description provided for @planTestsChange.
+  ///
+  /// In en, this message translates to:
+  /// **'{first} → {latest} ({date})'**
+  String planTestsChange(String first, String latest, String date);
+
+  /// No description provided for @planTestsStopIfUnsure.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop if unsure. A test is never worth a flare.'**
+  String get planTestsStopIfUnsure;
+
+  /// No description provided for @planTestsTapToDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a result to delete it.'**
+  String get planTestsTapToDelete;
+
+  /// No description provided for @planFearTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fear ladder'**
+  String get planFearTitle;
+
+  /// No description provided for @planFearIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'List the movements you avoid and rate each 0–10 for fear. Each week, try one at about 3–4/10 in a small, safe form. Predict first, then note what actually happened.'**
+  String get planFearIntro;
+
+  /// No description provided for @planFearThisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Try this week: {item}'**
+  String planFearThisWeek(String item);
+
+  /// No description provided for @planFearThisWeekCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'A small, safe version, e.g. two steps holding the rail.'**
+  String get planFearThisWeekCaption;
+
+  /// No description provided for @planFearLogTry.
+  ///
+  /// In en, this message translates to:
+  /// **'Log a try'**
+  String get planFearLogTry;
+
+  /// No description provided for @planFearListTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My list'**
+  String get planFearListTitle;
+
+  /// No description provided for @planFearEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Add 8–10 movements you avoid, each rated 0–10.'**
+  String get planFearEmpty;
+
+  /// No description provided for @planFearSettledTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Feels about 2/10 now'**
+  String get planFearSettledTitle;
+
+  /// No description provided for @planFearAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add movement'**
+  String get planFearAdd;
+
+  /// No description provided for @planFearItemMeta.
+  ///
+  /// In en, this message translates to:
+  /// **'started at {initial}/10 · {tries} tries'**
+  String planFearItemMeta(int initial, int tries);
+
+  /// No description provided for @planFearMarkSettled.
+  ///
+  /// In en, this message translates to:
+  /// **'It feels about 2/10 — move on'**
+  String get planFearMarkSettled;
+
+  /// No description provided for @planFearReopen.
+  ///
+  /// In en, this message translates to:
+  /// **'Back on the list'**
+  String get planFearReopen;
+
+  /// No description provided for @planFearItemLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Movement'**
+  String get planFearItemLabel;
+
+  /// No description provided for @planFearItemHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Kneeling on a cushion'**
+  String get planFearItemHint;
+
+  /// No description provided for @planFearRatingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Fear (0–10)'**
+  String get planFearRatingLabel;
+
+  /// No description provided for @planFearAttemptLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'What I tried'**
+  String get planFearAttemptLabel;
+
+  /// No description provided for @planFearAttemptHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Left knee on a thick cushion, 10 seconds'**
+  String get planFearAttemptHint;
+
+  /// No description provided for @planFearPredictionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'What I predicted would happen'**
+  String get planFearPredictionLabel;
+
+  /// No description provided for @planFearPredictionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Before you try'**
+  String get planFearPredictionHint;
+
+  /// No description provided for @planFearBeforeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Fear before (0–10)'**
+  String get planFearBeforeLabel;
+
+  /// No description provided for @planFearOutcomeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'What actually happened'**
+  String get planFearOutcomeLabel;
+
+  /// No description provided for @planFearOutcomeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'After you try'**
+  String get planFearOutcomeHint;
+
+  /// No description provided for @planFearAfterLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Fear now (0–10)'**
+  String get planFearAfterLabel;
+
+  /// No description provided for @planFearNothingBad.
+  ///
+  /// In en, this message translates to:
+  /// **'I did it and nothing bad happened'**
+  String get planFearNothingBad;
+
+  /// No description provided for @planFearEvidenceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{Evidence} other{Evidence ({count})}}'**
+  String planFearEvidenceTitle(int count);
+
+  /// No description provided for @planFearEvidenceCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Every time you did it and nothing bad happened. This is what changes the belief that pain means damage.'**
+  String get planFearEvidenceCaption;
+
+  /// No description provided for @planFearEvidenceShort.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 time nothing bad happened} other{{count} times nothing bad happened}}'**
+  String planFearEvidenceShort(int count);
+
+  /// No description provided for @planFearAllSettled.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything on your list feels about 2/10. Add more when you\'re ready.'**
+  String get planFearAllSettled;
+
+  /// No description provided for @planFearOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open fear ladder'**
+  String get planFearOpen;
+
+  /// No description provided for @planFearSpikeNote.
+  ///
+  /// In en, this message translates to:
+  /// **'If fear or trauma symptoms spike, that is information, not failure. Step back one rung. A psychologist who knows graded exposure can help if this stalls.'**
+  String get planFearSpikeNote;
 }
 
 class _AppLocalizationsDelegate

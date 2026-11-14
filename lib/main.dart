@@ -31,8 +31,16 @@ Future<void> main() async {
     }
   });
 
-  // Portrait only — the forms and charts are laid out for a tall screen.
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  // Portrait on phones — the forms and charts are laid out for a tall
+  // screen. Tablets and foldables rotate freely: Android 16 ignores
+  // orientation locks on large screens anyway, so the lock lives here
+  // rather than in the manifest. Layout width is capped by
+  // ZebraLayout.maxContentWidth, so wide screens stay readable.
+  final view = WidgetsBinding.instance.platformDispatcher.views.firstOrNull;
+  final shortestSide = view == null ? 0.0 : (view.physicalSize / view.devicePixelRatio).shortestSide;
+  if (shortestSide < 600) {
+    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  }
   await Supabase.initialize(url: SupabaseConfig.url, publishableKey: SupabaseConfig.anonKey);
   runApp(const ProviderScope(child: ZebraPaceApp()));
 }
