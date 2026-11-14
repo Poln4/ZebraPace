@@ -3,6 +3,8 @@ package com.paulina.zebrapace
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Build
+import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import io.flutter.embedding.android.FlutterFragmentActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
@@ -11,6 +13,15 @@ import io.flutter.plugin.common.MethodChannel
 // Health Connect permission request and local_auth's biometric prompt need
 // a ComponentActivity/FragmentActivity.
 class MainActivity : FlutterFragmentActivity() {
+    // Edge-to-edge on every Android version, not only 15+ (where targeting
+    // SDK 35 forces it). Flutter's SafeArea and the tab bar already read
+    // the system insets, so content stays clear of the status and
+    // navigation bars.
+    override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
+    }
+
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         // Android's counterpart to iOS's `app-settings:` URL: Health Connect
