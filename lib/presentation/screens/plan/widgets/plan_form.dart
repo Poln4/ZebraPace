@@ -211,41 +211,11 @@ class PainPicker extends StatelessWidget {
       children: [
         Text(l10n.planPainLabel, style: const TextStyle(fontSize: 12.5)),
         const SizedBox(height: 4),
-        Wrap(
-          spacing: 4,
-          runSpacing: 4,
-          children: [
-            for (var i = 0; i <= 10; i++)
-              GestureDetector(
-                onTap: () => onPainChanged(pain == i ? null : i),
-                child: Semantics(
-                  selected: pain == i,
-                  button: true,
-                  child: Container(
-                    width: 30,
-                    height: 30,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: pain == i
-                          ? painZoneColor(PlanProgressService.painZone(i))
-                          : ZebraColors.paper,
-                      border: Border.all(
-                        color: painZoneColor(PlanProgressService.painZone(i)),
-                        width: 1.5,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Text(
-                      '$i',
-                      style: TextStyle(
-                        fontWeight: pain == i ? FontWeight.w700 : FontWeight.w400,
-                        color: pain == i ? ZebraColors.onColor : ZebraColors.black,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-          ],
+        ZeroToTenRow(
+          value: pain,
+          onChanged: onPainChanged,
+          borderOf: (i) => painZoneColor(PlanProgressService.painZone(i)),
+          fillOf: (i) => painZoneColor(PlanProgressService.painZone(i)),
         ),
         Row(
           children: [
@@ -290,39 +260,74 @@ class ScalePicker extends StatelessWidget {
         children: [
           Text(label, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
           const SizedBox(height: 4),
-          Wrap(
-            spacing: 4,
-            runSpacing: 4,
-            children: [
-              for (var i = 0; i <= 10; i++)
-                GestureDetector(
-                  onTap: () => onChanged(value == i ? null : i),
-                  child: Semantics(
-                    selected: value == i,
-                    button: true,
-                    child: Container(
-                      width: 30,
-                      height: 30,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: value == i ? ZebraColors.brandTeal : ZebraColors.paper,
-                        border: Border.all(color: ZebraColors.cardBorder),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Text(
-                        '$i',
-                        style: TextStyle(
-                          fontWeight: value == i ? FontWeight.w700 : FontWeight.w400,
-                          color: value == i ? ZebraColors.onColor : ZebraColors.black,
+          ZeroToTenRow(
+            value: value,
+            onChanged: onChanged,
+            borderOf: (_) => ZebraColors.cardBorder,
+            fillOf: (_) => ZebraColors.brandTeal,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Eleven 0–10 chips sharing the row's width, so "10" never wraps onto a
+/// line of its own on narrower phones. Tap the chosen one again to clear.
+class ZeroToTenRow extends StatelessWidget {
+  const ZeroToTenRow({
+    super.key,
+    required this.value,
+    required this.onChanged,
+    required this.borderOf,
+    required this.fillOf,
+  });
+
+  final int? value;
+  final ValueChanged<int?> onChanged;
+  final Color Function(int) borderOf;
+  final Color Function(int) fillOf;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        for (var i = 0; i <= 10; i++)
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 1.5),
+              child: GestureDetector(
+                onTap: () => onChanged(value == i ? null : i),
+                child: Semantics(
+                  selected: value == i,
+                  button: true,
+                  child: Container(
+                    height: 36,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: value == i ? fillOf(i) : ZebraColors.paper,
+                      border: Border.all(color: borderOf(i), width: 1.5),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 2),
+                        child: Text(
+                          '$i',
+                          style: TextStyle(
+                            fontWeight: value == i ? FontWeight.w700 : FontWeight.w400,
+                            color: value == i ? ZebraColors.onColor : ZebraColors.black,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-            ],
+              ),
+            ),
           ),
-        ],
-      ),
+      ],
     );
   }
 }

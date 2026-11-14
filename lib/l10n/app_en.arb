@@ -1600,5 +1600,6 @@
   },
   "planFearAllSettled": "Everything on your list feels about 2/10. Add more when you're ready.",
   "planFearOpen": "Open fear ladder",
-  "planFearSpikeNote": "If fear or trauma symptoms spike, that is information, not failure. Step back one rung. A psychologist who knows graded exposure can help if this stalls."
+  "planFearSpikeNote": "If fear or trauma symptoms spike, that is information, not failure. Step back one rung. A psychologist who knows graded exposure can help if this stalls.",
+  "planStepLockedNote": "Waits for your physio's or clinician's OK. Skip it for now — the rest of the session still counts."
 }

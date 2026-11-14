@@ -1031,5 +1031,6 @@
   "planFearEvidenceShort": "{count, plural, =1{1 vez no pasó nada malo} other{{count} veces no pasó nada malo}}",
   "planFearAllSettled": "Todo en tu lista se siente cerca de 2/10. Añade más cuando quieras.",
   "planFearOpen": "Abrir escalera de miedos",
-  "planFearSpikeNote": "Si el miedo o los síntomas de trauma suben, es información, no un fracaso. Baja un peldaño. Un psicólogo que conozca la exposición gradual puede ayudar si esto se estanca."
+  "planFearSpikeNote": "Si el miedo o los síntomas de trauma suben, es información, no un fracaso. Baja un peldaño. Un psicólogo que conozca la exposición gradual puede ayudar si esto se estanca.",
+  "planStepLockedNote": "Espera el visto bueno de tu fisioterapeuta o profesional. Sáltalo por ahora: el resto de la sesión cuenta igual."
 }

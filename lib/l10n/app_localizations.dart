@@ -5784,6 +5784,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'If fear or trauma symptoms spike, that is information, not failure. Step back one rung. A psychologist who knows graded exposure can help if this stalls.'**
   String get planFearSpikeNote;
+
+  /// No description provided for @planStepLockedNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Waits for your physio\'s or clinician\'s OK. Skip it for now — the rest of the session still counts.'**
+  String get planStepLockedNote;
 }
 
 class _AppLocalizationsDelegate

@@ -295,11 +295,11 @@ class _TodayCard extends ConsumerWidget {
             _ModeButtons(plan: plan, session: s, date: date),
           ],
           if (planned.isEmpty) _ModeButtons(plan: plan, session: null, date: date),
-          if (planned.isEmpty || sessions.length > planned.length)
+          if (_others(planned, dayLogs).isNotEmpty)
             CupertinoButton(
               padding: const EdgeInsets.only(top: 6),
               minimumSize: const Size(0, 30),
-              onPressed: () => _pickOtherSession(context, ref, planned),
+              onPressed: () => _pickOtherSession(context, _others(planned, dayLogs)),
               child: Text(l10n.planOtherSession, style: const TextStyle(fontSize: 14)),
             ),
           const SizedBox(height: 6),
@@ -316,13 +316,14 @@ class _TodayCard extends ConsumerWidget {
     );
   }
 
-  Future<void> _pickOtherSession(
-    BuildContext context,
-    WidgetRef ref,
-    List<PlanSession> planned,
-  ) async {
+  /// Sessions not planned for today and not already done today — never
+  /// doubling up.
+  List<PlanSession> _others(List<PlanSession> planned, List<PlanSessionLog> dayLogs) => sessions
+      .where((s) => !planned.contains(s) && !dayLogs.any((l) => l.sessionId == s.id))
+      .toList();
+
+  Future<void> _pickOtherSession(BuildContext context, List<PlanSession> others) async {
     final l10n = AppLocalizations.of(context);
-    final others = sessions.where((s) => !planned.contains(s)).toList();
     final picked = await showCupertinoModalPopup<PlanSession>(
       context: context,
       builder: (ctx) => CupertinoActionSheet(

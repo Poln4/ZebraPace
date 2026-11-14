@@ -3396,4 +3396,8 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get planFearSpikeNote =>
       'If fear or trauma symptoms spike, that is information, not failure. Step back one rung. A psychologist who knows graded exposure can help if this stalls.';
+
+  @override
+  String get planStepLockedNote =>
+      'Waits for your physio\'s or clinician\'s OK. Skip it for now — the rest of the session still counts.';
 }

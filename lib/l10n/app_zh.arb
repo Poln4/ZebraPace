@@ -1031,5 +1031,6 @@
   "planFearEvidenceShort": "{count, plural, other{{count} 次沒有發生不好的事}}",
   "planFearAllSettled": "清單上的都大約 2 分了。準備好再新增。",
   "planFearOpen": "打開恐懼階梯",
-  "planFearSpikeNote": "如果害怕或創傷症狀突然變強，那是一種訊息，不是失敗。退回一階。如果卡住了，熟悉漸進式暴露的心理師可以幫忙。"
+  "planFearSpikeNote": "如果害怕或創傷症狀突然變強，那是一種訊息，不是失敗。退回一階。如果卡住了，熟悉漸進式暴露的心理師可以幫忙。",
+  "planStepLockedNote": "需要等物理治療師或醫療人員同意。先跳過，這次訓練的其他部分一樣算數。"
 }

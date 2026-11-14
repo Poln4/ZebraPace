@@ -3218,4 +3218,7 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get planFearSpikeNote =>
       '如果害怕或創傷症狀突然變強，那是一種訊息，不是失敗。退回一階。如果卡住了，熟悉漸進式暴露的心理師可以幫忙。';
+
+  @override
+  String get planStepLockedNote => '需要等物理治療師或醫療人員同意。先跳過，這次訓練的其他部分一樣算數。';
 }

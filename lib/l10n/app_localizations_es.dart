@@ -3440,4 +3440,8 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get planFearSpikeNote =>
       'Si el miedo o los síntomas de trauma suben, es información, no un fracaso. Baja un peldaño. Un psicólogo que conozca la exposición gradual puede ayudar si esto se estanca.';
+
+  @override
+  String get planStepLockedNote =>
+      'Espera el visto bueno de tu fisioterapeuta o profesional. Sáltalo por ahora: el resto de la sesión cuenta igual.';
 }

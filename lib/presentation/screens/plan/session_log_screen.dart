@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/constants/enums.dart';
 import '../../../core/theme/zebra_theme.dart';
+import '../../../core/utils/date_utils.dart';
 import '../../../domain/models/training_plan.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/plan_providers.dart';
@@ -131,6 +132,20 @@ class _SessionLogScreenState extends ConsumerState<SessionLogScreen> {
           : [step.name, if (step.dose != null) step.dose].join(' · '),
       child: step == null
           ? const SizedBox.shrink()
+          : step.isLocked
+          ? Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(l10n.planStepLockedNote, style: const TextStyle(fontSize: 13)),
+                CupertinoButton(
+                  padding: const EdgeInsets.only(top: 6),
+                  minimumSize: const Size(0, 30),
+                  onPressed: () =>
+                      ref.read(planRepositoryProvider).setStepCleared(step.id, todayKey()),
+                  child: Text(l10n.planMarkCleared, style: const TextStyle(fontSize: 14)),
+                ),
+              ],
+            )
           : Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -167,7 +182,7 @@ class _SessionLogScreenState extends ConsumerState<SessionLogScreen> {
       final step =
           steps.where((s) => s.id == e.currentStepId).firstOrNull ??
           steps.where((s) => s.exerciseId == e.id).firstOrNull;
-      if (step == null) continue;
+      if (step == null || step.isLocked) continue;
       entries.add(
         PlanSetEntry(
           exerciseId: e.id,
