@@ -54,8 +54,8 @@ Answer honestly; Apple works out the rating from the answers.
 
 Shared across languages:
 
-- **Support URL:** `https://zebra.paulinavl.com/support/`
-- **Marketing URL:** `https://zebra.paulinavl.com/pace/`
+- **Support URL:** `https://zebras.paulinavl.com/support/`
+- **Marketing URL:** `https://zebras.paulinavl.com/pace/`
 - **Copyright:** `2026 Paulina Valenzuela Lagos`
 - **Build:** 7
 - **Version release:** "Manually release this version", so it doesn't go live while you're asleep.

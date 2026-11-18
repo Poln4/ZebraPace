@@ -262,7 +262,7 @@ When the user types their body weight into ZebraPace, it is saved to Health Conn
 
 - Does your app collect or share any of the required user data types? **Yes**
 - Is all collected data encrypted in transit? **Yes**
-- Do you provide a way for users to request that their data is deleted? **Yes** — URL: https://zebra.paulinavl.com/delete-account/ (deploy zebra-site first)
+- Do you provide a way for users to request that their data is deleted? **Yes** — URL: https://zebras.paulinavl.com/delete-account/ (deploy zebra-site first)
 
 Data types (all: Collected = yes, Shared = no, processed ephemerally = no):
 
