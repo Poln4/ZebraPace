@@ -5,6 +5,7 @@ import '../../../../core/theme/zebra_theme.dart';
 import '../../../../core/utils/stats.dart';
 import '../../../../domain/services/pem_service.dart';
 import '../../../../l10n/app_localizations.dart';
+import 'chart_value_axis.dart';
 
 class PemChart extends StatelessWidget {
   const PemChart({super.key, required this.result});
@@ -48,9 +49,11 @@ class PemChart extends StatelessWidget {
                     ),
                   ),
               ],
-              titlesData: const FlTitlesData(
-                topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              titlesData: FlTitlesData(
+                topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                leftTitles: valueSideTitles(reservedSize: 28),
+                bottomTitles: valueSideTitles(reservedSize: 22),
               ),
               gridData: const FlGridData(show: true),
               borderData: FlBorderData(show: false),

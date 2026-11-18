@@ -6,6 +6,7 @@ import '../../../../core/utils/stats.dart';
 import '../../../../domain/services/hr_exertion_service.dart';
 import '../../../../domain/services/pem_service.dart';
 import '../../../../l10n/app_localizations.dart';
+import 'chart_value_axis.dart';
 
 /// Same layout as [PemChart] — a scatter of exertion vs. next-day body
 /// score, split by an above/below-baseline bucket — but the x-axis is peak
@@ -56,9 +57,11 @@ class HrExertionChart extends StatelessWidget {
                     ),
                   ),
               ],
-              titlesData: const FlTitlesData(
-                topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              titlesData: FlTitlesData(
+                topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                leftTitles: valueSideTitles(reservedSize: 28),
+                bottomTitles: valueSideTitles(reservedSize: 22),
               ),
               gridData: const FlGridData(show: true),
               borderData: FlBorderData(show: false),

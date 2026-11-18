@@ -6,6 +6,7 @@ import '../../../../domain/models/daily_log.dart';
 import '../../../../l10n/app_localizations.dart';
 import 'chart_date_axis.dart';
 import 'chart_day_markers.dart';
+import 'chart_value_axis.dart';
 
 /// Bar (daily steps) + line (14-day rolling average) combo. fl_chart has no
 /// native combo chart type — this composites a LineChart transparently over
@@ -48,7 +49,7 @@ class StepsChart extends StatelessWidget {
                 topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                 rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                 bottomTitles: dateBottomTitles([for (final l in logs) l.date]),
-                leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 36)),
+                leftTitles: valueSideTitles(),
               ),
               rangeAnnotations: dayStatusRangeAnnotations(logs),
               gridData: const FlGridData(drawVerticalLine: false),

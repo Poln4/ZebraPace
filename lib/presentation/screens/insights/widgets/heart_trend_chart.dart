@@ -5,6 +5,7 @@ import '../../../../core/theme/zebra_theme.dart';
 import '../../../../l10n/app_localizations.dart';
 import 'chart_date_axis.dart';
 import 'insights_providers.dart';
+import 'chart_value_axis.dart';
 
 /// Resting heart rate (with the logged lowest sleeping HR alongside, since
 /// that's what stands in for it without a watch) and HRV, as two charts:
@@ -88,7 +89,7 @@ class HeartTrendChart extends StatelessWidget {
             bottomTitles: dateBottomTitles(dates),
             rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
             topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 36)),
+            leftTitles: valueSideTitles(),
           ),
           gridData: const FlGridData(drawVerticalLine: false),
           borderData: FlBorderData(show: false),

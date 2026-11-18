@@ -150,6 +150,10 @@ class ChallengeProgressChart extends StatelessWidget {
                       showTitles: true,
                       reservedSize: 36,
                       interval: yInterval,
+                      // The exact data min/max would land between grid
+                      // labels and overlap them.
+                      minIncluded: false,
+                      maxIncluded: false,
                       getTitlesWidget: (value, meta) => Text(
                         '${value.toStringAsFixed(1)}%',
                         style: const TextStyle(fontSize: 9, color: CupertinoColors.systemGrey),

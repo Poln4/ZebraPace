@@ -6,6 +6,7 @@ import '../../../../domain/models/daily_log.dart';
 import '../../../../l10n/app_localizations.dart';
 import 'chart_date_axis.dart';
 import 'chart_day_markers.dart';
+import 'chart_value_axis.dart';
 
 /// Weight and body-fat % trends. Kept as two separate charts (not overlaid
 /// like the weather one) since the point here is watching each metric's own
@@ -55,8 +56,7 @@ class BodyMetricsChart extends StatelessWidget {
                   bottomTitles: dateBottomTitles(dates),
                   rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                   topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                  leftTitles:
-                      const AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 36)),
+                  leftTitles: valueSideTitles(),
                 ),
                 gridData: const FlGridData(drawVerticalLine: false),
                 borderData: FlBorderData(show: false),
@@ -89,8 +89,7 @@ class BodyMetricsChart extends StatelessWidget {
                   bottomTitles: dateBottomTitles(dates),
                   rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                   topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                  leftTitles:
-                      const AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 36)),
+                  leftTitles: valueSideTitles(),
                 ),
                 gridData: const FlGridData(drawVerticalLine: false),
                 borderData: FlBorderData(show: false),
