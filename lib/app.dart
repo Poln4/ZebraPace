@@ -67,7 +67,7 @@ class ZebraPaceApp extends ConsumerWidget {
   }
 }
 
-/// Gate order: invite code (invite_code_providers.dart) first — whether the
+/// Gate order: invite code (invite_code_providers.dart; web only) first — whether the
 /// app is usable at all — then the welcome/disclaimer screen (once ever),
 /// then the Face ID/password gate. That last one re-locks after being
 /// backgrounded for AuthConstants.reLockGraceMinutes — see

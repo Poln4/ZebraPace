@@ -7,6 +7,7 @@ import 'package:zebrapace_app/data/auth/biometric_service.dart';
 import 'package:zebrapace_app/data/db/app_database.dart';
 import 'package:zebrapace_app/providers/app_providers.dart';
 import 'package:zebrapace_app/providers/auth_providers.dart';
+import 'package:zebrapace_app/providers/invite_code_providers.dart';
 
 import 'helpers/fake_secure_auth_storage.dart';
 
@@ -30,9 +31,9 @@ Future<void> _settleAndTearDown(WidgetTester tester) async {
   await tester.pump(Duration.zero);
 }
 
-/// The invite code screen gates everything else on a fresh install, ahead
-/// of even the welcome/disclaimer screen (see app.dart's _AuthGate) — tests
-/// that care about what's behind it enter the code first.
+/// On the web, the invite code screen gates everything else on a fresh
+/// install, ahead of even the welcome/disclaimer screen (see app.dart's
+/// _AuthGate). Android and iOS skip it.
 Future<void> _enterInviteCode(WidgetTester tester) async {
   expect(find.text('This app is invite-only 🦓'), findsOneWidget);
   await tester.enterText(find.byType(CupertinoTextField).first, 'BienBien');
@@ -53,19 +54,31 @@ Future<void> _acknowledgeWelcome(WidgetTester tester) async {
 }
 
 void main() {
-  testWidgets('a fresh install shows the invite code screen first', (tester) async {
-    await tester.pumpWidget(ProviderScope(overrides: _testOverrides(), child: const ZebraPaceApp()));
+  List<Override> webOverrides() =>
+      [..._testOverrides(), inviteGateEnabledProvider.overrideWithValue(true)];
+
+  testWidgets('on the web, a fresh install shows the invite code screen first', (tester) async {
+    await tester.pumpWidget(ProviderScope(overrides: webOverrides(), child: const ZebraPaceApp()));
     await tester.pumpAndSettle();
 
     expect(find.text('This app is invite-only 🦓'), findsOneWidget);
     await _settleAndTearDown(tester);
   });
 
-  testWidgets('entering the invite code lands on the welcome/disclaimer screen', (tester) async {
-    await tester.pumpWidget(ProviderScope(overrides: _testOverrides(), child: const ZebraPaceApp()));
+  testWidgets('on the web, entering the invite code lands on the welcome screen', (tester) async {
+    await tester.pumpWidget(ProviderScope(overrides: webOverrides(), child: const ZebraPaceApp()));
     await tester.pumpAndSettle();
     await _enterInviteCode(tester);
 
+    expect(find.text('Welcome to ZebraPace 🦓'), findsOneWidget);
+    await _settleAndTearDown(tester);
+  });
+
+  testWidgets('on Android and iOS, a fresh install skips the invite code', (tester) async {
+    await tester.pumpWidget(ProviderScope(overrides: _testOverrides(), child: const ZebraPaceApp()));
+    await tester.pumpAndSettle();
+
+    expect(find.text('This app is invite-only 🦓'), findsNothing);
     expect(find.text('Welcome to ZebraPace 🦓'), findsOneWidget);
     await _settleAndTearDown(tester);
   });
@@ -74,7 +87,6 @@ void main() {
       (tester) async {
     await tester.pumpWidget(ProviderScope(overrides: _testOverrides(), child: const ZebraPaceApp()));
     await tester.pumpAndSettle();
-    await _enterInviteCode(tester);
     await _acknowledgeWelcome(tester);
 
     expect(find.text('Set up a password'), findsOneWidget);
@@ -84,7 +96,6 @@ void main() {
   testWidgets('setting up a password unlocks straight into the Daily Vitals tab', (tester) async {
     await tester.pumpWidget(ProviderScope(overrides: _testOverrides(), child: const ZebraPaceApp()));
     await tester.pumpAndSettle();
-    await _enterInviteCode(tester);
     await _acknowledgeWelcome(tester);
 
     await tester.enterText(find.byKey(const ValueKey('setup_password')), 'test1234');
@@ -101,7 +112,6 @@ void main() {
   testWidgets('logging a check-in makes it the day summary', (tester) async {
     await tester.pumpWidget(ProviderScope(overrides: _testOverrides(), child: const ZebraPaceApp()));
     await tester.pumpAndSettle();
-    await _enterInviteCode(tester);
     await _acknowledgeWelcome(tester);
     await tester.enterText(find.byKey(const ValueKey('setup_password')), 'test1234');
     await tester.enterText(find.byKey(const ValueKey('setup_confirm')), 'test1234');
