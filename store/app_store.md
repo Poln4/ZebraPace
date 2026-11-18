@@ -242,7 +242,7 @@ ZebraPace es una herramienta de autorregistro, no un dispositivo médico. No dia
 **名稱**
 
 ```
-ZebraPace：調配你的體力
+斑馬Pace：調配你的體力
 ```
 
 **副標題**
