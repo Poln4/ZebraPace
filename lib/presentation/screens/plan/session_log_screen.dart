@@ -13,7 +13,8 @@ import 'widgets/plan_form.dart';
 
 /// Logging a full or low-day session: each exercise at its current step,
 /// with its sets and the highest pain felt. Exercises left blank aren't
-/// saved — skipping one is fine.
+/// saved — skipping one is fine. Given [existing], it opens with that saved
+/// session's values and Save rewrites it instead of adding another.
 class SessionLogScreen extends ConsumerStatefulWidget {
   const SessionLogScreen({
     super.key,
@@ -21,18 +22,23 @@ class SessionLogScreen extends ConsumerStatefulWidget {
     required this.session,
     required this.mode,
     required this.date,
+    this.existing,
   });
 
   final String planId;
   final PlanSession session;
   final PlanSessionMode mode;
   final String date;
+  final PlanSessionLog? existing;
 
   @override
   ConsumerState<SessionLogScreen> createState() => _SessionLogScreenState();
 }
 
 class _Draft {
+  /// The step this exercise was logged at, when editing a saved session —
+  /// it may no longer be the current one.
+  String? stepId;
   List<int> values = const [];
   SetUnit? unit;
   int? pain;
@@ -42,10 +48,36 @@ class _Draft {
 }
 
 class _SessionLogScreenState extends ConsumerState<SessionLogScreen> {
-  late final _duration = TextEditingController(text: widget.session.durationMin?.toString() ?? '');
-  final _note = TextEditingController();
+  late final _duration = TextEditingController(
+    text: (widget.existing?.durationMin ?? widget.session.durationMin)?.toString() ?? '',
+  );
+  late final _note = TextEditingController(text: widget.existing?.note ?? '');
   final _drafts = <String, _Draft>{};
   bool _saving = false;
+  late bool _loading = widget.existing != null;
+
+  @override
+  void initState() {
+    super.initState();
+    final existing = widget.existing;
+    if (existing != null) _loadExisting(existing);
+  }
+
+  Future<void> _loadExisting(PlanSessionLog log) async {
+    final sets = await ref.read(planRepositoryProvider).getSetLogsFor([log.id]);
+    if (!mounted) return;
+    setState(() {
+      for (final s in sets) {
+        _drafts[s.exerciseId] = _Draft()
+          ..stepId = s.stepId
+          ..values = s.setValues
+          ..unit = s.unit
+          ..pain = s.pain
+          ..sharp = s.sharp;
+      }
+      _loading = false;
+    });
+  }
 
   @override
   void dispose() {
@@ -72,47 +104,61 @@ class _SessionLogScreenState extends ConsumerState<SessionLogScreen> {
         ),
       ),
       child: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(16),
-          children: [
-            if (lowDay)
-              _Note(
-                text: widget.session.lowDayNote == null
-                    ? l10n.planLowDayDefault
-                    : l10n.planLowDaySummary(widget.session.lowDayNote!),
-              ),
-            _Note(text: l10n.planSessionTempoNote),
-            for (final e in exercises) _exerciseCard(context, l10n, e, steps),
-            SectionCard(
-              title: l10n.planSessionWrapUpTitle,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+        child: _loading
+            ? const Center(child: CupertinoActivityIndicator())
+            : ListView(
+                padding: const EdgeInsets.all(16),
                 children: [
-                  PlanField(
-                    label: l10n.planSessionDurationLabel,
-                    controller: _duration,
-                    number: true,
-                  ),
-                  if (widget.session.isCardio)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4),
-                      child: Text(
-                        l10n.planCardioSavesActivity,
-                        style: const TextStyle(fontSize: 12, color: CupertinoColors.systemGrey),
-                      ),
+                  if (lowDay)
+                    _Note(
+                      text: widget.session.lowDayNote == null
+                          ? l10n.planLowDayDefault
+                          : l10n.planLowDaySummary(widget.session.lowDayNote!),
                     ),
-                  PlanField(label: l10n.planNoteLabel, controller: _note, maxLines: 3),
+                  _Note(text: l10n.planSessionTempoNote),
+                  for (final e in exercises) _exerciseCard(context, l10n, e, steps),
+                  SectionCard(
+                    title: l10n.planSessionWrapUpTitle,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        PlanField(
+                          label: l10n.planSessionDurationLabel,
+                          controller: _duration,
+                          number: true,
+                        ),
+                        if (widget.session.isCardio)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 4),
+                            child: Text(
+                              l10n.planCardioSavesActivity,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                color: CupertinoColors.systemGrey,
+                              ),
+                            ),
+                          ),
+                        PlanField(label: l10n.planNoteLabel, controller: _note, maxLines: 3),
+                      ],
+                    ),
+                  ),
+                  CupertinoButton.filled(
+                    onPressed: _saving ? null : () => _save(steps),
+                    child: Text(l10n.planSaveSession),
+                  ),
                 ],
               ),
-            ),
-            CupertinoButton.filled(
-              onPressed: _saving ? null : () => _save(steps),
-              child: Text(l10n.planSaveSession),
-            ),
-          ],
-        ),
       ),
     );
+  }
+
+  /// The step an exercise is logged at: the one it was saved with when
+  /// editing, otherwise its current step (or its first).
+  PlanStep? _stepFor(PlanExercise e, List<PlanStep> steps) {
+    final saved = _drafts[e.id]?.stepId;
+    return (saved == null ? null : steps.where((s) => s.id == saved).firstOrNull) ??
+        steps.where((s) => s.id == e.currentStepId).firstOrNull ??
+        steps.where((s) => s.exerciseId == e.id).firstOrNull;
   }
 
   Widget _exerciseCard(
@@ -121,9 +167,7 @@ class _SessionLogScreenState extends ConsumerState<SessionLogScreen> {
     PlanExercise e,
     List<PlanStep> steps,
   ) {
-    final step =
-        steps.where((s) => s.id == e.currentStepId).firstOrNull ??
-        steps.where((s) => s.exerciseId == e.id).firstOrNull;
+    final step = _stepFor(e, steps);
     final draft = _drafts.putIfAbsent(e.id, _Draft.new);
     return SectionCard(
       title: e.name,
@@ -132,7 +176,7 @@ class _SessionLogScreenState extends ConsumerState<SessionLogScreen> {
           : [step.name, if (step.dose != null) step.dose].join(' · '),
       child: step == null
           ? const SizedBox.shrink()
-          : step.isLocked
+          : step.isLocked && draft.stepId != step.id
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -154,8 +198,11 @@ class _SessionLogScreenState extends ConsumerState<SessionLogScreen> {
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Text(e.cue!, style: const TextStyle(fontSize: 12.5)),
                   ),
+                // Cards scrolled off screen are rebuilt from scratch, so the
+                // editor starts from the draft rather than blank fields.
                 SetValuesEditor(
-                  initialValues: const [null],
+                  key: ValueKey('sets-${e.id}'),
+                  initialValues: draft.values.isEmpty ? const [null] : draft.values,
                   unit: draft.unit ?? step.unit,
                   onUnitChanged: (u) => setState(() => draft.unit = u),
                   onChanged: (v) => draft.values = v,
@@ -179,10 +226,8 @@ class _SessionLogScreenState extends ConsumerState<SessionLogScreen> {
     for (final e in exercises) {
       final draft = _drafts[e.id];
       if (draft == null || draft.isEmpty) continue;
-      final step =
-          steps.where((s) => s.id == e.currentStepId).firstOrNull ??
-          steps.where((s) => s.exerciseId == e.id).firstOrNull;
-      if (step == null || step.isLocked) continue;
+      final step = _stepFor(e, steps);
+      if (step == null || (step.isLocked && draft.stepId != step.id)) continue;
       entries.add(
         PlanSetEntry(
           exerciseId: e.id,
@@ -194,17 +239,28 @@ class _SessionLogScreenState extends ConsumerState<SessionLogScreen> {
         ),
       );
     }
-    await ref
-        .read(planRepositoryProvider)
-        .logSession(
-          planId: widget.planId,
-          date: widget.date,
-          mode: widget.mode,
-          session: widget.session,
-          durationMin: int.tryParse(_duration.text),
-          note: trimmedOrNull(_note),
-          entries: entries,
-        );
+    final repo = ref.read(planRepositoryProvider);
+    final existing = widget.existing;
+    if (existing != null) {
+      await repo.updateSessionLog(
+        log: existing,
+        session: widget.session,
+        durationMin: int.tryParse(_duration.text),
+        note: trimmedOrNull(_note),
+        entries: entries,
+      );
+      if (mounted) Navigator.of(context).pop(true);
+      return;
+    }
+    await repo.logSession(
+      planId: widget.planId,
+      date: widget.date,
+      mode: widget.mode,
+      session: widget.session,
+      durationMin: int.tryParse(_duration.text),
+      note: trimmedOrNull(_note),
+      entries: entries,
+    );
     if (mounted) Navigator.of(context).pop(true);
   }
 }

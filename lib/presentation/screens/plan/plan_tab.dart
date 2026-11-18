@@ -266,10 +266,7 @@ class _TodayCard extends ConsumerWidget {
             ),
           for (final log in dayLogs)
             GestureDetector(
-              onTap: () async {
-                final ok = await confirmDelete(context, l10n);
-                if (ok) await ref.read(planRepositoryProvider).deleteSessionLog(log);
-              },
+              onTap: () => _onLoggedTap(context, ref, log),
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 6),
                 child: Text(
@@ -316,6 +313,27 @@ class _TodayCard extends ConsumerWidget {
     );
   }
 
+  /// A full or low-day session can be reopened and edited; a floor day has
+  /// nothing to edit, so it only offers delete.
+  Future<void> _onLoggedTap(BuildContext context, WidgetRef ref, PlanSessionLog log) async {
+    final l10n = AppLocalizations.of(context);
+    final session = sessions.where((s) => s.id == log.sessionId).firstOrNull;
+    if (session == null || log.mode == PlanSessionMode.floor) {
+      final ok = await confirmDelete(context, l10n);
+      if (ok) await ref.read(planRepositoryProvider).deleteSessionLog(log);
+      return;
+    }
+    final action = await showEntryActionSheet(context, l10n);
+    if (action == null || !context.mounted) return;
+    switch (action) {
+      case EntryAction.edit:
+        await openSessionLog(context, plan.id, session, log.mode, log.date, existing: log);
+      case EntryAction.delete:
+        final ok = await confirmDelete(context, l10n);
+        if (ok) await ref.read(planRepositoryProvider).deleteSessionLog(log);
+    }
+  }
+
   /// Sessions not planned for today and not already done today — never
   /// doubling up.
   List<PlanSession> _others(List<PlanSession> planned, List<PlanSessionLog> dayLogs) => sessions
@@ -352,11 +370,18 @@ Future<void> openSessionLog(
   String planId,
   PlanSession session,
   PlanSessionMode mode,
-  String date,
-) {
+  String date, {
+  PlanSessionLog? existing,
+}) {
   return Navigator.of(context).push(
     CupertinoPageRoute(
-      builder: (_) => SessionLogScreen(planId: planId, session: session, mode: mode, date: date),
+      builder: (_) => SessionLogScreen(
+        planId: planId,
+        session: session,
+        mode: mode,
+        date: date,
+        existing: existing,
+      ),
     ),
   );
 }

@@ -86,6 +86,48 @@ void main() {
     expect(again.first.$2.nextMorning, NextMorning.higher);
   });
 
+  test('editing a saved session rewrites its sets and keeps the morning answer', () async {
+    final (planId, session, exercise) = await seed(cardio: true);
+    await repo.logSession(
+      planId: planId,
+      date: '2026-11-16',
+      mode: PlanSessionMode.full,
+      session: session,
+      durationMin: 20,
+      entries: [
+        PlanSetEntry(exerciseId: exercise.id, stepId: 'st1', setValues: const [5], unit: SetUnit.reps),
+      ],
+    );
+    final log = (await repo.getSessionLogs(planId, '2026-11-16', '2026-11-16')).single;
+    await repo.setNextMorning(log.id, NextMorning.settled);
+
+    await repo.updateSessionLog(
+      log: log,
+      session: session,
+      durationMin: 35,
+      note: 'felt fine',
+      entries: [
+        PlanSetEntry(
+            exerciseId: exercise.id, stepId: 'st1', setValues: const [8, 6], unit: SetUnit.reps, pain: 2),
+      ],
+    );
+
+    final edited = (await repo.getSessionLogs(planId, '2026-11-16', '2026-11-16')).single;
+    expect(edited.id, log.id);
+    expect(edited.durationMin, 35);
+    expect(edited.note, 'felt fine');
+    expect(edited.nextMorning, NextMorning.settled);
+    final sets = await repo.getSetLogsFor([log.id]);
+    expect(sets.single.setValues, [8, 6]);
+    expect(sets.single.pain, 2);
+    final activity = (await ActivityRepository(db).getRange('2026-11-16', '2026-11-16')).single;
+    expect(activity.durationMin, 35);
+
+    // Clearing the duration removes the cardio Activity.
+    await repo.updateSessionLog(log: edited, session: session);
+    expect(await ActivityRepository(db).getRange('2026-11-16', '2026-11-16'), isEmpty);
+  });
+
   test('plans survive a JSON export and replace-import', () async {
     final (planId, session, exercise) = await seed();
     await repo.logSession(

@@ -429,6 +429,62 @@ class PlanRepository {
     });
   }
 
+  /// Rewrites a saved session's duration, note and exercises. The log keeps
+  /// its id, date, mode and next-morning answer; a cardio session's Activity
+  /// row follows the new duration (created, updated or removed).
+  Future<void> updateSessionLog({
+    required PlanSessionLog log,
+    PlanSession? session,
+    int? durationMin,
+    String? note,
+    List<PlanSetEntry> entries = const [],
+  }) async {
+    await _db.transaction(() async {
+      var activityId = log.activityId;
+      final wantsActivity =
+          session != null && session.isCardio && log.mode.isTraining && (durationMin ?? 0) > 0;
+      if (wantsActivity && activityId != null) {
+        await (_db.update(_db.activities)..where((t) => t.id.equals(activityId!))).write(
+          db.ActivitiesCompanion(durationMin: Value(durationMin!), updatedAt: Value(nowIso())),
+        );
+      } else if (wantsActivity) {
+        activityId = newId();
+        await _db.into(_db.activities).insert(db.ActivitiesCompanion.insert(
+              id: activityId,
+              date: log.date,
+              activityName: session.name,
+              durationMin: durationMin!,
+              updatedAt: nowIso(),
+            ));
+      } else if (activityId != null) {
+        await (_db.delete(_db.activities)..where((t) => t.id.equals(activityId!))).go();
+        activityId = null;
+      }
+      await (_db.update(_db.planSessionLogs)..where((t) => t.id.equals(log.id))).write(
+        db.PlanSessionLogsCompanion(
+          durationMin: Value(durationMin),
+          note: Value(note),
+          activityId: Value(activityId),
+          updatedAt: Value(nowIso()),
+        ),
+      );
+      await (_db.delete(_db.planSetLogs)..where((t) => t.sessionLogId.equals(log.id))).go();
+      for (final e in entries) {
+        await _db.into(_db.planSetLogs).insert(db.PlanSetLogsCompanion.insert(
+              id: newId(),
+              sessionLogId: log.id,
+              exerciseId: e.exerciseId,
+              stepId: e.stepId,
+              setValues: Value(jsonEncode(e.setValues)),
+              unit: Value(e.unit.db),
+              pain: Value(e.pain),
+              sharp: Value(e.sharp),
+              updatedAt: nowIso(),
+            ));
+      }
+    });
+  }
+
   Future<void> setNextMorning(String sessionLogId, NextMorning answer) async {
     await (_db.update(_db.planSessionLogs)..where((t) => t.id.equals(sessionLogId))).write(
       db.PlanSessionLogsCompanion(nextMorning: Value(answer.db), updatedAt: Value(nowIso())),
