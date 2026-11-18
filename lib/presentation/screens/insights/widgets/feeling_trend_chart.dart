@@ -10,7 +10,12 @@ import 'chart_day_markers.dart';
 /// (app.py has two separate charts with identical shape — one widget here,
 /// parameterized by which score to plot).
 class FeelingTrendChart extends StatelessWidget {
-  const FeelingTrendChart({super.key, required this.logs, required this.scoreOf, required this.color});
+  const FeelingTrendChart({
+    super.key,
+    required this.logs,
+    required this.scoreOf,
+    required this.color,
+  });
 
   final List<DailyLog> logs;
   final int? Function(DailyLog) scoreOf; // null = no entry that day
@@ -47,7 +52,15 @@ class FeelingTrendChart extends StatelessWidget {
             rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
             bottomTitles: dateBottomTitles([for (final l in logs) l.date]),
             leftTitles: AxisTitles(
-              sideTitles: SideTitles(showTitles: true, reservedSize: 24, interval: 1),
+              sideTitles: SideTitles(
+                showTitles: true,
+                reservedSize: 24,
+                interval: 1,
+                // The axis runs 0.5–5.5; fl_chart would also label those ends,
+                // and "5.5" wraps in 24px and lands above the chart.
+                minIncluded: false,
+                maxIncluded: false,
+              ),
             ),
           ),
           gridData: const FlGridData(drawVerticalLine: false),

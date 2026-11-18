@@ -77,15 +77,23 @@ class WeatherChart extends StatelessWidget {
                   dotData: const FlDotData(show: true),
                 ),
               ],
-              rangeAnnotations: dayStatusRangeAnnotations(
-                [for (final d in weatherDays) logsByDate[d.date]],
-              ),
+              rangeAnnotations: dayStatusRangeAnnotations([
+                for (final d in weatherDays) logsByDate[d.date],
+              ]),
               titlesData: FlTitlesData(
                 bottomTitles: dateBottomTitles(dates),
                 rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                 topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                 leftTitles: const AxisTitles(
-                  sideTitles: SideTitles(showTitles: true, reservedSize: 24, interval: 1),
+                  sideTitles: SideTitles(
+                    showTitles: true,
+                    reservedSize: 24,
+                    interval: 1,
+                    // The axis runs 0.5–5.5; fl_chart would also label those ends,
+                    // and "5.5" wraps in 24px and lands above the chart.
+                    minIncluded: false,
+                    maxIncluded: false,
+                  ),
                 ),
               ),
               gridData: const FlGridData(drawVerticalLine: false),

@@ -32,8 +32,7 @@ class CalisthenicsComfortChart extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     if (sets.isEmpty) {
-      return SizedBox(
-          height: 180, child: Center(child: Text(l10n.calisthenicsComfortChartEmpty)));
+      return SizedBox(height: 180, child: Center(child: Text(l10n.calisthenicsComfortChartEmpty)));
     }
     final sorted = [...sets]..sort((a, b) => a.date.compareTo(b.date));
     final dates = sorted.map((s) => s.date).toSet().toList()..sort();
@@ -73,20 +72,30 @@ class CalisthenicsComfortChart extends StatelessWidget {
                     dotData: const FlDotData(show: true),
                   ),
               ],
-              extraLinesData: ExtraLinesData(horizontalLines: [
-                HorizontalLine(
-                  y: comfortThreshold,
-                  color: CupertinoColors.systemGrey,
-                  strokeWidth: 1.5,
-                  dashArray: [4, 4],
-                ),
-              ]),
+              extraLinesData: ExtraLinesData(
+                horizontalLines: [
+                  HorizontalLine(
+                    y: comfortThreshold,
+                    color: CupertinoColors.systemGrey,
+                    strokeWidth: 1.5,
+                    dashArray: [4, 4],
+                  ),
+                ],
+              ),
               titlesData: FlTitlesData(
                 topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                 rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                 bottomTitles: dateBottomTitles(dates),
                 leftTitles: const AxisTitles(
-                  sideTitles: SideTitles(showTitles: true, reservedSize: 24, interval: 1),
+                  sideTitles: SideTitles(
+                    showTitles: true,
+                    reservedSize: 24,
+                    interval: 1,
+                    // The axis runs 0.5–5.5; fl_chart would also label those ends,
+                    // and "5.5" wraps in 24px and lands above the chart.
+                    minIncluded: false,
+                    maxIncluded: false,
+                  ),
                 ),
               ),
               gridData: const FlGridData(drawVerticalLine: false),
@@ -112,8 +121,10 @@ class CalisthenicsComfortChart extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 4),
-                  Text(seriesEntries[i].key,
-                      style: const TextStyle(fontSize: 11, color: CupertinoColors.systemGrey)),
+                  Text(
+                    seriesEntries[i].key,
+                    style: const TextStyle(fontSize: 11, color: CupertinoColors.systemGrey),
+                  ),
                 ],
               ),
           ],
