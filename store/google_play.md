@@ -45,7 +45,7 @@ SEE YOUR PATTERNS
 • A PDF summary to take to your doctor or physical therapist
 
 HEALTH CONNECT (OPTIONAL)
-Connect Health Connect to fill in steps, sleep, workouts, heart rate, resting heart rate and HRV automatically. ZebraPace only reads this data and never writes to Health Connect. Everything can also be entered by hand.
+Connect Health Connect to fill in steps, sleep, workouts, heart rate, resting heart rate and HRV automatically. The only thing ZebraPace writes back is the weight you type in. Everything can also be entered by hand.
 
 CHALLENGES WITH FRIENDS (OPTIONAL)
 Steps, sleep, activity, logging or weight challenges where each person scores against their own daily goal, so different bodies can take part fairly.
@@ -102,7 +102,7 @@ DESCUBRE TUS PATRONES
 • Un resumen en PDF para llevar a tu médico o kinesiólogo
 
 HEALTH CONNECT (OPCIONAL)
-Conecta Health Connect para completar automáticamente pasos, sueño, entrenamientos, frecuencia cardíaca, frecuencia cardíaca en reposo y VFC. ZebraPace solo lee estos datos y nunca escribe en Health Connect. Todo se puede ingresar también a mano.
+Conecta Health Connect para completar automáticamente pasos, sueño, entrenamientos, frecuencia cardíaca, frecuencia cardíaca en reposo y VFC. Lo único que ZebraPace escribe de vuelta es el peso que ingresas. Todo se puede ingresar también a mano.
 
 RETOS CON AMIGOS (OPCIONAL)
 Retos de pasos, sueño, actividad, registro o peso en los que cada persona suma puntos según su propia meta diaria, para que cuerpos distintos participen en igualdad.
@@ -159,7 +159,7 @@ ZebraPace 幫助患有埃勒斯-當洛斯症候群（EDS/HSD）、運動後不�
 • 可帶給醫師或物理治療師的 PDF 摘要
 
 HEALTH CONNECT（選用）
-連接 Health Connect，即可自動填入步數、睡眠、體能訓練、心率、靜止心率與 HRV。ZebraPace 只會讀取這些資料，絕不會寫入 Health Connect。所有資料也都可以手動輸入。
+連接 Health Connect，即可自動填入步數、睡眠、體能訓練、心率、靜止心率與 HRV。ZebraPace 唯一寫回的資料是你輸入的體重。所有資料也都可以手動輸入。
 
 和朋友一起挑戰（選用）
 步數、睡眠、活動、記錄或體重挑戰，每個人都是和自己的每日目標比較，讓不同的身體都能公平參與。
@@ -180,28 +180,20 @@ ZebraPace 是自我追蹤工具，不是醫療器材。它不會診斷或治療�
 
 ## App content → App access
 
-Choose "All or some functionality in my app is restricted", then add one set of instructions:
+Since build 7 the Android app has no invite code (only the web version keeps it). Choose "All functionality in my app is available without any access restrictions" and delete the old "Invite code" entry.
 
-- Name: `Invite code`
-- Username / password: leave empty
-- Instructions:
-
-```
-ZebraPace opens with an invite-code screen. Enter the code BienBien (not case-sensitive) and tap Unlock. On first launch the app then asks you to set a local password of your choice (at least 4 characters); this only protects data on the device. No account is needed for any feature except the optional Together (challenges) tab, which signs in with any email address via a one-time code.
-```
-
-(Delete this entry once the invite gate is removed.)
+If Play asks anyway, the only thing a reviewer meets is a local password they choose on first launch (at least 4 characters), which only protects data on the device. No account is needed for any feature except the optional Together (challenges) tab, which signs in with any email address via a one-time code.
 
 ---
 
 ## App content → Health apps declaration (Health Connect permissions)
 
-Review language is English. One justification per permission; all of them read only. ZebraPace never writes to Health Connect.
+Review language is English. One justification per permission. All are reads except WRITE_WEIGHT (added in build 6).
 
 **General description of the app's health features**
 
 ```
-ZebraPace is an energy-pacing and symptom tracker for people with Ehlers-Danlos syndrome, post-exertional malaise (PEM) and dysautonomia, where doing too much on a good day can cause a crash days later. Health Connect data is read only to pre-fill the user's own log and to adjust the user's suggested daily step range. It is stored on the device, never sold, never used for advertising, and never sent to third parties. The only exception is user-initiated: if the user joins an optional challenge with friends, that day's total (for example steps or sleep hours) and whether they met their goal are shared with that challenge group.
+ZebraPace is an energy-pacing and symptom tracker for people with Ehlers-Danlos syndrome, post-exertional malaise (PEM) and dysautonomia, where doing too much on a good day can cause a crash days later. Health Connect data is read only to pre-fill the user's own log and to adjust the user's suggested daily step range. The only data written back is the body weight the user types into the app. It is stored on the device, never sold, never used for advertising, and never sent to third parties. The only exception is user-initiated: if the user joins an optional challenge with friends, that day's total (for example steps or sleep hours) and whether they met their goal are shared with that challenge group.
 ```
 
 **READ_STEPS**
@@ -255,7 +247,13 @@ Compared only against the user's own history (about the last 21 days) to estimat
 **READ_SLEEP**
 
 ```
-Pre-fills last night's sleep duration and sleeping heart rate in the user's sleep log, which feeds their daily energy estimate. The user reviews the values before saving.
+Pre-fills last night's sleep duration, REM and deep sleep minutes, and sleeping heart rate in the user's sleep log, which feeds their daily energy estimate. The user reviews the values before saving.
+```
+
+**WRITE_WEIGHT**
+
+```
+When the user types their body weight into ZebraPace, it is saved to Health Connect so their other health apps see it too. Only that weight is written. Correcting a day's weight replaces the record ZebraPace wrote for that day; records from scales or other apps are never changed or deleted.
 ```
 
 ---
