@@ -49,30 +49,40 @@ class _NutritionSectionState extends ConsumerState<NutritionSection> {
           Text(l10n.nutritionSectionCreatineToday((log?.creatineG ?? 0).toStringAsFixed(1)),
               style: const TextStyle(fontSize: 12, color: CupertinoColors.systemGrey)),
           const SizedBox(height: 12),
-          Row(
-            children: [
-              Expanded(
-                child: CupertinoTextField(
-                  controller: _amountController,
-                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                  placeholder: l10n.nutritionSectionAmountPlaceholder,
-                ),
-              ),
-              const SizedBox(width: 8),
-              CupertinoSlidingSegmentedControl<ProteinUnit>(
-                groupValue: _unit,
-                children: {
-                  for (final u in ProteinUnit.values)
-                    u: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 6),
-                      child: Text(u.label(l10n), style: const TextStyle(fontSize: 11)),
+          // The amount gets a row of its own: beside the unit picker, the
+          // longer Spanish/Chinese unit names squeezed it to a sliver.
+          CupertinoTextField(
+            controller: _amountController,
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+            placeholder: l10n.nutritionSectionAmountPlaceholder,
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            style: const TextStyle(fontSize: 17, color: ZebraColors.black),
+            decoration: BoxDecoration(
+              color: ZebraColors.paper,
+              border: Border.all(color: ZebraColors.cardBorder),
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          const SizedBox(height: 8),
+          SizedBox(
+            width: double.infinity,
+            child: CupertinoSlidingSegmentedControl<ProteinUnit>(
+              groupValue: _unit,
+              children: {
+                for (final u in ProteinUnit.values)
+                  u: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+                    child: Text(
+                      u.label(l10n),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(fontSize: 12),
                     ),
-                },
-                onValueChanged: (v) {
-                  if (v != null) setState(() => _unit = v);
-                },
-              ),
-            ],
+                  ),
+              },
+              onValueChanged: (v) {
+                if (v != null) setState(() => _unit = v);
+              },
+            ),
           ),
           const SizedBox(height: 8),
           Row(
@@ -125,7 +135,7 @@ class _NutritionSectionState extends ConsumerState<NutritionSection> {
   }
 
   Future<void> _addProtein() async {
-    final amount = double.tryParse(_amountController.text) ?? 0;
+    final amount = double.tryParse(_amountController.text.trim().replaceAll(',', '.')) ?? 0;
     if (amount <= 0) return;
     final grams = amount * _unit.gramsPerUnit;
     final date = ref.read(selectedDateProvider);
@@ -142,7 +152,7 @@ class _NutritionSectionState extends ConsumerState<NutritionSection> {
       l10n: l10n,
       initial: current.toString(),
     );
-    final grams = double.tryParse(result ?? '');
+    final grams = double.tryParse((result ?? '').trim().replaceAll(',', '.'));
     if (grams == null || grams < 0) return;
     final date = ref.read(selectedDateProvider);
     final repo = ref.read(dailyLogRepositoryProvider);
@@ -158,7 +168,7 @@ class _NutritionSectionState extends ConsumerState<NutritionSection> {
       l10n: l10n,
       initial: current.toString(),
     );
-    final grams = double.tryParse(result ?? '');
+    final grams = double.tryParse((result ?? '').trim().replaceAll(',', '.'));
     if (grams == null || grams < 0) return;
     final date = ref.read(selectedDateProvider);
     final repo = ref.read(dailyLogRepositoryProvider);
