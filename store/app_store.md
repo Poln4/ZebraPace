@@ -3,6 +3,8 @@
 Bundle ID: `com.paulina.zebrapace` · Version 1.0 · Contact: paulina404@gmail.com
 Localizations: English (U.S.) as primary, Spanish (Mexico), Chinese (Traditional).
 
+App names are unique across the whole App Store, so these differ from the Play names, which were taken here.
+
 Limits: name 30 characters, subtitle 30, promotional text 170, description 4000,
 keywords 100 (commas, no spaces after them). Apple searches the name and
 subtitle too, so keywords don't repeat their words.
@@ -82,7 +84,7 @@ ZebraPace is a self-tracking tool for people with Ehlers-Danlos syndrome, post-e
 **Name**
 
 ```
-ZebraPace: pacing & symptoms
+ZebraPace: Pace Your Energy
 ```
 
 **Subtitle**
@@ -161,7 +163,7 @@ ZebraPace is a self-tracking tool, not a medical device. It does not diagnose or
 **Nombre**
 
 ```
-ZebraPace: energía y síntomas
+ZebraPace: dosifica tu energía
 ```
 
 **Subtítulo**
@@ -240,7 +242,7 @@ ZebraPace es una herramienta de autorregistro, no un dispositivo médico. No dia
 **名稱**
 
 ```
-ZebraPace：體力配速與症狀
+ZebraPace：調配你的體力
 ```
 
 **副標題**
