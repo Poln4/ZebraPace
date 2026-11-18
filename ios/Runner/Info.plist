@@ -52,7 +52,7 @@
 	<key>NSHealthShareUsageDescription</key>
 	<string>ZebraPace reads your steps, workouts, active energy, heart rate, resting heart rate, heart rate variability and sleep from Health so it can pre-fill your daily step count and last night's sleep, suggest workouts to log, and show your resting heart rate and heart rate variability next to your own usual. It all stays on your phone, except a daily total you choose to share with a group when you join a challenge.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>ZebraPace does not write any data to Health. This permission is requested by the underlying Health package but is unused.</string>
+	<string>ZebraPace saves the body weight you type into the app to Health, so your other health apps see it too. It writes nothing else.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

@@ -3665,6 +3665,48 @@ abstract class AppLocalizations {
   /// **'HRV ms'**
   String get sleepSectionHrvPlaceholder;
 
+  /// No description provided for @sleepSectionStagesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'REM & deep sleep (optional)'**
+  String get sleepSectionStagesLabel;
+
+  /// No description provided for @sleepSectionRemPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'REM min'**
+  String get sleepSectionRemPlaceholder;
+
+  /// No description provided for @sleepSectionDeepPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep min'**
+  String get sleepSectionDeepPlaceholder;
+
+  /// No description provided for @sleepSectionRemValue.
+  ///
+  /// In en, this message translates to:
+  /// **'REM {minutes} min'**
+  String sleepSectionRemValue(int minutes);
+
+  /// No description provided for @sleepSectionDeepValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep {minutes} min'**
+  String sleepSectionDeepValue(int minutes);
+
+  /// No description provided for @sleepSectionNightmaresLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Nightmares'**
+  String get sleepSectionNightmaresLabel;
+
+  /// No description provided for @sleepSectionNightmaresCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Just whether there were any'**
+  String get sleepSectionNightmaresCaption;
+
   /// No description provided for @weatherChartEmptyState.
   ///
   /// In en, this message translates to:

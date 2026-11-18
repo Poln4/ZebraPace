@@ -28,6 +28,9 @@ class DailyLog {
     this.sleepSource,
     this.heartSource,
     this.sleepHeartRateMax,
+    this.remSleepMin,
+    this.deepSleepMin,
+    this.hadNightmares,
   });
 
   final String id;
@@ -61,6 +64,13 @@ class DailyLog {
   final ValueSource? heartSource;
   final int? sleepHeartRateMax;
 
+  /// Minutes of REM and deep sleep; part of the sleep group (sleepSource).
+  final int? remSleepMin;
+  final int? deepSleepMin;
+
+  /// Whether there were nightmares — yes/no only, the person's own.
+  final bool? hadNightmares;
+
   /// Either flag collapses "optional" sections app-wide (matches app.py's
   /// is_low_energy_day) — flare takes UI precedence when both are set.
   bool get isLowEnergyDay => isRestDay || isFlareDay;
@@ -91,6 +101,9 @@ class DailyLog {
     Object? restingHeartRate = _keep,
     Object? hrvMs = _keep,
     Object? sleepHeartRateMax = _keep,
+    Object? remSleepMin = _keep,
+    Object? deepSleepMin = _keep,
+    Object? hadNightmares = _keep,
     Object? stepsSource = _keep,
     Object? sleepSource = _keep,
     Object? heartSource = _keep,
@@ -118,6 +131,9 @@ class DailyLog {
       restingHeartRate: restingHeartRate == _keep ? this.restingHeartRate : restingHeartRate as int?,
       hrvMs: hrvMs == _keep ? this.hrvMs : hrvMs as double?,
       sleepHeartRateMax: sleepHeartRateMax == _keep ? this.sleepHeartRateMax : sleepHeartRateMax as int?,
+      remSleepMin: remSleepMin == _keep ? this.remSleepMin : remSleepMin as int?,
+      deepSleepMin: deepSleepMin == _keep ? this.deepSleepMin : deepSleepMin as int?,
+      hadNightmares: hadNightmares == _keep ? this.hadNightmares : hadNightmares as bool?,
       stepsSource: stepsSource == _keep ? this.stepsSource : stepsSource as ValueSource?,
       sleepSource: sleepSource == _keep ? this.sleepSource : sleepSource as ValueSource?,
       heartSource: heartSource == _keep ? this.heartSource : heartSource as ValueSource?,

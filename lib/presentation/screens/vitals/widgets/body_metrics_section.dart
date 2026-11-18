@@ -99,12 +99,18 @@ class _BodyMetricsSectionState extends ConsumerState<BodyMetricsSection> {
   Future<void> _save(String date) async {
     final repo = ref.read(dailyLogRepositoryProvider);
     final log = await repo.getOrCreateDailyLog(date);
+    final weight = _number(_weightController);
     await repo.upsertDailyLog(
       log.copyWith(
-        weightKg: double.tryParse(_weightController.text),
-        heightCm: double.tryParse(_heightController.text),
-        fatPercentage: double.tryParse(_fatController.text),
+        weightKg: weight,
+        heightCm: _number(_heightController),
+        fatPercentage: _number(_fatController),
       ),
     );
+    if (weight != log.weightKg) await saveWeightToHealth(ref, date, weight);
   }
+
+  /// Accepts a decimal comma too ("62,5"), as typed in Spanish.
+  static double? _number(TextEditingController c) =>
+      double.tryParse(c.text.trim().replaceAll(',', '.'));
 }

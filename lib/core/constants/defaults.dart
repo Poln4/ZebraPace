@@ -43,6 +43,7 @@ class SettingsKeys {
   static const healthKitAuthStatus = 'healthkit_auth_status';
   static const healthReadinessRequested = 'health_readiness_requested';
   static const healthSleepRequested = 'health_sleep_requested';
+  static const healthWeightRequested = 'health_weight_requested';
   static const languageCode = 'language_code';
   static const textScaleFactor = 'text_scale_factor';
   static const welcomeAcknowledged = 'welcome_acknowledged';

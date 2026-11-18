@@ -2111,6 +2111,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sleepSectionHrvPlaceholder => 'HRV ms';
 
   @override
+  String get sleepSectionStagesLabel => 'REM & deep sleep (optional)';
+
+  @override
+  String get sleepSectionRemPlaceholder => 'REM min';
+
+  @override
+  String get sleepSectionDeepPlaceholder => 'Deep min';
+
+  @override
+  String sleepSectionRemValue(int minutes) {
+    return 'REM $minutes min';
+  }
+
+  @override
+  String sleepSectionDeepValue(int minutes) {
+    return 'Deep $minutes min';
+  }
+
+  @override
+  String get sleepSectionNightmaresLabel => 'Nightmares';
+
+  @override
+  String get sleepSectionNightmaresCaption => 'Just whether there were any';
+
+  @override
   String get weatherChartEmptyState => 'No weather data cached yet.';
 
   @override

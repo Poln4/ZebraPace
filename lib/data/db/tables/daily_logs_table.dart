@@ -66,6 +66,14 @@ class DailyLogs extends Table with SyncColumns {
   TextColumn get sleepSource => text().nullable()();
   TextColumn get heartSource => text().nullable()();
 
+  /// Added in schemaVersion 10. Minutes of REM and deep sleep (from Health
+  /// when the tracker records stages, or typed in; part of the sleep group
+  /// for sleepSource), and whether there were nightmares — a yes/no only,
+  /// always the person's own, like sleepQuality. Null means not recorded.
+  IntColumn get remSleepMin => integer().nullable()();
+  IntColumn get deepSleepMin => integer().nullable()();
+  BoolColumn get hadNightmares => boolean().nullable()();
+
   @override
   Set<Column> get primaryKey => {id};
 }

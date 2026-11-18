@@ -61,4 +61,24 @@ void main() {
     expect(sleep!.heartRateMinBpm, isNull);
     expect(sleep.heartRateMaxBpm, isNull);
   });
+
+  test('totals REM and deep from their own stage samples', () {
+    final rem = [(t(15, 1), t(15, 1, 30)), (t(15, 4), t(15, 4, 50))];
+    final deep = [(t(14, 23, 30), t(15, 0, 30)), (t(14, 23, 30), t(15, 0, 30))]; // same stretch twice
+    final sleep = DetectedSleep.fromSamples(
+      date: date,
+      asleep: [(t(14, 23), t(15, 7)), ...rem, ...deep],
+      rem: rem,
+      deep: deep,
+    );
+    expect(sleep!.asleepMinutes, 8 * 60);
+    expect(sleep.remMinutes, 80);
+    expect(sleep.deepMinutes, 60);
+  });
+
+  test('no stage samples leave REM and deep unknown', () {
+    final sleep = DetectedSleep.fromSamples(date: date, asleep: [(t(14, 23), t(15, 7))]);
+    expect(sleep!.remMinutes, isNull);
+    expect(sleep.deepMinutes, isNull);
+  });
 }

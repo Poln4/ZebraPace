@@ -35,6 +35,9 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
   final _hrMaxController = TextEditingController();
   final _restingController = TextEditingController();
   final _hrvController = TextEditingController();
+  final _remController = TextEditingController();
+  final _deepController = TextEditingController();
+  bool? _nightmares;
   String? _loadedForDate;
   bool _editing = false;
 
@@ -44,6 +47,8 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
     _hrMaxController.dispose();
     _restingController.dispose();
     _hrvController.dispose();
+    _remController.dispose();
+    _deepController.dispose();
     super.dispose();
   }
 
@@ -91,6 +96,13 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
           Text(l10n.sleepSectionHeartRateRangeValue(
               '${log.sleepHeartRateMin ?? '–'}', '${log.sleepHeartRateMax ?? '–'}')),
         ],
+        if (log.remSleepMin != null || log.deepSleepMin != null) ...[
+          const SizedBox(height: 2),
+          Text([
+            if (log.remSleepMin case final m?) l10n.sleepSectionRemValue(m),
+            if (log.deepSleepMin case final m?) l10n.sleepSectionDeepValue(m),
+          ].join(' · ')),
+        ],
         if (log.restingHeartRate != null || log.hrvMs != null) ...[
           const SizedBox(height: 2),
           Text([
@@ -119,7 +131,41 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
             await repo.upsertDailyLog(current.copyWith(sleepQuality: q));
           },
         ),
+        _nightmaresRow(l10n, date),
       ],
+    );
+  }
+
+  /// Yes/no, saved on tap in both views: Health has no record of it, and
+  /// it's worth noting even on a night logged nothing else for.
+  Widget _nightmaresRow(AppLocalizations l10n, String date) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(l10n.sleepSectionNightmaresLabel,
+                    style: const TextStyle(fontWeight: FontWeight.w700, color: ZebraColors.black)),
+                Text(l10n.sleepSectionNightmaresCaption,
+                    style: const TextStyle(fontSize: 12, color: CupertinoColors.systemGrey)),
+              ],
+            ),
+          ),
+          CupertinoSwitch(
+            value: _nightmares ?? false,
+            activeTrackColor: ZebraColors.brandTeal,
+            onChanged: (v) async {
+              setState(() => _nightmares = v);
+              final repo = ref.read(dailyLogRepositoryProvider);
+              final current = await repo.getOrCreateDailyLog(date);
+              await repo.upsertDailyLog(current.copyWith(hadNightmares: v));
+            },
+          ),
+        ],
+      ),
     );
   }
 
@@ -153,6 +199,7 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
           value: _quality,
           onChanged: (q) => setState(() => _quality = q),
         ),
+        _nightmaresRow(l10n, date),
         const SizedBox(height: 12),
         Text(l10n.sleepSectionHeartRateLabel, style: label),
         const SizedBox(height: 6),
@@ -171,6 +218,28 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                 controller: _hrMaxController,
                 keyboardType: TextInputType.number,
                 placeholder: l10n.sleepSectionHeartRateMaxPlaceholder,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        Text(l10n.sleepSectionStagesLabel, style: label),
+        const SizedBox(height: 6),
+        Row(
+          children: [
+            Expanded(
+              child: CupertinoTextField(
+                controller: _remController,
+                keyboardType: TextInputType.number,
+                placeholder: l10n.sleepSectionRemPlaceholder,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: CupertinoTextField(
+                controller: _deepController,
+                keyboardType: TextInputType.number,
+                placeholder: l10n.sleepSectionDeepPlaceholder,
               ),
             ),
           ],
@@ -227,6 +296,9 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
     _hrMaxController.text = log.sleepHeartRateMax?.toString() ?? '';
     _restingController.text = log.restingHeartRate?.toString() ?? '';
     _hrvController.text = log.hrvMs == null ? '' : log.hrvMs!.round().toString();
+    _remController.text = log.remSleepMin?.toString() ?? '';
+    _deepController.text = log.deepSleepMin?.toString() ?? '';
+    _nightmares = log.hadNightmares;
   }
 
   Future<void> _pickDuration(BuildContext context) async {
@@ -270,9 +342,13 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
     final hrMax = int.tryParse(_hrMaxController.text);
     final resting = int.tryParse(_restingController.text);
     final hrv = double.tryParse(_hrvController.text.replaceAll(',', '.'));
+    final rem = int.tryParse(_remController.text.trim());
+    final deep = int.tryParse(_deepController.text.trim());
     final sleepChanged = sleepHours != log.sleepHours ||
         hrMin != log.sleepHeartRateMin ||
-        hrMax != log.sleepHeartRateMax;
+        hrMax != log.sleepHeartRateMax ||
+        rem != log.remSleepMin ||
+        deep != log.deepSleepMin;
     final heartChanged =
         resting != log.restingHeartRate || hrv?.round() != log.hrvMs?.round();
     await repo.upsertDailyLog(
@@ -281,6 +357,8 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
         sleepQuality: _quality,
         sleepHeartRateMin: hrMin,
         sleepHeartRateMax: hrMax,
+        remSleepMin: rem,
+        deepSleepMin: deep,
         restingHeartRate: resting,
         hrvMs: heartChanged ? hrv : log.hrvMs,
         sleepSource: sleepChanged ? ValueSource.manual : log.sleepSource,

@@ -6,6 +6,8 @@ class DetectedSleep {
     required this.asleepMinutes,
     this.heartRateMinBpm,
     this.heartRateMaxBpm,
+    this.remMinutes,
+    this.deepMinutes,
   });
 
   final int asleepMinutes;
@@ -13,6 +15,10 @@ class DetectedSleep {
   /// Min/max heart rate recorded while asleep, or null without watch data.
   final int? heartRateMinBpm;
   final int? heartRateMaxBpm;
+
+  /// REM and deep minutes, or null when the tracker doesn't record stages.
+  final int? remMinutes;
+  final int? deepMinutes;
 
   /// The night that belongs to [date]: asleep time ending between 6pm the
   /// day before and noon on [date], so a nap after noon isn't counted and a
@@ -26,31 +32,21 @@ class DetectedSleep {
   /// samples. Intervals ending outside [windowFor] are dropped, and
   /// overlapping ones are merged first, since a watch and a phone often
   /// both record the same night. Heart rate only counts samples taken
-  /// inside the merged asleep time. Null when nothing was asleep.
+  /// inside the merged asleep time. [rem] and [deep] are those stages'
+  /// own intervals (also in [asleep]), totalled the same way. Null when
+  /// nothing was asleep.
   static DetectedSleep? fromSamples({
     required DateTime date,
     required List<(DateTime, DateTime)> asleep,
+    List<(DateTime, DateTime)> rem = const [],
+    List<(DateTime, DateTime)> deep = const [],
     List<(DateTime, int)> heartRate = const [],
   }) {
-    final (windowStart, windowEnd) = windowFor(date);
-    final inWindow = [
-      for (final (start, end) in asleep)
-        if (end.isAfter(start) && end.isAfter(windowStart) && !end.isAfter(windowEnd)) (start, end),
-    ]..sort((a, b) => a.$1.compareTo(b.$1));
-    if (inWindow.isEmpty) return null;
-
-    final merged = <(DateTime, DateTime)>[];
-    for (final (start, end) in inWindow) {
-      if (merged.isNotEmpty && !start.isAfter(merged.last.$2)) {
-        final last = merged.removeLast();
-        merged.add((last.$1, end.isAfter(last.$2) ? end : last.$2));
-      } else {
-        merged.add((start, end));
-      }
-    }
-
-    final minutes = merged.fold<int>(0, (sum, i) => sum + i.$2.difference(i.$1).inMinutes);
+    final merged = _mergedInWindow(date, asleep);
+    final minutes = _minutes(merged);
     if (minutes <= 0) return null;
+    final remMinutes = _minutes(_mergedInWindow(date, rem));
+    final deepMinutes = _minutes(_mergedInWindow(date, deep));
 
     int? hrMin;
     int? hrMax;
@@ -61,6 +57,36 @@ class DetectedSleep {
       if (hrMax == null || bpm > hrMax) hrMax = bpm;
     }
 
-    return DetectedSleep(asleepMinutes: minutes, heartRateMinBpm: hrMin, heartRateMaxBpm: hrMax);
+    return DetectedSleep(
+      asleepMinutes: minutes,
+      heartRateMinBpm: hrMin,
+      heartRateMaxBpm: hrMax,
+      remMinutes: remMinutes > 0 ? remMinutes : null,
+      deepMinutes: deepMinutes > 0 ? deepMinutes : null,
+    );
   }
+
+  static List<(DateTime, DateTime)> _mergedInWindow(
+    DateTime date,
+    List<(DateTime, DateTime)> intervals,
+  ) {
+    final (windowStart, windowEnd) = windowFor(date);
+    final inWindow = [
+      for (final (start, end) in intervals)
+        if (end.isAfter(start) && end.isAfter(windowStart) && !end.isAfter(windowEnd)) (start, end),
+    ]..sort((a, b) => a.$1.compareTo(b.$1));
+    final merged = <(DateTime, DateTime)>[];
+    for (final (start, end) in inWindow) {
+      if (merged.isNotEmpty && !start.isAfter(merged.last.$2)) {
+        final last = merged.removeLast();
+        merged.add((last.$1, end.isAfter(last.$2) ? end : last.$2));
+      } else {
+        merged.add((start, end));
+      }
+    }
+    return merged;
+  }
+
+  static int _minutes(List<(DateTime, DateTime)> merged) =>
+      merged.fold<int>(0, (sum, i) => sum + i.$2.difference(i.$1).inMinutes);
 }

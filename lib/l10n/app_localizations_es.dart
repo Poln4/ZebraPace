@@ -2142,6 +2142,31 @@ class AppLocalizationsEs extends AppLocalizations {
   String get sleepSectionHrvPlaceholder => 'VFC ms';
 
   @override
+  String get sleepSectionStagesLabel => 'Sueño REM y profundo (opcional)';
+
+  @override
+  String get sleepSectionRemPlaceholder => 'REM min';
+
+  @override
+  String get sleepSectionDeepPlaceholder => 'Profundo min';
+
+  @override
+  String sleepSectionRemValue(int minutes) {
+    return 'REM $minutes min';
+  }
+
+  @override
+  String sleepSectionDeepValue(int minutes) {
+    return 'Profundo $minutes min';
+  }
+
+  @override
+  String get sleepSectionNightmaresLabel => 'Pesadillas';
+
+  @override
+  String get sleepSectionNightmaresCaption => 'Solo si hubo o no';
+
+  @override
   String get weatherChartEmptyState => 'Aún no hay datos de clima almacenados.';
 
   @override

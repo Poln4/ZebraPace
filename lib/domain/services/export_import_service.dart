@@ -165,6 +165,7 @@ class ExportImportService {
       'steps', 'is_rest_day', 'is_flare_day',
       'sleep_hours', 'sleep_quality', 'sleep_heart_rate_min', 'sleep_heart_rate_max',
       'resting_heart_rate', 'hrv_ms',
+      'rem_sleep_min', 'deep_sleep_min', 'had_nightmares',
     ];
     final data = [
       header,
@@ -175,6 +176,7 @@ class ExportImportService {
           r.steps, r.isRestDay, r.isFlareDay,
           r.sleepHours, r.sleepQuality, r.sleepHeartRateMin, r.sleepHeartRateMax,
           r.restingHeartRate, r.hrvMs,
+          r.remSleepMin, r.deepSleepMin, r.hadNightmares,
         ],
     ];
     return const ListToCsvConverter().convert(data);
@@ -233,6 +235,9 @@ class ExportImportService {
                   sleepQuality: Value(row['sleepQuality'] as String?),
                   sleepHeartRateMin: Value(_toInt(row['sleepHeartRateMin'])),
                   sleepHeartRateMax: Value(_toInt(row['sleepHeartRateMax'])),
+                  remSleepMin: Value(_toInt(row['remSleepMin'])),
+                  deepSleepMin: Value(_toInt(row['deepSleepMin'])),
+                  hadNightmares: Value(row['hadNightmares'] as bool?),
                   restingHeartRate: Value(_toInt(row['restingHeartRate'])),
                   hrvMs: Value(_toDouble(row['hrvMs'])),
                   stepsSource: Value(row['stepsSource'] as String?),

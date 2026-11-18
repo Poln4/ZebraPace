@@ -25,6 +25,8 @@ class HealthSyncService {
         sleepHours: sleep.asleepMinutes / 60.0,
         sleepHeartRateMin: sleep.heartRateMinBpm,
         sleepHeartRateMax: sleep.heartRateMaxBpm,
+        remSleepMin: sleep.remMinutes,
+        deepSleepMin: sleep.deepMinutes,
         sleepSource: ValueSource.health,
       );
     }
@@ -48,6 +50,8 @@ class HealthSyncService {
       a.sleepHours == b.sleepHours &&
       a.sleepHeartRateMin == b.sleepHeartRateMin &&
       a.sleepHeartRateMax == b.sleepHeartRateMax &&
+      a.remSleepMin == b.remSleepMin &&
+      a.deepSleepMin == b.deepSleepMin &&
       a.sleepSource == b.sleepSource &&
       a.restingHeartRate == b.restingHeartRate &&
       a.hrvMs == b.hrvMs &&

@@ -49,7 +49,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 9;
+  int get schemaVersion => 10;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -88,6 +88,9 @@ class AppDatabase extends _$AppDatabase {
                 dailyLogs.stepsSource,
                 dailyLogs.sleepSource,
                 dailyLogs.heartSource,
+                dailyLogs.remSleepMin,
+                dailyLogs.deepSleepMin,
+                dailyLogs.hadNightmares,
               ],
             ));
           }
@@ -143,6 +146,13 @@ class AppDatabase extends _$AppDatabase {
             await m.createTable(standTests);
             await m.createTable(sweatLogs);
             await m.createTable(bloodPressureReadings);
+          }
+          // v9 -> v10: REM and deep sleep minutes and a nightmares yes/no.
+          // A pre-v4 install already got them from the rebuild above.
+          if (from >= 4 && from < 10) {
+            await m.addColumn(dailyLogs, dailyLogs.remSleepMin);
+            await m.addColumn(dailyLogs, dailyLogs.deepSleepMin);
+            await m.addColumn(dailyLogs, dailyLogs.hadNightmares);
           }
         },
       );

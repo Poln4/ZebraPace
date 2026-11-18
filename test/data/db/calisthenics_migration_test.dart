@@ -7,8 +7,10 @@ import 'package:zebrapace_app/data/repositories/calisthenics_repository.dart';
 void main() {
   test('v6 -> v7 keeps existing calisthenics rows, read as sets × reps', () async {
     // Only the calisthenics table matters here: from == 6 skips every
-    // earlier migration step, and v7 only touches this table.
+    // earlier migration step, and v7 only touches this table. Later steps
+    // add columns to daily_logs, so it needs a stand-in.
     final db = AppDatabase(NativeDatabase.memory(setup: (raw) {
+      raw.execute('CREATE TABLE daily_logs (id TEXT NOT NULL PRIMARY KEY)');
       raw.execute('''
         CREATE TABLE calisthenics (
           id TEXT NOT NULL PRIMARY KEY, date TEXT NOT NULL, exercise TEXT NOT NULL,

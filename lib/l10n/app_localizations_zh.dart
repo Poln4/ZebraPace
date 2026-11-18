@@ -2007,6 +2007,31 @@ class AppLocalizationsZh extends AppLocalizations {
   String get sleepSectionHrvPlaceholder => 'HRV 毫秒';
 
   @override
+  String get sleepSectionStagesLabel => '快速動眼期與深層睡眠（選填）';
+
+  @override
+  String get sleepSectionRemPlaceholder => '快速動眼期 分鐘';
+
+  @override
+  String get sleepSectionDeepPlaceholder => '深層睡眠 分鐘';
+
+  @override
+  String sleepSectionRemValue(int minutes) {
+    return '快速動眼期 $minutes 分鐘';
+  }
+
+  @override
+  String sleepSectionDeepValue(int minutes) {
+    return '深層睡眠 $minutes 分鐘';
+  }
+
+  @override
+  String get sleepSectionNightmaresLabel => '做惡夢';
+
+  @override
+  String get sleepSectionNightmaresCaption => '只記錄有沒有';
+
+  @override
   String get weatherChartEmptyState => '尚未快取任何天氣資料。';
 
   @override

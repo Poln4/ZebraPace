@@ -186,9 +186,26 @@ Future<void> connectHealthKit(WidgetRef ref) async {
     await settings.set(SettingsKeys.healthKitAuthStatus, _healthKitRequested);
     await settings.set(SettingsKeys.healthReadinessRequested, _healthKitRequested);
     await settings.set(SettingsKeys.healthSleepRequested, _healthKitRequested);
+    await settings.set(SettingsKeys.healthWeightRequested, _healthKitRequested);
   }
   ref.invalidate(healthKitEnabledProvider);
   ref.invalidate(readinessProvider);
+}
+
+/// Copies a weight typed into Vitals to Apple Health / Health Connect, when
+/// Health is connected. Installs that connected before ZebraPace wrote
+/// anything are asked for the write permission once, here, the first time
+/// it's needed; if they say no, the write just fails quietly.
+Future<void> saveWeightToHealth(WidgetRef ref, String date, double? kg) async {
+  if (!(await ref.read(healthKitEnabledProvider.future))) return;
+  final service = ref.read(healthKitServiceProvider);
+  final settings = ref.read(settingsRepositoryProvider);
+  final asked = await settings.getString(SettingsKeys.healthWeightRequested, '');
+  if (asked != _healthKitRequested) {
+    await service.requestWeightWrite();
+    await settings.set(SettingsKeys.healthWeightRequested, _healthKitRequested);
+  }
+  await service.writeWeight(dateFromKey(date), kg);
 }
 
 /// False for installs that connected Health before resting HR/HRV were

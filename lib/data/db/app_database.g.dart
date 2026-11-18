@@ -313,6 +313,42 @@ class $DailyLogsTable extends DailyLogs
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _remSleepMinMeta = const VerificationMeta(
+    'remSleepMin',
+  );
+  @override
+  late final GeneratedColumn<int> remSleepMin = GeneratedColumn<int>(
+    'rem_sleep_min',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _deepSleepMinMeta = const VerificationMeta(
+    'deepSleepMin',
+  );
+  @override
+  late final GeneratedColumn<int> deepSleepMin = GeneratedColumn<int>(
+    'deep_sleep_min',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _hadNightmaresMeta = const VerificationMeta(
+    'hadNightmares',
+  );
+  @override
+  late final GeneratedColumn<bool> hadNightmares = GeneratedColumn<bool>(
+    'had_nightmares',
+    aliasedName,
+    true,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("had_nightmares" IN (0, 1))',
+    ),
+  );
   @override
   List<GeneratedColumn> get $columns => [
     updatedAt,
@@ -342,6 +378,9 @@ class $DailyLogsTable extends DailyLogs
     stepsSource,
     sleepSource,
     heartSource,
+    remSleepMin,
+    deepSleepMin,
+    hadNightmares,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -562,6 +601,33 @@ class $DailyLogsTable extends DailyLogs
         ),
       );
     }
+    if (data.containsKey('rem_sleep_min')) {
+      context.handle(
+        _remSleepMinMeta,
+        remSleepMin.isAcceptableOrUnknown(
+          data['rem_sleep_min']!,
+          _remSleepMinMeta,
+        ),
+      );
+    }
+    if (data.containsKey('deep_sleep_min')) {
+      context.handle(
+        _deepSleepMinMeta,
+        deepSleepMin.isAcceptableOrUnknown(
+          data['deep_sleep_min']!,
+          _deepSleepMinMeta,
+        ),
+      );
+    }
+    if (data.containsKey('had_nightmares')) {
+      context.handle(
+        _hadNightmaresMeta,
+        hadNightmares.isAcceptableOrUnknown(
+          data['had_nightmares']!,
+          _hadNightmaresMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -679,6 +745,18 @@ class $DailyLogsTable extends DailyLogs
         DriftSqlType.string,
         data['${effectivePrefix}heart_source'],
       ),
+      remSleepMin: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}rem_sleep_min'],
+      ),
+      deepSleepMin: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}deep_sleep_min'],
+      ),
+      hadNightmares: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}had_nightmares'],
+      ),
     );
   }
 
@@ -746,6 +824,14 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
   final String? stepsSource;
   final String? sleepSource;
   final String? heartSource;
+
+  /// Added in schemaVersion 10. Minutes of REM and deep sleep (from Health
+  /// when the tracker records stages, or typed in; part of the sleep group
+  /// for sleepSource), and whether there were nightmares — a yes/no only,
+  /// always the person's own, like sleepQuality. Null means not recorded.
+  final int? remSleepMin;
+  final int? deepSleepMin;
+  final bool? hadNightmares;
   const DailyLog({
     required this.updatedAt,
     this.deletedAt,
@@ -774,6 +860,9 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
     this.stepsSource,
     this.sleepSource,
     this.heartSource,
+    this.remSleepMin,
+    this.deepSleepMin,
+    this.hadNightmares,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -836,6 +925,15 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
     }
     if (!nullToAbsent || heartSource != null) {
       map['heart_source'] = Variable<String>(heartSource);
+    }
+    if (!nullToAbsent || remSleepMin != null) {
+      map['rem_sleep_min'] = Variable<int>(remSleepMin);
+    }
+    if (!nullToAbsent || deepSleepMin != null) {
+      map['deep_sleep_min'] = Variable<int>(deepSleepMin);
+    }
+    if (!nullToAbsent || hadNightmares != null) {
+      map['had_nightmares'] = Variable<bool>(hadNightmares);
     }
     return map;
   }
@@ -901,6 +999,15 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
       heartSource: heartSource == null && nullToAbsent
           ? const Value.absent()
           : Value(heartSource),
+      remSleepMin: remSleepMin == null && nullToAbsent
+          ? const Value.absent()
+          : Value(remSleepMin),
+      deepSleepMin: deepSleepMin == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deepSleepMin),
+      hadNightmares: hadNightmares == null && nullToAbsent
+          ? const Value.absent()
+          : Value(hadNightmares),
     );
   }
 
@@ -937,6 +1044,9 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
       stepsSource: serializer.fromJson<String?>(json['stepsSource']),
       sleepSource: serializer.fromJson<String?>(json['sleepSource']),
       heartSource: serializer.fromJson<String?>(json['heartSource']),
+      remSleepMin: serializer.fromJson<int?>(json['remSleepMin']),
+      deepSleepMin: serializer.fromJson<int?>(json['deepSleepMin']),
+      hadNightmares: serializer.fromJson<bool?>(json['hadNightmares']),
     );
   }
   @override
@@ -970,6 +1080,9 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
       'stepsSource': serializer.toJson<String?>(stepsSource),
       'sleepSource': serializer.toJson<String?>(sleepSource),
       'heartSource': serializer.toJson<String?>(heartSource),
+      'remSleepMin': serializer.toJson<int?>(remSleepMin),
+      'deepSleepMin': serializer.toJson<int?>(deepSleepMin),
+      'hadNightmares': serializer.toJson<bool?>(hadNightmares),
     };
   }
 
@@ -1001,6 +1114,9 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
     Value<String?> stepsSource = const Value.absent(),
     Value<String?> sleepSource = const Value.absent(),
     Value<String?> heartSource = const Value.absent(),
+    Value<int?> remSleepMin = const Value.absent(),
+    Value<int?> deepSleepMin = const Value.absent(),
+    Value<bool?> hadNightmares = const Value.absent(),
   }) => DailyLog(
     updatedAt: updatedAt ?? this.updatedAt,
     deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
@@ -1037,6 +1153,11 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
     stepsSource: stepsSource.present ? stepsSource.value : this.stepsSource,
     sleepSource: sleepSource.present ? sleepSource.value : this.sleepSource,
     heartSource: heartSource.present ? heartSource.value : this.heartSource,
+    remSleepMin: remSleepMin.present ? remSleepMin.value : this.remSleepMin,
+    deepSleepMin: deepSleepMin.present ? deepSleepMin.value : this.deepSleepMin,
+    hadNightmares: hadNightmares.present
+        ? hadNightmares.value
+        : this.hadNightmares,
   );
   DailyLog copyWithCompanion(DailyLogsCompanion data) {
     return DailyLog(
@@ -1099,6 +1220,15 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
       heartSource: data.heartSource.present
           ? data.heartSource.value
           : this.heartSource,
+      remSleepMin: data.remSleepMin.present
+          ? data.remSleepMin.value
+          : this.remSleepMin,
+      deepSleepMin: data.deepSleepMin.present
+          ? data.deepSleepMin.value
+          : this.deepSleepMin,
+      hadNightmares: data.hadNightmares.present
+          ? data.hadNightmares.value
+          : this.hadNightmares,
     );
   }
 
@@ -1131,7 +1261,10 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
           ..write('hrvMs: $hrvMs, ')
           ..write('stepsSource: $stepsSource, ')
           ..write('sleepSource: $sleepSource, ')
-          ..write('heartSource: $heartSource')
+          ..write('heartSource: $heartSource, ')
+          ..write('remSleepMin: $remSleepMin, ')
+          ..write('deepSleepMin: $deepSleepMin, ')
+          ..write('hadNightmares: $hadNightmares')
           ..write(')'))
         .toString();
   }
@@ -1165,6 +1298,9 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
     stepsSource,
     sleepSource,
     heartSource,
+    remSleepMin,
+    deepSleepMin,
+    hadNightmares,
   ]);
   @override
   bool operator ==(Object other) =>
@@ -1196,7 +1332,10 @@ class DailyLog extends DataClass implements Insertable<DailyLog> {
           other.hrvMs == this.hrvMs &&
           other.stepsSource == this.stepsSource &&
           other.sleepSource == this.sleepSource &&
-          other.heartSource == this.heartSource);
+          other.heartSource == this.heartSource &&
+          other.remSleepMin == this.remSleepMin &&
+          other.deepSleepMin == this.deepSleepMin &&
+          other.hadNightmares == this.hadNightmares);
 }
 
 class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
@@ -1227,6 +1366,9 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
   final Value<String?> stepsSource;
   final Value<String?> sleepSource;
   final Value<String?> heartSource;
+  final Value<int?> remSleepMin;
+  final Value<int?> deepSleepMin;
+  final Value<bool?> hadNightmares;
   final Value<int> rowid;
   const DailyLogsCompanion({
     this.updatedAt = const Value.absent(),
@@ -1256,6 +1398,9 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
     this.stepsSource = const Value.absent(),
     this.sleepSource = const Value.absent(),
     this.heartSource = const Value.absent(),
+    this.remSleepMin = const Value.absent(),
+    this.deepSleepMin = const Value.absent(),
+    this.hadNightmares = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   DailyLogsCompanion.insert({
@@ -1286,6 +1431,9 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
     this.stepsSource = const Value.absent(),
     this.sleepSource = const Value.absent(),
     this.heartSource = const Value.absent(),
+    this.remSleepMin = const Value.absent(),
+    this.deepSleepMin = const Value.absent(),
+    this.hadNightmares = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : updatedAt = Value(updatedAt),
        id = Value(id),
@@ -1318,6 +1466,9 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
     Expression<String>? stepsSource,
     Expression<String>? sleepSource,
     Expression<String>? heartSource,
+    Expression<int>? remSleepMin,
+    Expression<int>? deepSleepMin,
+    Expression<bool>? hadNightmares,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -1348,6 +1499,9 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
       if (stepsSource != null) 'steps_source': stepsSource,
       if (sleepSource != null) 'sleep_source': sleepSource,
       if (heartSource != null) 'heart_source': heartSource,
+      if (remSleepMin != null) 'rem_sleep_min': remSleepMin,
+      if (deepSleepMin != null) 'deep_sleep_min': deepSleepMin,
+      if (hadNightmares != null) 'had_nightmares': hadNightmares,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -1380,6 +1534,9 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
     Value<String?>? stepsSource,
     Value<String?>? sleepSource,
     Value<String?>? heartSource,
+    Value<int?>? remSleepMin,
+    Value<int?>? deepSleepMin,
+    Value<bool?>? hadNightmares,
     Value<int>? rowid,
   }) {
     return DailyLogsCompanion(
@@ -1410,6 +1567,9 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
       stepsSource: stepsSource ?? this.stepsSource,
       sleepSource: sleepSource ?? this.sleepSource,
       heartSource: heartSource ?? this.heartSource,
+      remSleepMin: remSleepMin ?? this.remSleepMin,
+      deepSleepMin: deepSleepMin ?? this.deepSleepMin,
+      hadNightmares: hadNightmares ?? this.hadNightmares,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -1498,6 +1658,15 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
     if (heartSource.present) {
       map['heart_source'] = Variable<String>(heartSource.value);
     }
+    if (remSleepMin.present) {
+      map['rem_sleep_min'] = Variable<int>(remSleepMin.value);
+    }
+    if (deepSleepMin.present) {
+      map['deep_sleep_min'] = Variable<int>(deepSleepMin.value);
+    }
+    if (hadNightmares.present) {
+      map['had_nightmares'] = Variable<bool>(hadNightmares.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -1534,6 +1703,9 @@ class DailyLogsCompanion extends UpdateCompanion<DailyLog> {
           ..write('stepsSource: $stepsSource, ')
           ..write('sleepSource: $sleepSource, ')
           ..write('heartSource: $heartSource, ')
+          ..write('remSleepMin: $remSleepMin, ')
+          ..write('deepSleepMin: $deepSleepMin, ')
+          ..write('hadNightmares: $hadNightmares, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -16541,6 +16713,9 @@ typedef $$DailyLogsTableCreateCompanionBuilder =
       Value<String?> stepsSource,
       Value<String?> sleepSource,
       Value<String?> heartSource,
+      Value<int?> remSleepMin,
+      Value<int?> deepSleepMin,
+      Value<bool?> hadNightmares,
       Value<int> rowid,
     });
 typedef $$DailyLogsTableUpdateCompanionBuilder =
@@ -16572,6 +16747,9 @@ typedef $$DailyLogsTableUpdateCompanionBuilder =
       Value<String?> stepsSource,
       Value<String?> sleepSource,
       Value<String?> heartSource,
+      Value<int?> remSleepMin,
+      Value<int?> deepSleepMin,
+      Value<bool?> hadNightmares,
       Value<int> rowid,
     });
 
@@ -16716,6 +16894,21 @@ class $$DailyLogsTableFilterComposer
 
   ColumnFilters<String> get heartSource => $composableBuilder(
     column: $table.heartSource,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get remSleepMin => $composableBuilder(
+    column: $table.remSleepMin,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get deepSleepMin => $composableBuilder(
+    column: $table.deepSleepMin,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get hadNightmares => $composableBuilder(
+    column: $table.hadNightmares,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -16863,6 +17056,21 @@ class $$DailyLogsTableOrderingComposer
     column: $table.heartSource,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<int> get remSleepMin => $composableBuilder(
+    column: $table.remSleepMin,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get deepSleepMin => $composableBuilder(
+    column: $table.deepSleepMin,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get hadNightmares => $composableBuilder(
+    column: $table.hadNightmares,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$DailyLogsTableAnnotationComposer
@@ -16986,6 +17194,21 @@ class $$DailyLogsTableAnnotationComposer
     column: $table.heartSource,
     builder: (column) => column,
   );
+
+  GeneratedColumn<int> get remSleepMin => $composableBuilder(
+    column: $table.remSleepMin,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get deepSleepMin => $composableBuilder(
+    column: $table.deepSleepMin,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get hadNightmares => $composableBuilder(
+    column: $table.hadNightmares,
+    builder: (column) => column,
+  );
 }
 
 class $$DailyLogsTableTableManager
@@ -17043,6 +17266,9 @@ class $$DailyLogsTableTableManager
                 Value<String?> stepsSource = const Value.absent(),
                 Value<String?> sleepSource = const Value.absent(),
                 Value<String?> heartSource = const Value.absent(),
+                Value<int?> remSleepMin = const Value.absent(),
+                Value<int?> deepSleepMin = const Value.absent(),
+                Value<bool?> hadNightmares = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => DailyLogsCompanion(
                 updatedAt: updatedAt,
@@ -17072,6 +17298,9 @@ class $$DailyLogsTableTableManager
                 stepsSource: stepsSource,
                 sleepSource: sleepSource,
                 heartSource: heartSource,
+                remSleepMin: remSleepMin,
+                deepSleepMin: deepSleepMin,
+                hadNightmares: hadNightmares,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -17103,6 +17332,9 @@ class $$DailyLogsTableTableManager
                 Value<String?> stepsSource = const Value.absent(),
                 Value<String?> sleepSource = const Value.absent(),
                 Value<String?> heartSource = const Value.absent(),
+                Value<int?> remSleepMin = const Value.absent(),
+                Value<int?> deepSleepMin = const Value.absent(),
+                Value<bool?> hadNightmares = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => DailyLogsCompanion.insert(
                 updatedAt: updatedAt,
@@ -17132,6 +17364,9 @@ class $$DailyLogsTableTableManager
                 stepsSource: stepsSource,
                 sleepSource: sleepSource,
                 heartSource: heartSource,
+                remSleepMin: remSleepMin,
+                deepSleepMin: deepSleepMin,
+                hadNightmares: hadNightmares,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0

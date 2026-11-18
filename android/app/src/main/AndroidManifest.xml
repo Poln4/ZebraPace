@@ -3,7 +3,7 @@
          their own, but release builds only get what's declared here. -->
     <uses-permission android:name="android.permission.INTERNET"/>
 
-    <!-- Health Connect, read-only. Mirrors healthDataTypes() in
+    <!-- Health Connect reads. Mirrors healthDataTypes() in
          lib/data/healthkit/health_kit_service.dart: reading a workout
          (exercise session) also reads its distance and total calories, so
          those two are required too or workout reads fail. -->
@@ -17,6 +17,8 @@
     <uses-permission android:name="android.permission.health.READ_HEART_RATE_VARIABILITY"/>
     <!-- Sleep pre-fill: sleepDataTypes() in health_kit_service.dart. -->
     <uses-permission android:name="android.permission.health.READ_SLEEP"/>
+    <!-- The one write: weight typed into Vitals (weightWriteTypes). -->
+    <uses-permission android:name="android.permission.health.WRITE_WEIGHT"/>
 
     <!-- allowBackup off: health data shouldn't land in Google Drive backups,
          and flutter_secure_storage's encrypted values can't be decrypted

@@ -54,6 +54,11 @@ List<HealthDataType> sleepDataTypes() => [
       if (usesHealthConnect) HealthDataType.SLEEP_SESSION,
     ];
 
+/// The one thing ZebraPace writes to Health: body weight typed into Vitals.
+/// Like [readinessDataTypes], left out of hasPermissions. Keep the Android
+/// permission (WRITE_WEIGHT) in AndroidManifest.xml.
+const weightWriteTypes = [HealthDataType.WEIGHT];
+
 /// True on Android, where health data comes from Health Connect instead of
 /// Apple Health.
 bool get usesHealthConnect => !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
@@ -118,10 +123,59 @@ class HealthKitService {
   Future<bool> requestAuthorization() async {
     await _ensureConfigured();
     try {
+      final reads = [...healthDataTypes(), ...readinessDataTypes(), ...sleepDataTypes()];
       return await _health.requestAuthorization(
-          [...healthDataTypes(), ...readinessDataTypes(), ...sleepDataTypes()]);
+        [...reads, ...weightWriteTypes],
+        permissions: [
+          for (final _ in reads) HealthDataAccess.READ,
+          for (final _ in weightWriteTypes) HealthDataAccess.WRITE,
+        ],
+      );
     } catch (e, st) {
       ErrorReporter.report(e, st, where: 'health.authorize');
+      return false;
+    }
+  }
+
+  /// Asks for just the weight write permission, for installs that connected
+  /// Health before ZebraPace wrote anything.
+  Future<bool> requestWeightWrite() async {
+    await _ensureConfigured();
+    try {
+      return await _health.requestAuthorization(
+        weightWriteTypes,
+        permissions: [for (final _ in weightWriteTypes) HealthDataAccess.WRITE],
+      );
+    } catch (e, st) {
+      ErrorReporter.report(e, st, where: 'health.authorizeWeight');
+      return false;
+    }
+  }
+
+  /// Makes Health's weight for [day] match the one typed in ZebraPace: the
+  /// sample ZebraPace wrote for that day earlier (if any) is replaced, or
+  /// removed when [kg] is null. Health only lets an app delete its own
+  /// samples, so a scale's or another app's readings are never touched.
+  /// Today's weight is stamped now; a past day's at noon.
+  Future<bool> writeWeight(DateTime day, double? kg) async {
+    await _ensureConfigured();
+    final start = DateTime(day.year, day.month, day.day);
+    final end = start.add(const Duration(days: 1));
+    final now = DateTime.now();
+    final at = now.isAfter(start) && now.isBefore(end) ? now : start.add(const Duration(hours: 12));
+    try {
+      await _health.delete(type: HealthDataType.WEIGHT, startTime: start, endTime: end);
+      if (kg == null) return true;
+      return await _health.writeHealthData(
+        value: kg,
+        unit: HealthDataUnit.KILOGRAM,
+        type: HealthDataType.WEIGHT,
+        startTime: at,
+        endTime: at,
+        recordingMethod: RecordingMethod.manual,
+      );
+    } catch (e, st) {
+      ErrorReporter.report(e, st, where: 'health.writeWeight');
       return false;
     }
   }
@@ -245,14 +299,22 @@ class HealthKitService {
       return out;
     }
 
-    final stages = sleepDataTypes().where((t) => t != HealthDataType.SLEEP_SESSION).toList();
-    var asleep = await intervals(stages);
+    final rem = await intervals([HealthDataType.SLEEP_REM]);
+    final deep = await intervals([HealthDataType.SLEEP_DEEP]);
+    final others = sleepDataTypes()
+        .where((t) => !const [
+              HealthDataType.SLEEP_SESSION,
+              HealthDataType.SLEEP_REM,
+              HealthDataType.SLEEP_DEEP,
+            ].contains(t))
+        .toList();
+    var asleep = [...await intervals(others), ...rem, ...deep];
     if (asleep.isEmpty && usesHealthConnect) {
       asleep = await intervals([HealthDataType.SLEEP_SESSION]);
     }
     if (asleep.isEmpty) return null;
 
-    final night = DetectedSleep.fromSamples(date: date, asleep: asleep);
+    final night = DetectedSleep.fromSamples(date: date, asleep: asleep, rem: rem, deep: deep);
     if (night == null) return null;
 
     var heartRate = <(DateTime, int)>[];
@@ -270,7 +332,13 @@ class HealthKitService {
     } catch (_) {
       // No heart rate is fine; the duration still pre-fills.
     }
-    return DetectedSleep.fromSamples(date: date, asleep: asleep, heartRate: heartRate);
+    return DetectedSleep.fromSamples(
+      date: date,
+      asleep: asleep,
+      rem: rem,
+      deep: deep,
+      heartRate: heartRate,
+    );
   }
 
   /// Resting HR and HRV per local calendar day between [start] and [end],
