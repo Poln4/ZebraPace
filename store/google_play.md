@@ -29,7 +29,7 @@ ZebraPace helps you pace your energy when you live with Ehlers-Danlos syndrome (
 PACE YOUR DAY
 • Step goals that grow gently from your own recent baseline, with a caution line before you overdo it
 • Rest days and flare days never drag down your averages or break a streak
-• When your resting heart rate or HRV say your body needs recovery, today's step range shrinks on its own
+• Resting heart rate and HRV shown next to your own usual, plus a stand test and blood pressure from your cuff
 • A low-energy view that shows only the essentials
 
 LOG WHAT MATTERS, AS OFTEN AS YOU LIKE
@@ -86,7 +86,7 @@ ZebraPace te ayuda a dosificar tu energía si vives con síndrome de Ehlers-Danl
 DOSIFICA TU DÍA
 • Metas de pasos que crecen con suavidad desde tu propia base reciente, con una línea de precaución antes de que te excedas
 • Los días de descanso y de crisis nunca bajan tus promedios ni rompen una racha
-• Cuando tu frecuencia cardíaca en reposo o tu VFC indican que tu cuerpo necesita recuperarse, el rango de pasos del día se achica solo
+• Frecuencia cardíaca en reposo y VFC junto a tus valores habituales, además de una prueba de pie y la presión arterial de tu manguito
 • Una vista para días de poca energía que muestra solo lo esencial
 
 REGISTRA LO QUE IMPORTA, LAS VECES QUE QUIERAS
@@ -143,7 +143,7 @@ ZebraPace 幫助患有埃勒斯-當洛斯症候群（EDS/HSD）、運動後不�
 調配你的一天
 • 步數目標從你自己近期的基準線溫和成長，並在你過度勞累之前提供警戒線
 • 休息日與發作日絕不會拉低你的平均值或中斷紀錄
-• 當靜止心率或心率變異度（HRV）顯示身體需要恢復時，當天的步數範圍會自動縮小
+• 靜止心率與心率變異度（HRV）和你平常的數值並列顯示，另有站立測試與壓脈帶血壓紀錄
 • 低能量日檢視只顯示最必要的項目
 
 記錄重要的事，想記幾次都可以
@@ -235,13 +235,13 @@ Shows the heart-rate range during each imported workout and during sleep. The us
 **READ_RESTING_HEART_RATE**
 
 ```
-Compared only against the user's own history (about the last 21 days) to estimate recovery. On days resting heart rate is clearly above the user's usual, the suggested step range shrinks so they don't overexert, and the app shows the reason.
+Shown in the Autonomic signals card next to the user's own usual (about the last 21 days), so they can notice when their body is recovering less well than usual. It is information only and does not change the step goal.
 ```
 
 **READ_HEART_RATE_VARIABILITY**
 
 ```
-Compared only against the user's own history (about the last 21 days) to estimate recovery. On days HRV is clearly below the user's usual, the suggested step range shrinks so they don't overexert, and the app shows the reason.
+Shown in the Autonomic signals card next to the user's own usual (about the last 21 days), so they can notice when their body is recovering less well than usual. It is information only and does not change the step goal.
 ```
 
 **READ_SLEEP**
