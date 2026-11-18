@@ -2184,6 +2184,132 @@ abstract class AppLocalizations {
   /// **'Treat muscle soreness and joint/capsule signals as two separate things worth tracking separately — easing muscle soreness is a good sign, but pain, instability, or swelling around a joint is its own signal and deserves its own caution, regardless of what the muscle soreness is doing.'**
   String get principleMuscleDamageCaveatInspiration;
 
+  /// No description provided for @principleNoBalanceNumberTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Two Sides, Never One \"Balance\" Number'**
+  String get principleNoBalanceNumberTitle;
+
+  /// No description provided for @principleNoBalanceNumberFact.
+  ///
+  /// In en, this message translates to:
+  /// **'HRV in the time domain (RMSSD) tracks the parasympathetic (vagal) side and was validated against atropine blockade. The spectral ratios sold as \"sympathetic/parasympathetic balance\" (LF/HF, normalised units) are not valid measures of vagal tone or of balance.'**
+  String get principleNoBalanceNumberFact;
+
+  /// No description provided for @principleNoBalanceNumberInspiration.
+  ///
+  /// In en, this message translates to:
+  /// **'Your nervous system isn\'t a seesaw with one reading. That\'s why the app shows the rest side, the standing response and sweating separately, and never squeezes them into a score.'**
+  String get principleNoBalanceNumberInspiration;
+
+  /// No description provided for @principleOwnBaselineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Own Normal, Not a Population Number'**
+  String get principleOwnBaselineTitle;
+
+  /// No description provided for @principleOwnBaselineFact.
+  ///
+  /// In en, this message translates to:
+  /// **'Autonomic markers vary a lot between people, so they\'re read against the person\'s own recent history. Wrist heart rate is reliable at rest and during sleep, and much less so during cycling or strength work — which is why resting and overnight values are the ones compared.'**
+  String get principleOwnBaselineFact;
+
+  /// No description provided for @principleOwnBaselineInspiration.
+  ///
+  /// In en, this message translates to:
+  /// **'\"Usual\" here means your usual. A number that would worry someone else may be an ordinary day for you, and the other way round.'**
+  String get principleOwnBaselineInspiration;
+
+  /// No description provided for @principleSignalsInformTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Heart Signals Inform — They Don\'t Decide'**
+  String get principleSignalsInformTitle;
+
+  /// No description provided for @principleSignalsInformFact.
+  ///
+  /// In en, this message translates to:
+  /// **'Almost all HRV research comes from athletes and heart patients, not from people with EDS, POTS or MCAS, and the published cut-offs predict mortality in cardiac cohorts. Ultra-short HRV windows are rarely validated.'**
+  String get principleSignalsInformFact;
+
+  /// No description provided for @principleSignalsInformInspiration.
+  ///
+  /// In en, this message translates to:
+  /// **'So a low HRV or a higher resting pulse never shrinks your step envelope on its own. It\'s context you can weigh with how you feel — you stay the one who decides.'**
+  String get principleSignalsInformInspiration;
+
+  /// No description provided for @principleStandTestTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Why the Stand Test Reads 1, 3 and 10 Minutes'**
+  String get principleStandTestTitle;
+
+  /// No description provided for @principleStandTestFact.
+  ///
+  /// In en, this message translates to:
+  /// **'Consensus criteria define POTS as a heart-rate rise of 30 bpm or more within 10 minutes of standing (40 for ages 12–19) without orthostatic hypotension, and orthostatic hypotension as a fall of 20/10 mmHg or more within 3 minutes.'**
+  String get principleStandTestFact;
+
+  /// No description provided for @principleStandTestInspiration.
+  ///
+  /// In en, this message translates to:
+  /// **'The app shows these as patterns worth mentioning to your doctor, never as a diagnosis. Your own history of tests matters just as much — and stopping early is always the right call.'**
+  String get principleStandTestInspiration;
+
+  /// No description provided for @principleSweatSignalTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sweating Is a Signal You Can Describe'**
+  String get principleSweatSignalTitle;
+
+  /// No description provided for @principleSweatSignalFact.
+  ///
+  /// In en, this message translates to:
+  /// **'Sweat glands are driven by the sympathetic side only. Validated autonomic questionnaires include a secretomotor domain that asks about sweating, because what people report about their own symptoms is useful clinical information.'**
+  String get principleSweatSignalFact;
+
+  /// No description provided for @principleSweatSignalInspiration.
+  ///
+  /// In en, this message translates to:
+  /// **'No sensor needed: noticing \"less than usual\" or \"cold and clammy\" is real data about your body, and it\'s yours to bring to your appointments.'**
+  String get principleSweatSignalInspiration;
+
+  /// No description provided for @principlePainMonitoringTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pain 0–2, 3–5, Above 5: the Pain-Monitoring Model'**
+  String get principlePainMonitoringTitle;
+
+  /// No description provided for @principlePainMonitoringFact.
+  ///
+  /// In en, this message translates to:
+  /// **'Rehabilitation that lets pain reach up to 5/10 during exercise — as long as it settles by the next morning and isn\'t sharp — did as well as rest in a randomised trial, with no negative effects from staying active.'**
+  String get principlePainMonitoringFact;
+
+  /// No description provided for @principlePainMonitoringInspiration.
+  ///
+  /// In en, this message translates to:
+  /// **'Some discomfort isn\'t damage. The plan\'s pain colours tell you when to keep going, when to hold, and when to step back — not when to give up.'**
+  String get principlePainMonitoringInspiration;
+
+  /// No description provided for @principleGradedExposureTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Facing a Feared Movement, One Small Step at a Time'**
+  String get principleGradedExposureTitle;
+
+  /// No description provided for @principleGradedExposureFact.
+  ///
+  /// In en, this message translates to:
+  /// **'In the fear-avoidance model, fear of pain — not pain intensity alone — leads to avoidance, disuse and more disability. Graded exposure tests the prediction step by step, and each time nothing bad happens the belief loosens.'**
+  String get principleGradedExposureFact;
+
+  /// No description provided for @principleGradedExposureInspiration.
+  ///
+  /// In en, this message translates to:
+  /// **'That\'s why the fear ladder keeps an evidence list. Every \"I did it and nothing bad happened\" is proof your body collected for you.'**
+  String get principleGradedExposureInspiration;
+
   /// No description provided for @restFactNoBehind.
   ///
   /// In en, this message translates to:
@@ -4213,6 +4339,12 @@ abstract class AppLocalizations {
   /// **'🌙 Your body is asking for a smaller day, so today\'s envelope is smaller.'**
   String get readinessLowHeadline;
 
+  /// No description provided for @readinessAutonomicAwayHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Your heart signals are further from your usual today. Just information: your envelope stays the same.'**
+  String get readinessAutonomicAwayHeadline;
+
   /// No description provided for @readinessReasonRestingHeartRate.
   ///
   /// In en, this message translates to:
@@ -5790,6 +5922,504 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Waits for your physio\'s or clinician\'s OK. Skip it for now — the rest of the session still counts.'**
   String get planStepLockedNote;
+
+  /// No description provided for @autonomicTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'🫀 Autonomic signals'**
+  String get autonomicTitle;
+
+  /// No description provided for @autonomicCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Two sides of your nervous system, kept apart and compared with your own history. There\'s no single \"balance\" number: no valid measure gives one.'**
+  String get autonomicCaption;
+
+  /// No description provided for @autonomicVagalTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rest side (parasympathetic)'**
+  String get autonomicVagalTitle;
+
+  /// No description provided for @autonomicVagalEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect Health, or log resting heart rate and HRV in Sleep, to see this side.'**
+  String get autonomicVagalEmpty;
+
+  /// No description provided for @autonomicVagalNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Information only: these never change your step envelope.'**
+  String get autonomicVagalNote;
+
+  /// No description provided for @autonomicHrvMetricIos.
+  ///
+  /// In en, this message translates to:
+  /// **'Apple Health records HRV as SDNN, which mixes both sides. It\'s only compared with itself.'**
+  String get autonomicHrvMetricIos;
+
+  /// No description provided for @autonomicHrvMetricAndroid.
+  ///
+  /// In en, this message translates to:
+  /// **'Health Connect records HRV as RMSSD, which mostly reflects the rest side.'**
+  String get autonomicHrvMetricAndroid;
+
+  /// No description provided for @autonomicStandTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Standing response (sympathetic, indirect)'**
+  String get autonomicStandTitle;
+
+  /// No description provided for @autonomicStandEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No stand test yet. It takes about 15 minutes.'**
+  String get autonomicStandEmpty;
+
+  /// No description provided for @autonomicStandStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a stand test'**
+  String get autonomicStandStart;
+
+  /// No description provided for @autonomicStandLast.
+  ///
+  /// In en, this message translates to:
+  /// **'Last test {date}'**
+  String autonomicStandLast(String date);
+
+  /// No description provided for @autonomicHrRise.
+  ///
+  /// In en, this message translates to:
+  /// **'Standing heart rate: {change} bpm vs resting'**
+  String autonomicHrRise(String change);
+
+  /// No description provided for @autonomicHrRiseUsual.
+  ///
+  /// In en, this message translates to:
+  /// **'your usual rise {bpm}'**
+  String autonomicHrRiseUsual(int bpm);
+
+  /// No description provided for @autonomicHrRisePending.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{your usual rise shows after 1 more test} other{your usual rise shows after {count} more tests}}'**
+  String autonomicHrRisePending(int count);
+
+  /// No description provided for @autonomicPressureChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood pressure changed {sys}/{dia} mmHg in the first 3 minutes'**
+  String autonomicPressureChange(String sys, String dia);
+
+  /// No description provided for @autonomicPotsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'A heart-rate rise of 30 bpm or more (or above 120) can suggest a pattern worth mentioning to your doctor. It isn\'t a diagnosis.'**
+  String get autonomicPotsHint;
+
+  /// No description provided for @autonomicOhHint.
+  ///
+  /// In en, this message translates to:
+  /// **'A blood-pressure drop of 20/10 mmHg or more within 3 minutes can suggest a pattern worth mentioning to your doctor. It isn\'t a diagnosis.'**
+  String get autonomicOhHint;
+
+  /// No description provided for @autonomicStoppedEarly.
+  ///
+  /// In en, this message translates to:
+  /// **'stopped early'**
+  String get autonomicStoppedEarly;
+
+  /// No description provided for @autonomicAllTests.
+  ///
+  /// In en, this message translates to:
+  /// **'All tests'**
+  String get autonomicAllTests;
+
+  /// No description provided for @autonomicTapToDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a test to delete it.'**
+  String get autonomicTapToDelete;
+
+  /// No description provided for @autonomicSweatTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sweating (sympathetic, as you describe it)'**
+  String get autonomicSweatTitle;
+
+  /// No description provided for @autonomicSweatCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Sweat glands answer only to the sympathetic side. Anything different today?'**
+  String get autonomicSweatCaption;
+
+  /// No description provided for @autonomicSweatRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 14 days: {summary}'**
+  String autonomicSweatRecent(String summary);
+
+  /// No description provided for @sweatMoreThanUsual.
+  ///
+  /// In en, this message translates to:
+  /// **'More than usual'**
+  String get sweatMoreThanUsual;
+
+  /// No description provided for @sweatLessThanUsual.
+  ///
+  /// In en, this message translates to:
+  /// **'Less than usual'**
+  String get sweatLessThanUsual;
+
+  /// No description provided for @sweatCouldNotSweat.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t sweat in heat or effort'**
+  String get sweatCouldNotSweat;
+
+  /// No description provided for @sweatColdClammy.
+  ///
+  /// In en, this message translates to:
+  /// **'Cold, clammy hands or feet'**
+  String get sweatColdClammy;
+
+  /// No description provided for @sweatNightSweats.
+  ///
+  /// In en, this message translates to:
+  /// **'Night sweats'**
+  String get sweatNightSweats;
+
+  /// No description provided for @sweatOneSideOrPatchy.
+  ///
+  /// In en, this message translates to:
+  /// **'Only on one side or in patches'**
+  String get sweatOneSideOrPatchy;
+
+  /// No description provided for @standSymptomLightheaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Light-headed'**
+  String get standSymptomLightheaded;
+
+  /// No description provided for @standSymptomPalpitations.
+  ///
+  /// In en, this message translates to:
+  /// **'Racing or pounding heart'**
+  String get standSymptomPalpitations;
+
+  /// No description provided for @standSymptomBlurredVision.
+  ///
+  /// In en, this message translates to:
+  /// **'Blurred or dimming vision'**
+  String get standSymptomBlurredVision;
+
+  /// No description provided for @standSymptomNausea.
+  ///
+  /// In en, this message translates to:
+  /// **'Nausea'**
+  String get standSymptomNausea;
+
+  /// No description provided for @standSymptomSweating.
+  ///
+  /// In en, this message translates to:
+  /// **'Sweating'**
+  String get standSymptomSweating;
+
+  /// No description provided for @standSymptomShaky.
+  ///
+  /// In en, this message translates to:
+  /// **'Shaky'**
+  String get standSymptomShaky;
+
+  /// No description provided for @standSymptomBreathless.
+  ///
+  /// In en, this message translates to:
+  /// **'Short of breath'**
+  String get standSymptomBreathless;
+
+  /// No description provided for @standSymptomHeadache.
+  ///
+  /// In en, this message translates to:
+  /// **'Headache or neck ache'**
+  String get standSymptomHeadache;
+
+  /// No description provided for @standTestTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stand test'**
+  String get standTestTitle;
+
+  /// No description provided for @standTestIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'This shows how your heart rate (and blood pressure, if you have a cuff) responds when you stand up. You rest 5 minutes, then stand still for up to 10 minutes, typing in your heart rate at 1, 3 and 10 minutes.'**
+  String get standTestIntro;
+
+  /// No description provided for @standTestSafetyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Before you start'**
+  String get standTestSafetyTitle;
+
+  /// No description provided for @standTestSafetyWall.
+  ///
+  /// In en, this message translates to:
+  /// **'Stand with your back near a wall and a chair right behind you.'**
+  String get standTestSafetyWall;
+
+  /// No description provided for @standTestSafetyStop.
+  ///
+  /// In en, this message translates to:
+  /// **'If you feel faint, dizzy or unwell, sit or lie down right away and tap Stop test. Stopping is always fine.'**
+  String get standTestSafetyStop;
+
+  /// No description provided for @standTestSafetyCompany.
+  ///
+  /// In en, this message translates to:
+  /// **'If you\'ve fainted before, only do it with someone with you.'**
+  String get standTestSafetyCompany;
+
+  /// No description provided for @standTestSafetyWhen.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip it on a flare day, right after eating, or after a hot shower.'**
+  String get standTestSafetyWhen;
+
+  /// No description provided for @standTestRestPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Rest position'**
+  String get standTestRestPosition;
+
+  /// No description provided for @standTestLying.
+  ///
+  /// In en, this message translates to:
+  /// **'Lying down'**
+  String get standTestLying;
+
+  /// No description provided for @standTestSitting.
+  ///
+  /// In en, this message translates to:
+  /// **'Sitting'**
+  String get standTestSitting;
+
+  /// No description provided for @standTestBeginRest.
+  ///
+  /// In en, this message translates to:
+  /// **'Start resting (5 min)'**
+  String get standTestBeginRest;
+
+  /// No description provided for @standTestResting.
+  ///
+  /// In en, this message translates to:
+  /// **'Rest quietly. Rest ends in {time}.'**
+  String standTestResting(String time);
+
+  /// No description provided for @standTestSkipRest.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'ve already rested 5 minutes'**
+  String get standTestSkipRest;
+
+  /// No description provided for @standTestBaselineLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Resting'**
+  String get standTestBaselineLabel;
+
+  /// No description provided for @standTestBaselinePrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Type your resting heart rate, then stand up.'**
+  String get standTestBaselinePrompt;
+
+  /// No description provided for @standTestStandUp.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m standing now'**
+  String get standTestStandUp;
+
+  /// No description provided for @standTestPointLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{min} min standing'**
+  String standTestPointLabel(int min);
+
+  /// No description provided for @standTestStanding.
+  ///
+  /// In en, this message translates to:
+  /// **'Standing {time}'**
+  String standTestStanding(String time);
+
+  /// No description provided for @standTestNextAt.
+  ///
+  /// In en, this message translates to:
+  /// **'{min}-minute reading in {time}'**
+  String standTestNextAt(int min, String time);
+
+  /// No description provided for @standTestAllRead.
+  ///
+  /// In en, this message translates to:
+  /// **'All readings done. You can sit down.'**
+  String get standTestAllRead;
+
+  /// No description provided for @standTestStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop test'**
+  String get standTestStop;
+
+  /// No description provided for @standTestStoppedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Test stopped'**
+  String get standTestStoppedTitle;
+
+  /// No description provided for @standTestStoppedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Sit or lie down and rest. What you recorded so far is saved.'**
+  String get standTestStoppedBody;
+
+  /// No description provided for @standTestFinish.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish and save'**
+  String get standTestFinish;
+
+  /// No description provided for @standTestHr.
+  ///
+  /// In en, this message translates to:
+  /// **'Heart rate'**
+  String get standTestHr;
+
+  /// No description provided for @standTestSys.
+  ///
+  /// In en, this message translates to:
+  /// **'Systolic'**
+  String get standTestSys;
+
+  /// No description provided for @standTestDia.
+  ///
+  /// In en, this message translates to:
+  /// **'Diastolic'**
+  String get standTestDia;
+
+  /// No description provided for @standTestBpOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood pressure, optional'**
+  String get standTestBpOptional;
+
+  /// No description provided for @standTestHrHint.
+  ///
+  /// In en, this message translates to:
+  /// **'From your watch\'s heart rate app or a pulse oximeter.'**
+  String get standTestHrHint;
+
+  /// No description provided for @standTestSymptoms.
+  ///
+  /// In en, this message translates to:
+  /// **'Anything you feel while standing'**
+  String get standTestSymptoms;
+
+  /// No description provided for @autonomicBpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood pressure (cuff)'**
+  String get autonomicBpTitle;
+
+  /// No description provided for @autonomicBpEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No readings yet. Type them in from your cuff whenever you measure.'**
+  String get autonomicBpEmpty;
+
+  /// No description provided for @autonomicBpAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a reading'**
+  String get autonomicBpAdd;
+
+  /// No description provided for @autonomicBpUsual.
+  ///
+  /// In en, this message translates to:
+  /// **'your usual {sys}/{dia}'**
+  String autonomicBpUsual(int sys, int dia);
+
+  /// No description provided for @autonomicBpUsualPending.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{your usual shows after 1 more reading in this position} other{your usual shows after {count} more readings in this position}}'**
+  String autonomicBpUsualPending(int count);
+
+  /// No description provided for @autonomicBpPulse.
+  ///
+  /// In en, this message translates to:
+  /// **'pulse {bpm}'**
+  String autonomicBpPulse(int bpm);
+
+  /// No description provided for @bpPositionSitting.
+  ///
+  /// In en, this message translates to:
+  /// **'Sitting'**
+  String get bpPositionSitting;
+
+  /// No description provided for @bpPositionLying.
+  ///
+  /// In en, this message translates to:
+  /// **'Lying down'**
+  String get bpPositionLying;
+
+  /// No description provided for @bpPositionStanding.
+  ///
+  /// In en, this message translates to:
+  /// **'Standing'**
+  String get bpPositionStanding;
+
+  /// No description provided for @bpSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood pressure reading'**
+  String get bpSheetTitle;
+
+  /// No description provided for @bpPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Position'**
+  String get bpPosition;
+
+  /// No description provided for @bpPulseOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Pulse, optional'**
+  String get bpPulseOptional;
+
+  /// No description provided for @bpTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get bpTime;
+
+  /// No description provided for @bpTip.
+  ///
+  /// In en, this message translates to:
+  /// **'For a steady reading: sit for 5 minutes first, feet flat, arm supported at heart level, and don\'t talk.'**
+  String get bpTip;
+
+  /// No description provided for @bpAllReadings.
+  ///
+  /// In en, this message translates to:
+  /// **'All readings'**
+  String get bpAllReadings;
+
+  /// No description provided for @bpTapToDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a reading to delete it.'**
+  String get bpTapToDelete;
 }
 
 class _AppLocalizationsDelegate

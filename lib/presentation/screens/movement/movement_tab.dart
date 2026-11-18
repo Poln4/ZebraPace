@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../core/theme/zebra_theme.dart';
 import 'widgets/activities_section.dart';
+import 'widgets/autonomic_section.dart';
 import 'widgets/calisthenics_section.dart';
 import 'widgets/healthkit_workout_suggestions.dart';
 import 'widgets/injuries_section.dart';
@@ -20,6 +21,7 @@ class MovementTab extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           children: const [
             StepsSection(),
+            AutonomicSection(),
             HealthKitWorkoutSuggestions(),
             ActivitiesSection(),
             TherapiesSection(),

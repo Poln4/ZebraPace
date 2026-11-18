@@ -57,6 +57,21 @@ class ReadinessResult {
 
   static const unknown = ReadinessResult(level: ReadinessLevel.unknown);
 
+  /// What may shape the step envelope. Only the soreness checks do: resting
+  /// HR and HRV are shown as information next to the envelope, never as an
+  /// alarm that shrinks it (decided 2026-11-18). Unknown while nothing at
+  /// all is known yet.
+  ReadinessLevel get envelopeLevel {
+    if (reasons.contains(ReadinessReason.possibleCrash)) return ReadinessLevel.low;
+    if (reasons.contains(ReadinessReason.recoveryWindowExceeded)) return ReadinessLevel.lower;
+    return level == ReadinessLevel.unknown ? ReadinessLevel.unknown : ReadinessLevel.steady;
+  }
+
+  /// Resting HR or HRV sits outside the person's usual range today.
+  bool get autonomicAway =>
+      reasons.contains(ReadinessReason.restingHeartRateUp) ||
+      reasons.contains(ReadinessReason.hrvDown);
+
   final ReadinessLevel level;
   final Set<ReadinessReason> reasons;
 
@@ -97,7 +112,8 @@ class ReadinessResult {
 }
 
 /// Turns autonomic markers (resting HR, HRV) and recent soreness checks
-/// into a readiness level for the step envelope. Every comparison is against
+/// into a readiness level. Only the soreness part can change the step
+/// envelope (see [ReadinessResult.envelopeLevel]). Every comparison is against
 /// the person's own rolling baseline, never a population norm. A heuristic
 /// for pacing, not a diagnosis.
 class ReadinessService {

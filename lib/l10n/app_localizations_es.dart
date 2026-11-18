@@ -1225,6 +1225,90 @@ class AppLocalizationsEs extends AppLocalizations {
       'Trata el dolor muscular y las señales de la articulación/cápsula como dos cosas separadas que vale la pena registrar por separado — que el dolor muscular disminuya es buena señal, pero el dolor, la inestabilidad o la hinchazón alrededor de una articulación es su propia señal y merece su propia precaución, sin importar lo que esté haciendo el dolor muscular.';
 
   @override
+  String get principleNoBalanceNumberTitle =>
+      'Dos lados, nunca un número de \"balance\"';
+
+  @override
+  String get principleNoBalanceNumberFact =>
+      'La VFC en el dominio del tiempo (RMSSD) refleja el lado parasimpático (vagal) y se validó contra el bloqueo con atropina. Los cocientes espectrales que se venden como \"balance simpático/parasimpático\" (LF/HF, unidades normalizadas) no son medidas válidas del tono vagal ni del balance.';
+
+  @override
+  String get principleNoBalanceNumberInspiration =>
+      'Tu sistema nervioso no es un balancín con una sola lectura. Por eso la app muestra por separado el lado de reposo, la respuesta al ponerse de pie y el sudor, y nunca los junta en un puntaje.';
+
+  @override
+  String get principleOwnBaselineTitle =>
+      'Tu propio normal, no un número de la población';
+
+  @override
+  String get principleOwnBaselineFact =>
+      'Los marcadores autonómicos varían mucho entre personas, así que se leen contra la historia reciente de cada una. El pulso de muñeca es confiable en reposo y durante el sueño, y mucho menos en bicicleta o en ejercicios de fuerza: por eso se comparan los valores en reposo y nocturnos.';
+
+  @override
+  String get principleOwnBaselineInspiration =>
+      'Aquí \"usual\" significa tu usual. Un número que preocuparía a otra persona puede ser un día común para ti, y al revés.';
+
+  @override
+  String get principleSignalsInformTitle =>
+      'Las señales del corazón informan, no deciden';
+
+  @override
+  String get principleSignalsInformFact =>
+      'Casi toda la investigación sobre VFC viene de atletas y pacientes cardíacos, no de personas con EDS, POTS o MCAS, y los puntos de corte publicados predicen mortalidad en cohortes cardíacas. Las ventanas ultracortas de VFC casi nunca están validadas.';
+
+  @override
+  String get principleSignalsInformInspiration =>
+      'Por eso una VFC baja o un pulso en reposo más alto nunca reducen tu rango de pasos por sí solos. Es contexto que puedes sopesar con cómo te sientes: la que decide sigues siendo tú.';
+
+  @override
+  String get principleStandTestTitle =>
+      'Por qué la prueba de pie mide a los 1, 3 y 10 minutos';
+
+  @override
+  String get principleStandTestFact =>
+      'Los criterios de consenso definen el POTS como una subida del pulso de 30 lpm o más dentro de los 10 minutos de pie (40 entre los 12 y 19 años) sin hipotensión ortostática, y la hipotensión ortostática como una caída de 20/10 mmHg o más dentro de los 3 minutos.';
+
+  @override
+  String get principleStandTestInspiration =>
+      'La app los muestra como patrones que vale la pena comentar con tu médico, nunca como un diagnóstico. Tu propia historia de pruebas importa igual, y detenerse antes siempre es la decisión correcta.';
+
+  @override
+  String get principleSweatSignalTitle =>
+      'El sudor es una señal que puedes describir';
+
+  @override
+  String get principleSweatSignalFact =>
+      'Las glándulas del sudor dependen solo del lado simpático. Los cuestionarios autonómicos validados incluyen un dominio secretomotor que pregunta por el sudor, porque lo que la persona reporta sobre sus propios síntomas es información clínica útil.';
+
+  @override
+  String get principleSweatSignalInspiration =>
+      'No hace falta un sensor: notar \"menos que lo usual\" o \"frío y húmedo\" son datos reales de tu cuerpo, y puedes llevarlos a tus consultas.';
+
+  @override
+  String get principlePainMonitoringTitle =>
+      'Dolor 0–2, 3–5, más de 5: el modelo de monitoreo del dolor';
+
+  @override
+  String get principlePainMonitoringFact =>
+      'La rehabilitación que permite que el dolor llegue hasta 5/10 durante el ejercicio —siempre que se calme a la mañana siguiente y no sea agudo— funcionó igual que el reposo en un ensayo aleatorizado, sin efectos negativos por seguir activa o activo.';
+
+  @override
+  String get principlePainMonitoringInspiration =>
+      'Algo de molestia no es daño. Los colores de dolor del plan te dicen cuándo seguir, cuándo mantener y cuándo bajar un paso, no cuándo rendirte.';
+
+  @override
+  String get principleGradedExposureTitle =>
+      'Enfrentar un movimiento temido, un paso pequeño a la vez';
+
+  @override
+  String get principleGradedExposureFact =>
+      'En el modelo de miedo y evitación, el miedo al dolor —no solo su intensidad— lleva a evitar, al desuso y a más discapacidad. La exposición gradual pone a prueba la predicción paso a paso, y cada vez que no pasa nada malo la creencia se afloja.';
+
+  @override
+  String get principleGradedExposureInspiration =>
+      'Por eso la escalera de miedos guarda una lista de evidencia. Cada \"lo hice y no pasó nada malo\" es una prueba que tu cuerpo juntó para ti.';
+
+  @override
   String get restFactNoBehind =>
       'No existe el \'atraso\' en una condición crónica. La única comparación que importa es tú-hoy con tú-ayer, con delicadeza.';
 
@@ -2478,6 +2562,10 @@ class AppLocalizationsEs extends AppLocalizations {
       '🌙 Tu cuerpo pide un día más pequeño, así que el rango de hoy es menor.';
 
   @override
+  String get readinessAutonomicAwayHeadline =>
+      'Hoy tus señales del corazón están más lejos de lo usual. Es solo información: tu rango no cambia.';
+
+  @override
   String readinessReasonRestingHeartRate(int bpm) {
     return 'Tu frecuencia cardíaca en reposo está $bpm lpm por encima de lo habitual.';
   }
@@ -3444,4 +3532,312 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get planStepLockedNote =>
       'Espera el visto bueno de tu fisioterapeuta o profesional. Sáltalo por ahora: el resto de la sesión cuenta igual.';
+
+  @override
+  String get autonomicTitle => '🫀 Señales autonómicas';
+
+  @override
+  String get autonomicCaption =>
+      'Dos lados de tu sistema nervioso, por separado y comparados con tu propia historia. No hay un número de \"balance\": ninguna medida válida lo entrega.';
+
+  @override
+  String get autonomicVagalTitle => 'Lado de reposo (parasimpático)';
+
+  @override
+  String get autonomicVagalEmpty =>
+      'Conecta Health, o registra el pulso en reposo y la VFC en Sueño, para ver este lado.';
+
+  @override
+  String get autonomicVagalNote =>
+      'Solo información: nunca cambian tu rango de pasos.';
+
+  @override
+  String get autonomicHrvMetricIos =>
+      'Apple Health registra la VFC como SDNN, que mezcla ambos lados. Solo se compara consigo misma.';
+
+  @override
+  String get autonomicHrvMetricAndroid =>
+      'Health Connect registra la VFC como RMSSD, que refleja sobre todo el lado de reposo.';
+
+  @override
+  String get autonomicStandTitle =>
+      'Respuesta al ponerse de pie (simpático, indirecto)';
+
+  @override
+  String get autonomicStandEmpty =>
+      'Aún no hay pruebas de pie. Toma unos 15 minutos.';
+
+  @override
+  String get autonomicStandStart => 'Hacer una prueba de pie';
+
+  @override
+  String autonomicStandLast(String date) {
+    return 'Última prueba $date';
+  }
+
+  @override
+  String autonomicHrRise(String change) {
+    return 'Pulso de pie: $change lpm respecto al reposo';
+  }
+
+  @override
+  String autonomicHrRiseUsual(int bpm) {
+    return 'tu subida usual $bpm';
+  }
+
+  @override
+  String autonomicHrRisePending(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'tu subida usual aparece tras $count pruebas más',
+      one: 'tu subida usual aparece tras 1 prueba más',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String autonomicPressureChange(String sys, String dia) {
+    return 'La presión cambió $sys/$dia mmHg en los primeros 3 minutos';
+  }
+
+  @override
+  String get autonomicPotsHint =>
+      'Una subida del pulso de 30 lpm o más (o sobre 120) puede sugerir un patrón que vale la pena comentar con tu médico. No es un diagnóstico.';
+
+  @override
+  String get autonomicOhHint =>
+      'Una caída de la presión de 20/10 mmHg o más en 3 minutos puede sugerir un patrón que vale la pena comentar con tu médico. No es un diagnóstico.';
+
+  @override
+  String get autonomicStoppedEarly => 'detenida antes';
+
+  @override
+  String get autonomicAllTests => 'Todas las pruebas';
+
+  @override
+  String get autonomicTapToDelete => 'Toca una prueba para borrarla.';
+
+  @override
+  String get autonomicSweatTitle => 'Sudor (simpático, como tú lo describes)';
+
+  @override
+  String get autonomicSweatCaption =>
+      'Las glándulas del sudor responden solo al lado simpático. ¿Algo distinto hoy?';
+
+  @override
+  String autonomicSweatRecent(String summary) {
+    return 'Últimos 14 días: $summary';
+  }
+
+  @override
+  String get sweatMoreThanUsual => 'Más que lo usual';
+
+  @override
+  String get sweatLessThanUsual => 'Menos que lo usual';
+
+  @override
+  String get sweatCouldNotSweat => 'No pude sudar con calor o esfuerzo';
+
+  @override
+  String get sweatColdClammy => 'Manos o pies fríos y húmedos';
+
+  @override
+  String get sweatNightSweats => 'Sudor nocturno';
+
+  @override
+  String get sweatOneSideOrPatchy => 'Solo de un lado o por zonas';
+
+  @override
+  String get standSymptomLightheaded => 'Mareo';
+
+  @override
+  String get standSymptomPalpitations => 'Palpitaciones';
+
+  @override
+  String get standSymptomBlurredVision => 'Visión borrosa u oscura';
+
+  @override
+  String get standSymptomNausea => 'Náuseas';
+
+  @override
+  String get standSymptomSweating => 'Sudor';
+
+  @override
+  String get standSymptomShaky => 'Temblor';
+
+  @override
+  String get standSymptomBreathless => 'Falta de aire';
+
+  @override
+  String get standSymptomHeadache => 'Dolor de cabeza o de cuello';
+
+  @override
+  String get standTestTitle => 'Prueba de pie';
+
+  @override
+  String get standTestIntro =>
+      'Muestra cómo responde tu pulso (y tu presión, si tienes tensiómetro) al ponerte de pie. Descansas 5 minutos y luego te quedas de pie, quieta o quieto, hasta 10 minutos, anotando tu pulso a los 1, 3 y 10 minutos.';
+
+  @override
+  String get standTestSafetyTitle => 'Antes de empezar';
+
+  @override
+  String get standTestSafetyWall =>
+      'Párate con la espalda cerca de una pared y una silla justo detrás.';
+
+  @override
+  String get standTestSafetyStop =>
+      'Si sientes que te vas a desmayar, mareo o malestar, siéntate o acuéstate de inmediato y toca Detener prueba. Detenerse siempre está bien.';
+
+  @override
+  String get standTestSafetyCompany =>
+      'Si te has desmayado antes, hazla solo con alguien a tu lado.';
+
+  @override
+  String get standTestSafetyWhen =>
+      'No la hagas en un día de brote, justo después de comer ni después de una ducha caliente.';
+
+  @override
+  String get standTestRestPosition => 'Posición de reposo';
+
+  @override
+  String get standTestLying => 'Acostarse';
+
+  @override
+  String get standTestSitting => 'Sentarse';
+
+  @override
+  String get standTestBeginRest => 'Empezar el reposo (5 min)';
+
+  @override
+  String standTestResting(String time) {
+    return 'Descansa en calma. El reposo termina en $time.';
+  }
+
+  @override
+  String get standTestSkipRest => 'Ya descansé 5 minutos';
+
+  @override
+  String get standTestBaselineLabel => 'En reposo';
+
+  @override
+  String get standTestBaselinePrompt =>
+      'Anota tu pulso en reposo y luego ponte de pie.';
+
+  @override
+  String get standTestStandUp => 'Ya estoy de pie';
+
+  @override
+  String standTestPointLabel(int min) {
+    return '$min min de pie';
+  }
+
+  @override
+  String standTestStanding(String time) {
+    return 'De pie $time';
+  }
+
+  @override
+  String standTestNextAt(int min, String time) {
+    return 'Lectura del minuto $min en $time';
+  }
+
+  @override
+  String get standTestAllRead =>
+      'Ya están todas las lecturas. Puedes sentarte.';
+
+  @override
+  String get standTestStop => 'Detener prueba';
+
+  @override
+  String get standTestStoppedTitle => 'Prueba detenida';
+
+  @override
+  String get standTestStoppedBody =>
+      'Siéntate o acuéstate y descansa. Lo que alcanzaste a anotar quedó guardado.';
+
+  @override
+  String get standTestFinish => 'Terminar y guardar';
+
+  @override
+  String get standTestHr => 'Pulso';
+
+  @override
+  String get standTestSys => 'Sistólica';
+
+  @override
+  String get standTestDia => 'Diastólica';
+
+  @override
+  String get standTestBpOptional => 'Presión, opcional';
+
+  @override
+  String get standTestHrHint =>
+      'Desde la app de pulso de tu reloj o un oxímetro.';
+
+  @override
+  String get standTestSymptoms => 'Lo que sientas estando de pie';
+
+  @override
+  String get autonomicBpTitle => 'Presión arterial (tensiómetro)';
+
+  @override
+  String get autonomicBpEmpty =>
+      'Aún no hay lecturas. Anótalas desde tu tensiómetro cada vez que te midas.';
+
+  @override
+  String get autonomicBpAdd => 'Agregar una lectura';
+
+  @override
+  String autonomicBpUsual(int sys, int dia) {
+    return 'tu usual $sys/$dia';
+  }
+
+  @override
+  String autonomicBpUsualPending(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'tu usual aparece tras $count lecturas más en esta posición',
+      one: 'tu usual aparece tras 1 lectura más en esta posición',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String autonomicBpPulse(int bpm) {
+    return 'pulso $bpm';
+  }
+
+  @override
+  String get bpPositionSitting => 'Sentado/a';
+
+  @override
+  String get bpPositionLying => 'Acostado/a';
+
+  @override
+  String get bpPositionStanding => 'De pie';
+
+  @override
+  String get bpSheetTitle => 'Lectura de presión';
+
+  @override
+  String get bpPosition => 'Posición';
+
+  @override
+  String get bpPulseOptional => 'Pulso, opcional';
+
+  @override
+  String get bpTime => 'Hora';
+
+  @override
+  String get bpTip =>
+      'Para una lectura estable: siéntate 5 minutos antes, con los pies apoyados, el brazo a la altura del corazón y sin hablar.';
+
+  @override
+  String get bpAllReadings => 'Todas las lecturas';
+
+  @override
+  String get bpTapToDelete => 'Toca una lectura para borrarla.';
 }

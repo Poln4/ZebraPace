@@ -14288,6 +14288,2164 @@ class ExposureLogsCompanion extends UpdateCompanion<ExposureLog> {
   }
 }
 
+class $StandTestsTable extends StandTests
+    with TableInfo<$StandTestsTable, StandTest> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $StandTestsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<String> updatedAt = GeneratedColumn<String>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _dateMeta = const VerificationMeta('date');
+  @override
+  late final GeneratedColumn<String> date = GeneratedColumn<String>(
+    'date',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _startedAtMeta = const VerificationMeta(
+    'startedAt',
+  );
+  @override
+  late final GeneratedColumn<String> startedAt = GeneratedColumn<String>(
+    'started_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _baselinePositionMeta = const VerificationMeta(
+    'baselinePosition',
+  );
+  @override
+  late final GeneratedColumn<String> baselinePosition = GeneratedColumn<String>(
+    'baseline_position',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('lying'),
+  );
+  static const VerificationMeta _baselineHrMeta = const VerificationMeta(
+    'baselineHr',
+  );
+  @override
+  late final GeneratedColumn<int> baselineHr = GeneratedColumn<int>(
+    'baseline_hr',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _baselineSysMeta = const VerificationMeta(
+    'baselineSys',
+  );
+  @override
+  late final GeneratedColumn<int> baselineSys = GeneratedColumn<int>(
+    'baseline_sys',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _baselineDiaMeta = const VerificationMeta(
+    'baselineDia',
+  );
+  @override
+  late final GeneratedColumn<int> baselineDia = GeneratedColumn<int>(
+    'baseline_dia',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _hr1Meta = const VerificationMeta('hr1');
+  @override
+  late final GeneratedColumn<int> hr1 = GeneratedColumn<int>(
+    'hr1',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _sys1Meta = const VerificationMeta('sys1');
+  @override
+  late final GeneratedColumn<int> sys1 = GeneratedColumn<int>(
+    'sys1',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _dia1Meta = const VerificationMeta('dia1');
+  @override
+  late final GeneratedColumn<int> dia1 = GeneratedColumn<int>(
+    'dia1',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _hr3Meta = const VerificationMeta('hr3');
+  @override
+  late final GeneratedColumn<int> hr3 = GeneratedColumn<int>(
+    'hr3',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _sys3Meta = const VerificationMeta('sys3');
+  @override
+  late final GeneratedColumn<int> sys3 = GeneratedColumn<int>(
+    'sys3',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _dia3Meta = const VerificationMeta('dia3');
+  @override
+  late final GeneratedColumn<int> dia3 = GeneratedColumn<int>(
+    'dia3',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _hr10Meta = const VerificationMeta('hr10');
+  @override
+  late final GeneratedColumn<int> hr10 = GeneratedColumn<int>(
+    'hr10',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _sys10Meta = const VerificationMeta('sys10');
+  @override
+  late final GeneratedColumn<int> sys10 = GeneratedColumn<int>(
+    'sys10',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _dia10Meta = const VerificationMeta('dia10');
+  @override
+  late final GeneratedColumn<int> dia10 = GeneratedColumn<int>(
+    'dia10',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _symptomsMeta = const VerificationMeta(
+    'symptoms',
+  );
+  @override
+  late final GeneratedColumn<String> symptoms = GeneratedColumn<String>(
+    'symptoms',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('[]'),
+  );
+  static const VerificationMeta _stoppedEarlyMeta = const VerificationMeta(
+    'stoppedEarly',
+  );
+  @override
+  late final GeneratedColumn<bool> stoppedEarly = GeneratedColumn<bool>(
+    'stopped_early',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("stopped_early" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _noteMeta = const VerificationMeta('note');
+  @override
+  late final GeneratedColumn<String> note = GeneratedColumn<String>(
+    'note',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    updatedAt,
+    deletedAt,
+    id,
+    date,
+    startedAt,
+    baselinePosition,
+    baselineHr,
+    baselineSys,
+    baselineDia,
+    hr1,
+    sys1,
+    dia1,
+    hr3,
+    sys3,
+    dia3,
+    hr10,
+    sys10,
+    dia10,
+    symptoms,
+    stoppedEarly,
+    note,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'stand_tests';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<StandTest> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_updatedAtMeta);
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('date')) {
+      context.handle(
+        _dateMeta,
+        date.isAcceptableOrUnknown(data['date']!, _dateMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_dateMeta);
+    }
+    if (data.containsKey('started_at')) {
+      context.handle(
+        _startedAtMeta,
+        startedAt.isAcceptableOrUnknown(data['started_at']!, _startedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_startedAtMeta);
+    }
+    if (data.containsKey('baseline_position')) {
+      context.handle(
+        _baselinePositionMeta,
+        baselinePosition.isAcceptableOrUnknown(
+          data['baseline_position']!,
+          _baselinePositionMeta,
+        ),
+      );
+    }
+    if (data.containsKey('baseline_hr')) {
+      context.handle(
+        _baselineHrMeta,
+        baselineHr.isAcceptableOrUnknown(data['baseline_hr']!, _baselineHrMeta),
+      );
+    }
+    if (data.containsKey('baseline_sys')) {
+      context.handle(
+        _baselineSysMeta,
+        baselineSys.isAcceptableOrUnknown(
+          data['baseline_sys']!,
+          _baselineSysMeta,
+        ),
+      );
+    }
+    if (data.containsKey('baseline_dia')) {
+      context.handle(
+        _baselineDiaMeta,
+        baselineDia.isAcceptableOrUnknown(
+          data['baseline_dia']!,
+          _baselineDiaMeta,
+        ),
+      );
+    }
+    if (data.containsKey('hr1')) {
+      context.handle(
+        _hr1Meta,
+        hr1.isAcceptableOrUnknown(data['hr1']!, _hr1Meta),
+      );
+    }
+    if (data.containsKey('sys1')) {
+      context.handle(
+        _sys1Meta,
+        sys1.isAcceptableOrUnknown(data['sys1']!, _sys1Meta),
+      );
+    }
+    if (data.containsKey('dia1')) {
+      context.handle(
+        _dia1Meta,
+        dia1.isAcceptableOrUnknown(data['dia1']!, _dia1Meta),
+      );
+    }
+    if (data.containsKey('hr3')) {
+      context.handle(
+        _hr3Meta,
+        hr3.isAcceptableOrUnknown(data['hr3']!, _hr3Meta),
+      );
+    }
+    if (data.containsKey('sys3')) {
+      context.handle(
+        _sys3Meta,
+        sys3.isAcceptableOrUnknown(data['sys3']!, _sys3Meta),
+      );
+    }
+    if (data.containsKey('dia3')) {
+      context.handle(
+        _dia3Meta,
+        dia3.isAcceptableOrUnknown(data['dia3']!, _dia3Meta),
+      );
+    }
+    if (data.containsKey('hr10')) {
+      context.handle(
+        _hr10Meta,
+        hr10.isAcceptableOrUnknown(data['hr10']!, _hr10Meta),
+      );
+    }
+    if (data.containsKey('sys10')) {
+      context.handle(
+        _sys10Meta,
+        sys10.isAcceptableOrUnknown(data['sys10']!, _sys10Meta),
+      );
+    }
+    if (data.containsKey('dia10')) {
+      context.handle(
+        _dia10Meta,
+        dia10.isAcceptableOrUnknown(data['dia10']!, _dia10Meta),
+      );
+    }
+    if (data.containsKey('symptoms')) {
+      context.handle(
+        _symptomsMeta,
+        symptoms.isAcceptableOrUnknown(data['symptoms']!, _symptomsMeta),
+      );
+    }
+    if (data.containsKey('stopped_early')) {
+      context.handle(
+        _stoppedEarlyMeta,
+        stoppedEarly.isAcceptableOrUnknown(
+          data['stopped_early']!,
+          _stoppedEarlyMeta,
+        ),
+      );
+    }
+    if (data.containsKey('note')) {
+      context.handle(
+        _noteMeta,
+        note.isAcceptableOrUnknown(data['note']!, _noteMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  StandTest map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return StandTest(
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      date: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}date'],
+      )!,
+      startedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}started_at'],
+      )!,
+      baselinePosition: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}baseline_position'],
+      )!,
+      baselineHr: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}baseline_hr'],
+      ),
+      baselineSys: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}baseline_sys'],
+      ),
+      baselineDia: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}baseline_dia'],
+      ),
+      hr1: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}hr1'],
+      ),
+      sys1: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}sys1'],
+      ),
+      dia1: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}dia1'],
+      ),
+      hr3: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}hr3'],
+      ),
+      sys3: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}sys3'],
+      ),
+      dia3: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}dia3'],
+      ),
+      hr10: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}hr10'],
+      ),
+      sys10: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}sys10'],
+      ),
+      dia10: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}dia10'],
+      ),
+      symptoms: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}symptoms'],
+      )!,
+      stoppedEarly: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}stopped_early'],
+      )!,
+      note: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}note'],
+      ),
+    );
+  }
+
+  @override
+  $StandTestsTable createAlias(String alias) {
+    return $StandTestsTable(attachedDatabase, alias);
+  }
+}
+
+class StandTest extends DataClass implements Insertable<StandTest> {
+  final String updatedAt;
+  final DateTime? deletedAt;
+  final String id;
+
+  /// yyyy-MM-dd.
+  final String date;
+
+  /// ISO time the person stood up.
+  final String startedAt;
+
+  /// 'lying' or 'sitting' for the baseline.
+  final String baselinePosition;
+  final int? baselineHr;
+  final int? baselineSys;
+  final int? baselineDia;
+  final int? hr1;
+  final int? sys1;
+  final int? dia1;
+  final int? hr3;
+  final int? sys3;
+  final int? dia3;
+  final int? hr10;
+  final int? sys10;
+  final int? dia10;
+
+  /// JSON list of symptom keys felt while standing.
+  final String symptoms;
+
+  /// True when "Stop test" ended it before 10 minutes.
+  final bool stoppedEarly;
+  final String? note;
+  const StandTest({
+    required this.updatedAt,
+    this.deletedAt,
+    required this.id,
+    required this.date,
+    required this.startedAt,
+    required this.baselinePosition,
+    this.baselineHr,
+    this.baselineSys,
+    this.baselineDia,
+    this.hr1,
+    this.sys1,
+    this.dia1,
+    this.hr3,
+    this.sys3,
+    this.dia3,
+    this.hr10,
+    this.sys10,
+    this.dia10,
+    required this.symptoms,
+    required this.stoppedEarly,
+    this.note,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['updated_at'] = Variable<String>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['id'] = Variable<String>(id);
+    map['date'] = Variable<String>(date);
+    map['started_at'] = Variable<String>(startedAt);
+    map['baseline_position'] = Variable<String>(baselinePosition);
+    if (!nullToAbsent || baselineHr != null) {
+      map['baseline_hr'] = Variable<int>(baselineHr);
+    }
+    if (!nullToAbsent || baselineSys != null) {
+      map['baseline_sys'] = Variable<int>(baselineSys);
+    }
+    if (!nullToAbsent || baselineDia != null) {
+      map['baseline_dia'] = Variable<int>(baselineDia);
+    }
+    if (!nullToAbsent || hr1 != null) {
+      map['hr1'] = Variable<int>(hr1);
+    }
+    if (!nullToAbsent || sys1 != null) {
+      map['sys1'] = Variable<int>(sys1);
+    }
+    if (!nullToAbsent || dia1 != null) {
+      map['dia1'] = Variable<int>(dia1);
+    }
+    if (!nullToAbsent || hr3 != null) {
+      map['hr3'] = Variable<int>(hr3);
+    }
+    if (!nullToAbsent || sys3 != null) {
+      map['sys3'] = Variable<int>(sys3);
+    }
+    if (!nullToAbsent || dia3 != null) {
+      map['dia3'] = Variable<int>(dia3);
+    }
+    if (!nullToAbsent || hr10 != null) {
+      map['hr10'] = Variable<int>(hr10);
+    }
+    if (!nullToAbsent || sys10 != null) {
+      map['sys10'] = Variable<int>(sys10);
+    }
+    if (!nullToAbsent || dia10 != null) {
+      map['dia10'] = Variable<int>(dia10);
+    }
+    map['symptoms'] = Variable<String>(symptoms);
+    map['stopped_early'] = Variable<bool>(stoppedEarly);
+    if (!nullToAbsent || note != null) {
+      map['note'] = Variable<String>(note);
+    }
+    return map;
+  }
+
+  StandTestsCompanion toCompanion(bool nullToAbsent) {
+    return StandTestsCompanion(
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      id: Value(id),
+      date: Value(date),
+      startedAt: Value(startedAt),
+      baselinePosition: Value(baselinePosition),
+      baselineHr: baselineHr == null && nullToAbsent
+          ? const Value.absent()
+          : Value(baselineHr),
+      baselineSys: baselineSys == null && nullToAbsent
+          ? const Value.absent()
+          : Value(baselineSys),
+      baselineDia: baselineDia == null && nullToAbsent
+          ? const Value.absent()
+          : Value(baselineDia),
+      hr1: hr1 == null && nullToAbsent ? const Value.absent() : Value(hr1),
+      sys1: sys1 == null && nullToAbsent ? const Value.absent() : Value(sys1),
+      dia1: dia1 == null && nullToAbsent ? const Value.absent() : Value(dia1),
+      hr3: hr3 == null && nullToAbsent ? const Value.absent() : Value(hr3),
+      sys3: sys3 == null && nullToAbsent ? const Value.absent() : Value(sys3),
+      dia3: dia3 == null && nullToAbsent ? const Value.absent() : Value(dia3),
+      hr10: hr10 == null && nullToAbsent ? const Value.absent() : Value(hr10),
+      sys10: sys10 == null && nullToAbsent
+          ? const Value.absent()
+          : Value(sys10),
+      dia10: dia10 == null && nullToAbsent
+          ? const Value.absent()
+          : Value(dia10),
+      symptoms: Value(symptoms),
+      stoppedEarly: Value(stoppedEarly),
+      note: note == null && nullToAbsent ? const Value.absent() : Value(note),
+    );
+  }
+
+  factory StandTest.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return StandTest(
+      updatedAt: serializer.fromJson<String>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      id: serializer.fromJson<String>(json['id']),
+      date: serializer.fromJson<String>(json['date']),
+      startedAt: serializer.fromJson<String>(json['startedAt']),
+      baselinePosition: serializer.fromJson<String>(json['baselinePosition']),
+      baselineHr: serializer.fromJson<int?>(json['baselineHr']),
+      baselineSys: serializer.fromJson<int?>(json['baselineSys']),
+      baselineDia: serializer.fromJson<int?>(json['baselineDia']),
+      hr1: serializer.fromJson<int?>(json['hr1']),
+      sys1: serializer.fromJson<int?>(json['sys1']),
+      dia1: serializer.fromJson<int?>(json['dia1']),
+      hr3: serializer.fromJson<int?>(json['hr3']),
+      sys3: serializer.fromJson<int?>(json['sys3']),
+      dia3: serializer.fromJson<int?>(json['dia3']),
+      hr10: serializer.fromJson<int?>(json['hr10']),
+      sys10: serializer.fromJson<int?>(json['sys10']),
+      dia10: serializer.fromJson<int?>(json['dia10']),
+      symptoms: serializer.fromJson<String>(json['symptoms']),
+      stoppedEarly: serializer.fromJson<bool>(json['stoppedEarly']),
+      note: serializer.fromJson<String?>(json['note']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'updatedAt': serializer.toJson<String>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'id': serializer.toJson<String>(id),
+      'date': serializer.toJson<String>(date),
+      'startedAt': serializer.toJson<String>(startedAt),
+      'baselinePosition': serializer.toJson<String>(baselinePosition),
+      'baselineHr': serializer.toJson<int?>(baselineHr),
+      'baselineSys': serializer.toJson<int?>(baselineSys),
+      'baselineDia': serializer.toJson<int?>(baselineDia),
+      'hr1': serializer.toJson<int?>(hr1),
+      'sys1': serializer.toJson<int?>(sys1),
+      'dia1': serializer.toJson<int?>(dia1),
+      'hr3': serializer.toJson<int?>(hr3),
+      'sys3': serializer.toJson<int?>(sys3),
+      'dia3': serializer.toJson<int?>(dia3),
+      'hr10': serializer.toJson<int?>(hr10),
+      'sys10': serializer.toJson<int?>(sys10),
+      'dia10': serializer.toJson<int?>(dia10),
+      'symptoms': serializer.toJson<String>(symptoms),
+      'stoppedEarly': serializer.toJson<bool>(stoppedEarly),
+      'note': serializer.toJson<String?>(note),
+    };
+  }
+
+  StandTest copyWith({
+    String? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? id,
+    String? date,
+    String? startedAt,
+    String? baselinePosition,
+    Value<int?> baselineHr = const Value.absent(),
+    Value<int?> baselineSys = const Value.absent(),
+    Value<int?> baselineDia = const Value.absent(),
+    Value<int?> hr1 = const Value.absent(),
+    Value<int?> sys1 = const Value.absent(),
+    Value<int?> dia1 = const Value.absent(),
+    Value<int?> hr3 = const Value.absent(),
+    Value<int?> sys3 = const Value.absent(),
+    Value<int?> dia3 = const Value.absent(),
+    Value<int?> hr10 = const Value.absent(),
+    Value<int?> sys10 = const Value.absent(),
+    Value<int?> dia10 = const Value.absent(),
+    String? symptoms,
+    bool? stoppedEarly,
+    Value<String?> note = const Value.absent(),
+  }) => StandTest(
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    id: id ?? this.id,
+    date: date ?? this.date,
+    startedAt: startedAt ?? this.startedAt,
+    baselinePosition: baselinePosition ?? this.baselinePosition,
+    baselineHr: baselineHr.present ? baselineHr.value : this.baselineHr,
+    baselineSys: baselineSys.present ? baselineSys.value : this.baselineSys,
+    baselineDia: baselineDia.present ? baselineDia.value : this.baselineDia,
+    hr1: hr1.present ? hr1.value : this.hr1,
+    sys1: sys1.present ? sys1.value : this.sys1,
+    dia1: dia1.present ? dia1.value : this.dia1,
+    hr3: hr3.present ? hr3.value : this.hr3,
+    sys3: sys3.present ? sys3.value : this.sys3,
+    dia3: dia3.present ? dia3.value : this.dia3,
+    hr10: hr10.present ? hr10.value : this.hr10,
+    sys10: sys10.present ? sys10.value : this.sys10,
+    dia10: dia10.present ? dia10.value : this.dia10,
+    symptoms: symptoms ?? this.symptoms,
+    stoppedEarly: stoppedEarly ?? this.stoppedEarly,
+    note: note.present ? note.value : this.note,
+  );
+  StandTest copyWithCompanion(StandTestsCompanion data) {
+    return StandTest(
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      id: data.id.present ? data.id.value : this.id,
+      date: data.date.present ? data.date.value : this.date,
+      startedAt: data.startedAt.present ? data.startedAt.value : this.startedAt,
+      baselinePosition: data.baselinePosition.present
+          ? data.baselinePosition.value
+          : this.baselinePosition,
+      baselineHr: data.baselineHr.present
+          ? data.baselineHr.value
+          : this.baselineHr,
+      baselineSys: data.baselineSys.present
+          ? data.baselineSys.value
+          : this.baselineSys,
+      baselineDia: data.baselineDia.present
+          ? data.baselineDia.value
+          : this.baselineDia,
+      hr1: data.hr1.present ? data.hr1.value : this.hr1,
+      sys1: data.sys1.present ? data.sys1.value : this.sys1,
+      dia1: data.dia1.present ? data.dia1.value : this.dia1,
+      hr3: data.hr3.present ? data.hr3.value : this.hr3,
+      sys3: data.sys3.present ? data.sys3.value : this.sys3,
+      dia3: data.dia3.present ? data.dia3.value : this.dia3,
+      hr10: data.hr10.present ? data.hr10.value : this.hr10,
+      sys10: data.sys10.present ? data.sys10.value : this.sys10,
+      dia10: data.dia10.present ? data.dia10.value : this.dia10,
+      symptoms: data.symptoms.present ? data.symptoms.value : this.symptoms,
+      stoppedEarly: data.stoppedEarly.present
+          ? data.stoppedEarly.value
+          : this.stoppedEarly,
+      note: data.note.present ? data.note.value : this.note,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('StandTest(')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('id: $id, ')
+          ..write('date: $date, ')
+          ..write('startedAt: $startedAt, ')
+          ..write('baselinePosition: $baselinePosition, ')
+          ..write('baselineHr: $baselineHr, ')
+          ..write('baselineSys: $baselineSys, ')
+          ..write('baselineDia: $baselineDia, ')
+          ..write('hr1: $hr1, ')
+          ..write('sys1: $sys1, ')
+          ..write('dia1: $dia1, ')
+          ..write('hr3: $hr3, ')
+          ..write('sys3: $sys3, ')
+          ..write('dia3: $dia3, ')
+          ..write('hr10: $hr10, ')
+          ..write('sys10: $sys10, ')
+          ..write('dia10: $dia10, ')
+          ..write('symptoms: $symptoms, ')
+          ..write('stoppedEarly: $stoppedEarly, ')
+          ..write('note: $note')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hashAll([
+    updatedAt,
+    deletedAt,
+    id,
+    date,
+    startedAt,
+    baselinePosition,
+    baselineHr,
+    baselineSys,
+    baselineDia,
+    hr1,
+    sys1,
+    dia1,
+    hr3,
+    sys3,
+    dia3,
+    hr10,
+    sys10,
+    dia10,
+    symptoms,
+    stoppedEarly,
+    note,
+  ]);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is StandTest &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.id == this.id &&
+          other.date == this.date &&
+          other.startedAt == this.startedAt &&
+          other.baselinePosition == this.baselinePosition &&
+          other.baselineHr == this.baselineHr &&
+          other.baselineSys == this.baselineSys &&
+          other.baselineDia == this.baselineDia &&
+          other.hr1 == this.hr1 &&
+          other.sys1 == this.sys1 &&
+          other.dia1 == this.dia1 &&
+          other.hr3 == this.hr3 &&
+          other.sys3 == this.sys3 &&
+          other.dia3 == this.dia3 &&
+          other.hr10 == this.hr10 &&
+          other.sys10 == this.sys10 &&
+          other.dia10 == this.dia10 &&
+          other.symptoms == this.symptoms &&
+          other.stoppedEarly == this.stoppedEarly &&
+          other.note == this.note);
+}
+
+class StandTestsCompanion extends UpdateCompanion<StandTest> {
+  final Value<String> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> id;
+  final Value<String> date;
+  final Value<String> startedAt;
+  final Value<String> baselinePosition;
+  final Value<int?> baselineHr;
+  final Value<int?> baselineSys;
+  final Value<int?> baselineDia;
+  final Value<int?> hr1;
+  final Value<int?> sys1;
+  final Value<int?> dia1;
+  final Value<int?> hr3;
+  final Value<int?> sys3;
+  final Value<int?> dia3;
+  final Value<int?> hr10;
+  final Value<int?> sys10;
+  final Value<int?> dia10;
+  final Value<String> symptoms;
+  final Value<bool> stoppedEarly;
+  final Value<String?> note;
+  final Value<int> rowid;
+  const StandTestsCompanion({
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.id = const Value.absent(),
+    this.date = const Value.absent(),
+    this.startedAt = const Value.absent(),
+    this.baselinePosition = const Value.absent(),
+    this.baselineHr = const Value.absent(),
+    this.baselineSys = const Value.absent(),
+    this.baselineDia = const Value.absent(),
+    this.hr1 = const Value.absent(),
+    this.sys1 = const Value.absent(),
+    this.dia1 = const Value.absent(),
+    this.hr3 = const Value.absent(),
+    this.sys3 = const Value.absent(),
+    this.dia3 = const Value.absent(),
+    this.hr10 = const Value.absent(),
+    this.sys10 = const Value.absent(),
+    this.dia10 = const Value.absent(),
+    this.symptoms = const Value.absent(),
+    this.stoppedEarly = const Value.absent(),
+    this.note = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  StandTestsCompanion.insert({
+    required String updatedAt,
+    this.deletedAt = const Value.absent(),
+    required String id,
+    required String date,
+    required String startedAt,
+    this.baselinePosition = const Value.absent(),
+    this.baselineHr = const Value.absent(),
+    this.baselineSys = const Value.absent(),
+    this.baselineDia = const Value.absent(),
+    this.hr1 = const Value.absent(),
+    this.sys1 = const Value.absent(),
+    this.dia1 = const Value.absent(),
+    this.hr3 = const Value.absent(),
+    this.sys3 = const Value.absent(),
+    this.dia3 = const Value.absent(),
+    this.hr10 = const Value.absent(),
+    this.sys10 = const Value.absent(),
+    this.dia10 = const Value.absent(),
+    this.symptoms = const Value.absent(),
+    this.stoppedEarly = const Value.absent(),
+    this.note = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : updatedAt = Value(updatedAt),
+       id = Value(id),
+       date = Value(date),
+       startedAt = Value(startedAt);
+  static Insertable<StandTest> custom({
+    Expression<String>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? id,
+    Expression<String>? date,
+    Expression<String>? startedAt,
+    Expression<String>? baselinePosition,
+    Expression<int>? baselineHr,
+    Expression<int>? baselineSys,
+    Expression<int>? baselineDia,
+    Expression<int>? hr1,
+    Expression<int>? sys1,
+    Expression<int>? dia1,
+    Expression<int>? hr3,
+    Expression<int>? sys3,
+    Expression<int>? dia3,
+    Expression<int>? hr10,
+    Expression<int>? sys10,
+    Expression<int>? dia10,
+    Expression<String>? symptoms,
+    Expression<bool>? stoppedEarly,
+    Expression<String>? note,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (id != null) 'id': id,
+      if (date != null) 'date': date,
+      if (startedAt != null) 'started_at': startedAt,
+      if (baselinePosition != null) 'baseline_position': baselinePosition,
+      if (baselineHr != null) 'baseline_hr': baselineHr,
+      if (baselineSys != null) 'baseline_sys': baselineSys,
+      if (baselineDia != null) 'baseline_dia': baselineDia,
+      if (hr1 != null) 'hr1': hr1,
+      if (sys1 != null) 'sys1': sys1,
+      if (dia1 != null) 'dia1': dia1,
+      if (hr3 != null) 'hr3': hr3,
+      if (sys3 != null) 'sys3': sys3,
+      if (dia3 != null) 'dia3': dia3,
+      if (hr10 != null) 'hr10': hr10,
+      if (sys10 != null) 'sys10': sys10,
+      if (dia10 != null) 'dia10': dia10,
+      if (symptoms != null) 'symptoms': symptoms,
+      if (stoppedEarly != null) 'stopped_early': stoppedEarly,
+      if (note != null) 'note': note,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  StandTestsCompanion copyWith({
+    Value<String>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? id,
+    Value<String>? date,
+    Value<String>? startedAt,
+    Value<String>? baselinePosition,
+    Value<int?>? baselineHr,
+    Value<int?>? baselineSys,
+    Value<int?>? baselineDia,
+    Value<int?>? hr1,
+    Value<int?>? sys1,
+    Value<int?>? dia1,
+    Value<int?>? hr3,
+    Value<int?>? sys3,
+    Value<int?>? dia3,
+    Value<int?>? hr10,
+    Value<int?>? sys10,
+    Value<int?>? dia10,
+    Value<String>? symptoms,
+    Value<bool>? stoppedEarly,
+    Value<String?>? note,
+    Value<int>? rowid,
+  }) {
+    return StandTestsCompanion(
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      id: id ?? this.id,
+      date: date ?? this.date,
+      startedAt: startedAt ?? this.startedAt,
+      baselinePosition: baselinePosition ?? this.baselinePosition,
+      baselineHr: baselineHr ?? this.baselineHr,
+      baselineSys: baselineSys ?? this.baselineSys,
+      baselineDia: baselineDia ?? this.baselineDia,
+      hr1: hr1 ?? this.hr1,
+      sys1: sys1 ?? this.sys1,
+      dia1: dia1 ?? this.dia1,
+      hr3: hr3 ?? this.hr3,
+      sys3: sys3 ?? this.sys3,
+      dia3: dia3 ?? this.dia3,
+      hr10: hr10 ?? this.hr10,
+      sys10: sys10 ?? this.sys10,
+      dia10: dia10 ?? this.dia10,
+      symptoms: symptoms ?? this.symptoms,
+      stoppedEarly: stoppedEarly ?? this.stoppedEarly,
+      note: note ?? this.note,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<String>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (date.present) {
+      map['date'] = Variable<String>(date.value);
+    }
+    if (startedAt.present) {
+      map['started_at'] = Variable<String>(startedAt.value);
+    }
+    if (baselinePosition.present) {
+      map['baseline_position'] = Variable<String>(baselinePosition.value);
+    }
+    if (baselineHr.present) {
+      map['baseline_hr'] = Variable<int>(baselineHr.value);
+    }
+    if (baselineSys.present) {
+      map['baseline_sys'] = Variable<int>(baselineSys.value);
+    }
+    if (baselineDia.present) {
+      map['baseline_dia'] = Variable<int>(baselineDia.value);
+    }
+    if (hr1.present) {
+      map['hr1'] = Variable<int>(hr1.value);
+    }
+    if (sys1.present) {
+      map['sys1'] = Variable<int>(sys1.value);
+    }
+    if (dia1.present) {
+      map['dia1'] = Variable<int>(dia1.value);
+    }
+    if (hr3.present) {
+      map['hr3'] = Variable<int>(hr3.value);
+    }
+    if (sys3.present) {
+      map['sys3'] = Variable<int>(sys3.value);
+    }
+    if (dia3.present) {
+      map['dia3'] = Variable<int>(dia3.value);
+    }
+    if (hr10.present) {
+      map['hr10'] = Variable<int>(hr10.value);
+    }
+    if (sys10.present) {
+      map['sys10'] = Variable<int>(sys10.value);
+    }
+    if (dia10.present) {
+      map['dia10'] = Variable<int>(dia10.value);
+    }
+    if (symptoms.present) {
+      map['symptoms'] = Variable<String>(symptoms.value);
+    }
+    if (stoppedEarly.present) {
+      map['stopped_early'] = Variable<bool>(stoppedEarly.value);
+    }
+    if (note.present) {
+      map['note'] = Variable<String>(note.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('StandTestsCompanion(')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('id: $id, ')
+          ..write('date: $date, ')
+          ..write('startedAt: $startedAt, ')
+          ..write('baselinePosition: $baselinePosition, ')
+          ..write('baselineHr: $baselineHr, ')
+          ..write('baselineSys: $baselineSys, ')
+          ..write('baselineDia: $baselineDia, ')
+          ..write('hr1: $hr1, ')
+          ..write('sys1: $sys1, ')
+          ..write('dia1: $dia1, ')
+          ..write('hr3: $hr3, ')
+          ..write('sys3: $sys3, ')
+          ..write('dia3: $dia3, ')
+          ..write('hr10: $hr10, ')
+          ..write('sys10: $sys10, ')
+          ..write('dia10: $dia10, ')
+          ..write('symptoms: $symptoms, ')
+          ..write('stoppedEarly: $stoppedEarly, ')
+          ..write('note: $note, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $SweatLogsTable extends SweatLogs
+    with TableInfo<$SweatLogsTable, SweatLog> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $SweatLogsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<String> updatedAt = GeneratedColumn<String>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _dateMeta = const VerificationMeta('date');
+  @override
+  late final GeneratedColumn<String> date = GeneratedColumn<String>(
+    'date',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways('UNIQUE'),
+  );
+  static const VerificationMeta _kindsMeta = const VerificationMeta('kinds');
+  @override
+  late final GeneratedColumn<String> kinds = GeneratedColumn<String>(
+    'kinds',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('[]'),
+  );
+  static const VerificationMeta _noteMeta = const VerificationMeta('note');
+  @override
+  late final GeneratedColumn<String> note = GeneratedColumn<String>(
+    'note',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    updatedAt,
+    deletedAt,
+    id,
+    date,
+    kinds,
+    note,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'sweat_logs';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<SweatLog> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_updatedAtMeta);
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('date')) {
+      context.handle(
+        _dateMeta,
+        date.isAcceptableOrUnknown(data['date']!, _dateMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_dateMeta);
+    }
+    if (data.containsKey('kinds')) {
+      context.handle(
+        _kindsMeta,
+        kinds.isAcceptableOrUnknown(data['kinds']!, _kindsMeta),
+      );
+    }
+    if (data.containsKey('note')) {
+      context.handle(
+        _noteMeta,
+        note.isAcceptableOrUnknown(data['note']!, _noteMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  SweatLog map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return SweatLog(
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      date: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}date'],
+      )!,
+      kinds: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}kinds'],
+      )!,
+      note: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}note'],
+      ),
+    );
+  }
+
+  @override
+  $SweatLogsTable createAlias(String alias) {
+    return $SweatLogsTable(attachedDatabase, alias);
+  }
+}
+
+class SweatLog extends DataClass implements Insertable<SweatLog> {
+  final String updatedAt;
+  final DateTime? deletedAt;
+  final String id;
+
+  /// yyyy-MM-dd, one row per day.
+  final String date;
+
+  /// JSON list of [SweatKind] names.
+  final String kinds;
+  final String? note;
+  const SweatLog({
+    required this.updatedAt,
+    this.deletedAt,
+    required this.id,
+    required this.date,
+    required this.kinds,
+    this.note,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['updated_at'] = Variable<String>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['id'] = Variable<String>(id);
+    map['date'] = Variable<String>(date);
+    map['kinds'] = Variable<String>(kinds);
+    if (!nullToAbsent || note != null) {
+      map['note'] = Variable<String>(note);
+    }
+    return map;
+  }
+
+  SweatLogsCompanion toCompanion(bool nullToAbsent) {
+    return SweatLogsCompanion(
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      id: Value(id),
+      date: Value(date),
+      kinds: Value(kinds),
+      note: note == null && nullToAbsent ? const Value.absent() : Value(note),
+    );
+  }
+
+  factory SweatLog.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return SweatLog(
+      updatedAt: serializer.fromJson<String>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      id: serializer.fromJson<String>(json['id']),
+      date: serializer.fromJson<String>(json['date']),
+      kinds: serializer.fromJson<String>(json['kinds']),
+      note: serializer.fromJson<String?>(json['note']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'updatedAt': serializer.toJson<String>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'id': serializer.toJson<String>(id),
+      'date': serializer.toJson<String>(date),
+      'kinds': serializer.toJson<String>(kinds),
+      'note': serializer.toJson<String?>(note),
+    };
+  }
+
+  SweatLog copyWith({
+    String? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? id,
+    String? date,
+    String? kinds,
+    Value<String?> note = const Value.absent(),
+  }) => SweatLog(
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    id: id ?? this.id,
+    date: date ?? this.date,
+    kinds: kinds ?? this.kinds,
+    note: note.present ? note.value : this.note,
+  );
+  SweatLog copyWithCompanion(SweatLogsCompanion data) {
+    return SweatLog(
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      id: data.id.present ? data.id.value : this.id,
+      date: data.date.present ? data.date.value : this.date,
+      kinds: data.kinds.present ? data.kinds.value : this.kinds,
+      note: data.note.present ? data.note.value : this.note,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SweatLog(')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('id: $id, ')
+          ..write('date: $date, ')
+          ..write('kinds: $kinds, ')
+          ..write('note: $note')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(updatedAt, deletedAt, id, date, kinds, note);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is SweatLog &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.id == this.id &&
+          other.date == this.date &&
+          other.kinds == this.kinds &&
+          other.note == this.note);
+}
+
+class SweatLogsCompanion extends UpdateCompanion<SweatLog> {
+  final Value<String> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> id;
+  final Value<String> date;
+  final Value<String> kinds;
+  final Value<String?> note;
+  final Value<int> rowid;
+  const SweatLogsCompanion({
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.id = const Value.absent(),
+    this.date = const Value.absent(),
+    this.kinds = const Value.absent(),
+    this.note = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  SweatLogsCompanion.insert({
+    required String updatedAt,
+    this.deletedAt = const Value.absent(),
+    required String id,
+    required String date,
+    this.kinds = const Value.absent(),
+    this.note = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : updatedAt = Value(updatedAt),
+       id = Value(id),
+       date = Value(date);
+  static Insertable<SweatLog> custom({
+    Expression<String>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? id,
+    Expression<String>? date,
+    Expression<String>? kinds,
+    Expression<String>? note,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (id != null) 'id': id,
+      if (date != null) 'date': date,
+      if (kinds != null) 'kinds': kinds,
+      if (note != null) 'note': note,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  SweatLogsCompanion copyWith({
+    Value<String>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? id,
+    Value<String>? date,
+    Value<String>? kinds,
+    Value<String?>? note,
+    Value<int>? rowid,
+  }) {
+    return SweatLogsCompanion(
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      id: id ?? this.id,
+      date: date ?? this.date,
+      kinds: kinds ?? this.kinds,
+      note: note ?? this.note,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<String>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (date.present) {
+      map['date'] = Variable<String>(date.value);
+    }
+    if (kinds.present) {
+      map['kinds'] = Variable<String>(kinds.value);
+    }
+    if (note.present) {
+      map['note'] = Variable<String>(note.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SweatLogsCompanion(')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('id: $id, ')
+          ..write('date: $date, ')
+          ..write('kinds: $kinds, ')
+          ..write('note: $note, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $BloodPressureReadingsTable extends BloodPressureReadings
+    with TableInfo<$BloodPressureReadingsTable, BloodPressureReading> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $BloodPressureReadingsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<String> updatedAt = GeneratedColumn<String>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _dateMeta = const VerificationMeta('date');
+  @override
+  late final GeneratedColumn<String> date = GeneratedColumn<String>(
+    'date',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _takenAtMeta = const VerificationMeta(
+    'takenAt',
+  );
+  @override
+  late final GeneratedColumn<String> takenAt = GeneratedColumn<String>(
+    'taken_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _systolicMeta = const VerificationMeta(
+    'systolic',
+  );
+  @override
+  late final GeneratedColumn<int> systolic = GeneratedColumn<int>(
+    'systolic',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _diastolicMeta = const VerificationMeta(
+    'diastolic',
+  );
+  @override
+  late final GeneratedColumn<int> diastolic = GeneratedColumn<int>(
+    'diastolic',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _pulseMeta = const VerificationMeta('pulse');
+  @override
+  late final GeneratedColumn<int> pulse = GeneratedColumn<int>(
+    'pulse',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _positionMeta = const VerificationMeta(
+    'position',
+  );
+  @override
+  late final GeneratedColumn<String> position = GeneratedColumn<String>(
+    'position',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('sitting'),
+  );
+  static const VerificationMeta _noteMeta = const VerificationMeta('note');
+  @override
+  late final GeneratedColumn<String> note = GeneratedColumn<String>(
+    'note',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    updatedAt,
+    deletedAt,
+    id,
+    date,
+    takenAt,
+    systolic,
+    diastolic,
+    pulse,
+    position,
+    note,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'blood_pressure_readings';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<BloodPressureReading> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_updatedAtMeta);
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('date')) {
+      context.handle(
+        _dateMeta,
+        date.isAcceptableOrUnknown(data['date']!, _dateMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_dateMeta);
+    }
+    if (data.containsKey('taken_at')) {
+      context.handle(
+        _takenAtMeta,
+        takenAt.isAcceptableOrUnknown(data['taken_at']!, _takenAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_takenAtMeta);
+    }
+    if (data.containsKey('systolic')) {
+      context.handle(
+        _systolicMeta,
+        systolic.isAcceptableOrUnknown(data['systolic']!, _systolicMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_systolicMeta);
+    }
+    if (data.containsKey('diastolic')) {
+      context.handle(
+        _diastolicMeta,
+        diastolic.isAcceptableOrUnknown(data['diastolic']!, _diastolicMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_diastolicMeta);
+    }
+    if (data.containsKey('pulse')) {
+      context.handle(
+        _pulseMeta,
+        pulse.isAcceptableOrUnknown(data['pulse']!, _pulseMeta),
+      );
+    }
+    if (data.containsKey('position')) {
+      context.handle(
+        _positionMeta,
+        position.isAcceptableOrUnknown(data['position']!, _positionMeta),
+      );
+    }
+    if (data.containsKey('note')) {
+      context.handle(
+        _noteMeta,
+        note.isAcceptableOrUnknown(data['note']!, _noteMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  BloodPressureReading map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return BloodPressureReading(
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      date: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}date'],
+      )!,
+      takenAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}taken_at'],
+      )!,
+      systolic: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}systolic'],
+      )!,
+      diastolic: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}diastolic'],
+      )!,
+      pulse: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}pulse'],
+      ),
+      position: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}position'],
+      )!,
+      note: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}note'],
+      ),
+    );
+  }
+
+  @override
+  $BloodPressureReadingsTable createAlias(String alias) {
+    return $BloodPressureReadingsTable(attachedDatabase, alias);
+  }
+}
+
+class BloodPressureReading extends DataClass
+    implements Insertable<BloodPressureReading> {
+  final String updatedAt;
+  final DateTime? deletedAt;
+  final String id;
+
+  /// yyyy-MM-dd.
+  final String date;
+
+  /// ISO time of the reading.
+  final String takenAt;
+  final int systolic;
+  final int diastolic;
+
+  /// The cuff's pulse reading, if it gave one.
+  final int? pulse;
+
+  /// 'sitting', 'lying' or 'standing'.
+  final String position;
+  final String? note;
+  const BloodPressureReading({
+    required this.updatedAt,
+    this.deletedAt,
+    required this.id,
+    required this.date,
+    required this.takenAt,
+    required this.systolic,
+    required this.diastolic,
+    this.pulse,
+    required this.position,
+    this.note,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['updated_at'] = Variable<String>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    map['id'] = Variable<String>(id);
+    map['date'] = Variable<String>(date);
+    map['taken_at'] = Variable<String>(takenAt);
+    map['systolic'] = Variable<int>(systolic);
+    map['diastolic'] = Variable<int>(diastolic);
+    if (!nullToAbsent || pulse != null) {
+      map['pulse'] = Variable<int>(pulse);
+    }
+    map['position'] = Variable<String>(position);
+    if (!nullToAbsent || note != null) {
+      map['note'] = Variable<String>(note);
+    }
+    return map;
+  }
+
+  BloodPressureReadingsCompanion toCompanion(bool nullToAbsent) {
+    return BloodPressureReadingsCompanion(
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+      id: Value(id),
+      date: Value(date),
+      takenAt: Value(takenAt),
+      systolic: Value(systolic),
+      diastolic: Value(diastolic),
+      pulse: pulse == null && nullToAbsent
+          ? const Value.absent()
+          : Value(pulse),
+      position: Value(position),
+      note: note == null && nullToAbsent ? const Value.absent() : Value(note),
+    );
+  }
+
+  factory BloodPressureReading.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return BloodPressureReading(
+      updatedAt: serializer.fromJson<String>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+      id: serializer.fromJson<String>(json['id']),
+      date: serializer.fromJson<String>(json['date']),
+      takenAt: serializer.fromJson<String>(json['takenAt']),
+      systolic: serializer.fromJson<int>(json['systolic']),
+      diastolic: serializer.fromJson<int>(json['diastolic']),
+      pulse: serializer.fromJson<int?>(json['pulse']),
+      position: serializer.fromJson<String>(json['position']),
+      note: serializer.fromJson<String?>(json['note']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'updatedAt': serializer.toJson<String>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+      'id': serializer.toJson<String>(id),
+      'date': serializer.toJson<String>(date),
+      'takenAt': serializer.toJson<String>(takenAt),
+      'systolic': serializer.toJson<int>(systolic),
+      'diastolic': serializer.toJson<int>(diastolic),
+      'pulse': serializer.toJson<int?>(pulse),
+      'position': serializer.toJson<String>(position),
+      'note': serializer.toJson<String?>(note),
+    };
+  }
+
+  BloodPressureReading copyWith({
+    String? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+    String? id,
+    String? date,
+    String? takenAt,
+    int? systolic,
+    int? diastolic,
+    Value<int?> pulse = const Value.absent(),
+    String? position,
+    Value<String?> note = const Value.absent(),
+  }) => BloodPressureReading(
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+    id: id ?? this.id,
+    date: date ?? this.date,
+    takenAt: takenAt ?? this.takenAt,
+    systolic: systolic ?? this.systolic,
+    diastolic: diastolic ?? this.diastolic,
+    pulse: pulse.present ? pulse.value : this.pulse,
+    position: position ?? this.position,
+    note: note.present ? note.value : this.note,
+  );
+  BloodPressureReading copyWithCompanion(BloodPressureReadingsCompanion data) {
+    return BloodPressureReading(
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+      id: data.id.present ? data.id.value : this.id,
+      date: data.date.present ? data.date.value : this.date,
+      takenAt: data.takenAt.present ? data.takenAt.value : this.takenAt,
+      systolic: data.systolic.present ? data.systolic.value : this.systolic,
+      diastolic: data.diastolic.present ? data.diastolic.value : this.diastolic,
+      pulse: data.pulse.present ? data.pulse.value : this.pulse,
+      position: data.position.present ? data.position.value : this.position,
+      note: data.note.present ? data.note.value : this.note,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('BloodPressureReading(')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('id: $id, ')
+          ..write('date: $date, ')
+          ..write('takenAt: $takenAt, ')
+          ..write('systolic: $systolic, ')
+          ..write('diastolic: $diastolic, ')
+          ..write('pulse: $pulse, ')
+          ..write('position: $position, ')
+          ..write('note: $note')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    updatedAt,
+    deletedAt,
+    id,
+    date,
+    takenAt,
+    systolic,
+    diastolic,
+    pulse,
+    position,
+    note,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is BloodPressureReading &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt &&
+          other.id == this.id &&
+          other.date == this.date &&
+          other.takenAt == this.takenAt &&
+          other.systolic == this.systolic &&
+          other.diastolic == this.diastolic &&
+          other.pulse == this.pulse &&
+          other.position == this.position &&
+          other.note == this.note);
+}
+
+class BloodPressureReadingsCompanion
+    extends UpdateCompanion<BloodPressureReading> {
+  final Value<String> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<String> id;
+  final Value<String> date;
+  final Value<String> takenAt;
+  final Value<int> systolic;
+  final Value<int> diastolic;
+  final Value<int?> pulse;
+  final Value<String> position;
+  final Value<String?> note;
+  final Value<int> rowid;
+  const BloodPressureReadingsCompanion({
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.id = const Value.absent(),
+    this.date = const Value.absent(),
+    this.takenAt = const Value.absent(),
+    this.systolic = const Value.absent(),
+    this.diastolic = const Value.absent(),
+    this.pulse = const Value.absent(),
+    this.position = const Value.absent(),
+    this.note = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  BloodPressureReadingsCompanion.insert({
+    required String updatedAt,
+    this.deletedAt = const Value.absent(),
+    required String id,
+    required String date,
+    required String takenAt,
+    required int systolic,
+    required int diastolic,
+    this.pulse = const Value.absent(),
+    this.position = const Value.absent(),
+    this.note = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : updatedAt = Value(updatedAt),
+       id = Value(id),
+       date = Value(date),
+       takenAt = Value(takenAt),
+       systolic = Value(systolic),
+       diastolic = Value(diastolic);
+  static Insertable<BloodPressureReading> custom({
+    Expression<String>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<String>? id,
+    Expression<String>? date,
+    Expression<String>? takenAt,
+    Expression<int>? systolic,
+    Expression<int>? diastolic,
+    Expression<int>? pulse,
+    Expression<String>? position,
+    Expression<String>? note,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (id != null) 'id': id,
+      if (date != null) 'date': date,
+      if (takenAt != null) 'taken_at': takenAt,
+      if (systolic != null) 'systolic': systolic,
+      if (diastolic != null) 'diastolic': diastolic,
+      if (pulse != null) 'pulse': pulse,
+      if (position != null) 'position': position,
+      if (note != null) 'note': note,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  BloodPressureReadingsCompanion copyWith({
+    Value<String>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<String>? id,
+    Value<String>? date,
+    Value<String>? takenAt,
+    Value<int>? systolic,
+    Value<int>? diastolic,
+    Value<int?>? pulse,
+    Value<String>? position,
+    Value<String?>? note,
+    Value<int>? rowid,
+  }) {
+    return BloodPressureReadingsCompanion(
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      id: id ?? this.id,
+      date: date ?? this.date,
+      takenAt: takenAt ?? this.takenAt,
+      systolic: systolic ?? this.systolic,
+      diastolic: diastolic ?? this.diastolic,
+      pulse: pulse ?? this.pulse,
+      position: position ?? this.position,
+      note: note ?? this.note,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<String>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (date.present) {
+      map['date'] = Variable<String>(date.value);
+    }
+    if (takenAt.present) {
+      map['taken_at'] = Variable<String>(takenAt.value);
+    }
+    if (systolic.present) {
+      map['systolic'] = Variable<int>(systolic.value);
+    }
+    if (diastolic.present) {
+      map['diastolic'] = Variable<int>(diastolic.value);
+    }
+    if (pulse.present) {
+      map['pulse'] = Variable<int>(pulse.value);
+    }
+    if (position.present) {
+      map['position'] = Variable<String>(position.value);
+    }
+    if (note.present) {
+      map['note'] = Variable<String>(note.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('BloodPressureReadingsCompanion(')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('id: $id, ')
+          ..write('date: $date, ')
+          ..write('takenAt: $takenAt, ')
+          ..write('systolic: $systolic, ')
+          ..write('diastolic: $diastolic, ')
+          ..write('pulse: $pulse, ')
+          ..write('position: $position, ')
+          ..write('note: $note, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -14317,6 +16475,10 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   );
   late final $FearItemsTable fearItems = $FearItemsTable(this);
   late final $ExposureLogsTable exposureLogs = $ExposureLogsTable(this);
+  late final $StandTestsTable standTests = $StandTestsTable(this);
+  late final $SweatLogsTable sweatLogs = $SweatLogsTable(this);
+  late final $BloodPressureReadingsTable bloodPressureReadings =
+      $BloodPressureReadingsTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -14344,6 +16506,9 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     planTestResults,
     fearItems,
     exposureLogs,
+    standTests,
+    sweatLogs,
+    bloodPressureReadings,
   ];
 }
 
@@ -21142,6 +23307,1044 @@ typedef $$ExposureLogsTableProcessedTableManager =
       ExposureLog,
       PrefetchHooks Function()
     >;
+typedef $$StandTestsTableCreateCompanionBuilder =
+    StandTestsCompanion Function({
+      required String updatedAt,
+      Value<DateTime?> deletedAt,
+      required String id,
+      required String date,
+      required String startedAt,
+      Value<String> baselinePosition,
+      Value<int?> baselineHr,
+      Value<int?> baselineSys,
+      Value<int?> baselineDia,
+      Value<int?> hr1,
+      Value<int?> sys1,
+      Value<int?> dia1,
+      Value<int?> hr3,
+      Value<int?> sys3,
+      Value<int?> dia3,
+      Value<int?> hr10,
+      Value<int?> sys10,
+      Value<int?> dia10,
+      Value<String> symptoms,
+      Value<bool> stoppedEarly,
+      Value<String?> note,
+      Value<int> rowid,
+    });
+typedef $$StandTestsTableUpdateCompanionBuilder =
+    StandTestsCompanion Function({
+      Value<String> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> id,
+      Value<String> date,
+      Value<String> startedAt,
+      Value<String> baselinePosition,
+      Value<int?> baselineHr,
+      Value<int?> baselineSys,
+      Value<int?> baselineDia,
+      Value<int?> hr1,
+      Value<int?> sys1,
+      Value<int?> dia1,
+      Value<int?> hr3,
+      Value<int?> sys3,
+      Value<int?> dia3,
+      Value<int?> hr10,
+      Value<int?> sys10,
+      Value<int?> dia10,
+      Value<String> symptoms,
+      Value<bool> stoppedEarly,
+      Value<String?> note,
+      Value<int> rowid,
+    });
+
+class $$StandTestsTableFilterComposer
+    extends Composer<_$AppDatabase, $StandTestsTable> {
+  $$StandTestsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get date => $composableBuilder(
+    column: $table.date,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get startedAt => $composableBuilder(
+    column: $table.startedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get baselinePosition => $composableBuilder(
+    column: $table.baselinePosition,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get baselineHr => $composableBuilder(
+    column: $table.baselineHr,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get baselineSys => $composableBuilder(
+    column: $table.baselineSys,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get baselineDia => $composableBuilder(
+    column: $table.baselineDia,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get hr1 => $composableBuilder(
+    column: $table.hr1,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get sys1 => $composableBuilder(
+    column: $table.sys1,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get dia1 => $composableBuilder(
+    column: $table.dia1,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get hr3 => $composableBuilder(
+    column: $table.hr3,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get sys3 => $composableBuilder(
+    column: $table.sys3,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get dia3 => $composableBuilder(
+    column: $table.dia3,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get hr10 => $composableBuilder(
+    column: $table.hr10,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get sys10 => $composableBuilder(
+    column: $table.sys10,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get dia10 => $composableBuilder(
+    column: $table.dia10,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get symptoms => $composableBuilder(
+    column: $table.symptoms,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get stoppedEarly => $composableBuilder(
+    column: $table.stoppedEarly,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get note => $composableBuilder(
+    column: $table.note,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$StandTestsTableOrderingComposer
+    extends Composer<_$AppDatabase, $StandTestsTable> {
+  $$StandTestsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get date => $composableBuilder(
+    column: $table.date,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get startedAt => $composableBuilder(
+    column: $table.startedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get baselinePosition => $composableBuilder(
+    column: $table.baselinePosition,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get baselineHr => $composableBuilder(
+    column: $table.baselineHr,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get baselineSys => $composableBuilder(
+    column: $table.baselineSys,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get baselineDia => $composableBuilder(
+    column: $table.baselineDia,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get hr1 => $composableBuilder(
+    column: $table.hr1,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get sys1 => $composableBuilder(
+    column: $table.sys1,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get dia1 => $composableBuilder(
+    column: $table.dia1,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get hr3 => $composableBuilder(
+    column: $table.hr3,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get sys3 => $composableBuilder(
+    column: $table.sys3,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get dia3 => $composableBuilder(
+    column: $table.dia3,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get hr10 => $composableBuilder(
+    column: $table.hr10,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get sys10 => $composableBuilder(
+    column: $table.sys10,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get dia10 => $composableBuilder(
+    column: $table.dia10,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get symptoms => $composableBuilder(
+    column: $table.symptoms,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get stoppedEarly => $composableBuilder(
+    column: $table.stoppedEarly,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get note => $composableBuilder(
+    column: $table.note,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$StandTestsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $StandTestsTable> {
+  $$StandTestsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get date =>
+      $composableBuilder(column: $table.date, builder: (column) => column);
+
+  GeneratedColumn<String> get startedAt =>
+      $composableBuilder(column: $table.startedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get baselinePosition => $composableBuilder(
+    column: $table.baselinePosition,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get baselineHr => $composableBuilder(
+    column: $table.baselineHr,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get baselineSys => $composableBuilder(
+    column: $table.baselineSys,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get baselineDia => $composableBuilder(
+    column: $table.baselineDia,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get hr1 =>
+      $composableBuilder(column: $table.hr1, builder: (column) => column);
+
+  GeneratedColumn<int> get sys1 =>
+      $composableBuilder(column: $table.sys1, builder: (column) => column);
+
+  GeneratedColumn<int> get dia1 =>
+      $composableBuilder(column: $table.dia1, builder: (column) => column);
+
+  GeneratedColumn<int> get hr3 =>
+      $composableBuilder(column: $table.hr3, builder: (column) => column);
+
+  GeneratedColumn<int> get sys3 =>
+      $composableBuilder(column: $table.sys3, builder: (column) => column);
+
+  GeneratedColumn<int> get dia3 =>
+      $composableBuilder(column: $table.dia3, builder: (column) => column);
+
+  GeneratedColumn<int> get hr10 =>
+      $composableBuilder(column: $table.hr10, builder: (column) => column);
+
+  GeneratedColumn<int> get sys10 =>
+      $composableBuilder(column: $table.sys10, builder: (column) => column);
+
+  GeneratedColumn<int> get dia10 =>
+      $composableBuilder(column: $table.dia10, builder: (column) => column);
+
+  GeneratedColumn<String> get symptoms =>
+      $composableBuilder(column: $table.symptoms, builder: (column) => column);
+
+  GeneratedColumn<bool> get stoppedEarly => $composableBuilder(
+    column: $table.stoppedEarly,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get note =>
+      $composableBuilder(column: $table.note, builder: (column) => column);
+}
+
+class $$StandTestsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $StandTestsTable,
+          StandTest,
+          $$StandTestsTableFilterComposer,
+          $$StandTestsTableOrderingComposer,
+          $$StandTestsTableAnnotationComposer,
+          $$StandTestsTableCreateCompanionBuilder,
+          $$StandTestsTableUpdateCompanionBuilder,
+          (
+            StandTest,
+            BaseReferences<_$AppDatabase, $StandTestsTable, StandTest>,
+          ),
+          StandTest,
+          PrefetchHooks Function()
+        > {
+  $$StandTestsTableTableManager(_$AppDatabase db, $StandTestsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$StandTestsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$StandTestsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$StandTestsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> id = const Value.absent(),
+                Value<String> date = const Value.absent(),
+                Value<String> startedAt = const Value.absent(),
+                Value<String> baselinePosition = const Value.absent(),
+                Value<int?> baselineHr = const Value.absent(),
+                Value<int?> baselineSys = const Value.absent(),
+                Value<int?> baselineDia = const Value.absent(),
+                Value<int?> hr1 = const Value.absent(),
+                Value<int?> sys1 = const Value.absent(),
+                Value<int?> dia1 = const Value.absent(),
+                Value<int?> hr3 = const Value.absent(),
+                Value<int?> sys3 = const Value.absent(),
+                Value<int?> dia3 = const Value.absent(),
+                Value<int?> hr10 = const Value.absent(),
+                Value<int?> sys10 = const Value.absent(),
+                Value<int?> dia10 = const Value.absent(),
+                Value<String> symptoms = const Value.absent(),
+                Value<bool> stoppedEarly = const Value.absent(),
+                Value<String?> note = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => StandTestsCompanion(
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                id: id,
+                date: date,
+                startedAt: startedAt,
+                baselinePosition: baselinePosition,
+                baselineHr: baselineHr,
+                baselineSys: baselineSys,
+                baselineDia: baselineDia,
+                hr1: hr1,
+                sys1: sys1,
+                dia1: dia1,
+                hr3: hr3,
+                sys3: sys3,
+                dia3: dia3,
+                hr10: hr10,
+                sys10: sys10,
+                dia10: dia10,
+                symptoms: symptoms,
+                stoppedEarly: stoppedEarly,
+                note: note,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String updatedAt,
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String id,
+                required String date,
+                required String startedAt,
+                Value<String> baselinePosition = const Value.absent(),
+                Value<int?> baselineHr = const Value.absent(),
+                Value<int?> baselineSys = const Value.absent(),
+                Value<int?> baselineDia = const Value.absent(),
+                Value<int?> hr1 = const Value.absent(),
+                Value<int?> sys1 = const Value.absent(),
+                Value<int?> dia1 = const Value.absent(),
+                Value<int?> hr3 = const Value.absent(),
+                Value<int?> sys3 = const Value.absent(),
+                Value<int?> dia3 = const Value.absent(),
+                Value<int?> hr10 = const Value.absent(),
+                Value<int?> sys10 = const Value.absent(),
+                Value<int?> dia10 = const Value.absent(),
+                Value<String> symptoms = const Value.absent(),
+                Value<bool> stoppedEarly = const Value.absent(),
+                Value<String?> note = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => StandTestsCompanion.insert(
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                id: id,
+                date: date,
+                startedAt: startedAt,
+                baselinePosition: baselinePosition,
+                baselineHr: baselineHr,
+                baselineSys: baselineSys,
+                baselineDia: baselineDia,
+                hr1: hr1,
+                sys1: sys1,
+                dia1: dia1,
+                hr3: hr3,
+                sys3: sys3,
+                dia3: dia3,
+                hr10: hr10,
+                sys10: sys10,
+                dia10: dia10,
+                symptoms: symptoms,
+                stoppedEarly: stoppedEarly,
+                note: note,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$StandTestsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $StandTestsTable,
+      StandTest,
+      $$StandTestsTableFilterComposer,
+      $$StandTestsTableOrderingComposer,
+      $$StandTestsTableAnnotationComposer,
+      $$StandTestsTableCreateCompanionBuilder,
+      $$StandTestsTableUpdateCompanionBuilder,
+      (StandTest, BaseReferences<_$AppDatabase, $StandTestsTable, StandTest>),
+      StandTest,
+      PrefetchHooks Function()
+    >;
+typedef $$SweatLogsTableCreateCompanionBuilder =
+    SweatLogsCompanion Function({
+      required String updatedAt,
+      Value<DateTime?> deletedAt,
+      required String id,
+      required String date,
+      Value<String> kinds,
+      Value<String?> note,
+      Value<int> rowid,
+    });
+typedef $$SweatLogsTableUpdateCompanionBuilder =
+    SweatLogsCompanion Function({
+      Value<String> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> id,
+      Value<String> date,
+      Value<String> kinds,
+      Value<String?> note,
+      Value<int> rowid,
+    });
+
+class $$SweatLogsTableFilterComposer
+    extends Composer<_$AppDatabase, $SweatLogsTable> {
+  $$SweatLogsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get date => $composableBuilder(
+    column: $table.date,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get kinds => $composableBuilder(
+    column: $table.kinds,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get note => $composableBuilder(
+    column: $table.note,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$SweatLogsTableOrderingComposer
+    extends Composer<_$AppDatabase, $SweatLogsTable> {
+  $$SweatLogsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get date => $composableBuilder(
+    column: $table.date,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get kinds => $composableBuilder(
+    column: $table.kinds,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get note => $composableBuilder(
+    column: $table.note,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$SweatLogsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $SweatLogsTable> {
+  $$SweatLogsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get date =>
+      $composableBuilder(column: $table.date, builder: (column) => column);
+
+  GeneratedColumn<String> get kinds =>
+      $composableBuilder(column: $table.kinds, builder: (column) => column);
+
+  GeneratedColumn<String> get note =>
+      $composableBuilder(column: $table.note, builder: (column) => column);
+}
+
+class $$SweatLogsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $SweatLogsTable,
+          SweatLog,
+          $$SweatLogsTableFilterComposer,
+          $$SweatLogsTableOrderingComposer,
+          $$SweatLogsTableAnnotationComposer,
+          $$SweatLogsTableCreateCompanionBuilder,
+          $$SweatLogsTableUpdateCompanionBuilder,
+          (SweatLog, BaseReferences<_$AppDatabase, $SweatLogsTable, SweatLog>),
+          SweatLog,
+          PrefetchHooks Function()
+        > {
+  $$SweatLogsTableTableManager(_$AppDatabase db, $SweatLogsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$SweatLogsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SweatLogsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$SweatLogsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> id = const Value.absent(),
+                Value<String> date = const Value.absent(),
+                Value<String> kinds = const Value.absent(),
+                Value<String?> note = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => SweatLogsCompanion(
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                id: id,
+                date: date,
+                kinds: kinds,
+                note: note,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String updatedAt,
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String id,
+                required String date,
+                Value<String> kinds = const Value.absent(),
+                Value<String?> note = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => SweatLogsCompanion.insert(
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                id: id,
+                date: date,
+                kinds: kinds,
+                note: note,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$SweatLogsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $SweatLogsTable,
+      SweatLog,
+      $$SweatLogsTableFilterComposer,
+      $$SweatLogsTableOrderingComposer,
+      $$SweatLogsTableAnnotationComposer,
+      $$SweatLogsTableCreateCompanionBuilder,
+      $$SweatLogsTableUpdateCompanionBuilder,
+      (SweatLog, BaseReferences<_$AppDatabase, $SweatLogsTable, SweatLog>),
+      SweatLog,
+      PrefetchHooks Function()
+    >;
+typedef $$BloodPressureReadingsTableCreateCompanionBuilder =
+    BloodPressureReadingsCompanion Function({
+      required String updatedAt,
+      Value<DateTime?> deletedAt,
+      required String id,
+      required String date,
+      required String takenAt,
+      required int systolic,
+      required int diastolic,
+      Value<int?> pulse,
+      Value<String> position,
+      Value<String?> note,
+      Value<int> rowid,
+    });
+typedef $$BloodPressureReadingsTableUpdateCompanionBuilder =
+    BloodPressureReadingsCompanion Function({
+      Value<String> updatedAt,
+      Value<DateTime?> deletedAt,
+      Value<String> id,
+      Value<String> date,
+      Value<String> takenAt,
+      Value<int> systolic,
+      Value<int> diastolic,
+      Value<int?> pulse,
+      Value<String> position,
+      Value<String?> note,
+      Value<int> rowid,
+    });
+
+class $$BloodPressureReadingsTableFilterComposer
+    extends Composer<_$AppDatabase, $BloodPressureReadingsTable> {
+  $$BloodPressureReadingsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get date => $composableBuilder(
+    column: $table.date,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get takenAt => $composableBuilder(
+    column: $table.takenAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get systolic => $composableBuilder(
+    column: $table.systolic,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get diastolic => $composableBuilder(
+    column: $table.diastolic,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get pulse => $composableBuilder(
+    column: $table.pulse,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get position => $composableBuilder(
+    column: $table.position,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get note => $composableBuilder(
+    column: $table.note,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$BloodPressureReadingsTableOrderingComposer
+    extends Composer<_$AppDatabase, $BloodPressureReadingsTable> {
+  $$BloodPressureReadingsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get date => $composableBuilder(
+    column: $table.date,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get takenAt => $composableBuilder(
+    column: $table.takenAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get systolic => $composableBuilder(
+    column: $table.systolic,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get diastolic => $composableBuilder(
+    column: $table.diastolic,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get pulse => $composableBuilder(
+    column: $table.pulse,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get position => $composableBuilder(
+    column: $table.position,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get note => $composableBuilder(
+    column: $table.note,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$BloodPressureReadingsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $BloodPressureReadingsTable> {
+  $$BloodPressureReadingsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get date =>
+      $composableBuilder(column: $table.date, builder: (column) => column);
+
+  GeneratedColumn<String> get takenAt =>
+      $composableBuilder(column: $table.takenAt, builder: (column) => column);
+
+  GeneratedColumn<int> get systolic =>
+      $composableBuilder(column: $table.systolic, builder: (column) => column);
+
+  GeneratedColumn<int> get diastolic =>
+      $composableBuilder(column: $table.diastolic, builder: (column) => column);
+
+  GeneratedColumn<int> get pulse =>
+      $composableBuilder(column: $table.pulse, builder: (column) => column);
+
+  GeneratedColumn<String> get position =>
+      $composableBuilder(column: $table.position, builder: (column) => column);
+
+  GeneratedColumn<String> get note =>
+      $composableBuilder(column: $table.note, builder: (column) => column);
+}
+
+class $$BloodPressureReadingsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $BloodPressureReadingsTable,
+          BloodPressureReading,
+          $$BloodPressureReadingsTableFilterComposer,
+          $$BloodPressureReadingsTableOrderingComposer,
+          $$BloodPressureReadingsTableAnnotationComposer,
+          $$BloodPressureReadingsTableCreateCompanionBuilder,
+          $$BloodPressureReadingsTableUpdateCompanionBuilder,
+          (
+            BloodPressureReading,
+            BaseReferences<
+              _$AppDatabase,
+              $BloodPressureReadingsTable,
+              BloodPressureReading
+            >,
+          ),
+          BloodPressureReading,
+          PrefetchHooks Function()
+        > {
+  $$BloodPressureReadingsTableTableManager(
+    _$AppDatabase db,
+    $BloodPressureReadingsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$BloodPressureReadingsTableFilterComposer(
+                $db: db,
+                $table: table,
+              ),
+          createOrderingComposer: () =>
+              $$BloodPressureReadingsTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
+          createComputedFieldComposer: () =>
+              $$BloodPressureReadingsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<String> id = const Value.absent(),
+                Value<String> date = const Value.absent(),
+                Value<String> takenAt = const Value.absent(),
+                Value<int> systolic = const Value.absent(),
+                Value<int> diastolic = const Value.absent(),
+                Value<int?> pulse = const Value.absent(),
+                Value<String> position = const Value.absent(),
+                Value<String?> note = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => BloodPressureReadingsCompanion(
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                id: id,
+                date: date,
+                takenAt: takenAt,
+                systolic: systolic,
+                diastolic: diastolic,
+                pulse: pulse,
+                position: position,
+                note: note,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String updatedAt,
+                Value<DateTime?> deletedAt = const Value.absent(),
+                required String id,
+                required String date,
+                required String takenAt,
+                required int systolic,
+                required int diastolic,
+                Value<int?> pulse = const Value.absent(),
+                Value<String> position = const Value.absent(),
+                Value<String?> note = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => BloodPressureReadingsCompanion.insert(
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                id: id,
+                date: date,
+                takenAt: takenAt,
+                systolic: systolic,
+                diastolic: diastolic,
+                pulse: pulse,
+                position: position,
+                note: note,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$BloodPressureReadingsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $BloodPressureReadingsTable,
+      BloodPressureReading,
+      $$BloodPressureReadingsTableFilterComposer,
+      $$BloodPressureReadingsTableOrderingComposer,
+      $$BloodPressureReadingsTableAnnotationComposer,
+      $$BloodPressureReadingsTableCreateCompanionBuilder,
+      $$BloodPressureReadingsTableUpdateCompanionBuilder,
+      (
+        BloodPressureReading,
+        BaseReferences<
+          _$AppDatabase,
+          $BloodPressureReadingsTable,
+          BloodPressureReading
+        >,
+      ),
+      BloodPressureReading,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -21190,4 +24393,10 @@ class $AppDatabaseManager {
       $$FearItemsTableTableManager(_db, _db.fearItems);
   $$ExposureLogsTableTableManager get exposureLogs =>
       $$ExposureLogsTableTableManager(_db, _db.exposureLogs);
+  $$StandTestsTableTableManager get standTests =>
+      $$StandTestsTableTableManager(_db, _db.standTests);
+  $$SweatLogsTableTableManager get sweatLogs =>
+      $$SweatLogsTableTableManager(_db, _db.sweatLogs);
+  $$BloodPressureReadingsTableTableManager get bloodPressureReadings =>
+      $$BloodPressureReadingsTableTableManager(_db, _db.bloodPressureReadings);
 }

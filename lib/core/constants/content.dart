@@ -77,6 +77,50 @@ List<AdaptiveBodyPrinciple> adaptiveBodyPrinciples(AppLocalizations l10n) => [
         inspiration: l10n.principleMuscleDamageCaveatInspiration,
         citation: 'App-level synthesis, not from the source studies directly',
       ),
+      // Autonomic signals and the Plan tab (added 2026-11-18). Citations
+      // checked against PubMed and publisher records at abstract level.
+      AdaptiveBodyPrinciple(
+        title: l10n.principleNoBalanceNumberTitle,
+        fact: l10n.principleNoBalanceNumberFact,
+        inspiration: l10n.principleNoBalanceNumberInspiration,
+        citation: 'Goldberger et al., 2006, Am J Physiol Heart Circ Physiol; Martinmäki et al., 2006, Am J Physiol Heart Circ Physiol',
+      ),
+      AdaptiveBodyPrinciple(
+        title: l10n.principleOwnBaselineTitle,
+        fact: l10n.principleOwnBaselineFact,
+        inspiration: l10n.principleOwnBaselineInspiration,
+        citation: 'Gronwald et al., 2024, Eur J Appl Physiol; Zhang et al., 2020, J Sports Sci',
+      ),
+      AdaptiveBodyPrinciple(
+        title: l10n.principleSignalsInformTitle,
+        fact: l10n.principleSignalsInformFact,
+        inspiration: l10n.principleSignalsInformInspiration,
+        citation: 'Pecchia et al., 2018, Healthc Technol Lett; Cole et al., 1999, N Engl J Med',
+      ),
+      AdaptiveBodyPrinciple(
+        title: l10n.principleStandTestTitle,
+        fact: l10n.principleStandTestFact,
+        inspiration: l10n.principleStandTestInspiration,
+        citation: 'Freeman et al., 2011, Clin Auton Res; Sheldon et al., 2015, Heart Rhythm',
+      ),
+      AdaptiveBodyPrinciple(
+        title: l10n.principleSweatSignalTitle,
+        fact: l10n.principleSweatSignalFact,
+        inspiration: l10n.principleSweatSignalInspiration,
+        citation: 'Sletten et al., 2012, Mayo Clin Proc',
+      ),
+      AdaptiveBodyPrinciple(
+        title: l10n.principlePainMonitoringTitle,
+        fact: l10n.principlePainMonitoringFact,
+        inspiration: l10n.principlePainMonitoringInspiration,
+        citation: 'Thomeé, 1997, Phys Ther; Silbernagel et al., 2007, Am J Sports Med',
+      ),
+      AdaptiveBodyPrinciple(
+        title: l10n.principleGradedExposureTitle,
+        fact: l10n.principleGradedExposureFact,
+        inspiration: l10n.principleGradedExposureInspiration,
+        citation: 'Vlaeyen & Linton, 2000, Pain',
+      ),
     ];
 
 List<String> restFacts(AppLocalizations l10n) => [

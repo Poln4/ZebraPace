@@ -172,7 +172,10 @@ void main() {
     test('lower holds at baseline with a narrower caution line', () {
       final e = pacing.applyReadiness(
         base,
-        const ReadinessResult(level: ReadinessLevel.lower),
+        const ReadinessResult(
+          level: ReadinessLevel.lower,
+          reasons: {ReadinessReason.recoveryWindowExceeded},
+        ),
         cautionPct: 1.10,
       );
       expect(e.goalSteps, 5000);
@@ -183,11 +186,26 @@ void main() {
     test('low drops the goal and puts the caution line at baseline', () {
       final e = pacing.applyReadiness(
         base,
-        const ReadinessResult(level: ReadinessLevel.low),
+        const ReadinessResult(level: ReadinessLevel.low, reasons: {ReadinessReason.possibleCrash}),
         cautionPct: 1.10,
       );
       expect(e.goalSteps, 4250);
       expect(e.cautionSteps, 5000);
+    });
+
+    test('resting HR and HRV alone are information: the envelope stays', () {
+      final e = pacing.applyReadiness(
+        base,
+        const ReadinessResult(
+          level: ReadinessLevel.low,
+          reasons: {ReadinessReason.restingHeartRateUp, ReadinessReason.hrvDown},
+        ),
+        cautionPct: 1.10,
+      );
+      expect(e.goalSteps, 5050);
+      expect(e.cautionSteps, 5500);
+      expect(e.isReduced, isFalse);
+      expect(e.readiness.autonomicAway, isTrue);
     });
 
     test('steady leaves the usual envelope', () {
@@ -204,7 +222,7 @@ void main() {
     test('under a reduced goal is honoured, not a gentle-low nudge', () {
       final e = pacing.applyReadiness(
         base,
-        const ReadinessResult(level: ReadinessLevel.low),
+        const ReadinessResult(level: ReadinessLevel.low, reasons: {ReadinessReason.possibleCrash}),
         cautionPct: 1.10,
       );
       expect(

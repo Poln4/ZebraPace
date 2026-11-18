@@ -1175,6 +1175,83 @@ class AppLocalizationsZh extends AppLocalizations {
       '請將肌肉痠痛與關節／關節囊的訊號視為兩件值得分開追蹤的事——肌肉痠痛減輕是好現象，但關節周圍的疼痛、不穩定或腫脹是獨立的訊號，值得獨立留意，無論肌肉痠痛的狀況如何。';
 
   @override
+  String get principleNoBalanceNumberTitle => '兩個面向，絕不是一個「平衡」數值';
+
+  @override
+  String get principleNoBalanceNumberFact =>
+      '時域 HRV（RMSSD）反映副交感（迷走）面，並以阿托品阻斷驗證過。市面上號稱「交感／副交感平衡」的頻譜比值（LF/HF、標準化單位），並不是迷走張力或平衡的有效測量。';
+
+  @override
+  String get principleNoBalanceNumberInspiration =>
+      '你的神經系統不是只有一個讀數的蹺蹺板。所以 App 會分開呈現休息面、站立反應和出汗，絕不把它們壓成一個分數。';
+
+  @override
+  String get principleOwnBaselineTitle => '你自己的正常值，而不是族群數字';
+
+  @override
+  String get principleOwnBaselineFact =>
+      '自律神經指標的個人差異很大，所以要和自己最近的紀錄比較。手腕心率在休息和睡眠時可靠，騎車或肌力訓練時就差很多——所以比較的是休息與夜間的數值。';
+
+  @override
+  String get principleOwnBaselineInspiration =>
+      '這裡的「平常」指的是你的平常。讓別人擔心的數字，對你可能只是普通的一天，反之亦然。';
+
+  @override
+  String get principleSignalsInformTitle => '心臟訊號提供資訊，但不做決定';
+
+  @override
+  String get principleSignalsInformFact =>
+      '幾乎所有 HRV 研究都來自運動員和心臟病患者，而不是 EDS、POTS 或 MCAS 患者；已發表的切點預測的是心臟族群的死亡率。超短時間窗的 HRV 幾乎都沒有經過驗證。';
+
+  @override
+  String get principleSignalsInformInspiration =>
+      '所以 HRV 偏低或靜止心率偏高，絕不會單獨縮小你的步數範圍。它是可以和你的感受一起衡量的背景資訊——做決定的仍然是你。';
+
+  @override
+  String get principleStandTestTitle => '為什麼站立測試看第 1、3、10 分鐘';
+
+  @override
+  String get principleStandTestFact =>
+      '共識標準將 POTS 定義為站立 10 分鐘內心率上升 30 次/分以上（12–19 歲為 40），且沒有姿勢性低血壓；姿勢性低血壓則是 3 分鐘內血壓下降 20/10 mmHg 以上。';
+
+  @override
+  String get principleStandTestInspiration =>
+      'App 會把這些呈現為值得向醫師提及的模式，絕不是診斷。你自己的測試紀錄同樣重要——而提早停下來永遠是對的決定。';
+
+  @override
+  String get principleSweatSignalTitle => '出汗是你可以描述的訊號';
+
+  @override
+  String get principleSweatSignalFact =>
+      '汗腺只受交感神經支配。經過驗證的自律神經問卷都有詢問出汗的分泌運動面向，因為人們對自身症狀的描述是有用的臨床資訊。';
+
+  @override
+  String get principleSweatSignalInspiration =>
+      '不需要感測器：注意到「比平常少」或「冰冷濕黏」，就是關於你身體的真實資料，而且可以帶去看診。';
+
+  @override
+  String get principlePainMonitoringTitle => '疼痛 0–2、3–5、超過 5：疼痛監測模式';
+
+  @override
+  String get principlePainMonitoringFact =>
+      '一項隨機試驗發現，允許運動時疼痛達到 5/10 的復健——只要隔天早上會緩解且不是尖銳痛——效果和休息一樣好，持續活動也沒有負面影響。';
+
+  @override
+  String get principlePainMonitoringInspiration =>
+      '有些不適並不代表受傷。計畫中的疼痛顏色告訴你何時繼續、何時維持、何時退一步——而不是何時放棄。';
+
+  @override
+  String get principleGradedExposureTitle => '面對害怕的動作，一次一小步';
+
+  @override
+  String get principleGradedExposureFact =>
+      '在恐懼迴避模式中，造成迴避、廢用和更多失能的是對疼痛的恐懼，而不只是疼痛強度。漸進暴露會一步步檢驗這個預測，每次沒有發生壞事，這個信念就會鬆動一些。';
+
+  @override
+  String get principleGradedExposureInspiration =>
+      '所以恐懼階梯會保留一份證據清單。每一次「我做到了，也沒有發生壞事」，都是你的身體替你收集的證明。';
+
+  @override
   String get restFactNoBehind => '慢性病沒有所謂的「落後」。唯一有意義的比較，是溫柔地將今天的你與昨天的你相比。';
 
   @override
@@ -2322,6 +2399,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get readinessLowHeadline => '🌙 身體今天需要小一點的一天，所以今天的範圍比較小。';
 
   @override
+  String get readinessAutonomicAwayHeadline => '今天你的心臟訊號離平常較遠。這只是參考資訊，你的範圍不變。';
+
+  @override
   String readinessReasonRestingHeartRate(int bpm) {
     return '靜止心率比平常高 $bpm 次/分。';
   }
@@ -3221,4 +3301,293 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get planStepLockedNote => '需要等物理治療師或醫療人員同意。先跳過，這次訓練的其他部分一樣算數。';
+
+  @override
+  String get autonomicTitle => '🫀 自律神經訊號';
+
+  @override
+  String get autonomicCaption =>
+      '神經系統的兩個面向，分開呈現，並與你自己的紀錄比較。沒有單一的「平衡」數值：沒有有效的測量能給出這種數字。';
+
+  @override
+  String get autonomicVagalTitle => '休息面（副交感）';
+
+  @override
+  String get autonomicVagalEmpty => '連接健康資料，或在睡眠中記錄靜止心率與 HRV，即可看到這一面。';
+
+  @override
+  String get autonomicVagalNote => '僅供參考：不會改變你的步數範圍。';
+
+  @override
+  String get autonomicHrvMetricIos => 'Apple 健康以 SDNN 記錄 HRV，混合了兩個面向。只會與它自己比較。';
+
+  @override
+  String get autonomicHrvMetricAndroid =>
+      'Health Connect 以 RMSSD 記錄 HRV，主要反映休息面。';
+
+  @override
+  String get autonomicStandTitle => '站立反應（交感，間接）';
+
+  @override
+  String get autonomicStandEmpty => '尚未做過站立測試。大約需要 15 分鐘。';
+
+  @override
+  String get autonomicStandStart => '開始站立測試';
+
+  @override
+  String autonomicStandLast(String date) {
+    return '上次測試 $date';
+  }
+
+  @override
+  String autonomicHrRise(String change) {
+    return '站立心率：比休息時 $change 次/分';
+  }
+
+  @override
+  String autonomicHrRiseUsual(int bpm) {
+    return '你平常上升 $bpm';
+  }
+
+  @override
+  String autonomicHrRisePending(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '再做 $count 次測試後會顯示你平常的上升幅度',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String autonomicPressureChange(String sys, String dia) {
+    return '前 3 分鐘血壓變化 $sys/$dia mmHg';
+  }
+
+  @override
+  String get autonomicPotsHint => '心率上升 30 次/分以上（或超過 120）可能代表值得向醫師提及的模式。這不是診斷。';
+
+  @override
+  String get autonomicOhHint => '3 分鐘內血壓下降 20/10 mmHg 以上可能代表值得向醫師提及的模式。這不是診斷。';
+
+  @override
+  String get autonomicStoppedEarly => '提前停止';
+
+  @override
+  String get autonomicAllTests => '所有測試';
+
+  @override
+  String get autonomicTapToDelete => '點選測試即可刪除。';
+
+  @override
+  String get autonomicSweatTitle => '出汗（交感，依你的描述）';
+
+  @override
+  String get autonomicSweatCaption => '汗腺只受交感神經支配。今天有什麼不同嗎？';
+
+  @override
+  String autonomicSweatRecent(String summary) {
+    return '過去 14 天：$summary';
+  }
+
+  @override
+  String get sweatMoreThanUsual => '比平常多';
+
+  @override
+  String get sweatLessThanUsual => '比平常少';
+
+  @override
+  String get sweatCouldNotSweat => '炎熱或用力時流不出汗';
+
+  @override
+  String get sweatColdClammy => '手腳冰冷濕黏';
+
+  @override
+  String get sweatNightSweats => '夜間盜汗';
+
+  @override
+  String get sweatOneSideOrPatchy => '只在一側或局部出汗';
+
+  @override
+  String get standSymptomLightheaded => '頭暈';
+
+  @override
+  String get standSymptomPalpitations => '心跳加速或怦怦跳';
+
+  @override
+  String get standSymptomBlurredVision => '視線模糊或變暗';
+
+  @override
+  String get standSymptomNausea => '噁心';
+
+  @override
+  String get standSymptomSweating => '出汗';
+
+  @override
+  String get standSymptomShaky => '發抖';
+
+  @override
+  String get standSymptomBreathless => '呼吸急促';
+
+  @override
+  String get standSymptomHeadache => '頭痛或頸部痛';
+
+  @override
+  String get standTestTitle => '站立測試';
+
+  @override
+  String get standTestIntro =>
+      '這會顯示你站起來時心率（若有血壓計，也包括血壓）的反應。先休息 5 分鐘，再靜止站立最多 10 分鐘，在第 1、3、10 分鐘輸入心率。';
+
+  @override
+  String get standTestSafetyTitle => '開始之前';
+
+  @override
+  String get standTestSafetyWall => '背靠近牆站立，椅子就在身後。';
+
+  @override
+  String get standTestSafetyStop =>
+      '如果感到快暈倒、頭暈或不舒服，請立刻坐下或躺下，並點選「停止測試」。停下來永遠沒關係。';
+
+  @override
+  String get standTestSafetyCompany => '如果你曾經暈倒，請務必有人陪同再做。';
+
+  @override
+  String get standTestSafetyWhen => '發作日、剛吃飽或熱水澡後請不要做。';
+
+  @override
+  String get standTestRestPosition => '休息姿勢';
+
+  @override
+  String get standTestLying => '躺著';
+
+  @override
+  String get standTestSitting => '坐著';
+
+  @override
+  String get standTestBeginRest => '開始休息（5 分鐘）';
+
+  @override
+  String standTestResting(String time) {
+    return '安靜休息。$time 後結束休息。';
+  }
+
+  @override
+  String get standTestSkipRest => '我已經休息 5 分鐘了';
+
+  @override
+  String get standTestBaselineLabel => '休息時';
+
+  @override
+  String get standTestBaselinePrompt => '輸入休息時的心率，然後站起來。';
+
+  @override
+  String get standTestStandUp => '我已經站起來了';
+
+  @override
+  String standTestPointLabel(int min) {
+    return '站立 $min 分鐘';
+  }
+
+  @override
+  String standTestStanding(String time) {
+    return '已站立 $time';
+  }
+
+  @override
+  String standTestNextAt(int min, String time) {
+    return '$time 後記錄第 $min 分鐘';
+  }
+
+  @override
+  String get standTestAllRead => '所有數值都記錄好了，可以坐下了。';
+
+  @override
+  String get standTestStop => '停止測試';
+
+  @override
+  String get standTestStoppedTitle => '測試已停止';
+
+  @override
+  String get standTestStoppedBody => '請坐下或躺下休息。目前記錄的內容已儲存。';
+
+  @override
+  String get standTestFinish => '完成並儲存';
+
+  @override
+  String get standTestHr => '心率';
+
+  @override
+  String get standTestSys => '收縮壓';
+
+  @override
+  String get standTestDia => '舒張壓';
+
+  @override
+  String get standTestBpOptional => '血壓（選填）';
+
+  @override
+  String get standTestHrHint => '來自手錶的心率 App 或血氧機。';
+
+  @override
+  String get standTestSymptoms => '站立時的任何感受';
+
+  @override
+  String get autonomicBpTitle => '血壓（血壓計）';
+
+  @override
+  String get autonomicBpEmpty => '尚無紀錄。每次量血壓時，從血壓計輸入即可。';
+
+  @override
+  String get autonomicBpAdd => '新增一筆紀錄';
+
+  @override
+  String autonomicBpUsual(int sys, int dia) {
+    return '你平常 $sys/$dia';
+  }
+
+  @override
+  String autonomicBpUsualPending(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '此姿勢再記錄 $count 筆後會顯示你平常的數值',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String autonomicBpPulse(int bpm) {
+    return '脈搏 $bpm';
+  }
+
+  @override
+  String get bpPositionSitting => '坐著';
+
+  @override
+  String get bpPositionLying => '躺著';
+
+  @override
+  String get bpPositionStanding => '站著';
+
+  @override
+  String get bpSheetTitle => '血壓紀錄';
+
+  @override
+  String get bpPosition => '姿勢';
+
+  @override
+  String get bpPulseOptional => '脈搏（選填）';
+
+  @override
+  String get bpTime => '時間';
+
+  @override
+  String get bpTip => '想量得穩定：先坐 5 分鐘，雙腳平放，手臂支撐在心臟高度，量的時候不要說話。';
+
+  @override
+  String get bpAllReadings => '所有紀錄';
+
+  @override
+  String get bpTapToDelete => '點選紀錄即可刪除。';
 }

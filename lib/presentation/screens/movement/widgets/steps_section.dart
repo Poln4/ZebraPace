@@ -227,8 +227,8 @@ class _MiniStat extends StatelessWidget {
   }
 }
 
-/// The readiness headline and reasons only apply when they can change the
-/// envelope; today's numbers show whenever there are any.
+/// The readiness headline and reasons need a step baseline to sit next to;
+/// today's numbers show whenever there are any.
 bool _showVerdict(bool isFlareDay, PacingEvaluation evaluation) =>
     !isFlareDay && evaluation.hasBaseline && evaluation.readiness.level != ReadinessLevel.unknown;
 
@@ -241,9 +241,11 @@ class _ReadinessNote extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final headline = switch (readiness.level) {
+    // Only soreness shrinks the range; resting HR / HRV are information.
+    final headline = switch (readiness.envelopeLevel) {
       ReadinessLevel.low => l10n.readinessLowHeadline,
       ReadinessLevel.lower => l10n.readinessLowerHeadline,
+      _ when readiness.autonomicAway => l10n.readinessAutonomicAwayHeadline,
       _ => l10n.readinessSteadyHeadline,
     };
     final reasons = [
@@ -307,7 +309,7 @@ final _pacingEvaluationProvider = FutureProvider.autoDispose.family((ref, String
     growthGoalPct: settings?.growthGoalPct ?? 1.01,
     cautionPct: cautionPct,
   );
-  // Readiness only ever narrows the envelope; if it can't be worked out,
+  // Readiness (soreness) only ever narrows the envelope; if it can't be worked out,
   // the usual envelope still shows.
   ReadinessResult readiness;
   try {

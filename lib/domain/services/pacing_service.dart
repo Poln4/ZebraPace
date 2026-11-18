@@ -26,12 +26,12 @@ class PacingEvaluation {
   final int goalSteps;
   final int cautionSteps;
 
-  /// What shaped today's envelope. When it [ReadinessLevel.reducesEnvelope],
-  /// [goalSteps]/[cautionSteps] are already the reduced values.
+  /// Today's readiness. When its [ReadinessResult.envelopeLevel] reduces
+  /// the envelope, [goalSteps]/[cautionSteps] are already the reduced values.
   final ReadinessResult readiness;
 
   bool get hasBaseline => avgSteps > 0;
-  bool get isReduced => readiness.level.reducesEnvelope;
+  bool get isReduced => readiness.envelopeLevel.reducesEnvelope;
 }
 
 /// Ported from app.py's get_weekly_average_steps + the steps-save message
@@ -69,8 +69,9 @@ class PacingService {
     );
   }
 
-  /// The energy envelope shrinks on days the body's signals say so,
-  /// instead of always asking for growth:
+  /// The energy envelope shrinks on days the soreness checks say so,
+  /// instead of always asking for growth (resting HR and HRV don't shrink
+  /// it — they're shown as information only):
   /// - lower: hold at baseline (no growth); caution line halfway to usual.
   /// - low: goal drops to the gentle-low line; caution line at baseline.
   /// Reaching the top of the envelope is the day's stimulus, not a reason to
@@ -81,7 +82,7 @@ class PacingService {
     required double cautionPct,
   }) {
     final avg = evaluation.avgSteps;
-    return switch (readiness.level) {
+    return switch (readiness.envelopeLevel) {
       ReadinessLevel.lower => PacingEvaluation(
           avgSteps: avg,
           goalSteps: avg.floor(),

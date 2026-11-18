@@ -31,8 +31,9 @@ class ExportImportService {
     ..._planTables,
   ];
 
-  /// Plan tables (v8+) round-trip through drift's own toJson/fromJson —
-  /// they have no older export formats to stay tolerant of.
+  /// Plan tables (v8+) and autonomic tables (v9+) round-trip through
+  /// drift's own toJson/fromJson — they have no older export formats to
+  /// stay tolerant of.
   static const _planTables = [
     'training_plans',
     'plan_phases',
@@ -46,6 +47,9 @@ class ExportImportService {
     'plan_test_results',
     'fear_items',
     'exposure_logs',
+    'stand_tests',
+    'sweat_logs',
+    'blood_pressure_readings',
   ];
 
   TableInfo<Table, dynamic> _planTable(String name) => switch (name) {
@@ -60,6 +64,9 @@ class ExportImportService {
         'plan_test_results' => _db.planTestResults,
         'fear_items' => _db.fearItems,
         'exposure_logs' => _db.exposureLogs,
+        'stand_tests' => _db.standTests,
+        'sweat_logs' => _db.sweatLogs,
+        'blood_pressure_readings' => _db.bloodPressureReadings,
         _ => _db.planSetLogs,
       };
 
@@ -75,6 +82,9 @@ class ExportImportService {
         'plan_test_results' => db.PlanTestResult.fromJson(row),
         'fear_items' => db.FearItem.fromJson(row),
         'exposure_logs' => db.ExposureLog.fromJson(row),
+        'stand_tests' => db.StandTest.fromJson(row),
+        'sweat_logs' => db.SweatLog.fromJson(row),
+        'blood_pressure_readings' => db.BloodPressureReading.fromJson(row),
         _ => db.PlanSetLog.fromJson(row),
       };
 

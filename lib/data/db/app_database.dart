@@ -2,6 +2,7 @@ import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
 
 import 'tables/activities_table.dart';
+import 'tables/autonomic_tables.dart';
 import 'tables/calisthenics_table.dart';
 import 'tables/checkins_table.dart';
 import 'tables/daily_logs_table.dart';
@@ -39,13 +40,16 @@ part 'app_database.g.dart';
     PlanTestResults,
     FearItems,
     ExposureLogs,
+    StandTests,
+    SweatLogs,
+    BloodPressureReadings,
   ],
 )
 class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 8;
+  int get schemaVersion => 9;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -132,6 +136,13 @@ class AppDatabase extends _$AppDatabase {
             await m.createTable(planTestResults);
             await m.createTable(fearItems);
             await m.createTable(exposureLogs);
+          }
+          // v8 -> v9: Autonomic signals — the active stand test,
+          // self-reported sweating and cuff blood pressure.
+          if (from < 9) {
+            await m.createTable(standTests);
+            await m.createTable(sweatLogs);
+            await m.createTable(bloodPressureReadings);
           }
         },
       );

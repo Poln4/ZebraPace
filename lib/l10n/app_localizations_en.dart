@@ -1202,6 +1202,90 @@ class AppLocalizationsEn extends AppLocalizations {
       'Treat muscle soreness and joint/capsule signals as two separate things worth tracking separately — easing muscle soreness is a good sign, but pain, instability, or swelling around a joint is its own signal and deserves its own caution, regardless of what the muscle soreness is doing.';
 
   @override
+  String get principleNoBalanceNumberTitle =>
+      'Two Sides, Never One \"Balance\" Number';
+
+  @override
+  String get principleNoBalanceNumberFact =>
+      'HRV in the time domain (RMSSD) tracks the parasympathetic (vagal) side and was validated against atropine blockade. The spectral ratios sold as \"sympathetic/parasympathetic balance\" (LF/HF, normalised units) are not valid measures of vagal tone or of balance.';
+
+  @override
+  String get principleNoBalanceNumberInspiration =>
+      'Your nervous system isn\'t a seesaw with one reading. That\'s why the app shows the rest side, the standing response and sweating separately, and never squeezes them into a score.';
+
+  @override
+  String get principleOwnBaselineTitle =>
+      'Your Own Normal, Not a Population Number';
+
+  @override
+  String get principleOwnBaselineFact =>
+      'Autonomic markers vary a lot between people, so they\'re read against the person\'s own recent history. Wrist heart rate is reliable at rest and during sleep, and much less so during cycling or strength work — which is why resting and overnight values are the ones compared.';
+
+  @override
+  String get principleOwnBaselineInspiration =>
+      '\"Usual\" here means your usual. A number that would worry someone else may be an ordinary day for you, and the other way round.';
+
+  @override
+  String get principleSignalsInformTitle =>
+      'Heart Signals Inform — They Don\'t Decide';
+
+  @override
+  String get principleSignalsInformFact =>
+      'Almost all HRV research comes from athletes and heart patients, not from people with EDS, POTS or MCAS, and the published cut-offs predict mortality in cardiac cohorts. Ultra-short HRV windows are rarely validated.';
+
+  @override
+  String get principleSignalsInformInspiration =>
+      'So a low HRV or a higher resting pulse never shrinks your step envelope on its own. It\'s context you can weigh with how you feel — you stay the one who decides.';
+
+  @override
+  String get principleStandTestTitle =>
+      'Why the Stand Test Reads 1, 3 and 10 Minutes';
+
+  @override
+  String get principleStandTestFact =>
+      'Consensus criteria define POTS as a heart-rate rise of 30 bpm or more within 10 minutes of standing (40 for ages 12–19) without orthostatic hypotension, and orthostatic hypotension as a fall of 20/10 mmHg or more within 3 minutes.';
+
+  @override
+  String get principleStandTestInspiration =>
+      'The app shows these as patterns worth mentioning to your doctor, never as a diagnosis. Your own history of tests matters just as much — and stopping early is always the right call.';
+
+  @override
+  String get principleSweatSignalTitle =>
+      'Sweating Is a Signal You Can Describe';
+
+  @override
+  String get principleSweatSignalFact =>
+      'Sweat glands are driven by the sympathetic side only. Validated autonomic questionnaires include a secretomotor domain that asks about sweating, because what people report about their own symptoms is useful clinical information.';
+
+  @override
+  String get principleSweatSignalInspiration =>
+      'No sensor needed: noticing \"less than usual\" or \"cold and clammy\" is real data about your body, and it\'s yours to bring to your appointments.';
+
+  @override
+  String get principlePainMonitoringTitle =>
+      'Pain 0–2, 3–5, Above 5: the Pain-Monitoring Model';
+
+  @override
+  String get principlePainMonitoringFact =>
+      'Rehabilitation that lets pain reach up to 5/10 during exercise — as long as it settles by the next morning and isn\'t sharp — did as well as rest in a randomised trial, with no negative effects from staying active.';
+
+  @override
+  String get principlePainMonitoringInspiration =>
+      'Some discomfort isn\'t damage. The plan\'s pain colours tell you when to keep going, when to hold, and when to step back — not when to give up.';
+
+  @override
+  String get principleGradedExposureTitle =>
+      'Facing a Feared Movement, One Small Step at a Time';
+
+  @override
+  String get principleGradedExposureFact =>
+      'In the fear-avoidance model, fear of pain — not pain intensity alone — leads to avoidance, disuse and more disability. Graded exposure tests the prediction step by step, and each time nothing bad happens the belief loosens.';
+
+  @override
+  String get principleGradedExposureInspiration =>
+      'That\'s why the fear ladder keeps an evidence list. Every \"I did it and nothing bad happened\" is proof your body collected for you.';
+
+  @override
   String get restFactNoBehind =>
       'There is no \'behind\' in a chronic condition. The only comparison that matters is you-today to you-yesterday, gently.';
 
@@ -2441,6 +2525,10 @@ class AppLocalizationsEn extends AppLocalizations {
       '🌙 Your body is asking for a smaller day, so today\'s envelope is smaller.';
 
   @override
+  String get readinessAutonomicAwayHeadline =>
+      'Your heart signals are further from your usual today. Just information: your envelope stays the same.';
+
+  @override
   String readinessReasonRestingHeartRate(int bpm) {
     return 'Resting heart rate is $bpm bpm above your usual.';
   }
@@ -3400,4 +3488,311 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get planStepLockedNote =>
       'Waits for your physio\'s or clinician\'s OK. Skip it for now — the rest of the session still counts.';
+
+  @override
+  String get autonomicTitle => '🫀 Autonomic signals';
+
+  @override
+  String get autonomicCaption =>
+      'Two sides of your nervous system, kept apart and compared with your own history. There\'s no single \"balance\" number: no valid measure gives one.';
+
+  @override
+  String get autonomicVagalTitle => 'Rest side (parasympathetic)';
+
+  @override
+  String get autonomicVagalEmpty =>
+      'Connect Health, or log resting heart rate and HRV in Sleep, to see this side.';
+
+  @override
+  String get autonomicVagalNote =>
+      'Information only: these never change your step envelope.';
+
+  @override
+  String get autonomicHrvMetricIos =>
+      'Apple Health records HRV as SDNN, which mixes both sides. It\'s only compared with itself.';
+
+  @override
+  String get autonomicHrvMetricAndroid =>
+      'Health Connect records HRV as RMSSD, which mostly reflects the rest side.';
+
+  @override
+  String get autonomicStandTitle => 'Standing response (sympathetic, indirect)';
+
+  @override
+  String get autonomicStandEmpty =>
+      'No stand test yet. It takes about 15 minutes.';
+
+  @override
+  String get autonomicStandStart => 'Start a stand test';
+
+  @override
+  String autonomicStandLast(String date) {
+    return 'Last test $date';
+  }
+
+  @override
+  String autonomicHrRise(String change) {
+    return 'Standing heart rate: $change bpm vs resting';
+  }
+
+  @override
+  String autonomicHrRiseUsual(int bpm) {
+    return 'your usual rise $bpm';
+  }
+
+  @override
+  String autonomicHrRisePending(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'your usual rise shows after $count more tests',
+      one: 'your usual rise shows after 1 more test',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String autonomicPressureChange(String sys, String dia) {
+    return 'Blood pressure changed $sys/$dia mmHg in the first 3 minutes';
+  }
+
+  @override
+  String get autonomicPotsHint =>
+      'A heart-rate rise of 30 bpm or more (or above 120) can suggest a pattern worth mentioning to your doctor. It isn\'t a diagnosis.';
+
+  @override
+  String get autonomicOhHint =>
+      'A blood-pressure drop of 20/10 mmHg or more within 3 minutes can suggest a pattern worth mentioning to your doctor. It isn\'t a diagnosis.';
+
+  @override
+  String get autonomicStoppedEarly => 'stopped early';
+
+  @override
+  String get autonomicAllTests => 'All tests';
+
+  @override
+  String get autonomicTapToDelete => 'Tap a test to delete it.';
+
+  @override
+  String get autonomicSweatTitle =>
+      'Sweating (sympathetic, as you describe it)';
+
+  @override
+  String get autonomicSweatCaption =>
+      'Sweat glands answer only to the sympathetic side. Anything different today?';
+
+  @override
+  String autonomicSweatRecent(String summary) {
+    return 'Last 14 days: $summary';
+  }
+
+  @override
+  String get sweatMoreThanUsual => 'More than usual';
+
+  @override
+  String get sweatLessThanUsual => 'Less than usual';
+
+  @override
+  String get sweatCouldNotSweat => 'Couldn\'t sweat in heat or effort';
+
+  @override
+  String get sweatColdClammy => 'Cold, clammy hands or feet';
+
+  @override
+  String get sweatNightSweats => 'Night sweats';
+
+  @override
+  String get sweatOneSideOrPatchy => 'Only on one side or in patches';
+
+  @override
+  String get standSymptomLightheaded => 'Light-headed';
+
+  @override
+  String get standSymptomPalpitations => 'Racing or pounding heart';
+
+  @override
+  String get standSymptomBlurredVision => 'Blurred or dimming vision';
+
+  @override
+  String get standSymptomNausea => 'Nausea';
+
+  @override
+  String get standSymptomSweating => 'Sweating';
+
+  @override
+  String get standSymptomShaky => 'Shaky';
+
+  @override
+  String get standSymptomBreathless => 'Short of breath';
+
+  @override
+  String get standSymptomHeadache => 'Headache or neck ache';
+
+  @override
+  String get standTestTitle => 'Stand test';
+
+  @override
+  String get standTestIntro =>
+      'This shows how your heart rate (and blood pressure, if you have a cuff) responds when you stand up. You rest 5 minutes, then stand still for up to 10 minutes, typing in your heart rate at 1, 3 and 10 minutes.';
+
+  @override
+  String get standTestSafetyTitle => 'Before you start';
+
+  @override
+  String get standTestSafetyWall =>
+      'Stand with your back near a wall and a chair right behind you.';
+
+  @override
+  String get standTestSafetyStop =>
+      'If you feel faint, dizzy or unwell, sit or lie down right away and tap Stop test. Stopping is always fine.';
+
+  @override
+  String get standTestSafetyCompany =>
+      'If you\'ve fainted before, only do it with someone with you.';
+
+  @override
+  String get standTestSafetyWhen =>
+      'Skip it on a flare day, right after eating, or after a hot shower.';
+
+  @override
+  String get standTestRestPosition => 'Rest position';
+
+  @override
+  String get standTestLying => 'Lying down';
+
+  @override
+  String get standTestSitting => 'Sitting';
+
+  @override
+  String get standTestBeginRest => 'Start resting (5 min)';
+
+  @override
+  String standTestResting(String time) {
+    return 'Rest quietly. Rest ends in $time.';
+  }
+
+  @override
+  String get standTestSkipRest => 'I\'ve already rested 5 minutes';
+
+  @override
+  String get standTestBaselineLabel => 'Resting';
+
+  @override
+  String get standTestBaselinePrompt =>
+      'Type your resting heart rate, then stand up.';
+
+  @override
+  String get standTestStandUp => 'I\'m standing now';
+
+  @override
+  String standTestPointLabel(int min) {
+    return '$min min standing';
+  }
+
+  @override
+  String standTestStanding(String time) {
+    return 'Standing $time';
+  }
+
+  @override
+  String standTestNextAt(int min, String time) {
+    return '$min-minute reading in $time';
+  }
+
+  @override
+  String get standTestAllRead => 'All readings done. You can sit down.';
+
+  @override
+  String get standTestStop => 'Stop test';
+
+  @override
+  String get standTestStoppedTitle => 'Test stopped';
+
+  @override
+  String get standTestStoppedBody =>
+      'Sit or lie down and rest. What you recorded so far is saved.';
+
+  @override
+  String get standTestFinish => 'Finish and save';
+
+  @override
+  String get standTestHr => 'Heart rate';
+
+  @override
+  String get standTestSys => 'Systolic';
+
+  @override
+  String get standTestDia => 'Diastolic';
+
+  @override
+  String get standTestBpOptional => 'Blood pressure, optional';
+
+  @override
+  String get standTestHrHint =>
+      'From your watch\'s heart rate app or a pulse oximeter.';
+
+  @override
+  String get standTestSymptoms => 'Anything you feel while standing';
+
+  @override
+  String get autonomicBpTitle => 'Blood pressure (cuff)';
+
+  @override
+  String get autonomicBpEmpty =>
+      'No readings yet. Type them in from your cuff whenever you measure.';
+
+  @override
+  String get autonomicBpAdd => 'Add a reading';
+
+  @override
+  String autonomicBpUsual(int sys, int dia) {
+    return 'your usual $sys/$dia';
+  }
+
+  @override
+  String autonomicBpUsualPending(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'your usual shows after $count more readings in this position',
+      one: 'your usual shows after 1 more reading in this position',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String autonomicBpPulse(int bpm) {
+    return 'pulse $bpm';
+  }
+
+  @override
+  String get bpPositionSitting => 'Sitting';
+
+  @override
+  String get bpPositionLying => 'Lying down';
+
+  @override
+  String get bpPositionStanding => 'Standing';
+
+  @override
+  String get bpSheetTitle => 'Blood pressure reading';
+
+  @override
+  String get bpPosition => 'Position';
+
+  @override
+  String get bpPulseOptional => 'Pulse, optional';
+
+  @override
+  String get bpTime => 'Time';
+
+  @override
+  String get bpTip =>
+      'For a steady reading: sit for 5 minutes first, feet flat, arm supported at heart level, and don\'t talk.';
+
+  @override
+  String get bpAllReadings => 'All readings';
+
+  @override
+  String get bpTapToDelete => 'Tap a reading to delete it.';
 }
