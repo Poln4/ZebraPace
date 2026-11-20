@@ -16,6 +16,7 @@ import 'widgets/challenge_setup_card.dart';
 import 'widgets/daily_leaderboard_list.dart';
 import 'widgets/daily_progress_card.dart';
 import 'widgets/leaderboard_list.dart';
+import 'widgets/members_card.dart';
 import 'widgets/my_progress_card.dart';
 
 /// Every challenge the signed-in user has joined — reads/writes the shared
@@ -220,6 +221,7 @@ class _ChallengeDetails extends ConsumerStatefulWidget {
 
 class _ChallengeDetailsState extends ConsumerState<_ChallengeDetails> {
   bool _editingGoal = false;
+  bool _refreshedMembership = false;
 
   @override
   Widget build(BuildContext context) {
@@ -236,19 +238,46 @@ class _ChallengeDetailsState extends ConsumerState<_ChallengeDetails> {
         // challenges this user has already joined — but the one-shot fetch
         // and this realtime stream can momentarily disagree right after
         // joining.
-        if (myEntry == null) return const CupertinoActivityIndicator();
+        //
+        // It also happens for good when the creator removed this member:
+        // their rows are gone and RLS hides the rest. Re-fetching the
+        // challenge list (once) then drops this challenge from the tab.
+        if (myEntry == null) {
+          if (!_refreshedMembership) {
+            _refreshedMembership = true;
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (!mounted) return;
+              ref.read(currentChallengeIdProvider.notifier).state = null;
+              ref.invalidate(myChallengesProvider);
+            });
+          }
+          return const CupertinoActivityIndicator();
+        }
+
+        final members = MembersCard(challenge: challenge, entries: entries, myUserId: widget.userId);
 
         if (_editingGoal || ChallengeSetupCard.isNeeded(challenge, myEntry)) {
-          return ChallengeSetupCard(
-            challenge: challenge,
-            entry: myEntry,
-            onCancel: _editingGoal ? () => setState(() => _editingGoal = false) : null,
+          return Column(
+            children: [
+              ChallengeSetupCard(
+                challenge: challenge,
+                entry: myEntry,
+                onCancel: _editingGoal ? () => setState(() => _editingGoal = false) : null,
+              ),
+              if (!_editingGoal) ...[const SizedBox(height: 12), members],
+            ],
           );
         }
 
-        return challenge.kind.isDaily
-            ? _dailyViews(challenge, entries)
-            : _weightViews(challenge, entries, myEntry);
+        return Column(
+          children: [
+            challenge.kind.isDaily
+                ? _dailyViews(challenge, entries)
+                : _weightViews(challenge, entries, myEntry),
+            const SizedBox(height: 12),
+            members,
+          ],
+        );
       },
     );
   }

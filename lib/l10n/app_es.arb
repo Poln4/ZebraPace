@@ -318,7 +318,7 @@
   "calisthenicsComfortChartUnspecified": "Sin especificar",
 
   "exportSectionTitle": "📤 Exportar",
-  "exportSectionPdfButton": "🩺 Informe para el médico (PDF)",
+  "exportSectionPdfButton": "Resumen en PDF",
   "exportSectionCsvButton": "Descargar CSV de datos vitales (historial completo)",
 
   "doctorReportNotAvailable": "n/d",
@@ -1190,5 +1190,18 @@
   "sourceTopicMets": "METs (intensidad del ejercicio)",
   "sourceTopicExercise": "Ejercicio, señales para parar y progresión con EDS",
   "sourceTopicFearExposure": "Miedo al movimiento y exposición gradual",
-  "sourceTopicSleep": "Sueño"
+  "sourceTopicSleep": "Sueño",
+  "challengeMembersTitle": "Integrantes",
+  "challengeMembersOwnerCaption": "Tú creaste este reto, así que puedes quitar integrantes. Quien quites no podrá volver a entrar con el código.",
+  "challengeMemberCreatorBadge": "lo creó",
+  "challengeRemoveMemberButton": "Quitar",
+  "challengeRemoveMemberTitle": "¿Quitar a {name}?",
+  "challengeRemoveMemberMessage": "Sus días y su avance en este reto se borran para todos, y no podrá volver a entrar con el código. Su propio registro no cambia.",
+  "challengeLeaveButton": "Salir de este reto",
+  "challengeLeaveTitle": "¿Salir de este reto?",
+  "challengeLeaveMessage": "Tus días y tu avance en este reto se borran para todos. Tu propio registro se queda en tu teléfono, y puedes volver a entrar después con el código.",
+  "challengeLeaveOwnerHandover": "Tú lo creaste, así que pasa a otra persona del reto, que desde entonces podrá quitar integrantes.",
+  "challengeLeaveLastMember": "Eres la única persona en el reto, así que el reto se borra.",
+  "challengeLeaveConfirm": "Salir",
+  "challengeLeaveRemoveError": "No se pudo. Revisa tu conexión e inténtalo de nuevo."
 }

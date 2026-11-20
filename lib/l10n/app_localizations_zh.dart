@@ -922,7 +922,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get exportSectionTitle => '📤 匯出';
 
   @override
-  String get exportSectionPdfButton => '🩺 就診報告（PDF）';
+  String get exportSectionPdfButton => 'PDF 摘要';
 
   @override
   String get exportSectionCsvButton => '下載生理數據 CSV（完整歷史記錄）';
@@ -3759,4 +3759,49 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get sourceTopicSleep => '睡眠';
+
+  @override
+  String get challengeMembersTitle => '成員';
+
+  @override
+  String get challengeMembersOwnerCaption =>
+      '這個挑戰是你建立的，所以你可以移除成員。被移除的人無法再用代碼加入。';
+
+  @override
+  String get challengeMemberCreatorBadge => '建立者';
+
+  @override
+  String get challengeRemoveMemberButton => '移除';
+
+  @override
+  String challengeRemoveMemberTitle(String name) {
+    return '要移除 $name 嗎？';
+  }
+
+  @override
+  String get challengeRemoveMemberMessage =>
+      '對方在這個挑戰中的天數與進度會對所有人刪除，而且無法再用代碼加入。對方自己的紀錄不會改變。';
+
+  @override
+  String get challengeLeaveButton => '退出這個挑戰';
+
+  @override
+  String get challengeLeaveTitle => '要退出這個挑戰嗎？';
+
+  @override
+  String get challengeLeaveMessage =>
+      '你在這個挑戰中的天數與進度會對所有人刪除。你自己的紀錄仍留在手機上，之後也可以用代碼重新加入。';
+
+  @override
+  String get challengeLeaveOwnerHandover =>
+      '這個挑戰是你建立的，所以會轉交給另一位成員，之後由對方負責移除成員。';
+
+  @override
+  String get challengeLeaveLastMember => '你是唯一的成員，所以挑戰本身會被刪除。';
+
+  @override
+  String get challengeLeaveConfirm => '退出';
+
+  @override
+  String get challengeLeaveRemoveError => '沒有成功。請檢查網路連線後再試一次。';
 }

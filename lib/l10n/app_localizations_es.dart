@@ -961,7 +961,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get exportSectionTitle => '📤 Exportar';
 
   @override
-  String get exportSectionPdfButton => '🩺 Informe para el médico (PDF)';
+  String get exportSectionPdfButton => 'Resumen en PDF';
 
   @override
   String get exportSectionCsvButton =>
@@ -4025,4 +4025,51 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get sourceTopicSleep => 'Sueño';
+
+  @override
+  String get challengeMembersTitle => 'Integrantes';
+
+  @override
+  String get challengeMembersOwnerCaption =>
+      'Tú creaste este reto, así que puedes quitar integrantes. Quien quites no podrá volver a entrar con el código.';
+
+  @override
+  String get challengeMemberCreatorBadge => 'lo creó';
+
+  @override
+  String get challengeRemoveMemberButton => 'Quitar';
+
+  @override
+  String challengeRemoveMemberTitle(String name) {
+    return '¿Quitar a $name?';
+  }
+
+  @override
+  String get challengeRemoveMemberMessage =>
+      'Sus días y su avance en este reto se borran para todos, y no podrá volver a entrar con el código. Su propio registro no cambia.';
+
+  @override
+  String get challengeLeaveButton => 'Salir de este reto';
+
+  @override
+  String get challengeLeaveTitle => '¿Salir de este reto?';
+
+  @override
+  String get challengeLeaveMessage =>
+      'Tus días y tu avance en este reto se borran para todos. Tu propio registro se queda en tu teléfono, y puedes volver a entrar después con el código.';
+
+  @override
+  String get challengeLeaveOwnerHandover =>
+      'Tú lo creaste, así que pasa a otra persona del reto, que desde entonces podrá quitar integrantes.';
+
+  @override
+  String get challengeLeaveLastMember =>
+      'Eres la única persona en el reto, así que el reto se borra.';
+
+  @override
+  String get challengeLeaveConfirm => 'Salir';
+
+  @override
+  String get challengeLeaveRemoveError =>
+      'No se pudo. Revisa tu conexión e inténtalo de nuevo.';
 }

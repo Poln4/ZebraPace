@@ -456,7 +456,7 @@
   "calisthenicsComfortChartUnspecified": "Unspecified",
 
   "exportSectionTitle": "📤 Export",
-  "exportSectionPdfButton": "🩺 Doctor Visit Report (PDF)",
+  "exportSectionPdfButton": "PDF summary",
   "exportSectionCsvButton": "Download Vitals CSV (full history)",
 
   "doctorReportNotAvailable": "n/a",
@@ -1774,5 +1774,23 @@
   "sourceTopicMets": "METs (exercise intensity)",
   "sourceTopicExercise": "Exercise, stop signals and progression with EDS",
   "sourceTopicFearExposure": "Fear of movement and gradual exposure",
-  "sourceTopicSleep": "Sleep"
+  "sourceTopicSleep": "Sleep",
+  "challengeMembersTitle": "Members",
+  "challengeMembersOwnerCaption": "You created this challenge, so you can remove members. Someone you remove can't rejoin with the code.",
+  "challengeMemberCreatorBadge": "created it",
+  "challengeRemoveMemberButton": "Remove",
+  "challengeRemoveMemberTitle": "Remove {name}?",
+  "@challengeRemoveMemberTitle": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+  "challengeRemoveMemberMessage": "Their days and progress in this challenge are deleted for everyone, and they can't rejoin with the code. Nothing in their own log changes.",
+  "challengeLeaveButton": "Leave this challenge",
+  "challengeLeaveTitle": "Leave this challenge?",
+  "challengeLeaveMessage": "Your days and progress in this challenge are deleted for everyone. Your own log stays on your phone, and you can rejoin later with the code.",
+  "challengeLeaveOwnerHandover": "You created it, so it passes to another member, who can then remove members.",
+  "challengeLeaveLastMember": "You're the only member, so the challenge itself is deleted.",
+  "challengeLeaveConfirm": "Leave",
+  "challengeLeaveRemoveError": "That didn't work. Check your connection and try again."
 }

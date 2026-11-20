@@ -115,6 +115,22 @@ class ChallengeRepository {
     return ChallengeEntry.fromMap(row);
   }
 
+  /// Deletes the signed-in user's own days, weigh-ins and entry in
+  /// [challengeId] (009_leave_and_remove_members.sql). If they created it,
+  /// it passes to another member; if they were the last, it's deleted.
+  Future<void> leaveChallenge(String challengeId) async {
+    await _client.rpc<void>('leave_challenge', params: {'p_challenge_id': challengeId});
+  }
+
+  /// Creator only (checked server-side): removes [userId]'s rows from
+  /// [challengeId] for everyone and stops them rejoining with the code.
+  Future<void> removeMember({required String challengeId, required String userId}) async {
+    await _client.rpc<void>('remove_challenge_member', params: {
+      'p_challenge_id': challengeId,
+      'p_user_id': userId,
+    });
+  }
+
   /// Weight challenges only: the member's single manually-confirmed
   /// starting weight, which also seeds the progress chart's first point.
   Future<void> setStartWeight({

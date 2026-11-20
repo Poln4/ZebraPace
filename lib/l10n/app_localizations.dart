@@ -1793,7 +1793,7 @@ abstract class AppLocalizations {
   /// No description provided for @exportSectionPdfButton.
   ///
   /// In en, this message translates to:
-  /// **'🩺 Doctor Visit Report (PDF)'**
+  /// **'PDF summary'**
   String get exportSectionPdfButton;
 
   /// No description provided for @exportSectionCsvButton.
@@ -6738,6 +6738,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sleep'**
   String get sourceTopicSleep;
+
+  /// No description provided for @challengeMembersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Members'**
+  String get challengeMembersTitle;
+
+  /// No description provided for @challengeMembersOwnerCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'You created this challenge, so you can remove members. Someone you remove can\'t rejoin with the code.'**
+  String get challengeMembersOwnerCaption;
+
+  /// No description provided for @challengeMemberCreatorBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'created it'**
+  String get challengeMemberCreatorBadge;
+
+  /// No description provided for @challengeRemoveMemberButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get challengeRemoveMemberButton;
+
+  /// No description provided for @challengeRemoveMemberTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {name}?'**
+  String challengeRemoveMemberTitle(String name);
+
+  /// No description provided for @challengeRemoveMemberMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Their days and progress in this challenge are deleted for everyone, and they can\'t rejoin with the code. Nothing in their own log changes.'**
+  String get challengeRemoveMemberMessage;
+
+  /// No description provided for @challengeLeaveButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave this challenge'**
+  String get challengeLeaveButton;
+
+  /// No description provided for @challengeLeaveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave this challenge?'**
+  String get challengeLeaveTitle;
+
+  /// No description provided for @challengeLeaveMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your days and progress in this challenge are deleted for everyone. Your own log stays on your phone, and you can rejoin later with the code.'**
+  String get challengeLeaveMessage;
+
+  /// No description provided for @challengeLeaveOwnerHandover.
+  ///
+  /// In en, this message translates to:
+  /// **'You created it, so it passes to another member, who can then remove members.'**
+  String get challengeLeaveOwnerHandover;
+
+  /// No description provided for @challengeLeaveLastMember.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re the only member, so the challenge itself is deleted.'**
+  String get challengeLeaveLastMember;
+
+  /// No description provided for @challengeLeaveConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave'**
+  String get challengeLeaveConfirm;
+
+  /// No description provided for @challengeLeaveRemoveError.
+  ///
+  /// In en, this message translates to:
+  /// **'That didn\'t work. Check your connection and try again.'**
+  String get challengeLeaveRemoveError;
 }
 
 class _AppLocalizationsDelegate

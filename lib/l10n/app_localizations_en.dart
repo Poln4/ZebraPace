@@ -939,7 +939,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exportSectionTitle => '📤 Export';
 
   @override
-  String get exportSectionPdfButton => '🩺 Doctor Visit Report (PDF)';
+  String get exportSectionPdfButton => 'PDF summary';
 
   @override
   String get exportSectionCsvButton => 'Download Vitals CSV (full history)';
@@ -3978,4 +3978,51 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sourceTopicSleep => 'Sleep';
+
+  @override
+  String get challengeMembersTitle => 'Members';
+
+  @override
+  String get challengeMembersOwnerCaption =>
+      'You created this challenge, so you can remove members. Someone you remove can\'t rejoin with the code.';
+
+  @override
+  String get challengeMemberCreatorBadge => 'created it';
+
+  @override
+  String get challengeRemoveMemberButton => 'Remove';
+
+  @override
+  String challengeRemoveMemberTitle(String name) {
+    return 'Remove $name?';
+  }
+
+  @override
+  String get challengeRemoveMemberMessage =>
+      'Their days and progress in this challenge are deleted for everyone, and they can\'t rejoin with the code. Nothing in their own log changes.';
+
+  @override
+  String get challengeLeaveButton => 'Leave this challenge';
+
+  @override
+  String get challengeLeaveTitle => 'Leave this challenge?';
+
+  @override
+  String get challengeLeaveMessage =>
+      'Your days and progress in this challenge are deleted for everyone. Your own log stays on your phone, and you can rejoin later with the code.';
+
+  @override
+  String get challengeLeaveOwnerHandover =>
+      'You created it, so it passes to another member, who can then remove members.';
+
+  @override
+  String get challengeLeaveLastMember =>
+      'You\'re the only member, so the challenge itself is deleted.';
+
+  @override
+  String get challengeLeaveConfirm => 'Leave';
+
+  @override
+  String get challengeLeaveRemoveError =>
+      'That didn\'t work. Check your connection and try again.';
 }
