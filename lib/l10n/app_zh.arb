@@ -319,6 +319,8 @@
 
   "exportSectionTitle": "📤 匯出",
   "exportSectionPdfButton": "PDF 摘要",
+  "exportSectionPdfRangeTitle": "PDF 摘要期間",
+  "exportSectionPdfRangeMessage": "匯出永遠免費，任何期間都可以。期間結束於上方選擇的日期。",
   "exportSectionCsvButton": "下載生理數據 CSV（完整歷史記錄）",
 
   "doctorReportNotAvailable": "無資料",
@@ -757,6 +759,9 @@
   "insightsRangeFourteenDays": "14 天",
   "insightsRangeThirtyDays": "30 天",
   "insightsRangeNinetyDays": "90 天",
+  "insightsRangeSixMonths": "6 個月",
+  "insightsRangeOneYear": "1 年",
+  "insightsRangeAll": "全部",
 
   "challengeTabTitle": "一起",
   "challengeTabSignInPrompt": "透過雲端同步登入，和朋友一起挑戰。",
@@ -1217,5 +1222,7 @@
   "plusPending": "你的付款尚待確認。商店確認後 Zebras+ 就會啟用。",
   "plusErrorNetwork": "無法連線到商店。請檢查網路連線後再試一次。",
   "plusErrorNotAllowed": "這台裝置不允許購買。",
-  "plusErrorGeneric": "商店發生問題。請再試一次。"
+  "plusErrorGeneric": "商店發生問題。請再試一次。",
+  "plusLockedRangeMessage": "超過 90 天的範圍屬於 Zebras+。所有資料仍會持續紀錄，所以訂閱後就能立刻看到完整歷史。",
+  "plusUnavailableHere": "Zebras+ 可以在 iPhone 或 Android 版的 ZebraPace App 中購買。"
 }

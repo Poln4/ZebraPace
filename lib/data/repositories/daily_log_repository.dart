@@ -172,6 +172,15 @@ class DailyLogRepository {
     return rows.map(_toDomain).toList();
   }
 
+  /// Date key of the first logged day, or null with an empty log — where
+  /// Insights' "All" range starts.
+  Future<String?> getEarliestDate() async {
+    final query = _db.select(_db.dailyLogs)
+      ..orderBy([(t) => OrderingTerm.asc(t.date)])
+      ..limit(1);
+    return (await query.getSingleOrNull())?.date;
+  }
+
   Future<List<DailyLog>> getAll() async {
     final rows = await (_db.select(_db.dailyLogs)
           ..orderBy([(t) => OrderingTerm.desc(t.date)]))

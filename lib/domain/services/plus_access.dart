@@ -1,5 +1,3 @@
-import '../../core/utils/date_utils.dart';
-
 /// Zebras+ access rules — the pure half of `isPlusProvider` (see
 /// docs/business_plan.md §4.2). Nothing here talks to a store, so it is
 /// trivially testable and the provider stays a thin wrapper.
@@ -21,8 +19,11 @@ class PlusConstants {
 
   /// N in §4.4: weeks of history and pattern depth that are free — the
   /// recent baseline pacing needs. Deeper views beyond this are Zebras+.
-  /// Still "por decidir" in the plan; 6 is the proposal.
-  static const freeHistoryWeeks = 6;
+  /// 13 (decided 2026-11-21) so the 90-day range testers already had
+  /// stays free.
+  static const freeHistoryWeeks = 13;
+
+  static const freeHistoryDays = freeHistoryWeeks * 7;
 }
 
 /// Last known Zebras+ state, as confirmed by the store/RevenueCat.
@@ -86,13 +87,9 @@ class PlusEntitlement {
   int get hashCode => Object.hash(active, expiresAt, verifiedAt);
 }
 
-/// Earliest day a depth-limited view (long-term patterns, long load
-/// history, projections) may show. Null = no limit. "Se cobra por la
-/// vista, no por el dato": everything is always recorded, so subscribing
-/// reveals the full history instantly. Returned as a date key
-/// (yyyy-MM-dd), the format the repositories query by.
-String? plusHistoryStartKey({required DateTime today, required bool isPlus}) {
-  if (isPlus) return null;
-  final day = dateFromKey(dateKey(today));
-  return dateKey(DateTime(day.year, day.month, day.day - PlusConstants.freeHistoryWeeks * 7));
-}
+/// Whether a view spanning [days] needs Zebras+. What's paid is depth
+/// (how long a window is), not date: a free window of up to
+/// [PlusConstants.freeHistoryDays] can sit anywhere in the history.
+/// "Se cobra por la vista, no por el dato" — everything is always
+/// recorded, so subscribing shows the full history instantly.
+bool rangeNeedsPlus(int days) => days > PlusConstants.freeHistoryDays;

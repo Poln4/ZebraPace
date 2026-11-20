@@ -319,6 +319,8 @@
 
   "exportSectionTitle": "📤 Exportar",
   "exportSectionPdfButton": "Resumen en PDF",
+  "exportSectionPdfRangeTitle": "Período del Resumen en PDF",
+  "exportSectionPdfRangeMessage": "Exportar siempre es gratis, para cualquier período. Termina en el día elegido arriba.",
   "exportSectionCsvButton": "Descargar CSV de datos vitales (historial completo)",
 
   "doctorReportNotAvailable": "n/d",
@@ -757,6 +759,9 @@
   "insightsRangeFourteenDays": "14 días",
   "insightsRangeThirtyDays": "30 días",
   "insightsRangeNinetyDays": "90 días",
+  "insightsRangeSixMonths": "6 meses",
+  "insightsRangeOneYear": "1 año",
+  "insightsRangeAll": "Todo",
 
   "challengeTabTitle": "Juntos",
   "challengeTabSignInPrompt": "Inicia sesión con Sincronización en la Nube para hacer desafíos junto a tus amigos.",
@@ -1217,5 +1222,7 @@
   "plusPending": "Tu pago está pendiente. Zebras+ se activa cuando la tienda lo confirme.",
   "plusErrorNetwork": "No se pudo conectar con la tienda. Revisa tu conexión e inténtalo de nuevo.",
   "plusErrorNotAllowed": "Este dispositivo no permite compras.",
-  "plusErrorGeneric": "Algo falló con la tienda. Inténtalo de nuevo."
+  "plusErrorGeneric": "Algo falló con la tienda. Inténtalo de nuevo.",
+  "plusLockedRangeMessage": "Los rangos de más de 90 días son parte de Zebras+. Todo se sigue registrando, así que al suscribirte ves tu historial completo de inmediato.",
+  "plusUnavailableHere": "Zebras+ se compra en la app ZebraPace para iPhone o Android."
 }

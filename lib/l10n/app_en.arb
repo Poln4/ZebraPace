@@ -457,6 +457,8 @@
 
   "exportSectionTitle": "📤 Export",
   "exportSectionPdfButton": "PDF summary",
+  "exportSectionPdfRangeTitle": "PDF summary period",
+  "exportSectionPdfRangeMessage": "Exporting is always free, for any period. It ends on the day selected at the top.",
   "exportSectionCsvButton": "Download Vitals CSV (full history)",
 
   "doctorReportNotAvailable": "n/a",
@@ -1157,6 +1159,9 @@
   "insightsRangeFourteenDays": "14 days",
   "insightsRangeThirtyDays": "30 days",
   "insightsRangeNinetyDays": "90 days",
+  "insightsRangeSixMonths": "6 mo",
+  "insightsRangeOneYear": "1 yr",
+  "insightsRangeAll": "All",
 
   "challengeTabTitle": "Together",
   "challengeTabSignInPrompt": "Sign in with Cloud Sync to take on challenges together with your friends.",
@@ -1806,5 +1811,7 @@
   "plusPending": "Your payment is pending. Zebras+ turns on once the store confirms it.",
   "plusErrorNetwork": "Couldn't reach the store. Check your connection and try again.",
   "plusErrorNotAllowed": "Purchases aren't allowed on this device.",
-  "plusErrorGeneric": "Something went wrong with the store. Please try again."
+  "plusErrorGeneric": "Something went wrong with the store. Please try again.",
+  "plusLockedRangeMessage": "Ranges longer than 90 days are part of Zebras+. Everything is still recorded, so subscribing shows your full history right away.",
+  "plusUnavailableHere": "Zebras+ can be bought in the ZebraPace app for iPhone or Android."
 }

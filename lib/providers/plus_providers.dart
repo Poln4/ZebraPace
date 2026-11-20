@@ -86,8 +86,3 @@ final isPlusProvider = Provider<bool>((ref) {
   }
   return ref.watch(plusEntitlementProvider).isActiveAt(DateTime.now());
 });
-
-/// Earliest date key a depth-limited view may show (null = everything).
-final plusHistoryStartKeyProvider = Provider<String?>((ref) {
-  return plusHistoryStartKey(today: DateTime.now(), isPlus: ref.watch(isPlusProvider));
-});

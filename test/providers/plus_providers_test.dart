@@ -40,7 +40,6 @@ void main() {
     c.read(plusEntitlementProvider);
     await Future<void>.delayed(Duration.zero);
     expect(c.read(isPlusProvider), isFalse);
-    expect(c.read(plusHistoryStartKeyProvider), isNotNull);
   });
 
   test('restores an active plan from the cache (offline start)', () async {
@@ -48,7 +47,6 @@ void main() {
     c.read(plusEntitlementProvider);
     await Future<void>.delayed(Duration.zero);
     expect(c.read(isPlusProvider), isTrue);
-    expect(c.read(plusHistoryStartKeyProvider), isNull);
   });
 
   test('apply persists; clear forgets', () async {

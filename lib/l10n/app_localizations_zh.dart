@@ -925,6 +925,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get exportSectionPdfButton => 'PDF 摘要';
 
   @override
+  String get exportSectionPdfRangeTitle => 'PDF 摘要期間';
+
+  @override
+  String get exportSectionPdfRangeMessage => '匯出永遠免費，任何期間都可以。期間結束於上方選擇的日期。';
+
+  @override
   String get exportSectionCsvButton => '下載生理數據 CSV（完整歷史記錄）';
 
   @override
@@ -2303,6 +2309,15 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get insightsRangeNinetyDays => '90 天';
+
+  @override
+  String get insightsRangeSixMonths => '6 個月';
+
+  @override
+  String get insightsRangeOneYear => '1 年';
+
+  @override
+  String get insightsRangeAll => '全部';
 
   @override
   String get challengeTabTitle => '一起';
@@ -3847,4 +3862,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get plusErrorGeneric => '商店發生問題。請再試一次。';
+
+  @override
+  String get plusLockedRangeMessage =>
+      '超過 90 天的範圍屬於 Zebras+。所有資料仍會持續紀錄，所以訂閱後就能立刻看到完整歷史。';
+
+  @override
+  String get plusUnavailableHere =>
+      'Zebras+ 可以在 iPhone 或 Android 版的 ZebraPace App 中購買。';
 }

@@ -1796,6 +1796,18 @@ abstract class AppLocalizations {
   /// **'PDF summary'**
   String get exportSectionPdfButton;
 
+  /// No description provided for @exportSectionPdfRangeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'PDF summary period'**
+  String get exportSectionPdfRangeTitle;
+
+  /// No description provided for @exportSectionPdfRangeMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Exporting is always free, for any period. It ends on the day selected at the top.'**
+  String get exportSectionPdfRangeMessage;
+
   /// No description provided for @exportSectionCsvButton.
   ///
   /// In en, this message translates to:
@@ -4164,6 +4176,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'90 days'**
   String get insightsRangeNinetyDays;
+
+  /// No description provided for @insightsRangeSixMonths.
+  ///
+  /// In en, this message translates to:
+  /// **'6 mo'**
+  String get insightsRangeSixMonths;
+
+  /// No description provided for @insightsRangeOneYear.
+  ///
+  /// In en, this message translates to:
+  /// **'1 yr'**
+  String get insightsRangeOneYear;
+
+  /// No description provided for @insightsRangeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get insightsRangeAll;
 
   /// No description provided for @challengeTabTitle.
   ///
@@ -6900,6 +6930,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Something went wrong with the store. Please try again.'**
   String get plusErrorGeneric;
+
+  /// No description provided for @plusLockedRangeMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Ranges longer than 90 days are part of Zebras+. Everything is still recorded, so subscribing shows your full history right away.'**
+  String get plusLockedRangeMessage;
+
+  /// No description provided for @plusUnavailableHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Zebras+ can be bought in the ZebraPace app for iPhone or Android.'**
+  String get plusUnavailableHere;
 }
 
 class _AppLocalizationsDelegate

@@ -53,12 +53,13 @@ void main() {
     });
   });
 
-  group('plusHistoryStartKey', () {
-    test('free shows the last N weeks; plus shows everything', () {
-      final today = DateTime(2026, 11, 21, 15, 30);
-      expect(plusHistoryStartKey(today: today, isPlus: true), isNull);
-      // 6 weeks = 42 days before 2026-11-21.
-      expect(plusHistoryStartKey(today: today, isPlus: false), '2026-10-10');
+  group('rangeNeedsPlus', () {
+    test('up to 13 weeks is free, so the existing 90-day range stays free', () {
+      expect(PlusConstants.freeHistoryDays, 91);
+      expect(rangeNeedsPlus(90), isFalse);
+      expect(rangeNeedsPlus(91), isFalse);
+      expect(rangeNeedsPlus(92), isTrue);
+      expect(rangeNeedsPlus(365), isTrue);
     });
   });
 }

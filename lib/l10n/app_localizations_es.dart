@@ -964,6 +964,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get exportSectionPdfButton => 'Resumen en PDF';
 
   @override
+  String get exportSectionPdfRangeTitle => 'Período del Resumen en PDF';
+
+  @override
+  String get exportSectionPdfRangeMessage =>
+      'Exportar siempre es gratis, para cualquier período. Termina en el día elegido arriba.';
+
+  @override
   String get exportSectionCsvButton =>
       'Descargar CSV de datos vitales (historial completo)';
 
@@ -2460,6 +2467,15 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get insightsRangeNinetyDays => '90 días';
+
+  @override
+  String get insightsRangeSixMonths => '6 meses';
+
+  @override
+  String get insightsRangeOneYear => '1 año';
+
+  @override
+  String get insightsRangeAll => 'Todo';
 
   @override
   String get challengeTabTitle => 'Juntos';
@@ -4121,4 +4137,12 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get plusErrorGeneric =>
       'Algo falló con la tienda. Inténtalo de nuevo.';
+
+  @override
+  String get plusLockedRangeMessage =>
+      'Los rangos de más de 90 días son parte de Zebras+. Todo se sigue registrando, así que al suscribirte ves tu historial completo de inmediato.';
+
+  @override
+  String get plusUnavailableHere =>
+      'Zebras+ se compra en la app ZebraPace para iPhone o Android.';
 }

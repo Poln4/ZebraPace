@@ -6,6 +6,8 @@ import '../../../core/utils/date_utils.dart';
 import '../../../core/utils/stats.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/app_providers.dart';
+import '../../../providers/plus_providers.dart';
+import '../../widgets/plus_gate.dart';
 import '../../widgets/section_card.dart';
 import '../../widgets/stripe_track.dart';
 import 'widgets/body_metrics_chart.dart';
@@ -39,7 +41,8 @@ class InsightsTab extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final view = ref.watch(insightsViewProvider);
-    final rangeOption = ref.watch(insightsRangeOptionProvider);
+    final rangeOption = ref.watch(effectiveInsightsRangeOptionProvider);
+    final isPlus = ref.watch(isPlusProvider);
 
     return CupertinoPageScaffold(
       backgroundColor: ZebraColors.bg,
@@ -68,11 +71,30 @@ class InsightsTab extends ConsumerWidget {
                 for (final o in InsightsRangeOption.values)
                   o: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4),
-                    child: Text(o.label(l10n), style: const TextStyle(fontSize: 12.5)),
+                    // Six segments on a phone: scale down rather than wrap.
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          if (o.needsPlus && !isPlus) ...[
+                            const Icon(CupertinoIcons.lock_fill, size: 10),
+                            const SizedBox(width: 2),
+                          ],
+                          Text(o.label(l10n), style: const TextStyle(fontSize: 12.5)),
+                        ],
+                      ),
+                    ),
                   ),
               },
-              onValueChanged: (v) {
-                if (v != null) ref.read(insightsRangeOptionProvider.notifier).state = v;
+              onValueChanged: (v) async {
+                if (v == null) return;
+                if (v.needsPlus && !isPlus) {
+                  final unlocked =
+                      await openPlusGate(context, ref, message: l10n.plusLockedRangeMessage);
+                  if (!unlocked) return;
+                }
+                ref.read(insightsRangeOptionProvider.notifier).state = v;
               },
             ),
             const SizedBox(height: 14),

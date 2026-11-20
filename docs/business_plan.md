@@ -92,7 +92,7 @@ Caso límite: si la app usa el desfase de malestar post-esfuerzo aprendido para 
 | Informe para kinesiología o fisiatría | Plantilla de pago sobre el Resumen en PDF, que sigue gratis. |
 | Resumen semanal con IA en la nube | Edge Function de Supabase que revisa y descuenta créditos en el servidor. |
 
-**Por decidir:** el valor de N. Propuesta: 6 semanas.
+**Decidido (21-11-2026):** N = 13 semanas (91 días), para que el rango de 90 días que ya tenían quienes prueban siga gratis. Lo de pago es el largo de la ventana, no la fecha: una ventana gratis puede estar en cualquier parte del historial.
 
 ### 4.5 Créditos, beca y apadrinar
 
@@ -121,7 +121,7 @@ El resumen en el dispositivo existe solo en iPhone compatibles. **Por decidir:**
 - [x] Clima: gratis
 - [x] Renombrar el informe a "Resumen en PDF" (gratis)
 - [ ] Decidir widgets y reloj (gratis o plan)
-- [ ] Decidir N (semanas gratis de historial y patrones)
+- [x] Decidir N: 13 semanas
 - [ ] Decidir el resumen con IA en Android
 - [ ] Configurar RevenueCat con las dos apps y el permiso `zebras_plus`
 - [x] Crear `isPlusProvider` y el test que separa la seguridad del cobro

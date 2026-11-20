@@ -15,9 +15,10 @@ import 'insights_providers.dart';
 import 'insights_range.dart';
 
 /// CSV export is deliberately a separate path from the PDF: the CSV covers
-/// the FULL unfiltered daily_logs history, while the PDF is scoped to the
-/// currently selected Insights range — matching app.py, where these are two
-/// different exports, not the same one.
+/// the FULL unfiltered daily_logs history, while the PDF covers a period
+/// chosen when exporting. That choice is always free, for any length —
+/// exporting is never charged (business_plan.md §1), even though Insights
+/// itself limits free ranges to 90 days.
 class ExportSection extends ConsumerWidget {
   const ExportSection({super.key});
 
@@ -55,7 +56,32 @@ class ExportSection extends ConsumerWidget {
 
   Future<void> _generateAndSharePdf(BuildContext context, WidgetRef ref) async {
     final l10n = AppLocalizations.of(context);
-    final range = ref.read(insightsDateRangeProvider);
+    final shown = ref.read(effectiveInsightsRangeOptionProvider);
+    final option = await showCupertinoModalPopup<InsightsRangeOption>(
+      context: context,
+      builder: (sheetContext) => CupertinoActionSheet(
+        title: Text(l10n.exportSectionPdfRangeTitle),
+        message: Text(l10n.exportSectionPdfRangeMessage),
+        actions: [
+          for (final o in InsightsRangeOption.values)
+            CupertinoActionSheetAction(
+              isDefaultAction: o == shown,
+              onPressed: () => Navigator.of(sheetContext).pop(o),
+              child: Text(o.label(l10n)),
+            ),
+        ],
+        cancelButton: CupertinoActionSheetAction(
+          onPressed: () => Navigator.of(sheetContext).pop(),
+          child: Text(l10n.commonCancelButton),
+        ),
+      ),
+    );
+    if (option == null) return;
+    final earliest = option == InsightsRangeOption.all
+        ? await ref.read(earliestLogDateProvider.future)
+        : null;
+    final range =
+        dateRangeFor(option, selected: ref.read(selectedDateProvider), earliest: earliest);
     final reportService = ref.read(doctorReportServiceProvider);
 
     final logs = await ref.read(dailyLogRepositoryProvider).getRange(range.start, range.end);
@@ -69,8 +95,7 @@ class ExportSection extends ConsumerWidget {
     final pemLag = ref.read(patternLagDaysProvider);
     final pemResult =
         await ref.read(pemServiceProvider).analyze(range.start, range.end, lagDays: pemLag);
-    final rangeDays = ref.read(insightsRangeOptionProvider).days;
-    final pemNote = reportService.buildPemNote(l10n, pemResult, pemLag, rangeDays);
+    final pemNote = reportService.buildPemNote(l10n, pemResult, pemLag, range.days);
 
     String? weatherNote;
     final settings = await ref.read(settingsSnapshotProvider.future);

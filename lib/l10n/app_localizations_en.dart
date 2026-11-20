@@ -942,6 +942,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exportSectionPdfButton => 'PDF summary';
 
   @override
+  String get exportSectionPdfRangeTitle => 'PDF summary period';
+
+  @override
+  String get exportSectionPdfRangeMessage =>
+      'Exporting is always free, for any period. It ends on the day selected at the top.';
+
+  @override
   String get exportSectionCsvButton => 'Download Vitals CSV (full history)';
 
   @override
@@ -2423,6 +2430,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get insightsRangeNinetyDays => '90 days';
+
+  @override
+  String get insightsRangeSixMonths => '6 mo';
+
+  @override
+  String get insightsRangeOneYear => '1 yr';
+
+  @override
+  String get insightsRangeAll => 'All';
 
   @override
   String get challengeTabTitle => 'Together';
@@ -4074,4 +4090,12 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get plusErrorGeneric =>
       'Something went wrong with the store. Please try again.';
+
+  @override
+  String get plusLockedRangeMessage =>
+      'Ranges longer than 90 days are part of Zebras+. Everything is still recorded, so subscribing shows your full history right away.';
+
+  @override
+  String get plusUnavailableHere =>
+      'Zebras+ can be bought in the ZebraPace app for iPhone or Android.';
 }
