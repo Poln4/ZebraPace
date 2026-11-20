@@ -4145,4 +4145,57 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get plusUnavailableHere =>
       'Zebras+ se compra en la app ZebraPace para iPhone o Android.';
+
+  @override
+  String get insightsLongTermTitle => '🧭 Tu patrón a lo largo de los meses';
+
+  @override
+  String get insightsLongTermCaption =>
+      'Cuánto baja tu puntaje corporal después de los días más exigentes en todo tu historial, y si eso está cambiando.';
+
+  @override
+  String get insightsLongTermLocked =>
+      'Mira con qué desfase suelen llegar tus bajones y si se están achicando mes a mes. Parte de Zebras+.';
+
+  @override
+  String insightsLongTermNotEnough(int days) {
+    return 'Esto necesita unos dos meses de pasos y puntajes corporales registrados. Hasta ahora: $days días.';
+  }
+
+  @override
+  String insightsLongTermUsual(String lag, String dip) {
+    return 'En todo tu historial, tu puntaje corporal queda unos $dip puntos más bajo $lag después de los días más exigentes. Ese es tu desfase habitual.';
+  }
+
+  @override
+  String get insightsLongTermNoClear =>
+      'En todo tu historial no hay un bajón tardío claro después de los días más exigentes.';
+
+  @override
+  String get insightsLongTermDelayTitle => 'Bajón según desfase (puntos)';
+
+  @override
+  String insightsLongTermMonthsTitle(String lag) {
+    return 'Bajón $lag después, mes a mes';
+  }
+
+  @override
+  String get insightsLongTermTrendSmaller =>
+      'Tus bajones se han achicado respecto de tus primeros meses.';
+
+  @override
+  String get insightsLongTermTrendBigger =>
+      'Tus bajones se han agrandado respecto de tus primeros meses. Si eso coincide con cómo te has sentido, puede ser buen momento para bajar la carga o conversarlo con tu equipo de salud.';
+
+  @override
+  String get insightsLongTermTrendSimilar =>
+      'Tus bajones son de un tamaño parecido al de tus primeros meses.';
+
+  @override
+  String get insightsLongTermFootnote =>
+      'Un patrón en tus propios registros, no un diagnóstico. Los avisos de pacing de hoy nunca dependen de esta vista y siempre son gratis.';
+
+  @override
+  String get plusLockedPatternMessage =>
+      'Tu patrón a lo largo de los meses es parte de Zebras+. Los avisos de hoy y las revisiones día a día siguen gratis.';
 }

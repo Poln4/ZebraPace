@@ -6942,6 +6942,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Zebras+ can be bought in the ZebraPace app for iPhone or Android.'**
   String get plusUnavailableHere;
+
+  /// No description provided for @insightsLongTermTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'🧭 Your pattern over months'**
+  String get insightsLongTermTitle;
+
+  /// No description provided for @insightsLongTermCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'How your body score dips after bigger days across your whole history, and whether that is changing.'**
+  String get insightsLongTermCaption;
+
+  /// No description provided for @insightsLongTermLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'See which delay your dips usually follow, and whether they are getting smaller month by month. Part of Zebras+.'**
+  String get insightsLongTermLocked;
+
+  /// No description provided for @insightsLongTermNotEnough.
+  ///
+  /// In en, this message translates to:
+  /// **'This needs about two months of logged steps and body scores. So far: {days} days.'**
+  String insightsLongTermNotEnough(int days);
+
+  /// No description provided for @insightsLongTermUsual.
+  ///
+  /// In en, this message translates to:
+  /// **'Across your history, your body score runs about {dip} points lower {lag} after bigger days. That is your usual delay.'**
+  String insightsLongTermUsual(String lag, String dip);
+
+  /// No description provided for @insightsLongTermNoClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Across your history, there is no clear delayed dip after bigger days.'**
+  String get insightsLongTermNoClear;
+
+  /// No description provided for @insightsLongTermDelayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dip by delay (points)'**
+  String get insightsLongTermDelayTitle;
+
+  /// No description provided for @insightsLongTermMonthsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dip {lag} later, month by month'**
+  String insightsLongTermMonthsTitle(String lag);
+
+  /// No description provided for @insightsLongTermTrendSmaller.
+  ///
+  /// In en, this message translates to:
+  /// **'Your dips have gotten smaller than in your first months.'**
+  String get insightsLongTermTrendSmaller;
+
+  /// No description provided for @insightsLongTermTrendBigger.
+  ///
+  /// In en, this message translates to:
+  /// **'Your dips have gotten bigger than in your first months. If that matches how you have been feeling, it may be a good time to ease your load or talk it over with your care team.'**
+  String get insightsLongTermTrendBigger;
+
+  /// No description provided for @insightsLongTermTrendSimilar.
+  ///
+  /// In en, this message translates to:
+  /// **'Your dips are about the same size as in your first months.'**
+  String get insightsLongTermTrendSimilar;
+
+  /// No description provided for @insightsLongTermFootnote.
+  ///
+  /// In en, this message translates to:
+  /// **'A pattern in your own logs, not a diagnosis. Today\'s pacing warnings never depend on this view and are always free.'**
+  String get insightsLongTermFootnote;
+
+  /// No description provided for @plusLockedPatternMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your pattern over months is part of Zebras+. Today\'s warnings and the day-by-day checks stay free.'**
+  String get plusLockedPatternMessage;
 }
 
 class _AppLocalizationsDelegate

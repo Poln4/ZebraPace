@@ -4098,4 +4098,57 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get plusUnavailableHere =>
       'Zebras+ can be bought in the ZebraPace app for iPhone or Android.';
+
+  @override
+  String get insightsLongTermTitle => '🧭 Your pattern over months';
+
+  @override
+  String get insightsLongTermCaption =>
+      'How your body score dips after bigger days across your whole history, and whether that is changing.';
+
+  @override
+  String get insightsLongTermLocked =>
+      'See which delay your dips usually follow, and whether they are getting smaller month by month. Part of Zebras+.';
+
+  @override
+  String insightsLongTermNotEnough(int days) {
+    return 'This needs about two months of logged steps and body scores. So far: $days days.';
+  }
+
+  @override
+  String insightsLongTermUsual(String lag, String dip) {
+    return 'Across your history, your body score runs about $dip points lower $lag after bigger days. That is your usual delay.';
+  }
+
+  @override
+  String get insightsLongTermNoClear =>
+      'Across your history, there is no clear delayed dip after bigger days.';
+
+  @override
+  String get insightsLongTermDelayTitle => 'Dip by delay (points)';
+
+  @override
+  String insightsLongTermMonthsTitle(String lag) {
+    return 'Dip $lag later, month by month';
+  }
+
+  @override
+  String get insightsLongTermTrendSmaller =>
+      'Your dips have gotten smaller than in your first months.';
+
+  @override
+  String get insightsLongTermTrendBigger =>
+      'Your dips have gotten bigger than in your first months. If that matches how you have been feeling, it may be a good time to ease your load or talk it over with your care team.';
+
+  @override
+  String get insightsLongTermTrendSimilar =>
+      'Your dips are about the same size as in your first months.';
+
+  @override
+  String get insightsLongTermFootnote =>
+      'A pattern in your own logs, not a diagnosis. Today\'s pacing warnings never depend on this view and are always free.';
+
+  @override
+  String get plusLockedPatternMessage =>
+      'Your pattern over months is part of Zebras+. Today\'s warnings and the day-by-day checks stay free.';
 }

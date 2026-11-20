@@ -3,11 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/utils/date_utils.dart';
 import '../../../../domain/services/hr_exertion_service.dart';
+import '../../../../domain/services/long_term_pem_service.dart';
 import '../../../../domain/services/pem_service.dart';
 import '../../../../domain/services/readiness_service.dart';
 import '../../../../domain/services/weather_service.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/app_providers.dart';
+import '../../../../providers/plus_providers.dart';
 import 'insights_range.dart';
 
 /// One day of the heart trend: resting HR and HRV (logged value first,
@@ -83,6 +85,14 @@ final pemResultProvider = FutureProvider.autoDispose<PemResult>((ref) {
   final range = ref.watch(insightsDateRangeProvider);
   final lag = ref.watch(patternLagDaysProvider);
   return ref.watch(pemServiceProvider).analyze(range.start, range.end, lagDays: lag);
+});
+
+/// Zebras+ "your pattern over months", from the whole log regardless of
+/// the Insights range. Null without the plan (nothing is computed).
+final longTermPemProvider = FutureProvider.autoDispose<LongTermPemPattern?>((ref) async {
+  if (!ref.watch(isPlusProvider)) return null;
+  final logs = await ref.watch(dailyLogRepositoryProvider).getAll();
+  return LongTermPemService.analyze(logs);
 });
 
 final hrExertionResultProvider = FutureProvider.autoDispose<HrExertionResult>((ref) {

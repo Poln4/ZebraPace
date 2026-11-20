@@ -22,6 +22,7 @@ import 'widgets/hr_exertion_chart.dart';
 import 'widgets/insights_providers.dart';
 import 'widgets/insights_range.dart';
 import 'widgets/liquids_chart.dart';
+import 'widgets/long_term_pattern_section.dart';
 import 'widgets/mets_summary_widget.dart';
 import 'widgets/month_chapter_card.dart';
 import 'widgets/pem_chart.dart';
@@ -233,6 +234,7 @@ class _PatternsView extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const LongTermPatternSection(),
         Text(l10n.insightsTabPemLagLabel,
             style: const TextStyle(fontWeight: FontWeight.w600, color: ZebraColors.black)),
         const SizedBox(height: 6),

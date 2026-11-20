@@ -3870,4 +3870,51 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get plusUnavailableHere =>
       'Zebras+ 可以在 iPhone 或 Android 版的 ZebraPace App 中購買。';
+
+  @override
+  String get insightsLongTermTitle => '🧭 你這幾個月的模式';
+
+  @override
+  String get insightsLongTermCaption => '在你的完整歷史中，較吃力的日子之後身體分數下降多少，以及這是否正在改變。';
+
+  @override
+  String get insightsLongTermLocked => '看看你的低谷通常在幾天後出現，以及是否逐月變小。屬於 Zebras+。';
+
+  @override
+  String insightsLongTermNotEnough(int days) {
+    return '這需要大約兩個月的步數和身體分數紀錄。目前：$days 天。';
+  }
+
+  @override
+  String insightsLongTermUsual(String lag, String dip) {
+    return '在你的完整歷史中，較吃力的日子 $lag後，你的身體分數大約低 $dip 分。這是你通常的延遲。';
+  }
+
+  @override
+  String get insightsLongTermNoClear => '在你的完整歷史中，較吃力的日子之後沒有明顯的延遲低谷。';
+
+  @override
+  String get insightsLongTermDelayTitle => '依延遲天數的低谷（分）';
+
+  @override
+  String insightsLongTermMonthsTitle(String lag) {
+    return '$lag後的低谷，逐月';
+  }
+
+  @override
+  String get insightsLongTermTrendSmaller => '和最初幾個月相比，你的低谷變小了。';
+
+  @override
+  String get insightsLongTermTrendBigger =>
+      '和最初幾個月相比，你的低谷變大了。如果這和你最近的感受相符，也許是減輕負荷、或和你的醫療團隊討論的好時機。';
+
+  @override
+  String get insightsLongTermTrendSimilar => '你的低谷大小和最初幾個月差不多。';
+
+  @override
+  String get insightsLongTermFootnote =>
+      '這是你自己紀錄中的模式，不是診斷。今天的配速提醒從不依賴這個畫面，而且永遠免費。';
+
+  @override
+  String get plusLockedPatternMessage => '你這幾個月的模式屬於 Zebras+。今天的提醒和逐日檢查仍然免費。';
 }

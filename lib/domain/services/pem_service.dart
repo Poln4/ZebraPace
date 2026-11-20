@@ -1,6 +1,7 @@
 import '../../core/utils/date_utils.dart';
 import '../../core/utils/stats.dart';
 import '../../data/repositories/daily_log_repository.dart';
+import '../models/daily_log.dart';
 
 enum ExertionBucket { higher, typicalOrLower }
 
@@ -52,10 +53,22 @@ class PemService {
 
   Future<PemResult> analyze(String startDate, String endDate, {required int lagDays}) async {
     final logs = await _dailyLogRepository.getRange(startDate, endDate);
-    final byDate = {for (final l in logs) l.date: l};
+    return compute(logs, {for (final l in logs) l.date: l}, lagDays: lagDays);
+  }
 
+  /// Pure core of [analyze]: each of [exertionDays] with steps is paired
+  /// with the body score logged exactly [lagDays] calendar days later in
+  /// [byDate]. Higher vs. typical exertion is relative to the mean steps of
+  /// the paired days themselves. Also used by LongTermPemService, which
+  /// passes one month's days as [exertionDays] and the whole log as
+  /// [byDate] (so a lagged day in the next month still counts).
+  static PemResult compute(
+    Iterable<DailyLog> exertionDays,
+    Map<String, DailyLog> byDate, {
+    required int lagDays,
+  }) {
     final candidates = <_RawPoint>[];
-    for (final log in logs) {
+    for (final log in exertionDays) {
       if (log.steps <= 0) continue;
       final laggedDate = dateKey(dateFromKey(log.date).add(Duration(days: lagDays)));
       final laggedLog = byDate[laggedDate];

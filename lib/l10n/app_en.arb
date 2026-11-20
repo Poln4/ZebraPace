@@ -1813,5 +1813,34 @@
   "plusErrorNotAllowed": "Purchases aren't allowed on this device.",
   "plusErrorGeneric": "Something went wrong with the store. Please try again.",
   "plusLockedRangeMessage": "Ranges longer than 90 days are part of Zebras+. Everything is still recorded, so subscribing shows your full history right away.",
-  "plusUnavailableHere": "Zebras+ can be bought in the ZebraPace app for iPhone or Android."
+  "plusUnavailableHere": "Zebras+ can be bought in the ZebraPace app for iPhone or Android.",
+  "insightsLongTermTitle": "🧭 Your pattern over months",
+  "insightsLongTermCaption": "How your body score dips after bigger days across your whole history, and whether that is changing.",
+  "insightsLongTermLocked": "See which delay your dips usually follow, and whether they are getting smaller month by month. Part of Zebras+.",
+  "insightsLongTermNotEnough": "This needs about two months of logged steps and body scores. So far: {days} days.",
+  "@insightsLongTermNotEnough": {
+    "placeholders": {
+      "days": {"type": "int"}
+    }
+  },
+  "insightsLongTermUsual": "Across your history, your body score runs about {dip} points lower {lag} after bigger days. That is your usual delay.",
+  "@insightsLongTermUsual": {
+    "placeholders": {
+      "lag": {"type": "String"},
+      "dip": {"type": "String"}
+    }
+  },
+  "insightsLongTermNoClear": "Across your history, there is no clear delayed dip after bigger days.",
+  "insightsLongTermDelayTitle": "Dip by delay (points)",
+  "insightsLongTermMonthsTitle": "Dip {lag} later, month by month",
+  "@insightsLongTermMonthsTitle": {
+    "placeholders": {
+      "lag": {"type": "String"}
+    }
+  },
+  "insightsLongTermTrendSmaller": "Your dips have gotten smaller than in your first months.",
+  "insightsLongTermTrendBigger": "Your dips have gotten bigger than in your first months. If that matches how you have been feeling, it may be a good time to ease your load or talk it over with your care team.",
+  "insightsLongTermTrendSimilar": "Your dips are about the same size as in your first months.",
+  "insightsLongTermFootnote": "A pattern in your own logs, not a diagnosis. Today's pacing warnings never depend on this view and are always free.",
+  "plusLockedPatternMessage": "Your pattern over months is part of Zebras+. Today's warnings and the day-by-day checks stay free."
 }
