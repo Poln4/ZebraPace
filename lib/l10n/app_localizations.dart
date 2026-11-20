@@ -6816,6 +6816,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'That didn\'t work. Check your connection and try again.'**
   String get challengeLeaveRemoveError;
+
+  /// No description provided for @plusTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Zebras+'**
+  String get plusTitle;
+
+  /// No description provided for @plusCaptionFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Long-term patterns, long history and reports for your physio, in ZebraPace and ZebraUp. Logging, today\'s pacing and safety alerts are always free.'**
+  String get plusCaptionFree;
+
+  /// No description provided for @plusCaptionActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Zebras+ is on for ZebraPace and ZebraUp. Thank you for supporting the zebras.'**
+  String get plusCaptionActive;
+
+  /// No description provided for @plusNeedsAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in under Cloud sync first, so your plan follows you to ZebraUp and to a new phone.'**
+  String get plusNeedsAccount;
+
+  /// No description provided for @plusSeePlans.
+  ///
+  /// In en, this message translates to:
+  /// **'See Zebras+'**
+  String get plusSeePlans;
+
+  /// No description provided for @plusManage.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage subscription'**
+  String get plusManage;
+
+  /// No description provided for @plusRestore.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore purchases'**
+  String get plusRestore;
+
+  /// No description provided for @plusPurchased.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to Zebras+!'**
+  String get plusPurchased;
+
+  /// No description provided for @plusRestored.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchases restored.'**
+  String get plusRestored;
+
+  /// No description provided for @plusRestoreNothing.
+  ///
+  /// In en, this message translates to:
+  /// **'No Zebras+ purchase found for this store account.'**
+  String get plusRestoreNothing;
+
+  /// No description provided for @plusPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Your payment is pending. Zebras+ turns on once the store confirms it.'**
+  String get plusPending;
+
+  /// No description provided for @plusErrorNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t reach the store. Check your connection and try again.'**
+  String get plusErrorNetwork;
+
+  /// No description provided for @plusErrorNotAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchases aren\'t allowed on this device.'**
+  String get plusErrorNotAllowed;
+
+  /// No description provided for @plusErrorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong with the store. Please try again.'**
+  String get plusErrorGeneric;
 }
 
 class _AppLocalizationsDelegate

@@ -13,6 +13,7 @@ import '../../../providers/app_providers.dart';
 import '../../../providers/reminder_providers.dart';
 import '../../../providers/shared_container_providers.dart';
 import '../../../providers/cloud_sync_providers.dart';
+import '../../../providers/plus_providers.dart';
 import '../../../providers/text_scale_providers.dart';
 import '../challenge/challenge_tab.dart';
 import '../insights/insights_tab.dart';
@@ -86,6 +87,8 @@ class _AppShellState extends ConsumerState<AppShell> {
     ref.watch(reminderSyncProvider);
     // Keeps the outbox ZebraUp reads current (only while sharing is on).
     ref.watch(sharedOutboxSyncProvider);
+    // Keeps the Zebras+ entitlement in step with RevenueCat and the account.
+    ref.watch(plusSyncProvider);
     // Covers the case where sign-in completes while AppShell is already
     // mounted (e.g. the redirect lands in the same already-open tab).
     ref.listen(pendingCloudSyncNavigationProvider, (previous, next) {

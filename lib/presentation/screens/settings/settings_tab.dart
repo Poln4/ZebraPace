@@ -21,6 +21,7 @@ import '../welcome/welcome_screen.dart';
 import 'reminders_section.dart';
 import '../sources/sources_screen.dart';
 import 'share_zebraup_section.dart';
+import 'plus_section.dart';
 
 class SettingsTab extends ConsumerStatefulWidget {
   const SettingsTab({super.key});
@@ -170,6 +171,7 @@ class _SettingsTabState extends ConsumerState<SettingsTab> {
                 const RemindersSection(),
                 const ShareZebraUpSection(),
                 const _CloudSyncSection(),
+                const PlusSection(),
                 const _AboutSection(),
                 SectionCard(
                   title: l10n.settingsTabAppLockTitle,

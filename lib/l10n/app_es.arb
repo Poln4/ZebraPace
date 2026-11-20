@@ -1203,5 +1203,19 @@
   "challengeLeaveOwnerHandover": "Tú lo creaste, así que pasa a otra persona del reto, que desde entonces podrá quitar integrantes.",
   "challengeLeaveLastMember": "Eres la única persona en el reto, así que el reto se borra.",
   "challengeLeaveConfirm": "Salir",
-  "challengeLeaveRemoveError": "No se pudo. Revisa tu conexión e inténtalo de nuevo."
+  "challengeLeaveRemoveError": "No se pudo. Revisa tu conexión e inténtalo de nuevo.",
+  "plusTitle": "Zebras+",
+  "plusCaptionFree": "Patrones de largo plazo, historial largo e informes para kinesiología, en ZebraPace y ZebraUp. Registrar, el pacing de hoy y los avisos de seguridad siempre son gratis.",
+  "plusCaptionActive": "Zebras+ está activo en ZebraPace y ZebraUp. Gracias por apoyar a las cebras.",
+  "plusNeedsAccount": "Primero inicia sesión en Sincronización en la nube, para que tu plan te acompañe en ZebraUp y en un teléfono nuevo.",
+  "plusSeePlans": "Ver Zebras+",
+  "plusManage": "Gestionar suscripción",
+  "plusRestore": "Restaurar compras",
+  "plusPurchased": "¡Bienvenida a Zebras+!",
+  "plusRestored": "Compras restauradas.",
+  "plusRestoreNothing": "No hay compras de Zebras+ en esta cuenta de la tienda.",
+  "plusPending": "Tu pago está pendiente. Zebras+ se activa cuando la tienda lo confirme.",
+  "plusErrorNetwork": "No se pudo conectar con la tienda. Revisa tu conexión e inténtalo de nuevo.",
+  "plusErrorNotAllowed": "Este dispositivo no permite compras.",
+  "plusErrorGeneric": "Algo falló con la tienda. Inténtalo de nuevo."
 }

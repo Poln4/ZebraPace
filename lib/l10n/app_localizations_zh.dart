@@ -3804,4 +3804,47 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get challengeLeaveRemoveError => '沒有成功。請檢查網路連線後再試一次。';
+
+  @override
+  String get plusTitle => 'Zebras+';
+
+  @override
+  String get plusCaptionFree =>
+      '長期模式、完整歷史和給物理治療師的報告，適用於 ZebraPace 和 ZebraUp。紀錄、今天的配速和安全提醒永遠免費。';
+
+  @override
+  String get plusCaptionActive => 'Zebras+ 已在 ZebraPace 和 ZebraUp 啟用。謝謝你支持斑馬們。';
+
+  @override
+  String get plusNeedsAccount => '請先在「雲端同步」登入，這樣你的方案才能跟著你到 ZebraUp 和新手機。';
+
+  @override
+  String get plusSeePlans => '查看 Zebras+';
+
+  @override
+  String get plusManage => '管理訂閱';
+
+  @override
+  String get plusRestore => '恢復購買';
+
+  @override
+  String get plusPurchased => '歡迎加入 Zebras+！';
+
+  @override
+  String get plusRestored => '已恢復購買。';
+
+  @override
+  String get plusRestoreNothing => '這個商店帳號沒有 Zebras+ 購買紀錄。';
+
+  @override
+  String get plusPending => '你的付款尚待確認。商店確認後 Zebras+ 就會啟用。';
+
+  @override
+  String get plusErrorNetwork => '無法連線到商店。請檢查網路連線後再試一次。';
+
+  @override
+  String get plusErrorNotAllowed => '這台裝置不允許購買。';
+
+  @override
+  String get plusErrorGeneric => '商店發生問題。請再試一次。';
 }

@@ -4072,4 +4072,53 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get challengeLeaveRemoveError =>
       'No se pudo. Revisa tu conexión e inténtalo de nuevo.';
+
+  @override
+  String get plusTitle => 'Zebras+';
+
+  @override
+  String get plusCaptionFree =>
+      'Patrones de largo plazo, historial largo e informes para kinesiología, en ZebraPace y ZebraUp. Registrar, el pacing de hoy y los avisos de seguridad siempre son gratis.';
+
+  @override
+  String get plusCaptionActive =>
+      'Zebras+ está activo en ZebraPace y ZebraUp. Gracias por apoyar a las cebras.';
+
+  @override
+  String get plusNeedsAccount =>
+      'Primero inicia sesión en Sincronización en la nube, para que tu plan te acompañe en ZebraUp y en un teléfono nuevo.';
+
+  @override
+  String get plusSeePlans => 'Ver Zebras+';
+
+  @override
+  String get plusManage => 'Gestionar suscripción';
+
+  @override
+  String get plusRestore => 'Restaurar compras';
+
+  @override
+  String get plusPurchased => '¡Bienvenida a Zebras+!';
+
+  @override
+  String get plusRestored => 'Compras restauradas.';
+
+  @override
+  String get plusRestoreNothing =>
+      'No hay compras de Zebras+ en esta cuenta de la tienda.';
+
+  @override
+  String get plusPending =>
+      'Tu pago está pendiente. Zebras+ se activa cuando la tienda lo confirme.';
+
+  @override
+  String get plusErrorNetwork =>
+      'No se pudo conectar con la tienda. Revisa tu conexión e inténtalo de nuevo.';
+
+  @override
+  String get plusErrorNotAllowed => 'Este dispositivo no permite compras.';
+
+  @override
+  String get plusErrorGeneric =>
+      'Algo falló con la tienda. Inténtalo de nuevo.';
 }

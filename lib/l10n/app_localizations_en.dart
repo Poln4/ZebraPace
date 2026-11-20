@@ -4025,4 +4025,53 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get challengeLeaveRemoveError =>
       'That didn\'t work. Check your connection and try again.';
+
+  @override
+  String get plusTitle => 'Zebras+';
+
+  @override
+  String get plusCaptionFree =>
+      'Long-term patterns, long history and reports for your physio, in ZebraPace and ZebraUp. Logging, today\'s pacing and safety alerts are always free.';
+
+  @override
+  String get plusCaptionActive =>
+      'Zebras+ is on for ZebraPace and ZebraUp. Thank you for supporting the zebras.';
+
+  @override
+  String get plusNeedsAccount =>
+      'Sign in under Cloud sync first, so your plan follows you to ZebraUp and to a new phone.';
+
+  @override
+  String get plusSeePlans => 'See Zebras+';
+
+  @override
+  String get plusManage => 'Manage subscription';
+
+  @override
+  String get plusRestore => 'Restore purchases';
+
+  @override
+  String get plusPurchased => 'Welcome to Zebras+!';
+
+  @override
+  String get plusRestored => 'Purchases restored.';
+
+  @override
+  String get plusRestoreNothing =>
+      'No Zebras+ purchase found for this store account.';
+
+  @override
+  String get plusPending =>
+      'Your payment is pending. Zebras+ turns on once the store confirms it.';
+
+  @override
+  String get plusErrorNetwork =>
+      'Couldn\'t reach the store. Check your connection and try again.';
+
+  @override
+  String get plusErrorNotAllowed => 'Purchases aren\'t allowed on this device.';
+
+  @override
+  String get plusErrorGeneric =>
+      'Something went wrong with the store. Please try again.';
 }

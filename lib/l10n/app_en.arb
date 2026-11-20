@@ -1792,5 +1792,19 @@
   "challengeLeaveOwnerHandover": "You created it, so it passes to another member, who can then remove members.",
   "challengeLeaveLastMember": "You're the only member, so the challenge itself is deleted.",
   "challengeLeaveConfirm": "Leave",
-  "challengeLeaveRemoveError": "That didn't work. Check your connection and try again."
+  "challengeLeaveRemoveError": "That didn't work. Check your connection and try again.",
+  "plusTitle": "Zebras+",
+  "plusCaptionFree": "Long-term patterns, long history and reports for your physio, in ZebraPace and ZebraUp. Logging, today's pacing and safety alerts are always free.",
+  "plusCaptionActive": "Zebras+ is on for ZebraPace and ZebraUp. Thank you for supporting the zebras.",
+  "plusNeedsAccount": "Sign in under Cloud sync first, so your plan follows you to ZebraUp and to a new phone.",
+  "plusSeePlans": "See Zebras+",
+  "plusManage": "Manage subscription",
+  "plusRestore": "Restore purchases",
+  "plusPurchased": "Welcome to Zebras+!",
+  "plusRestored": "Purchases restored.",
+  "plusRestoreNothing": "No Zebras+ purchase found for this store account.",
+  "plusPending": "Your payment is pending. Zebras+ turns on once the store confirms it.",
+  "plusErrorNetwork": "Couldn't reach the store. Check your connection and try again.",
+  "plusErrorNotAllowed": "Purchases aren't allowed on this device.",
+  "plusErrorGeneric": "Something went wrong with the store. Please try again."
 }
