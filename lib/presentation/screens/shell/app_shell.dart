@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -8,6 +10,8 @@ import '../../../core/utils/date_utils.dart';
 import '../../../core/utils/intl_locale.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/app_providers.dart';
+import '../../../providers/reminder_providers.dart';
+import '../../../providers/shared_container_providers.dart';
 import '../../../providers/cloud_sync_providers.dart';
 import '../../../providers/text_scale_providers.dart';
 import '../challenge/challenge_tab.dart';
@@ -48,10 +52,20 @@ class _AppShellState extends ConsumerState<AppShell> {
     // already true before AppShell ever built, so a build-time ref.listen
     // alone wouldn't retroactively catch it.
     WidgetsBinding.instance.addPostFrameCallback((_) => _maybeGoToCloudSync());
+    // A tapped reminder opens the tab it's about (payload 'tab:N').
+    _reminderTaps = ref.read(notificationServiceProvider).taps.listen((payload) {
+      final tab = payload.startsWith('tab:') ? int.tryParse(payload.substring(4)) : null;
+      if (tab == null || !mounted) return;
+      Navigator.of(context).popUntil((route) => route.isFirst);
+      _tabController.index = tab;
+    });
   }
+
+  StreamSubscription<String>? _reminderTaps;
 
   @override
   void dispose() {
+    _reminderTaps?.cancel();
     _tabController.dispose();
     super.dispose();
   }
@@ -68,6 +82,10 @@ class _AppShellState extends ConsumerState<AppShell> {
   Widget build(BuildContext context) {
     // Keeps Health-backed values in the log current (see healthSyncProvider).
     ref.watch(healthSyncProvider);
+    // Keeps scheduled reminders and the pacing-alert snapshot current.
+    ref.watch(reminderSyncProvider);
+    // Keeps the outbox ZebraUp reads current (only while sharing is on).
+    ref.watch(sharedOutboxSyncProvider);
     // Covers the case where sign-in completes while AppShell is already
     // mounted (e.g. the redirect lands in the same already-open tab).
     ref.listen(pendingCloudSyncNavigationProvider, (previous, next) {

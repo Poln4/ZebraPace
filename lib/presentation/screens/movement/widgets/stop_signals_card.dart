@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../widgets/section_card.dart';
+import '../../../../core/constants/sources.dart';
 
 /// Stopping rules for a session: end sets with reps in reserve, move slowly,
 /// and the red flags that mean stop now. Static guidance, collapsed by
@@ -15,6 +16,7 @@ class StopSignalsCard extends StatelessWidget {
     const body = TextStyle(fontSize: 13);
     return SectionCard(
       title: l10n.stopSignalsTitle,
+      sources: const [SourceTopic.exercise, SourceTopic.pem, SourceTopic.standTest],
       collapsible: true,
       initiallyExpanded: false,
       child: Column(

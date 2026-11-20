@@ -53,6 +53,12 @@ class SettingsKeys {
 
   /// The person's own Plan-tab phrases, as a JSON string list.
   static const planPhrases = 'plan_phrases';
+
+  /// Reminders & alerts, as JSON — see ReminderSettings.
+  static const reminderSettings = 'reminder_settings';
+
+  /// '1' when ZebraPace publishes its outbox for ZebraUp (off by default).
+  static const shareWithZebraUp = 'share_with_zebraup';
 }
 
 class StripeConstants {

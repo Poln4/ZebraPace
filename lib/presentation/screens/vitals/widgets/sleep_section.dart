@@ -9,6 +9,7 @@ import '../../../../providers/app_providers.dart';
 import '../../../widgets/feeling_picker.dart';
 import '../../../widgets/health_source_row.dart';
 import '../../../widgets/section_card.dart';
+import '../../../../core/constants/sources.dart';
 
 /// Duration (hours+minutes via a native time picker), quality, and sleeping
 /// heart rate range — the raw inputs EnergyBatteryCard's readout is derived
@@ -70,6 +71,7 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
 
     return SectionCard(
       title: l10n.sleepSectionTitle,
+      sources: const [SourceTopic.sleep],
       child: showValues ? _values(l10n, date, log) : _form(l10n, date, connected),
     );
   }

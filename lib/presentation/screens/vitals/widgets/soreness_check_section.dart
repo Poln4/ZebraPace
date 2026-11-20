@@ -6,6 +6,7 @@ import '../../../../core/theme/zebra_theme.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/app_providers.dart';
 import '../../../widgets/section_card.dart';
+import '../../../../core/constants/sources.dart';
 
 /// Ported from app.py's "Soreness or Crash? A quick check" — a descriptive
 /// self-report heuristic (DOMS vs. PEM/crash pattern), not a diagnostic tool.
@@ -31,6 +32,7 @@ class _SorenessCheckSectionState extends ConsumerState<SorenessCheckSection> {
     return SectionCard(
       title: l10n.sorenessCheckSectionTitle,
       caption: l10n.sorenessCheckSectionCaption,
+      sources: const [SourceTopic.pem],
       collapsible: true,
       initiallyExpanded: !isLowEnergyDay,
       child: Column(

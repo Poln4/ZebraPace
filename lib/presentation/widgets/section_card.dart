@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
+import '../../core/constants/sources.dart';
 import '../../core/theme/zebra_theme.dart';
+import '../screens/sources/sources_screen.dart';
 
 class SectionCard extends StatefulWidget {
   const SectionCard({
@@ -11,6 +13,7 @@ class SectionCard extends StatefulWidget {
     this.collapsible = false,
     this.initiallyExpanded = true,
     this.collapsedSummary,
+    this.sources,
   });
 
   final String title;
@@ -28,6 +31,10 @@ class SectionCard extends StatefulWidget {
   /// Short status shown at the end of the title row while collapsed (e.g.
   /// "2 logged"), so a closed card still says whether it holds anything.
   final String? collapsedSummary;
+
+  /// Shows a "Sources" link under the caption for cards that make a health
+  /// claim (App Store 1.4.1).
+  final List<SourceTopic>? sources;
 
   @override
   State<SectionCard> createState() => _SectionCardState();
@@ -84,6 +91,7 @@ class _SectionCardState extends State<SectionCard> {
             Text(widget.caption!,
                 style: const TextStyle(fontSize: 12, color: CupertinoColors.systemGrey)),
           ],
+          if (expanded && widget.sources != null) SourcesLink(widget.sources!),
           if (expanded) ...[
             const SizedBox(height: 10),
             widget.child,

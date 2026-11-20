@@ -35,6 +35,43 @@ class MainActivity : FlutterFragmentActivity() {
                     result.notImplemented()
                 }
             }
+        // ZebraPace ↔ ZebraUp shared container: Dart hands over the outbox
+        // JSON; SharedDataProvider serves it to ZebraUp only.
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, SharedContainer.CHANNEL)
+            .setMethodCallHandler { call, result ->
+                when (call.method) {
+                    "publish" -> {
+                        val json = call.argument<String>("json")
+                        if (json == null) {
+                            result.error("bad_args", "json missing", null)
+                        } else {
+                            SharedContainer.writeOutbox(applicationContext, json)
+                            result.success(null)
+                        }
+                    }
+                    "clear" -> {
+                        SharedContainer.clearOutbox(applicationContext)
+                        result.success(null)
+                    }
+                    else -> result.notImplemented()
+                }
+            }
+        // Pacing alerts: today's thresholds from Dart, checked by
+        // PacingAlertWorker while the app is closed (PacingAlerts.kt).
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, PacingAlerts.CHANNEL)
+            .setMethodCallHandler { call, result ->
+                if (call.method == "configure") {
+                    val json = call.argument<String>("snapshot")
+                    if (json == null) {
+                        result.error("bad_args", "snapshot missing", null)
+                    } else {
+                        PacingAlerts.configure(applicationContext, json)
+                        result.success(null)
+                    }
+                } else {
+                    result.notImplemented()
+                }
+            }
     }
 
     // Android 14+ ships Health Connect inside the OS, which only answers the

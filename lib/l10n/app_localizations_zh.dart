@@ -1798,6 +1798,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get healthkitWorkoutSuggestionsDismissButton => '略過';
 
   @override
+  String get healthkitWorkoutSuggestionsDetailsToggle => '新增額外負重或感受';
+
+  @override
   String get vitalsTabTitle => '每日生理數據與營養';
 
   @override
@@ -2501,7 +2504,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settingsTabHealthReadinessCaption =>
-      'ZebraPace 現在可以讀取靜止心率和心率變異度，在身體需要更多恢復的日子調低你的步數目標。';
+      'ZebraPace 現在可以讀取靜止心率和心率變異度，並與你平常的數值並列顯示。這些僅供參考，絕不會改變你的步數目標。';
 
   @override
   String get settingsTabHealthReadinessButton => '允許讀取靜止心率與心率變異度';
@@ -3615,4 +3618,145 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get bpTapToDelete => '點選紀錄即可刪除。';
+
+  @override
+  String get remindersSectionTitle => '提醒與警示';
+
+  @override
+  String get remindersSectionCaption =>
+      '溫和的提醒，休息日或發作／不適日不會出現。提醒會顯示在鎖定畫面上，因此不會包含數字或細節。';
+
+  @override
+  String get remindersCheckinToggle => '快速紀錄';
+
+  @override
+  String get remindersCheckinCaption => '如果前兩小時內已經紀錄過，就會略過。';
+
+  @override
+  String get remindersAddTime => '新增時間';
+
+  @override
+  String get remindersRemoveTime => '移除這個時間';
+
+  @override
+  String get remindersSorenessToggle => '痠痛檢查';
+
+  @override
+  String get remindersSorenessCaption => '紀錄活動後的第一天和第二天。';
+
+  @override
+  String get remindersWeeklyToggle => '每週回顧';
+
+  @override
+  String get remindersWeeklyCaption => '每週日，在計畫進行中且該週尚未回顧時。';
+
+  @override
+  String get remindersPacingToggle => '步調警示';
+
+  @override
+  String get remindersPacingCaption =>
+      '當今天的步數達到目標，以及超過警戒線時。會在背景從 Apple 健康或 Health Connect 檢查，因此警示可能會延遲。';
+
+  @override
+  String get remindersPacingNeedsHealth =>
+      '請先在「活動」中連接 Apple 健康或 Health Connect。';
+
+  @override
+  String get remindersPermissionDenied => '手機設定中已關閉 ZebraPace 的通知，因此不會顯示任何內容。';
+
+  @override
+  String get remindersTimeDone => '完成';
+
+  @override
+  String get notificationChannelReminders => '提醒';
+
+  @override
+  String get notificationChannelPacing => '步調警示';
+
+  @override
+  String get notificationCheckinTitle => '快速紀錄';
+
+  @override
+  String get notificationCheckinBody => '現在的精力、身體和心情如何？只需要幾秒鐘。';
+
+  @override
+  String get notificationSorenessTitle => '痠痛還是崩潰？';
+
+  @override
+  String get notificationSorenessBody => '最近活動之後，三個簡單問題能幫你分辨一般痠痛和 PEM。';
+
+  @override
+  String get notificationWeeklyTitle => '每週回顧';
+
+  @override
+  String get notificationWeeklyBody => '簡單回顧這一週，安排下週的計畫。';
+
+  @override
+  String get notificationPacingGoalTitle => '已達到今天的步數目標';
+
+  @override
+  String get notificationPacingGoalBody => '今天溫和成長的部分已經完成，之後的都是額外的。';
+
+  @override
+  String get notificationPacingCautionTitle => '已超過今天的警戒線';
+
+  @override
+  String get notificationPacingCautionBody => '步數高於你最近的基準。可以考慮多休息、補充水分和電解質。';
+
+  @override
+  String get shareZebraUpTitle => 'ZebraUp';
+
+  @override
+  String get shareZebraUpToggle => '與 ZebraUp 分享';
+
+  @override
+  String get shareZebraUpCaption =>
+      '同一支手機上的 ZebraUp 可以讀取你最近 30 天的步數、休息日或發作／不適日、較符合崩潰／PEM 模式的痠痛檢查、靜止心率、心率變異度和已紀錄的活動。不會上傳到網路。關閉後會移除已分享的內容。';
+
+  @override
+  String get sourcesLinkLabel => '資料來源';
+
+  @override
+  String get sourcesScreenTitle => '資料來源與參考文獻';
+
+  @override
+  String get sourcesScreenIntro =>
+      'ZebraPace 的健康資訊來自下列資料來源，點一下即可開啟。ZebraPace 不是醫療器材，也不做任何診斷；改變照護方式前，請先和你的醫療團隊討論。';
+
+  @override
+  String get sourcesAppDefaultsNote =>
+      '1% 的步數目標、10% 的警戒線，以及飲水、蛋白質和睡眠目標，都是 ZebraPace 的預設起始值，不是臨床標準。你可以在設定中更改。';
+
+  @override
+  String get sourcesSeeAll => '查看所有資料來源';
+
+  @override
+  String get sourcesAppSynthesis => '這是 ZebraPace 對上述研究的整理，並非研究本身的結論。';
+
+  @override
+  String get sourceTopicPacing => '步調與步數範圍';
+
+  @override
+  String get sourceTopicPem => '運動後不適（PEM）與痠痛';
+
+  @override
+  String get sourceTopicStandTest => '站立測試、POTS 與姿勢性低血壓';
+
+  @override
+  String get sourceTopicHeartSignals => '靜止心率與心率變異度';
+
+  @override
+  String get sourceTopicSweating => '流汗';
+
+  @override
+  String get sourceTopicMets => 'METs（運動強度）';
+
+  @override
+  String get sourceTopicExercise => 'EDS 的運動、停止訊號與進度';
+
+  @override
+  String get sourceTopicFearExposure => '對活動的恐懼與漸進暴露';
+
+  @override
+  String get sourceTopicSleep => '睡眠';
 }

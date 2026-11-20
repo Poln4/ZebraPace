@@ -19,6 +19,7 @@ import 'plan_editor_screen.dart';
 import 'session_log_screen.dart';
 import 'tests_section.dart';
 import 'widgets/day_stripe.dart';
+import '../../../core/constants/sources.dart';
 
 /// The Plan tab: the person's own training plan (made in the editor) and
 /// what they did with it today. Movement stays the log of everything.
@@ -917,6 +918,7 @@ class _StepUpCard extends ConsumerWidget {
     return SectionCard(
       title: l10n.planStepUpTitle,
       caption: l10n.planStepUpCaption,
+      sources: const [SourceTopic.exercise, SourceTopic.pem],
       collapsible: true,
       initiallyExpanded: false,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: rows),

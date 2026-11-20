@@ -6,6 +6,7 @@ import '../../../../data/healthkit/health_kit_service.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../widgets/section_card.dart';
 import 'insights_providers.dart';
+import '../../../../core/constants/sources.dart';
 
 /// Additive-only summary (plan §4) — never wired into the pacing algorithm.
 /// Only shows once there's at least one activity with METs/energy data,
@@ -24,6 +25,7 @@ class MetsSummaryWidget extends ConsumerWidget {
       caption: usesHealthConnect
           ? l10n.metsSummaryWidgetCaptionHealthConnect
           : l10n.metsSummaryWidgetCaption,
+      sources: const [SourceTopic.mets],
       child: Row(
         children: [
           Expanded(

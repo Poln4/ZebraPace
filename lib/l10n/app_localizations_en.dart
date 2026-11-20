@@ -1896,6 +1896,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get healthkitWorkoutSuggestionsDismissButton => 'Dismiss';
 
   @override
+  String get healthkitWorkoutSuggestionsDetailsToggle =>
+      'Add extra weight or how it felt';
+
+  @override
   String get vitalsTabTitle => 'Daily Vitals & Fuel';
 
   @override
@@ -2636,7 +2640,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsTabHealthReadinessCaption =>
-      'ZebraPace can now read resting heart rate and heart rate variability to shrink your step goal on days your body needs more recovery.';
+      'ZebraPace can now read resting heart rate and heart rate variability and show them next to your own usual. They\'re information only and never change your step goal.';
 
   @override
   String get settingsTabHealthReadinessButton =>
@@ -3820,4 +3824,158 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get bpTapToDelete => 'Tap a reading to delete it.';
+
+  @override
+  String get remindersSectionTitle => 'Reminders & alerts';
+
+  @override
+  String get remindersSectionCaption =>
+      'Gentle nudges, never on Rest or Flare days. They show on your lock screen, so they never include numbers or details.';
+
+  @override
+  String get remindersCheckinToggle => 'Quick check-in';
+
+  @override
+  String get remindersCheckinCaption =>
+      'Skipped if you already checked in in the two hours before.';
+
+  @override
+  String get remindersAddTime => 'Add a time';
+
+  @override
+  String get remindersRemoveTime => 'Remove this time';
+
+  @override
+  String get remindersSorenessToggle => 'Soreness check';
+
+  @override
+  String get remindersSorenessCaption =>
+      'The first and second day after you log movement.';
+
+  @override
+  String get remindersWeeklyToggle => 'Weekly check-in';
+
+  @override
+  String get remindersWeeklyCaption =>
+      'Sundays, while a plan is active and that week isn\'t reviewed yet.';
+
+  @override
+  String get remindersPacingToggle => 'Pacing alerts';
+
+  @override
+  String get remindersPacingCaption =>
+      'When today\'s steps reach your goal, and if they pass your caution line. Checked in the background from Apple Health or Health Connect, so an alert can arrive late.';
+
+  @override
+  String get remindersPacingNeedsHealth =>
+      'Connect Apple Health or Health Connect in Movement first.';
+
+  @override
+  String get remindersPermissionDenied =>
+      'Notifications are off for ZebraPace in your phone\'s settings, so nothing will show.';
+
+  @override
+  String get remindersTimeDone => 'Done';
+
+  @override
+  String get notificationChannelReminders => 'Reminders';
+
+  @override
+  String get notificationChannelPacing => 'Pacing alerts';
+
+  @override
+  String get notificationCheckinTitle => 'Quick check-in';
+
+  @override
+  String get notificationCheckinBody =>
+      'How are your energy, body and mood right now? It takes a few seconds.';
+
+  @override
+  String get notificationSorenessTitle => 'Soreness or crash?';
+
+  @override
+  String get notificationSorenessBody =>
+      'After recent movement, three quick questions help tell ordinary soreness apart from PEM.';
+
+  @override
+  String get notificationWeeklyTitle => 'Weekly check-in';
+
+  @override
+  String get notificationWeeklyBody =>
+      'A short look back at this week, to set next week\'s plan.';
+
+  @override
+  String get notificationPacingGoalTitle => 'Today\'s step goal reached';
+
+  @override
+  String get notificationPacingGoalBody =>
+      'That\'s today\'s gentle growth done. Anything more is optional.';
+
+  @override
+  String get notificationPacingCautionTitle => 'Past today\'s caution line';
+
+  @override
+  String get notificationPacingCautionBody =>
+      'Steps are above your recent baseline. Consider extra rest, hydration and electrolytes.';
+
+  @override
+  String get shareZebraUpTitle => 'ZebraUp';
+
+  @override
+  String get shareZebraUpToggle => 'Share with ZebraUp';
+
+  @override
+  String get shareZebraUpCaption =>
+      'ZebraUp, on this same phone, can read your last 30 days of steps, Rest/Flare days, soreness checks that looked like a crash/PEM pattern, resting heart rate, heart rate variability and logged activity. Nothing goes online. Turning this off removes what was shared.';
+
+  @override
+  String get sourcesLinkLabel => 'Sources';
+
+  @override
+  String get sourcesScreenTitle => 'Sources & references';
+
+  @override
+  String get sourcesScreenIntro =>
+      'ZebraPace\'s health information comes from the sources below. Tap one to open it. ZebraPace isn\'t a medical device and doesn\'t diagnose anything; talk with your care team before changing your care.';
+
+  @override
+  String get sourcesAppDefaultsNote =>
+      'The 1% step goal, the 10% caution line and the water, protein and sleep goals are ZebraPace\'s starting defaults, not clinical thresholds. You can change them in Settings.';
+
+  @override
+  String get sourcesSeeAll => 'See all sources';
+
+  @override
+  String get sourcesAppSynthesis =>
+      'ZebraPace\'s own summary of the studies above, not a finding from them.';
+
+  @override
+  String get sourceTopicPacing => 'Pacing and the step envelope';
+
+  @override
+  String get sourceTopicPem => 'Post-exertional malaise (PEM) and soreness';
+
+  @override
+  String get sourceTopicStandTest =>
+      'Stand test, POTS and orthostatic hypotension';
+
+  @override
+  String get sourceTopicHeartSignals =>
+      'Resting heart rate and heart rate variability';
+
+  @override
+  String get sourceTopicSweating => 'Sweating';
+
+  @override
+  String get sourceTopicMets => 'METs (exercise intensity)';
+
+  @override
+  String get sourceTopicExercise =>
+      'Exercise, stop signals and progression with EDS';
+
+  @override
+  String get sourceTopicFearExposure => 'Fear of movement and gradual exposure';
+
+  @override
+  String get sourceTopicSleep => 'Sleep';
 }

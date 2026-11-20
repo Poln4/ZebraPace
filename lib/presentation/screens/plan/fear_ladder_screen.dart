@@ -11,6 +11,8 @@ import '../../../providers/plan_providers.dart';
 import '../../widgets/entry_actions.dart';
 import '../../widgets/section_card.dart';
 import 'widgets/plan_form.dart';
+import '../../../core/constants/sources.dart';
+import '../sources/sources_screen.dart';
 
 /// Graded exposure: the movements the person avoids, least feared first.
 /// Each week, one small, safe try of an item at about 3–4/10 — predict,
@@ -44,6 +46,7 @@ class FearLadderScreen extends ConsumerWidget {
           padding: const EdgeInsets.all(16),
           children: [
             Text(l10n.planFearIntro, style: const TextStyle(fontSize: 13.5)),
+            const SourcesLink([SourceTopic.fearExposure]),
             const SizedBox(height: 12),
             if (next != null)
               SectionCard(

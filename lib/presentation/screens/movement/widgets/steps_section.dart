@@ -12,6 +12,8 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/app_providers.dart';
 import '../../../widgets/health_source_row.dart';
 import '../../../widgets/section_card.dart';
+import '../../../../core/constants/sources.dart';
+import '../../sources/sources_screen.dart';
 
 /// Ported from app.py's "Steps & The Gentle-Growth Rule" — the app's central
 /// safety feature: a 14-day baseline, a gentle 1% growth goal, and a >10%
@@ -88,6 +90,7 @@ class _StepsSectionState extends ConsumerState<StepsSection> {
                   _MiniStat(l10n.stepsSectionCautionLineLabel, evaluation.cautionSteps.toString()),
                 ],
               ),
+              const SourcesLink([SourceTopic.pacing, SourceTopic.pem]),
               if (_showVerdict(log?.isFlareDay ?? false, evaluation) ||
                   evaluation.readiness.restingHeartRateToday != null ||
                   evaluation.readiness.hrvToday != null) ...[

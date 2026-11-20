@@ -18,6 +18,9 @@ import '../../../providers/locale_providers.dart';
 import '../../../providers/text_scale_providers.dart';
 import '../../widgets/section_card.dart';
 import '../welcome/welcome_screen.dart';
+import 'reminders_section.dart';
+import '../sources/sources_screen.dart';
+import 'share_zebraup_section.dart';
 
 class SettingsTab extends ConsumerStatefulWidget {
   const SettingsTab({super.key});
@@ -164,6 +167,8 @@ class _SettingsTabState extends ConsumerState<SettingsTab> {
                   ),
                 ),
                 const _HealthKitSection(),
+                const RemindersSection(),
+                const ShareZebraUpSection(),
                 const _CloudSyncSection(),
                 const _AboutSection(),
                 SectionCard(
@@ -638,6 +643,18 @@ class _AboutSection extends StatelessWidget {
                 CupertinoPageRoute(builder: (_) => const WelcomeScreen()),
               ),
               child: Text(l10n.settingsTabAboutViewWelcomeButton,
+                  style: const TextStyle(color: ZebraColors.black)),
+            ),
+          ),
+          const SizedBox(height: 8),
+          SizedBox(
+            width: double.infinity,
+            child: CupertinoButton(
+              color: ZebraColors.cardBorder,
+              onPressed: () => Navigator.of(context).push(
+                CupertinoPageRoute(builder: (_) => const SourcesScreen()),
+              ),
+              child: Text(l10n.sourcesScreenTitle,
                   style: const TextStyle(color: ZebraColors.black)),
             ),
           ),

@@ -3281,6 +3281,12 @@ abstract class AppLocalizations {
   /// **'Dismiss'**
   String get healthkitWorkoutSuggestionsDismissButton;
 
+  /// No description provided for @healthkitWorkoutSuggestionsDetailsToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add extra weight or how it felt'**
+  String get healthkitWorkoutSuggestionsDetailsToggle;
+
   /// No description provided for @vitalsTabTitle.
   ///
   /// In en, this message translates to:
@@ -4498,7 +4504,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingsTabHealthReadinessCaption.
   ///
   /// In en, this message translates to:
-  /// **'ZebraPace can now read resting heart rate and heart rate variability to shrink your step goal on days your body needs more recovery.'**
+  /// **'ZebraPace can now read resting heart rate and heart rate variability and show them next to your own usual. They\'re information only and never change your step goal.'**
   String get settingsTabHealthReadinessCaption;
 
   /// No description provided for @settingsTabHealthReadinessButton.
@@ -6462,6 +6468,276 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tap a reading to delete it.'**
   String get bpTapToDelete;
+
+  /// No description provided for @remindersSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders & alerts'**
+  String get remindersSectionTitle;
+
+  /// No description provided for @remindersSectionCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle nudges, never on Rest or Flare days. They show on your lock screen, so they never include numbers or details.'**
+  String get remindersSectionCaption;
+
+  /// No description provided for @remindersCheckinToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick check-in'**
+  String get remindersCheckinToggle;
+
+  /// No description provided for @remindersCheckinCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Skipped if you already checked in in the two hours before.'**
+  String get remindersCheckinCaption;
+
+  /// No description provided for @remindersAddTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a time'**
+  String get remindersAddTime;
+
+  /// No description provided for @remindersRemoveTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove this time'**
+  String get remindersRemoveTime;
+
+  /// No description provided for @remindersSorenessToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Soreness check'**
+  String get remindersSorenessToggle;
+
+  /// No description provided for @remindersSorenessCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'The first and second day after you log movement.'**
+  String get remindersSorenessCaption;
+
+  /// No description provided for @remindersWeeklyToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly check-in'**
+  String get remindersWeeklyToggle;
+
+  /// No description provided for @remindersWeeklyCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Sundays, while a plan is active and that week isn\'t reviewed yet.'**
+  String get remindersWeeklyCaption;
+
+  /// No description provided for @remindersPacingToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pacing alerts'**
+  String get remindersPacingToggle;
+
+  /// No description provided for @remindersPacingCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'When today\'s steps reach your goal, and if they pass your caution line. Checked in the background from Apple Health or Health Connect, so an alert can arrive late.'**
+  String get remindersPacingCaption;
+
+  /// No description provided for @remindersPacingNeedsHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect Apple Health or Health Connect in Movement first.'**
+  String get remindersPacingNeedsHealth;
+
+  /// No description provided for @remindersPermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are off for ZebraPace in your phone\'s settings, so nothing will show.'**
+  String get remindersPermissionDenied;
+
+  /// No description provided for @remindersTimeDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get remindersTimeDone;
+
+  /// No description provided for @notificationChannelReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders'**
+  String get notificationChannelReminders;
+
+  /// No description provided for @notificationChannelPacing.
+  ///
+  /// In en, this message translates to:
+  /// **'Pacing alerts'**
+  String get notificationChannelPacing;
+
+  /// No description provided for @notificationCheckinTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick check-in'**
+  String get notificationCheckinTitle;
+
+  /// No description provided for @notificationCheckinBody.
+  ///
+  /// In en, this message translates to:
+  /// **'How are your energy, body and mood right now? It takes a few seconds.'**
+  String get notificationCheckinBody;
+
+  /// No description provided for @notificationSorenessTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Soreness or crash?'**
+  String get notificationSorenessTitle;
+
+  /// No description provided for @notificationSorenessBody.
+  ///
+  /// In en, this message translates to:
+  /// **'After recent movement, three quick questions help tell ordinary soreness apart from PEM.'**
+  String get notificationSorenessBody;
+
+  /// No description provided for @notificationWeeklyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly check-in'**
+  String get notificationWeeklyTitle;
+
+  /// No description provided for @notificationWeeklyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A short look back at this week, to set next week\'s plan.'**
+  String get notificationWeeklyBody;
+
+  /// No description provided for @notificationPacingGoalTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s step goal reached'**
+  String get notificationPacingGoalTitle;
+
+  /// No description provided for @notificationPacingGoalBody.
+  ///
+  /// In en, this message translates to:
+  /// **'That\'s today\'s gentle growth done. Anything more is optional.'**
+  String get notificationPacingGoalBody;
+
+  /// No description provided for @notificationPacingCautionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Past today\'s caution line'**
+  String get notificationPacingCautionTitle;
+
+  /// No description provided for @notificationPacingCautionBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Steps are above your recent baseline. Consider extra rest, hydration and electrolytes.'**
+  String get notificationPacingCautionBody;
+
+  /// No description provided for @shareZebraUpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'ZebraUp'**
+  String get shareZebraUpTitle;
+
+  /// No description provided for @shareZebraUpToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Share with ZebraUp'**
+  String get shareZebraUpToggle;
+
+  /// No description provided for @shareZebraUpCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'ZebraUp, on this same phone, can read your last 30 days of steps, Rest/Flare days, soreness checks that looked like a crash/PEM pattern, resting heart rate, heart rate variability and logged activity. Nothing goes online. Turning this off removes what was shared.'**
+  String get shareZebraUpCaption;
+
+  /// No description provided for @sourcesLinkLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sources'**
+  String get sourcesLinkLabel;
+
+  /// No description provided for @sourcesScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sources & references'**
+  String get sourcesScreenTitle;
+
+  /// No description provided for @sourcesScreenIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'ZebraPace\'s health information comes from the sources below. Tap one to open it. ZebraPace isn\'t a medical device and doesn\'t diagnose anything; talk with your care team before changing your care.'**
+  String get sourcesScreenIntro;
+
+  /// No description provided for @sourcesAppDefaultsNote.
+  ///
+  /// In en, this message translates to:
+  /// **'The 1% step goal, the 10% caution line and the water, protein and sleep goals are ZebraPace\'s starting defaults, not clinical thresholds. You can change them in Settings.'**
+  String get sourcesAppDefaultsNote;
+
+  /// No description provided for @sourcesSeeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'See all sources'**
+  String get sourcesSeeAll;
+
+  /// No description provided for @sourcesAppSynthesis.
+  ///
+  /// In en, this message translates to:
+  /// **'ZebraPace\'s own summary of the studies above, not a finding from them.'**
+  String get sourcesAppSynthesis;
+
+  /// No description provided for @sourceTopicPacing.
+  ///
+  /// In en, this message translates to:
+  /// **'Pacing and the step envelope'**
+  String get sourceTopicPacing;
+
+  /// No description provided for @sourceTopicPem.
+  ///
+  /// In en, this message translates to:
+  /// **'Post-exertional malaise (PEM) and soreness'**
+  String get sourceTopicPem;
+
+  /// No description provided for @sourceTopicStandTest.
+  ///
+  /// In en, this message translates to:
+  /// **'Stand test, POTS and orthostatic hypotension'**
+  String get sourceTopicStandTest;
+
+  /// No description provided for @sourceTopicHeartSignals.
+  ///
+  /// In en, this message translates to:
+  /// **'Resting heart rate and heart rate variability'**
+  String get sourceTopicHeartSignals;
+
+  /// No description provided for @sourceTopicSweating.
+  ///
+  /// In en, this message translates to:
+  /// **'Sweating'**
+  String get sourceTopicSweating;
+
+  /// No description provided for @sourceTopicMets.
+  ///
+  /// In en, this message translates to:
+  /// **'METs (exercise intensity)'**
+  String get sourceTopicMets;
+
+  /// No description provided for @sourceTopicExercise.
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise, stop signals and progression with EDS'**
+  String get sourceTopicExercise;
+
+  /// No description provided for @sourceTopicFearExposure.
+  ///
+  /// In en, this message translates to:
+  /// **'Fear of movement and gradual exposure'**
+  String get sourceTopicFearExposure;
+
+  /// No description provided for @sourceTopicSleep.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep'**
+  String get sourceTopicSleep;
 }
 
 class _AppLocalizationsDelegate

@@ -256,6 +256,12 @@ Pre-fills last night's sleep duration, REM and deep sleep minutes, and sleeping 
 When the user types their body weight into ZebraPace, it is saved to Health Connect so their other health apps see it too. Only that weight is written. Correcting a day's weight replaces the record ZebraPace wrote for that day; records from scales or other apps are never changed or deleted.
 ```
 
+**READ_HEALTH_DATA_IN_BACKGROUND** (added in build 9)
+
+```
+Used only for optional pacing alerts, which the user turns on in Settings. About every 15 minutes while the app is closed, ZebraPace reads today's step total and compares it with the user's own step goal and caution line. It then notifies the user, at most once each a day, when they reach the goal or pass the caution line, so they can stop before overexertion leads to a post-exertional crash. Only today's step total is read in the background; nothing is written and nothing leaves the device. Turning the alert off stops the background reads.
+```
+
 ---
 
 ## App content → Data safety (answers)
@@ -289,3 +295,38 @@ Deletion: tick both "in-app" and "request via URL".
 - Target audience: **18 and over**
 - Content rating: answer the questionnaire honestly (no violence, no user-generated public content; challenge names/display names are visible only inside a private group)
 - News app: No · COVID-19 app: No · Government app: No · Financial features: None
+
+---
+
+## Release notes — 1.0.0 (11)
+
+Test and release → Closed testing → Create release → **Release notes**. Paste the whole block; Play splits it by language tag (500 characters each; these are 487 / 489 / 189).
+
+```
+<en-US>
+New in this version:
+• Reminders for the quick check-in, the soreness check and the weekly check-in. Off by default and never on Rest or Flare days.
+• Pacing alerts when today's steps reach your goal or pass your caution line.
+• Share with ZebraUp: ZebraUp on this phone can read your recent steps, heart readings and Rest/Flare days. Off by default; nothing goes online.
+• Imported workouts: add extra weight and how it felt.
+• Fixed: the Add button on detected workouts showed no text.
+</en-US>
+<es-419>
+Novedades:
+• Recordatorios para el registro rápido, la revisión de dolor muscular y la revisión semanal. Desactivados por defecto; nunca en días de Descanso o Brote.
+• Alertas de ritmo cuando tus pasos llegan a tu meta o pasan tu línea de precaución.
+• Compartir con ZebraUp en este teléfono: pasos, corazón y días de Descanso/Brote. Desactivado por defecto; nada sale a internet.
+• Entrenamientos importados: peso extra y cómo te sentiste.
+• Corregido: el botón Agregar no mostraba texto.
+</es-419>
+<zh-TW>
+本版本新增：
+• 快速紀錄、痠痛檢查和每週回顧的提醒。預設關閉，休息日或發作日不會出現。
+• 步調警示：今天的步數達到目標或超過警戒線時通知你。
+• 與 ZebraUp 分享：同一支手機上的 ZebraUp 可以讀取你最近的步數、心率和休息／發作日。預設關閉，不會上傳到網路。
+• 匯入的體能訓練：可以加入額外負重和感受。
+• 修正：偵測到的體能訓練上「新增」按鈕沒有顯示文字。
+</zh-TW>
+```
+
+Before rolling out: add the READ_HEALTH_DATA_IN_BACKGROUND justification (Health apps declaration above). Play rejects the release if a Health Connect permission in the manifest isn't declared.

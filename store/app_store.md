@@ -355,3 +355,65 @@ Leaving the section empty is allowed for now; Apple shows "not provided".
 ## Sections to leave alone for 1.0
 
 In-App Events, Custom Product Pages, Product Page Optimization, Promo Codes, Game Center, In-App Purchases, Subscriptions, Nominations: nothing to set up. Subscriptions comes later with the paid backup tier.
+
+---
+
+## TestFlight — 1.0.0 (10) → Test Information → What to Test
+
+One per localization (English U.S., Spanish Mexico, Chinese Traditional).
+
+**English (U.S.)**
+```
+New in this build:
+• Reminders (Settings → Reminders & alerts): quick check-in at times you choose, the soreness check on the two days after you log movement, and the weekly check-in on Sundays while a plan is active. All off by default and skipped on Rest or Flare days. Turning one on asks for notification permission.
+• Pacing alerts: a notification when today's steps reach your goal, and one if they pass your caution line. Apple Health is checked in the background, so an alert can arrive late, especially while the phone is locked.
+• Share with ZebraUp (Settings → ZebraUp): if you also use ZebraUp, it can read your last 30 days of steps, Rest/Flare days, heart readings and logged activity on this phone. Off by default; nothing goes online.
+• Imported workouts: add extra weight, mental state and body feeling before tapping Add.
+• Fixed: the Add button on detected workouts showed no text.
+• Sources: health information now links to its sources (look for "Sources" on each card). The full list is in Settings → About → Sources & references.
+
+Please check: reminders arrive at the times you set and not on Rest/Flare days; tapping one opens the right tab; pacing alerts arrive at most once each a day.
+```
+
+**Spanish (Mexico)**
+```
+Novedades de esta versión:
+• Recordatorios (Ajustes → Recordatorios y alertas): registro rápido a las horas que elijas, revisión de dolor muscular los dos días después de registrar movimiento y revisión semanal los domingos mientras haya un plan activo. Todos desactivados por defecto y se omiten en días de Descanso o de Brote. Al activar uno se piden permisos de notificaciones.
+• Alertas de ritmo: un aviso cuando tus pasos de hoy llegan a tu meta y otro si pasan tu línea de precaución. Apple Salud se revisa en segundo plano, así que una alerta puede llegar con retraso, sobre todo con el teléfono bloqueado.
+• Compartir con ZebraUp (Ajustes → ZebraUp): si también usas ZebraUp, puede leer en este teléfono tus últimos 30 días de pasos, días de Descanso/Brote, frecuencia cardíaca y actividad registrada. Desactivado por defecto; nada sale a internet.
+• Entrenamientos importados: agrega peso extra, estado mental y sensación corporal antes de tocar Agregar.
+• Corregido: el botón Agregar de los entrenamientos detectados no mostraba texto.
+• Fuentes: la información de salud ahora enlaza a sus fuentes (busca "Fuentes" en cada tarjeta). La lista completa está en Ajustes → Acerca de → Fuentes y referencias.
+
+Por favor revisa: que los recordatorios lleguen a las horas elegidas y no en días de Descanso/Brote; que al tocarlos se abra la pestaña correcta; que las alertas de ritmo lleguen como máximo una vez cada una al día.
+```
+
+**Chinese (Traditional)**
+```
+本版本新增：
+• 提醒（設定 → 提醒與警示）：在你選擇的時間提醒快速紀錄；紀錄活動後的兩天提醒痠痛檢查；計畫進行中時於每週日提醒每週回顧。全部預設關閉，休息日或發作日會略過。開啟時會詢問通知權限。
+• 步調警示：今天的步數達到目標時通知一次，超過警戒線時再通知一次。會在背景檢查 Apple 健康，因此警示可能延遲，尤其是手機鎖定時。
+• 與 ZebraUp 分享（設定 → ZebraUp）：如果你也使用 ZebraUp，它可以在這支手機上讀取你最近 30 天的步數、休息／發作日、心率和已紀錄的活動。預設關閉，不會上傳到網路。
+• 匯入的體能訓練：按「新增」前可以加入額外負重、心理狀態和身體感受。
+• 修正：偵測到的體能訓練上「新增」按鈕沒有顯示文字。
+• 資料來源：健康資訊現在都附有資料來源連結（每張卡片上的「資料來源」）。完整清單在 設定 → 關於 → 資料來源與參考文獻。
+
+請幫忙確認：提醒是否在設定的時間出現、休息日或發作日不會出現；點提醒是否開啟正確的分頁；步調警示每種每天最多一次。
+```
+
+---
+
+## App Review — reply to the 1.4.1 rejection of 1.0 (8)
+
+Submit 1.0.0 (10), then answer in App Store Connect → the rejected submission → Reply to App Review:
+
+```
+Thank you for the review. Version 1.0.0 (10) adds citations for all medical and health information in ZebraPace:
+
+1. A complete list of 29 sources (peer-reviewed papers, consensus statements and the NICE guideline), each linking to the original publication: Settings (gear icon, top right) → About ZebraPace → Sources & references. It is also linked from the first welcome/disclaimer screen.
+2. A "Sources" link directly on every screen that gives health information: Movement tab: Steps (pacing envelope), "Autonomic signals", the Stand test (POTS / orthostatic hypotension criteria) and "When to stop". Vitals tab: "Soreness or Crash?" and Sleep. Plan tab: "Ready for the next step?" and the fear-of-movement ladder. Insights tab: "Energy & METs". Tapping it shows the sources for that topic and opens each one.
+3. Every item in Insights → "Why this app works this way" now shows its sources as tappable links.
+
+The Sources page also states that ZebraPace's step goal and caution line are app defaults rather than clinical thresholds, and that the app is not a medical device and does not diagnose.
+```
+

@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../../../core/constants/content.dart';
+import '../../../../core/constants/sources.dart';
 import '../../../../core/theme/zebra_theme.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../widgets/section_card.dart';
+import '../../sources/sources_screen.dart';
 
 class PrinciplesExpander extends StatefulWidget {
   const PrinciplesExpander({super.key});
@@ -32,7 +34,7 @@ class _PrinciplesExpanderState extends State<PrinciplesExpander> {
                     : l10n.principlesExpanderShowButton,
                 style: const TextStyle(color: ZebraColors.brandTeal, fontSize: 13)),
           ),
-          if (_expanded)
+          if (_expanded) ...[
             ...adaptiveBodyPrinciples(l10n).map((p) => Padding(
                   padding: const EdgeInsets.only(bottom: 12),
                   child: Column(
@@ -45,11 +47,23 @@ class _PrinciplesExpanderState extends State<PrinciplesExpander> {
                       Text(p.inspiration,
                           style: const TextStyle(fontSize: 12, fontStyle: FontStyle.italic)),
                       const SizedBox(height: 2),
-                      Text(p.citation,
-                          style: const TextStyle(fontSize: 10.5, color: CupertinoColors.systemGrey)),
+                      if (p.appSynthesis)
+                        Text(l10n.sourcesAppSynthesis,
+                            style: const TextStyle(fontSize: 11, color: CupertinoColors.systemGrey)),
+                      // Each source opens in the browser (App Store 1.4.1:
+                      // citations must be easy to find).
+                      for (final id in p.sourceIds) SourceTile(source: kSources[id]!),
                     ],
                   ),
                 )),
+            CupertinoButton(
+              padding: EdgeInsets.zero,
+              onPressed: () => Navigator.of(context)
+                  .push(CupertinoPageRoute(builder: (_) => const SourcesScreen())),
+              child: Text(l10n.sourcesSeeAll,
+                  style: const TextStyle(color: ZebraColors.brandTealText, fontSize: 13)),
+            ),
+          ],
         ],
       ),
     );

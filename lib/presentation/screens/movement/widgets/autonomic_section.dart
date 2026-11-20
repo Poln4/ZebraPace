@@ -17,6 +17,7 @@ import '../../../widgets/section_card.dart';
 import '../../plan/widgets/plan_form.dart';
 import '../stand_test_screen.dart';
 import 'autonomic_labels.dart';
+import '../../../../core/constants/sources.dart';
 
 /// Autonomic signals: the rest side (HRV, resting HR), the standing
 /// response, cuff blood pressure and sweating — each on its own line,
@@ -31,6 +32,7 @@ class AutonomicSection extends ConsumerWidget {
     return SectionCard(
       title: l10n.autonomicTitle,
       caption: l10n.autonomicCaption,
+      sources: const [SourceTopic.heartSignals, SourceTopic.standTest, SourceTopic.sweating],
       collapsible: true,
       initiallyExpanded: false,
       child: Column(

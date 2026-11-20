@@ -196,6 +196,23 @@ class HealthKitService {
     }
   }
 
+  /// Pacing alerts read steps while the app is closed. Android 14+ asks for
+  /// that separately from the normal read permission; iOS needs nothing
+  /// extra (background delivery is an entitlement). True when allowed, or
+  /// when the device has no separate permission for it.
+  Future<bool> requestBackgroundRead() async {
+    if (!usesHealthConnect) return true;
+    await _ensureConfigured();
+    try {
+      if (!await _health.isHealthDataInBackgroundAvailable()) return true;
+      if (await _health.isHealthDataInBackgroundAuthorized()) return true;
+      return await _health.requestHealthDataInBackgroundAuthorization();
+    } catch (e, st) {
+      ErrorReporter.report(e, st, where: 'health.backgroundRead');
+      return false;
+    }
+  }
+
   /// Total steps for the given local calendar day, or null if unavailable
   /// (permission denied, HealthKit missing, or zero recorded — callers
   /// treat null and 0 the same way: nothing to pre-fill).

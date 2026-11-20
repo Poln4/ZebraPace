@@ -19,6 +19,15 @@
     <uses-permission android:name="android.permission.health.READ_SLEEP"/>
     <!-- The one write: weight typed into Vitals (weightWriteTypes). -->
     <uses-permission android:name="android.permission.health.WRITE_WEIGHT"/>
+    <!-- Pacing alerts read today's steps while the app is closed
+         (PacingAlertWorker). Android 14+ asks for this separately. -->
+    <uses-permission android:name="android.permission.health.READ_HEALTH_DATA_IN_BACKGROUND"/>
+
+    <!-- Reminders (flutter_local_notifications). Inexact alarms only, so no
+         exact-alarm permission; boot-completed lets scheduled reminders
+         survive a restart. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <!-- allowBackup off: health data shouldn't land in Google Drive backups,
          and flutter_secure_storage's encrypted values can't be decrypted
@@ -83,6 +92,25 @@
                 <category android:name="android.intent.category.HEALTH_PERMISSIONS"/>
             </intent-filter>
         </activity-alias>
+        <!-- Shared container for ZebraUp (SharedDataProvider.kt). Exported,
+             but every call checks the caller is ZebraUp signed with its
+             Play key; the two apps' keys differ, so no signature
+             permission can do that check. -->
+        <provider
+            android:name=".SharedDataProvider"
+            android:authorities="com.paulina.zebrapace.shared"
+            android:exported="true" />
+        <!-- flutter_local_notifications: shows scheduled reminders and
+             re-schedules them after a reboot or app update. -->
+        <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
+        <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
+            </intent-filter>
+        </receiver>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
@@ -104,6 +132,8 @@
         <intent>
             <action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE"/>
         </intent>
+        <!-- SharedDataProvider checks ZebraUp's signing certificate. -->
+        <package android:name="com.paulina.zebraup"/>
         <!-- url_launcher: website and privacy policy links open in the browser. -->
         <intent>
             <action android:name="android.intent.action.VIEW"/>

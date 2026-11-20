@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../core/theme/zebra_theme.dart';
 import '../../../l10n/app_localizations.dart';
+import '../sources/sources_screen.dart';
 
 /// The app's invitation/disclaimer screen — what ZebraPace is for, that
 /// it's not a substitute for medical care, and that it's a personal
@@ -61,7 +62,16 @@ class WelcomeScreen extends StatelessWidget {
               _Paragraph(l10n.welcomeScreenPurposeParagraph),
               const SizedBox(height: 14),
               _DisclaimerBox(text: l10n.welcomeScreenDisclaimerParagraph),
-              const SizedBox(height: 14),
+              CupertinoButton(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                onPressed: () => Navigator.of(context)
+                    .push(CupertinoPageRoute(builder: (_) => const SourcesScreen())),
+                child: Text(l10n.sourcesScreenTitle,
+                    style: const TextStyle(
+                        fontSize: 14,
+                        color: ZebraColors.brandTealText,
+                        decoration: TextDecoration.underline)),
+              ),
               _Paragraph(l10n.welcomeScreenPersonalParagraph),
               if (!isRevisit) ...[
                 const SizedBox(height: 20),

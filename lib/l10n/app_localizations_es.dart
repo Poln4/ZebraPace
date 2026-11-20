@@ -1923,6 +1923,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get healthkitWorkoutSuggestionsDismissButton => 'Descartar';
 
   @override
+  String get healthkitWorkoutSuggestionsDetailsToggle =>
+      'Agregar peso extra o cómo te sentiste';
+
+  @override
   String get vitalsTabTitle => 'Vitales diarios y energía';
 
   @override
@@ -2673,7 +2677,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsTabHealthReadinessCaption =>
-      'ZebraPace ahora puede leer la frecuencia cardíaca en reposo y la variabilidad de la frecuencia cardíaca para reducir tu meta de pasos los días en que tu cuerpo necesita más recuperación.';
+      'ZebraPace ahora puede leer la frecuencia cardíaca en reposo y la variabilidad de la frecuencia cardíaca y mostrarlas junto a tus valores habituales. Son solo información y nunca cambian tu meta de pasos.';
 
   @override
   String get settingsTabHealthReadinessButton => 'Permitir FC en reposo y VFC';
@@ -3865,4 +3869,160 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get bpTapToDelete => 'Toca una lectura para borrarla.';
+
+  @override
+  String get remindersSectionTitle => 'Recordatorios y alertas';
+
+  @override
+  String get remindersSectionCaption =>
+      'Avisos suaves, nunca en días de Descanso o de Brote/Enfermedad. Aparecen en la pantalla bloqueada, así que nunca incluyen números ni detalles.';
+
+  @override
+  String get remindersCheckinToggle => 'Registro rápido';
+
+  @override
+  String get remindersCheckinCaption =>
+      'Se omite si ya hiciste un registro en las dos horas anteriores.';
+
+  @override
+  String get remindersAddTime => 'Agregar un horario';
+
+  @override
+  String get remindersRemoveTime => 'Quitar este horario';
+
+  @override
+  String get remindersSorenessToggle => 'Revisión de dolor muscular';
+
+  @override
+  String get remindersSorenessCaption =>
+      'El primer y segundo día después de registrar movimiento.';
+
+  @override
+  String get remindersWeeklyToggle => 'Revisión semanal';
+
+  @override
+  String get remindersWeeklyCaption =>
+      'Los domingos, mientras haya un plan activo y esa semana aún no esté revisada.';
+
+  @override
+  String get remindersPacingToggle => 'Alertas de ritmo';
+
+  @override
+  String get remindersPacingCaption =>
+      'Cuando los pasos de hoy llegan a tu meta, y si pasan tu línea de precaución. Se revisa en segundo plano desde Apple Health o Health Connect, así que una alerta puede llegar con retraso.';
+
+  @override
+  String get remindersPacingNeedsHealth =>
+      'Primero conecta Apple Health o Health Connect en Movimiento.';
+
+  @override
+  String get remindersPermissionDenied =>
+      'Las notificaciones de ZebraPace están desactivadas en los ajustes del teléfono, así que no se mostrará nada.';
+
+  @override
+  String get remindersTimeDone => 'Listo';
+
+  @override
+  String get notificationChannelReminders => 'Recordatorios';
+
+  @override
+  String get notificationChannelPacing => 'Alertas de ritmo';
+
+  @override
+  String get notificationCheckinTitle => 'Registro rápido';
+
+  @override
+  String get notificationCheckinBody =>
+      '¿Cómo están tu energía, tu cuerpo y tu ánimo ahora? Toma unos segundos.';
+
+  @override
+  String get notificationSorenessTitle => '¿Dolor muscular o crisis?';
+
+  @override
+  String get notificationSorenessBody =>
+      'Después de moverte, tres preguntas rápidas ayudan a distinguir el dolor muscular común del PEM.';
+
+  @override
+  String get notificationWeeklyTitle => 'Revisión semanal';
+
+  @override
+  String get notificationWeeklyBody =>
+      'Una mirada breve a esta semana, para definir el plan de la próxima.';
+
+  @override
+  String get notificationPacingGoalTitle => 'Meta de pasos de hoy alcanzada';
+
+  @override
+  String get notificationPacingGoalBody =>
+      'Ya hiciste el crecimiento suave de hoy. Lo que venga después es opcional.';
+
+  @override
+  String get notificationPacingCautionTitle =>
+      'Pasaste la línea de precaución de hoy';
+
+  @override
+  String get notificationPacingCautionBody =>
+      'Tus pasos están sobre tu línea base reciente. Considera descansar más, hidratarte y tomar electrolitos.';
+
+  @override
+  String get shareZebraUpTitle => 'ZebraUp';
+
+  @override
+  String get shareZebraUpToggle => 'Compartir con ZebraUp';
+
+  @override
+  String get shareZebraUpCaption =>
+      'ZebraUp, en este mismo teléfono, puede leer tus últimos 30 días de pasos, días de Descanso o de Brote/Enfermedad, revisiones de dolor que parecían un patrón de crisis/PEM, frecuencia cardíaca en reposo, variabilidad de la frecuencia cardíaca y actividad registrada. Nada sale a internet. Al desactivarlo se borra lo compartido.';
+
+  @override
+  String get sourcesLinkLabel => 'Fuentes';
+
+  @override
+  String get sourcesScreenTitle => 'Fuentes y referencias';
+
+  @override
+  String get sourcesScreenIntro =>
+      'La información de salud de ZebraPace viene de las fuentes de abajo. Toca una para abrirla. ZebraPace no es un dispositivo médico y no diagnostica nada; habla con tu equipo de salud antes de cambiar tu tratamiento.';
+
+  @override
+  String get sourcesAppDefaultsNote =>
+      'La meta de 1% de pasos, la línea de precaución de 10% y las metas de agua, proteína y sueño son valores iniciales de ZebraPace, no umbrales clínicos. Puedes cambiarlos en Ajustes.';
+
+  @override
+  String get sourcesSeeAll => 'Ver todas las fuentes';
+
+  @override
+  String get sourcesAppSynthesis =>
+      'Resumen propio de ZebraPace de los estudios anteriores, no un resultado de ellos.';
+
+  @override
+  String get sourceTopicPacing => 'Ritmo y rango de pasos';
+
+  @override
+  String get sourceTopicPem => 'Malestar post-esfuerzo (PEM) y dolor muscular';
+
+  @override
+  String get sourceTopicStandTest =>
+      'Prueba de pie, POTS e hipotensión ortostática';
+
+  @override
+  String get sourceTopicHeartSignals =>
+      'Frecuencia cardíaca en reposo y variabilidad de la frecuencia cardíaca';
+
+  @override
+  String get sourceTopicSweating => 'Sudoración';
+
+  @override
+  String get sourceTopicMets => 'METs (intensidad del ejercicio)';
+
+  @override
+  String get sourceTopicExercise =>
+      'Ejercicio, señales para parar y progresión con EDS';
+
+  @override
+  String get sourceTopicFearExposure =>
+      'Miedo al movimiento y exposición gradual';
+
+  @override
+  String get sourceTopicSleep => 'Sueño';
 }

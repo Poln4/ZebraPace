@@ -10,6 +10,8 @@ import 'presentation/screens/lock/lock_screen.dart';
 import 'presentation/screens/shell/app_shell.dart';
 import 'presentation/screens/welcome/welcome_screen.dart';
 import 'providers/app_providers.dart';
+import 'providers/reminder_providers.dart';
+import 'providers/shared_container_providers.dart';
 import 'providers/auth_providers.dart';
 import 'providers/cloud_sync_providers.dart';
 import 'providers/invite_code_providers.dart';
@@ -103,6 +105,9 @@ class _AuthGateState extends ConsumerState<_AuthGate> with WidgetsBindingObserve
     // what's new there: everything read from Health hangs off this one.
     if (state == AppLifecycleState.resumed) {
       ref.invalidate(healthKitEnabledProvider);
+      // A new day, or a check-in logged from a notification, re-plans.
+      ref.invalidate(reminderSyncProvider);
+      ref.invalidate(sharedOutboxSyncProvider);
     }
   }
 

@@ -13,6 +13,8 @@ import '../../../l10n/app_localizations.dart';
 import '../../../providers/autonomic_providers.dart';
 import '../../widgets/section_card.dart';
 import 'widgets/autonomic_labels.dart';
+import '../../../core/constants/sources.dart';
+import '../sources/sources_screen.dart';
 
 enum _Phase { intro, resting, baseline, standing }
 
@@ -198,6 +200,7 @@ class _StandTestScreenState extends ConsumerState<StandTestScreen> {
 
   List<Widget> _intro(AppLocalizations l10n) => [
         Text(l10n.standTestIntro, style: const TextStyle(fontSize: 14)),
+        const SourcesLink([SourceTopic.standTest]),
         const SizedBox(height: 12),
         SectionCard(
           title: l10n.standTestSafetyTitle,

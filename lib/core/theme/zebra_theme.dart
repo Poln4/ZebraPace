@@ -12,6 +12,10 @@ class ZebraColors {
   static const white = Color(0xFFFFFFFF);
   static const paper = Color(0xFFFFFCF6); // warm off-white for cards/forms
   static const brandTeal = Color(0xFF4A9B8E); // signature accent / primary
+
+  /// brandTeal darkened for small text and links: 5.4:1 on [bg] and 6.1:1
+  /// on [paper] (brandTeal itself is only 2.9:1 on [bg], too faint for text).
+  static const brandTealText = Color(0xFF2E6B61);
   static const teal = Color(0xFF6E8B5E); // secondary accent / chart series
   static const sand = Color(0xFFE8C39E); // tertiary accent / chart series
   static const success = Color(0xFF2F8F5B);

@@ -15,12 +15,15 @@ val keystoreProperties = Properties().apply {
 
 android {
     namespace = "com.paulina.zebrapace"
-    compileSdk = flutter.compileSdkVersion
+    // 37: flutter_local_notifications 23 (reminders) needs it.
+    compileSdk = 37
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+        // flutter_local_notifications uses java.time on older Android.
+        isCoreLibraryDesugaringEnabled = true
     }
 
     defaultConfig {
@@ -67,4 +70,13 @@ kotlin {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+    // Pacing alerts: PacingAlertWorker reads today's steps from Health
+    // Connect while the app is closed.
+    implementation("androidx.work:work-runtime-ktx:2.10.1")
+    implementation("androidx.core:core-ktx:1.13.1")
+    implementation("androidx.health.connect:connect-client:1.2.0-alpha02") // same as the health package
 }
