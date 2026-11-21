@@ -52,7 +52,7 @@ El registro es gratis y la app funciona sin cuenta y sin conexión. Se cobra sol
 
 ## 3. Precios, beca e IA
 
-Son los mismos que en ZebraUp: un solo **plan anual Zebras+** que cubre ambas apps (4.990 CLP / US$19,99), plan mensual opcional (490 CLP / US$2,99), paquete de créditos de IA (490 CLP), apadrinar como compra dentro de la app y beca instantánea con un botón. Detalle completo en el documento de ZebraUp, secciones 3, 4 y 7.
+Son los mismos que en ZebraUp: un solo **plan anual Zebras+** que cubre ambas apps (9.990 CLP / US$19,99), plan mensual opcional (990 CLP / US$2,99; precios en Chile cambiados el 21-11-2026 al configurar App Store Connect), paquete de créditos de IA (490 CLP), apadrinar como compra dentro de la app y beca instantánea con un botón. Detalle completo en el documento de ZebraUp, secciones 3, 4 y 7.
 
 **Regla de IA específica de ZebraPace:** la IA puede resumir la semana y redactar ánimo, pero **nunca** decide subir la carga ni anula un aviso de techo o de malestar post-esfuerzo. Las decisiones de seguridad las toma la lógica de la app, no un modelo.
 

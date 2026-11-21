@@ -1408,8 +1408,8 @@ that pediatric zebra populations depend on. See
 ~~Target price for premium tier: US$6-9/mo or ~US$35-78/yr
 (Bearable-Guava range).~~ **Decided (November 2026, see
 `zebraup-modelo-de-negocio.md`)**: one Zebras+ plan for ZebraUp and
-ZebraPace — 4.990 CLP or US$19.99 a year (monthly 490 CLP /
-US$2.99), AI credit packs, "apadrinar" support. Below the
+ZebraPace — 9.990 CLP or US$19.99 a year (monthly 990 CLP /
+US$2.99; CLP raised 2026-11-21), AI credit packs, "apadrinar" support. Below the
 Bearable-Guava range and Hypermobile's US$39.99. Scholarship is
 one tap, no forms. Free forever: logging, account, sync, export,
 deletion, standard doctor summary, full-history charts, caregiver

@@ -13,8 +13,11 @@ class RevenueCatConfig {
   /// Test Store key — works only in development builds, never in release.
   static const testStoreKey = 'test_jshJfjrCtJNrLcqnlFehuDIozCZ';
 
-  /// Add once ZebraPace's iOS/Android apps exist in the RevenueCat project.
-  static const appleKey = '';
+  /// ZebraPace iOS app (com.paulina.zebrapace) in the shared RC project.
+  static const appleKey = 'appl_XDCBeCZojVcgrzWPaALOFEtAPRD';
+
+  /// Add once the Android app exists in the RevenueCat project (blocked on
+  /// the Play merchant account).
   static const googleKey = '';
 
   /// Key for this build, or null when purchases aren't available here
