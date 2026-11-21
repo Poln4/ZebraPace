@@ -4151,4 +4151,62 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get plusLockedPatternMessage =>
       'Your pattern over months is part of Zebras+. Today\'s warnings and the day-by-day checks stay free.';
+
+  @override
+  String get creditsEntry => 'AI credits & sponsoring';
+
+  @override
+  String get creditsScreenTitle => 'Credits & sponsoring';
+
+  @override
+  String get creditsTitle => 'AI credits';
+
+  @override
+  String get creditsCaption =>
+      'Credits pay for the weekly summary written by AI in the cloud. One summary uses one credit.';
+
+  @override
+  String creditsBalance(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'You have $count credits',
+      one: 'You have 1 credit',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get creditsBalanceError =>
+      'Couldn\'t load your balance. Check your connection.';
+
+  @override
+  String creditsBuy(int count, String price) {
+    return 'Buy $count credits · $price';
+  }
+
+  @override
+  String get creditsArriving =>
+      'Thank you! Your credits will show up in a moment.';
+
+  @override
+  String get creditsPurchased => 'Credits added.';
+
+  @override
+  String get sponsorTitle => 'Sponsor a plan';
+
+  @override
+  String get sponsorCaption =>
+      'Give a year of Zebras+ to someone who can\'t pay for it. Your gift goes to a shared fund for scholarships.';
+
+  @override
+  String sponsorBuy(String price) {
+    return 'Sponsor a year · $price';
+  }
+
+  @override
+  String get sponsorThanks => 'Thank you! Your gift is in the fund.';
+
+  @override
+  String get consumablesUnavailable => 'Not available in this store yet.';
 }

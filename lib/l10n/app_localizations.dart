@@ -7020,6 +7020,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your pattern over months is part of Zebras+. Today\'s warnings and the day-by-day checks stay free.'**
   String get plusLockedPatternMessage;
+
+  /// No description provided for @creditsEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'AI credits & sponsoring'**
+  String get creditsEntry;
+
+  /// No description provided for @creditsScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Credits & sponsoring'**
+  String get creditsScreenTitle;
+
+  /// No description provided for @creditsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'AI credits'**
+  String get creditsTitle;
+
+  /// No description provided for @creditsCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Credits pay for the weekly summary written by AI in the cloud. One summary uses one credit.'**
+  String get creditsCaption;
+
+  /// No description provided for @creditsBalance.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{You have 1 credit} other{You have {count} credits}}'**
+  String creditsBalance(int count);
+
+  /// No description provided for @creditsBalanceError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your balance. Check your connection.'**
+  String get creditsBalanceError;
+
+  /// No description provided for @creditsBuy.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy {count} credits · {price}'**
+  String creditsBuy(int count, String price);
+
+  /// No description provided for @creditsArriving.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you! Your credits will show up in a moment.'**
+  String get creditsArriving;
+
+  /// No description provided for @creditsPurchased.
+  ///
+  /// In en, this message translates to:
+  /// **'Credits added.'**
+  String get creditsPurchased;
+
+  /// No description provided for @sponsorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sponsor a plan'**
+  String get sponsorTitle;
+
+  /// No description provided for @sponsorCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Give a year of Zebras+ to someone who can\'t pay for it. Your gift goes to a shared fund for scholarships.'**
+  String get sponsorCaption;
+
+  /// No description provided for @sponsorBuy.
+  ///
+  /// In en, this message translates to:
+  /// **'Sponsor a year · {price}'**
+  String sponsorBuy(String price);
+
+  /// No description provided for @sponsorThanks.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you! Your gift is in the fund.'**
+  String get sponsorThanks;
+
+  /// No description provided for @consumablesUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Not available in this store yet.'**
+  String get consumablesUnavailable;
 }
 
 class _AppLocalizationsDelegate

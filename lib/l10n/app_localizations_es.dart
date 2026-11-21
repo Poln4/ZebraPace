@@ -4198,4 +4198,63 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get plusLockedPatternMessage =>
       'Tu patrón a lo largo de los meses es parte de Zebras+. Los avisos de hoy y las revisiones día a día siguen gratis.';
+
+  @override
+  String get creditsEntry => 'Créditos de IA y apadrinar';
+
+  @override
+  String get creditsScreenTitle => 'Créditos y apadrinar';
+
+  @override
+  String get creditsTitle => 'Créditos de IA';
+
+  @override
+  String get creditsCaption =>
+      'Los créditos pagan el resumen semanal que escribe la IA en la nube. Cada resumen usa un crédito.';
+
+  @override
+  String creditsBalance(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Tienes $count créditos',
+      one: 'Tienes 1 crédito',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get creditsBalanceError =>
+      'No se pudo cargar tu saldo. Revisa tu conexión.';
+
+  @override
+  String creditsBuy(int count, String price) {
+    return 'Comprar $count créditos · $price';
+  }
+
+  @override
+  String get creditsArriving =>
+      '¡Gracias! Tus créditos aparecerán en un momento.';
+
+  @override
+  String get creditsPurchased => 'Créditos agregados.';
+
+  @override
+  String get sponsorTitle => 'Apadrinar un plan';
+
+  @override
+  String get sponsorCaption =>
+      'Regala un año de Zebras+ a alguien que no puede pagarlo. Tu regalo va a un fondo común para becas.';
+
+  @override
+  String sponsorBuy(String price) {
+    return 'Apadrinar un año · $price';
+  }
+
+  @override
+  String get sponsorThanks => '¡Gracias! Tu regalo ya está en el fondo.';
+
+  @override
+  String get consumablesUnavailable =>
+      'Todavía no está disponible en esta tienda.';
 }

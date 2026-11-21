@@ -3917,4 +3917,57 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get plusLockedPatternMessage => '你這幾個月的模式屬於 Zebras+。今天的提醒和逐日檢查仍然免費。';
+
+  @override
+  String get creditsEntry => 'AI 點數與贊助';
+
+  @override
+  String get creditsScreenTitle => '點數與贊助';
+
+  @override
+  String get creditsTitle => 'AI 點數';
+
+  @override
+  String get creditsCaption => '點數用來支付雲端 AI 撰寫的每週摘要。每份摘要使用一點。';
+
+  @override
+  String creditsBalance(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '你有 $count 點',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get creditsBalanceError => '無法載入你的點數。請檢查網路連線。';
+
+  @override
+  String creditsBuy(int count, String price) {
+    return '購買 $count 點 · $price';
+  }
+
+  @override
+  String get creditsArriving => '謝謝！你的點數馬上就會出現。';
+
+  @override
+  String get creditsPurchased => '點數已加入。';
+
+  @override
+  String get sponsorTitle => '贊助一年方案';
+
+  @override
+  String get sponsorCaption => '送一年 Zebras+ 給負擔不起的人。你的禮物會進入共同的獎助基金。';
+
+  @override
+  String sponsorBuy(String price) {
+    return '贊助一年 · $price';
+  }
+
+  @override
+  String get sponsorThanks => '謝謝！你的禮物已進入基金。';
+
+  @override
+  String get consumablesUnavailable => '這個商店目前還沒有提供。';
 }

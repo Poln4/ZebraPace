@@ -1842,5 +1842,35 @@
   "insightsLongTermTrendBigger": "Your dips have gotten bigger than in your first months. If that matches how you have been feeling, it may be a good time to ease your load or talk it over with your care team.",
   "insightsLongTermTrendSimilar": "Your dips are about the same size as in your first months.",
   "insightsLongTermFootnote": "A pattern in your own logs, not a diagnosis. Today's pacing warnings never depend on this view and are always free.",
-  "plusLockedPatternMessage": "Your pattern over months is part of Zebras+. Today's warnings and the day-by-day checks stay free."
+  "plusLockedPatternMessage": "Your pattern over months is part of Zebras+. Today's warnings and the day-by-day checks stay free.",
+  "creditsEntry": "AI credits & sponsoring",
+  "creditsScreenTitle": "Credits & sponsoring",
+  "creditsTitle": "AI credits",
+  "creditsCaption": "Credits pay for the weekly summary written by AI in the cloud. One summary uses one credit.",
+  "creditsBalance": "{count, plural, =1{You have 1 credit} other{You have {count} credits}}",
+  "@creditsBalance": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "creditsBalanceError": "Couldn't load your balance. Check your connection.",
+  "creditsBuy": "Buy {count} credits · {price}",
+  "@creditsBuy": {
+    "placeholders": {
+      "count": {"type": "int"},
+      "price": {"type": "String"}
+    }
+  },
+  "creditsArriving": "Thank you! Your credits will show up in a moment.",
+  "creditsPurchased": "Credits added.",
+  "sponsorTitle": "Sponsor a plan",
+  "sponsorCaption": "Give a year of Zebras+ to someone who can't pay for it. Your gift goes to a shared fund for scholarships.",
+  "sponsorBuy": "Sponsor a year · {price}",
+  "@sponsorBuy": {
+    "placeholders": {
+      "price": {"type": "String"}
+    }
+  },
+  "sponsorThanks": "Thank you! Your gift is in the fund.",
+  "consumablesUnavailable": "Not available in this store yet."
 }

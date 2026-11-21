@@ -10,6 +10,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../providers/cloud_sync_providers.dart';
 import '../../../providers/plus_providers.dart';
 import '../../widgets/section_card.dart';
+import 'credits_screen.dart';
 
 /// Settings → Zebras+: see plans (RevenueCat paywall), manage an active
 /// plan (Customer Center) and restore. Buying needs a cloud account so the
@@ -65,6 +66,16 @@ class _PlusSectionState extends ConsumerState<PlusSection> {
               child: CupertinoButton(
                 onPressed: _busy ? null : _restore,
                 child: Text(l10n.plusRestore),
+              ),
+            ),
+          if (signedIn && ref.watch(showConsumablesProvider))
+            SizedBox(
+              width: double.infinity,
+              child: CupertinoButton(
+                onPressed: () => Navigator.of(context).push(
+                  CupertinoPageRoute(builder: (_) => const CreditsScreen()),
+                ),
+                child: Text(l10n.creditsEntry),
               ),
             ),
           if (_message != null)

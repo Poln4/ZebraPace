@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../core/errors/error_reporter.dart';
+import '../data/plus/ai_credits_repository.dart';
 import '../data/plus/plus_entitlement_store.dart';
 import '../data/plus/revenuecat_service.dart';
 import '../domain/services/plus_access.dart';
@@ -85,4 +86,27 @@ final isPlusProvider = Provider<bool>((ref) {
     if (override != null) return override;
   }
   return ref.watch(plusEntitlementProvider).isActiveAt(DateTime.now());
+});
+
+/// Debug builds always; release builds once [PlusConstants.consumablesInRelease].
+final showConsumablesProvider =
+    Provider<bool>((ref) => kDebugMode || PlusConstants.consumablesInRelease);
+
+final aiCreditsRepositoryProvider = Provider<AiCreditsRepository>(
+  (ref) => AiCreditsRepository(ref.watch(supabaseClientProvider)),
+);
+
+/// The signed-in person's AI-credit balance (null when signed out).
+/// Invalidate it to re-read after a purchase.
+final aiCreditBalanceProvider = FutureProvider.autoDispose<int?>((ref) async {
+  final userId = ref.watch(cloudUserProvider.select((u) => u?.id));
+  if (userId == null) return null;
+  return ref.watch(aiCreditsRepositoryProvider).balance();
+});
+
+/// Store packages for credits and sponsoring, with localized prices.
+final consumablePackagesProvider =
+    FutureProvider.autoDispose<ConsumablePackages>((ref) async {
+  await ref.watch(plusSyncProvider.future);
+  return ref.watch(revenueCatServiceProvider).consumablePackages();
 });

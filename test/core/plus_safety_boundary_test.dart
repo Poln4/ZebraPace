@@ -22,6 +22,7 @@ const plusFiles = [
   'lib/providers/plus_providers.dart',
   'lib/domain/services/plus_access.dart',
   'lib/data/plus/plus_entitlement_store.dart',
+  'lib/data/plus/ai_credits_repository.dart',
   'lib/data/plus/revenuecat_service.dart',
   'lib/core/config/revenuecat_config.dart',
 ];

@@ -69,6 +69,38 @@ class RevenueCatService {
 
   /// Cancel, change plan, refunds, restore — RevenueCat's native screen.
   Future<void> presentCustomerCenter() => RevenueCatUI.presentCustomerCenter();
+
+  /// The AI-credits and sponsor packages, from the `credits` offering.
+  /// Either may be missing (not set up in the dashboard or the store yet).
+  Future<ConsumablePackages> consumablePackages() async {
+    if (!_configured) return const ConsumablePackages();
+    final offering =
+        (await Purchases.getOfferings()).all[PlusConstants.consumablesOfferingId];
+    return ConsumablePackages.from(offering?.availablePackages ?? const []);
+  }
+
+  /// Buys one consumable. The server credits it when RevenueCat's webhook
+  /// arrives — the phone never adds credits itself.
+  Future<void> purchase(Package package) =>
+      Purchases.purchase(PurchaseParams.package(package));
+}
+
+class ConsumablePackages {
+  const ConsumablePackages({this.credits, this.sponsor});
+
+  ConsumablePackages.from(List<Package> packages)
+      : credits = _find(packages, PlusConstants.creditsPackageId),
+        sponsor = _find(packages, PlusConstants.sponsorPackageId);
+
+  final Package? credits;
+  final Package? sponsor;
+
+  static Package? _find(List<Package> packages, String id) {
+    for (final p in packages) {
+      if (p.identifier == id) return p;
+    }
+    return null;
+  }
 }
 
 PlusEntitlement entitlementFromCustomerInfo(CustomerInfo info) {

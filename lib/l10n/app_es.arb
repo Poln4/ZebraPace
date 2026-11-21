@@ -1237,5 +1237,19 @@
   "insightsLongTermTrendBigger": "Tus bajones se han agrandado respecto de tus primeros meses. Si eso coincide con cómo te has sentido, puede ser buen momento para bajar la carga o conversarlo con tu equipo de salud.",
   "insightsLongTermTrendSimilar": "Tus bajones son de un tamaño parecido al de tus primeros meses.",
   "insightsLongTermFootnote": "Un patrón en tus propios registros, no un diagnóstico. Los avisos de pacing de hoy nunca dependen de esta vista y siempre son gratis.",
-  "plusLockedPatternMessage": "Tu patrón a lo largo de los meses es parte de Zebras+. Los avisos de hoy y las revisiones día a día siguen gratis."
+  "plusLockedPatternMessage": "Tu patrón a lo largo de los meses es parte de Zebras+. Los avisos de hoy y las revisiones día a día siguen gratis.",
+  "creditsEntry": "Créditos de IA y apadrinar",
+  "creditsScreenTitle": "Créditos y apadrinar",
+  "creditsTitle": "Créditos de IA",
+  "creditsCaption": "Los créditos pagan el resumen semanal que escribe la IA en la nube. Cada resumen usa un crédito.",
+  "creditsBalance": "{count, plural, =1{Tienes 1 crédito} other{Tienes {count} créditos}}",
+  "creditsBalanceError": "No se pudo cargar tu saldo. Revisa tu conexión.",
+  "creditsBuy": "Comprar {count} créditos · {price}",
+  "creditsArriving": "¡Gracias! Tus créditos aparecerán en un momento.",
+  "creditsPurchased": "Créditos agregados.",
+  "sponsorTitle": "Apadrinar un plan",
+  "sponsorCaption": "Regala un año de Zebras+ a alguien que no puede pagarlo. Tu regalo va a un fondo común para becas.",
+  "sponsorBuy": "Apadrinar un año · {price}",
+  "sponsorThanks": "¡Gracias! Tu regalo ya está en el fondo.",
+  "consumablesUnavailable": "Todavía no está disponible en esta tienda."
 }

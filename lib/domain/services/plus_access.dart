@@ -24,6 +24,23 @@ class PlusConstants {
   static const freeHistoryWeeks = 13;
 
   static const freeHistoryDays = freeHistoryWeeks * 7;
+
+  /// RevenueCat offering and package ids for the consumables (§4.5).
+  static const consumablesOfferingId = 'credits';
+  static const creditsPackageId = 'credits_pack';
+  static const sponsorPackageId = 'sponsor_year';
+
+  /// Credits in one pack — display only. The server grants them, from
+  /// CREDIT_PRODUCTS in supabase/functions/revenuecat-webhook/logic.ts;
+  /// keep the two in step.
+  static const creditsPerPack = 10;
+
+  /// Whether release builds show the credits & sponsoring screen. Off
+  /// until there's something to spend credits on (the cloud AI summary)
+  /// and the beca flow exists — selling either before then would promise
+  /// what the app can't deliver, and App Review rejects that. Debug builds
+  /// always show it.
+  static const consumablesInRelease = false;
 }
 
 /// Last known Zebras+ state, as confirmed by the store/RevenueCat.

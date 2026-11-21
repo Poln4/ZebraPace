@@ -1237,5 +1237,19 @@
   "insightsLongTermTrendBigger": "和最初幾個月相比，你的低谷變大了。如果這和你最近的感受相符，也許是減輕負荷、或和你的醫療團隊討論的好時機。",
   "insightsLongTermTrendSimilar": "你的低谷大小和最初幾個月差不多。",
   "insightsLongTermFootnote": "這是你自己紀錄中的模式，不是診斷。今天的配速提醒從不依賴這個畫面，而且永遠免費。",
-  "plusLockedPatternMessage": "你這幾個月的模式屬於 Zebras+。今天的提醒和逐日檢查仍然免費。"
+  "plusLockedPatternMessage": "你這幾個月的模式屬於 Zebras+。今天的提醒和逐日檢查仍然免費。",
+  "creditsEntry": "AI 點數與贊助",
+  "creditsScreenTitle": "點數與贊助",
+  "creditsTitle": "AI 點數",
+  "creditsCaption": "點數用來支付雲端 AI 撰寫的每週摘要。每份摘要使用一點。",
+  "creditsBalance": "{count, plural, other{你有 {count} 點}}",
+  "creditsBalanceError": "無法載入你的點數。請檢查網路連線。",
+  "creditsBuy": "購買 {count} 點 · {price}",
+  "creditsArriving": "謝謝！你的點數馬上就會出現。",
+  "creditsPurchased": "點數已加入。",
+  "sponsorTitle": "贊助一年方案",
+  "sponsorCaption": "送一年 Zebras+ 給負擔不起的人。你的禮物會進入共同的獎助基金。",
+  "sponsorBuy": "贊助一年 · {price}",
+  "sponsorThanks": "謝謝！你的禮物已進入基金。",
+  "consumablesUnavailable": "這個商店目前還沒有提供。"
 }
