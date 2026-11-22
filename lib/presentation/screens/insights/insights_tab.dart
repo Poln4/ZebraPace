@@ -26,6 +26,7 @@ import 'widgets/long_term_pattern_section.dart';
 import 'widgets/mets_summary_widget.dart';
 import 'widgets/month_chapter_card.dart';
 import 'widgets/pem_chart.dart';
+import 'widgets/period_comparison_section.dart';
 import 'widgets/principles_expander.dart';
 import 'widgets/steps_chart.dart';
 import 'widgets/weather_chart.dart';
@@ -136,6 +137,7 @@ class _OverviewView extends ConsumerWidget {
             child: StripeTrack(stripesEarned: stripeStatus.stripesEarned),
           ),
         const MonthChapterCard(),
+        const PeriodComparisonSection(),
         const _CelebrationSection(),
         const PrinciplesExpander(),
       ],

@@ -28,40 +28,12 @@ class LongTermPatternSection extends ConsumerWidget {
     return SectionCard(
       title: l10n.insightsLongTermTitle,
       caption: l10n.insightsLongTermCaption,
-      child: isPlus ? const _Content() : const _Locked(),
-    );
-  }
-}
-
-class _Locked extends ConsumerWidget {
-  const _Locked();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 2, right: 6),
-              child: Icon(CupertinoIcons.lock_fill, size: 14, color: ZebraColors.brandTealText),
+      child: isPlus
+          ? const _Content()
+          : PlusLockedTeaser(
+              teaser: l10n.insightsLongTermLocked,
+              gateMessage: l10n.plusLockedPatternMessage,
             ),
-            Expanded(child: Text(l10n.insightsLongTermLocked)),
-          ],
-        ),
-        const SizedBox(height: 8),
-        SizedBox(
-          width: double.infinity,
-          child: CupertinoButton(
-            color: ZebraColors.brandTeal,
-            onPressed: () => openPlusGate(context, ref, message: l10n.plusLockedPatternMessage),
-            child: Text(l10n.plusSeePlans, style: const TextStyle(color: ZebraColors.onColor)),
-          ),
-        ),
-      ],
     );
   }
 }

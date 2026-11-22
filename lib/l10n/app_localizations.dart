@@ -7104,6 +7104,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Not available in this store yet.'**
   String get consumablesUnavailable;
+
+  /// No description provided for @insightsCompareTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'⚖️ Compare periods'**
+  String get insightsCompareTitle;
+
+  /// No description provided for @insightsCompareCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Your averages side by side. Numbers, not grades: more steps isn\'t automatically better, and rest days count.'**
+  String get insightsCompareCaption;
+
+  /// No description provided for @insightsCompareLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Compare your last months with the ones before, or with the same time last year. Part of Zebras+.'**
+  String get insightsCompareLocked;
+
+  /// No description provided for @plusLockedCompareMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Comparing periods is part of Zebras+. Every day is still recorded and shown in Trends.'**
+  String get plusLockedCompareMessage;
+
+  /// No description provided for @insightsCompareMonths.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 month} other{{count} months}}'**
+  String insightsCompareMonths(int count);
+
+  /// No description provided for @insightsCompareVsPrevious.
+  ///
+  /// In en, this message translates to:
+  /// **'vs. before'**
+  String get insightsCompareVsPrevious;
+
+  /// No description provided for @insightsCompareVsLastYear.
+  ///
+  /// In en, this message translates to:
+  /// **'vs. last year'**
+  String get insightsCompareVsLastYear;
+
+  /// No description provided for @insightsCompareEarlier.
+  ///
+  /// In en, this message translates to:
+  /// **'Earlier'**
+  String get insightsCompareEarlier;
+
+  /// No description provided for @insightsCompareRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent'**
+  String get insightsCompareRecent;
+
+  /// No description provided for @insightsCompareChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get insightsCompareChange;
+
+  /// No description provided for @insightsCompareDaysLogged.
+  ///
+  /// In en, this message translates to:
+  /// **'Days logged'**
+  String get insightsCompareDaysLogged;
+
+  /// No description provided for @insightsCompareSteps.
+  ///
+  /// In en, this message translates to:
+  /// **'Steps (avg)'**
+  String get insightsCompareSteps;
+
+  /// No description provided for @insightsCompareBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Body score (1–5)'**
+  String get insightsCompareBody;
+
+  /// No description provided for @insightsCompareMental.
+  ///
+  /// In en, this message translates to:
+  /// **'Mental state (1–5)'**
+  String get insightsCompareMental;
+
+  /// No description provided for @insightsCompareSleep.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep (h)'**
+  String get insightsCompareSleep;
+
+  /// No description provided for @insightsCompareRestingHr.
+  ///
+  /// In en, this message translates to:
+  /// **'Resting HR (bpm)'**
+  String get insightsCompareRestingHr;
+
+  /// No description provided for @insightsCompareHrv.
+  ///
+  /// In en, this message translates to:
+  /// **'HRV (ms)'**
+  String get insightsCompareHrv;
+
+  /// No description provided for @insightsCompareRestDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Rest days'**
+  String get insightsCompareRestDays;
+
+  /// No description provided for @insightsCompareFlareDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Flare days'**
+  String get insightsCompareFlareDays;
+
+  /// No description provided for @insightsCompareNoEarlierData.
+  ///
+  /// In en, this message translates to:
+  /// **'No logs in the earlier period yet.'**
+  String get insightsCompareNoEarlierData;
 }
 
 class _AppLocalizationsDelegate

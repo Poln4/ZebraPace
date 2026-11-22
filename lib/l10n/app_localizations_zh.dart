@@ -3970,4 +3970,71 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get consumablesUnavailable => '這個商店目前還沒有提供。';
+
+  @override
+  String get insightsCompareTitle => '⚖️ 比較期間';
+
+  @override
+  String get insightsCompareCaption => '並排比較你的平均值。這是數字，不是評分：步數多不代表比較好，休息日也算數。';
+
+  @override
+  String get insightsCompareLocked => '把最近幾個月和之前的幾個月比較，或和去年同一時期比較。屬於 Zebras+。';
+
+  @override
+  String get plusLockedCompareMessage => '比較期間屬於 Zebras+。每一天仍會持續紀錄，並顯示在「趨勢」中。';
+
+  @override
+  String insightsCompareMonths(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 個月',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get insightsCompareVsPrevious => '對比之前';
+
+  @override
+  String get insightsCompareVsLastYear => '對比去年';
+
+  @override
+  String get insightsCompareEarlier => '之前';
+
+  @override
+  String get insightsCompareRecent => '最近';
+
+  @override
+  String get insightsCompareChange => '變化';
+
+  @override
+  String get insightsCompareDaysLogged => '紀錄天數';
+
+  @override
+  String get insightsCompareSteps => '步數（平均）';
+
+  @override
+  String get insightsCompareBody => '身體分數（1–5）';
+
+  @override
+  String get insightsCompareMental => '心理狀態（1–5）';
+
+  @override
+  String get insightsCompareSleep => '睡眠（小時）';
+
+  @override
+  String get insightsCompareRestingHr => '靜止心率（bpm）';
+
+  @override
+  String get insightsCompareHrv => '心率變異度（ms）';
+
+  @override
+  String get insightsCompareRestDays => '休息日';
+
+  @override
+  String get insightsCompareFlareDays => '發作日';
+
+  @override
+  String get insightsCompareNoEarlierData => '之前的期間還沒有紀錄。';
 }

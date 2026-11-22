@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/utils/date_utils.dart';
 import '../../../../domain/services/hr_exertion_service.dart';
 import '../../../../domain/services/long_term_pem_service.dart';
+import '../../../../domain/services/period_comparison_service.dart';
 import '../../../../domain/services/pem_service.dart';
 import '../../../../domain/services/readiness_service.dart';
 import '../../../../domain/services/weather_service.dart';
@@ -93,6 +94,28 @@ final longTermPemProvider = FutureProvider.autoDispose<LongTermPemPattern?>((ref
   if (!ref.watch(isPlusProvider)) return null;
   final logs = await ref.watch(dailyLogRepositoryProvider).getAll();
   return LongTermPemService.analyze(logs);
+});
+
+final comparisonMonthsProvider = StateProvider<int>((ref) => 3);
+
+final comparisonTargetProvider =
+    StateProvider<ComparisonTarget>((ref) => ComparisonTarget.previousPeriod);
+
+/// Zebras+ "compare periods": (earlier, recent), both ending relative to
+/// the selected day. Null without the plan (nothing is read).
+final periodComparisonProvider =
+    FutureProvider.autoDispose<({PeriodSummary earlier, PeriodSummary recent})?>((ref) async {
+  if (!ref.watch(isPlusProvider)) return null;
+  final endKey = ref.watch(selectedDateProvider);
+  final months = ref.watch(comparisonMonthsProvider);
+  final target = ref.watch(comparisonTargetProvider);
+  final recent = PeriodComparisonService.recentPeriod(endKey, months);
+  final earlier = PeriodComparisonService.earlierPeriod(endKey, months, target);
+  final logs = await ref.watch(dailyLogRepositoryProvider).getRange(earlier.start, recent.end);
+  return (
+    earlier: PeriodComparisonService.summarize(earlier.start, earlier.end, logs),
+    recent: PeriodComparisonService.summarize(recent.start, recent.end, logs),
+  );
 });
 
 final hrExertionResultProvider = FutureProvider.autoDispose<HrExertionResult>((ref) {

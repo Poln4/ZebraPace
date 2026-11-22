@@ -1872,5 +1872,30 @@
     }
   },
   "sponsorThanks": "Thank you! Your gift is in the fund.",
-  "consumablesUnavailable": "Not available in this store yet."
+  "consumablesUnavailable": "Not available in this store yet.",
+  "insightsCompareTitle": "⚖️ Compare periods",
+  "insightsCompareCaption": "Your averages side by side. Numbers, not grades: more steps isn't automatically better, and rest days count.",
+  "insightsCompareLocked": "Compare your last months with the ones before, or with the same time last year. Part of Zebras+.",
+  "plusLockedCompareMessage": "Comparing periods is part of Zebras+. Every day is still recorded and shown in Trends.",
+  "insightsCompareMonths": "{count, plural, =1{1 month} other{{count} months}}",
+  "@insightsCompareMonths": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "insightsCompareVsPrevious": "vs. before",
+  "insightsCompareVsLastYear": "vs. last year",
+  "insightsCompareEarlier": "Earlier",
+  "insightsCompareRecent": "Recent",
+  "insightsCompareChange": "Change",
+  "insightsCompareDaysLogged": "Days logged",
+  "insightsCompareSteps": "Steps (avg)",
+  "insightsCompareBody": "Body score (1–5)",
+  "insightsCompareMental": "Mental state (1–5)",
+  "insightsCompareSleep": "Sleep (h)",
+  "insightsCompareRestingHr": "Resting HR (bpm)",
+  "insightsCompareHrv": "HRV (ms)",
+  "insightsCompareRestDays": "Rest days",
+  "insightsCompareFlareDays": "Flare days",
+  "insightsCompareNoEarlierData": "No logs in the earlier period yet."
 }

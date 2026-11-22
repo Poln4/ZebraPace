@@ -4209,4 +4209,76 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get consumablesUnavailable => 'Not available in this store yet.';
+
+  @override
+  String get insightsCompareTitle => '⚖️ Compare periods';
+
+  @override
+  String get insightsCompareCaption =>
+      'Your averages side by side. Numbers, not grades: more steps isn\'t automatically better, and rest days count.';
+
+  @override
+  String get insightsCompareLocked =>
+      'Compare your last months with the ones before, or with the same time last year. Part of Zebras+.';
+
+  @override
+  String get plusLockedCompareMessage =>
+      'Comparing periods is part of Zebras+. Every day is still recorded and shown in Trends.';
+
+  @override
+  String insightsCompareMonths(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count months',
+      one: '1 month',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get insightsCompareVsPrevious => 'vs. before';
+
+  @override
+  String get insightsCompareVsLastYear => 'vs. last year';
+
+  @override
+  String get insightsCompareEarlier => 'Earlier';
+
+  @override
+  String get insightsCompareRecent => 'Recent';
+
+  @override
+  String get insightsCompareChange => 'Change';
+
+  @override
+  String get insightsCompareDaysLogged => 'Days logged';
+
+  @override
+  String get insightsCompareSteps => 'Steps (avg)';
+
+  @override
+  String get insightsCompareBody => 'Body score (1–5)';
+
+  @override
+  String get insightsCompareMental => 'Mental state (1–5)';
+
+  @override
+  String get insightsCompareSleep => 'Sleep (h)';
+
+  @override
+  String get insightsCompareRestingHr => 'Resting HR (bpm)';
+
+  @override
+  String get insightsCompareHrv => 'HRV (ms)';
+
+  @override
+  String get insightsCompareRestDays => 'Rest days';
+
+  @override
+  String get insightsCompareFlareDays => 'Flare days';
+
+  @override
+  String get insightsCompareNoEarlierData =>
+      'No logs in the earlier period yet.';
 }

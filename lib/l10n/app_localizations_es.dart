@@ -4257,4 +4257,76 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get consumablesUnavailable =>
       'Todavía no está disponible en esta tienda.';
+
+  @override
+  String get insightsCompareTitle => '⚖️ Comparar períodos';
+
+  @override
+  String get insightsCompareCaption =>
+      'Tus promedios lado a lado. Son números, no notas: más pasos no es mejor por sí solo, y los días de descanso cuentan.';
+
+  @override
+  String get insightsCompareLocked =>
+      'Compara tus últimos meses con los anteriores, o con la misma época del año pasado. Parte de Zebras+.';
+
+  @override
+  String get plusLockedCompareMessage =>
+      'Comparar períodos es parte de Zebras+. Todos los días se siguen registrando y se ven en Tendencias.';
+
+  @override
+  String insightsCompareMonths(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count meses',
+      one: '1 mes',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get insightsCompareVsPrevious => 'vs. anterior';
+
+  @override
+  String get insightsCompareVsLastYear => 'vs. año pasado';
+
+  @override
+  String get insightsCompareEarlier => 'Antes';
+
+  @override
+  String get insightsCompareRecent => 'Reciente';
+
+  @override
+  String get insightsCompareChange => 'Cambio';
+
+  @override
+  String get insightsCompareDaysLogged => 'Días registrados';
+
+  @override
+  String get insightsCompareSteps => 'Pasos (prom.)';
+
+  @override
+  String get insightsCompareBody => 'Puntaje corporal (1–5)';
+
+  @override
+  String get insightsCompareMental => 'Estado mental (1–5)';
+
+  @override
+  String get insightsCompareSleep => 'Sueño (h)';
+
+  @override
+  String get insightsCompareRestingHr => 'FC en reposo (lpm)';
+
+  @override
+  String get insightsCompareHrv => 'VFC (ms)';
+
+  @override
+  String get insightsCompareRestDays => 'Días de descanso';
+
+  @override
+  String get insightsCompareFlareDays => 'Días de brote';
+
+  @override
+  String get insightsCompareNoEarlierData =>
+      'Todavía no hay registros en el período anterior.';
 }
