@@ -816,9 +816,9 @@
   "settingsTabCloudSyncCaption": "Sign in to sync your data across devices. Nothing is synced yet — this connects your account.",
   "settingsTabCloudSyncEmailPlaceholder": "Email address",
   "settingsTabCloudSyncSendLinkButton": "Send magic link",
-  "settingsTabCloudSyncLinkSent": "Check your email — tap the link, or enter the 6-digit code below (recommended if you're using the app from your home screen).",
+  "settingsTabCloudSyncLinkSent": "Check your email — tap the link, or enter the 8-digit code below (recommended if you're using the app from your home screen).",
   "settingsTabCloudSyncCodeLabel": "Or enter the code from that email",
-  "settingsTabCloudSyncCodePlaceholder": "6-digit code",
+  "settingsTabCloudSyncCodePlaceholder": "8-digit code",
   "settingsTabCloudSyncVerifyCodeButton": "Verify code",
   "settingsTabCloudSyncSignedInAs": "Signed in as {email}",
   "@settingsTabCloudSyncSignedInAs": {

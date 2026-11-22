@@ -78,7 +78,7 @@ class CloudAuthController extends StateNotifier<CloudAuthState> {
     }
   }
 
-  /// Verifies the 6-digit code from the same email Supabase's magic-link
+  /// Verifies the 8-digit code from the same email Supabase's magic-link
   /// template also includes — lets sign-in finish entirely inside this app
   /// instead of tapping the link, which is what matters on iOS: a link
   /// opened from Mail always opens Safari, never the home-screen-installed

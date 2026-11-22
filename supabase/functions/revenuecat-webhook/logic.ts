@@ -107,6 +107,13 @@ export const CREDIT_PRODUCTS: Readonly<Record<string, number>> = {
   "zebrapace.credits.pack": 10,
 };
 
+/// RevenueCat Test Store's generic product, accepted as a credit pack only
+/// for non-production events (Test Store and sandbox), so debug builds can
+/// test the whole flow. A real store purchase never matches it.
+export const TEST_CREDIT_PRODUCTS: Readonly<Record<string, number>> = {
+  "consumable": 10,
+};
+
 /// Products that add one sponsored year to the shared beca fund.
 export const SPONSOR_PRODUCTS: ReadonlySet<string> = new Set([
   "zebrapace.sponsor.year",
@@ -146,7 +153,9 @@ export function consumableActionFromEvent(event: ConsumableEvent): ConsumableAct
     : null;
   if (!productId || !transactionId) return null;
 
-  const credits = CREDIT_PRODUCTS[productId];
+  const isProduction = event.environment === "PRODUCTION";
+  const credits = CREDIT_PRODUCTS[productId] ??
+    (isProduction ? undefined : TEST_CREDIT_PRODUCTS[productId]);
   const isSponsor = SPONSOR_PRODUCTS.has(productId);
   if (credits === undefined && !isSponsor) return null;
 

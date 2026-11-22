@@ -42,7 +42,7 @@ One **Zebras account** shared by ZebraPace and ZebraUp. RevenueCat identifies bu
 
 4. **Sign-in UI: a "Cuenta Zebras" section in `AccountDataScreen`** (Ajustes → Mis datos). It can be its own `StatefulWidget` built on `Supabase.instance.client.auth.onAuthStateChange`, because it doesn't need `main_screen.dart`'s plumbing.
    - **Signed out:** email field → "Enviar código" calls
-     `auth.signInWithOtp(email: email)`, then a 6-digit code field → `auth.verifyOTP(email: email, token: code, type: OtpType.email)`.
+     `auth.signInWithOtp(email: email)`, then an 8-digit code field → `auth.verifyOTP(email: email, token: code, type: OtpType.email)`.
    - **Code first, link second.** On iPhone, an emailed link always opens Safari, and an installed home-screen PWA keeps its storage separate from Safari's, so a session made by the link never reaches the installed app. Typing the code avoids that. The link can stay in the email for desktop users.
    - **Signed in:** show the email, "Cerrar sesión" (`auth.signOut()`), and "Eliminar cuenta" (step 5).
    - Show loading and error states (wrong or expired code, no connection), and explain plainly what the account is for: one Zebras+ plan for both apps; your health data stays on this device.

@@ -1,4 +1,4 @@
--- AI credits and sponsoring (business_plan.md §4.5): the two consumable
+-- AI credits and sponsoring (business_plan.md § 4.5): the two consumable
 -- purchases. The revenuecat-webhook Edge Function records each store
 -- transaction here; the balance only ever changes on the server, so the
 -- phone never decides how many credits someone has.

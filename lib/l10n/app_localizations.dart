@@ -2936,7 +2936,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingsTabCloudSyncLinkSent.
   ///
   /// In en, this message translates to:
-  /// **'Check your email — tap the link, or enter the 6-digit code below (recommended if you\'re using the app from your home screen).'**
+  /// **'Check your email — tap the link, or enter the 8-digit code below (recommended if you\'re using the app from your home screen).'**
   String get settingsTabCloudSyncLinkSent;
 
   /// No description provided for @settingsTabCloudSyncCodeLabel.
@@ -2948,7 +2948,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingsTabCloudSyncCodePlaceholder.
   ///
   /// In en, this message translates to:
-  /// **'6-digit code'**
+  /// **'8-digit code'**
   String get settingsTabCloudSyncCodePlaceholder;
 
   /// No description provided for @settingsTabCloudSyncVerifyCodeButton.

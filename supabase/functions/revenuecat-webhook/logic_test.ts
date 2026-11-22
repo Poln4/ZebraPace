@@ -153,3 +153,12 @@ test("subscriptions, unknown products and missing transaction ids are ignored", 
   assert.equal(consumableActionFromEvent({ ...purchase, transaction_id: undefined }), null);
   assert.equal(consumableActionFromEvent({ ...purchase, type: "RENEWAL" }), null);
 });
+
+test("Test Store's generic consumable grants credits outside production only", () => {
+  const sandbox = consumableActionFromEvent({ ...purchase, product_id: "consumable" });
+  assert.equal(sandbox?.action === "record" && sandbox.credits, 10);
+  assert.equal(
+    consumableActionFromEvent({ ...purchase, product_id: "consumable", environment: "PRODUCTION" }),
+    null,
+  );
+});

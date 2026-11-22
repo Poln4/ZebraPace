@@ -1605,13 +1605,13 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settingsTabCloudSyncLinkSent =>
-      '請查看你的電子郵件 — 點擊連結，或在下方輸入 6 位數驗證碼（如果你是從主畫面開啟這個 App，建議使用驗證碼）。';
+      '請查看你的電子郵件 — 點擊連結，或在下方輸入 8 位數驗證碼（如果你是從主畫面開啟這個 App，建議使用驗證碼）。';
 
   @override
   String get settingsTabCloudSyncCodeLabel => '或輸入電子郵件中的驗證碼';
 
   @override
-  String get settingsTabCloudSyncCodePlaceholder => '6 位數驗證碼';
+  String get settingsTabCloudSyncCodePlaceholder => '8 位數驗證碼';
 
   @override
   String get settingsTabCloudSyncVerifyCodeButton => '驗證';

@@ -1698,14 +1698,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsTabCloudSyncLinkSent =>
-      'Check your email — tap the link, or enter the 6-digit code below (recommended if you\'re using the app from your home screen).';
+      'Check your email — tap the link, or enter the 8-digit code below (recommended if you\'re using the app from your home screen).';
 
   @override
   String get settingsTabCloudSyncCodeLabel =>
       'Or enter the code from that email';
 
   @override
-  String get settingsTabCloudSyncCodePlaceholder => '6-digit code';
+  String get settingsTabCloudSyncCodePlaceholder => '8-digit code';
 
   @override
   String get settingsTabCloudSyncVerifyCodeButton => 'Verify code';

@@ -35,6 +35,7 @@ El registro es gratis y la app funciona sin cuenta y sin conexión. Se cobra sol
 | Historial largo de carga acumulada y proyecciones | | Plan anual |
 | Comparación entre períodos largos (este invierno vs. el anterior) | | Plan anual |
 | Informe de actividad para kinesiología o fisiatría con plantilla | | Plan anual |
+| Crear un plan desde texto con IA (la IA transcribe, la persona revisa en el editor) | | Plan anual (propuesto) |
 | Resumen semanal narrativo con IA en la nube | | Créditos |
 | Resumen con IA en el dispositivo (iPhone compatible) | ✓ | |
 
@@ -44,6 +45,7 @@ El registro es gratis y la app funciona sin cuenta y sin conexión. Se cobra sol
 - Juntos depende de la cuenta y la sincronización; por eso ambas son gratis en las dos apps.
 - El Resumen en PDF es gratis porque es una forma de exportar. Lo de pago es la plantilla para kinesiología o fisiatría construida sobre él.
 - El clima es gratis: no tiene costo de API y ayuda a explicar los picos de hoy, así que es presente, no profundidad.
+- Crear el plan a mano en el editor sigue siendo gratis. Lo de pago es el atajo con IA (ver 4.7).
 
 ### Por decidir
 - Widgets y Apple Watch / Wear OS: ¿gratis o plan anual?
@@ -105,11 +107,25 @@ Caso límite: si la app usa el desfase de malestar post-esfuerzo aprendido para 
 
 El resumen en el dispositivo existe solo en iPhone compatibles. **Por decidir:** si Android tiene una alternativa en el dispositivo o si usa solo créditos.
 
+### 4.7 Crear un plan desde texto con IA (propuesta, 22-11-2026)
+
+El editor de Plan es la parte más engorrosa de la app, y casi todos ya tienen su plan escrito en algún lado: lo que entregó la kinesióloga, una nota o un PDF. La idea es pegar o escribir ese texto y que la IA lo convierta en un plan.
+
+- **La IA solo transcribe.** Convierte el texto al mismo formato JSON que ya usa la importación de planes. No inventa ejercicios ni decide cargas; si algo no está claro, lo marca en vez de adivinar.
+- **Siempre pasa por el editor.** El resultado se abre como borrador; la persona lo revisa, corrige y guarda. Nada se guarda sin revisión.
+- **No se vende el freno.** Las fases con condiciones de paso, la progresión, el modo brote y las señales de alto quedan en el código y gratis; la IA no puede saltárselas.
+- **Más adelante:** aceptar también una foto de la hoja de la kinesióloga.
+
+**Por decidir:**
+- Cobro: dentro de Zebras+ con un tope mensual (por ejemplo 5 planes al mes) o con créditos. Se recomienda Zebras+: se usa pocas veces, cuesta poco por uso y le da valor a la suscripción.
+- Dónde corre: en el dispositivo (modelo de Apple con salida estructurada, en iPhone compatibles; el texto médico no sale del teléfono) o en una Edge Function en la nube (Android e iPhone antiguos).
+- Privacidad: si va a la nube, se envía solo el texto, sin la cuenta, y no se guarda. Hay que explicarlo en la política de privacidad.
+
 ---
 
 ## 5. Estado actual
 
-- Prueba abierta en Google Play ("ZebraPace: pacing & symptoms").
+- Prueba cerrada en Google Play (aún no hay suficientes testers para la abierta) ("ZebraPace: pacing & symptoms").
 - iOS en TestFlight (dos builds enviados).
 - Supabase en plan gratuito.
 - ZebraPace se publica primero, para equivocarse con menos riesgo, y después se lanza ZebraUp con más confianza.
@@ -123,6 +139,7 @@ El resumen en el dispositivo existe solo en iPhone compatibles. **Por decidir:**
 - [ ] Decidir widgets y reloj (gratis o plan)
 - [x] Decidir N: 13 semanas
 - [ ] Decidir el resumen con IA en Android
+- [ ] Crear un plan desde texto con IA: decidir cobro (Zebras+ o créditos), dónde corre y privacidad (4.7)
 - [ ] Configurar RevenueCat con las dos apps y el permiso `zebras_plus`
 - [x] Crear `isPlusProvider` y el test que separa la seguridad del cobro
 - [ ] Antes del lanzamiento: avisar a quienes prueban sin cuenta que creen una para recibir el año gratis
