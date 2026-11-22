@@ -1897,5 +1897,85 @@
   "insightsCompareHrv": "HRV (ms)",
   "insightsCompareRestDays": "Rest days",
   "insightsCompareFlareDays": "Flare days",
-  "insightsCompareNoEarlierData": "No logs in the earlier period yet."
+  "insightsCompareNoEarlierData": "No logs in the earlier period yet.",
+  "physioReportButton": "Physio report",
+  "plusLockedPhysioMessage": "The physio report is part of Zebras+: a two-page summary for physiotherapy or rehab appointments. The PDF summary above stays free for any period.",
+  "physioQuestionsTitle": "Questions for my physio",
+  "physioQuestionsHint": "Optional. Printed at the end of the report.",
+  "physioQuestionsPlaceholder": "e.g. Can I add a second short walk on good days?",
+  "physioCreateButton": "Create report",
+  "physioReportHeading": "Activity report for physiotherapy",
+  "physioReportFor": "For: {name}",
+  "@physioReportFor": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+  "physioSummaryHeading": "In 30 seconds",
+  "physioSummaryLogged": "Days logged: {logged} of {total}",
+  "@physioSummaryLogged": {
+    "placeholders": {
+      "logged": {"type": "int"},
+      "total": {"type": "int"}
+    }
+  },
+  "physioSummarySteps": "Average steps on active days: {steps}",
+  "@physioSummarySteps": {
+    "placeholders": {
+      "steps": {"type": "String"}
+    }
+  },
+  "physioSummaryBody": "Average body score: {score} of 5",
+  "@physioSummaryBody": {
+    "placeholders": {
+      "score": {"type": "String"}
+    }
+  },
+  "physioSummaryVsPrevious": "{change} vs. the previous {days} days",
+  "@physioSummaryVsPrevious": {
+    "placeholders": {
+      "change": {"type": "String"},
+      "days": {"type": "int"}
+    }
+  },
+  "physioSummaryRestFlare": "Rest days: {rest} · Flare days: {flare}",
+  "@physioSummaryRestFlare": {
+    "placeholders": {
+      "rest": {"type": "int"},
+      "flare": {"type": "int"}
+    }
+  },
+  "physioSummaryCrashChecks": "Soreness checks that looked like a possible crash: {count}",
+  "@physioSummaryCrashChecks": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "physioSummaryUsualDelay": "Usual delay before a dip after bigger days (whole history): {lag}",
+  "@physioSummaryUsualDelay": {
+    "placeholders": {
+      "lag": {"type": "String"}
+    }
+  },
+  "physioSymptomsHeading": "Symptoms after sessions",
+  "physioSorenessTally": "Soreness checks: {doms} looked like ordinary muscle soreness, {crash} like a possible crash, {unclear} unclear.",
+  "@physioSorenessTally": {
+    "placeholders": {
+      "doms": {"type": "int"},
+      "crash": {"type": "int"},
+      "unclear": {"type": "int"}
+    }
+  },
+  "physioNoSorenessChecks": "No soreness checks in this period.",
+  "physioColDate": "Date",
+  "physioColOnset": "Started",
+  "physioColSpread": "Spread",
+  "physioColTrend": "Trend",
+  "physioColVerdict": "Read as",
+  "physioFollowUpIntro": "Body score (1 severe – 5 loose & stable) on session days and the two days after:",
+  "physioColSession": "Session",
+  "physioColSameDay": "Same day",
+  "physioColDay1": "+1 day",
+  "physioColDay2": "+2 days",
+  "physioNoSessions": "No sessions logged in this period."
 }

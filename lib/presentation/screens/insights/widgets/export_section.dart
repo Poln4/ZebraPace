@@ -6,10 +6,17 @@ import 'package:path_provider/path_provider.dart';
 import 'package:printing/printing.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../../core/constants/defaults.dart';
 import '../../../../core/pdf/doctor_report_pdf.dart';
+import '../../../../core/pdf/physio_report_pdf.dart';
 import '../../../../core/theme/zebra_theme.dart';
+import '../../../../core/utils/date_utils.dart';
+import '../../../../core/utils/intl_locale.dart';
+import '../../../../domain/services/physio_report_service.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/app_providers.dart';
+import '../../../../providers/plus_providers.dart';
+import '../../../widgets/plus_gate.dart';
 import '../../../widgets/section_card.dart';
 import 'insights_providers.dart';
 import 'insights_range.dart';
@@ -25,6 +32,7 @@ class ExportSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
+    final isPlus = ref.watch(isPlusProvider);
     return SectionCard(
       title: l10n.exportSectionTitle,
       child: Column(
@@ -43,6 +51,27 @@ class ExportSection extends ConsumerWidget {
           SizedBox(
             width: double.infinity,
             child: CupertinoButton(
+              color: ZebraColors.sand,
+              onPressed: () => _generateAndSharePhysioReport(context, ref),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (!isPlus) ...[
+                    const Icon(CupertinoIcons.lock_fill, size: 14, color: ZebraColors.onColor),
+                    const SizedBox(width: 6),
+                  ],
+                  Flexible(
+                    child: Text(l10n.physioReportButton,
+                        style: const TextStyle(color: ZebraColors.onColor)),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          SizedBox(
+            width: double.infinity,
+            child: CupertinoButton(
               color: ZebraColors.teal,
               onPressed: () => _shareCsv(ref),
               child: Text(l10n.exportSectionCsvButton,
@@ -54,14 +83,22 @@ class ExportSection extends ConsumerWidget {
     );
   }
 
-  Future<void> _generateAndSharePdf(BuildContext context, WidgetRef ref) async {
+  /// Period sheet shared by both PDFs: any length, ending on the selected
+  /// day. [message] explains the choice (the free summary says exporting
+  /// is always free); null when the report has nothing to add.
+  Future<DateRange?> _pickPeriod(
+    BuildContext context,
+    WidgetRef ref, {
+    required String title,
+    String? message,
+  }) async {
     final l10n = AppLocalizations.of(context);
     final shown = ref.read(effectiveInsightsRangeOptionProvider);
     final option = await showCupertinoModalPopup<InsightsRangeOption>(
       context: context,
       builder: (sheetContext) => CupertinoActionSheet(
-        title: Text(l10n.exportSectionPdfRangeTitle),
-        message: Text(l10n.exportSectionPdfRangeMessage),
+        title: Text(title),
+        message: message == null ? null : Text(message),
         actions: [
           for (final o in InsightsRangeOption.values)
             CupertinoActionSheetAction(
@@ -76,12 +113,22 @@ class ExportSection extends ConsumerWidget {
         ),
       ),
     );
-    if (option == null) return;
+    if (option == null) return null;
     final earliest = option == InsightsRangeOption.all
         ? await ref.read(earliestLogDateProvider.future)
         : null;
-    final range =
-        dateRangeFor(option, selected: ref.read(selectedDateProvider), earliest: earliest);
+    return dateRangeFor(option, selected: ref.read(selectedDateProvider), earliest: earliest);
+  }
+
+  Future<void> _generateAndSharePdf(BuildContext context, WidgetRef ref) async {
+    final l10n = AppLocalizations.of(context);
+    final range = await _pickPeriod(
+      context,
+      ref,
+      title: l10n.exportSectionPdfRangeTitle,
+      message: l10n.exportSectionPdfRangeMessage,
+    );
+    if (range == null) return;
     final reportService = ref.read(doctorReportServiceProvider);
 
     final logs = await ref.read(dailyLogRepositoryProvider).getRange(range.start, range.end);
@@ -125,6 +172,85 @@ class ExportSection extends ConsumerWidget {
     final doc = await DoctorReportPdf().build(l10n, data);
     final bytes = await doc.save();
     await Printing.sharePdf(bytes: bytes, filename: 'zebrapace_pacing_summary.pdf');
+  }
+
+  /// Zebras+ physio report: gate (if needed) → period → optional
+  /// questions → two-page PDF.
+  Future<void> _generateAndSharePhysioReport(BuildContext context, WidgetRef ref) async {
+    final l10n = AppLocalizations.of(context);
+    if (!ref.read(isPlusProvider)) {
+      final unlocked = await openPlusGate(context, ref, message: l10n.plusLockedPhysioMessage);
+      if (!unlocked || !context.mounted) return;
+    }
+    final range = await _pickPeriod(context, ref, title: l10n.physioReportButton);
+    if (range == null || !context.mounted) return;
+    final questions = await _askQuestions(context);
+    if (questions == null || !context.mounted) return;
+    final locale = intlLocaleOf(context);
+
+    final logs = await ref.read(dailyLogRepositoryProvider).getAll();
+    final activities = await ref.read(activityRepositoryProvider).getRange(range.start, range.end);
+    final therapies = await ref.read(therapyRepositoryProvider).getRange(range.start, range.end);
+    final calisthenics =
+        await ref.read(calisthenicsRepositoryProvider).getRange(range.start, range.end);
+    final checks = await ref.read(sorenessCheckRepositoryProvider).getRange(range.start, range.end);
+    final name = await ref.read(settingsRepositoryProvider).getString(SettingsKeys.userName, '');
+
+    final data = PhysioReportService.build(
+      name: name,
+      startDate: range.start,
+      endDate: range.end,
+      generatedAt: todayKey(),
+      allLogs: logs,
+      activities: activities,
+      calisthenics: calisthenics,
+      therapies: therapies,
+      exerciseLabel: (c) => c.exercise.label(l10n),
+      sorenessChecks: checks,
+      questions: questions,
+    );
+    final doc = await PhysioReportPdf().build(l10n, data, locale: locale);
+    await Printing.sharePdf(bytes: await doc.save(), filename: 'zebrapace_physio_report.pdf');
+  }
+
+  /// Optional questions for the physio. Null = cancelled; '' = skipped.
+  Future<String?> _askQuestions(BuildContext context) async {
+    final l10n = AppLocalizations.of(context);
+    final controller = TextEditingController();
+    try {
+      return await showCupertinoDialog<String>(
+        context: context,
+        builder: (dialogContext) => CupertinoAlertDialog(
+          title: Text(l10n.physioQuestionsTitle),
+          content: Column(
+            children: [
+              Text(l10n.physioQuestionsHint),
+              const SizedBox(height: 8),
+              CupertinoTextField(
+                controller: controller,
+                placeholder: l10n.physioQuestionsPlaceholder,
+                minLines: 3,
+                maxLines: 6,
+                maxLength: PhysioReportService.maxQuestionsLength,
+              ),
+            ],
+          ),
+          actions: [
+            CupertinoDialogAction(
+              onPressed: () => Navigator.of(dialogContext).pop(),
+              child: Text(l10n.commonCancelButton),
+            ),
+            CupertinoDialogAction(
+              isDefaultAction: true,
+              onPressed: () => Navigator.of(dialogContext).pop(controller.text),
+              child: Text(l10n.physioCreateButton),
+            ),
+          ],
+        ),
+      );
+    } finally {
+      controller.dispose();
+    }
   }
 
   Future<void> _shareCsv(WidgetRef ref) async {

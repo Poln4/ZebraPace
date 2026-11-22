@@ -4281,4 +4281,116 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get insightsCompareNoEarlierData =>
       'No logs in the earlier period yet.';
+
+  @override
+  String get physioReportButton => 'Physio report';
+
+  @override
+  String get plusLockedPhysioMessage =>
+      'The physio report is part of Zebras+: a two-page summary for physiotherapy or rehab appointments. The PDF summary above stays free for any period.';
+
+  @override
+  String get physioQuestionsTitle => 'Questions for my physio';
+
+  @override
+  String get physioQuestionsHint =>
+      'Optional. Printed at the end of the report.';
+
+  @override
+  String get physioQuestionsPlaceholder =>
+      'e.g. Can I add a second short walk on good days?';
+
+  @override
+  String get physioCreateButton => 'Create report';
+
+  @override
+  String get physioReportHeading => 'Activity report for physiotherapy';
+
+  @override
+  String physioReportFor(String name) {
+    return 'For: $name';
+  }
+
+  @override
+  String get physioSummaryHeading => 'In 30 seconds';
+
+  @override
+  String physioSummaryLogged(int logged, int total) {
+    return 'Days logged: $logged of $total';
+  }
+
+  @override
+  String physioSummarySteps(String steps) {
+    return 'Average steps on active days: $steps';
+  }
+
+  @override
+  String physioSummaryBody(String score) {
+    return 'Average body score: $score of 5';
+  }
+
+  @override
+  String physioSummaryVsPrevious(String change, int days) {
+    return '$change vs. the previous $days days';
+  }
+
+  @override
+  String physioSummaryRestFlare(int rest, int flare) {
+    return 'Rest days: $rest · Flare days: $flare';
+  }
+
+  @override
+  String physioSummaryCrashChecks(int count) {
+    return 'Soreness checks that looked like a possible crash: $count';
+  }
+
+  @override
+  String physioSummaryUsualDelay(String lag) {
+    return 'Usual delay before a dip after bigger days (whole history): $lag';
+  }
+
+  @override
+  String get physioSymptomsHeading => 'Symptoms after sessions';
+
+  @override
+  String physioSorenessTally(int doms, int crash, int unclear) {
+    return 'Soreness checks: $doms looked like ordinary muscle soreness, $crash like a possible crash, $unclear unclear.';
+  }
+
+  @override
+  String get physioNoSorenessChecks => 'No soreness checks in this period.';
+
+  @override
+  String get physioColDate => 'Date';
+
+  @override
+  String get physioColOnset => 'Started';
+
+  @override
+  String get physioColSpread => 'Spread';
+
+  @override
+  String get physioColTrend => 'Trend';
+
+  @override
+  String get physioColVerdict => 'Read as';
+
+  @override
+  String get physioFollowUpIntro =>
+      'Body score (1 severe – 5 loose & stable) on session days and the two days after:';
+
+  @override
+  String get physioColSession => 'Session';
+
+  @override
+  String get physioColSameDay => 'Same day';
+
+  @override
+  String get physioColDay1 => '+1 day';
+
+  @override
+  String get physioColDay2 => '+2 days';
+
+  @override
+  String get physioNoSessions => 'No sessions logged in this period.';
 }

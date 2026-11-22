@@ -4329,4 +4329,117 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get insightsCompareNoEarlierData =>
       'Todavía no hay registros en el período anterior.';
+
+  @override
+  String get physioReportButton => 'Informe para kinesiología';
+
+  @override
+  String get plusLockedPhysioMessage =>
+      'El informe para kinesiología es parte de Zebras+: un resumen de dos páginas para tus controles de kinesiología o fisiatría. El Resumen en PDF de arriba sigue gratis para cualquier período.';
+
+  @override
+  String get physioQuestionsTitle => 'Preguntas para mi kinesióloga/o';
+
+  @override
+  String get physioQuestionsHint =>
+      'Opcional. Se imprime al final del informe.';
+
+  @override
+  String get physioQuestionsPlaceholder =>
+      'Ej.: ¿Puedo sumar una segunda caminata corta los días buenos?';
+
+  @override
+  String get physioCreateButton => 'Crear informe';
+
+  @override
+  String get physioReportHeading => 'Informe de actividad para kinesiología';
+
+  @override
+  String physioReportFor(String name) {
+    return 'Paciente: $name';
+  }
+
+  @override
+  String get physioSummaryHeading => 'En 30 segundos';
+
+  @override
+  String physioSummaryLogged(int logged, int total) {
+    return 'Días registrados: $logged de $total';
+  }
+
+  @override
+  String physioSummarySteps(String steps) {
+    return 'Promedio de pasos en días activos: $steps';
+  }
+
+  @override
+  String physioSummaryBody(String score) {
+    return 'Puntaje corporal promedio: $score de 5';
+  }
+
+  @override
+  String physioSummaryVsPrevious(String change, int days) {
+    return '$change vs. los $days días anteriores';
+  }
+
+  @override
+  String physioSummaryRestFlare(int rest, int flare) {
+    return 'Días de descanso: $rest · Días de brote: $flare';
+  }
+
+  @override
+  String physioSummaryCrashChecks(int count) {
+    return 'Revisiones de dolor que parecían una posible crisis: $count';
+  }
+
+  @override
+  String physioSummaryUsualDelay(String lag) {
+    return 'Desfase habitual antes de un bajón tras días más exigentes (todo el historial): $lag';
+  }
+
+  @override
+  String get physioSymptomsHeading => 'Síntomas después de las sesiones';
+
+  @override
+  String physioSorenessTally(int doms, int crash, int unclear) {
+    return 'Revisiones de dolor: $doms parecían dolor muscular común, $crash una posible crisis, $unclear poco claras.';
+  }
+
+  @override
+  String get physioNoSorenessChecks =>
+      'No hay revisiones de dolor en este período.';
+
+  @override
+  String get physioColDate => 'Fecha';
+
+  @override
+  String get physioColOnset => 'Comenzó';
+
+  @override
+  String get physioColSpread => 'Extensión';
+
+  @override
+  String get physioColTrend => 'Tendencia';
+
+  @override
+  String get physioColVerdict => 'Se lee como';
+
+  @override
+  String get physioFollowUpIntro =>
+      'Puntaje corporal (1 severo – 5 suelta y estable) en los días con sesión y los dos días siguientes:';
+
+  @override
+  String get physioColSession => 'Sesión';
+
+  @override
+  String get physioColSameDay => 'Mismo día';
+
+  @override
+  String get physioColDay1 => '+1 día';
+
+  @override
+  String get physioColDay2 => '+2 días';
+
+  @override
+  String get physioNoSessions => 'No hay sesiones registradas en este período.';
 }

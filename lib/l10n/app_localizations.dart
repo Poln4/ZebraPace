@@ -7224,6 +7224,186 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No logs in the earlier period yet.'**
   String get insightsCompareNoEarlierData;
+
+  /// No description provided for @physioReportButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Physio report'**
+  String get physioReportButton;
+
+  /// No description provided for @plusLockedPhysioMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'The physio report is part of Zebras+: a two-page summary for physiotherapy or rehab appointments. The PDF summary above stays free for any period.'**
+  String get plusLockedPhysioMessage;
+
+  /// No description provided for @physioQuestionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Questions for my physio'**
+  String get physioQuestionsTitle;
+
+  /// No description provided for @physioQuestionsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional. Printed at the end of the report.'**
+  String get physioQuestionsHint;
+
+  /// No description provided for @physioQuestionsPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Can I add a second short walk on good days?'**
+  String get physioQuestionsPlaceholder;
+
+  /// No description provided for @physioCreateButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Create report'**
+  String get physioCreateButton;
+
+  /// No description provided for @physioReportHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity report for physiotherapy'**
+  String get physioReportHeading;
+
+  /// No description provided for @physioReportFor.
+  ///
+  /// In en, this message translates to:
+  /// **'For: {name}'**
+  String physioReportFor(String name);
+
+  /// No description provided for @physioSummaryHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'In 30 seconds'**
+  String get physioSummaryHeading;
+
+  /// No description provided for @physioSummaryLogged.
+  ///
+  /// In en, this message translates to:
+  /// **'Days logged: {logged} of {total}'**
+  String physioSummaryLogged(int logged, int total);
+
+  /// No description provided for @physioSummarySteps.
+  ///
+  /// In en, this message translates to:
+  /// **'Average steps on active days: {steps}'**
+  String physioSummarySteps(String steps);
+
+  /// No description provided for @physioSummaryBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Average body score: {score} of 5'**
+  String physioSummaryBody(String score);
+
+  /// No description provided for @physioSummaryVsPrevious.
+  ///
+  /// In en, this message translates to:
+  /// **'{change} vs. the previous {days} days'**
+  String physioSummaryVsPrevious(String change, int days);
+
+  /// No description provided for @physioSummaryRestFlare.
+  ///
+  /// In en, this message translates to:
+  /// **'Rest days: {rest} · Flare days: {flare}'**
+  String physioSummaryRestFlare(int rest, int flare);
+
+  /// No description provided for @physioSummaryCrashChecks.
+  ///
+  /// In en, this message translates to:
+  /// **'Soreness checks that looked like a possible crash: {count}'**
+  String physioSummaryCrashChecks(int count);
+
+  /// No description provided for @physioSummaryUsualDelay.
+  ///
+  /// In en, this message translates to:
+  /// **'Usual delay before a dip after bigger days (whole history): {lag}'**
+  String physioSummaryUsualDelay(String lag);
+
+  /// No description provided for @physioSymptomsHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Symptoms after sessions'**
+  String get physioSymptomsHeading;
+
+  /// No description provided for @physioSorenessTally.
+  ///
+  /// In en, this message translates to:
+  /// **'Soreness checks: {doms} looked like ordinary muscle soreness, {crash} like a possible crash, {unclear} unclear.'**
+  String physioSorenessTally(int doms, int crash, int unclear);
+
+  /// No description provided for @physioNoSorenessChecks.
+  ///
+  /// In en, this message translates to:
+  /// **'No soreness checks in this period.'**
+  String get physioNoSorenessChecks;
+
+  /// No description provided for @physioColDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get physioColDate;
+
+  /// No description provided for @physioColOnset.
+  ///
+  /// In en, this message translates to:
+  /// **'Started'**
+  String get physioColOnset;
+
+  /// No description provided for @physioColSpread.
+  ///
+  /// In en, this message translates to:
+  /// **'Spread'**
+  String get physioColSpread;
+
+  /// No description provided for @physioColTrend.
+  ///
+  /// In en, this message translates to:
+  /// **'Trend'**
+  String get physioColTrend;
+
+  /// No description provided for @physioColVerdict.
+  ///
+  /// In en, this message translates to:
+  /// **'Read as'**
+  String get physioColVerdict;
+
+  /// No description provided for @physioFollowUpIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Body score (1 severe – 5 loose & stable) on session days and the two days after:'**
+  String get physioFollowUpIntro;
+
+  /// No description provided for @physioColSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Session'**
+  String get physioColSession;
+
+  /// No description provided for @physioColSameDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Same day'**
+  String get physioColSameDay;
+
+  /// No description provided for @physioColDay1.
+  ///
+  /// In en, this message translates to:
+  /// **'+1 day'**
+  String get physioColDay1;
+
+  /// No description provided for @physioColDay2.
+  ///
+  /// In en, this message translates to:
+  /// **'+2 days'**
+  String get physioColDay2;
+
+  /// No description provided for @physioNoSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'No sessions logged in this period.'**
+  String get physioNoSessions;
 }
 
 class _AppLocalizationsDelegate

@@ -143,7 +143,7 @@ El editor de Plan es la parte más engorrosa de la app, y casi todos ya tienen s
 - [ ] Configurar RevenueCat con las dos apps y el permiso `zebras_plus`
 - [x] Crear `isPlusProvider` y el test que separa la seguridad del cobro
 - [ ] Antes del lanzamiento: avisar a quienes prueban sin cuenta que creen una para recibir el año gratis
-- [ ] Definir el formato del informe para kinesiología o fisiatría
+- [x] Definir el formato del informe para kinesiología o fisiatría: máximo 2 páginas con "En 30 segundos", síntomas después de las sesiones y preguntas para la kinesióloga/o (22-11-2026)
 - [ ] Implementar compras dentro de la app compartidas con ZebraUp (mismo plan, misma cuenta)
 - [ ] Revisar App Review Guidelines y la política de pagos de Google Play (ver documento de ZebraUp)
 - [ ] Publicar la tabla de funciones en zebras.paulinavl.com

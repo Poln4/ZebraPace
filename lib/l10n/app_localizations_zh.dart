@@ -4037,4 +4037,113 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get insightsCompareNoEarlierData => '之前的期間還沒有紀錄。';
+
+  @override
+  String get physioReportButton => '物理治療報告';
+
+  @override
+  String get plusLockedPhysioMessage =>
+      '物理治療報告屬於 Zebras+：給物理治療或復健回診用的兩頁摘要。上方的 PDF 摘要仍然免費，任何期間都可以。';
+
+  @override
+  String get physioQuestionsTitle => '想問物理治療師的問題';
+
+  @override
+  String get physioQuestionsHint => '選填。會印在報告最後。';
+
+  @override
+  String get physioQuestionsPlaceholder => '例如：狀況好的日子可以多走一次短程嗎？';
+
+  @override
+  String get physioCreateButton => '建立報告';
+
+  @override
+  String get physioReportHeading => '物理治療活動報告';
+
+  @override
+  String physioReportFor(String name) {
+    return '姓名：$name';
+  }
+
+  @override
+  String get physioSummaryHeading => '30 秒看重點';
+
+  @override
+  String physioSummaryLogged(int logged, int total) {
+    return '紀錄天數：$logged / $total';
+  }
+
+  @override
+  String physioSummarySteps(String steps) {
+    return '活動日平均步數：$steps';
+  }
+
+  @override
+  String physioSummaryBody(String score) {
+    return '平均身體分數：$score / 5';
+  }
+
+  @override
+  String physioSummaryVsPrevious(String change, int days) {
+    return '與前 $days 天相比 $change';
+  }
+
+  @override
+  String physioSummaryRestFlare(int rest, int flare) {
+    return '休息日：$rest · 發作日：$flare';
+  }
+
+  @override
+  String physioSummaryCrashChecks(int count) {
+    return '看起來像可能崩潰的痠痛檢查：$count';
+  }
+
+  @override
+  String physioSummaryUsualDelay(String lag) {
+    return '較吃力的日子之後，低谷通常的延遲（完整歷史）：$lag';
+  }
+
+  @override
+  String get physioSymptomsHeading => '活動後的症狀';
+
+  @override
+  String physioSorenessTally(int doms, int crash, int unclear) {
+    return '痠痛檢查：$doms 次像一般肌肉痠痛，$crash 次像可能崩潰，$unclear 次不明確。';
+  }
+
+  @override
+  String get physioNoSorenessChecks => '這段期間沒有痠痛檢查。';
+
+  @override
+  String get physioColDate => '日期';
+
+  @override
+  String get physioColOnset => '開始';
+
+  @override
+  String get physioColSpread => '範圍';
+
+  @override
+  String get physioColTrend => '趨勢';
+
+  @override
+  String get physioColVerdict => '判讀';
+
+  @override
+  String get physioFollowUpIntro => '有活動的日子及之後兩天的身體分數（1 嚴重 – 5 放鬆穩定）：';
+
+  @override
+  String get physioColSession => '活動';
+
+  @override
+  String get physioColSameDay => '當天';
+
+  @override
+  String get physioColDay1 => '+1 天';
+
+  @override
+  String get physioColDay2 => '+2 天';
+
+  @override
+  String get physioNoSessions => '這段期間沒有紀錄活動。';
 }
