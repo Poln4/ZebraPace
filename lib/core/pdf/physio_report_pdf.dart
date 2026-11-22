@@ -1,4 +1,3 @@
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -6,14 +5,14 @@ import 'package:pdf/widgets.dart' as pw;
 import '../../domain/models/soreness_check.dart';
 import '../../domain/services/physio_report_service.dart';
 import '../../l10n/app_localizations.dart';
+import 'pdf_fonts.dart';
 
 /// Renders the Zebras+ physio report: at most two A4 pages — "In 30
 /// seconds", symptoms after sessions, and the person's questions. The
 /// tables are capped in PhysioReportService so the content always fits;
 /// MultiPage's maxPages is the hard stop.
 ///
-/// Uses the app's bundled Nunito (never downloaded) rather than the PDF
-/// base fonts, which lack characters like "−".
+/// Fonts come from PdfFonts (Nunito, with a Chinese fallback).
 class PhysioReportPdf {
   static const maxPages = 2;
   static const _teal = PdfColor.fromInt(0xFF2E6B61);
@@ -21,9 +20,7 @@ class PhysioReportPdf {
   static const _shade = PdfColor.fromInt(0xFFF6EFE3);
 
   Future<pw.Document> build(AppLocalizations l10n, PhysioReportData data, {required String locale}) async {
-    final regular = pw.Font.ttf(await rootBundle.load('assets/google_fonts/Nunito-Regular.ttf'));
-    final bold = pw.Font.ttf(await rootBundle.load('assets/google_fonts/Nunito-Bold.ttf'));
-    final doc = pw.Document(theme: pw.ThemeData.withFont(base: regular, bold: bold, italic: regular, boldItalic: bold));
+    final doc = pw.Document(theme: await PdfFonts.theme());
 
     final whole = NumberFormat.decimalPattern(locale)..maximumFractionDigits = 0;
     final oneDecimal = NumberFormat.decimalPattern(locale)
@@ -40,7 +37,7 @@ class PhysioReportPdf {
               style: pw.TextStyle(fontSize: 17, fontWeight: pw.FontWeight.bold, color: _teal)),
           pw.SizedBox(height: 3),
           if (data.name.isNotEmpty)
-            pw.Text(l10n.physioReportFor(data.name), style: const pw.TextStyle(fontSize: 10)),
+            pw.Text(l10n.physioReportFor(PdfFonts.withoutEmoji(data.name)), style: const pw.TextStyle(fontSize: 10)),
           pw.Text(l10n.doctorReportRangeLine(data.startDate, data.endDate, data.generatedAt),
               style: const pw.TextStyle(fontSize: 9)),
           pw.SizedBox(height: 3),
@@ -151,20 +148,12 @@ class PhysioReportPdf {
     ];
   }
 
-  String _verdict(AppLocalizations l10n, SorenessCheck c) => withoutEmoji(switch (c.verdict) {
+  String _verdict(AppLocalizations l10n, SorenessCheck c) => PdfFonts.withoutEmoji(switch (c.verdict) {
         'possible_crash' => l10n.sorenessVerdictCrashLabel,
         'likely_doms' => l10n.sorenessVerdictDomsLabel,
         _ => l10n.sorenessVerdictUnclearLabel,
       });
 
-  /// The app's labels start with emoji (🟢, 🟡…), which Nunito can't draw;
-  /// they'd print as empty boxes.
-  /// Removes misc symbols and dingbats (U+2600–27BF), variation selectors
-  /// and everything from U+1F000 (emoji); keeps punctuation and math signs.
-  static String withoutEmoji(String text) => String.fromCharCodes(text.runes.where((r) =>
-          !(r >= 0x2600 && r <= 0x27BF) && !(r >= 0xFE00 && r <= 0xFE0F) && r < 0x1F000))
-      .replaceAll(RegExp(r'\s+'), ' ')
-      .trim();
 
   List<pw.Widget> _followUps(AppLocalizations l10n, PhysioReportData data) {
     if (data.followUps.isEmpty) {
@@ -178,7 +167,7 @@ class PhysioReportPdf {
         [l10n.physioColDate, l10n.physioColSession, l10n.physioColSameDay, l10n.physioColDay1, l10n.physioColDay2],
         [
           for (final f in data.followUps)
-            [f.date, f.sessions.join(', '), score(f.scoreSameDay), score(f.scoreDay1), score(f.scoreDay2)],
+            [f.date, PdfFonts.withoutEmoji(f.sessions.join(', ')), score(f.scoreSameDay), score(f.scoreDay1), score(f.scoreDay2)],
         ],
         widths: const [1.1, 3.0, 0.9, 0.8, 0.8],
         centerFrom: 2,
@@ -188,7 +177,7 @@ class PhysioReportPdf {
 
   List<pw.Widget> _questions(String questions) {
     if (questions.isNotEmpty) {
-      return [pw.Text(questions, style: const pw.TextStyle(fontSize: 10))];
+      return [pw.Text(PdfFonts.withoutEmoji(questions), style: const pw.TextStyle(fontSize: 10))];
     }
     // Room to write by hand on a printed copy.
     return [

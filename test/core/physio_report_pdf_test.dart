@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:zebrapace_app/core/constants/enums.dart';
+import 'package:zebrapace_app/core/pdf/pdf_fonts.dart';
 import 'package:zebrapace_app/core/pdf/physio_report_pdf.dart';
 import 'package:zebrapace_app/domain/models/soreness_check.dart';
 import 'package:zebrapace_app/domain/services/period_comparison_service.dart';
@@ -85,8 +86,8 @@ void main() {
   });
 
   test('withoutEmoji strips label emoji but keeps text, dashes and minus signs', () {
-    expect(PhysioReportPdf.withoutEmoji('🌩️ More consistent with a crash/PEM pattern'),
+    expect(PdfFonts.withoutEmoji('🌩️ More consistent with a crash/PEM pattern'),
         'More consistent with a crash/PEM pattern');
-    expect(PhysioReportPdf.withoutEmoji('💪 Dolor – común −1 ✅'), 'Dolor – común −1');
+    expect(PdfFonts.withoutEmoji('💪 Dolor – común −1 ✅'), 'Dolor – común −1');
   });
 }

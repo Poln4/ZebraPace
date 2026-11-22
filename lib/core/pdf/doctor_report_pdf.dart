@@ -4,6 +4,7 @@ import 'package:pdf/widgets.dart' as pw;
 import '../../data/healthkit/health_kit_service.dart';
 import '../../domain/services/doctor_report_service.dart';
 import '../../l10n/app_localizations.dart';
+import 'pdf_fonts.dart';
 
 /// Renders a DoctorReportData into a PDF, mirroring generate_doctor_pdf's
 /// section order from app.py: Overview, Movement & Recovery, PEM note (if
@@ -11,7 +12,7 @@ import '../../l10n/app_localizations.dart';
 /// app2) Injuries.
 class DoctorReportPdf {
   Future<pw.Document> build(AppLocalizations l10n, DoctorReportData data) async {
-    final doc = pw.Document();
+    final doc = pw.Document(theme: await PdfFonts.theme());
     final na = l10n.doctorReportNotAvailable;
 
     doc.addPage(
@@ -70,7 +71,7 @@ class DoctorReportPdf {
             for (final t in data.recentTherapies)
               pw.Text(
                 l10n.doctorReportTherapyLine(
-                    t.date, t.therapyName, t.durationMin, t.bodyFeeling?.label(l10n) ?? na),
+                    t.date, PdfFonts.withoutEmoji(t.therapyName), t.durationMin, t.bodyFeeling?.label(l10n) ?? na),
                 style: const pw.TextStyle(fontSize: 9),
               ),
           ],
@@ -86,7 +87,7 @@ class DoctorReportPdf {
                       i.dateStarted,
                       i.statusLabel,
                     ) +
-                    (i.note.isNotEmpty ? l10n.doctorReportNoteSuffix(i.note) : ''),
+                    (i.note.isNotEmpty ? l10n.doctorReportNoteSuffix(PdfFonts.withoutEmoji(i.note)) : ''),
                 style: const pw.TextStyle(fontSize: 9),
               ),
           ],

@@ -29,6 +29,10 @@ Future<void> main() async {
       final license = await rootBundle.loadString('assets/google_fonts/$family-OFL.txt');
       yield LicenseEntryWithLineBreaks([family], license);
     }
+    yield LicenseEntryWithLineBreaks(
+      ['Noto Sans TC'],
+      await rootBundle.loadString('assets/pdf_fonts/NotoSansTC-OFL.txt'),
+    );
   });
 
   // Portrait on phones — the forms and charts are laid out for a tall

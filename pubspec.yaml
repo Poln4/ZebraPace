@@ -128,6 +128,10 @@ flutter:
     # Bundled so the app never fetches fonts from Google at runtime (see
     # main.dart). Only the weights zebra_theme.dart asks for.
     - assets/google_fonts/
+    # Chinese fallback for the PDFs (lib/core/pdf/pdf_fonts.dart): Noto
+    # Sans TC Regular cut to Big5 level 1 plus the app's own strings, about
+    # 2 MB instead of 12. Rebuild with tool/build_pdf_cjk_font.py.
+    - assets/pdf_fonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
